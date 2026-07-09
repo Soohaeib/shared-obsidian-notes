@@ -1,0 +1,13 @@
+/* Mobile compatibility helper */
+:root { --mobile-body-padding: 1rem; --mobile-font-size: 16px; }
+html,body { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+body { font-size: var(--mobile-font-size); padding: 0; margin: 0; }
+main, .card, .content { padding-left: var(--mobile-body-padding); padding-right: var(--mobile-body-padding); box-sizing: border-box; }
+img, picture, video, iframe, svg { max-width: 100%; height: auto; display: block; }
+pre, code { white-space: pre-wrap; word-break: break-word; }
+table { width: 100%; border-collapse: collapse; }
+.table-responsive { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 600px) {
+  h1 { font-size: 1.4rem; }
+  .about-panel, .card { padding: 1rem; border-radius: 12px; }
+}
