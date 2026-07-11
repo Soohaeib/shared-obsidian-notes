@@ -2,122 +2,54 @@
 <html lang="en" class="theme-dark">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
     <meta name="description" content="Shared Obsidian Notes landing page" />
     <title>Shared Obsidian Notes</title>
     <link rel="icon" href="./site-lib/media/favicon.png" />
     
-    <!-- Fetching native Obsidian CSS to sync themes -->
+    <!-- Fetching native Obsidian CSS to sync themes natively -->
     <link rel="stylesheet" href="./site-lib/styles/theme.css" />
     <link rel="stylesheet" href="./site-lib/styles/obsidian.css" />
     
     <style>
-      :root {
-        /* Fallbacks in case stylesheets load late */
-        --bg-fallback: #1e1e1e;
-        --grid-fallback: rgba(255, 255, 255, 0.05);
-        
-        --folder-size: 50px;
-        --center-size: 75px;
-      }
-      
       body, html {
         margin: 0; padding: 0;
         width: 100%; height: 100%;
-        background-color: var(--background-primary, var(--bg-fallback));
-        background-image: radial-gradient(var(--background-modifier-border, var(--grid-fallback)) 1px, transparent 1px);
-        background-size: 30px 30px;
+        background-color: var(--background-primary, #1e1e1e);
         overflow: hidden;
-        font-family: var(--font-interface, 'Inter', system-ui, -apple-system, sans-serif);
+        font-family: var(--font-interface, 'Inter', system-ui, sans-serif);
       }
 
-      /* --- GRAPH UI --- */
-      #graph-container {
-        position: relative;
-        width: 100vw; height: 100vh;
+      /* Base dot pattern background to mimic Obsidian canvas */
+      .bg-layer {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background-image: radial-gradient(var(--background-modifier-border, rgba(255, 255, 255, 0.05)) 1px, transparent 1px);
+        background-size: 30px 30px;
+        z-index: 0; pointer-events: none;
       }
 
-      #graph-edges, #graph-nodes {
+      /* High-performance Graph Canvas */
+      #graph-canvas {
         position: absolute;
         top: 0; left: 0;
         width: 100%; height: 100%;
-        pointer-events: none;
-      }
-
-      .node-wrapper {
-        position: absolute;
-        transform: translate(-50%, -50%);
-        pointer-events: auto;
         z-index: 10;
+        cursor: default;
       }
-
-      .node-scaler {
-        display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
-        text-decoration: none;
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        cursor: pointer;
-      }
-
-      .dot {
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      }
-
-      .label {
-        margin-top: 10px;
-        color: var(--graph-text, var(--text-muted));
-        font-size: var(--font-ui-small, 1rem);
-        font-weight: var(--font-medium, 500);
-        white-space: nowrap;
-        text-shadow: 0 2px 4px var(--background-primary);
-        transition: color 0.3s ease; 
-        text-align: center;
-      }
-
-      /* Center Node */
-      .center-node .dot {
-        width: var(--center-size); height: var(--center-size);
-        background: var(--interactive-accent);
-        box-shadow: 0 0 20px hsla(var(--interactive-accent-hsl), 0.3);
-      }
-      .center-node .label {
-        color: var(--text-normal);
-        font-size: var(--font-ui-medium, 1.2rem); 
-        font-weight: var(--font-bold, 700);
-      }
-      .center-node.hover-active .dot {
-        background: var(--interactive-accent-hover);
-        box-shadow: 0 0 30px hsla(var(--interactive-accent-hsl), 0.6);
-        transform: scale(1.1);
-      }
-
-      /* Orbit Folder Nodes */
-      .folder-node .dot {
-        width: var(--folder-size); height: var(--folder-size);
-        background: var(--graph-node);
-      }
-      .folder-node:hover { transform: scale(1.4); z-index: 100; }
-      .folder-node:hover .dot {
-        background: var(--graph-node-focused);
-        box-shadow: 0 0 20px hsla(var(--color-accent-hsl), 0.5);
-      }
-      .folder-node:hover .label { color: var(--text-normal); }
 
       /* --- INFO BUTTON & MODAL UI --- */
       .info-btn {
         position: fixed; bottom: 30px; right: 30px;
         width: 54px; height: 54px; border-radius: 27px;
-        background: var(--interactive-accent); color: var(--text-on-accent);
+        background: var(--interactive-accent, #8b6ce3); color: var(--text-on-accent, white);
         border: none; font-size: 1.5rem; font-weight: bold; font-family: serif;
-        cursor: pointer; box-shadow: var(--shadow-l);
+        cursor: pointer; box-shadow: var(--shadow-l, 0 10px 30px rgba(0,0,0,0.5));
         z-index: 100; transition: transform 0.2s, background 0.2s;
         display: flex; justify-content: center; align-items: center;
       }
       .info-btn:hover {
         transform: scale(1.1);
-        background: var(--interactive-accent-hover);
+        background: var(--interactive-accent-hover, #9d80f5);
       }
 
       .modal-overlay {
@@ -132,10 +64,10 @@
         position: fixed; top: 50%; left: 50%;
         transform: translate(-50%, -40%) scale(0.95);
         width: 90%; max-width: 420px;
-        background: var(--background-secondary);
-        border: var(--border-width) solid var(--background-modifier-border);
+        background: var(--background-secondary, #262626);
+        border: var(--border-width, 1px) solid var(--background-modifier-border, #363636);
         border-radius: var(--modal-radius, 16px);
-        padding: 30px; color: var(--text-normal);
+        padding: 30px; color: var(--text-normal, #dadada);
         box-shadow: var(--modal-shadow, 0 20px 50px rgba(0,0,0,0.7));
         z-index: 200; opacity: 0; pointer-events: none;
         transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -146,25 +78,25 @@
       }
       .about-modal h2 {
         margin: 0 0 12px 0; color: var(--h2-color, var(--text-normal));
-        font-family: var(--h2-font); font-size: var(--h2-size);
+        font-family: var(--h2-font); font-size: var(--h2-size, 1.4rem);
         display: flex; align-items: center; gap: 8px;
       }
       .about-modal p {
-        margin: 0 0 16px 0; font-size: var(--font-ui-small); 
-        line-height: var(--line-height-normal); color: var(--text-muted);
+        margin: 0 0 16px 0; font-size: var(--font-ui-small, 0.95rem); 
+        line-height: var(--line-height-normal, 1.5); color: var(--text-muted, #b3b3b3);
       }
       .badge {
         display: inline-block; padding: 6px 12px;
-        background: hsla(var(--interactive-accent-hsl), 0.2); 
-        color: var(--text-accent); border-radius: var(--tag-radius, 20px); 
-        font-size: var(--font-smaller); font-weight: var(--font-semibold); margin-bottom: 20px;
+        background: hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.2); 
+        color: var(--text-accent, #a882ff); border-radius: var(--tag-radius, 20px); 
+        font-size: var(--font-smaller, 0.85rem); font-weight: var(--font-semibold, 600); margin-bottom: 20px;
       }
       .close-btn {
         position: absolute; top: 16px; right: 20px;
-        background: none; border: none; color: var(--text-muted);
+        background: none; border: none; color: var(--text-muted, #b3b3b3);
         font-size: 1.5rem; cursor: pointer; transition: color 0.2s;
       }
-      .close-btn:hover { color: var(--text-normal); }
+      .close-btn:hover { color: var(--text-normal, white); }
 
       @media (max-width: 600px) {
         .info-btn { bottom: 20px; right: 20px; width: 48px; height: 48px; font-size: 1.2rem; }
@@ -173,10 +105,8 @@
   </head>
   <body>
     
-    <div id="graph-container">
-      <svg id="graph-edges"></svg>
-      <div id="graph-nodes"></div>
-    </div>
+    <div class="bg-layer"></div>
+    <canvas id="graph-canvas"></canvas>
 
     <!-- Floating Info Interaction -->
     <button class="info-btn" id="info-btn" aria-label="Vault Information">i</button>
@@ -187,21 +117,14 @@
       <div class="badge">Digital Garden 🌱</div>
       <p>This is my Digital Garden—a public collection of my notes, ideas, and coursework.</p>
       <p>Unlike a blog, things here aren't always finished. Notes will grow, change, and interlink over time. Right now, it heavily features my 4th-semester computer science/engineering subjects.</p>
-      <p style="color: var(--text-faint); font-size: var(--font-smallest); margin-top: 20px;">
-        <em>How to navigate: Click the floating nodes to dive into a specific topic or semester.</em>
+      <p style="color: var(--text-faint, #666666); font-size: var(--font-smallest, 0.8rem); margin-top: 20px;">
+        <em>How to navigate: Click or tap the floating nodes to dive into a specific topic or semester.</em>
       </p>
-    </div>
-
-    <!-- HIDDEN DATA SOURCE -->
-    <div id="sync-data" style="display: none;">
-      <ul>
-<li><a href="./4th-semester/">4Th Semester</a></li>
-      </ul>
     </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // Modal Logic
+        // --- 1. MODAL LOGIC ---
         const infoBtn = document.getElementById('info-btn');
         const modal = document.getElementById('about-modal');
         const overlay = document.getElementById('modal-overlay');
@@ -216,97 +139,210 @@
         closeBtn.addEventListener('click', toggleModal);
         overlay.addEventListener('click', toggleModal);
 
-        // Fetch styling variables directly from CSS DOM loaded by the <link> tags
-        const styles = getComputedStyle(document.body);
+        // --- 2. GRAPH PHYSICS & RENDERING (Mimicking PIXI / WebGL Worker) ---
+        const canvas = document.getElementById('graph-canvas');
+        const ctx = canvas.getContext('2d');
         
-        // Graph Logic
-        const ul = document.querySelector('#sync-data ul');
-        if (!ul) return;
+        const rawNodes = [{"id": "root", "label": "Shared Vault", "url": null, "isRoot": true}, {"id": "4th-semester", "label": "4Th Semester", "url": "./4th-semester/", "isRoot": false}];
         
-        const links = Array.from(ul.querySelectorAll('a')).map(a => ({
-          text: a.textContent,
-          href: a.href
+        let width, height;
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width * window.devicePixelRatio;
+            canvas.height = height * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Build Graph Data
+        const nodes = rawNodes.map(n => ({
+            ...n,
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: 0, vy: 0
+        }));
+        
+        const rootNode = nodes.find(n => n.isRoot);
+        const edges = nodes.filter(n => !n.isRoot).map(n => ({
+            source: rootNode, target: n
         }));
 
-        const svg = document.getElementById('graph-edges');
-        const nodesContainer = document.getElementById('graph-nodes');
-
-        const count = links.length || 1;
-        const calculatedSize = Math.max(40, Math.min(90, 250 / Math.sqrt(count)));
-        
-        document.documentElement.style.setProperty('--folder-size', `${calculatedSize}px`);
-        document.documentElement.style.setProperty('--center-size', `${calculatedSize * 1.5}px`);
-
-        const centerWrapper = document.createElement('div');
-        centerWrapper.className = 'node-wrapper';
-        centerWrapper.innerHTML = `
-          <div class="node-scaler center-node">
-            <div class="dot"></div>
-            <div class="label">Shared Vault</div>
-          </div>
-        `;
-        nodesContainer.appendChild(centerWrapper);
-        const centerNodeEl = centerWrapper.querySelector('.center-node');
-
-        const folderData = links.map((link, i) => {
-          const wrapper = document.createElement('div');
-          wrapper.className = 'node-wrapper';
-          wrapper.innerHTML = `
-            <a href="${link.href}" class="node-scaler folder-node">
-              <div class="dot"></div>
-              <div class="label">${link.text}</div>
-            </a>
-          `;
-          nodesContainer.appendChild(wrapper);
-          const nodeEl = wrapper.querySelector('.folder-node');
-          
-          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-          line.setAttribute('stroke', 'var(--graph-line, #444444)');
-          line.setAttribute('stroke-width', '2');
-          svg.appendChild(line);
-
-          nodeEl.addEventListener('mouseenter', () => {
-            line.setAttribute('stroke', 'var(--graph-node-focused, #a882ff)');
-            line.setAttribute('stroke-width', '4');
-            centerNodeEl.classList.add('hover-active');
-          });
-          nodeEl.addEventListener('mouseleave', () => {
-            line.setAttribute('stroke', 'var(--graph-line, #444444)');
-            line.setAttribute('stroke-width', '2');
-            centerNodeEl.classList.remove('hover-active');
-          });
-
-          return { wrapper, line, angle: (i / count) * Math.PI * 2 };
-        });
-
-        function layoutGraph() {
-          const width = window.innerWidth;
-          const height = window.innerHeight;
-          
-          const cx = width / 2;
-          const cy = height / 2;
-          // Responsive orbit scaling
-          const orbitRadius = Math.min(width, height) * 0.28;
-
-          centerWrapper.style.left = `${cx}px`;
-          centerWrapper.style.top = `${cy}px`;
-
-          folderData.forEach(node => {
-            const nx = cx + Math.cos(node.angle) * orbitRadius;
-            const ny = cy + Math.sin(node.angle) * orbitRadius;
-            
-            node.wrapper.style.left = `${nx}px`;
-            node.wrapper.style.top = `${ny}px`;
-
-            node.line.setAttribute('x1', cx);
-            node.line.setAttribute('y1', cy);
-            node.line.setAttribute('x2', nx);
-            node.line.setAttribute('y2', ny);
-          });
+        // Dynamic CSS Color Extraction
+        function getCSSColor(varName, fallback) {
+            const val = getComputedStyle(document.body).getPropertyValue(varName).trim();
+            return val ? val : fallback;
         }
 
-        window.addEventListener('resize', layoutGraph);
-        layoutGraph(); 
+        // Physics Constants
+        const REPULSION = 4000;
+        const SPRING_LEN = Math.min(width, height) * 0.25;
+        const SPRING_K = 0.03;
+        const DAMPING = 0.85;
+        const CENTER_GRAVITY = 0.02;
+
+        let hoveredNode = null;
+        let draggedNode = null;
+
+        function draw() {
+            // Fetch live colors in case theme changes
+            const cBg = getCSSColor('--background-primary', '#1e1e1e');
+            const cNode = getCSSColor('--graph-node', '#a0a0a0');
+            const cNodeHover = getCSSColor('--interactive-accent', '#8b6ce3');
+            const cLine = getCSSColor('--graph-line', '#444444');
+            const cText = getCSSColor('--graph-text', getCSSColor('--text-normal', '#ffffff'));
+            const cTextMuted = getCSSColor('--text-muted', '#a0a0a0');
+            const font = getCSSColor('--font-interface', 'sans-serif');
+
+            ctx.clearRect(0, 0, width, height);
+
+            // Calculate Forces
+            nodes.forEach(n1 => {
+                nodes.forEach(n2 => {
+                    if (n1 === n2) return;
+                    let dx = n2.x - n1.x;
+                    let dy = n2.y - n1.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                    if (dist < 300) {
+                        let force = REPULSION / (dist * dist);
+                        n1.vx -= (dx / dist) * force;
+                        n1.vy -= (dy / dist) * force;
+                    }
+                });
+            });
+
+            edges.forEach(e => {
+                let dx = e.target.x - e.source.x;
+                let dy = e.target.y - e.source.y;
+                let dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                let force = (dist - SPRING_LEN) * SPRING_K;
+                e.source.vx += (dx / dist) * force;
+                e.source.vy += (dy / dist) * force;
+                e.target.vx -= (dx / dist) * force;
+                e.target.vy -= (dy / dist) * force;
+            });
+
+            // Update Positions
+            nodes.forEach(n => {
+                // Pin root to center roughly
+                if (n.isRoot) {
+                    n.vx += ((width / 2) - n.x) * (CENTER_GRAVITY * 3);
+                    n.vy += ((height / 2) - n.y) * (CENTER_GRAVITY * 3);
+                } else {
+                    n.vx += ((width / 2) - n.x) * CENTER_GRAVITY;
+                    n.vy += ((height / 2) - n.y) * CENTER_GRAVITY;
+                }
+
+                n.vx *= DAMPING;
+                n.vy *= DAMPING;
+
+                if (draggedNode === n) {
+                    n.vx = 0; n.vy = 0;
+                } else {
+                    n.x += n.vx;
+                    n.y += n.vy;
+                }
+            });
+
+            // Draw Edges
+            ctx.lineWidth = 1.5;
+            edges.forEach(e => {
+                const isHovered = (hoveredNode === e.source || hoveredNode === e.target);
+                ctx.strokeStyle = isHovered ? cNodeHover : cLine;
+                ctx.globalAlpha = isHovered ? 0.8 : 0.5;
+                ctx.beginPath();
+                ctx.moveTo(e.source.x, e.source.y);
+                ctx.lineTo(e.target.x, e.target.y);
+                ctx.stroke();
+            });
+            ctx.globalAlpha = 1.0;
+
+            // Draw Nodes
+            nodes.forEach(n => {
+                const isHovered = (n === hoveredNode);
+                const r = n.isRoot ? 10 : 6;
+
+                // Accent Glow Ring on Hover
+                if (isHovered || n.isRoot) {
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, r + 4, 0, Math.PI * 2);
+                    ctx.fillStyle = cBg;
+                    ctx.fill();
+                    ctx.lineWidth = 2;
+                    ctx.strokeStyle = isHovered ? cText : cNodeHover;
+                    ctx.stroke();
+                }
+
+                // Node Body
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+                ctx.fillStyle = isHovered ? cNodeHover : (n.isRoot ? cNodeHover : cNode);
+                ctx.fill();
+
+                // Node Text
+                ctx.font = `${n.isRoot ? 'bold 16px' : '14px'} ${font}`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'top';
+                ctx.fillStyle = isHovered ? cText : (n.isRoot ? cText : cTextMuted);
+                ctx.fillText(n.label, n.x, n.y + r + 8);
+            });
+
+            requestAnimationFrame(draw);
+        }
+
+        // --- Interaction Events ---
+        function getMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            // Handle Touch and Mouse
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        function handleMove(e) {
+            const pos = getMousePos(e);
+            if (draggedNode) {
+                draggedNode.x = pos.x;
+                draggedNode.y = pos.y;
+            }
+            
+            hoveredNode = null;
+            nodes.forEach(n => {
+                const dx = n.x - pos.x;
+                const dy = n.y - pos.y;
+                if (dx * dx + dy * dy < 600) { // Hitbox radius ~24px
+                    hoveredNode = n;
+                }
+            });
+            canvas.style.cursor = hoveredNode ? 'pointer' : 'default';
+        }
+
+        canvas.addEventListener('mousemove', handleMove);
+        canvas.addEventListener('touchmove', handleMove, {passive: true});
+
+        function handleDown(e) {
+            if (hoveredNode) draggedNode = hoveredNode;
+        }
+        canvas.addEventListener('mousedown', handleDown);
+        canvas.addEventListener('touchstart', handleDown, {passive: true});
+
+        function handleUp() { draggedNode = null; }
+        canvas.addEventListener('mouseup', handleUp);
+        canvas.addEventListener('touchend', handleUp);
+        canvas.addEventListener('mouseleave', handleUp);
+
+        canvas.addEventListener('click', () => {
+            if (hoveredNode && !hoveredNode.isRoot && hoveredNode.url) {
+                window.location.href = hoveredNode.url;
+            }
+        });
+
+        // Start physics loop
+        draw();
       });
     </script>
   </body>
