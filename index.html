@@ -10,19 +10,13 @@
       :root {
         color-scheme: dark;
         font-family: 'Inter', system-ui, -apple-system, sans-serif;
-        
         --bg-color: #1e1e1e;
         --grid-color: rgba(255, 255, 255, 0.05);
         --node-center: #8b6ce3;
-        --node-center-glow: #a882ff;
-        --node-folder: #8c8e92;
         --node-folder-hover: #4a90e2;
         --line-color: #444444;
         --text-muted: #a0a0a0;
         --text-bright: #ffffff;
-
-        --folder-size: 50px;
-        --center-size: 75px;
       }
       
       body, html {
@@ -31,260 +25,84 @@
         background-color: var(--bg-color);
         background-image: radial-gradient(var(--grid-color) 1px, transparent 1px);
         background-size: 30px 30px;
-        overflow: hidden;
+        overflow-x: hidden;
       }
 
-      #graph-container {
-        position: relative;
-        width: 100vw; height: 100vh;
-      }
+      .tree-container { max-width: 800px; margin: 10vh auto; padding: 0 20px; position: relative; }
+      .root-node { font-size: 1.5rem; font-weight: 700; color: var(--text-bright); background: var(--node-center); padding: 14px 28px; border-radius: 12px; display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 8px 25px rgba(139, 108, 227, 0.4); margin-bottom: 0; z-index: 2; position: relative; }
+      .branch { display: flex; flex-direction: column; margin: 0 0 0 30px; padding: 0; }
+      .branch-item { position: relative; padding: 8px 0 8px 40px; }
+      .branch-item::before { content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 2px; background: var(--line-color); }
+      .branch-item:first-child::before { top: -20px; }
+      .branch-item:last-child::before { bottom: 50%; }
+      .branch-item::after { content: ''; position: absolute; top: 50%; left: 0; width: 40px; height: 2px; background: var(--line-color); }
+      .folder-card { display: block; padding: 16px 24px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; color: var(--text-bright); text-decoration: none; font-size: 1.1rem; font-weight: 500; transition: all 0.3s; z-index: 2; position: relative; backdrop-filter: blur(8px); }
+      .folder-card:hover { background: rgba(74, 144, 226, 0.15); border-color: var(--node-folder-hover); transform: translateX(10px); box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3); }
 
-      #graph-edges, #graph-nodes {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        pointer-events: none;
-      }
+      .info-btn { position: fixed; bottom: 30px; right: 30px; width: 54px; height: 54px; border-radius: 27px; background: var(--node-center); color: white; border: none; font-size: 1.5rem; font-weight: bold; font-family: serif; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 100; transition: transform 0.2s, background 0.2s; display: flex; justify-content: center; align-items: center; }
+      .info-btn:hover { transform: scale(1.1); background: #9d80f5; }
+      .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 150; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; backdrop-filter: blur(4px); }
+      .modal-overlay.active { opacity: 1; pointer-events: auto; }
+      .about-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -40%) scale(0.95); width: 90%; max-width: 420px; background: rgba(30, 30, 30, 0.95); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 30px; color: var(--text-bright); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7); z-index: 200; opacity: 0; pointer-events: none; transition: all 0.3s; }
+      .about-modal.active { opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1); }
+      .about-modal h2 { margin: 0 0 12px 0; font-size: 1.4rem; display: flex; align-items: center; gap: 8px; }
+      .about-modal p { margin: 0 0 16px 0; font-size: 0.95rem; line-height: 1.5; color: #c9d1d9; }
+      .badge { display: inline-block; padding: 6px 12px; background: rgba(139, 108, 227, 0.2); color: #c3b0ff; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 20px; }
+      .close-btn { position: absolute; top: 16px; right: 20px; background: none; border: none; color: #a0a0a0; font-size: 1.5rem; cursor: pointer; transition: color 0.2s; }
+      .close-btn:hover { color: #fff; }
 
-      .node-wrapper {
-        position: absolute;
-        transform: translate(-50%, -50%);
-        pointer-events: auto;
-        z-index: 10;
-      }
-
-      .node-scaler {
-        display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
-        text-decoration: none;
-        transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        cursor: pointer;
-      }
-
-      .dot {
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-      }
-
-      .label {
-        margin-top: 10px;
-        color: var(--text-muted);
-        font-size: 1rem; font-weight: 500;
-        white-space: nowrap;
-        text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-        transition: color 0.3s ease; text-align: center;
-      }
-
-      .center-node .dot {
-        width: var(--center-size); height: var(--center-size);
-        background: var(--node-center);
-        box-shadow: 0 0 20px rgba(139, 108, 227, 0.3);
-      }
-      .center-node .label {
-        color: var(--text-bright); font-size: 1.2rem; font-weight: 700;
-      }
-      .center-node.hover-active .dot {
-        background: var(--node-center-glow);
-        box-shadow: 0 0 30px rgba(168, 130, 255, 0.6);
-        transform: scale(1.1);
-      }
-
-      .folder-node .dot {
-        width: var(--folder-size); height: var(--folder-size);
-        background: var(--node-folder);
-      }
-
-      .folder-node:hover { transform: scale(1.4); z-index: 100; }
-      .folder-node:hover .dot {
-        background: var(--node-folder-hover);
-        box-shadow: 0 0 20px rgba(74, 144, 226, 0.6);
-      }
-      .folder-node:hover .label { color: var(--text-bright); }
-
-      /* --- ABOUT PANEL UI --- */
-      .about-panel {
-        position: absolute;
-        top: 30px; left: 30px;
-        width: 320px;
-        padding: 24px;
-        background: rgba(25, 25, 25, 0.6);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        color: var(--text-bright);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        z-index: 50;
-        pointer-events: auto;
-      }
-
-      .about-panel h2 {
-        margin: 0 0 12px 0;
-        font-size: 1.25rem;
-        color: var(--text-bright);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
-
-      .about-panel p {
-        margin: 0 0 16px 0;
-        font-size: 0.95rem;
-        line-height: 1.5;
-        color: #c9d1d9;
-      }
-      
-      .about-panel p:last-child {
-        margin-bottom: 0;
-      }
-
-      .badge {
-        display: inline-block;
-        padding: 4px 10px;
-        background: rgba(139, 108, 227, 0.2);
-        color: var(--node-center-glow);
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        margin-bottom: 16px;
-      }
-
-      .meta-overlay {
-        position: absolute;
-        bottom: 20px; right: 20px;
-        color: #666; font-size: 0.8rem; text-align: right; pointer-events: none;
-      }
-      
-      @media (max-width: 768px) {
-        .about-panel {
-          top: 20px; left: 20px; right: 20px;
-          width: auto;
-        }
+      @media (max-width: 600px) {
+        .tree-container { margin: 5vh auto; }
+        .root-node { font-size: 1.2rem; padding: 12px 20px; }
+        .branch { margin-left: 20px; }
+        .branch-item { padding-left: 30px; }
+        .branch-item::after { width: 30px; }
+        .folder-card { font-size: 1rem; padding: 14px 16px; }
+        .info-btn { bottom: 20px; right: 20px; width: 48px; height: 48px; font-size: 1.2rem; }
       }
     </style>
   </head>
   <body>
     
-    <div id="graph-container">
-      <svg id="graph-edges"></svg>
-      <div id="graph-nodes"></div>
+    <div class="tree-container">
+      <div class="root-node">🌱 Shared Vault</div>
+      <div class="branch">
+
+          <div class="branch-item">
+            <a href="./4th-semester/" class="folder-card">📁 4Th Semester</a>
+          </div>
+      </div>
     </div>
 
-    <div class="about-panel">
+    <!-- Floating Info Interaction -->
+    <button class="info-btn" id="info-btn" aria-label="Vault Information">i</button>
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="about-modal" id="about-modal">
+      <button class="close-btn" id="close-btn">&times;</button>
       <h2>About this Vault</h2>
       <div class="badge">Digital Garden 🌱</div>
-      <p>
-        This is my Digital Garden—a public collection of my notes, ideas, and coursework.
-      </p>
-      <p>
-        Unlike a blog, things here aren't always finished. Notes will grow, change, and interlink over time. Right now, it heavily features my 4th-semester computer science/engineering subjects.
-      </p>
+      <p>This is my Digital Garden—a public collection of my notes, ideas, and coursework.</p>
+      <p>Unlike a blog, things here aren't always finished. Notes will grow, change, and interlink over time. Right now, it heavily features my 4th-semester computer science/engineering subjects.</p>
       <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 20px;">
-        <em>How to navigate: Click the floating nodes to dive into a specific topic or semester.</em>
+        <em>How to navigate: Click any of the folder cards to dive into a specific topic or semester.</em>
       </p>
-    </div>
-
-    <!-- HIDDEN DATA SOURCE - The script replaces <li><a href="./4th-semester/">4Th Semester</a></li> with the generated folders -->
-    <div id="sync-data" style="display: none;">
-      <ul>
-<li><a href="./4th-semester/">4Th Semester</a></li>
-      </ul>
-    </div>
-
-    <div class="meta-overlay">
-      Shared Obsidian Notes<br>
-      Assets served from site-lib
     </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const ul = document.querySelector('#sync-data ul');
-        if (!ul) return;
-        
-        const links = Array.from(ul.querySelectorAll('a')).map(a => ({
-          text: a.textContent,
-          href: a.href
-        }));
+        const infoBtn = document.getElementById('info-btn');
+        const modal = document.getElementById('about-modal');
+        const overlay = document.getElementById('modal-overlay');
+        const closeBtn = document.getElementById('close-btn');
 
-        const svg = document.getElementById('graph-edges');
-        const nodesContainer = document.getElementById('graph-nodes');
-
-        const count = links.length || 1;
-        const calculatedSize = Math.max(40, Math.min(90, 250 / Math.sqrt(count)));
-        
-        document.documentElement.style.setProperty('--folder-size', `${calculatedSize}px`);
-        document.documentElement.style.setProperty('--center-size', `${calculatedSize * 1.5}px`);
-
-        const centerWrapper = document.createElement('div');
-        centerWrapper.className = 'node-wrapper';
-        centerWrapper.innerHTML = `
-          <div class="node-scaler center-node">
-            <div class="dot"></div>
-            <div class="label">Shared Vault</div>
-          </div>
-        `;
-        nodesContainer.appendChild(centerWrapper);
-        const centerNodeEl = centerWrapper.querySelector('.center-node');
-
-        const folderData = links.map((link, i) => {
-          const wrapper = document.createElement('div');
-          wrapper.className = 'node-wrapper';
-          wrapper.innerHTML = `
-            <a href="${link.href}" class="node-scaler folder-node">
-              <div class="dot"></div>
-              <div class="label">${link.text}</div>
-            </a>
-          `;
-          nodesContainer.appendChild(wrapper);
-          const nodeEl = wrapper.querySelector('.folder-node');
-          
-          const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-          line.setAttribute('stroke', 'var(--line-color)');
-          line.setAttribute('stroke-width', '2');
-          svg.appendChild(line);
-
-          nodeEl.addEventListener('mouseenter', () => {
-            line.setAttribute('stroke', 'var(--node-folder-hover)');
-            line.setAttribute('stroke-width', '4');
-            centerNodeEl.classList.add('hover-active');
-          });
-          nodeEl.addEventListener('mouseleave', () => {
-            line.setAttribute('stroke', 'var(--line-color)');
-            line.setAttribute('stroke-width', '2');
-            centerNodeEl.classList.remove('hover-active');
-          });
-
-          return { wrapper, line, angle: (i / count) * Math.PI * 2 };
-        });
-
-        function layoutGraph() {
-          const width = window.innerWidth;
-          const height = window.innerHeight;
-          
-          const cx = width > 768 ? (width / 2) + 100 : (width / 2);
-          const cy = height / 2;
-          const orbitRadius = Math.min(width, height) * 0.30;
-
-          centerWrapper.style.left = `${cx}px`;
-          centerWrapper.style.top = `${cy}px`;
-
-          folderData.forEach(node => {
-            const nx = cx + Math.cos(node.angle) * orbitRadius;
-            const ny = cy + Math.sin(node.angle) * orbitRadius;
-            
-            node.wrapper.style.left = `${nx}px`;
-            node.wrapper.style.top = `${ny}px`;
-
-            node.line.setAttribute('x1', cx);
-            node.line.setAttribute('y1', cy);
-            node.line.setAttribute('x2', nx);
-            node.line.setAttribute('y2', ny);
-          });
+        function toggleModal() {
+          modal.classList.toggle('active');
+          overlay.classList.toggle('active');
         }
 
-        window.addEventListener('resize', layoutGraph);
-        layoutGraph(); 
+        infoBtn.addEventListener('click', toggleModal);
+        closeBtn.addEventListener('click', toggleModal);
+        overlay.addEventListener('click', toggleModal);
       });
     </script>
   </body>
