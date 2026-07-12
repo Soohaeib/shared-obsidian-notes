@@ -73,8 +73,7 @@
         transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       .about-modal.active {
-        opacity: 1; pointer-events: auto;
-        transform: translate(-50%, -50%) scale(1);
+        opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1);
       }
       .about-modal h2 {
         margin: 0 0 12px 0; color: var(--h2-color, var(--text-normal));
@@ -139,11 +138,11 @@
         closeBtn.addEventListener('click', toggleModal);
         overlay.addEventListener('click', toggleModal);
 
-        // --- 2. GRAPH PHYSICS & RENDERING (Mimicking PIXI / WebGL Worker) ---
+        // --- 2. GRAPH PHYSICS & RENDERING ---
         const canvas = document.getElementById('graph-canvas');
         const ctx = canvas.getContext('2d');
         
-        const rawNodes = [{"id": "root", "label": "Shared Vault", "url": null, "isRoot": true}, {"id": "4th-semester", "label": "4Th Semester", "url": "./4th-semester/", "isRoot": false}];
+        const rawNodes = [{"id": "root", "label": "Shared Vault", "url": null, "isRoot": true, "moons": 0}, {"id": "4th-semester", "label": "4Th Semester", "url": "./4th-semester/", "isRoot": false, "moons": 11}];
         
         let width, height;
         function resize() {
@@ -184,9 +183,12 @@
 
         let hoveredNode = null;
         let draggedNode = null;
+        let time = 0; // Incrementor for the moon orbital animation
 
         function draw() {
-            // Fetch live colors in case theme changes
+            time += 0.015; // Slow, uniform orbit increment
+
+            // Fetch live variables to respect light/dark shifts
             const cBg = getCSSColor('--background-primary', '#1e1e1e');
             const cNode = getCSSColor('--graph-node', '#a0a0a0');
             const cNodeHover = getCSSColor('--interactive-accent', '#8b6ce3');
@@ -225,7 +227,6 @@
 
             // Update Positions
             nodes.forEach(n => {
-                // Pin root to center roughly
                 if (n.isRoot) {
                     n.vx += ((width / 2) - n.x) * (CENTER_GRAVITY * 3);
                     n.vy += ((height / 2) - n.y) * (CENTER_GRAVITY * 3);
@@ -258,10 +259,33 @@
             });
             ctx.globalAlpha = 1.0;
 
-            // Draw Nodes
+            // Draw Nodes & Moons
             nodes.forEach(n => {
                 const isHovered = (n === hoveredNode);
                 const r = n.isRoot ? 10 : 6;
+
+                // Render tiny orbiting moons for folders that contain subdirectories
+                if (!n.isRoot && n.moons > 0) {
+                    const visibleMoons = Math.min(n.moons, 10); // Safeguard against overcrowding
+                    const orbitRadius = r + 11; // Keeps them tight and clean
+                    
+                    // Alternates rotation direction based on node ID to make the sky feel alive
+                    const rotationDir = (n.id.charCodeAt(0) % 2 === 0) ? 1 : -1;
+
+                    for (let m = 0; m < visibleMoons; m++) {
+                        const baseAngle = (m / visibleMoons) * Math.PI * 2;
+                        const animatedAngle = baseAngle + (time * rotationDir);
+                        const mx = n.x + Math.cos(animatedAngle) * orbitRadius;
+                        const my = n.y + Math.sin(animatedAngle) * orbitRadius;
+
+                        ctx.beginPath();
+                        ctx.arc(mx, my, 1.5, 0, Math.PI * 2);
+                        ctx.fillStyle = isHovered ? cNodeHover : cNode;
+                        ctx.globalAlpha = isHovered ? 1.0 : 0.6; // Slightly dimmer when parent isn't focused
+                        ctx.fill();
+                    }
+                    ctx.globalAlpha = 1.0; // Reset
+                }
 
                 // Accent Glow Ring on Hover
                 if (isHovered || n.isRoot) {
@@ -294,7 +318,6 @@
         // --- Interaction Events ---
         function getMousePos(e) {
             const rect = canvas.getBoundingClientRect();
-            // Handle Touch and Mouse
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
             return {
@@ -314,7 +337,7 @@
             nodes.forEach(n => {
                 const dx = n.x - pos.x;
                 const dy = n.y - pos.y;
-                if (dx * dx + dy * dy < 600) { // Hitbox radius ~24px
+                if (dx * dx + dy * dy < 600) { // Hover interaction box ~24px
                     hoveredNode = n;
                 }
             });
