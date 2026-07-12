@@ -37,68 +37,103 @@
         cursor: default;
       }
 
-      /* --- INFO BUTTON & MODAL UI --- */
+      /* --- INFO BUTTON (PREMIUM GLASSMORPHISM) --- */
       .info-btn {
         position: fixed; bottom: 30px; right: 30px;
-        width: 54px; height: 54px; border-radius: 27px;
-        background: var(--interactive-accent, #8b6ce3); color: var(--text-on-accent, white);
-        border: none; font-size: 1.5rem; font-weight: bold; font-family: serif;
-        cursor: pointer; box-shadow: var(--shadow-l, 0 10px 30px rgba(0,0,0,0.5));
-        z-index: 100; transition: transform 0.2s, background 0.2s;
+        width: 54px; height: 54px; border-radius: 50%;
+        background: hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.15);
+        backdrop-filter: blur(12px) saturate(150%);
+        -webkit-backdrop-filter: blur(12px) saturate(150%);
+        border: 1px solid hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.4);
+        border-top-color: rgba(255, 255, 255, 0.2);
+        color: var(--interactive-accent, #8b6ce3);
+        cursor: pointer; box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        z-index: 100; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         display: flex; justify-content: center; align-items: center;
       }
       .info-btn:hover {
-        transform: scale(1.1);
-        background: var(--interactive-accent-hover, #9d80f5);
+        transform: translateY(-4px) scale(1.05);
+        background: var(--interactive-accent, #8b6ce3);
+        color: var(--text-on-accent, white);
+        border-color: var(--interactive-accent, #8b6ce3);
+        box-shadow: 0 12px 36px hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.4);
       }
 
+      /* --- MODAL OVERLAY --- */
       .modal-overlay {
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.6); z-index: 150;
-        opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+        background: rgba(0, 0, 0, 0.5); z-index: 150;
+        opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
         backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
       }
       .modal-overlay.active { opacity: 1; pointer-events: auto; }
 
+      /* --- ACRYLIC / MICA MODAL WINDOW --- */
       .about-modal {
         position: fixed; top: 50%; left: 50%;
         transform: translate(-50%, -40%) scale(0.95);
-        width: 90%; max-width: 420px;
-        background: var(--background-secondary, #262626);
-        border: var(--border-width, 1px) solid var(--background-modifier-border, #363636);
-        border-radius: var(--modal-radius, 16px);
-        padding: 30px; color: var(--text-normal, #dadada);
-        box-shadow: var(--modal-shadow, 0 20px 50px rgba(0,0,0,0.7));
+        width: 90%; max-width: 440px;
+        
+        /* Frosted Glass Background */
+        background: linear-gradient(135deg, rgba(40, 40, 40, 0.55) 0%, rgba(20, 20, 20, 0.75) 100%);
+        backdrop-filter: blur(28px) saturate(180%);
+        -webkit-backdrop-filter: blur(28px) saturate(180%);
+        
+        /* Glass Edge Highlights */
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        border-left: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
+        
+        padding: 36px; color: var(--text-normal, #dadada);
+        box-shadow: 0 24px 64px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 0 0 1px rgba(255,255,255,0.02);
         z-index: 200; opacity: 0; pointer-events: none;
-        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
       .about-modal.active {
         opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1);
       }
+      
       .about-modal h2 {
-        margin: 0 0 12px 0; color: var(--h2-color, var(--text-normal));
-        font-family: var(--h2-font); font-size: var(--h2-size, 1.4rem);
-        display: flex; align-items: center; gap: 8px;
+        margin: 0 0 16px 0; color: var(--h2-color, var(--text-normal));
+        font-family: var(--h2-font); font-size: var(--h2-size, 1.5rem);
+        display: flex; align-items: center; gap: 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
       }
       .about-modal p {
         margin: 0 0 16px 0; font-size: var(--font-ui-small, 0.95rem); 
-        line-height: var(--line-height-normal, 1.5); color: var(--text-muted, #b3b3b3);
+        line-height: var(--line-height-normal, 1.6); color: var(--text-muted, #b3b3b3);
       }
+      
       .badge {
-        display: inline-block; padding: 6px 12px;
-        background: hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.2); 
-        color: var(--text-accent, #a882ff); border-radius: var(--tag-radius, 20px); 
-        font-size: var(--font-smaller, 0.85rem); font-weight: var(--font-semibold, 600); margin-bottom: 20px;
+        display: inline-flex; align-items: center; padding: 6px 14px;
+        background: linear-gradient(135deg, hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.25), hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.1));
+        border: 1px solid hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.3);
+        color: var(--text-accent, #a882ff); border-radius: 20px; 
+        font-size: var(--font-smaller, 0.85rem); font-weight: 600; margin-bottom: 24px;
+        box-shadow: inset 0 1px 0 hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.2);
       }
+      
+      /* --- CLOSE BUTTON --- */
       .close-btn {
-        position: absolute; top: 16px; right: 20px;
-        background: none; border: none; color: var(--text-muted, #b3b3b3);
-        font-size: 1.5rem; cursor: pointer; transition: color 0.2s;
+        position: absolute; top: 20px; right: 20px;
+        width: 32px; height: 32px; border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        color: var(--text-muted, #b3b3b3);
+        font-size: 1.2rem; cursor: pointer; 
+        display: flex; justify-content: center; align-items: center;
+        transition: all 0.2s ease;
       }
-      .close-btn:hover { color: var(--text-normal, white); }
+      .close-btn:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: var(--text-normal, white);
+        transform: rotate(90deg);
+      }
 
       @media (max-width: 600px) {
-        .info-btn { bottom: 20px; right: 20px; width: 48px; height: 48px; font-size: 1.2rem; }
+        .info-btn { bottom: 20px; right: 20px; width: 48px; height: 48px; }
+        .about-modal { width: 85%; padding: 28px; }
       }
     </style>
   </head>
@@ -108,15 +143,25 @@
     <canvas id="graph-canvas"></canvas>
 
     <!-- Floating Info Interaction -->
-    <button class="info-btn" id="info-btn" aria-label="Vault Information">i</button>
+    <button class="info-btn" id="info-btn" aria-label="Vault Information">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="16" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+      </svg>
+    </button>
+    
     <div class="modal-overlay" id="modal-overlay"></div>
+    
     <div class="about-modal" id="about-modal">
-      <button class="close-btn" id="close-btn">&times;</button>
+      <button class="close-btn" id="close-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
       <h2>About this Shared Vault</h2>
       <div class="badge">Digital Garden 🌱</div>
       <p>This is my Digital Garden—a public collection of my notes, ideas, and coursework.</p>
       <p>Unlike a blog, things here aren't always finished. Notes will grow, change, and interlink over time. Right now, it heavily features my 4th-semester PYQ solutions.</p>
-      <p style="color: var(--text-faint, #666666); font-size: var(--font-smallest, 0.8rem); margin-top: 20px;">
+      <p style="color: var(--text-faint, #666666); font-size: var(--font-smallest, 0.8rem); margin-top: 24px;">
         <em>How to navigate: Click or tap the floating nodes to dive into a specific topic or semester.</em>
       </p>
     </div>
@@ -183,12 +228,11 @@
 
         let hoveredNode = null;
         let draggedNode = null;
-        let time = 0; // Incrementor for physics and orbiting animations
+        let time = 0; 
 
         function draw() {
-            time += 0.015; // Slow, uniform orbit/pulsation increment
+            time += 0.015; 
 
-            // Fetch live variables to respect light/dark shifts
             const cBg = getCSSColor('--background-primary', '#1e1e1e');
             const cNode = getCSSColor('--graph-node', '#a0a0a0');
             const cNodeHover = getCSSColor('--interactive-accent', '#8b6ce3');
@@ -210,7 +254,7 @@
             grad1.addColorStop(0, cNodeHover);
             grad1.addColorStop(1, 'transparent');
             ctx.fillStyle = grad1;
-            ctx.globalAlpha = 0.06; // Highly transparent cosmic dust
+            ctx.globalAlpha = 0.06;
             ctx.beginPath();
             ctx.arc(neb1X, neb1Y, rad1, 0, Math.PI * 2);
             ctx.fill();
@@ -229,7 +273,7 @@
             ctx.arc(neb2X, neb2Y, rad2, 0, Math.PI * 2);
             ctx.fill();
             
-            ctx.restore(); // Reset globalAlpha
+            ctx.restore();
 
             // --- B. CALCULATE FORCES ---
             nodes.forEach(n1 => {
@@ -296,9 +340,9 @@
                 const isHovered = (n === hoveredNode);
                 const r = n.isRoot ? 11 : 6;
 
-                // STAR CORONA (BREATHING OUTER HALO) FOR CENTRAL ROOT
+                // STAR CORONA
                 if (n.isRoot) {
-                    const starPulse = 1.0 + Math.sin(time * 2.5) * 0.08; // Pulsating star size scale
+                    const starPulse = 1.0 + Math.sin(time * 2.5) * 0.08; 
                     
                     ctx.save();
                     const starGrad = ctx.createRadialGradient(n.x, n.y, r, n.x, n.y, r * 4.5 * starPulse);
@@ -307,19 +351,17 @@
                     starGrad.addColorStop(1, 'transparent');
                     
                     ctx.fillStyle = starGrad;
-                    ctx.globalAlpha = isHovered ? 0.32 : 0.18; // Slightly glow brighter on focus
+                    ctx.globalAlpha = isHovered ? 0.32 : 0.18; 
                     ctx.beginPath();
                     ctx.arc(n.x, n.y, r * 4.5 * starPulse, 0, Math.PI * 2);
                     ctx.fill();
                     ctx.restore();
                 }
 
-                // Render tiny orbiting moons for folders that contain subdirectories
+                // MOONS
                 if (!n.isRoot && n.moons > 0) {
-                    const visibleMoons = Math.min(n.moons, 10); // Safeguard against overcrowding
-                    const orbitRadius = r + 11; // Keeps them tight and clean
-                    
-                    // Alternates rotation direction based on node ID to make the sky feel alive
+                    const visibleMoons = Math.min(n.moons, 10);
+                    const orbitRadius = r + 11;
                     const rotationDir = (n.id.charCodeAt(0) % 2 === 0) ? 1 : -1;
 
                     for (let m = 0; m < visibleMoons; m++) {
@@ -331,13 +373,13 @@
                         ctx.beginPath();
                         ctx.arc(mx, my, 1.5, 0, Math.PI * 2);
                         ctx.fillStyle = isHovered ? cNodeHover : cNode;
-                        ctx.globalAlpha = isHovered ? 1.0 : 0.6; // Slightly dimmer when parent isn't focused
+                        ctx.globalAlpha = isHovered ? 1.0 : 0.6; 
                         ctx.fill();
                     }
-                    ctx.globalAlpha = 1.0; // Reset
+                    ctx.globalAlpha = 1.0;
                 }
 
-                // Accent Glow Ring on Hover (non-root nodes)
+                // Accent Glow Ring
                 if (isHovered && !n.isRoot) {
                     ctx.beginPath();
                     ctx.arc(n.x, n.y, r + 4, 0, Math.PI * 2);
@@ -387,7 +429,7 @@
             nodes.forEach(n => {
                 const dx = n.x - pos.x;
                 const dy = n.y - pos.y;
-                if (dx * dx + dy * dy < 600) { // Hover interaction box ~24px
+                if (dx * dx + dy * dy < 600) {
                     hoveredNode = n;
                 }
             });
@@ -414,7 +456,6 @@
             }
         });
 
-        // Start physics loop
         draw();
       });
     </script>
