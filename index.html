@@ -183,10 +183,10 @@
 
         let hoveredNode = null;
         let draggedNode = null;
-        let time = 0; // Incrementor for the moon orbital animation
+        let time = 0; // Incrementor for physics and orbiting animations
 
         function draw() {
-            time += 0.015; // Slow, uniform orbit increment
+            time += 0.015; // Slow, uniform orbit/pulsation increment
 
             // Fetch live variables to respect light/dark shifts
             const cBg = getCSSColor('--background-primary', '#1e1e1e');
@@ -199,7 +199,39 @@
 
             ctx.clearRect(0, 0, width, height);
 
-            // Calculate Forces
+            // --- A. DYNAMIC BACKGROUND NEBULA EFFECTS ---
+            ctx.save();
+            
+            // Nebula 1 (Shifting Accent Dust)
+            const neb1X = width * 0.35 + Math.cos(time * 0.1) * 40;
+            const neb1Y = height * 0.5 + Math.sin(time * 0.15) * 40;
+            const rad1 = Math.min(width, height) * 0.45;
+            const grad1 = ctx.createRadialGradient(neb1X, neb1Y, 0, neb1X, neb1Y, rad1);
+            grad1.addColorStop(0, cNodeHover);
+            grad1.addColorStop(1, 'transparent');
+            ctx.fillStyle = grad1;
+            ctx.globalAlpha = 0.06; // Highly transparent cosmic dust
+            ctx.beginPath();
+            ctx.arc(neb1X, neb1Y, rad1, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Nebula 2 (Shifting Blue Cosmic Dust)
+            const cBlue = getCSSColor('--color-blue', '#027aff');
+            const neb2X = width * 0.65 + Math.sin(time * 0.08) * 50;
+            const neb2Y = height * 0.45 + Math.cos(time * 0.12) * 50;
+            const rad2 = Math.min(width, height) * 0.4;
+            const grad2 = ctx.createRadialGradient(neb2X, neb2Y, 0, neb2X, neb2Y, rad2);
+            grad2.addColorStop(0, cBlue);
+            grad2.addColorStop(1, 'transparent');
+            ctx.fillStyle = grad2;
+            ctx.globalAlpha = 0.04;
+            ctx.beginPath();
+            ctx.arc(neb2X, neb2Y, rad2, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.restore(); // Reset globalAlpha
+
+            // --- B. CALCULATE FORCES ---
             nodes.forEach(n1 => {
                 nodes.forEach(n2 => {
                     if (n1 === n2) return;
@@ -259,10 +291,28 @@
             });
             ctx.globalAlpha = 1.0;
 
-            // Draw Nodes & Moons
+            // Draw Nodes, Moons, & Stellar Corona
             nodes.forEach(n => {
                 const isHovered = (n === hoveredNode);
-                const r = n.isRoot ? 10 : 6;
+                const r = n.isRoot ? 11 : 6;
+
+                // STAR CORONA (BREATHING OUTER HALO) FOR CENTRAL ROOT
+                if (n.isRoot) {
+                    const starPulse = 1.0 + Math.sin(time * 2.5) * 0.08; // Pulsating star size scale
+                    
+                    ctx.save();
+                    const starGrad = ctx.createRadialGradient(n.x, n.y, r, n.x, n.y, r * 4.5 * starPulse);
+                    starGrad.addColorStop(0, cNodeHover);
+                    starGrad.addColorStop(0.3, isHovered ? cText : cNodeHover);
+                    starGrad.addColorStop(1, 'transparent');
+                    
+                    ctx.fillStyle = starGrad;
+                    ctx.globalAlpha = isHovered ? 0.32 : 0.18; // Slightly glow brighter on focus
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, r * 4.5 * starPulse, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.restore();
+                }
 
                 // Render tiny orbiting moons for folders that contain subdirectories
                 if (!n.isRoot && n.moons > 0) {
@@ -287,14 +337,14 @@
                     ctx.globalAlpha = 1.0; // Reset
                 }
 
-                // Accent Glow Ring on Hover
-                if (isHovered || n.isRoot) {
+                // Accent Glow Ring on Hover (non-root nodes)
+                if (isHovered && !n.isRoot) {
                     ctx.beginPath();
                     ctx.arc(n.x, n.y, r + 4, 0, Math.PI * 2);
                     ctx.fillStyle = cBg;
                     ctx.fill();
                     ctx.lineWidth = 2;
-                    ctx.strokeStyle = isHovered ? cText : cNodeHover;
+                    ctx.strokeStyle = cText;
                     ctx.stroke();
                 }
 
