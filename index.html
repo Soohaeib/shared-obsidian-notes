@@ -20,7 +20,6 @@
         font-family: var(--font-interface, 'Inter', system-ui, sans-serif);
       }
 
-      /* Base dot pattern background to mimic Obsidian canvas */
       .bg-layer {
         position: absolute; top: 0; left: 0; width: 100%; height: 100%;
         background-image: radial-gradient(var(--background-modifier-border, rgba(255, 255, 255, 0.05)) 1px, transparent 1px);
@@ -28,48 +27,37 @@
         z-index: 0; pointer-events: none;
       }
 
-      /* High-performance Graph Canvas */
       #graph-canvas {
-        position: absolute;
-        top: 0; left: 0;
+        position: absolute; top: 0; left: 0;
         width: 100%; height: 100%;
-        z-index: 10;
-        cursor: default;
+        z-index: 10; cursor: default;
+        /* Crucial for mobile dragging - disables browser pull-to-refresh/scrolling */
+        touch-action: none; 
       }
 
       /* --- PAGE TITLE (HUD STYLE) --- */
       .vault-header {
-        position: absolute;
-        top: 30px; left: 35px;
-        z-index: 50;
-        pointer-events: none; /* Let clicks pass through to nodes behind it */
-        user-select: none;
+        position: absolute; top: 30px; left: 35px; z-index: 50;
+        pointer-events: none; user-select: none;
       }
       .vault-header h1 {
-        margin: 0 0 4px 0;
-        font-size: 1.6rem;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        color: var(--text-normal, #ffffff);
+        margin: 0 0 4px 0; font-size: 1.6rem; font-weight: 700;
+        letter-spacing: -0.02em; color: var(--text-normal, #ffffff);
         text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.6);
       }
       .vault-header p {
-        margin: 0;
-        font-size: 0.95rem;
-        font-weight: 500;
+        margin: 0; font-size: 0.95rem; font-weight: 500;
         color: var(--interactive-accent, #a882ff);
         text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+        text-transform: uppercase; letter-spacing: 0.05em;
       }
 
-      /* --- INFO BUTTON (PREMIUM GLASSMORPHISM) --- */
+      /* --- INFO BUTTON --- */
       .info-btn {
         position: fixed; bottom: 30px; right: 30px;
         width: 54px; height: 54px; border-radius: 50%;
         background: hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.15);
-        backdrop-filter: blur(12px) saturate(150%);
-        -webkit-backdrop-filter: blur(12px) saturate(150%);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
         border: 1px solid hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.4);
         border-top-color: rgba(255, 255, 255, 0.2);
         color: var(--interactive-accent, #8b6ce3);
@@ -85,34 +73,30 @@
         box-shadow: 0 12px 36px hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.4);
       }
 
-      /* --- MODAL OVERLAY --- */
+      /* --- MODAL OVERLAY & WINDOW --- */
       .modal-overlay {
         position: fixed; top: 0; left: 0; width: 100%; height: 100%;
         background: rgba(0, 0, 0, 0.5); z-index: 150;
         opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-        backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
       }
       .modal-overlay.active { opacity: 1; pointer-events: auto; }
 
-      /* --- ACRYLIC / MICA MODAL WINDOW --- */
       .about-modal {
         position: fixed; top: 50%; left: 50%;
         transform: translate(-50%, -40%) scale(0.95);
         width: 90%; max-width: 440px;
         
-        /* Frosted Glass Background */
-        background: linear-gradient(135deg, rgba(40, 40, 40, 0.55) 0%, rgba(20, 20, 20, 0.75) 100%);
-        backdrop-filter: blur(28px) saturate(180%);
-        -webkit-backdrop-filter: blur(28px) saturate(180%);
+        /* Simpler, brighter Frosted Glass Background */
+        background: rgba(25, 25, 25, 0.45);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         
-        /* Glass Edge Highlights */
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
-        border-left: 1px solid rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
         border-radius: 20px;
         
         padding: 36px; color: var(--text-normal, #dadada);
-        box-shadow: 0 24px 64px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 0 0 1px rgba(255,255,255,0.02);
+        box-shadow: 0 24px 64px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
         z-index: 200; opacity: 0; pointer-events: none;
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       }
@@ -137,25 +121,16 @@
         border: 1px solid hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.3);
         color: var(--text-accent, #a882ff); border-radius: 20px; 
         font-size: var(--font-smaller, 0.85rem); font-weight: 600; margin-bottom: 24px;
-        box-shadow: inset 0 1px 0 hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.2);
       }
       
-      /* --- CLOSE BUTTON --- */
       .close-btn {
         position: absolute; top: 20px; right: 20px;
         width: 32px; height: 32px; border-radius: 50%;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        color: var(--text-muted, #b3b3b3);
-        font-size: 1.2rem; cursor: pointer; 
-        display: flex; justify-content: center; align-items: center;
-        transition: all 0.2s ease;
+        background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.05);
+        color: var(--text-muted, #b3b3b3); font-size: 1.2rem; cursor: pointer; 
+        display: flex; justify-content: center; align-items: center; transition: all 0.2s ease;
       }
-      .close-btn:hover {
-        background: rgba(255, 255, 255, 0.15);
-        color: var(--text-normal, white);
-        transform: rotate(90deg);
-      }
+      .close-btn:hover { background: rgba(255, 255, 255, 0.15); color: var(--text-normal, white); transform: rotate(90deg); }
 
       @media (max-width: 600px) {
         .vault-header { top: 20px; left: 20px; }
@@ -262,6 +237,7 @@
 
         let hoveredNode = null;
         let draggedNode = null;
+        let isDragging = false; 
         let time = 0; 
 
         function draw() {
@@ -280,20 +256,16 @@
             // --- A. DYNAMIC BACKGROUND NEBULA EFFECTS ---
             ctx.save();
             
-            // Nebula 1 (Shifting Accent Dust)
             const neb1X = width * 0.4 + Math.cos(time * 0.05) * (width * 0.2);
             const neb1Y = height * 0.5 + Math.sin(time * 0.07) * (height * 0.2);
-            const rad1 = Math.max(width, height) * 0.5; // Large, soft spread
+            const rad1 = Math.max(width, height) * 0.5;
             const grad1 = ctx.createRadialGradient(neb1X, neb1Y, 0, neb1X, neb1Y, rad1);
             grad1.addColorStop(0, cNodeHover);
             grad1.addColorStop(1, 'transparent');
             ctx.fillStyle = grad1;
             ctx.globalAlpha = 0.04;
-            ctx.beginPath();
-            ctx.arc(neb1X, neb1Y, rad1, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.beginPath(); ctx.arc(neb1X, neb1Y, rad1, 0, Math.PI * 2); ctx.fill();
 
-            // Nebula 2 (Deep Blue Cosmic Dust)
             const cBlue = getCSSColor('--color-blue', '#027aff');
             const neb2X = width * 0.6 + Math.sin(time * 0.04) * (width * 0.2);
             const neb2Y = height * 0.6 + Math.cos(time * 0.06) * (height * 0.2);
@@ -303,11 +275,8 @@
             grad2.addColorStop(1, 'transparent');
             ctx.fillStyle = grad2;
             ctx.globalAlpha = 0.03;
-            ctx.beginPath();
-            ctx.arc(neb2X, neb2Y, rad2, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.beginPath(); ctx.arc(neb2X, neb2Y, rad2, 0, Math.PI * 2); ctx.fill();
 
-            // Nebula 3 (Faint Purple Backdrop Sweep)
             const cPurple = getCSSColor('--color-purple', '#a882ff');
             const neb3X = width * 0.5 + Math.cos(time * 0.03) * (width * 0.3);
             const neb3Y = height * 0.3 + Math.sin(time * 0.03) * (height * 0.3);
@@ -317,9 +286,7 @@
             grad3.addColorStop(1, 'transparent');
             ctx.fillStyle = grad3;
             ctx.globalAlpha = 0.03;
-            ctx.beginPath();
-            ctx.arc(neb3X, neb3Y, rad3, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.beginPath(); ctx.arc(neb3X, neb3Y, rad3, 0, Math.PI * 2); ctx.fill();
             
             ctx.restore();
 
@@ -391,7 +358,6 @@
                 // STAR CORONA
                 if (n.isRoot) {
                     const starPulse = 1.0 + Math.sin(time * 2.5) * 0.08; 
-                    
                     ctx.save();
                     const starGrad = ctx.createRadialGradient(n.x, n.y, r, n.x, n.y, r * 4.5 * starPulse);
                     starGrad.addColorStop(0, cNodeHover);
@@ -400,9 +366,7 @@
                     
                     ctx.fillStyle = starGrad;
                     ctx.globalAlpha = isHovered ? 0.32 : 0.18; 
-                    ctx.beginPath();
-                    ctx.arc(n.x, n.y, r * 4.5 * starPulse, 0, Math.PI * 2);
-                    ctx.fill();
+                    ctx.beginPath(); ctx.arc(n.x, n.y, r * 4.5 * starPulse, 0, Math.PI * 2); ctx.fill();
                     ctx.restore();
                 }
 
@@ -455,55 +419,89 @@
             requestAnimationFrame(draw);
         }
 
-        // --- Interaction Events ---
+        // --- Interaction Events (Updated for Touch precision & dragging) ---
         function getMousePos(e) {
             const rect = canvas.getBoundingClientRect();
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            // Handle touch events gracefully to avoid crashes when lifting finger
+            const touch = e.touches && e.touches.length > 0 ? e.touches[0] : (e.changedTouches ? e.changedTouches[0] : null);
+            const clientX = touch ? touch.clientX : e.clientX;
+            const clientY = touch ? touch.clientY : e.clientY;
             return {
                 x: clientX - rect.left,
                 y: clientY - rect.top
             };
         }
 
-        function handleMove(e) {
-            const pos = getMousePos(e);
-            if (draggedNode) {
-                draggedNode.x = pos.x;
-                draggedNode.y = pos.y;
-            }
-            
-            hoveredNode = null;
+        function getHoveredNode(pos, hitRadius = 600) {
+            let found = null;
             nodes.forEach(n => {
                 const dx = n.x - pos.x;
                 const dy = n.y - pos.y;
-                if (dx * dx + dy * dy < 600) {
-                    hoveredNode = n;
+                if (dx * dx + dy * dy < hitRadius) { 
+                    found = n;
                 }
             });
+            return found;
+        }
+
+        function handleMove(e) {
+            const pos = getMousePos(e);
+            
+            if (draggedNode) {
+                isDragging = true;
+                draggedNode.x = pos.x;
+                draggedNode.y = pos.y;
+            } else {
+                hoveredNode = getHoveredNode(pos);
+            }
             canvas.style.cursor = hoveredNode ? 'pointer' : 'default';
         }
 
-        canvas.addEventListener('mousemove', handleMove);
-        canvas.addEventListener('touchmove', handleMove, {passive: true});
-
         function handleDown(e) {
-            if (hoveredNode) draggedNode = hoveredNode;
-        }
-        canvas.addEventListener('mousedown', handleDown);
-        canvas.addEventListener('touchstart', handleDown, {passive: true});
+            const pos = getMousePos(e);
+            isDragging = false; 
 
-        function handleUp() { draggedNode = null; }
+            // On touch devices, 'hover' doesn't exist before tapping.
+            // We must identify the node the exact moment the finger touches down.
+            if (e.type === 'touchstart') {
+                hoveredNode = getHoveredNode(pos, 1000); // Slightly larger hitbox for fat fingers
+            }
+
+            if (hoveredNode) {
+                draggedNode = hoveredNode;
+            }
+        }
+
+        function handleUp(e) { 
+            draggedNode = null; 
+            if (e.type === 'touchend') {
+                hoveredNode = null; // Clear hover state when finger lifts
+            }
+        }
+
+        canvas.addEventListener('mousemove', handleMove);
+        canvas.addEventListener('touchmove', handleMove);
+
+        canvas.addEventListener('mousedown', handleDown);
+        canvas.addEventListener('touchstart', handleDown);
+
         canvas.addEventListener('mouseup', handleUp);
         canvas.addEventListener('touchend', handleUp);
         canvas.addEventListener('mouseleave', handleUp);
 
-        canvas.addEventListener('click', () => {
-            if (hoveredNode && !hoveredNode.isRoot && hoveredNode.url) {
-                window.location.href = hoveredNode.url;
+        // Use standard click for navigation, but block if we were dragging
+        canvas.addEventListener('click', (e) => {
+            if (isDragging) return; // Don't trigger link if user was just moving the node
+            
+            const pos = getMousePos(e);
+            const clickedNode = getHoveredNode(pos, 1000);
+
+            if (clickedNode && !clickedNode.isRoot && clickedNode.url) {
+                window.location.href = clickedNode.url;
             }
         });
 
+        // Start physics loop
         draw();
       });
     </script>
