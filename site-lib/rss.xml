@@ -1,4 +1,838 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[24301106 | Accounting 36]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>24301106 | Accounting 36</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 27 Aug 2026 13:36:02 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 27 Aug 2026 13:35:59 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[Semester Syllabus Mapping]]></title><description><![CDATA[How to use this note
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[24301106 | Accounting 36]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>site-lib/media/favicon.png</url><title>24301106 | Accounting 36</title><link/></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Sun, 30 Aug 2026 01:44:30 GMT</lastBuildDate><atom:link href="site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 30 Aug 2026 01:44:23 GMT</pubDate><ttl>60</ttl><dc:creator/><item><title><![CDATA[PYQ ACC 302]]></title><description><![CDATA[Institution: University of Chittagong | Department: Department of Accounting
+Program: BBA 5th Semester
+Standard Format: 4 Hours | 75 Marks | Answer any FIVE questions sequentially/serially.Tracking Ref: ACC 302 | BBA 5th Semester 2025
+(a) "Investment, financing and dividend decisions are all interrelated." Comment. [03]
+(b) "To avoid the problem of shortage and surplus of funds, what is required in Financial management? Name the concept and explain four points of importance. [04]
+(c) Explain why the following statements appearing in the objectives of two well-known listed companies are not necessarily contradictory? [04] "We never confuse why we exist - to create the maximum possible returns to our shareholders."
+"In everything the company does, it is committed to creating wealth always with integrity, for our employees, customers, suppliers and the community in which we operate." (d) Why do managers and other agents of the shareholders, such as employees sometimes have different objectives? [04] (a) Explain the following statement: "Most investors are risk averse." [03]
+(b) "An asset held as part of a portfolio is generally less risky than the same asset held in isolation." Do you agree with this statement? Why or why not? [03]
+(c) BSCCL stock has an expected return of 10 percent, a beta coefficient of 0.9, and a standard deviation of expected returns of 35 percent. BSC stock has an expected return of 12.5 percent, a beta coefficient of 1.2, and a standard deviation of expected returns of 25 percent. The risk-free rate is 6 percent, and the market risk premium is 5 percent. i. Calculate each stock's coefficient of variation.
+ii. Which stock is riskier for diversified investors?
+iii. Calculate each stock's required rate of return.
+iv. On the basis of the two stocks' expected and required returns, which stock would be most attractive to a diversified investor?
+v. Calculate the required return of a portfolio that has tk. 7,500 invested in BSCCL stock and tk. 2,500 invested in BSC stock.
+vi. If the market risk premium increased to 6 percent, which of the two stocks would have the largest increase in their required return? [09] (a) Assume that there are three stocks in a portfolio- stock-1, stock-2, and stock-3. The expected return vector of this portfolio is and the weighting vector of this portfolio is where,
+The variances of stock-1, stock-2, and stock-3 are 12%, 7%, and 9% respectively and the correlation coefficients between stock-1 and stock-2, stock-1 and stock-3, and stock-2 and stock-3 are 0.2, -0.6, and -0.3.
+Required: i. Compute portfolio return (use vector multiplication). [02]
+ii. Compute portfolio risk (use vector multiplication). [07]
+iii. Compute minimum and maximum portfolio return. [02] (b) A firm's equity beta is 0.9. The risk-free rate is 4% and the expected market return is 11%. Calculate the cost of equity. [02]
+(c) A firm's stock is currently being traded at $40. The expected dividend next year is $2.50 and dividends are expected to grow at 5% per year indefinitely. Estimate the cost of equity capital. [02] (a) A two-year bond has a face value of $1,000 and a coupon rate of 8% paid annually. The probability of default each year is 4%. If default occurs, the recovery value is $500. The bond is issued at par. Estimate the expected cost of debt. [05]
+(b) A project is fully financed by equity and has the same business risk as three pure-play comparable firms that are also all-equity financed. The equity betas of the comparable firms are 1.1, 1.3, and 1.6, respectively. The risk-free rate is 4% and the market risk premium is 8%. Estimate the appropriate discount rate for the project. [05]
+(c) How can investors be classified in terms of their risk preference? [05] (a) A firm operates in a perfect capital market where the Modigliani-Miller (MM) assumptions hold and there are no taxes. The firm's overall cost of capital (cost of assets) is 12 percent. The firm is financed with $4 million of debt and $6 million of equity. The cost of debt is 7 percent. Find the cost of equity. [02]
+(b) An investor owns 1% of an unlevered firm worth $5,000,000. The firm decides to remain unlevered, but the investor wants leverage equivalent to a firm with 40% debt. How can the investor create homemade leverage? [03]
+(c) A firm is financed with both debt and equity. The market value of debt is $5 million and the market value of equity is also $5 million. The required rate of return on equity is 14 percent, while the cost of debt is 8 percent. The corporate tax rate is 30 percent. In addition, investors face personal taxes: interest income is taxed at 40 percent, whereas equity income is taxed at 20 percent. Find the firm's weighted average cost of capital (WACC) considering both corporate and personal taxes. [05]
+(d) A firm generates an annual EBIT of $1,200,000. The required return on assets for an unlevered firm is 10 percent. The corporate tax rate is 30 percent. The firm plans to issue permanent debt of $4,000,000. In addition to corporate taxes, investors face personal taxes: Personal tax rate on interest income = 35%
+Personal tax rate on equity income = 15%
+Required: i. Find the value of the unlevered firm. [02]
+ii. Find the value of the levered firm considering both corporate and personal taxes. [03] (a) A company has reported earnings per share of $4.00 and maintains a dividend payout ratio of 40 percent. The company's return on equity is 15 percent, and the required rate of return on the stock is 12 percent. The company is expected to experience high growth for the next four years, after which it will settle into a stable growth rate of 5 percent indefinitely. Estimate the intrinsic value of the stock using the two-stage dividend discount model, where the high-growth rate is derived from the firm's sustainable growth rate. [04]
+(b) A company issues a $1,000 par bond, paying a 10% annual coupon semiannually for 6 years. The required annual rate of return is 12%. Determine the bond value. [03]
+(c) An investor purchases one European call option on a stock that is currently trading at $40 per share. The option has a strike price of $35 and a premium of $5, and it expires in three months. Determine the payoff and profit or loss at expiration for various possible stock prices: $30, $35, $40, $45, and $50 and plot the results in the graph. [05]
+(d) A stock is currently trading at $50. A European call option with a strike price of $55 expiring in 6 months is trading at $4.50, and a European put option with the same strike price and expiration is trading at $9.00. The risk-free interest rate for 6 months is 2% (continuously compounded). Verify whether put-call parity holds and explain the relationship between the call and put prices. [03]
+A firm is evaluating a proposal to install a new production machine to expand its operations. The project requires careful estimation of cash flows considering depreciation tax shield and interest tax shield.Project Information:
+Cost of new machine: USD 10,000,000
+Installation and transportation cost: USD 1,000,000
+Total initial investment: USD 11,000,000
+The machine will be depreciated using the straight-line method over 5 years to a salvage value of USD 1,000,000.
+The project life is 5 years.
+Operating Information:
+Expected annual sales revenue: USD 6,000,000
+Annual operating costs (excluding depreciation and interest): USD 3,000,000
+Corporate tax rate: 30%
+The project will be financed as follows:
+40% debt and 60% equity
+Loan amount will carry an interest rate of 10% per year
+The loan will be repaid in equal principal installments over 5 years
+Additional Information:
+Expected salvage value at the end of Year 5: USD 1,200,000
+Working capital requirement: USD 500,000 (required at the beginning and fully recovered at the end of Year 5)
+Required rate of return (WACC): 12%
+Required:
+i. Estimate the initial cash flows of the project. [1]
+ii. Estimate the operating cash flows of the project. [5]
+iii. Estimate the terminal cash flows of the project. [3]
+iv. Based on the NPV, should the company accept the project? Justify your answer. [6]
+Tracking Ref: ACC 302 | BBA 5th Semester 2024
+(a) What are the possible alternative financial goals of the organization? Which one do you recommend and why? [06]
+(b) Point out the decisions that are made by financial manager. Explain. [05]
+(c) What do mean by agency costs? How can this costs be minimized? [04] (a) Explain why you agree or disagree with this statement "Most investors are risk-averse". [03]
+(b) Consider the following information for Stocks A, B, and C. The returns on the three stocks are positively correlated, but they are not perfectly correlated. (That is, each of the correlation coefficients is between 0 and 1.) Fund Dhaka Ltd has one-third of its funds invested in each of the three stocks. The risk-free rate is 5.5%, and the market is in equilibrium. (That is, required returns equal expected returns.)
+Requirements:
+- i. What is the market risk premium ()?
+- ii. What is the beta of Fund Dhaka Ltd?
+- iii. What is the required return of Fund Dhaka Ltd?
+- iv. Would you expect the standard deviation of Fund Dhaka Ltd to be less than 15%, equal to 15%, or greater than 15%? Explain. [08]
+(c) A mutual fund manager has a Tk. 20 million portfolio with a beta of 1.7. The risk-free rate is 4.5%, and the market risk premium is 7%. The manager expects to receive an additional Tk. 5 million, which she plans to invest in a number of stocks. After investing the additional funds, she wants the fund's required return to be 15%. What should be the average beta of the new stocks added to the portfolio? [04] (a) General Electric Company (GEC) uses only debt and common equity. It can borrow unlimited amounts at an interest rate of as long as it finances at its target capital structure, which calls for 35% debt and 65% common equity. Its last dividend () was Tk 2.20, its expected constant growth rate is 6%, and its common stock sells for Tk 26. GEC's tax rate is 40%. Two projects are available: Project A has a rate of return of 12% and Project B's return is 11%. These two projects are equally risky and about as risky as the firm's existing assets. i. What is its cost of common equity?
+ii. What is the WACC?
+iii. Which projects should GEC accept? [08] (b) The KR Company's EPS was TK 6.50 in 2024, up from TK 4.42 in 2019. The company pays out 40% of its earnings as dividends, and its common stock sells for TK 36.00. i. Calculate the past growth rate in earnings. (Hint: This is a 5-year growth period.)
+ii. The last dividend was . Calculate the next expected dividend, , assuming that the past growth rate continues.
+iii. What is KR's cost of retained earnings, ? [07] (a) Explain this statement "Using financial leverage has both good and bad effects". [03]
+(b) Explain what asymmetric information means, and how signals affect capital structure decisions. [04]
+(c) A company currently has assets of Tk 5 million. The firm is 100 percent equity financed. The company currently has net income of Tk 1.5 million, and it pays out 40 percent of its net income as dividends. Both net income and dividends are expected to grow at a constant rate of 6 percent per year. There are 200,000 shares of stock outstanding, and it is estimated that the current cost of capital is 13.40 percent. The company is considering a recapitalization where it will issue Tk 1.5 million in debt and use the proceeds to repurchase stock. Investment bankers have estimated that if the company goes through with the recapitalization, its before-tax cost of debt will be 11 percent, and the cost of equity will rise to 14.5 percent. The company has a 40 percent federal tax rate. i. What is the current share price of the stock (before the recapitalization)?
+ii. Assuming that the company maintains the same payout ratio, what will be its stock price following the recapitalization? [08] (a) Delineate the alternative current asset financing policies with suitable diagram. [05]
+(b) What is cash conversion cycle? Define its three components. [03]
+(c) Christie Corporation is trying to determine the effect of its inventory turnover ratio and days sales outstanding (DSO) on its cash flow cycle. Christie's 2023 sales (all on credit) were $150,000; and it earned a net profit of 6%, or $9,000. It turned over its inventory 6 times during the year, and its DSO was 36.5 days. The firm had fixed assets totaling $35,000. Christie's payables deferral period is 40 days. i. Calculate Christie's cash conversion cycle.
+ii. Assuming Christie holds negligible amounts of cash and marketable securities, calculate its total assets turnover and ROA.
+iii. Suppose Christie's managers believe that the inventory turnover can be raised to 7.3 times. What would Christie's cash conversion cycle, total assets turnover, and ROA have been if the inventory turnover had been 7.3 for 2023? [07] (a) If two mutually exclusive projects were being compared, would a high cost of capital favor the longer-term or the shorter-term project? Why? If the cost of capital declined, would that lead firms to invest more in longer-term projects or shorter-term projects? Would a decline (or an increase) in the WACC cause changes in the IRR ranking of mutually exclusive projects? Explain. [04]
+(b) An electric utility is considering a new power plant in Chattogram. Power from the plant would be sold in the Hathazari area, where it is badly needed. Because the firm has received a permit, the plant would be legal, but it would cause some air pollution. The company could spend an additional Tk 40 million at Year 0 to mitigate the environmental problem, but it would not be required to do so. The plant without mitigation would cost Tk 240 million, and the expected cash inflows would be Tk 80 million per year for 5 years. If the firm does invest in mitigation, the annual inflows would be Tk 84 million. Unemployment in the area where the plant would be built is high, and the plant would provide about 350 good jobs. The risk-adjusted WACC is 17%. i. Calculate the NPV and IRR with and without mitigation.
+ii. How should the environmental effects be dealt with when evaluating this project?
+iii. Should this project be undertaken? If so, should the firm do the mitigation? Why or why not? [11] (a) Would it ever be rational for a firm to borrow money in order to pay cash dividends? [02]
+(b) What is the difference between a stock dividend and a stock split? As a stockholder, would you prefer to see your company declare a 100% stock dividend or a two-for-one split? Assume that either action is feasible. [03]
+(c) Clifton Inc. is prepared to report the following 2024 income statement (shown in thousands of dollars). Prior to reporting this income statement, the company wants to determine its annual dividend. The company has 320,000 shares of common stock outstanding, and its stock trades at Tk 37 per share.
+- i. The company had a 25% dividend payout ratio in 2023. If Brooks wants to maintain this payout ratio in 2024, what will be its per-share dividend in 2024?
+- ii. If the company maintains this 25% payout ratio, what will be the current dividend yield on the company's stock?
+- iii. The company reported net income of Tk 1.35 million in 2023. Assume that the number of shares outstanding has remained constant. What was the company's per-share dividend in 2023?
+- iv. As an alternative to maintaining the same dividend payout ratio, Brooks is considering maintaining the same per-share dividend in 2024 that it paid in 2023. If it chooses this policy, what will be the company's dividend payout ratio in 2024? [10]Tracking Ref: ACC 302 | BBA 5th Semester 2023
+(a) "The profit maximization is not an operationally feasible criterion." Do you agree? Illustrate your views. Assuming wealth maximization to be the objective of financial management, show how the financing, investment and dividend decisions of a company can help to attain this objective. [07]
+(b) Why is it necessary for business students who do not plan to major in finance to understand the basics of finance? [04]
+(c) What do you mean by agency problem? What are some mechanisms that encourage managers to act in the best interests of stockholders? [04] (a) Explain the concept of systematic and unsystematic risk. How can an investor mitigate unsystematic risk? [04]
+(b) Explain the Capital Market Line (CML) and its significance in the context of the Capital Asset Pricing Model (CAPM). [04]
+(c) Stocks A and B have the following probability distributions of expected future returns:
+Data:Required:
+- I. Calculate the expected rate of return, , for Stock B (.)
+- II. Calculate the standard deviation of expected returns for Stock A (That for Stock B is 20.35 percent.) Now calculate the coefficient of variation for Stock B. Is it possible that most investors might regard Stock B as being less risky than Stock A? Explain. [07]
+(a) Discuss why the cost of capital is considered the minimum required rate of return on an investment. How does it influence a firm's investment decisions? [03]
+(b) Explain the impact of a company's capital structure on its overall cost of capital. How does the mix of debt and equity financing influence this cost? [03]
+(c) Longstreet Communications Inc. (LCI) has the following capital structure, which it considers to be optimal: debt = 25%, preferred stock = 15%, and common stock = 60%. LCI's tax rate is 40%, and investors expect earnings and dividends to grow at a constant rate of 6% in the future. LCI paid a dividend of $3.70 per share last year (D0), and its stock currently sells at a price of $60 per share. Ten-year Treasury bonds yield 6%, the market risk premium is 5%, and LCI's beta is 1.3. The following terms would apply to new security offerings. Preferred: New preferred could be sold to the public at a price of $100 per share, with a dividend of $9. Flotation costs of $5 per share would be incurred. Debt: Debt could be sold at an interest rate of 9%. Common: New common equity will be raised only by retaining earnings.
+Required:
+- I. Find the component costs of debt, preferred stock, and common stock.
+- II. What is the WACC? [09]
+(a) Discuss the operating cycle and the cash conversion cycle. How do these cycles affect a company's liquidity and working capital requirements? [03]
+(b) Compare and contrast aggressive, conservative, and moderate working capital policies. What are the risks and benefits associated with each policy? [04]
+(c) The board of directors of Aravind mills limited request you to prepare a statement showing the working capital requirements for a level of activity of 30,000 units of output for the year. The cost structure for the company's product for the above-mentioned activity level is given below.
+Data:Additional Information:
+- I. Past experience indicates that raw materials are held in stock, on an average for 2 months.
+- II. Work in progress (100% complete in regard to materials and 50% for labour and overheads) will be half a month's production.
+- III. Finished goods are in stock on an average for 1 month.
+- IV. Credit allowed to suppliers: 1 month.
+- V. Credit allowed to debtors: 2 months.
+- VI. A minimum cash balance of Rs 25,000 is expected to be maintained.Required: Prepare a statement of working capital requirements. [08]
+(a) Explain the concept of mutually exclusive projects. How should a firm decide between two mutually exclusive projects? [03]
+(b) Why is NPV considered a superior method for evaluating capital investment projects? [03]
+(c) Mr. Solaiman is responsible for considering two investment projects for his firm, each of which requires an up-front expenditure of Tk 25 million. You estimate that the cost of capital is 10% and that the investments will produce the following after-tax cash flows (in millions of taka):
+Data:Required:
+- I. What is the regular payback period for each of the projects?
+- II. What is the discounted payback period for each of the projects?
+- III. If the two projects are independent and the cost of capital is 10%, which project or projects should the firm undertake?
+- IV. If the two projects are mutually exclusive and the cost of capital is 5%, which project should the firm undertake?
+- V. If the two projects are mutually exclusive and the cost of capital is 15%, which project should the firm undertake?
+- VI. What is the crossover rate? [09]
+(a) Define optimal capital structure. Briefly outline the four primary factors that influence the capital structure decisions. [05]
+(b) Briefly explain the (i) MM theory; (ii) Trade-off theory; and (iii) the Signaling theory. [05]
+(c) The Weaver Watch Company sells watches for $25, the fixed costs are $140,000, and variable costs are $15 per watch. i) What is the breakeven point? Illustrate by means of a chart.
+ii) What would happen to the breakeven point if the selling price was raised to $31? What is the significance of this analysis? [05] Write Notes on:
+(i) Business risk and its determinants
+(ii) Operating leverage
+(iii) Stand-alone and portfolio risk and their measures
+(iv) Factors influencing dividend policy
+(v) Weighted average cost of capital. [15]
+Tracking Ref: ACC 302 / FCC 209 | BBA 5th Semester 2021
+(a) Define financial management. Why is it necessary for business students who do not plan to major in finance to understand the basics of finance? [05]
+(b) "The ultimate goal of a business firm is to maximize wealth, not to maximize profit." Explain the statement logically. [05]
+(c) What do you mean by agency problem? What are some mechanisms that encourage managers to act in the best interests of stockholders? [05] (a) Define risk. Distinguish between business risk and financial risk. [04]
+(b) In general, can the riskiness of a portfolio be reduced to zero by increasing the number of stocks in the portfolio? Explain. [03]
+(c) Intex corporation is considering three possible capital projects for the next year. Each project has a 1year life and project returns depend on next year's state of the economy. The estimated rates of return are shown in the table:
+Also assume that Intex Corporation is going to invest one-third of its available funds in each project. Intex corporation will create a portfolio of three equally weighted projects.
+- i. Find each project's expected rate of return, variance and standard deviation.
+- ii. What is the expected rate of return, variance and standard deviation of the three project's portfolio? [08]
+(a) Which method of calculating the cost of equity shares would be most appropriate for the following firms: [04] i. A profitable firm that has never paid a dividend, but has had steady growth in earnings.
+ii. An electricity company that has paid a dividend every year for the last eighty years. (b) Two firm, F-1 and F-2. The firm F-1 has no debt and is totally financed by equity capital. The firm F-2 has Tk 2,000,000 outstanding debt and pays an interest rate of 10%. The firm's net income after-taxes are calculated using three tax rates, 0, 25 and 50 percent and the resulting values of net incomes are compared. Assume that the earnings before interest and taxes of both firms is Tk 1,000,000 each. Calculate cost of debt. [07]
+(c) Robi is currently selling for Tk 60 a share. The firm is expected to earn Tk 5.40 per share this year and to pay a year-end dividend of Tk 3.60. i. If investors require a 9 percent return, what rate of growth must be expected for Robi?
+ii. If Robi reinvests retained earnings in projects whose average return is equal to the stock's expected rate of return, what will be next year's EPS? [Hint: g = (1-Payout rate)(ROE).] [04] (a) Define working capital and working capital management. Discuss the significance of working capital management policy in case of a manufacturing enterprise. [06]
+(b) From the following information extracted from the books of Zahin Textile Ltd compute the operating cycle in days and the amount of working capital required: (a) What is profitability index? Which one is the superior ranking criterion, profitability index (PI) or net present value (NPV)? Explain. [04]
+(b) Edelman Engineering is considering including two pieces of equipment, a truck and an overhead pulley system, in this year's capital budget. The projects are independent. The cash outlay for the truck is $17,100, and that for the pulley system is $22,430. The firm's cost of capital is 14%. After-tax cash flows, including depreciation, are as follows:
+Calculate the IRR, the NPV, and the MIRR for each project, and indicate the correct accept/reject decision for each. [07]
+(c) Explain why, if two mutually exclusive projects are being compared, the short term project might have the higher ranking under the NPV criterion if the cost of capital is high, but the long-term project might be deemed better if the cost of capital is low. Would changes in the cost of capital ever cause a change in the IRR ranking of two such projects? [04] (a) Explain the logic of the residual dividend model, the steps a firm would take to implement it, and why it is more likely to be used to establish a long-run payout target than to set the actual year-by-year payout ratio. [05]
+(b) The Well Corporation expects next year's net income to be Tk 150 million. The firm's debt ratio is currently 40 percent. Well has Tk 120 million of profitable investment opportunities, and it wishes to maintain its existing debt ratio. According to the residual dividend model, how large should Well's dividend payout ratio be next year? Assume the firm uses only debt and common equity in its capital structure. [05]
+(c) After a 5-for-1 stock split, the Startech Company paid a dividend of TK 0.75 per new share, which represents a 9 percent increase over last year's pre-split dividend. What was last year's dividend per share? [05] (a) Write short notes on: i. Optimal Capital Structure
+ii. EBIT-EPS analysis [05] (b) State the main duties and powers of the CFOs of public sector enterprises in Bangladesh. How economic efficiency of Bangladesh can be enhanced by the use of modern capital budgeting techniques? [05]
+(c) Discuss the problems of financing in private sector enterprises of Bangladesh. Suggest some remedies to overcome those problems. [05]
+]]></description><link>5th-semester/raw-pyqs/pyq-acc-302.html</link><guid isPermaLink="false">5th Semester/Raw PYQs/PYQ ACC 302.md</guid><pubDate>Sun, 09 Aug 2026 09:57:19 GMT</pubDate></item><item><title><![CDATA[PYQ ACC 303]]></title><description><![CDATA[Institution: University of Chittagong | Department: Department of Accounting
+Program: BBA 5th Semester
+Standard Format: 4 Hours | 75 Marks | Answer any FIVE questions sequentially/serially.Tracking Ref: ACC 303 | BBA 5th Semester 2025
+(a) State the steps involved in a sample survey. [04]
+(b) What is Sampling? Explain different types of sampling techniques. [03]
+(c) Under which circumstances, stratified random sampling design is considered to be appropriate? How would you select such a sample? [04]
+(d) Explain the meaning and significance of the concept of "Standard Error" in sampling. [04] (a) Differentiate between point estimation and interval estimation. Explain the characteristics of a good Estimator. [04]
+(b) What are the important points that should be considered before estimating the sample size? [03]
+(c) If we want to draw a simple random sample from a population of 4000 items, how large a sample you need to draw if you desire to estimate the percent defective within 2% of the true value with 95% probability. [04]
+(d) The foreman of a certain mining company has estimated the average quantity of ore extracted to be 34.6 tons per shift and the sample standard deviation to be 2.8 tons per shift, based upon a random selection of 6 shifts. Construct 95% confidence interval for the average quantity of ore extracted per shift. [04] (a) Define an estimator and an estimate. [02]
+(b) Mention the methods of finding the estimators and explain those briefly with example. [08]
+(c) The length (in millimeters) of cuckoo eggs found in hedge sparrow nests can be modeled with a common distribution. Consider the following data set:
+22.0, 23.9, 20.9, 23.8, 25.0, 24.0, 21.7, 23.8, 22.8, 23.1, 23.1, 23.5, 23.0, 23.0
+Required: Find the MLEs (Maximum Likelihood Estimators) of and . [05] (a) Write down the name of some parametric and non-parametric tests. [03]
+(b) What are the assumptions of Chi-square test? [03]
+(c) A public opinion poll surveyed a simple random sample of voters to establish whether there is a relationship between gender and voting preference. Respondents were classified by gender (male and female) and by voting preference (Republican, Democrat or Independent). Results are shown below. Required:
+- i. What is the best statistical test for analyzing the data?
+- ii. State the null hypothesis of the study.
+- iii. At 5% significance level, does the data support the null hypothesis?
+- iv. Interpret your results. [09]
+(a) What is a stochastic disturbance term? Write down the significance of a stochastic disturbance term in regression analysis. [05]
+(b) What is ordinary least squares (OLS) method? How will you estimate the regression coefficients using ordinary least squares method in a simple regression analysis? [05]
+(c) Explain the properties of ordinary least squares (OLS) method. [05] (a) What do you mean by the multi-collinearity problem in a multiple regression model? Explain different sources of multi-collinearity problem. [05]
+(b) What are the practical consequences of multi-collinearity problem in regression analysis? [05]
+(c) How multi-collinearity problem in a multiple regression model can be detected? Explain its remedial measures. [05]
+A computer output of the statistical analysis is given below:Descriptive StatisticsCorrelationsModel Summarya. Predictors: (Constant), Fixed Capital, EmploymentANOVAa. Dependent Variable: GDP
+b. Predictors: (Constant), Fixed Capital, EmploymentCoefficientsa. Dependent Variable: GDPRequired:
+(a) Calculate partial correlation coefficients.
+(b) Determine 95% confidence interval for partial regression coefficients.
+(c) Interpret above results. [15]
+Tracking Ref: ACC 303 | BBA 5th Semester 2024
+(a) What is sampling? Explain the importance of sampling in solving business problem. [05]
+(b) Explain different types of sampling along with their situational suitability. [05]
+(c) What is sampling error? Describe different types of sampling errors. [05] (a) What is estimation? Distinguish between point and interval estimation. [03]
+(b) Suppose the following ten values represent random observations from a normal parent population of size 500:
+2, 6, 7, 9, 5, 1, 0, 3, 5, 4. i. Make an estimate of the standard deviation of the population from the sample standard deviation.
+ii. Work out the standard error of mean for this finite population.
+iii. If the desired confidence level is 95, what will be the upper and lower limits of the confidence interval for the mean number of accidents per intersection per year? [07] (c) Given is the following information:
+Universe with N = 10,000.
+Variance of weight of the cereal containers on the basis of past records = 8 kg. i. Determine the size of the sample for estimating the true weight of the containers if the estimate should be within 0.4 kg. of the true average weight with 95% probability.
+ii. What would be the size of the sample if infinite universe is assumed? [05] (a) The procedure of testing hypothesis requires a researcher to adopt several steps. Describe in brief all such steps. [03]
+(b) A manufacturer considers his production process to be working properly if the mean length of the rods the manufactures is 8.5". The standard deviation of the rods always runs about 0.26". Suppose a sample of 64 rods is taken and this gives a mean length of rods equal to 8.6". What are the null and alternative hypotheses for this problem? Can you infer at 5% level of significance that the process is working properly? [04]
+(c) A drug research experimental unit is testing two drugs newly developed to reduce blood pressure levels. The drugs are administered to two different sets of animals. In group one, 350 of 600 animals tested respond to drug one and in group two, 260 of 500 animals tested respond to drug two. The research unit wants to test whether there is a difference between the efficacy of the said two drugs at 5 per cent level of significance. How will you deal with this problem? [04]
+(d) A sample of 10 is drawn randomly from a certain population. The sum of the squared deviations from the mean of the given sample is 50. Test the hypothesis that the variance of the population is 5 at 5 per cent level of significance. [04] (a) Write down the procedure of testing hypothesis. [03]
+(b) Define Chi-Square test. Write down the conditions for the application of Chi-square test. [05]
+(c) A sample of 200 people with a particular disease was selected. Out of these 100 were given a drug and the others were not given any drug. The results are as follows:
+Test whether the drug is effective or not.
+(The table value of for 1 d.f. at 5% level of significance is 3.84) [07]
+(a) What is the stochastic disturbance term? Discuss its significance in the regression analysis. [05]
+(b) What is ordinary least square method? Discuss the properties of OLS estimators. [05]
+(c) Mention the assumptions underlying the method of least squares in the classical linear regression model. [05] (a) You are given the following information:
+, , and , , and , , , On the basis of above information i. construct 95% confidence interval for and .
+ii. Write down the linear regression model. [04] (b) What is multicollinearity? Discuss the practical consequences of multicollinearity. [06]
+(c) How multicollinearity can be detected? [05]
+A computer output of the statistical analysis are given below:Descriptive StatisticsCorrelationsModel SummaryANOVAa. Predictors: (Constant), X1, X2
+b. Dependent Variable: YCoefficientsWhere,
+Y = Total Personal Consumption Expenditure
+X1 = Expenditure on durable goods
+X2 = Expenditure on nondurable goodsRequirements:
+(a) Interpret the results.
+(b) Calculate all partial correlation coefficients. [15]
+Tracking Ref: ACC 303 | BBA 5th Semester 2023
+(a) What is sampling? Discuss different types of sampling. [02]
+(b) Write down principal steps in sample survey. [04]
+(c) Distinguish between Sampling and Non-sampling Errors. [04]
+(d) What are the basic methods of drawing a Simple Random Sample? Describe one of them. [05] (a) Define the following terms:
+Null Hypothesis and Alternative hypothesis, Type I Error and Type II Error, One Tailed and Two Tailed test. [03]
+(b) A claim is made that a batch of bulbs has a mean life of 2800 hrs. From the past experience it is known that the SD of the life time is 100 hrs. A buyer specifies that he wants to test the claim against the alternative that the mean burning time is in fact below 2800 hrs. at 5% level of significance. A sample of size 25 is drawn and sample average is found to be 2750 hrs. Should the buyer accept the hypothesis that the mean life time of all bulbs in the population is 2800 hrs.? [04]
+(c) A company interested to knowing if there is a difference in the average salary received by foreman in two divisions. Accordingly, sample of 12 foreman in the first division and 10 from the second division are selected at random. Based upon the experience of the foreman's salaries are known to be approximately normally distributed, and the standard deviations are about the same.
+[05]
+(d) The coefficient of correlation obtained from a random sample of 18 pairs of values is 0.45. Is this significant of correlation in the population? [03] (a) Define estimation and distinguish between different types of estimation. [03]
+(b) From a random sample of 50 civil service personnel, the mean age and the sample standard deviation were found to be 40 years and 4.5 years respectively. Construct a 95 percent confidence interval for the mean age of civil servants. [04]
+(c) Discuss technique of testing hypothesis using confidence interval approach. [04]
+(d) Determine the size of the sample for estimating the true weight of the cereal containers for the universe with N = 5000 on the basis of the following information: i. the variance of weight = 4 ounces on the basis of past records.
+ii. estimate should be within 0.8 ounces of the true average weight with 99% probability.
+Will there be a change in the size of the sample if we assume infinite population in the given case? If so, explain by how much? [04] (a) What is Analysis of Variance? Mention assumptions involved in it. [03]
+(b) The following table gives the retail prices of a commodity in some shops selected in three big cities:
+Carry out the analysis of variance to find out whether there is a significant difference in the price charged in these cities. [06]
+(c) Two research workers classified some people in income groups on the basis of sampling studies. Their results are as follows:
+Show that the sampling technique of at least one research worker is defective. [06]You are given the Weekly Consumption Expenditure (Y) and the Income (X) of a sample of 10 families:Requirements:
+(Consider Y as the dependent variable)
+(a) Estimate the parameters of this model.
+(b) Determine the standard errors of the estimates.
+(c) Construct 95% confidence intervals for coefficients.
+(d) Test hypothesis for linear regression coefficient equal to 0.50. [15] (a) What is Multicollinearity? What are its practical consequences? [05]
+(b) How does one detect multicollinearity? [05]
+(c) What remedial measures can be taken to alleviate the problem of multicollinearity? [05]
+Consider the following tables showing the computer output of three variables analysis:Model Summarya. Predictors: (Constant), TFR, PGNP, FLFPANOVAa. Dependent Variable: CM
+b. Predictors: (Constant), TFR, PGNP, FLFPCoefficientsa. Dependent Variable: CMCorrelationsWhere CM = Child mortality, PGNP = Per capita GNP, FLFP = Female Labor Force Participation, and TFR = Total Fertility Rate.Required:
+(a) Calculate partial correlation coefficients , , and . [Consider PGNP = 2, FLFP = 3, and TFR = 4]
+(b) Interpret Outputs. [15]
+Tracking Ref: FCC 201 | BBA 3rd Semester 2021 (Applied Business Statistics)
+(a) Give classical definition of probability. Write down the laws of probability. [04]
+(b) A study showed that 75% of managers had some business education and 55% had engineering education. Further, 35% of the managers had some business education but no engineering education. i. What is the probability that a manager has some business and engineering education?
+ii. It is known that a manager has some engineering education, what is the probability that he has some business education? [04] (c) Eastern Apartments has a large number of units available to rent each month. A concern of management is the number of vacant apartments each month. A recent study revealed the percent of the time that a given number of apartments are vacant. Compute the average and standard deviation of number of vacant apartments.
+- i. Compute the mean number of vacant apartments each month.
+- ii. Compute the variance of the number of vacant apartments each month. **[07]** (a) What is sampling? Distinguish between probability sampling and non-probability sampling. [03]
+(b) Define Estimation. Distinguish among different types of estimates. [04]
+(c) A random sample of 200 measurements from an infinite population gave a mean value of 50 and a standard deviation of 9. Determine the 99% confidence limits for the mean value of the population. [04]
+(d) What should be the size of the sample if a simple random sample from a population of 4000 items is to be drawn to estimate the percent defective within 2 percent of the true value with 95.5 per cent probability? [04] (a) Eight coins were tossed 256 times and the following results were obtained:
+Are the coins biased? Use test. [07]
+(b) A company selects 9 salesmen at random and their sales figures for the previous month are recorded. They then undergo a course devised by a business consultant and their sales figure for the following month are compared as shown in the following table. Has the training course caused an improvement in the salesmen's ability? Use 5% level of significance.
+[08]
+(a) Write down the assumptions taken for the validity of the F-test in ANOVA. [02]
+(b) Set up an analysis of variance table for the following two-way design results:
+Per Acre Production Data of Wheat (in metric tons)
+Also state whether variety differences are significant at 5% level. [10]
+(c) A machine puts out 16 imperfect articles in a sample of 500. After machine is overhauled, it puts out 3 imperfect articles in a batch of 100. Has the machine improved? Test at 5% level of significance. [03] (a) What is statistical quality control? Write down its uses. [03]
+(b) Distinguish between product control and process control. [02]
+(c) Track Bicycle Parts manufacturer precision ball bearings for wheel hubs, bottom brackets, head sets, and pedals. Seth Adams is responsible for quality control at Track. He has been checking the output of the 5-mm bearings used in front wheel hubs. For each of the last 10 hours, he has sampled 5 bearings, with the following results:
+- i. Construct control charts for mean and the range to help Seth determine whether the production of 5-mm bearings is in control.
+- ii. Should Seth conclude that the process is in control? **[10]** (a) In a certain town, male and female each from 50% of the population. It is known that 30% of the males and 7% of the females are unemployed. A research student studying the employment situation selects an unemployed person at random. What is the probability that the person so selected is (a) male (b) female? [04]
+(b) Define normal distribution. What are its characteristics? Show the area under the normal curve. [06]
+(c) A factory produces a mechanism which consists of three independently manufactured parts. It is known that 1% of part 1, 4% of part 2 and 3% of part 3 are defective. What is the probability that a complete mechanism is not defective? [05] (a) Briefly state the steps of hypothesis testing? [05]
+(b) What is the difference between type-1 error and type-2 error? [03]
+(c) The mean production of wheat of a sample of 100 fields in 200 lbs. per acre with a standard deviation of 10 lbs. Another samples of 150 fields gives the mean of 220 lbs. with a standard deviation 12 lbs. Can the two samples be considered to have been taken from the same population whose standard deviation is 11 lbs.? Use 5% level of significance. [05]
+(d) Define test of proportion? [02]
+]]></description><link>5th-semester/raw-pyqs/pyq-acc-303.html</link><guid isPermaLink="false">5th Semester/Raw PYQs/PYQ ACC 303.md</guid><pubDate>Sun, 09 Aug 2026 09:42:16 GMT</pubDate></item><item><title><![CDATA[PYQ ACC 305]]></title><description><![CDATA[Institution: University of Chittagong | Department: Department of Accounting
+Program: BBA 5th Semester
+Standard Format: 4 Hours | 75 Marks | Answer any FIVE questions sequentially/serially.Tracking Ref: Course Code ACC-305 | BBA 5th Semester
+(a) Define ‘Assurance Engagement’ and explain the key elements of an assurance engagement. [04]
+(b) Differentiate between reasonable and limited assurance, can an audit of financial statements provide absolute assurance? Justify your answer with appropriate reasons. [04]
+(c) Describe the meaning of the “expectations gap” in the context of auditing. Suggest appropriate steps that may help in minimizing the expectations gap between auditors and users of financial statements. [04]
+(d) What is “Lowballing”? Point out the factors that an auditor should consider before accepting an audit engagement. [03] In professional audit practice, it is important to agree on the terms of engagement before any assignments are taken up. This ensures a clear understanding between the auditor and the client. In such a context, you are required to: (a) Examine the key components of an audit engagement letter. [06]
+(b) Evaluate the factors to be considered during the assignment of the audit engagement team. [04]
+(c) Distinction among appointment letter, proposal letter, and engagement letter. Discuss the conditions and stages at which they are prepared and state the objectives of each. [05] (a) Briefly discuss the duties of auditors according to Section 213 of the Companies Act, 1994. [05]
+(b) An auditor discovers a material misstatement in a client’s financial statements but is under pressure from the client to overlook it, as it could jeopardize a significant contract. In this scenario, how should the auditor respond to this situation, considering the ethical standards for professional accountants? [05]
+(c) State the objectives, powers, and functions of the Financial Reporting Council under sections 7 and 8 of the Financial Reporting Act, 2015. [05] (a) What is audit risk? What are the different types of audit risk? [03]
+(b) Briefly explain the components of the internal control system as set out in ISA 315, ‘Identifying and Assessing the Risks of Material Misstatement’. [05]
+(c) Define the term ‘Assertion’ from the perspective of a financial audit. Describe the assertions related to ‘revenue’ and ‘receivables’ for conducting a financial audit. [07] (a) In accordance with ISA 500-Audit Evidence, explain the meaning of ‘sufficiency’ and ‘appropriateness’ of audit evidence, and discuss the various audit procedures for obtaining such evidence. [05] (b) Your firm XYZ &amp; Co. Chartered Accountants, has been appointed as the auditor of Merry Company Limited (MCL) for the financial year ended 31 March 2025. You have been assigned as the engagement manager.
+During discussions with management, you were informed that MCL has recently received a significant number of requests for credit notes due to customers alleging that goods were received in poor condition. Therefore, Management of MCL intends to strengthen controls over the dispatch of goods and confirmation of their condition upon delivery.
+Again, you were informed that the directors of MCL have recently discovered that the store manager has been committing fraud. As part of her responsibilities, she was in charge of ordering inventory. She created fictitious purchase orders to non-existent suppliers, recorded false goods received notes for deliveries that never occurred, and submitted fake supplier invoices to the accounts department for payment. These invoices were subsequently paid by the company.
+MCL has also experienced a history of inventory theft. As a result, the directors have decided to strengthen the internal control system over the inventory ordering process to ensure that only goods genuinely required for business purposes are purchased. i. Identify the audit risks associated with the dispatch and recording of delivered goods at MCL and suggest appropriate audit procedures to address the identified risks in relation to the dispatch and recording of goods.
+ii. Identify the audit risks associated with the ordering of inventories for MCL and suggest appropriate audit procedures to address the identified risks in relation to the ordering of inventories. [10] (a) You are the auditor of Meghna Vehicle PLC, whose main activity is to buy and sell of various types of motor vehicles. During the current year the company has suffered a significant fall in sales and abnormal increase of finance cost which has led to a net loss. The company is also experiencing cash flow problems. The draft financial statements show a loss for the current year but the forecast indicates a report to profitability in the upcoming financial year, as the directors are optimistic about the injection of sufficient amount of fresh capital. i. Describe the auditor’s responsibilities in relation to management’s assessment of the entity’s ability to continue as a going concern.
+ii. Identify the events or conditions that may cast significant doubt on an entity’s ability to continue as a going concern. [08] (b) There are certain general matters that are required to be included in a management representation letter. In accordance with ISA 580 – Written Representations, describe these general matters that management is expected to confirm in the representation letter. [03] (c) Briefly explain the contents of an auditor's report in accordance with ISA 700 – Forming an Opinion and Reporting on Financial Statements. [04] (a) A modified audit opinion is issued when the auditor concludes, based on the audit evidence obtained, that the financial statements as a whole are not free from material misstatement. In cases of material misstatement, there are two types of modified audit opinions that may be expressed. Describe these two types of audit opinions. [05]
+(b) A modified audit opinion is issued when the auditor is unable to obtain sufficient appropriate audit evidence to conclude that the financial statements as a whole are free from material misstatement. In situations involving a limitation of scope, two types of modified audit opinions may be expressed. Describe these two types of audit opinions. [04]
+(c) Define the following terms as used in the Independent Auditor’s Report: [06] Key Audit Matters (KAM)
+Emphasis of Matter paragraph
+Other Matter paragraph Tracking Ref: Course Code ACC 305 | BBA 5th Semester
+(a) Contrast between audit and assurance. [05]
+(b) Compare and contrast between continuous and periodic audit. [05]
+(c) What is FRC? What are its jurisdictions? [05] (a) Enumerate in brief BSA-220 and BSA-500. [06]
+(b) Who can be a statutory auditor? Name Big Four audit firms of the world. [05]
+(c) Mention the non-audit professional services offered by an auditor. [04] (a) What are the professional responsibilities of an auditor? [06]
+(b) What is an audit program? State its importance, advantages, and disadvantages. [06]
+(c) What are the purposes of audit working papers? [03] (a) What do you understand by valuation of assets? [05]
+(b) How would you audit the following assets? [10] i. Stock in trade
+ii. Intangible assets
+iii. Cash and cash equivalents (a) Explain the role of Arthur Andersen in relation to the collapse of Enron. [05]
+(b) Elucidate the IFAC Guidelines of ethics for professional accountants. [05]
+(c) What is an audit committee? How can it ensure the integrity of internal and external audit work? [05] (a) The existence and operation of a good system of internal control can reduce the auditor's workload to a considerable extent. State how the auditor can bring about this reduction. [05]
+(b) On being appointed the auditor of a company for the first time, you find that the cashier also handles the books of account and the cash receipts are not being banked intact, but parts of these are being utilized for cash payments. What would be your reaction? What recommendations would you make to the company in this connection? [05]
+(c) You have been appointed as the internal auditor of a company, and you have come across certain weaknesses in the internal control system. Draft a specimen form of Management Letter indicating at least five areas of weakness relating to internal control. [05] (a) State the basic features of an audit report. [05]
+(b) What is KAM, and state the requirements of determining and communicating KAM by the auditor as per ISA 701: Communicating Key Audit Matters in the independent auditor's report. [05]
+(c) State the circumstances and type of modifications to the auditor's opinion are required as per ISA 705: Modifications to the opinion in the independent auditor's report. [05]
+Tracking Ref: Course Code ACC 305 | BBA 5th Semester
+(a) Discuss the main types of errors and frauds. [05]
+(b) Compare and contrast between continuous and periodic audit. [05]
+(c) What are the limitations of audit? Explain. [05] (a) Enumerate in brief BSA-200 and BSA-220. [06]
+(b) What should be the traits of an Auditor? [05]
+(c) Mention the non-audit professional services offered by an auditor. [04] (a) What do you mean by internal control system? What are its different components? [05]
+(b) What do you suggest a financial control system robust and defensible? [06]
+(c) When does an internal control system fail to circumvent fraud? [04] (a) Define ethics. What do you mean by professional ethics? [05]
+(b) Elucidate the IFAC Guidelines of ethics for professional accountants. [05]
+(c) What are the liabilities of an auditor as per Caparo Industries VS Dickman? [05] (a) What is vouching? Discuss the features of vouching. State the important considerations before conducting vouching. [05]
+(b) While auditing the accounts of a trading concern, how would you examine that all liabilities incurred before the close of the year in respect of wages, freight and traveler's commission have been included in the accounts? [05]
+(c) What are the general considerations for evaluation and verification of assets? [05] (a) What is meant by auditor's report? [02]
+(b) Discuss the characteristics of a good audit report. [05]
+(c) How many types of audit report may be submitted by a company auditor and in what circumstances? Discuss briefly. [08] Suppose, ABC is a food manufacturing company. They have 10 factory sites and 2500 workers. They have grown very rapidly in recent years under the direction of Mr. X, who is a very dynamic character. He tries to operate on the lowest possible costs and sees internal control as himself and his factory managers. The company has recently moved into the production of mass-produced food item and expected that they will grab a large market share. They have an audit committee (not liked by Mr. X) but no internal audit department.
+Required:
+(a) What advantages might accrue to the company if they set up an internal audit department? [04]
+(b) How might the auditors approach the audit? [04]
+(c) What specific duties are imposed on the auditor regarding internal control and internal audit? [04]
+(d) Distinguish briefly internal control, internal check and internal audit. [03]
+Tracking Ref: Course Code ACC 309 | BBA 6th Semester
+Mr. Shreyaan is the auditor of XYZ company. During the audit of 2021 annual report, one branch office of XYZ company was destroyed by fire. Because of the fire, Mr. Shreyaan is unable to find out some sales invoices (about 2% of total sales) and there is no backup in the company. Without the invoices, Mr. Shreyaan is also unable to contact the customers for confirmation purposes. He has access to the remaining 98% of invoices, and he believes there is no material misstatement in these invoices. (a) In the above case, which type of audit opinion Mr. Shreyaan would issue and why? [06]
+(b) What do limited and negative assurance mean? [03]
+(c) Discuss the most common types of assurance services. [06] (a) What is audit expectation gap? What are the causes behind the audit expectation gap? [05]
+(b) How can you explain the Agency relationships in Auditing? [04]
+(c) Explain the preliminary risk assessment procedure of a client. [06] (a) List down and explain "five fundamental ethical principles" included in code of Accounting Professional and Ethical Standards (APES) -110. [05] The Client Inc. sells microwave through an e-commerce retail website. Customers have 30 days to pay. To purchase microwave through the website, customers need to register and get approved before their purchases. In addition, customers who have a balance over approved credit limit, need the approval from senior manager to continue the sales process. The auditor is satisfied that controls over the account registration process exist and the control design is adequate. However, the auditor finds that in some cases, customers who have a balance over approved credit limit can continue to purchase microwave successfully before they get approval from senior manager. (b) Based on the above information: i. What are the seven generally accepted objectives of internal control as related to the recording of transactions? [05]
+ii. Identify the weakness and complete the logic diagram for the above case. [05] (a) What are the three components of audit risk model? What is the relation between audit risk and detection risk? [05]
+(b) Discuss different kinds of threats to auditors' independence. [05] You are the auditor in charge of ABC Company. During the audit, you found that one junior staff, Mr. Abhi, has invested a lot of money in ABC Company. Mr. Abhi also asked many of his friends and family members to buy shares of ABC Company. Currently, Mr. Abhi is in charge of cash account. (c) Identify and explain the threat to auditor independence in the above case. [05] M/S Shimee Enterprise stocks thousands of items that range in value from tk.1000 to tk. 10,00,000. The inventory on hand represents a material portion of current assets. The merchandise items change according to the season and the promotional theme adopted by the stores' management for the year. Merchandise is ordered up to four months in advance from Chinese and Korean suppliers. These special orders require M/S Shimee Enterprise to give the suppliers substantial deposits upon placement of the orders. (a) Based on the scenario above: i. What are the inherent risks for M/S Shimee Enterprise inventory?
+ii. Discuss the assertions being made by management about the inventory. [07] (b) Consider the following what can go wrong (WCGW) events. Explain what assertions and preventive control actions you need to take as an auditor, against these WCGW: [08] i. Sales occur that are not recoverable.
+ii. Fictitious employees are paid.
+iii. Sales are recorded at an incorrect value.
+iv. Transactions are classified and coded to incorrect accounts. (a) What precautions should be taken by the auditor while applying test check techniques? [05]
+(b) Explain how a statutory auditor of a company can apply analytical procedures at the planning phase of audit. [04]
+(c) While applying the Substantive Analytical Procedures what techniques can be used by the statutory auditor of a company to obtain sufficient and appropriate audit evidence? [06] (a) Describe how risks in IT systems, if not mitigated, could have an impact on audit. [05]
+(b) Briefly mention the reasons why IT should be considered relevant to an audit of financial statements. [05]
+(c) What are the different testing methods used when auditing in an automated environment? Which is the most effective and efficient method of testing? [05]
+Tracking Ref: Course Code ACC 309 | BBA 6th Semester
+(a) Explain the main objectives of an audit with imperative purposes. [04]
+(b) Enumerate different categories of threats faced by auditors. [04]
+(c) Distinguish between internal audit and external audit. [03]
+(d) Establish relationships among auditing, attest and assurance services. [04] Mr. Abhi is the auditor of AAA company in 2019. During the audit period, AAA company just appointed a new Chief Executive Officer (CEO), Mr. Sam. Abhi and Sam are close friends from college. They have known each other for 20 years. (a) During the audit, Abhi found that many of the sales invoices were missing and some incomplete documentation. He is intended to issue disclaimer of audit opinion. However, Mr. Sam (CEO of AAA Company) asked Abhi to ignore these invoices and to issue unqualified audit opinion. Otherwise, AAA Company will either pay lower audit fees or change him as an auditor (Mr. Abhi) next year. Abhi followed the advices of Sam.
+(b) It was Abhi's birthday. Sam offered free Bangladesh Vs Australia Grand Final T20 World Cup tickets for Abhi and his family as a birthday gift. Abhi accepted the gift from Sam.
+(c) Sam wanted to increase AAA company's sales but he was having some difficulties in finding new customers. He asked Abhi for his advice. Abhi had the names and contact details of some companies that might be interested in buying AAA company's products. Abhi's list of companies and their contact details was made up of customers of a previous client. Abhi gave the list to Sam.
+(d) During the audit, Abhi found that one junior staff, Krish, has invested a lot of money in AAA Company. Krish also asked many of his friends and family members to buy shares from AAA Company. Currently, Krish is in charge of confirming cash account.
+In each situation identify the threats to the "Auditor's Independence" and explain, why? [15]
+(a) Describe the three main phases of the audit. [05]
+(b) What is going concern assumptions? List down the factors that indicate the going concern assumptions may be at risk. [04]
+(c) What do you mean by fraud risk? From the following transactions identify whether it is 'financial reporting fraud' or 'misappropriation of assets fraud'. [06] i. Using company car for personal use
+ii. Delaying expenses, bringing forward revenues
+iii. Recording Fictitious revenues
+iv. Theft of stocks by employees
+v. Understating expenses (a) What is qualitative materiality and what is quantitative materiality? What are considered appropriate bases when setting materiality? [05]
+(b) The following is the pre-audited financial information of ABC Company from 2017 to 2020. Use analytical procedures and identify risky accounts. [10] (a) Name two assertions that are significant for cash. Describe the substantive procedure that are always performed for cash. [05]
+(b) Define persuasive, corroborative and minimal evidence. Give examples of each type of evidence for trade receivables and PPE. [06]
+(c) Describe the situation under which an auditor needs to issue adverse opinion or disclaimer of opinion. [04] Ms. Rupa is the auditor in charge of XYZ Company. At the end of 2020, XYZ Company had tk. 1,00,000 account receivables on balance sheet. Rupa conducted confirmation with several major customers for tk. 50,000 account receivables. Rupa was satisfied with the outcomes of confirmation and concluded that there was no material misstatement in account receivables. (a) i. Which assertion of account receivables may be violated?
+ii. How should Rupa verify the violated assertion? [05] Mr. Dev is a junior staff of Chattolla CPA firm and is verifying sales invoices. There are 12 invoices and he wants to choose 4 invoices for test. His strategy is to first stratify the 12 invoices into 4 stratums based on the amount size. From each stratum, he will choose the invoice with median amount for test. (b) i. Identify the invoice number in each stratum.
+ii. Identify the 4 invoices Mr. Dev would choose. [10] (a) Draw a sequence of testing purchases. [03]
+(b) Discuss in brief the principles of the code of conduct as framed by IFAC. [06]
+(c) Explain the contents of a complete audit report as per BSA 700. [06]
+]]></description><link>5th-semester/raw-pyqs/pyq-acc-305.html</link><guid isPermaLink="false">5th Semester/Raw PYQs/PYQ ACC 305.md</guid><pubDate>Sun, 09 Aug 2026 09:38:34 GMT</pubDate></item><item><title><![CDATA[PYQ ACC 304]]></title><description><![CDATA[Institution: University of Chittagong | Department: Department of Accounting
+Program: BBA 5th Semester
+Standard Format: 4 Hours | 75 Marks | Answer any FIVE questions sequentially/serially.Tracking Ref: ACC 304 | BBA 5th Semester 2025
+(a) Distinguish between Normal Costing and Actual Costing. Why is the use of a predetermined overhead rate considered essential for timely management decision-making in a normal costing environment? [05]
+(b) The following particulars have been extracted from the accounting records of Peterson Manufacturing Ltd. for the fiscal year ended December 31, 2024:
+Additional Information for the Year:
+Purchases of direct materials: Tk. 74,000
+Direct manufacturing labor: Tk. 22,000
+Direct expenses (Specialized tool hire): Tk. 5,000
+Indirect manufacturing labor: Tk. 17,000
+Plant insurance: Tk. 7,000
+Depreciation—plant, building, and equipment: Tk. 11,000
+Repairs and maintenance—plant: Tk. 3,000
+Marketing, distribution, and customer-service costs: Tk. 91,000
+General and administrative costs: Tk. 24,000
+Sales of scrap (from production): Tk. 2,000
+Profit: 25% on Sales
+Required: Compute the following:
+Cost of materials used
+Prime cost
+Manufacturing Overhead Costs
+Cost of goods manufactured
+Cost of goods sold
+Cost of sales
+Total Sales value [10] (a) M/s Global Tech Ltd. manufactures high-precision industrial valves. The company provides the following information regarding one of its primary raw materials:
+Annual Requirement: 10,000 units
+Cost of placing an order: Rs. 100
+Purchase price per unit: Rs. 40
+Inventory carrying cost: 20% per annum
+Lead Time for supply: 5 to 15 days
+Rate of Consumption: 15 units (Average) and 20 units (Maximum) per day.
+Required:
+i. Compute the Economic Order Quantity (EOQ). [04]
+ii. A supplier has offered a 2% discount on the purchase price if the company accepts a lot size of 2,500 units per order. Evaluate whether the company should accept this discount offer by preparing a comparative cost statement. [04]
+iii. Calculate the Re-order Level for this material. [02]
+(b) Gayle's Glassworks makes glass flanges for scientific use. Materials cost $1 per flange, and the glass blowers are paid a wage rate of $28 per hour. A glass blower blows 10 flanges per hour. Fixed manufacturing costs for flanges are $28,000. Period (non-manufacturing) costs associated with flanges are $10,000 per period and are fixed.
+Required: Graph the fixed, variable cost for flanges, using units (number of flanges) on the x-axis. Assume Gayle's Glassworks manufactures and sells 5,000 flanges this period. Its competitor, Flora's Flasks, sells flanges for $10 each. Can Gayle sell below Flora's price and still make a profit on the flanges? [05]Global Structures Inc. assembles high-end modular residential units. The company uses a normal-costing system with two direct-cost categories (direct materials and direct manufacturing labor) and one indirect-cost pool (manufacturing overhead). Overhead is allocated to jobs based on a budgeted rate of $50 per machine-hour. For the fiscal year 2024, the following data (in thousands) are provided:Inventory balances on December 31, 2024 (before proration):Required:
+i. Prepare journal entries to summarize the 2024 transactions (ignore explanations). [06]
+ii. Compute the amount of underallocated or overallocated manufacturing overhead for the year. [02]
+iii. Dispose of the overhead difference using the following two methods: a. Write-off directly to Cost of Goods Sold. b. Proration based on the amount of overhead already allocated in the ending balances of WIP, Finished Goods, and COGS. Briefly evaluate which disposal method provides a more accurate representation of the balance sheet at year-end and why. [07] (a) An employee working under a bonus scheme saves 4 hours in a job for which the standard time is 32 hours. Calculate the rate per hour worked and wages payable for the time taken under the following alternative schemes. (Award rate Tk. 1/- per hour) i. Employee receives an increase in the hourly rate based on the percentage of time saved to the time set.
+ii. A bonus of 10 per cent on award rate is payable when standard time (namely, 100 per cent efficiency) is achieved plus a further bonus of 1 per cent on award rate for each 1 per cent in excess of that 100 per cent efficiency. [05] (b) Calculate the normal and overtime wages payable to a workman from the following data:
+Normal working hours per day is 8 hours. Normal rate per hour is Tk.10. Overtime rate up to 9 hours a day at single rate and over 9 hours in a day at double rate or up to 48 hours in a week at single rate and over 48 hours in a week at double rate, whichever is more beneficial to a worker. [06]
+(c) The HRM department of a company gives you the following information regarding labor. Calculate labor turnover rate using the different methods.
+Number of workers on the payroll: At the beginning of the month: 1,900
+At the end of the month: 2,100
+During the month 20 persons quit while 80 persons are discharged. 300 workers are required during the month. Of these, 50 workers are recruited in the vacancies of those leaving while the rest were engaged in accordance with an expansion scheme. Required: Calculate labor turnover rate using the different methods. [04]
+(a) TSN Office Equipment manufactures and sells metal shelving. It began operations on January 1, 2020. Costs incurred for 2020 are as follows (V stands for variable; F stands for fixed):
+Direct materials used: Tk. 140,000 V
+Direct manufacturing labor costs: 22,000 V
+Plant energy costs: 5,000 V
+Indirect manufacturing labor costs: 18,000 V
+Indirect manufacturing labor costs: 14,000 F
+Other indirect manufacturing costs: 8,000 V
+Other indirect manufacturing costs: 26,000 F
+Marketing, distribution, and customer service costs: 120,000 V
+Marketing, distribution, and customer service costs: 43,000 F
+Administrative costs: 54,000 F
+Variable manufacturing costs are variable with respect to units produced. Variable marketing, distribution, and customer-service costs are variable with respect to units sold.Inventory data are as follows:Additional Information:
+Production in 2020 was 100,000 units.
+Two pounds of direct materials are used to make one unit of finished product.
+Revenues in 2020 were Tk. 473,200.
+The selling price per unit and the purchase price per pound of direct materials were stable throughout the year.
+The company's ending inventory of finished goods is carried at the average unit manufacturing cost for 2020.
+Finished-goods inventory at December 31, 2020, was Tk. 20,970.
+Required:
+i. Calculate direct materials inventory, total cost, December 31, 2020. [1.5]
+ii. Calculate finished-goods inventory, total units, December 31, 2020. [2.5]
+iii. Calculate selling price in 2020. [1.5]
+iv. Calculate operating income for 2020. [2.5]
+(b) Surge Automotive Ltd. specializes in producing a high-capacity off-road vehicle called the "Terrain." The company has provided the following manufacturing cost data for the upcoming budget year:
+Fixed Costs (Annual): Plant administration and management salaries: $2,160,000 per year
+Cost of leasing production facility: $1,440,000 per year
+Variable Costs (Per Unit):
+Direct manufacturing labor wages: $1,500 per unit
+Direct materials: Engine and chassis ($3,500); Specialty tires ($200 per tire). Each vehicle requires 6 tires (including two spares).
+Step-Variable Cost (Monthly):
+Monthly Environmental Compliance Fee (based on the total number of tires used in production):
+0–500 tires: $30,000
+501–1,000 tires: $75,000
+More than 1,000 tires: $180,000 Required:
+i. Compute the total manufacturing cost and the average manufacturing cost per unit if the company produces 80 vehicles in a month. [03]
+ii. Compute the total manufacturing cost and the average manufacturing cost per unit if the company increases production to 180 vehicles in a month. [03]
+iii. Briefly explain the primary reasons why the average manufacturing cost per unit differs between these two production levels. [01] (a) Pran Company made the following materials purchases and issues during January.
+Inventory: January 1. 500 units @ Tk. 12.00
+Receipts: January 6. 200 units @ Tk. 12.50
+January 10. 400 units @ Tk. 13.00
+January 25. 500 units @ Tk. 14.00
+Issues:
+January 15. - 560 units
+January 27. - 400 units. Required: Compute the cost of materials consumed and the cost assigned to the inventory at the end of the month, using the perpetual inventory system and:
+i. Average costing. [2.5]
+ii. FIFO costing. [2.5]
+(b) LeMaster Company would like to determine the safety stock to maintain a product, so that the lowest combination of stockout cost and carrying cost would result. Each stockout will cost Tk. 75; the carrying cost for each safety stock unit will be Tk. 1; the product will be ordered five times a year. The following probabilities of running out of stock during an order period are associated with various safety stock levels:
+Required: Determine the combined stockout and safety stock carrying cost associated with each level and the recommended level of safety stock. [04]
+(c) Evan Company has developed the following costs and other data pertaining to one of its raw materials: Normal use per day: 400 units
+Maximum use per day: 600 units
+Minimum use per day: 100 units
+Working day per year: 250
+Lead time: 8 days
+Cost of placing an order: Tk. 20.00
+Cost per unit of material: Tk. 2.50
+Carrying cost percentage: 10% Required: Compute the following:
+i. Economic order quantity. [01]
+ii. Safety stock. [01]
+iii. Reorder point. [01]
+iv. Normal maximum inventory. [01]
+v. Absolute maximum inventory. [01]
+vi. Average normal inventory. [01] (a) Dempsey Inc. is a retailer operating in British Columbia. Dempsey uses the periodic inventory system. All sales returns from customers result in the goods being returned to inventory; the inventory is not damaged. Assume that there are no credit transactions; all amounts are settled in cash. You are provided with the following information for Dempsey Inc. for the month of January 2022:
+Required:
+i. For both i) FIFO (First-in, First-out) ii) Moving-average cost (Round the weighted-average unit cost to three decimal places) cost flow assumptions, calculate (a) cost of goods sold, (b) ending inventory, and (c) gross profit. [06]
+ii. Compare the results for the three cost flow assumptions. [03]
+(b) The finishing shop of a manufacturing concern employs 60 direct workers. Each worker is currently paid a guaranteed wage of Rs. 400 for a 40-hour week. The current average output is 6 units per man-hour, which the management regards as the standard. The company is considering the introduction of a shop-wide incentive scheme. It is expected that under such a scheme, the output will increase to 8 units per man-hour. The company has a budgeted weekly production target of 19,200 units.
+The following additional budgeted data for the week is provided: Selling Price: Rs. 11 per unit
+Direct Material Cost: Rs. 8 per unit
+Variable Overheads: Rs. 0.50 per direct labor hour
+Fixed Overheads: Rs. 9,000 per week Required: Assuming the workers will not work overtime under the new incentive plans, prepare a statement showing the effect on the company's weekly profit if the management decides to introduce:
+i. Halsey Premium Scheme (50% sharing) [03]
+ii. Rowan Premium Scheme [03]
+Tracking Ref: ACC 304 | BBA 5th Semester 2024
+(a) Define Cost Objects, Cost Drivers, Direct Costs, Indirect Costs, and Period Costs. [05]
+(b) The following particulars have been extracted from the books of Alfa Ltd.
+Required: You are asked to compute:
+i. Cost of materials used
+ii. Prime cost
+iii. Works cost
+iv. Cost of goods manufactured
+v. Cost of goods sold
+vi. Cost of sales
+vii. Sales [10] (a) ABC &amp; Sons, Inc. wants to determine the appropriate safety stock level for a product to minimize the total cost from stockouts and carrying inventory. The cost of a stockout is $30 per occurrence, and the annual carrying cost for each unit of safety stock is $0.50. The product is ordered 10 times per year.
+The probabilities of running out of stock during an order cycle based on different safety stock levels are as follows:
+Required: Calculate the total cost (stockout cost plus carrying cost) for each safety stock level and recommend the optimal safety stock level. [04]
+(b) The Knot manufactures men's neckwear at its Spartanburg plant. The Knot is considering implementing a JIT production system. The following are the estimated costs and benefits of JIT production: i. Annual additional tooling costs $250,000 annually.
+ii. Average inventory would decline by 80% from the current level of $1,000,000.
+iii. Insurance, space, materials-handling, and setup costs, which currently total $400,000 annually, would decline by 20%.
+iv. The emphasis on quality inherent in JIT production would reduce rework costs by 25%. The Knot currently incurs $160,000 in annual rework costs.
+v. Improved product quality under JIT production would enable The Knot to raise the price of its product by $2 per unit. The Knot sells 100,000 units each year.
+The Knot's required rate of return on inventory investment is 15% per year. Required: Calculate the net benefit or cost to The Knot if it adopts JIT production at the Spartanburg plant. Also, state some non-financial and qualitative factors that should be considered when adopting JIT production. [05]
+(c) The following information is to be used in costing inventory on May 31:
+Required: Compute the cost of materials used and the cost assigned to the May 31st inventory by each of these perpetual inventory costing methods:
+i. FIFO
+ii. Weighted average method [06] (a) M/s Tubes Ltd. are the manufacturers of picture tubes for T.V. The following are the details of their operation during the year 2024: Cost of placing a purchase order is $20
+Number of units to be purchased during the year is 5,000
+Purchase price per unit inclusive of transportation cost is $50
+Annual cost of storage per unit is $5
+Details of lead time: Average- 10 days, Maximum- 15 days, Minimum- 5 days. For emergency purchases- 4 days.
+Rate of consumption: Average: 15 units per day, Maximum: 20 units per day. Required: Compute from the above:
+i. Re-ordering level
+ii. Maximum level
+iii. Minimum level
+iv. Danger level
+v. Re-order quantity [06]
+(b) From the following particulars with respect to a particular item of materials of a manufacturing company, calculate the best quantity to order:
+The annual demand for the material is 4,000 tonnes. Stock holding costs are 20% of material cost p.a. The ordering cost is $6.00 per order. [06]
+(c) Define EOQ. State the key assumptions of the EOQ model. [03] (a) Two workmen, 'A' and 'B', produce the same product using the same material. Their normal wage rate is also the same. 'A' is paid a bonus according to the Rowan system, while 'B' is paid a bonus according to the Halsey system. The time allowed to make the product is 50 hours. 'A' takes 30 hours, while 'B' takes 40 hours to complete the product. The factory overhead rate is BDT 5 per man-hour actually worked. The factory cost for the product for 'A' is BDT 3,490, and for 'B' it is BDT 3,600.
+Required:
+i. Compute the normal rate of wages.
+ii. Compute the cost of materials.
+iii. Prepare a statement comparing the factory cost of the products as made by the two workmen. [07]
+(b) Calculate the earnings of A and B from the following particulars for a month and allocate the employee cost to each job X, Y, and Z:
+The normal working hours for the month are 200. Overtime is paid at double the total of normal wages and dearness allowance. Employer's contribution to State Insurance and Provident Fund are at equal rates with employees' contributions. The two workers were employed on jobs X, Y, and Z in the following proportions:Overtime was done on job Y. [06]
+(c) Define labour turnover. State some causes of labour turnover. [02]
+The University of Chicago Press is wholly owned by the university. It performs the bulk of its work for other university departments, which pay as though the press were an outside business enterprise. The press also publishes and maintains a stock of books for general sale. The press uses normal costing to cost each job. Its job-costing system has two direct-cost categories (direct materials and direct manufacturing labor) and one indirect-cost pool (manufacturing overhead, allocated on the basis of direct manufacturing labor costs). The following data (in thousands) pertain to 2024:Inventories (December 31, 2023) (not 2024):Required:
+i. Prepare an overview diagram of the job-costing system at the University of Chicago Press.
+ii. Prepare journal entries to summarize the 2024 transactions. As your final entry, dispose of the year-end under- or over-allocated manufacturing overhead as a write-off to Cost of Goods Sold. Number your entries. Explanations for each entry may be omitted.
+iii. How did the University of Chicago Press perform in 2024? [15] (a) Define overhead cost. Explain different types of overhead cost. [03]
+(b) XYZ company has decided to distribute the cost of service departments by algebraic method. The production departments are Department A and Department B. The service departments are Boiler house and Pump room. The monthly data are:
+Annual factory overhead cost before distribution:The allocation basis of service departments' overhead expenses:Required: Compute the total factory overhead of production department A and production department B after distribution of service departments' costs. [05]
+(c) Rowan Company produces pipes for concert quality organs. Each job is unique. In April 2025, it completed all outstanding orders, and then, in May 2025, it worked on only two jobs, A and B:
+Rowan Company, May 2025:Direct manufacturing labor is paid at the rate of $25 per hour. Manufacturing overhead costs are allocated at a budgeted rate of $22 per direct manufacturing labor-hour. Only Job A was completed in May.Required:
+i. Calculate the total cost for job A.
+ii. 1600 pipes were produced for Job A. Calculate the cost per pipe.
+iii. Prepare the journal entry transferring Job A to finished goods.
+iv. What is the ending balance in the Work-in-progress Control account? [07]
+According to BCAS-7,
+(a) State the steps of Job Order Costing. [05]
+(b) Draw a chart of flow of documents required in job order costing system. [05]
+(c) Draw a chart of cost flow in a job costing environment. [05]
+Tracking Ref: ACC 304 | BBA 5th Semester 2023
+(a) Define cost and cost accounting? [03]
+(b) Explain the difference between cost and expense. [03]
+(c) Describe how standard costing and budgeting are used in cost control. [04]
+(d) Define manufacturing concern. What are the features of manufacturing concerns? [05] (a) What do you understand by Economic order quantity? Explain with graph. [02] (b) What are the differences between bin card and stores ledger? [02] (c) Maxim Limited manufactures a special product "Zed". The following particulars were collected for the current year: Monthly demand of Zed: 1,000 units.
+Cost of placing an order: $100.
+Annual carrying cost per unit: $15.
+Normal usage: 100 units per week.
+Maximum usage: 125 units per week.
+Minimum usage: 65 units per week.
+Reorder period: 4 to 6 weeks. Compute: i. Reorder quantity
+ii. Reorder level
+iii. Maximum level
+iv. Minimum level
+v. Average stock level [05] (d) Exe Limited has received an offer of quantity discounts on its order of materials as under: The annual requirements for the materials are 10,000 tons. The ordering cost per order is $2,000 and stock holding cost estimated at 25 per cent of material cost per annum. You are required to compute the most economical purchase level. [06]The following cost and inventory data are taken from the accounting records of Mason Company for the year just ended:Required:
+(a) Prepare a schedule of cost of goods manufactured. [05]
+(b) Prepare an Income Statement. [03]
+(c) Assume the company produced equivalent of 10,000 units of product during the year just completed. What was the average cost per unit for direct materials? What was the average cost per unit for fixed manufacturing overhead? [03]
+(d) Assume that the company expects to produce 15,000 units of product during the coming year. What average cost per unit and what total cost would you expect the company to incur for direct materials at this level of activity? For fixed manufacturing overhead? Assume that the direct material is a variable cost. [04] (a) White Plains, Inc. produces printed circuits for the electronic industry. The firm has recently initiated a 100 percent group bonus plan with standard production set at 50 units per hour. The company employs 10 workers on an 8-hour shift at $8 per hour. Depreciation on plant equipment is $9 per hour, and other overhead is applied at $7 per hour. Production for the first week under 100 percent group bonus plan was: Monday: 3,800 units
+Tuesday: 4,500 units
+Wednesday: 4,600 units
+Thursday: 4,500 units
+Friday: 4,400 units Management is interested in appraising the results of the new incentive wage plan. Required: Prepare a schedule showing employee earnings, unit labor cost, unit overhead cost, and conversion cost per unit (Round off unit costs to three decimal places). [05] (b) Calculate the earnings payable to a worker from the following information: Normal working hours per day is 8 hours. Normal rate per hour is $15. Overtime rate up to 9 hours a day at single rate and over 9 hours in a day at double rate or up to 48 hours in a week at single rate and over 48 hours in a week at double rate whichever is beneficial to a worker. [05] (c) What will be the earnings of a worker at $7.50 per hour when he takes 140 hours to do a volume of work for which the standard time allowed is 200 hours? The plan of payment of bonus is on a sliding scale as under: Within the first 20% of savings in standard time, bonus is 30% of time saved.
+Within the second 10% of savings in standard time, bonus is 40% of time saved.
+Within the third 40% of savings in standard time, bonus is 50% of time saved.
+For the rest 60% of time saved. [05] (a) Global Manufacturing Company is divided into four departments: A, B, and C are production departments and D is service department. The expenses for a period are as follows:
+The following information is available in the four departments:Required:
+i. Apportion the expenses among the various departments by the most equitable method.
+ii. Re-apportion the costs of service department to the production departments based on 7:8:5.
+iii. Ascertain the overhead rates per hour for the production department. [08]
+(b) A factory has three production departments and two service departments. The following is the summary of primary distribution of overheads:
+The expenses of the service departments are to be charged at on a percentage basis as follows:Required: Show how the expense of the two service departments are to be charged to the production departments under 'simultaneous equation' method. [07]
+The following is the summary of the receipts and issues of material in a factory during December 2007: Dec 1: Opening balance 500 units @ Rs.25 per unit
+Dec 3: Issue 70 units
+Dec 4: Issue 100 units
+Dec 8: Issue 80 units
+Dec 13: Received from supplier 200 units @ Rs.24.50 per unit
+Dec 14: Returned to store 15 units @ Rs.24 per unit
+Dec 16: Issue 180 units
+Dec 20: Received from supplier 240 units @ Rs.24.75 per unit
+Dec 24: Issue 304 units
+Dec 25: Received from supplier 320 units @ Rs.24.50 per unit
+Dec 26: Issue 112 units
+Dec 27: Returned to store 12 units @ Rs.24.50 per unit
+Dec 28: Received from supplier 100 units @ Rs.25 per unit
+It was revealed that on December 15th there was a shortage of 5 units and another shortage was on December 27th of 8 units. Required: Prepare Store Ledger according to First in First Out Method (FIFO) for December 2007. [15]
+The following information relates to the activities of a production department of a factory for a certain period: Materials issued: TK 36,000
+Direct wages: TK 30,000
+Direct labor hours worked: 25,000 hours
+Hours of machine operation: 20,000 hours
+Overheads chargeable to the department: TK 25,000
+If the cost of materials consumed on Job No. 253 is TK 2,000 and labor cost amount to TK 1,650, ascertain the production cost by the following methods of allocating overheads: i. Percentage on direct wages
+ii. Machine hour rate
+iii. Direct labor hour rate Presume the labor hours worked for the job were 1,650 hours and hours of machine operated for the job were 1,200 hours. [15]
+Tracking Ref: ACC 310 | BBA 6th Semester 2022
+(a) Define financial accounting and cost accounting. Explain the relationship among financial accounting, cost accounting and management accounting. [05]
+(b) What are the methods of costing? Explain each of them in brief giving an example of an enterprise in which each may be suitable. [05]
+(c) How the following techniques of cost accounting are used in ascertain and controlling cost: (i) Absorption costing (ii) Marginal costing (iii) Life cycle costing (iv) Target costing, (v) Standard costing and (vi) Budgeting. [05] (a) What do you understand by Economic Order Quantity? What are the factors to be considered in determining this quantity? Explain in brief. [03]
+(b) Myler Tubes Limited are the manufacturer of picture tubes of Television. The following are the details of the operations during the current year: Compute from the above:
+i. Economic order quantity. If the supplier is willing to supply quarterly 1,300 units at a discount of 5 per cent, is it worth accepting?
+ii. Maximum stock level.
+iii. Minimum stock level and
+iv. Reorder level. [06]
+(c) The purchase department of an organization has received an offer of quantity discounts on its order of materials as under: The annual requirement of the materials is 5000 tons. The delivery cost per order is $1,200 and the annual stock holding cost is estimated at 20 per cent of the average inventory. The purchase department wants you the following purchase options and advise which among them will be the most economical order quantity, presenting the information in a tabular form. The purchase quantity options to be considered are: 400 tons, 500 tons, 1,000 tons, 2000 tons, and 3,000 tons. [06]The following cost and inventory data are taken from the accounting records of Mason Company for the year ended 31st December 2021:Required:
+(a) Prepare a schedule of cost of goods manufactured.
+(b) Prepare an Income Statement.
+(c) Assume the company produced equivalent of 10,000 units of product during the year just completed. What was the average cost per unit for direct materials? What was the average cost per unit for fixed manufacturing overhead?
+(d) Assume that the company expects to produce 15,000 units of product during the coming year. What average cost per unit and what total cost would you expect the company to incur for direct materials at this level of activity? For fixed manufacturing overhead? Assume that the direct material is a variable cost. [15] (a) State what do you understand by "time-keeping". What purposes does it serve? [02]
+(b) How productivity is related with labour costs? Explain. [02]
+(c) Calculate total monthly remuneration of three workers, A, B, and C, from the following data: i. Standard production per month per worker: 2,000 units
+ii. Actual production during the month: A: 1,700 units; B: 1,500 units; C: 1,900 units.
+iii. Piece work rate is taka 0.05 per unit
+iv. Additional production bonus is taka 10 for each percentage of actual production exceeding 80% actual production over standard (e.g., 79% nil, 81% taka 10, 82% taka 20, and so on).
+v. Fixed dearness allowance: taka 100 per month. [05] (d) Standard production for an employee in the Finishing Department is 20 units per hour in an 8-hour day. The hourly wage rate is 100 Taka. Calculate the employee's earnings under each of the following conditions: i. If an incentive plan is used, with the worker receiving 90% of time saved each day, and records indicate: ii. If the 100% percent bonus plan is used and 840 units are produced in a 40-hour week.
+iii. If an incentive plan is used, providing an hourly rate increase of 5% for all hours worked each day that quota production is achieved, and records indicate: [06]
+(a) White Company has two departments, Cutting and Finishing. The company uses a Job-order costing system and computes a predetermined overhead rate in each department. The Cutting department bases its rate on machine hours and the Finishing department bases its rate on direct labor hours. At the beginning of the year, the company made the following estimates: Required: Compute the predetermined overhead rate to be used in each department. [04]
+(b) Assume that the overhead rates that you computed in (a) above are in effect. The Job cost sheet for Job 203, which was started and completed during the year, showed the following: Required: Compute the total manufacturing cost assigned to Job 203. [03]
+(c) Would you expect substantially different amounts of overhead cost to be assigned to some jobs if the company used a plant wide-overhead rate based on direct labor-hours, rather than using departmental rates? Explain. No computations are necessary. [03]
+(d) Hellman Corporation uses job order costing and has two production departments, M and A. Budgeted manufacturing costs for 2022 were as follows: The actual materials charged to job 432 during 2022 were as follows: Hellman applied factory overhead to production orders on the basis of direct labor cost, using departmental rate predetermined at the beginning of the year on the basis of annual budget.
+Requirement: Determine the manufacturing cost associated with job 432 of 2022. [05]
+(a) What is overhead? How do you classify overhead function wise? Cite example. [04]
+(b) Distinguish between cost allocation and cost apportionment. [02]
+(c) A manufacturing company has two production departments and three service departments. Overheads allocated for a period to these departments are as follows: A technical assessment for the apportionment of the cost of the service departments shows: Required: You are required to show the total overheads chargeable to the two production departments by using:
+i. Repeated distribution method, and
+ii. Simultaneous equation method. [09]
+Write short notes on the following: [15]
+(a) Bin card and Stores Ledger.
+(b) Cost centre and cost unit.
+(c) Sunk cost and opportunity cost.
+(d) Labour turnover.
+(e) Comprehensive income statement.
+Tracking Ref: ACC 310 | BBA 6th Semester 2021
+(a) Define cost accounting. Explain the relationship between cost accounting and financial accounting. [05]
+(b) The limitations of financial accounting lead to the origin and development of cost accounting- Explain. [05]
+(c) What are the different methods of costing? Explain each of them in brief with examples of enterprises to which it is applicable. [05] (a) J. Martin employed by the Beach City Canning Company, submitted the following labour data for the first week of June: Requirement: Prepare a schedule showing Martin's weekly earnings, the effective hourly rate, and the labour cost per unit, assuming a 100 percent bonus plan with a base wage of $15 per hour and a standard production rate of 30 units per hour. (Round off the bonus percentage to two decimal places) [04]
+(b) Standard production for an employee in the Assembly Department is 20 units per hour in an 8-hour day. The hourly wage rate is $10.
+Requirement: Compute the employee's earnings under each of the following conditions (carrying all computations to three decimal places): i. If an incentive plan is used, with the worker receiving 80% of the time saved each day, and record indicate: ii. If the 100 percent bonus plan is used, and 840 units are produced in a 40 hours week.
+iii. If an incentive plan is used, providing an hourly rate increase of 5% for all hours worked each day that quota production is achieved, and record indicate: [06]
+(c) Calculate the earnings payable to a worker from the following information: Normal working hours per day is 8 hours. Normal rate per hour is $15. Overtime rate up to 9 hours a day at single rate and over 9 hours in a day at double rate or up to 48 hours in a week at single rate and over 48 hours in a week at double rate whichever is beneficial to a worker. [05]
+(a) Moody Corporation uses a Job order costing system with a plant-wide overhead rate based on machine-hours. At the beginning of the year, the company made the following estimates: Requirements:
+i. Compute the pre-determined overhead rate.
+ii. During the year Job 400 was started and completed. The following information was available with respect to this Job: Direct Material $450, Direct Labor Cost $210, Machine-hours Used 40. Compute the total manufacturing cost assigned to job 400.
+iii. During the year, the company worked a total of 146,000 machine-hours on all jobs and incurred actual manufacturing overhead costs $1,400,000. What was the amount of under applied and over applied overhead for the year? If this amount were closed out entirely to cost of goods sold, would the journal entry increase or decrease the operating income? [07]
+(b) Mullin Machine works collects its cost data by the Job order cost accumulation procedure. For Job 909, the following data are available: Factory overhead is applied at the rate of $7.50 per direct labor hour.
+Requirements:
+i. Enter the appropriate information on a Job order cost sheet.
+ii. Determine the sales price of the job, assuming that it was contracted with a markup of 40% of cost. [04]
+(c) Hellman Corporation uses job order costing and has two production departments, M and A. Budgeted manufacturing costs for 2022 were as follows: The actual materials charged to job 432 during 2022 were as follows: Hellman applied factory overhead to production orders on the basis of direct labor cost, using departmental rate predetermined at the beginning of the year on the basis of annual budget.
+Requirement: Determine the manufacturing cost associated with job 432 of 2022. [04]The following information has been taken from the records of Niba Company:Requirements:
+(a) Prepare a statement of goods manufactured.
+(b) Prepare a statement of goods sold.
+(c) Prepare a statement of comprehensive income. [15] (a) National Company is divided into four departments: A, B, and C are production departments and D is service departments. The expenses for a period are as follows: The following information is available in the four departments: Requirements:
+i. Apportion the expenses among the various departments by the most equitable method.
+ii. Re-apportion the costs of service department to the production departments based on 6:4:3.
+iii. Ascertain the rates per hour for the production department. [08]
+(b) A factory has three production departments and two service departments. The following is the summary of primary distribution of overheads: The expenses of the service departments are to be charged on a percentage basis as follows: Required: Show how the expense of the two service departments are to be charged to the production departments under 'simultaneous equation' method. [07]
+(a) The following direct costs were incurred on Job No. 2390 of ABC Company: Requirement: Calculate the cost of Job No. 2390 and the price to give profit of 25% on selling price. [09]
+(b) Component 89-X is made entirely in cost center 75. Material cost is $0.06 per component and each component takes 10 minutes to produce. The machine operator is paid $0.72 per hour and the machine hour rate is $1.50. The setting up of the machine to produce component 89-X takes 2 hours 20 minutes.
+On the basis of this information, prepare cost sheet showing the production and setting up cost, both in total and per component, assuming a batch: i. 10 components
+ii. 100 components
+iii. 1,000 components is produced. [06] Write short notes on: [15]
+(a) Labor turnover
+(b) IAS—2
+(c) Methods of absorption of overhead costs
+(d) Product cost and period cost
+(e) Cost and expense.
+]]></description><link>5th-semester/raw-pyqs/pyq-acc-304.html</link><guid isPermaLink="false">5th Semester/Raw PYQs/PYQ ACC 304.md</guid><pubDate>Sun, 09 Aug 2026 09:38:30 GMT</pubDate></item><item><title><![CDATA[PYQ ACC 301]]></title><description><![CDATA[Institution: University of Chittagong | Department: Department of Accounting
+Program: BBA 5th Semester
+Standard Format: 4 Hours | 75 Marks | Answer any FIVE questions sequentially/serially.Tracking Ref: ACC 301 | BBA 5th Semester 2025
+(a) Define a "compensating balance." How should a compensating balance be reported? [03]
+(b) What is the accounts receivable turnover, and what type of information does it provide? [02]
+(c) At the end of 2015, Sorter Company has accounts receivable of taka 900,000 and an allowance for doubtful accounts of taka 40,000. On January 16, 2016, Sorter Company determined that its receivable from Ordonez Company of taka 8,000 will not be collected, and management authorized its write-off.
+Required: i. Prepare the journal entry for Sorter Company to write off the Ordonez receivable.
+ii. What is the cash realizable value of Sorter Company's accounts receivable before the write-off of the Ordonez receivable?
+iii. What is the cash realizable value of Sorter Company's accounts receivable after the write-off of the Ordonez receivable? [04] (d) Milner Family Importers sold goods to Tung Decorators for taka 30,000 on November 1, 2015, accepting Tung's taka 30,000, 6-month, 6% note. Prepare Milner's November 1 entry, December 31 annual adjusting entry, and May 1 entry for the collection of the note and interest. [03] (e) Presented below is information from Lopez Computers Incorporated. Required: Prepare the necessary journal entries for Lopez Computers. [03] (a) In what ways are the inventory accounts of a merchandising company different from those of a manufacturing company? [02] (b) [09] LeBianco Company's record of transactions for the month of April was as follows. Required: i. Assuming that periodic inventory records are kept, compute the inventory at April 30 using (1) FIFO and (2) average-cost. ii. Assuming that perpetual inventory records are kept in both units and dollars, determine the inventory at April 30 using (1) FIFO and (2) average-cost. iii. In an inflationary period, which inventory method—FIFO or average-cost—will show the highest net income? (c) Malone Company determined its ending inventory at cost and at LCNRV at December 31, 2019, December 31, 2020, and December 31, 2021, as shown below. Required:
+i. Prepare the journal entries required at December 31, 2020, and at December 31, 2021, assuming that a perpetual inventory system and the cost-of-goods-sold method of adjusting to LCNRV is used.
+ii. Prepare the journal entries required at December 31, 2020, and at December 31, 2021, assuming that a perpetual inventory is recorded at cost and reduced to LCNRV using the loss method. [04] (a) On January 1, 2024, Orion Co. acquired production equipment in the amount of Tk.500,000. The following additional costs are incurred: The installation and setting-up period took three months, and an additional Tk.21,000 was spent on costs directly related to bringing the asset to its working condition. The equipment was ready for use on April 1, 2024.Monthly managerial reports indicated that for the first five months, the production quantities from this equipment resulted in an initial operating loss of Tk.15,000 because of small quantities produced. The months thereafter showed much more positive results.The equipment has an estimated useful life of 14 years and a residual value of Tk.25,000. Estimated dismantling costs are Tk.15,000.As per IAS-16, what is the cost of the asset and what are the annual charges in the Statement of Comprehensive Income related to the consumption of the economic benefits embodied in the assets? [05] (b) On August 1, Hyde Ltd. Exchanged productive assets with Wiggins Ltd. Hyde's asset is referred to below as Asset A, and Wiggins' is referred to as Asset B. The following facts pertain to these assets. Required:
+i. Assuming that the exchange of Assets A and B has commercial substance, record the exchange for both Hyde Ltd. and Wiggins Ltd.
+ii. Assuming that the exchange of Assets A and B lacks commercial substance, record the exchange for both Hyde Ltd. and Wiggins Ltd. [05]
+(c) The management of Sprague Inc. was discussing whether certain equipment should be written off as a charge to current operations because of obsolescence. This equipment has a cost of $900,000 with depreciation to date of $400,000 as of December 31, 2019. On December 31, 2019, management projected the present value of future net cash flows from this equipment to be $300,000 and its fair value less cost of disposal to be $280,000. The company intends to use this equipment in the future. The remaining useful life of the equipment is 4 years.
+Required: i. Prepare the journal entry (if any) to record the impairment at December 31, 2019.
+ii. Where should the gain or loss (if any) on the write-down be reported in the income statement?
+iii. At December 31, 2020, the equipment's recoverable amount is $270,000. Prepare the journal entry (if any).
+iv. What accounting issues did management face in accounting for this impairment? [05] (a) What are the three main characteristics of intangible assets? Explain the difference between artistic-related intangible assets and contract-related intangible assets. [03] (b) Powerglide plc, organized in 2018, has set up a single account for all intangible assets. The following summary discloses the debit entries that have been recorded during 2019. Required: Prepare the necessary entries to clear the Intangible Assets account and to set up separate accounts for distinct types of intangibles. Make the entries as of December 31, 2019, recording any necessary amortization and reflecting all balances accurately as of that date. (Use straight-line amortization.) [05] (c) At December 31, 2019, the equity investment portfolio for Wenger, Inc. is as follows. On January 20, 2020, Wenger, Inc. sold investment A for $15,300. The sale proceeds are net of brokerage fees.Required:
+i. Prepare the adjusting entry at December 31, 2019, to report the portfolio at fair value.
+ii. Show the statement of financial position presentation of the investment related accounts at December 31, 2019. (Ignore notes presentation.)
+iii. Prepare the journal entry(ies) for the 2020 sale of investment A.
+iv. Repeat requirement (i), assuming the portfolio of investments is non-trading. [07] (a) Distinguish between a current liability and a non-current liability. [02]
+(b) Allison Hardware Company's payroll for November 2015 is as follows: factory, taka 140,000; sales, taka 32,000; and administrative, taka 36,000. The Social Security rate is 8% on an employee's wages. Income tax withheld amounts to taka 16,000 for factory, taka 7,000 for sales, and taka 6,000 for administrative.
+Required: i. Prepare a schedule showing the employer's total cost of salaries and wages for November by function.
+ii. Prepare the journal entries to record the factory, sales, and administrative payrolls including the employer's payroll taxes. [03] (c) The following are selected 2015 transactions of Darby Corporation. Required: i. Prepare journal entries for the selected transactions above. ii. Prepare adjusting entries at December 31. iii. Compute the total net liability to be reported on the December 31 statement of financial position for: (I) The interest-bearing note; (II) The zero-interest-bearing note. [06] (d) Chen Company has been operating for several years, and on December 31, 2015, presented the following statement of financial position (amounts in thousands). CHEN COMPANYStatement of Financial PositionDecember 31, 2015The net income for 2015 was $25,000. Assume that total assets are the same in 2014 and 2015.Required: Compute each of the following ratios. For each of the four, indicate the manner in which it is computed and its significance as a tool in the analysis of the financial soundness of the company: (i) Current ratio; (ii) Debt to assets; (iii) Acid-test ratio; (iv) Return on assets. [04]The comparative statement of financial position and income statement for Shi Group are presented below.Shi GroupCOMPARATIVE STATEMENT OF FINANCIAL POSITIONAS OF DECEMBER 31Shi GroupINCOME STATEMENTFOR THE YEAR ENDED DECEMBER 31, 2025Additional data:
+Equipment that cost $10,000 and was 60% depreciated was sold in 2025.
+Cash dividends were declared and paid during the year.
+Ordinary shares were issued in exchange for land.
+Equity investments that cost $35,000 were sold during the year.
+There were no write-offs of uncollectible accounts during the year.
+Required:
+(a) Compare and contrast the direct method and the indirect method for reporting cash flows from operating activities. [03]
+(b) Prepare a statement of cash flows for Shai Group for the year ended December 31, 2025, using the indirect method. [08]
+(c) Using the direct method, calculate only the net cash flow from operating activities for Shai Group for the year ended December 31, 2025. [04] (a) Elizabeth Company reported the following amounts in the equity section of its December 31, 2019, statement of financial position. During 2020, Elizabeth took part in the following transactions concerning equity:
+Paid the annual 2019 $8 per share dividend on preference shares and a $2 per share dividend on ordinary shares. These dividends had been declared on December 31, 2019.
+Purchased 2,700 shares of its own outstanding ordinary shares for $40 per share. Elizabeth uses the cost method.
+Reissued 700 treasury shares for land with a fair value of $30,000.
+Issued 500 preference shares at $105 per share.
+Declared a 10% share dividend on the outstanding ordinary shares when the shares are selling for $45 per share.
+Issued the share dividend.
+Declared the annual 2020 $8 per share dividend on preference shares and the $2 per share dividend on ordinary shares. These dividends are payable in 2021.
+Required: i. Prepare journal entries to record the transactions described above. ii. Prepare the December 31, 2020, equity section of the statement of financial position. Assume 2020 net income was $330,000. [09] (b) Presented below is information related to Tao Ltd. for the year 2019 (amounts in thousands). Required:
+i. Prepare an income statement for 2019. Assume that 60,000 ordinary shares are outstanding.
+ii. Prepare a retained earnings statement for 2019. [06]
+Tracking Ref: ACC 301 | BBA 5th Semester 2024
+(a) Indicate three reasons why a company might sell its receivables to another company. [02]
+(b) What is the accounts receivable turnover, and what type of information does it provide? [02]
+(c) Restin plc uses the gross method to record sales made on credit. On June 1, 2019, it made sales of $50,000 with terms 3/15, n/45. On June 12, 2019, Restin received full payment for the June 1 sale. Prepare the required journal entries for Restin plc.
+Assuming Restin plc uses the net method to account for cash discounts. Prepare the required journal entries for Restin plc. [03]
+(d) Milner Family Importers sold goods to Tung Decorators for $30,000 on November 1, 2019, accepting Tung's $30,000, 6-month, 6% note. Prepare Milner's November 1 entry, December 31 annual adjusting entry, and May 1, 2020, entry for the collection of the note and interest. [03]
+(e) Presented below is information related to Sanford SA:
+Instructions:
+Prepare all necessary entries in general journal form for Sanford SA. [05]
+(a) What are the major characteristics of plant assets? Cite examples. [02]
+(b) On December 31, 2018, Tsang Group borrowed $3,000,000 at 12% payable annually to finance the construction of a new building. In 2019, the company made the following expenditures related to this building: March 1, $360,000; June 1, $600,000; July 1, $1,500,000; and December 1, $1,200,000. Additional information is provided as follows:
+Instructions:
+- i. Determine the amount of interest to be capitalized in 2019 in relation to the construction of the building.
+- ii. Prepare the journal entry to record the capitalization of interest and the recognition of interest expense, if any, at December 31, 2019. [06]
+(c) Identify the factors that are relevant in determining the annual depreciation charge, and explain whether these factors are determined objectively or whether they are based on judgment. [03]
+(d) Agazzi Company purchased equipment for $304,000 on October 1, 2019. It is estimated that the equipment will have a useful life of 8 years and a residual value of $16,000. Estimated production is 40,000 units, and estimated working hours are 20,000. During 2019, Agazzi uses the equipment for 525 hours, and the equipment produces 1,000 units.
+Instructions:
+Compute depreciation expense under each of the following methods. Agazzi is on a calendar year basis ending December 31.
+- i. Straight-line method for 2019.
+- ii. Activity method (units of output) for 2019.
+- iii. Activity method (working hours) for 2019.
+- iv. Sum-of-the-years'-digits method for 2021.
+- v. Double-declining-balance method for 2020. [04]
+(a) Chen Group has been operating for several years, and on December 31, 2019, presented the following statement of financial position (amounts in thousands):
+Chen Group
+Statement of Financial Position
+December 31, 2019
+The net income for 2019 was $25,000. Assume that total assets are the same in 2018 and 2019.
+Instructions:
+Compute each of the following ratios. For each of the four, indicate the manner in which it is computed and its significance as a tool in the analysis of the financial soundness of the company.
+- i. Current ratio
+- ii. Acid-test ratio
+- iii. Debt to assets
+- iv. Return on assets. **[03]** (b) Described below are certain transactions of Edwardson AG. The company uses the periodic inventory system. I. On February 2, the company purchased goods from Martin Company for €70,000 subject to cash discount terms of 2/10, n/30. Purchases and accounts payable are recorded by Edwardson at net amounts after cash discounts. The invoice was paid on February 26.
+II. On April 1, the company bought a truck for €50,000, paying €4,000 in cash and signing a 1-year, 12% note for the balance of the purchase price.
+III. On August 1, the board of directors declared a €300,000 cash dividend that was payable on September 10 to shareholders of record on August 31. Instructions:
+- i. Make all the journal entries necessary to record the transactions above using appropriate dates.
+- ii. Edwardson's year-end is December 31. Assuming that no adjusting entries relative to the transactions above have been recorded, prepare any adjusting journal entries concerning interest that are necessary to present fair financial statements at December 31. [06]
+(c) On January 1, 2019, Osborn plc sold 12% bonds having a maturity value of $800,000 for $860,651.79, which provides the bondholders with a 10% yield. The bonds are dated January 1, 2019, and mature January 1, 2024, with interest payable December 31 of each year.
+Instructions:
+- i. Prepare the journal entry at the date of the bond issuance.
+- ii. Prepare a schedule of interest expense and bond amortization for 2019–2021.
+- iii. Prepare the journal entry to record the interest payment and the amortization for 2019.
+- iv. Prepare the journal entry to record the interest payment and the amortization for 2021. [06]You are given the following information of Bexi Fabrics Company Ltd.Trial Balance
+For the year ended 31st December, 2024Additional Information:
+(i) Ending inventory Tk. 73,000 and supplies Tk. 2,500.
+(ii) Machine worth Tk. 6,000 that purchased on 1st October, 2024 has been included in purchase.
+(iii) Accrued rent expenses are Tk. 4,000 and sales salaries expenses for 2 months.
+(iv) Goods returned to supplies Tk. 2,000 but not recorded at the end of the period.
+(v) Estimated dep. On premises 10% and on machinery 5%.
+(vi) Interest incurred on notes payable Tk. 2,500 but not cleared.
+(vii) Tk. 4,000 of accounts receivable is uncollectible, Allowances for doubtful account to be increased by 5%.
+(viii) Bank dishonored a check of Tk. 4,000.
+Prepare: Multiple-step Income Statement, Retained Earnings Statement and classified Balance Sheet. [15]
+(a) Describe the purpose of the statement of cash flows. [03]
+(b) Contrast the direct and indirect methods of calculating net cash flow from operating activities. [02]
+(c) Presented below is information related to Reynolds Company. Use it to prepare a statement of cash flows using the direct method.
+REYNOLDS COMPANY
+Comparative Balance Sheet
+December 31Income Statement
+For the year ended December 31, 2021Additional Information:
+(i) Operating expenses include depreciation expense of Tk. 33,000 and charges from prepaid expenses Tk. 2,000.
+(ii) Cash dividends of Tk. 55,000 were declared and paid in 2021.
+(iii) Equipment with a cost of Tk. 166,000 was purchased for cash. Equipment with a cost of Tk. 41,000 and a book value of Tk. 36,000 was sold for Tk. 34,000.
+(iv) Bonds of Tk. 10,000 were redeemed at their book value for cash; bonds of Tk. 30,000 were converted into common stock.
+(v) Common stock (Tk. 1 par) of Tk. 130,000 was issued for cash.
+(vi) Accounts payable pertain to merchandise suppliers. [10]
+Ronaldo Company's record of transactions concerning part VF5 for the month of September was as follows:Instructions:
+(a) Compute the inventory at September 30 on each of the following bases. Assume that perpetual inventory records are kept in units only. (Carry unit costs to the nearest cents.) i. First-in, first-out (FIFO).
+ii. Average cost.
+iii. Last-in, first-out (LIFO). (b) If the perpetual record is kept in dollars, and costs are computed at the time of each withdrawal, what amount would be shown as ending inventory in i and ii above? (Carry average unit costs to four decimal places.) [15] (a) Loxley Corporation is authorized to issue 50,000 shares of $10 par value ordinary shares. During 2024, Loxley took part in the following selected transactions: i. Issued 5,000 shares at $45 per share, less costs related to the issuance of the shares totaling $7,000.
+ii. Issued 1,000 shares for land appraised at $50,000. The shares were actively traded on a national securities exchange at approximately $46 per share on the date of issuance.
+iii. Purchased 500 treasury shares at $44 per share. The treasury shares purchased were issued in 2023 at $40 per share. Instructions:
+- 1. Prepare the journal entry to record item i.
+- 2. Prepare the journal entry to record item ii.
+- 3. Prepare the journal entry to record item iii using the cost method. [07]
+(b) The ordinary shares of Otuk Inc. are currently selling at $110 per share. The directors wish to reduce the share price and increase share volume prior to a new issue. The per share par value is $10, book value is $70 per share. Five million shares are issued and outstanding.
+Instructions:
+Prepare the necessary journal entries assuming the following:
+- 1. The board votes a 2-for-1 share split.
+- 2. The board votes a 100% share dividend.
+- 3. Briefly discuss the accounting and securities market differences between these two methods of increasing the numbers of share outstanding. [08]Tracking Ref: ACC 301 | BBA 5th Semester 2023
+(a) On December 31, 2019, Regent plc rendered services to Begin Group at an agreed price of $102,049, accepting $40,000 down and agreeing to accept the balance in four equal installments of $20,000 receivable each December 31. An assumed interest rate of 11% is imputed.
+Instructions:
+Prepare the entries that would be recorded by Regent plc for the sale and for the receipts and interest on the following dates. (Assume that the effective-interest method is used for amortization purposes.) i. December 31, 2019
+ii. December 31, 2020
+iii. December 31, 2021
+iv. December 31, 2022
+v. December 31, 2023 [08] (b) Ohno Industries purchased $12,000 of merchandise on February 1, 2019, subject to a trade discount of 10% and with credit terms of 3/15, n/60. It returned $3,000 (gross price before trade or cash discount) on February 4. The invoice was paid on February 13. (All amounts in thousands.)
+Instructions: i. Assuming that Ohno uses the perpetual method for recording merchandise transactions, record the purchase, return, and payment using the gross method.
+ii. Assuming that Ohno uses the periodic method for recording merchandise transactions, record the purchase, return, and payment using the gross method.
+iii. At what amount would the purchase on February 1 be recorded if the net method were used? [07] (a) Data: Ronaldo Company's record of transactions concerning part VF5 for the month of September was as follows: Instructions: i. Compute the inventory at September 30 on each of the following bases. Assume that perpetual inventory records are kept in units only. (Carry unit costs to the nearest cent.) (a) First-in, first-out (FIFO). (b) Average-cost. (c) Last-in, first-out (LIFO). ii. If the perpetual inventory record is kept in dollars, and costs are computed at the time of each withdrawal, what amount would be shown as ending inventory in 1 and 2 above? (Carry average unit costs to four decimal places.) [12] (b) Data: Malone Company determined its ending inventory at cost and at LCNRV at December 31, 2019, December 31, 2020, and December 31, 2021, as shown below: Instructions:
+i. Prepare the journal entries required at December 31, 2020, and at December 31, 2021, assuming that a perpetual inventory system and the cost-of-goods-sold method of adjusting to LCNRV is used.
+ii. Prepare the journal entries required at December 31, 2020, and at December 31, 2021, assuming that a perpetual inventory is recorded at cost and reduced to LCNRV using the loss method. [03] (a) On December 31, 2018, Tsang Group borrowed $3,000,000 at 12% payable annually to finance the construction of a new building. In 2019, the company made the following expenditures related to this building: March 1, $360,000; June 1, $600,000; July 1, $1,500,000; and December 1, $1,200,000. Additional information is provided as follows: Other debt outstanding: $4,000,000 10-year, 11% bond, December 31, 2012, interest payable annually; $1,600,000 6-year, 10% note, dated December 31, 2016, interest payable annually.
+March 1, 2019, expenditure included land costs of $150,000.
+Interest revenue earned in 2019 on funds related to specific borrowing: $49,000.
+Instructions: i. Determine the amount of interest to be capitalized in 2019 in relation to the construction of the building.
+ii. Prepare the journal entry to record the capitalization of interest and the recognition of interest expense, if any, at December 31, 2019. [07] (b) Data: Holyfield SA wishes to exchange a machine used in its operations. Holyfield has received the following offers from other companies in the industry: Dorsett Company offered to exchange a similar machine plus $23,000. (The exchange has commercial substance for both parties.)
+Winston Company offered to exchange a similar machine. (The exchange lacks commercial substance for both parties.)
+Liston Company offered to exchange a similar machine but wanted $3,000 in addition to Holyfield's machine. (The exchange has commercial substance for both parties.)
+In addition, Holyfield contacted Greeley Group, a dealer in machines. To obtain a new machine, Holyfield must pay $93,000 in addition to trading in its old machine. (The exchange has commercial substance.)
+Instructions:For each of the four independent situations, prepare the journal entries to record the exchange on the books of each company. [08]
+Saad Musa Corporation purchased a new machine for its assembly process on January 1, 2017. The cost of this machine was Tk. 117,900. The company estimated that the machine would have a salvage value of Tk. 12,900 at the end of its service life. Its life is estimated at 5 years, and its working hours are estimated at 21,000 hours. Year-end is December 31.
+Compute the depreciation expense under the following methods (each of the following should be considered unrelated): (a) Activity method for 2017 and 2018, assuming that machine usage was 800 hours and 2,200 hours respectively.
+(b) Sum-of-the-years'-digits for 2017, 2018 and 2019.
+(c) Double-declining-balance for 2017, 2018 and 2019. [15] (a) Dos Passos SA sells televisions at an average price of $900 and also offers to each customer a separate 3-year warranty contract for $90 that requires the company to perform periodic services and to replace defective parts. During 2019, the company sold 300 televisions and 270 warranty contracts for cash. It estimates the 3-year warranty costs as $20 for parts and $40 for labor, and accounts for warranties separately. Assume sales occurred on December 31, 2019, and straight-line recognition of warranty revenues occurs.
+Instructions: i. Record any necessary journal entries in 2019.
+ii. What liability relative to these transactions would appear on the December 31, 2019 statement of financial position and how would it be classified?
+In 2020, Dos Passos incurred actual costs relative to 2019 television warranty sales of $2,000 for parts and $4,000 for labor.
+iii. Record any necessary journal entries in 2020 relative to 2019 television warranties.
+iv. What amounts relative to the 2019 television warranties would appear on the December 31, 2020, statement of financial position and how would they be classified? [05] (b) Data: Elizabeth Company reported the following amounts in the equity section of its December 31, 2019, statement of financial position: During 2020, Elizabeth took part in the following transactions concerning equity:
+Paid the annual 2019 $8 per share dividend on preference shares and a $2 per share dividend on ordinary shares. These dividends had been declared on December 31, 2019.
+Purchased 2,700 shares of its own outstanding ordinary shares for $40 per share; Elizabeth uses the cost method.
+Reissued 700 treasury shares for land with a fair value of $30,000.
+Issued 500 preference shares at $105 per share.
+Declared a 10% share dividend on the outstanding ordinary shares when the shares are selling for $45 per share.
+Issued the share dividend.
+Declared the annual 2020 $8 per share dividend on preference shares and the $2 per share dividend on ordinary shares. These dividends are payable in 2021.
+Instructions:
+i. Prepare journal entries to record the transactions described above.
+ii. Prepare the December 31, 2020, equity section of the statement of financial position. Assume 2020 net income was $330,000. [10]
+Data:The following account balances were included in the trial balance of Twain Corporation at June 30, 2024:The Retained Earnings account had a balance of $337,000 at July 1, 2023. There are 80,000 shares of common stock outstanding.Instructions:
+(a) Using the multiple-step form, prepare an income statement and a retained earnings statement for the year ended June 30, 2024. [10]
+(b) State the usefulness of income statement. [05]
+Data:Andrews AG, a greeting card company, had the following statements prepared as of December 31, 2019.Andrews AG COMPARATIVE STATEMENT OF FINANCIAL POSITION AS OF DECEMBER 31, 2019 AND 2018Andrews AG INCOME STATEMENT FOR THE YEAR ENDED DECEMBER 31, 2019OCR NOTE
+Source image cuts off here. Requirements/Instructions for this question are missing from the physical scan.
+]]></description><link>5th-semester/raw-pyqs/pyq-acc-301.html</link><guid isPermaLink="false">5th Semester/Raw PYQs/PYQ ACC 301.md</guid><pubDate>Sun, 09 Aug 2026 09:38:15 GMT</pubDate></item><item><title><![CDATA[Semester Syllabus Mapping]]></title><description><![CDATA[How to use this note
 This document maps your 5 courses to the specific textbooks provided. Use the tables to guide your daily reading. Chapters &amp; Sections to Read: Tells you exactly which heading/lesson to focus on.
 Omit / Skip: Tells you what to ignore so you don't waste time on irrelevant material (e.g., US-specific tax laws, matrix algebra, complex appendices). (Note: ACC 302 does not have a skip list per your instructor's guidance).
 Local Supplements: Indicates where you need to rely on your professor's class notes or local Bangladeshi laws. Core Textbook: Intermediate Accounting by Kieso, Weygandt, Warfield
