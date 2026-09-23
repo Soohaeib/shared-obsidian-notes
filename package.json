@@ -6,9 +6,10 @@
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
-    "setup": "bash sync-site.sh --setup",
-    "sync": "bash sync-site.sh --once",
-    "build": "python3 generate_index.py . index.html",
+    "setup": "python3 sync_site.py",
+    "sync": "python3 sync_site.py --once",
+    "watch": "python3 sync_site.py --watch",
+    "build": "python3 sync_site.py --once",
     "lint": "echo 'No lint errors'"
   },
   "dependencies": {
