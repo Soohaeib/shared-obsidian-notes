@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en" class="theme-dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
+    <meta name="description" content="Shared Obsidian Notes landing page" />
+    <title>Shared Obsidian Notes</title>
+    <link rel="icon" href="./site-lib/media/favicon.png" />
+    
+    <!-- Fetching native Obsidian CSS to sync themes natively -->
+    <link rel="stylesheet" href="./site-lib/styles/theme.css" />
+    <link rel="stylesheet" href="./site-lib/styles/obsidian.css" />
+    
+    <style>
+      body, html {
+        margin: 0; padding: 0;
+        width: 100%; height: 100%;
+        background-color: var(--background-primary, #1e1e1e);
+        overflow: hidden;
+        font-family: var(--font-interface, 'Inter', system-ui, sans-serif);
+      }
+
+      .bg-layer {
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        background-image: radial-gradient(var(--background-modifier-border, rgba(255, 255, 255, 0.05)) 1px, transparent 1px);
+        background-size: 30px 30px;
+        z-index: 0; pointer-events: none;
+      }
+
+      #graph-canvas {
+        position: absolute; top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: 10; cursor: default;
+        /* Crucial for mobile dragging - disables browser pull-to-refresh/scrolling */
+        touch-action: none; 
+      }
+
+      /* --- PAGE TITLE (HUD STYLE) --- */
+      .vault-header {
+        position: absolute; top: 30px; left: 35px; z-index: 50;
+        pointer-events: none; user-select: none;
+      }
+      .vault-header h1 {
+        margin: 0 0 4px 0; font-size: 1.6rem; font-weight: 700;
+        letter-spacing: -0.02em; color: var(--text-normal, #ffffff);
+        text-shadow: 0 4px 16px rgba(0, 0, 0, 0.8), 0 1px 3px rgba(0, 0, 0, 0.6);
+      }
+      .vault-header p {
+        margin: 0; font-size: 0.95rem; font-weight: 500;
+        color: var(--interactive-accent, #a882ff);
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+        text-transform: uppercase; letter-spacing: 0.05em;
+      }
+
+      /* --- INFO BUTTON --- */
+      .info-btn {
+        position: fixed; bottom: 30px; right: 30px;
+        width: 54px; height: 54px; border-radius: 50%;
+        background: hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.15);
+        backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+        border: 1px solid hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.4);
+        border-top-color: rgba(255, 255, 255, 0.2);
+        color: var(--interactive-accent, #8b6ce3);
+        cursor: pointer; box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        z-index: 100; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        display: flex; justify-content: center; align-items: center;
+      }
+      .info-btn:hover {
+        transform: translateY(-4px) scale(1.05);
+        background: var(--interactive-accent, #8b6ce3);
+        color: var(--text-on-accent, white);
+        border-color: var(--interactive-accent, #8b6ce3);
+        box-shadow: 0 12px 36px hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.4);
+      }
+
+      /* --- MODAL OVERLAY & WINDOW --- */
+      .modal-overlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.5); z-index: 150;
+        opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+      }
+      .modal-overlay.active { opacity: 1; pointer-events: auto; }
+
+      .about-modal {
+        position: fixed; top: 50%; left: 50%;
+        transform: translate(-50%, -40%) scale(0.95);
+        width: 90%; max-width: 440px;
+        
+        /* Simpler, brighter Frosted Glass Background */
+        background: rgba(25, 25, 25, 0.45);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 20px;
+        
+        padding: 36px; color: var(--text-normal, #dadada);
+        box-shadow: 0 24px 64px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+        z-index: 200; opacity: 0; pointer-events: none;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .about-modal.active {
+        opacity: 1; pointer-events: auto; transform: translate(-50%, -50%) scale(1);
+      }
+      
+      .about-modal h2 {
+        margin: 0 0 16px 0; color: var(--h2-color, var(--text-normal));
+        font-family: var(--h2-font); font-size: var(--h2-size, 1.5rem);
+        display: flex; align-items: center; gap: 10px;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      }
+      .about-modal p {
+        margin: 0 0 16px 0; font-size: var(--font-ui-small, 0.95rem); 
+        line-height: var(--line-height-normal, 1.6); color: var(--text-muted, #b3b3b3);
+      }
+      
+      .badge {
+        display: inline-flex; align-items: center; padding: 6px 14px;
+        background: linear-gradient(135deg, hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.25), hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.1));
+        border: 1px solid hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.3);
+        color: var(--text-accent, #a882ff); border-radius: 20px; 
+        font-size: var(--font-smaller, 0.85rem); font-weight: 600; margin-bottom: 24px;
+      }
+      
+      .close-btn {
+        position: absolute; top: 20px; right: 20px;
+        width: 32px; height: 32px; border-radius: 50%;
+        background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.05);
+        color: var(--text-muted, #b3b3b3); font-size: 1.2rem; cursor: pointer; 
+        display: flex; justify-content: center; align-items: center; transition: all 0.2s ease;
+      }
+      .close-btn:hover { background: rgba(255, 255, 255, 0.15); color: var(--text-normal, white); transform: rotate(90deg); }
+
+      @media (max-width: 600px) {
+        .vault-header { top: 20px; left: 20px; }
+        .vault-header h1 { font-size: 1.35rem; }
+        .info-btn { bottom: 20px; right: 20px; width: 48px; height: 48px; }
+        .about-modal { width: 85%; padding: 28px; }
+      }
+    </style>
+  </head>
+  <body>
+    
+    <div class="bg-layer"></div>
+    <canvas id="graph-canvas"></canvas>
+
+    <!-- Page Title HUD -->
+    <div class="vault-header">
+      <h1>Shared Obsidian Notes</h1>
+      <p>Digital Garden</p>
+    </div>
+
+    <!-- Floating Info Interaction -->
+    <button class="info-btn" id="info-btn" aria-label="Vault Information">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="16" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+      </svg>
+    </button>
+    
+    <div class="modal-overlay" id="modal-overlay"></div>
+    
+    <div class="about-modal" id="about-modal">
+      <button class="close-btn" id="close-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <h2>About this Shared Vault</h2>
+      <div class="badge">Digital Garden 🌱</div>
+      <p>This is my Digital Garden—a public collection of my notes, ideas, and coursework.</p>
+      <p>Unlike a blog, things here aren't always finished. Notes will grow, change, and interlink over time. Thank you for your patience!</p>
+      <p style="color: var(--text-faint, #666666); font-size: var(--font-smallest, 0.8rem); margin-top: 24px;">
+        <em>How to navigate: Click or tap the floating nodes to dive into a specific topic or semester.</em>
+      </p>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- 1. MODAL LOGIC ---
+        const infoBtn = document.getElementById('info-btn');
+        const modal = document.getElementById('about-modal');
+        const overlay = document.getElementById('modal-overlay');
+        const closeBtn = document.getElementById('close-btn');
+
+        function toggleModal() {
+          modal.classList.toggle('active');
+          overlay.classList.toggle('active');
+        }
+
+        infoBtn.addEventListener('click', toggleModal);
+        closeBtn.addEventListener('click', toggleModal);
+        overlay.addEventListener('click', toggleModal);
+
+        // --- 2. GRAPH PHYSICS & RENDERING ---
+        const canvas = document.getElementById('graph-canvas');
+        const ctx = canvas.getContext('2d');
+        
+        const rawNodes = [{"id": "root", "label": "Shared Vault", "url": null, "isRoot": true, "moons": 0}, {"id": "5th-semester", "label": "5Th Semester", "url": "./5th-semester/", "isRoot": false, "moons": 6}];
+        
+        let width, height;
+        function resize() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width * window.devicePixelRatio;
+            canvas.height = height * window.devicePixelRatio;
+            ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        // Build Graph Data
+        const nodes = rawNodes.map(n => ({
+            ...n,
+            x: Math.random() * width,
+            y: Math.random() * height,
+            vx: 0, vy: 0
+        }));
+        
+        const rootNode = nodes.find(n => n.isRoot);
+        const edges = nodes.filter(n => !n.isRoot).map(n => ({
+            source: rootNode, target: n
+        }));
+
+        // Dynamic CSS Color Extraction
+        function getCSSColor(varName, fallback) {
+            const val = getComputedStyle(document.body).getPropertyValue(varName).trim();
+            return val ? val : fallback;
+        }
+
+        // Physics Constants
+        const REPULSION = 4000;
+        const SPRING_LEN = Math.min(width, height) * 0.25;
+        const SPRING_K = 0.03;
+        const DAMPING = 0.85;
+        const CENTER_GRAVITY = 0.02;
+
+        let hoveredNode = null;
+        let draggedNode = null;
+        let isDragging = false; 
+        let time = 0; 
+
+        function draw() {
+            time += 0.015; 
+
+            const cBg = getCSSColor('--background-primary', '#1e1e1e');
+            const cNode = getCSSColor('--graph-node', '#a0a0a0');
+            const cNodeHover = getCSSColor('--interactive-accent', '#8b6ce3');
+            const cLine = getCSSColor('--graph-line', '#444444');
+            const cText = getCSSColor('--graph-text', getCSSColor('--text-normal', '#ffffff'));
+            const cTextMuted = getCSSColor('--text-muted', '#a0a0a0');
+            const font = getCSSColor('--font-interface', 'sans-serif');
+
+            ctx.clearRect(0, 0, width, height);
+
+            // --- A. DYNAMIC BACKGROUND NEBULA EFFECTS ---
+            ctx.save();
+            
+            const neb1X = width * 0.4 + Math.cos(time * 0.05) * (width * 0.2);
+            const neb1Y = height * 0.5 + Math.sin(time * 0.07) * (height * 0.2);
+            const rad1 = Math.max(width, height) * 0.5;
+            const grad1 = ctx.createRadialGradient(neb1X, neb1Y, 0, neb1X, neb1Y, rad1);
+            grad1.addColorStop(0, cNodeHover);
+            grad1.addColorStop(1, 'transparent');
+            ctx.fillStyle = grad1;
+            ctx.globalAlpha = 0.04;
+            ctx.beginPath(); ctx.arc(neb1X, neb1Y, rad1, 0, Math.PI * 2); ctx.fill();
+
+            const cBlue = getCSSColor('--color-blue', '#027aff');
+            const neb2X = width * 0.6 + Math.sin(time * 0.04) * (width * 0.2);
+            const neb2Y = height * 0.6 + Math.cos(time * 0.06) * (height * 0.2);
+            const rad2 = Math.max(width, height) * 0.55;
+            const grad2 = ctx.createRadialGradient(neb2X, neb2Y, 0, neb2X, neb2Y, rad2);
+            grad2.addColorStop(0, cBlue);
+            grad2.addColorStop(1, 'transparent');
+            ctx.fillStyle = grad2;
+            ctx.globalAlpha = 0.03;
+            ctx.beginPath(); ctx.arc(neb2X, neb2Y, rad2, 0, Math.PI * 2); ctx.fill();
+
+            const cPurple = getCSSColor('--color-purple', '#a882ff');
+            const neb3X = width * 0.5 + Math.cos(time * 0.03) * (width * 0.3);
+            const neb3Y = height * 0.3 + Math.sin(time * 0.03) * (height * 0.3);
+            const rad3 = Math.max(width, height) * 0.6;
+            const grad3 = ctx.createRadialGradient(neb3X, neb3Y, 0, neb3X, neb3Y, rad3);
+            grad3.addColorStop(0, cPurple);
+            grad3.addColorStop(1, 'transparent');
+            ctx.fillStyle = grad3;
+            ctx.globalAlpha = 0.03;
+            ctx.beginPath(); ctx.arc(neb3X, neb3Y, rad3, 0, Math.PI * 2); ctx.fill();
+            
+            ctx.restore();
+
+            // --- B. CALCULATE FORCES ---
+            nodes.forEach(n1 => {
+                nodes.forEach(n2 => {
+                    if (n1 === n2) return;
+                    let dx = n2.x - n1.x;
+                    let dy = n2.y - n1.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                    if (dist < 300) {
+                        let force = REPULSION / (dist * dist);
+                        n1.vx -= (dx / dist) * force;
+                        n1.vy -= (dy / dist) * force;
+                    }
+                });
+            });
+
+            edges.forEach(e => {
+                let dx = e.target.x - e.source.x;
+                let dy = e.target.y - e.source.y;
+                let dist = Math.sqrt(dx * dx + dy * dy) || 1;
+                let force = (dist - SPRING_LEN) * SPRING_K;
+                e.source.vx += (dx / dist) * force;
+                e.source.vy += (dy / dist) * force;
+                e.target.vx -= (dx / dist) * force;
+                e.target.vy -= (dy / dist) * force;
+            });
+
+            // Update Positions
+            nodes.forEach(n => {
+                if (n.isRoot) {
+                    n.vx += ((width / 2) - n.x) * (CENTER_GRAVITY * 3);
+                    n.vy += ((height / 2) - n.y) * (CENTER_GRAVITY * 3);
+                } else {
+                    n.vx += ((width / 2) - n.x) * CENTER_GRAVITY;
+                    n.vy += ((height / 2) - n.y) * CENTER_GRAVITY;
+                }
+
+                n.vx *= DAMPING;
+                n.vy *= DAMPING;
+
+                if (draggedNode === n) {
+                    n.vx = 0; n.vy = 0;
+                } else {
+                    n.x += n.vx;
+                    n.y += n.vy;
+                }
+            });
+
+            // Draw Edges
+            ctx.lineWidth = 1.5;
+            edges.forEach(e => {
+                const isHovered = (hoveredNode === e.source || hoveredNode === e.target);
+                ctx.strokeStyle = isHovered ? cNodeHover : cLine;
+                ctx.globalAlpha = isHovered ? 0.8 : 0.5;
+                ctx.beginPath();
+                ctx.moveTo(e.source.x, e.source.y);
+                ctx.lineTo(e.target.x, e.target.y);
+                ctx.stroke();
+            });
+            ctx.globalAlpha = 1.0;
+
+            // Draw Nodes, Moons, & Stellar Corona
+            nodes.forEach(n => {
+                const isHovered = (n === hoveredNode);
+                const r = n.isRoot ? 11 : 6;
+
+                // STAR CORONA
+                if (n.isRoot) {
+                    const starPulse = 1.0 + Math.sin(time * 2.5) * 0.08; 
+                    ctx.save();
+                    const starGrad = ctx.createRadialGradient(n.x, n.y, r, n.x, n.y, r * 4.5 * starPulse);
+                    starGrad.addColorStop(0, cNodeHover);
+                    starGrad.addColorStop(0.3, isHovered ? cText : cNodeHover);
+                    starGrad.addColorStop(1, 'transparent');
+                    
+                    ctx.fillStyle = starGrad;
+                    ctx.globalAlpha = isHovered ? 0.32 : 0.18; 
+                    ctx.beginPath(); ctx.arc(n.x, n.y, r * 4.5 * starPulse, 0, Math.PI * 2); ctx.fill();
+                    ctx.restore();
+                }
+
+                // MOONS
+                if (!n.isRoot && n.moons > 0) {
+                    const visibleMoons = Math.min(n.moons, 10);
+                    const orbitRadius = r + 11;
+                    const rotationDir = (n.id.charCodeAt(0) % 2 === 0) ? 1 : -1;
+
+                    for (let m = 0; m < visibleMoons; m++) {
+                        const baseAngle = (m / visibleMoons) * Math.PI * 2;
+                        const animatedAngle = baseAngle + (time * rotationDir);
+                        const mx = n.x + Math.cos(animatedAngle) * orbitRadius;
+                        const my = n.y + Math.sin(animatedAngle) * orbitRadius;
+
+                        ctx.beginPath();
+                        ctx.arc(mx, my, 1.5, 0, Math.PI * 2);
+                        ctx.fillStyle = isHovered ? cNodeHover : cNode;
+                        ctx.globalAlpha = isHovered ? 1.0 : 0.6; 
+                        ctx.fill();
+                    }
+                    ctx.globalAlpha = 1.0;
+                }
+
+                // Accent Glow Ring
+                if (isHovered && !n.isRoot) {
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, r + 4, 0, Math.PI * 2);
+                    ctx.fillStyle = cBg;
+                    ctx.fill();
+                    ctx.lineWidth = 2;
+                    ctx.strokeStyle = cText;
+                    ctx.stroke();
+                }
+
+                // Node Body
+                ctx.beginPath();
+                ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+                ctx.fillStyle = isHovered ? cNodeHover : (n.isRoot ? cNodeHover : cNode);
+                ctx.fill();
+
+                // Node Text
+                ctx.font = `${n.isRoot ? 'bold 16px' : '14px'} ${font}`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'top';
+                ctx.fillStyle = isHovered ? cText : (n.isRoot ? cText : cTextMuted);
+                ctx.fillText(n.label, n.x, n.y + r + 8);
+            });
+
+            requestAnimationFrame(draw);
+        }
+
+        // --- Interaction Events (Touch precision & dragging) ---
+        function getMousePos(e) {
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches && e.touches.length > 0 ? e.touches[0] : (e.changedTouches ? e.changedTouches[0] : null);
+            const clientX = touch ? touch.clientX : e.clientX;
+            const clientY = touch ? touch.clientY : e.clientY;
+            return {
+                x: clientX - rect.left,
+                y: clientY - rect.top
+            };
+        }
+
+        function getHoveredNode(pos, hitRadius = 600) {
+            let found = null;
+            nodes.forEach(n => {
+                const dx = n.x - pos.x;
+                const dy = n.y - pos.y;
+                if (dx * dx + dy * dy < hitRadius) { 
+                    found = n;
+                }
+            });
+            return found;
+        }
+
+        function handleMove(e) {
+            const pos = getMousePos(e);
+            if (draggedNode) {
+                isDragging = true;
+                draggedNode.x = pos.x;
+                draggedNode.y = pos.y;
+            } else {
+                hoveredNode = getHoveredNode(pos);
+            }
+            canvas.style.cursor = hoveredNode ? 'pointer' : 'default';
+        }
+
+        function handleDown(e) {
+            const pos = getMousePos(e);
+            isDragging = false; 
+            if (e.type === 'touchstart') {
+                hoveredNode = getHoveredNode(pos, 1000);
+            }
+            if (hoveredNode) {
+                draggedNode = hoveredNode;
+            }
+        }
+
+        function handleUp(e) { 
+            draggedNode = null; 
+            if (e.type === 'touchend') {
+                hoveredNode = null;
+            }
+        }
+
+        canvas.addEventListener('mousemove', handleMove);
+        canvas.addEventListener('touchmove', handleMove);
+
+        canvas.addEventListener('mousedown', handleDown);
+        canvas.addEventListener('touchstart', handleDown);
+
+        canvas.addEventListener('mouseup', handleUp);
+        canvas.addEventListener('touchend', handleUp);
+        canvas.addEventListener('mouseleave', handleUp);
+
+        canvas.addEventListener('click', (e) => {
+            if (isDragging) return;
+            const pos = getMousePos(e);
+            const clickedNode = getHoveredNode(pos, 1000);
+            if (clickedNode && !clickedNode.isRoot && clickedNode.url) {
+                window.location.href = clickedNode.url;
+            }
+        });
+
+        // Start physics loop
+        draw();
+      });
+    </script>
+  </body>
+</html>

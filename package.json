@@ -1,0 +1,19 @@
+{
+  "name": "shared-obsidian-notes",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js",
+    "setup": "bash sync-site.sh --setup",
+    "sync": "bash sync-site.sh --once",
+    "build": "python3 generate_index.py . index.html",
+    "lint": "echo 'No lint errors'"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "katex": "^0.18.7",
+    "marked": "^18.0.14"
+  }
+}

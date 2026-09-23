@@ -1,0 +1,9 @@
+{
+  "name": "Shared Obsidian Notes",
+  "description": "Public collection of shared notes, ideas, and coursework digital garden.",
+  "prompt": "Shared Obsidian Notes digital garden",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
