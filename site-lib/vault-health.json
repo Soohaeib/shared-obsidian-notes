@@ -3,8 +3,8 @@
     "totalFiles": 298,
     "cleanFiles": 249,
     "filesWithWarnings": 49,
-    "totalIssues": 1163,
-    "autoFixedIssues": 4,
+    "totalIssues": 1159,
+    "autoFixedIssues": 0,
     "healthScore": 83
   },
   "issues": [
@@ -4272,19 +4272,9 @@
       "file": "note-res/AI Curated Notes/ACC 302 Financial Management/ACC 302 Notes Phase 1.md",
       "line": 206,
       "category": "LaTeX / Math",
-      "severity": "error",
-      "message": "Nested math delimiters detected (unbalanced '$' and '$$' collision).",
-      "snippet": "$SI$):** Interest paid or earned strictly on the original principal amount $$",
-      "suggestion": "Parenthesize text prefix: '* **Simple Interest ((SI $):** Interest paid or earned strictly on the original principal amount$)PV'",
-      "autoFixed": true
-    },
-    {
-      "file": "note-res/AI Curated Notes/ACC 302 Financial Management/ACC 302 Notes Phase 1.md",
-      "line": 206,
-      "category": "LaTeX / Math",
       "severity": "warning",
       "message": "Potential dangling '$$' display math tag inside text line.",
-      "snippet": "* **Simple Interest ($SI$):** Interest paid or earned strictly on the original principal amount $$PV",
+      "snippet": "* **Simple Interest ((SI $):** Interest paid or earned strictly on the original principal amount$)PV",
       "suggestion": "Ensure '$$' is either placed on its own line or encloses a valid formula.",
       "autoFixed": false
     },
@@ -5060,16 +5050,6 @@
     },
     {
       "file": "note-res/AI Curated Notes/ACC 302 Financial Management/ACC 302 Notes Phase 5.md",
-      "line": 85,
-      "category": "LaTeX / Math",
-      "severity": "error",
-      "message": "Nested math delimiters detected (unbalanced '$' and '$$' collision).",
-      "snippet": "$ or $ICO$$",
-      "suggestion": "Parenthesize text prefix: '#### 1. Initial Cash Outflow $$CF_0(or $ICO$) at $t=0$'",
-      "autoFixed": true
-    },
-    {
-      "file": "note-res/AI Curated Notes/ACC 302 Financial Management/ACC 302 Notes Phase 5.md",
       "line": 91,
       "category": "LaTeX / Math",
       "severity": "warning",
@@ -5142,19 +5122,9 @@
       "file": "note-res/AI Curated Notes/ACC 302 Financial Management/ACC 302 Notes Phase 5.md",
       "line": 123,
       "category": "LaTeX / Math",
-      "severity": "error",
-      "message": "Nested math delimiters detected (unbalanced '$' and '$$' collision).",
-      "snippet": "$PBP$:** The exact number of years required for cumulative undiscounted cash inflows to recover the initial investment cost $$",
-      "suggestion": "Parenthesize text prefix: '* **Payback Period (PBP $:** The exact number of years required for cumulative undiscounted cash inf'",
-      "autoFixed": true
-    },
-    {
-      "file": "note-res/AI Curated Notes/ACC 302 Financial Management/ACC 302 Notes Phase 5.md",
-      "line": 123,
-      "category": "LaTeX / Math",
       "severity": "warning",
       "message": "Potential dangling '$$' display math tag inside text line.",
-      "snippet": "* **Payback Period $PBP$:** The exact number of years required for cumulative undiscounted cash infl",
+      "snippet": "* **Payback Period (PBP $:** The exact number of years required for cumulative undiscounted cash inf",
       "suggestion": "Ensure '$$' is either placed on its own line or encloses a valid formula.",
       "autoFixed": false
     },
@@ -5207,16 +5177,6 @@
       "snippet": "* **NPV Profile:** A plot of a project's NPV against a range of discount rates. The vertical axis in",
       "suggestion": "Ensure '$$' is either placed on its own line or encloses a valid formula.",
       "autoFixed": false
-    },
-    {
-      "file": "note-res/AI Curated Notes/ACC 302 Financial Management/ACC 302 Notes Phase 5.md",
-      "line": 177,
-      "category": "LaTeX / Math",
-      "severity": "error",
-      "message": "Nested math delimiters detected (unbalanced '$' and '$$' collision).",
-      "snippet": "$where $\\text{NPV}_A = \\text{NPV}_B$$",
-      "suggestion": "Parenthesize text prefix: '* **Crossover Rate:** The discount rate at which the NPV profiles of two mutually exclusive projects'",
-      "autoFixed": true
     },
     {
       "file": "note-res/AI Curated Notes/ACC 302 Financial Management/ACC 302 Notes Phase 5.md",
