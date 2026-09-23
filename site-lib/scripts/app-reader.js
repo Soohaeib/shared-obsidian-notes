@@ -279,6 +279,7 @@ class ObsidianVaultApp {
     // 2. Fallback to static vault-index.json
     if (files.length === 0) {
       const pathsToTry = [
+        '../../site-lib/vault-index.json',
         '../site-lib/vault-index.json',
         './site-lib/vault-index.json',
         'site-lib/vault-index.json',
@@ -301,21 +302,31 @@ class ObsidianVaultApp {
     this.allVaultFiles = files;
     this.currentFolder = this.detectCurrentFolder(files);
 
-    // Filter or normalize notes for current folder
+    // Filter or normalize notes for current folder (supports [inside] containers and flat paths)
     let notes = [];
+    const targetFolder = this.currentFolder;
+
     for (const f of files) {
-      const parts = f.split('/');
-      const folder = parts[0];
-      // Store all notes belonging to the current workspace folder
-      if (folder === this.currentFolder) {
-        const relInFolder = parts.slice(1).join('/');
+      let relInFolder = null;
+      // Case 1: path is "[inside] ... / targetFolder / note.md"
+      const matchPattern = `/${targetFolder}/`;
+      const matchIdx = f.indexOf(matchPattern);
+      if (matchIdx !== -1) {
+        relInFolder = f.substring(matchIdx + matchPattern.length);
+      } else if (f.startsWith(`${targetFolder}/`)) {
+        // Case 2: path is "targetFolder / note.md"
+        relInFolder = f.substring(targetFolder.length + 1);
+      }
+
+      if (relInFolder) {
+        const parts = relInFolder.split('/');
         const fileName = parts[parts.length - 1];
         const title = fileName.replace(/\.md$/, '').replace(/-/g, ' ');
         notes.push({
           fullPath: f,
           path: relInFolder,
           title: this.formatTitle(title),
-          folder: parts[1] || 'root'
+          folder: parts.length > 1 ? parts[0] : 'root'
         });
       }
     }
@@ -324,23 +335,33 @@ class ObsidianVaultApp {
     if (notes.length === 0 && files.length > 0) {
       const folderCounts = {};
       for (const f of files) {
-        const fld = f.split('/')[0];
+        const cleanF = f.replace(/^(?:\[inside\][^/]+|note-res)\//, '');
+        const fld = cleanF.split('/')[0];
         folderCounts[fld] = (folderCounts[fld] || 0) + 1;
       }
       const bestFolder = Object.keys(folderCounts).sort((a, b) => folderCounts[b] - folderCounts[a])[0];
       if (bestFolder) {
         this.currentFolder = bestFolder;
-        notes = files.filter(f => f.startsWith(`${bestFolder}/`)).map(f => {
-          const parts = f.split('/');
-          const relInFolder = parts.slice(1).join('/');
-          const fileName = parts[parts.length - 1];
-          return {
-            fullPath: f,
-            path: relInFolder,
-            title: this.formatTitle(fileName.replace(/\.md$/, '').replace(/-/g, ' ')),
-            folder: parts[1] || 'root'
-          };
-        });
+        for (const f of files) {
+          let relInFolder = null;
+          const matchPattern = `/${bestFolder}/`;
+          const matchIdx = f.indexOf(matchPattern);
+          if (matchIdx !== -1) {
+            relInFolder = f.substring(matchIdx + matchPattern.length);
+          } else if (f.startsWith(`${bestFolder}/`)) {
+            relInFolder = f.substring(bestFolder.length + 1);
+          }
+          if (relInFolder) {
+            const parts = relInFolder.split('/');
+            const fileName = parts[parts.length - 1];
+            notes.push({
+              fullPath: f,
+              path: relInFolder,
+              title: this.formatTitle(fileName.replace(/\.md$/, '').replace(/-/g, ' ')),
+              folder: parts.length > 1 ? parts[0] : 'root'
+            });
+          }
+        }
       }
     }
 

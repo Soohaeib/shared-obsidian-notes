@@ -1,0 +1,37 @@
+{
+  "targetVaultDirectory": "note-res",
+  "sourceVaultPaths": [
+    "~/Documents/Obsidian Vault/BBA Study"
+  ],
+  "sourceExclusionPaths": [
+    "~/Documents/Obsidian Vault/BBA Study/Expansion of class notes"
+  ],
+  "sourceExclusionFiles": [],
+  "excludedFolders": [
+    ".git",
+    ".github",
+    ".obsidian",
+    ".trash",
+    "node_modules",
+    "guide",
+    "site-lib",
+    "backup",
+    "backups",
+    "backup-directory",
+    "__pycache__"
+  ],
+  "excludedFiles": [
+    ".DS_Store",
+    "desktop.ini",
+    "Thumbs.db",
+    "ehthumbs.db",
+    "package-lock.json",
+    "bun.lock"
+  ],
+  "excludedPatterns": [
+    "^\\..*",
+    ".*\\.bak$",
+    ".*\\.tmp$",
+    ".*~$"
+  ]
+}

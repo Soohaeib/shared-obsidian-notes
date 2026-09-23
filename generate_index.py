@@ -1,95 +1,145 @@
 #!/usr/bin/env python3
+"""
+Platform-Independent Obsidian Digital Garden Index Generator
+------------------------------------------------------------
+Scans site folders inside the configured 'note-res' vault directory,
+provisions viewer index.html files, updates vault-index.json,
+and generates the original cosmic nebula landing page.
+"""
+
 import json
 import os
 import sys
-import shutil
 import re
+from pathlib import Path
 
 source_dir = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else '.')
-out_path = sys.argv[2] if len(sys.argv) > 2 else 'index.html'
+out_path = sys.argv[2] if len(sys.argv) > 2 else os.path.join(source_dir, 'index.html')
 
-# Folders and patterns to strictly ignore (infrastructure, backups, hidden files)
-ignored = {'.git', '.github', '.DS_Store', 'site-lib', 'guide', 'node_modules', 'backup-directory', 'backups', 'backup'}
+# Load locations.json configuration
+loc_file = os.path.join(source_dir, 'locations.json')
+config = {
+    'targetVaultDirectory': 'note-res',
+    'sourceVaultPaths': ['~/Documents/Obsidian Vault/BBA Study'],
+    'sourceExclusionPaths': [
+        '~/Documents/Obsidian Vault/BBA Study/Expansion of class notes'
+    ],
+    'sourceExclusionFiles': [],
+    'excludedFolders': ['.git', '.github', '.obsidian', '.trash', 'node_modules', 'guide', 'site-lib', 'backup', 'backups', 'backup-directory', '__pycache__'],
+    'excludedFiles': ['.DS_Store', 'desktop.ini', 'Thumbs.db', 'ehthumbs.db', 'package-lock.json', 'bun.lock'],
+    'excludedPatterns': [r'^\..*', r'.*\.bak$', r'.*\.tmp$', r'.*~$']
+}
 
-def is_ignored(name):
-    lower = name.lower()
-    if name.startswith('.') or name in ignored:
+if os.path.exists(loc_file):
+    try:
+        with open(loc_file, 'r', encoding='utf-8') as f:
+            parsed = json.load(f)
+            config.update(parsed)
+    except Exception as e:
+        print(f"Notice: Could not parse locations.json ({e})")
+
+vault_container = config.get('targetVaultDirectory', 'note-res')
+source_exclusion_paths = set(config.get('sourceExclusionPaths', []))
+source_exclusion_files = set(config.get('sourceExclusionFiles', []))
+ignored_folders = set(config.get('excludedFolders', [])).union(source_exclusion_paths)
+ignored_files = set(config.get('excludedFiles', [])).union(source_exclusion_files)
+ignored_patterns = [re.compile(p) for p in config.get('excludedPatterns', [])]
+
+def is_ignored_folder(name):
+    low = name.lower()
+    if name in ignored_folders or name.startswith('.'):
         return True
-    if 'backup' in lower or 'bak' == lower or lower.endswith('.bak'):
+    for f in ignored_folders:
+        if f.lower().strip() == low:
+            return True
+    if any(p.match(name) for p in ignored_patterns):
+        return True
+    if 'backup' in low or low.endswith('.bak'):
         return True
     return False
+
+def is_ignored_file(name):
+    low = name.lower()
+    if name in ignored_files or name.startswith('.'):
+        return True
+    for f in ignored_files:
+        if f.lower().strip() == low:
+            return True
+    if any(p.match(name) for p in ignored_patterns):
+        return True
+    if 'backup' in low or low.endswith('.bak') or low.endswith('.tmp'):
+        return True
+    return False
+
+# Scan directories inside note-res
+container_path = os.path.join(source_dir, vault_container)
+scan_base = container_path if os.path.exists(container_path) and os.path.isdir(container_path) else source_dir
 
 entries = []
 all_md_files = []
 
-# Scan source directories for landing page nodes and markdown notes
-for name in sorted(os.listdir(source_dir)):
-    if is_ignored(name):
+template_viewer = os.path.join(source_dir, 'site-lib', 'html', 'viewer.html')
+t_content_raw = ""
+if os.path.exists(template_viewer):
+    with open(template_viewer, 'r', encoding='utf-8') as tf:
+        t_content_raw = tf.read()
+
+for name in sorted(os.listdir(scan_base)):
+    if is_ignored_folder(name) or (scan_base == source_dir and name == vault_container):
         continue
-    full_path = os.path.join(source_dir, name)
+    full_path = os.path.join(scan_base, name)
     if os.path.isdir(full_path):
         sub_count = 0
         for root, dirs, fnames in os.walk(full_path):
-            dirs[:] = [d for d in dirs if not is_ignored(d)]
+            dirs[:] = [d for d in dirs if not is_ignored_folder(d)]
             sub_count += len(dirs)
             for f in fnames:
-                if f.endswith('.md') and not is_ignored(f):
+                if f.endswith('.md') and not is_ignored_file(f):
                     rel = os.path.relpath(os.path.join(root, f), source_dir).replace('\\', '/')
                     all_md_files.append(rel)
-                    
-        entries.append((name, sub_count))
-        
-        # Ensure each valid workspace folder has an index.html viewer with folder metadata
-        folder_index = os.path.join(full_path, 'index.html')
-        template_viewer = os.path.join(source_dir, 'site-lib', 'html', 'viewer.html')
-        folder_title = name.replace('-', ' ').title()
 
-        if os.path.exists(template_viewer):
+        rel_url = f"./{vault_container}/{name}/" if scan_base == container_path else f"./{name}/"
+        entries.append((name, rel_url, sub_count))
+
+        # Provision folder index.html viewer
+        if t_content_raw:
+            folder_index = os.path.join(full_path, 'index.html')
+            folder_title = name.replace('-', ' ').title()
+            
+            rel_to_root = os.path.relpath(source_dir, full_path).replace('\\', '/')
+            if not rel_to_root.endswith('/'):
+                rel_to_root += '/'
+
+            t_content = t_content_raw
+            t_content = re.sub(r'(\.\./)*site-lib/', f'{rel_to_root}site-lib/', t_content)
+            t_content = re.sub(r'<a href="\.\./"', f'<a href="{rel_to_root}"', t_content)
+            t_content = re.sub(r'<title>.*?</title>', f'<title>BBA {folder_title} — Shared Obsidian Notes</title>', t_content, flags=re.IGNORECASE)
+            t_content = re.sub(r'<body([^>]*)>', f'<body\\1 data-vault-folder="{name}">', t_content, count=1, flags=re.IGNORECASE)
+            t_content = re.sub(r'<span class="sidebar-title">.*?</span>', f'<span class="sidebar-title">{folder_title} Notes</span>', t_content, flags=re.IGNORECASE)
+
             try:
-                with open(template_viewer, 'r', encoding='utf-8') as tf:
-                    t_content = tf.read()
-
-                t_content = re.sub(r'<title>.*?</title>', f'<title>BBA {folder_title} — Shared Obsidian Notes</title>', t_content, flags=re.IGNORECASE)
-                t_content = re.sub(r'<body([^>]*)>', f'<body\\1 data-vault-folder="{name}">', t_content, count=1, flags=re.IGNORECASE)
-                t_content = re.sub(r'<span class="sidebar-title">.*?</span>', f'<span class="sidebar-title">{folder_title} Notes</span>', t_content, flags=re.IGNORECASE)
-
-                if not os.path.exists(folder_index):
-                    with open(folder_index, 'w', encoding='utf-8') as out_f:
-                        out_f.write(t_content)
-                    print(f"Provisioned viewer for folder: {name}")
-                else:
-                    with open(folder_index, 'r', encoding='utf-8') as cur_f:
-                        cur_content = cur_f.read()
-                    if f'data-vault-folder="{name}"' not in cur_content:
-                        if 'data-vault-folder' in cur_content:
-                            cur_content = re.sub(r'data-vault-folder="[^"]*"', f'data-vault-folder="{name}"', cur_content)
-                        else:
-                            cur_content = re.sub(r'<body([^>]*)>', f'<body\\1 data-vault-folder="{name}">', cur_content, count=1, flags=re.IGNORECASE)
-                    # Fix any broken non-relative script paths injected by older scripts
-                    cur_content = cur_content.replace('<script defer src="site-lib/scripts/', '<script defer src="../site-lib/scripts/')
-                    with open(folder_index, 'w', encoding='utf-8') as out_f:
-                        out_f.write(cur_content)
-                    print(f"Verified viewer for folder: {name}")
+                with open(folder_index, 'w', encoding='utf-8') as out_f:
+                    out_f.write(t_content)
             except Exception as e:
-                print(f"Notice: Could not provision viewer for {name}: {e}")
+                print(f"Notice: Could not write viewer for {name}: {e}")
 
-# Update site-lib/vault-index.json for static/offline hosting
+# Update site-lib/vault-index.json
 vault_index_path = os.path.join(source_dir, 'site-lib', 'vault-index.json')
 try:
     with open(vault_index_path, 'w', encoding='utf-8') as fh:
         json.dump({'files': sorted(all_md_files)}, fh, indent=2)
-    print(f"Updated {vault_index_path} with {len(all_md_files)} markdown notes.")
+    print(f"Updated {vault_index_path} with {len(all_md_files)} notes.")
 except Exception as e:
     print(f"Notice: Could not write vault-index.json: {e}")
 
-# Generate Node Data for the Cosmic Graph Physics Engine
+# Generate Node Data for the Graph Physics Engine
 nodes_data = [{"id": "root", "label": "Shared Vault", "url": None, "isRoot": True, "moons": 0}]
-for name, sub_count in entries:
+for name, rel_url, sub_count in entries:
     label = name.replace('-', ' ').replace('_', ' ').title()
     nodes_data.append({
         "id": name, 
         "label": label, 
-        "url": f"./{name}/", 
+        "url": rel_url, 
         "isRoot": False,
         "moons": sub_count
     })
@@ -517,7 +567,7 @@ html_template = r'''<!DOCTYPE html>
             requestAnimationFrame(draw);
         }
 
-        // --- Interaction Events (Touch precision & dragging) ---
+        // --- Interaction Events (Updated for Touch precision & dragging) ---
         function getMousePos(e) {
             const rect = canvas.getBoundingClientRect();
             const touch = e.touches && e.touches.length > 0 ? e.touches[0] : (e.changedTouches ? e.changedTouches[0] : null);
@@ -543,6 +593,7 @@ html_template = r'''<!DOCTYPE html>
 
         function handleMove(e) {
             const pos = getMousePos(e);
+            
             if (draggedNode) {
                 isDragging = true;
                 draggedNode.x = pos.x;
@@ -556,9 +607,11 @@ html_template = r'''<!DOCTYPE html>
         function handleDown(e) {
             const pos = getMousePos(e);
             isDragging = false; 
+
             if (e.type === 'touchstart') {
                 hoveredNode = getHoveredNode(pos, 1000);
             }
+
             if (hoveredNode) {
                 draggedNode = hoveredNode;
             }
@@ -585,6 +638,7 @@ html_template = r'''<!DOCTYPE html>
             if (isDragging) return;
             const pos = getMousePos(e);
             const clickedNode = getHoveredNode(pos, 1000);
+
             if (clickedNode && !clickedNode.isRoot && clickedNode.url) {
                 window.location.href = clickedNode.url;
             }

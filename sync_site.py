@@ -3,11 +3,18 @@
 Platform-Independent Obsidian Digital Garden Workspace Sync & Indexer
 ----------------------------------------------------------------------
 Runs natively on Windows, macOS, and Linux with zero external dependencies.
+Reads structure & ignore configurations directly from locations.json.
+
+Automated Sync Workflow:
+  1. Checks external Obsidian Vault path(s) listed in locations.json
+  2. Copies updated notes into the organized 'note-res' container
+  3. Sanitizes filenames for Git / cross-platform safety
+  4. Generates vault-index.json and folder viewer index.html files
 
 Usage:
-  python3 sync_site.py                 # Syncs, sanitizes, and builds indexes (default)
+  python3 sync_site.py                 # Automated sync & build (default)
   python3 sync_site.py --watch         # Continuous file watcher & auto-builder
-  python3 sync_site.py --from /path    # Safely copies notes from external Obsidian vault
+  python3 sync_site.py --from /path    # Explicit external Obsidian vault path
   python3 sync_site.py --sanitize      # Only sanitizes file/folder names
 """
 
@@ -22,18 +29,92 @@ from pathlib import Path
 
 # Base Paths
 SCRIPT_DIR = Path(__file__).resolve().parent
-PROTECTED_DIRS = {'.git', '.github', 'node_modules', 'site-lib', 'guide', '.obsidian', '.trash'}
+
+def load_locations_config(base_dir: Path):
+    """Loads and parses locations.json configuration."""
+    loc_file = base_dir / "locations.json"
+    config = {
+        'targetVaultDirectory': 'note-res',
+        'sourceVaultPaths': ['~/Documents/Obsidian Vault/BBA Study'],
+        'sourceExclusionPaths': [
+            '~/Documents/Obsidian Vault/BBA Study/Expansion of class notes'
+        ],
+        'sourceExclusionFiles': [],
+        'excludedFolders': [
+            '.git', '.github', '.obsidian', '.trash', 'node_modules', 
+            'guide', 'site-lib', 'backup', 'backups', 'backup-directory', '__pycache__'
+        ],
+        'excludedFiles': [
+            '.DS_Store', 'desktop.ini', 'Thumbs.db', 'ehthumbs.db', 
+            'package-lock.json', 'bun.lock'
+        ],
+        'excludedPatterns': [r'^\..*', r'.*\.bak$', r'.*\.tmp$', r'.*~$']
+    }
+
+    if loc_file.exists():
+        try:
+            with open(loc_file, 'r', encoding='utf-8') as f:
+                parsed = json.load(f)
+                config.update(parsed)
+        except Exception as e:
+            print(f"Notice: Could not parse locations.json ({e}), using default vault config.")
+    return config
+
+config = load_locations_config(SCRIPT_DIR)
+VAULT_CONTAINER = config.get('targetVaultDirectory', 'note-res')
+SOURCE_EXCLUSION_PATHS = set(config.get('sourceExclusionPaths', []))
+SOURCE_EXCLUSION_FILES = set(config.get('sourceExclusionFiles', []))
+EXCLUDED_FOLDERS = set(config.get('excludedFolders', []))
+EXCLUDED_FILES = set(config.get('excludedFiles', []))
+EXCLUDED_PATTERNS = [re.compile(p) for p in config.get('excludedPatterns', [])]
+SOURCE_VAULT_PATHS = config.get('sourceVaultPaths', [])
+
 PROTECTED_FILES = {
     'package.json', 'package-lock.json', 'metadata.json', 'server.js', 
-    'generate_index.py', 'sync_site.py', '.gitignore', '.nojekyll', 
-    'README.md', '.env.example'
+    'generate_index.py', 'sync_site.py', 'locations.json', '.gitignore', 
+    '.nojekyll', 'README.md', '.env.example'
 }
 
-def is_protected(name: str) -> bool:
-    low = name.lower()
-    if name in PROTECTED_DIRS or name.startswith('.'):
+def is_excluded(item: str, full_path: str = "") -> bool:
+    low_name = item.lower().strip()
+    if item.startswith('.') and item != '.':
         return True
-    if 'backup' in low or low.endswith('.bak'):
+    
+    # Check folder and source exclusion path matches
+    all_excluded_folders = EXCLUDED_FOLDERS.union(SOURCE_EXCLUSION_PATHS)
+    for folder in all_excluded_folders:
+        f_clean = folder.strip().lower()
+        if not f_clean:
+            continue
+        if low_name == f_clean or item == folder:
+            return True
+        if full_path:
+            full_norm = str(Path(full_path).resolve()).lower().replace('\\', '/')
+            target_norm = folder.lower().replace('\\', '/')
+            if target_norm.startswith('~'):
+                target_norm = str(Path(os.path.expanduser(folder)).resolve()).lower().replace('\\', '/')
+            if target_norm in full_norm or f"/{f_clean}/" in f"/{full_norm}/" or full_norm.endswith(f"/{f_clean}"):
+                return True
+                
+    # Check file and source exclusion file matches
+    all_excluded_files = EXCLUDED_FILES.union(SOURCE_EXCLUSION_FILES)
+    for file in all_excluded_files:
+        f_clean = file.strip().lower()
+        if not f_clean:
+            continue
+        if low_name == f_clean or item == file:
+            return True
+        if full_path:
+            full_norm = str(Path(full_path).resolve()).lower().replace('\\', '/')
+            target_norm = file.lower().replace('\\', '/')
+            if target_norm.startswith('~'):
+                target_norm = str(Path(os.path.expanduser(file)).resolve()).lower().replace('\\', '/')
+            if target_norm == full_norm or full_norm.endswith(f"/{f_clean}"):
+                return True
+            
+    if any(p.match(item) for p in EXCLUDED_PATTERNS):
+        return True
+    if 'backup' in low_name or low_name.endswith('.bak'):
         return True
     return False
 
@@ -60,15 +141,18 @@ def clean_filename(name: str) -> str:
 
 def sanitize_workspace(target_dir: Path):
     """Walks the directory tree bottom-up to rename illegal characters safely."""
-    print("🔍 [Sanitizer] Auditing filenames for cross-platform Git compatibility...")
+    print(f"🔍 [Sanitizer] Auditing filenames in {target_dir} for Git compatibility...")
     renamed_count = 0
 
+    if not target_dir.exists():
+        return
+
     for root, dirs, files in os.walk(target_dir, topdown=False):
-        # Exclude protected dirs from traversal
-        dirs[:] = [d for d in dirs if not is_protected(d)]
+        dirs[:] = [d for d in dirs if not is_excluded(d, os.path.join(root, d))]
         
         for fname in files:
-            if is_protected(fname) or fname in PROTECTED_FILES:
+            full_file = os.path.join(root, fname)
+            if is_excluded(fname, full_file) or fname in PROTECTED_FILES or fname in EXCLUDED_FILES:
                 continue
             cleaned = clean_filename(fname)
             if cleaned != fname:
@@ -88,7 +172,7 @@ def sanitize_workspace(target_dir: Path):
                     print(f"  ❌ Failed to rename {fname}: {e}")
 
         for dname in dirs:
-            if is_protected(dname):
+            if is_excluded(dname, os.path.join(root, dname)):
                 continue
             cleaned = clean_filename(dname)
             if cleaned != dname:
@@ -104,110 +188,62 @@ def sanitize_workspace(target_dir: Path):
 
     print(f"✅ [Sanitizer] Completed. {renamed_count} items sanitized.")
 
-def safe_copy_notes(src_dir: Path, dst_dir: Path):
-    """Safely copies markdown notes and assets from external Obsidian vault."""
-    print(f"🔄 Copying notes from: {src_dir}")
-    print(f"   Into workspace: {dst_dir}")
+def sync_from_source_vault(src_path_str: str, dst_root: Path):
+    """Automatically pulls and syncs notes from an external Obsidian Vault path."""
+    expanded_path = Path(os.path.expanduser(src_path_str)).resolve()
+    if not expanded_path.exists() or not expanded_path.is_dir():
+        return False
+
+    container_target = dst_root / VAULT_CONTAINER
+    container_target.mkdir(parents=True, exist_ok=True)
+    
+    print(f"🔄 Auto-syncing from Obsidian Vault: {expanded_path}")
+    print(f"   Destination: {container_target}")
     
     copied = 0
-    for root, dirs, files in os.walk(src_dir):
-        dirs[:] = [d for d in dirs if not is_protected(d)]
-        rel = os.path.relpath(root, src_dir)
-        target = dst_dir / rel if rel != '.' else dst_dir
+    for root, dirs, files in os.walk(expanded_path):
+        dirs[:] = [d for d in dirs if not is_excluded(d, os.path.join(root, d))]
+        rel = os.path.relpath(root, expanded_path)
+        target = container_target / rel if rel != '.' else container_target
         target.mkdir(parents=True, exist_ok=True)
 
         for f in files:
-            if is_protected(f) or f in PROTECTED_FILES:
+            full_f = os.path.join(root, f)
+            if is_excluded(f, full_f) or f in PROTECTED_FILES or f in EXCLUDED_FILES:
                 continue
             src_file = Path(root) / f
             dst_file = target / f
             try:
-                shutil.copy2(src_file, dst_file)
-                copied += 1
+                if not dst_file.exists() or src_file.stat().st_mtime > dst_file.stat().st_mtime:
+                    shutil.copy2(src_file, dst_file)
+                    copied += 1
             except Exception as e:
                 print(f"  ❌ Error copying {f}: {e}")
                 
-    print(f"✅ Safe sync completed ({copied} files copied).")
+    print(f"✅ Auto-sync completed ({copied} files updated from Obsidian Vault).")
+    return True
 
-def generate_vault_index_and_html(app_dir: Path):
-    """Generates site-lib/vault-index.json, syncs folder index.html files, and builds root index.html."""
-    print(f"🪐 Building digital garden workspace at: {app_dir}")
-    
-    # 1. Discover workspace directories
-    entries = []
-    all_md_files = []
-    
-    for item in sorted(os.listdir(app_dir)):
-        item_path = app_dir / item
-        if not item_path.is_dir() or is_protected(item):
-            continue
-            
-        md_count = 0
-        for root, dirs, files in os.walk(item_path):
-            dirs[:] = [d for d in dirs if not is_protected(d)]
-            for f in files:
-                if f.endswith('.md'):
-                    md_count += 1
-                    rel_p = os.path.relpath(os.path.join(root, f), app_dir)
-                    all_md_files.append(rel_p.replace('\\', '/'))
-                    
-        if md_count > 0 or (item_path / "index.md").exists():
-            entries.append((item, md_count))
-
-    # 2. Update site-lib/vault-index.json
-    vault_index_path = app_dir / "site-lib" / "vault-index.json"
-    vault_index_path.parent.mkdir(parents=True, exist_ok=True)
-    try:
-        with open(vault_index_path, 'w', encoding='utf-8') as fh:
-            json.dump({'files': sorted(all_md_files)}, fh, indent=2)
-        print(f"✅ Updated {vault_index_path.name} with {len(all_md_files)} markdown notes.")
-    except Exception as e:
-        print(f"❌ Could not write {vault_index_path.name}: {e}")
-
-    # 3. Ensure viewer index.html in each workspace folder
-    viewer_template_path = app_dir / "site-lib" / "html" / "viewer.html"
-    if viewer_template_path.exists():
-        with open(viewer_template_path, 'r', encoding='utf-8') as fh:
-            viewer_html_content = fh.read()
-            
-        for name, _ in entries:
-            folder_index = app_dir / name / "index.html"
-            try:
-                with open(folder_index, 'w', encoding='utf-8') as fh:
-                    fh.write(viewer_html_content)
-                print(f"  • Verified viewer in: {name}/")
-            except Exception as e:
-                print(f"  ❌ Failed to write {folder_index}: {e}")
-
-    # 4. Generate Root index.html Cosmic Graph
-    nodes_data = [{"id": "root", "label": "Shared Vault", "url": None, "isRoot": True, "moons": 0}]
-    for name, sub_count in entries:
-        label = name.replace('-', ' ').replace('_', ' ').title()
-        nodes_data.append({
-            "id": name,
-            "label": label,
-            "url": f"./{name}/",
-            "isRoot": False,
-            "moons": sub_count
-        })
-
-    # Call generate_index.py if present or write index.html directly
+def run_index_generation(app_dir: Path):
+    """Executes generate_index.py to rebuild vault-index.json and index.html."""
     generate_py = app_dir / "generate_index.py"
     if generate_py.exists():
         os.system(f'"{sys.executable}" "{generate_py}" "{app_dir}" "{app_dir / "index.html"}"')
-    
-    print(f"🎉 Workspace generated with {len(entries)} folders and {len(all_md_files)} notes.")
+    else:
+        print("❌ generate_index.py not found.")
 
-def watch_directory(app_dir: Path, source_dir: Path = None):
+def watch_directory(app_dir: Path, source_dirs: list):
     """Zero-dependency cross-platform file watcher."""
+    container_dir = app_dir / VAULT_CONTAINER
     print("👁️ Starting platform-independent file watcher...")
-    print(f"   Monitoring: {source_dir or app_dir}")
+    print(f"   Monitoring container: {container_dir}")
     print("   Press Ctrl+C to stop.")
 
     def get_snapshot(directory: Path):
         snapshot = {}
+        if not directory.exists():
+            return snapshot
         for root, dirs, files in os.walk(directory):
-            dirs[:] = [d for d in dirs if not is_protected(d)]
+            dirs[:] = [d for d in dirs if not is_excluded(d)]
             for f in files:
                 if f.endswith('.md') or f.endswith('.json') or f.endswith('.css') or f.endswith('.js'):
                     fp = os.path.join(root, f)
@@ -217,20 +253,20 @@ def watch_directory(app_dir: Path, source_dir: Path = None):
                         pass
         return snapshot
 
-    watch_target = source_dir if source_dir and source_dir.exists() else app_dir
-    last_snapshot = get_snapshot(watch_target)
+    last_snapshot = get_snapshot(container_dir)
     
     while True:
         try:
             time.sleep(2.5)
-            current_snapshot = get_snapshot(watch_target)
+            for src in source_dirs:
+                sync_from_source_vault(src, app_dir)
+
+            current_snapshot = get_snapshot(container_dir)
             if current_snapshot != last_snapshot:
                 print("\n🔄 Detected changes in notes or configuration. Rebuilding...")
-                if source_dir and source_dir.exists():
-                    safe_copy_notes(source_dir, app_dir)
-                sanitize_workspace(app_dir)
-                generate_vault_index_and_html(app_dir)
-                last_snapshot = get_snapshot(watch_target)
+                sanitize_workspace(container_dir)
+                run_index_generation(app_dir)
+                last_snapshot = get_snapshot(container_dir)
         except KeyboardInterrupt:
             print("\n🛑 Watcher stopped.")
             break
@@ -245,20 +281,24 @@ def main():
     args = parser.parse_args()
 
     app_dir = SCRIPT_DIR
-    src_vault = Path(args.from_vault).resolve() if args.from_vault else None
+    target_vault_dir = app_dir / VAULT_CONTAINER
 
     if args.sanitize:
-        sanitize_workspace(app_dir)
+        sanitize_workspace(target_vault_dir)
         return
 
-    if src_vault and src_vault.exists():
-        safe_copy_notes(src_vault, app_dir)
+    all_sources = list(SOURCE_VAULT_PATHS)
+    if args.from_vault:
+        all_sources.insert(0, args.from_vault)
 
-    sanitize_workspace(app_dir)
-    generate_vault_index_and_html(app_dir)
+    for src in all_sources:
+        sync_from_source_vault(src, app_dir)
+
+    sanitize_workspace(target_vault_dir)
+    run_index_generation(app_dir)
 
     if args.watch:
-        watch_directory(app_dir, src_vault)
+        watch_directory(app_dir, all_sources)
 
 if __name__ == "__main__":
     main()
