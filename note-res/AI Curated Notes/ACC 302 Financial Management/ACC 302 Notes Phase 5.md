@@ -82,7 +82,7 @@ flowchart LR
     class t0,t1,tN timeline;
 ```
 
-#### 1. Initial Cash Outflow $$CF_0$ or $ICO$$ at $t=0$
+#### 1. Initial Cash Outflow $$CF_0(or $ICO$) at $t=0$
 The net upfront cash investment required to place a capital project into service.
 
 > [!quote] Formula & Derivation: Initial Cash Outflow
@@ -120,7 +120,7 @@ The net cash flow realized upon project completion and windup.
 ### LO 5.4: Capital Budgeting Evaluation Techniques
 
 #### 1. Payback Period $PBP$ and Discounted Payback Period $DPBP$
-* **Payback Period $PBP$:** The exact number of years required for cumulative undiscounted cash inflows to recover the initial investment cost $$CF_0$$.
+* **Payback Period (PBP $:** The exact number of years required for cumulative undiscounted cash inflows to recover the initial investment cost$)CF_0$$.
   > [!quote] Formula & Derivation: Payback Period
   > $$\text{PBP} = A + \frac{B}{C}$$
   > *Where $A$ is the last period with a negative cumulative cash flow, $B$ is the unrecovered cost at the start of period $A+1$, and $C$ is the total cash flow in period $A+1$.*
@@ -174,7 +174,7 @@ The net cash flow realized upon project completion and windup.
 
 #### 2. NPV Profiles & Crossover Rates
 * **NPV Profile:** A plot of a project's NPV against a range of discount rates. The vertical axis intercept reflects total undiscounted net cash flows $$r = 0\%$$, and the horizontal axis intercept equals the project's IRR.
-* **Crossover Rate:** The discount rate at which the NPV profiles of two mutually exclusive projects intersect $where $\text{NPV}_A = \text{NPV}_B$$. Calculated by finding the IRR of the incremental cash flows $$\Delta CF = CF_{A,t} - CF_{B,t}$$.
+* **Crossover Rate:** The discount rate at which the NPV profiles of two mutually exclusive projects intersect (where $\text{NPV}_A = \text{NPV}_B$). Calculated by finding the IRR of the incremental cash flows $$\Delta CF = CF_{A,t} - CF_{B,t}$$.
 
 
 

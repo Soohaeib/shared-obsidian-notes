@@ -66,7 +66,7 @@ flowchart TD
 * **Codification Research System $CRS$**: Online database structured topically.
 * **Numerical Citation System**: $\text{Topic}-\text{Subtopic}-\text{Section}-\text{Paragraph}$
   * *Example*: $\text{FASB ASC } 310-10-35-47$ refers to **Receivables** (Topic 310), **Overall** (Subtopic 10), **Subsequent Measurement** (Section 35), **Paragraph 47**.
-  * *SEC Content*: Designated with an "S" preceding the section number $e.g., $\text{S99}$$.
+  * *SEC Content*: Designated with an "S" preceding the section number (e.g., $\text{S99}$).
 ##### 4. International & Historical Standard-Setters
 * **American Institute of Certified Public Accountants $AICPA$**: National professional organization; previously issued accounting standards via the Committee on Accounting Procedure (CAP: Accounting Research Bulletins) and the Accounting Principles Board (APB: APB Opinions).
 * **International Accounting Standards Board $IASB$**: Independent body issuing **International Financial Reporting Standards $IFRS$** used in over 120 jurisdictions.

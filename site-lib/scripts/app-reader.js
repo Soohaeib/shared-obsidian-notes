@@ -83,6 +83,7 @@ class ObsidianVaultApp {
     this.setupHoverLinkPreviews();
     this.setupGraph();
     this.handleRoute();
+    this.loadVaultHealth();
 
     window.addEventListener('hashchange', () => this.handleRoute());
   }
@@ -215,6 +216,11 @@ class ObsidianVaultApp {
       this.openSearchModal();
     });
 
+    // Vault Health Diagnostics Modal
+    document.getElementById('btn-vault-health')?.addEventListener('click', () => {
+      this.openHealthModal();
+    });
+
     window.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
@@ -235,6 +241,9 @@ class ObsidianVaultApp {
     document.getElementById('graph-sidebar-expand')?.addEventListener('click', () => this.openGraphModal());
     document.getElementById('graph-sidebar-global')?.addEventListener('click', () => this.toggleGraphMode());
     document.getElementById('modal-toggle-local-global')?.addEventListener('click', () => this.toggleGraphMode());
+
+    // Initialize Table of Contents global controls
+    this.setupTocGlobalControls();
 
     // Internal link click delegation (WikiLinks and Footnotes)
     document.addEventListener('click', (e) => {
@@ -755,9 +764,73 @@ class ObsidianVaultApp {
     if (this.sidebarGraph) this.sidebarGraph.updateFocus(relPath, this.graphMode);
   }
 
-  // Pre-process Obsidian Markdown: Footnotes, Highlights, Media Embeds, WikiLinks, and Tasks
+  // Pre-process Obsidian Markdown: Comments, Footnotes, Math placeholders, Highlights, Media Embeds, WikiLinks, and Tasks
   preprocessObsidianMarkdown(text) {
+    // Dynamic runtime sanitizer that automatically corrects common formatting typos
+    text = this.autoHealMarkdownTypos(text);
+
     this.currentFootnotesMap = new Map();
+    this.currentMathBlocksMap = new Map();
+    this.currentMathInlinesMap = new Map();
+    this.currentCodeBlocksMap = new Map();
+
+    // 0a. Temporarily extract fenced code blocks and inline code so math/wiki/comments inside code blocks are preserved intact
+    let codeBlockIdx = 0;
+    text = text.replace(/(```[\s\S]*?```|`[^`\n]+`)/g, (match) => {
+      const token = `%%CODE_BLOCK_${codeBlockIdx++}%%`;
+      this.currentCodeBlocksMap.set(token, match);
+      return token;
+    });
+
+    // 0b. Strip Obsidian top-level comments: %% comment %%
+    text = text.replace(/%%[\s\S]*?%%/g, '');
+
+    // 0c. Protect escaped dollar signs (currency / literal \$)
+    text = text.replace(/\\(\$)/g, '&#36;');
+
+    // 0d. Extract Display Math blocks: $$ ... $$
+    // Handles multi-line blockquotes (> $$ ... > $$) and single-line display math
+    let mathBlockIdx = 0;
+
+    // Multi-line display math (with optional blockquote > prefixes on lines)
+    text = text.replace(/^[ \t]*(?:>[ \t]*)?\$\$\s*\n([\s\S]*?)\n[ \t]*(?:>[ \t]*)?\$\$/gm, (match, formula) => {
+      if (/\n\s*(?:#{1,6}\s|---|\*\*\*)/.test(formula)) {
+        return match;
+      }
+      const cleanFormula = formula.replace(/^[ \t]*>[ \t]*/gm, '').trim();
+      const token = `@@KATEX_BLOCK_${mathBlockIdx++}@@`;
+      this.currentMathBlocksMap.set(token, cleanFormula);
+      return token;
+    });
+
+    // Single-line display math: $$ formula $$
+    text = text.replace(/\$\$([^\$\n\r]+?)\$\$/g, (match, formula) => {
+      const cleanFormula = formula.trim();
+      const token = `@@KATEX_BLOCK_${mathBlockIdx++}@@`;
+      this.currentMathBlocksMap.set(token, cleanFormula);
+      return token;
+    });
+
+    // 0e. Extract LaTeX environments: \begin{equation}...\end{equation}, \begin{array}...\end{array}, etc.
+    text = text.replace(/\\begin\{([a-zA-Z0-9*]+)\}([\s\S]*?)\\end\{\1\}/g, (match, env, body) => {
+      const full = `\\begin{${env}}${body}\\end{${env}}`;
+      const cleanFormula = full.replace(/^[ \t]*>[ \t]*/gm, '').trim();
+      const token = `@@KATEX_BLOCK_${mathBlockIdx++}@@`;
+      this.currentMathBlocksMap.set(token, cleanFormula);
+      return token;
+    });
+
+    // 0f. Extract inline Math: $formula$ (using CommonMark math rules, strictly within single lines)
+    let mathInlineIdx = 0;
+    text = text.replace(/(?<![\w\\\$])\$(?!\s)([^\$\n\r]+?)(?<!\s)\$(?![\w\d\$])/g, (match, formula) => {
+      const trimmed = formula.trim();
+      if (/^[\d,.]+(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b))?$/i.test(trimmed)) {
+        return match;
+      }
+      const token = `@@KATEX_INLINE_${mathInlineIdx++}@@`;
+      this.currentMathInlinesMap.set(token, trimmed);
+      return token;
+    });
 
     // 1. Footnote definitions: ^[^1]: Text or multi-line
     text = text.replace(/^\[\^([a-zA-Z0-9_\-]+)\]:\s*([^\n]+(?:\n(?!\n|\[\^|\#|\-|\*).*)*)/gm, (match, fnId, fnContent) => {
@@ -773,20 +846,44 @@ class ObsidianVaultApp {
     // 3. Highlights: ==text== -> <mark>text</mark>
     text = text.replace(/==([^=\n]+)==/g, '<mark>$1</mark>');
 
-    // 4. Obsidian Media & Image Embeds: ![[image.png]] or ![[image.png|300]] or ![[diagram.png|Alt text]]
+    // 4. Obsidian Block References: ^block-id at end of line
+    text = text.replace(/\s+\^([a-zA-Z0-9\-]+)$/gm, ' <span id="$1" class="obsidian-block-anchor"></span>');
+
+    // 5. Obsidian Media & Note Transclusion Embeds: ![[...]]
     text = text.replace(/!\[\[([^\]\n]+)\]\]/g, (match, inner) => {
       let [file, opt] = inner.split('|').map(s => s ? s.trim() : '');
       const cleanFile = file.trim();
-      const resolvedSrc = this.resolveMediaPath(cleanFile);
-      let style = 'max-width: 100%; border-radius: 6px;';
-      if (opt && /^\d+$/.test(opt)) {
-        style += ` width: ${opt}px;`;
+
+      if (/\.(png|jpe?g|gif|svg|webp|bmp|mp4|webm|mov)$/i.test(cleanFile)) {
+        const resolvedSrc = this.resolveMediaPath(cleanFile);
+        let style = 'max-width: 100%; border-radius: 6px;';
+        if (opt && /^\d+$/.test(opt)) {
+          style += ` width: ${opt}px;`;
+        }
+        const alt = opt && !/^\d+$/.test(opt) ? opt : cleanFile;
+        return `<figure class="obsidian-media-embed"><img src="${resolvedSrc}" alt="${alt}" style="${style}" loading="lazy" /></figure>`;
       }
-      const alt = opt && !/^\d+$/.test(opt) ? opt : cleanFile;
-      return `<figure class="obsidian-media-embed"><img src="${resolvedSrc}" alt="${alt}" style="${style}" loading="lazy" /></figure>`;
+
+      const res = this.resolveWikiLink(cleanFile);
+      const isResolved = Boolean(res.resolved);
+      let targetHref = res.path;
+      if (!res.isCrossFolder) {
+        targetHref = `#${encodeURIComponent(res.path)}`;
+      }
+      return `
+        <div class="obsidian-embed-card">
+          <div class="embed-card-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            <a class="internal-link ${isResolved ? 'is-resolved' : 'is-unresolved'}" href="${targetHref}">${res.title || cleanFile}</a>
+          </div>
+        </div>
+      `;
     });
 
-    // 5. Obsidian WikiLinks: [[Note|Label]], [[Note#Heading|Label]], [[#Heading|Label]], [[Note#Heading]], [[#Heading]], [[Note]]
+    // 6. Obsidian WikiLinks: [[Note|Label]], [[Note#Heading|Label]], [[#Heading|Label]], [[Note#Heading]], [[#Heading]], [[Note]]
     text = text.replace(/\[\[([^\]\n]+)\]\]/g, (match, inner) => {
       let notePart = inner;
       let label = '';
@@ -825,9 +922,17 @@ class ObsidianVaultApp {
       return `<a class="internal-link ${isResolved ? 'is-resolved' : 'is-unresolved'}" href="${targetHref}" data-note-path="${res.path}" title="${isResolved ? `Open: ${display}` : `Unresolved note: ${noteName}`}">${display}</a>`;
     });
 
-    // 6. Task lists
+    // 7. Obsidian Tags: #tag or #folder/subtag (excluding headings '# ' and hex colors '#fff')
+    text = text.replace(/(^|[\s(])#([a-zA-Z0-9_\-\/]+)(?=[\s).,;:!?]|$)/g, '$1<span class="obsidian-tag">#$2</span>');
+
+    // 8. Task lists
     text = text.replace(/^(\s*)-\s+\[ \]\s+(.*)$/gm, '$1- <input type="checkbox" disabled class="task-checkbox"> $2');
     text = text.replace(/^(\s*)-\s+\[x\]\s+(.*)$/gim, '$1- <input type="checkbox" checked disabled class="task-checkbox"> $2');
+
+    // 9. Restore code blocks
+    for (const [token, codeContent] of this.currentCodeBlocksMap.entries()) {
+      text = text.replace(token, () => codeContent);
+    }
 
     return text;
   }
@@ -882,9 +987,52 @@ class ObsidianVaultApp {
     return { path: `${raw}.md`, resolved: false, title: raw };
   }
 
-  // Post-process HTML for Callouts, Math, and Footnotes
+  // Post-process HTML for Math, Callouts, and Footnotes
   postprocessObsidianHtml(html) {
-    // Append Footnotes Section if any were defined in the document
+    // 1. Render Math Blocks
+    if (this.currentMathBlocksMap && this.currentMathBlocksMap.size > 0) {
+      for (const [token, formula] of this.currentMathBlocksMap.entries()) {
+        let renderedMath = '';
+        try {
+          if (window.katex) {
+            renderedMath = window.katex.renderToString(formula, { displayMode: true, throwOnError: false });
+          } else {
+            renderedMath = `<div class="katex-display">$$${formula}$$</div>`;
+          }
+        } catch (e) {
+          renderedMath = `<div class="katex-display">$$${formula}$$</div>`;
+        }
+        if (!renderedMath.startsWith('<div')) {
+          renderedMath = `<div class="katex-display-wrapper">${renderedMath}</div>`;
+        }
+        // Match token even if marked wrapped it in <p>...</p>
+        const pRegex = new RegExp(`<p>\\s*${token}\\s*<\\/p>`, 'g');
+        if (pRegex.test(html)) {
+          html = html.replace(new RegExp(`<p>\\s*${token}\\s*<\\/p>`, 'g'), () => renderedMath);
+        } else {
+          html = html.replaceAll(token, () => renderedMath);
+        }
+      }
+    }
+
+    // 2. Render Inline Math
+    if (this.currentMathInlinesMap && this.currentMathInlinesMap.size > 0) {
+      for (const [token, formula] of this.currentMathInlinesMap.entries()) {
+        let renderedMath = '';
+        try {
+          if (window.katex) {
+            renderedMath = window.katex.renderToString(formula, { displayMode: false, throwOnError: false });
+          } else {
+            renderedMath = `<span class="katex">$${formula}$</span>`;
+          }
+        } catch (e) {
+          renderedMath = `<span class="katex">$${formula}$</span>`;
+        }
+        html = html.replaceAll(token, () => renderedMath);
+      }
+    }
+
+    // 3. Append Footnotes Section if any were defined in the document
     if (this.currentFootnotesMap && this.currentFootnotesMap.size > 0) {
       let fnHtml = '<section class="footnotes"><hr class="footnotes-sep"><ol class="footnotes-list">';
       for (const [key, content] of this.currentFootnotesMap.entries()) {
@@ -900,8 +1048,8 @@ class ObsidianVaultApp {
       html += fnHtml;
     }
 
+    // 4. Obsidian Callouts
     const calloutRegex = /<blockquote>\s*<p>\[!([a-zA-Z0-9_\-]+)\]([+\-])?\s*([^\n<]*)?([\s\S]*?)<\/blockquote>/gi;
-
     html = html.replace(calloutRegex, (match, rawType, foldChar, title, rest) => {
       const type = rawType.toLowerCase();
       const isCollapsible = foldChar === '+' || foldChar === '-';
@@ -920,6 +1068,14 @@ class ObsidianVaultApp {
         `;
       }
 
+      let bodyHtml = (rest || '').trim();
+      if (bodyHtml.startsWith('</p>')) {
+        bodyHtml = bodyHtml.slice(4).trim();
+      }
+      if (bodyHtml && !bodyHtml.startsWith('<p') && !bodyHtml.startsWith('<div') && !bodyHtml.startsWith('<ul') && !bodyHtml.startsWith('<ol') && !bodyHtml.startsWith('<table') && !bodyHtml.startsWith('<blockquote')) {
+        bodyHtml = `<p>${bodyHtml}</p>`;
+      }
+
       return `
         <div class="callout ${isFolded ? 'is-collapsed' : ''}" data-callout="${type}" ${isCollapsible ? 'data-callout-fold="true"' : ''}>
           <div class="callout-title">
@@ -927,9 +1083,7 @@ class ObsidianVaultApp {
             <span class="callout-title-inner">${displayTitle}</span>
             ${foldIndicator}
           </div>
-          <div class="callout-content">
-            <p>${rest.trim()}</p>
-          </div>
+          <div class="callout-content">${bodyHtml}</div>
         </div>
       `;
     });
@@ -1028,31 +1182,41 @@ class ObsidianVaultApp {
   }
 
   initInteractiveWidgets() {
+    // Callouts collapsible toggle
     document.querySelectorAll('.callout[data-callout-fold="true"]').forEach(callout => {
       callout.querySelector('.callout-title')?.addEventListener('click', () => {
         callout.classList.toggle('is-collapsed');
       });
     });
 
-    const mermaidCodes = document.querySelectorAll('pre code.language-mermaid, pre code.mermaid');
-    if (mermaidCodes.length > 0 && window.mermaid) {
-      window.mermaid.initialize({
-        startOnLoad: false,
-        theme: this.theme === 'dark' ? 'dark' : 'default',
-        themeVariables: {
-          darkMode: this.theme === 'dark',
-          primaryColor: '#88c0d0',
-          primaryTextColor: '#eceff4',
-          primaryBorderColor: '#81a1c1',
-          lineColor: '#4c566a',
-          secondaryColor: '#ebcb8b',
-          tertiaryColor: '#434c5e'
-        }
-      });
+    // Mermaid & Mindmap Diagrams
+    const diagramCodes = document.querySelectorAll('pre code[class*="language-mermaid"], pre code[class*="mermaid"], pre code[class*="language-mindmap"], pre code[class*="mindmap"], pre code[class*="language-markmap"]');
+    if (diagramCodes.length > 0 && window.mermaid) {
+      try {
+        window.mermaid.initialize({
+          startOnLoad: false,
+          securityLevel: 'loose',
+          theme: this.theme === 'dark' ? 'dark' : 'default',
+          themeVariables: {
+            darkMode: this.theme === 'dark',
+            primaryColor: '#88c0d0',
+            primaryTextColor: '#eceff4',
+            primaryBorderColor: '#81a1c1',
+            lineColor: '#4c566a',
+            secondaryColor: '#ebcb8b',
+            tertiaryColor: '#434c5e'
+          }
+        });
+      } catch (e) {}
 
-      mermaidCodes.forEach((codeEl, index) => {
+      diagramCodes.forEach((codeEl, index) => {
         const parent = codeEl.closest('pre');
-        const codeText = codeEl.innerText;
+        let codeText = codeEl.innerText.trim();
+        const isMindmap = codeEl.className.includes('mindmap') || codeEl.className.includes('markmap');
+        if (isMindmap && !codeText.startsWith('mindmap')) {
+          codeText = `mindmap\n${codeText}`;
+        }
+
         const container = document.createElement('div');
         container.className = 'mermaid-diagram-container';
         const id = `mermaid-diag-${Date.now()}-${index}`;
@@ -1060,28 +1224,143 @@ class ObsidianVaultApp {
         try {
           window.mermaid.render(id, codeText).then(({ svg }) => {
             container.innerHTML = svg;
-            parent.replaceWith(container);
-          }).catch(() => {});
-        } catch (e) {}
+            if (parent && parent.parentNode) {
+              parent.replaceWith(container);
+            }
+          }).catch(err => {
+            console.warn('Mermaid render issue:', err);
+          });
+        } catch (e) {
+          console.warn('Mermaid render error:', e);
+        }
+      });
+    }
+  }
+
+  setupTocGlobalControls() {
+    // Collapse / Expand All button in TOC header
+    const btnToggleAll = document.getElementById('btn-toc-collapse-expand-all');
+    if (btnToggleAll && !btnToggleAll._bound) {
+      btnToggleAll._bound = true;
+      btnToggleAll.addEventListener('click', () => {
+        const allChildren = document.querySelectorAll('#toc-container .toc-children');
+        const allTwists = document.querySelectorAll('#toc-container .toc-twisty-btn');
+        if (!allChildren.length) return;
+
+        const anyOpen = Array.from(allChildren).some(el => !el.classList.contains('is-collapsed'));
+        allChildren.forEach(el => {
+          if (anyOpen) {
+            el.classList.add('is-collapsed');
+          } else {
+            el.classList.remove('is-collapsed');
+          }
+        });
+        allTwists.forEach(btn => {
+          if (anyOpen) {
+            btn.classList.add('is-collapsed');
+            btn.setAttribute('aria-expanded', 'false');
+          } else {
+            btn.classList.remove('is-collapsed');
+            btn.setAttribute('aria-expanded', 'true');
+          }
+        });
+        this.showToast(anyOpen ? 'Collapsed all subsections' : 'Expanded all subsections');
       });
     }
 
-    if (window.katex) {
-      const article = document.getElementById('note-article');
-      if (article) {
-        article.innerHTML = article.innerHTML.replace(/\$\$([\s\S]+?)\$\$/g, (match, formula) => {
-          try {
-            return window.katex.renderToString(formula, { displayMode: true, throwOnError: false });
-          } catch(e) { return match; }
-        });
+    // Search Toggle Button
+    const btnSearchToggle = document.getElementById('btn-toc-search-toggle');
+    const searchBar = document.getElementById('toc-search-bar');
+    const filterInput = document.getElementById('toc-filter-input');
+    const filterClear = document.getElementById('btn-toc-filter-clear');
 
-        article.innerHTML = article.innerHTML.replace(/\$([^\$\n]+?)\$/g, (match, formula) => {
-          try {
-            return window.katex.renderToString(formula, { displayMode: false, throwOnError: false });
-          } catch(e) { return match; }
-        });
-      }
+    if (btnSearchToggle && searchBar && !btnSearchToggle._bound) {
+      btnSearchToggle._bound = true;
+      btnSearchToggle.addEventListener('click', () => {
+        searchBar.classList.toggle('is-hidden');
+        btnSearchToggle.classList.toggle('active', !searchBar.classList.contains('is-hidden'));
+        if (!searchBar.classList.contains('is-hidden')) {
+          filterInput?.focus();
+        } else if (filterInput) {
+          filterInput.value = '';
+          this.filterTocHeadings('');
+        }
+      });
     }
+
+    if (filterInput && !filterInput._bound) {
+      filterInput._bound = true;
+      filterInput.addEventListener('input', (e) => {
+        this.filterTocHeadings(e.target.value);
+      });
+    }
+
+    if (filterClear && filterInput && !filterClear._bound) {
+      filterClear._bound = true;
+      filterClear.addEventListener('click', () => {
+        filterInput.value = '';
+        this.filterTocHeadings('');
+        filterInput.focus();
+      });
+    }
+  }
+
+  filterTocHeadings(query) {
+    const q = (query || '').trim().toLowerCase();
+    const tocNodes = document.querySelectorAll('#toc-container .toc-node');
+    if (!tocNodes.length) return;
+
+    if (!q) {
+      tocNodes.forEach(node => {
+        node.classList.remove('is-filtered-out');
+        const link = node.querySelector(':scope > .toc-node-self > .toc-link');
+        if (link && link._rawText) {
+          link.textContent = link._rawText;
+        }
+      });
+      return;
+    }
+
+    tocNodes.forEach(node => {
+      const link = node.querySelector(':scope > .toc-node-self > .toc-link');
+      if (!link) return;
+      if (!link._rawText) link._rawText = link.textContent;
+      const text = link._rawText;
+      const matches = text.toLowerCase().includes(q);
+
+      if (matches) {
+        node.classList.remove('is-filtered-out');
+        const reg = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        link.innerHTML = text.replace(reg, '<mark class="toc-match">$1</mark>');
+        let parent = node.parentElement;
+        while (parent && parent.id !== 'toc-container') {
+          if (parent.classList.contains('toc-children')) {
+            parent.classList.remove('is-collapsed');
+            const parentTwist = parent.parentElement?.querySelector(':scope > .toc-node-self > .toc-twisty-btn');
+            if (parentTwist) {
+              parentTwist.classList.remove('is-collapsed');
+              parentTwist.setAttribute('aria-expanded', 'true');
+            }
+          }
+          if (parent.classList.contains('toc-node')) {
+            parent.classList.remove('is-filtered-out');
+          }
+          parent = parent.parentElement;
+        }
+      } else {
+        const childMatches = Array.from(node.querySelectorAll('.toc-link')).some(cl => {
+          const cText = cl._rawText || cl.textContent;
+          return cText.toLowerCase().includes(q);
+        });
+        if (childMatches) {
+          node.classList.remove('is-filtered-out');
+          link.textContent = text;
+        } else {
+          node.classList.add('is-filtered-out');
+          link.textContent = text;
+        }
+      }
+    });
   }
 
   buildTableOfContents() {
@@ -1089,26 +1368,99 @@ class ObsidianVaultApp {
     const article = document.getElementById('note-article');
     if (!tocContainer || !article) return;
 
-    const headings = Array.from(article.querySelectorAll('h1, h2, h3, h4'));
+    const headings = Array.from(article.querySelectorAll('h1, h2, h3, h4, h5, h6'));
     if (headings.length === 0) {
       tocContainer.innerHTML = '<div style="padding: 8px 4px; font-size: 0.8rem; color: var(--text-faint);">No headings in this document.</div>';
       return;
     }
 
-    let tocHtml = '<nav class="toc-nav">';
+    // Build hierarchical tree
+    const root = { depth: 0, children: [] };
+    const stack = [root];
+
     headings.forEach((h, index) => {
       if (!h.id) {
         h.id = `heading-${index}-${h.innerText.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
       }
       const depth = parseInt(h.tagName.substring(1), 10);
-      tocHtml += `
-        <a href="#${h.id}" data-heading-id="${h.id}" class="toc-link depth-${depth}" onclick="event.preventDefault(); document.getElementById('${h.id}')?.scrollIntoView({ behavior: 'smooth' });">
-          ${h.innerText}
-        </a>
-      `;
+      const node = {
+        id: h.id,
+        text: h.innerText.trim(),
+        depth: depth,
+        element: h,
+        children: []
+      };
+
+      while (stack.length > 1 && stack[stack.length - 1].depth >= depth) {
+        stack.pop();
+      }
+      stack[stack.length - 1].children.push(node);
+      stack.push(node);
     });
-    tocHtml += '</nav>';
-    tocContainer.innerHTML = tocHtml;
+
+    // Render tree recursively
+    const renderTocNodes = (nodes) => {
+      let html = '';
+      nodes.forEach(node => {
+        const hasChildren = node.children && node.children.length > 0;
+        html += `<div class="toc-node" data-heading-id="${node.id}">`;
+        html += `<div class="toc-node-self">`;
+        if (hasChildren) {
+          html += `
+            <button class="toc-twisty-btn" title="Toggle subsection" aria-expanded="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+          `;
+        } else {
+          html += `<span class="toc-twist-spacer"></span>`;
+        }
+        html += `<a href="#${node.id}" data-heading-id="${node.id}" class="toc-link depth-${node.depth}" title="${node.text}">${node.text}</a>`;
+        html += `</div>`;
+        if (hasChildren) {
+          html += `<div class="toc-children">${renderTocNodes(node.children)}</div>`;
+        }
+        html += `</div>`;
+      });
+      return html;
+    };
+
+    tocContainer.innerHTML = `<nav class="toc-nav">${renderTocNodes(root.children)}</nav>`;
+
+    // Wire up twisty toggle buttons
+    tocContainer.querySelectorAll('.toc-twisty-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const parentNode = btn.closest('.toc-node');
+        const childrenContainer = parentNode?.querySelector(':scope > .toc-children');
+        if (childrenContainer) {
+          const isCollapsed = childrenContainer.classList.toggle('is-collapsed');
+          btn.classList.toggle('is-collapsed', isCollapsed);
+          btn.setAttribute('aria-expanded', !isCollapsed);
+        }
+      });
+    });
+
+    // Wire up TOC link clicks for smooth scrolling
+    tocContainer.querySelectorAll('.toc-link').forEach(link => {
+      link._rawText = link.textContent;
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const headingId = link.getAttribute('data-heading-id');
+        const targetEl = document.getElementById(headingId);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth' });
+          history.replaceState(null, '', `#${headingId}`);
+        }
+      });
+    });
+
+    // Re-apply filter if filter input had a value
+    const filterInput = document.getElementById('toc-filter-input');
+    if (filterInput && filterInput.value) {
+      this.filterTocHeadings(filterInput.value);
+    }
 
     // Active Scrollspy using IntersectionObserver
     if (this._tocObserver) {
@@ -1136,13 +1488,25 @@ class ObsidianVaultApp {
         tocLinks.forEach(link => {
           if (link.getAttribute('data-heading-id') === activeHeadingId) {
             link.classList.add('is-active');
+            let parent = link.closest('.toc-node')?.parentElement;
+            while (parent && parent.id !== 'toc-container') {
+              if (parent.classList.contains('toc-children') && parent.classList.contains('is-collapsed')) {
+                parent.classList.remove('is-collapsed');
+                const twist = parent.parentElement?.querySelector(':scope > .toc-node-self > .toc-twisty-btn');
+                if (twist) {
+                  twist.classList.remove('is-collapsed');
+                  twist.setAttribute('aria-expanded', 'true');
+                }
+              }
+              parent = parent.parentElement;
+            }
           } else {
             link.classList.remove('is-active');
           }
         });
       }
     }, {
-      rootMargin: '-10% 0px -70% 0px',
+      rootMargin: '-5% 0px -75% 0px',
       threshold: [0, 1.0]
     });
 
@@ -1374,6 +1738,172 @@ class ObsidianVaultApp {
     this._toastTimeout = setTimeout(() => {
       toast.classList.remove('is-visible');
     }, 2400);
+  }
+
+  escapeHtml(str) {
+    if (!str) return '';
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+
+  // Real-time markdown typo sanitizer
+  autoHealMarkdownTypos(text) {
+    if (!text) return text;
+    // 1. Nested/unbalanced math delimiter typos: $e.g., $\text{S99}$$ -> (e.g., $\text{S99}$)
+    text = text.replace(/\$([a-zA-Z\s,.:;]+)\$([^\$\n\r]+)\$\$/g, '($1 $$$2$$)');
+    // 2. Fix unspaced callouts: >[!tip]Title -> > [!tip] Title
+    text = text.replace(/^[ \t]*>\[!([a-zA-Z0-9_\-]+)\]([^\s\n<].*)$/gm, '> [!$1] $2');
+    // 3. Fix unspaced headings: ###Heading -> ### Heading
+    text = text.replace(/^(#{1,6})([^\s#\n\r].*)$/gm, '$1 $2');
+    return text;
+  }
+
+  // Load Vault Health report
+  async loadVaultHealth() {
+    const pathsToTry = [
+      '../../site-lib/vault-health.json',
+      '../site-lib/vault-health.json',
+      './site-lib/vault-health.json',
+      'site-lib/vault-health.json',
+      '/site-lib/vault-health.json'
+    ];
+
+    let data = null;
+    for (const p of pathsToTry) {
+      try {
+        const res = await fetch(p);
+        if (res.ok) {
+          data = await res.json();
+          break;
+        }
+      } catch (e) {}
+    }
+
+    if (!data) return;
+    this.vaultHealthData = data;
+
+    // Update Header Badge
+    const badge = document.getElementById('vault-health-badge');
+    if (badge && data.summary) {
+      badge.innerText = `${data.summary.healthScore}%`;
+      if (data.summary.totalIssues > 0 && data.summary.cleanFiles < data.summary.totalFiles) {
+        badge.classList.add('has-warnings');
+      } else {
+        badge.classList.remove('has-warnings');
+      }
+    }
+  }
+
+  openHealthModal() {
+    const modal = document.getElementById('vault-health-modal');
+    if (!modal) return;
+    modal.classList.add('is-open');
+
+    if (this.vaultHealthData) {
+      const s = this.vaultHealthData.summary || {};
+      document.getElementById('metric-health-score').innerText = `${s.healthScore || 100}%`;
+      document.getElementById('metric-total-notes').innerText = s.totalFiles || 0;
+      document.getElementById('metric-clean-notes').innerText = s.cleanFiles || 0;
+      document.getElementById('metric-warning-notes').innerText = s.filesWithWarnings || 0;
+      document.getElementById('metric-auto-fixed').innerText = s.autoFixedIssues || 0;
+
+      // Calculate counts per category
+      const issues = this.vaultHealthData.issues || [];
+      const mathCount = issues.filter(i => i.category === 'LaTeX / Math').length;
+      const linksCount = issues.filter(i => i.category === 'WikiLink').length;
+      const mediaCount = issues.filter(i => i.category === 'Media Embed').length;
+      const calloutCount = issues.filter(i => i.category === 'Callout' || i.category === 'Markdown Syntax').length;
+
+      document.getElementById('count-all').innerText = issues.length;
+      document.getElementById('count-math').innerText = mathCount;
+      document.getElementById('count-links').innerText = linksCount;
+      document.getElementById('count-media').innerText = mediaCount;
+      document.getElementById('count-callout').innerText = calloutCount;
+
+      this.renderHealthIssues('all');
+
+      // Wire filter buttons
+      modal.querySelectorAll('.health-filter-btn').forEach(btn => {
+        btn.onclick = () => {
+          modal.querySelectorAll('.health-filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.getAttribute('data-filter');
+          this.renderHealthIssues(filter);
+        };
+      });
+    }
+  }
+
+  closeHealthModal() {
+    document.getElementById('vault-health-modal')?.classList.remove('is-open');
+  }
+
+  renderHealthIssues(filter = 'all') {
+    const list = document.getElementById('health-issues-list');
+    if (!list) return;
+
+    if (!this.vaultHealthData || !this.vaultHealthData.issues || this.vaultHealthData.issues.length === 0) {
+      list.innerHTML = `
+        <div style="text-align: center; padding: 40px; color: var(--green, #a3be8c);">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-bottom: 12px;">
+            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+          </svg>
+          <div style="font-size: 1.1rem; font-weight: 600;">Vault is 100% Healthy!</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted, #d8dee9); margin-top: 6px;">No syntax errors, broken links, or math delimiter issues found.</div>
+        </div>
+      `;
+      return;
+    }
+
+    let issues = this.vaultHealthData.issues;
+    if (filter !== 'all') {
+      if (filter === 'Callout') {
+        issues = issues.filter(i => i.category === 'Callout' || i.category === 'Markdown Syntax');
+      } else {
+        issues = issues.filter(i => i.category === filter);
+      }
+    }
+
+    if (issues.length === 0) {
+      list.innerHTML = `<div style="text-align: center; padding: 30px; color: var(--text-muted, #d8dee9);">No issues in this category.</div>`;
+      return;
+    }
+
+    let html = '';
+    issues.slice(0, 50).forEach(iss => {
+      const fileName = iss.file.split('/').pop();
+      const badgeClass = iss.category === 'LaTeX / Math' ? 'category-math' :
+                         iss.category === 'WikiLink' ? 'category-links' :
+                         iss.category === 'Media Embed' ? 'category-media' : 'category-callout';
+
+      html += `
+        <div class="issue-card">
+          <div class="issue-header">
+            <div class="issue-title-group">
+              <a class="issue-file-link" onclick="window.ObsidianApp.closeHealthModal(); window.location.hash='#${encodeURIComponent(iss.file)}'; return false;">
+                ${this.escapeHtml(fileName)}
+              </a>
+              <span class="issue-line-badge">Line ${iss.line || 1}</span>
+            </div>
+            <span class="issue-category-badge ${badgeClass}">${this.escapeHtml(iss.category)}</span>
+          </div>
+          <div class="issue-message">${this.escapeHtml(iss.message)}</div>
+          ${iss.snippet ? `<div class="issue-snippet-box">${this.escapeHtml(iss.snippet)}</div>` : ''}
+          ${iss.suggestion ? `<div class="issue-suggestion-box">💡 <strong>Suggestion:</strong> ${this.escapeHtml(iss.suggestion)}</div>` : ''}
+        </div>
+      `;
+    });
+
+    if (issues.length > 50) {
+      html += `<div style="text-align: center; padding: 12px; color: var(--text-muted, #d8dee9); font-size: 0.8rem;">Showing first 50 of ${issues.length} issues.</div>`;
+    }
+
+    list.innerHTML = html;
   }
 
   // Gatekeeper Fullscreen Overlay for password-protected notes

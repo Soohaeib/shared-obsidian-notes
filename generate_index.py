@@ -13,8 +13,12 @@ import sys
 import re
 from pathlib import Path
 
-source_dir = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else '.')
-out_path = sys.argv[2] if len(sys.argv) > 2 else os.path.join(source_dir, 'index.html')
+# Parse CLI arguments and flags
+args = [a for a in sys.argv[1:] if not a.startswith('--')]
+auto_fix_flag = '--auto-fix' in sys.argv or '--fix' in sys.argv
+
+source_dir = os.path.abspath(args[0] if len(args) > 0 else '.')
+out_path = args[1] if len(args) > 1 else os.path.join(source_dir, 'index.html')
 
 # Load locations.json configuration
 loc_file = os.path.join(source_dir, 'locations.json')
@@ -131,6 +135,17 @@ try:
     print(f"Updated {vault_index_path} with {len(all_md_files)} notes.")
 except Exception as e:
     print(f"Notice: Could not write vault-index.json: {e}")
+
+# Run Vault Health & Markdown Syntax Diagnostic Engine
+try:
+    from vault_linter import VaultLinter
+    auto_fix_requested = ('--auto-fix' in sys.argv or '--fix' in sys.argv)
+    linter = VaultLinter(source_dir, target_vault_dir=vault_container, auto_fix=auto_fix_requested)
+    health_rep = linter.run_all()
+    s = health_rep['summary']
+    print(f"✓ Vault Health Linter: {s['healthScore']}% Health | {s['totalFiles']} Notes ({s['cleanFiles']} Clean, {s['filesWithWarnings']} With Warnings) | {s['totalIssues']} Issues ({s['autoFixedIssues']} Auto-Fixed)")
+except Exception as e:
+    print(f"Notice: Vault health check skipped ({e})")
 
 # Generate Node Data for the Graph Physics Engine
 nodes_data = [{"id": "root", "label": "Shared Vault", "url": None, "isRoot": True, "moons": 0}]

@@ -203,7 +203,7 @@ flowchart TD
 > **Opportunity Cost:** The rate of return ($r$ or $i$) that could be earned on an alternative investment of similar risk.
 
 #### 2. Simple Interest vs. Compound Interest
-* **Simple Interest ($SI$):** Interest paid or earned strictly on the original principal amount $$PV_0$$.
+* **Simple Interest ((SI $):** Interest paid or earned strictly on the original principal amount$)PV_0$$.
   $$SI = PV_0 \times r \times n$$
   $$FV_n = PV_0 + SI = PV_0 \times [1 + (r \times n)]$$
 * **Compound Interest:** Interest earned on both the original principal balance and on all accumulated interest from prior periods. Creates exponential growth.
