@@ -80,6 +80,7 @@ class ObsidianVaultApp {
     this.setupUIEventListeners();
     await this.loadVaultNotes();
     this.buildFileTree();
+    this.setupHoverLinkPreviews();
     this.setupGraph();
     this.handleRoute();
 
@@ -182,6 +183,31 @@ class ObsidianVaultApp {
       if (this.sidebarGraph) this.sidebarGraph.updateTheme(this.theme);
       if (this.modalGraph) this.modalGraph.updateTheme(this.theme);
       this.showToast(`${this.theme === 'dark' ? 'Nord Dark' : 'Nord Light'} theme active`);
+    });
+
+    // Expand / Collapse all directories
+    document.getElementById('btn-collapse-expand-all')?.addEventListener('click', () => {
+      const folders = document.querySelectorAll('.nav-folder');
+      if (!folders.length) return;
+      const anyOpen = Array.from(folders).some(f => {
+        const ch = f.querySelector('.tree-item-children');
+        return ch && !ch.classList.contains('is-hidden');
+      });
+
+      folders.forEach(f => {
+        const ch = f.querySelector('.tree-item-children');
+        const icon = f.querySelector('.folder-item .tree-item-icon');
+        if (ch) {
+          if (anyOpen) {
+            ch.classList.add('is-hidden');
+            icon?.classList.add('is-collapsed');
+          } else {
+            ch.classList.remove('is-hidden');
+            icon?.classList.remove('is-collapsed');
+          }
+        }
+      });
+      this.showToast(anyOpen ? 'Collapsed all folders' : 'Expanded all folders');
     });
 
     // Quick Search Palette
@@ -646,44 +672,37 @@ class ObsidianVaultApp {
 
     container.innerHTML = `
       <div class="note-header-card">
-        <h1 class="note-title-heading">${title}</h1>
         <div class="note-meta-badges">
-          <span class="meta-badge">
+          <span class="meta-badge" title="Estimated reading time">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
             </svg>
             ${readingTime} min read
           </span>
-          <span class="meta-badge">
+          <span class="meta-badge" title="Total word count">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
               <polyline points="14 2 14 8 20 8"></polyline>
             </svg>
             ${words} words
           </span>
-          <span class="meta-badge">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-            </svg>
-            ${relPath}
-          </span>
         </div>
         <div class="note-actions-row">
-          <button class="tool-btn" id="btn-copy-md" title="Copy raw markdown to clipboard">
+          <button class="tool-btn" id="btn-copy-md" title="Copy raw Markdown to clipboard">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
             </svg>
-            <span>Copy Markdown</span>
+            <span>Copy MD</span>
           </button>
-          <button class="tool-btn" id="btn-download-md" title="Download .md file">
+          <button class="tool-btn" id="btn-download-md" title="Download note as Markdown file">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>
               <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
-            <span>Download .md</span>
+            <span>Download</span>
           </button>
         </div>
       </div>
@@ -1049,7 +1068,7 @@ class ObsidianVaultApp {
     const article = document.getElementById('note-article');
     if (!tocContainer || !article) return;
 
-    const headings = article.querySelectorAll('h1, h2, h3, h4');
+    const headings = Array.from(article.querySelectorAll('h1, h2, h3, h4'));
     if (headings.length === 0) {
       tocContainer.innerHTML = '<div style="padding: 8px 4px; font-size: 0.8rem; color: var(--text-faint);">No headings in this document.</div>';
       return;
@@ -1062,25 +1081,137 @@ class ObsidianVaultApp {
       }
       const depth = parseInt(h.tagName.substring(1), 10);
       tocHtml += `
-        <a href="#${h.id}" class="toc-link depth-${depth}" onclick="event.preventDefault(); document.getElementById('${h.id}').scrollIntoView({ behavior: 'smooth' });">
+        <a href="#${h.id}" data-heading-id="${h.id}" class="toc-link depth-${depth}" onclick="event.preventDefault(); document.getElementById('${h.id}')?.scrollIntoView({ behavior: 'smooth' });">
           ${h.innerText}
         </a>
       `;
     });
     tocHtml += '</nav>';
     tocContainer.innerHTML = tocHtml;
+
+    // Active Scrollspy using IntersectionObserver
+    if (this._tocObserver) {
+      this._tocObserver.disconnect();
+    }
+
+    const tocLinks = tocContainer.querySelectorAll('.toc-link');
+    const headingVisibility = new Map();
+
+    this._tocObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        headingVisibility.set(entry.target.id, entry.isIntersecting);
+      });
+
+      // Find highest visible heading
+      let activeHeadingId = null;
+      for (const h of headings) {
+        if (headingVisibility.get(h.id)) {
+          activeHeadingId = h.id;
+          break;
+        }
+      }
+
+      if (activeHeadingId) {
+        tocLinks.forEach(link => {
+          if (link.getAttribute('data-heading-id') === activeHeadingId) {
+            link.classList.add('is-active');
+          } else {
+            link.classList.remove('is-active');
+          }
+        });
+      }
+    }, {
+      rootMargin: '-10% 0px -70% 0px',
+      threshold: [0, 1.0]
+    });
+
+    headings.forEach(h => this._tocObserver.observe(h));
+  }
+
+  setupHoverLinkPreviews() {
+    let previewEl = document.getElementById('obsidian-hover-preview');
+    if (!previewEl) {
+      previewEl = document.createElement('div');
+      previewEl.id = 'obsidian-hover-preview';
+      document.body.appendChild(previewEl);
+    }
+
+    let hideTimeout = null;
+
+    const showPreview = async (targetPath, e) => {
+      clearTimeout(hideTimeout);
+      if (!targetPath) return;
+
+      const cleanPath = targetPath.replace(/^#/, '').replace(/^\.\//, '');
+      const note = this.allNotes.find(n => n.path === cleanPath || n.path.endsWith(cleanPath));
+      if (!note) return;
+
+      let content = this.noteContents.get(note.path);
+      if (!content) {
+        try {
+          const res = await fetch(`./${note.path}`);
+          if (res.ok) {
+            content = await res.text();
+            this.noteContents.set(note.path, content);
+          }
+        } catch (err) {}
+      }
+
+      let snippet = 'No preview text available.';
+      if (content) {
+        const cleanText = content
+          .replace(/---[\s\S]*?---/, '')
+          .replace(/#+\s+.*?\n/g, '')
+          .replace(/\[\[(.*?)\]\]/g, '$1')
+          .replace(/[#*`_~]/g, '')
+          .trim();
+        snippet = cleanText.substring(0, 220) + (cleanText.length > 220 ? '...' : '');
+      }
+
+      previewEl.innerHTML = `
+        <div class="preview-popover-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+          <span>${note.title}</span>
+        </div>
+        <div class="preview-popover-body">${snippet}</div>
+      `;
+
+      const x = Math.min(window.innerWidth - 340, Math.max(16, e.clientX + 12));
+      const y = Math.min(window.innerHeight - 220, Math.max(16, e.clientY + 16));
+      previewEl.style.left = `${x}px`;
+      previewEl.style.top = `${y}px`;
+      previewEl.classList.add('is-visible');
+    };
+
+    const hidePreview = () => {
+      hideTimeout = setTimeout(() => {
+        previewEl.classList.remove('is-visible');
+      }, 150);
+    };
+
+    document.addEventListener('mouseover', (e) => {
+      const link = e.target.closest('a.internal-link, .backlink-item, a[data-note-path], .tree-item-self.note-item');
+      if (link) {
+        const targetPath = link.dataset.notePath || link.dataset.target || link.getAttribute('href');
+        if (targetPath && !targetPath.startsWith('http')) {
+          showPreview(targetPath, e);
+        }
+      }
+    });
+
+    document.addEventListener('mouseout', (e) => {
+      const link = e.target.closest('a.internal-link, .backlink-item, a[data-note-path], .tree-item-self.note-item');
+      if (link) {
+        hidePreview();
+      }
+    });
   }
 
   updateBreadcrumbs(parent, current) {
-    const container = document.getElementById('breadcrumb-container');
-    if (!container) return;
-    container.innerHTML = `
-      <a href="../" class="breadcrumb-crumb" title="Main Vault Landing Page">Vault</a>
-      <span class="sep">/</span>
-      <a href="#index.md" class="breadcrumb-crumb">${parent}</a>
-      <span class="sep">/</span>
-      <span class="current-crumb">${current}</span>
-    `;
+    // Breadcrumb bar hidden per user layout request
   }
 
   setupGraph() {
@@ -1177,6 +1308,13 @@ class ObsidianVaultApp {
     document.getElementById('search-modal')?.classList.remove('is-open');
   }
 
+  highlightSearchMatch(text, query) {
+    if (!query || !text) return text || '';
+    const cleanQ = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const regex = new RegExp(`(${cleanQ})`, 'gi');
+    return text.replace(regex, '<span class="search-highlight">$1</span>');
+  }
+
   handleSearch(query) {
     const container = document.getElementById('search-modal-results');
     if (!container) return;
@@ -1194,10 +1332,12 @@ class ObsidianVaultApp {
 
     let html = '';
     matches.forEach(note => {
+      const highlightedTitle = this.highlightSearchMatch(note.title, q);
+      const highlightedPath = this.highlightSearchMatch(note.path, q);
       html += `
         <div class="search-item" onclick="window.location.hash='#${note.path}'; window.ObsidianApp.closeSearchModal();">
-          <span class="search-item-title">${note.title}</span>
-          <span class="search-item-path">${note.path}</span>
+          <span class="search-item-title">${highlightedTitle}</span>
+          <span class="search-item-path">${highlightedPath}</span>
         </div>
       `;
     });
@@ -1338,32 +1478,77 @@ class ObsidianGraphRenderer {
     const width = this.canvas.width || 400;
     const height = this.canvas.height || 400;
 
-    let activeNodes = this.data.nodes;
-    let activeLinks = this.data.links;
+    let activeNodes = this.data.nodes || [];
+    let activeLinks = this.data.links || [];
 
     if (this.mode === 'local' && this.focusNodeId) {
-      const neighborIds = new Set([this.focusNodeId]);
-      for (const link of this.data.links) {
-        const s = typeof link.source === 'object' ? link.source.id : link.source;
-        const t = typeof link.target === 'object' ? link.target.id : link.target;
-        if (s === this.focusNodeId) neighborIds.add(t);
-        if (t === this.focusNodeId) neighborIds.add(s);
+      // High-performance BFS 1-2 hop neighborhood with max 35 nodes cap
+      const visited = new Set([this.focusNodeId]);
+      const queue = [this.focusNodeId];
+      const maxNodes = 35;
+
+      while (queue.length > 0 && visited.size < maxNodes) {
+        const currId = queue.shift();
+        for (const link of activeLinks) {
+          const s = typeof link.source === 'object' ? link.source.id : link.source;
+          const t = typeof link.target === 'object' ? link.target.id : link.target;
+          if (s === currId && !visited.has(t) && visited.size < maxNodes) {
+            visited.add(t);
+            queue.push(t);
+          } else if (t === currId && !visited.has(s) && visited.size < maxNodes) {
+            visited.add(s);
+            queue.push(s);
+          }
+        }
       }
-      activeNodes = this.data.nodes.filter(n => neighborIds.has(n.id));
+
+      // If note has few links, add sibling notes in the same folder up to 15
+      if (visited.size < 12) {
+        const currentFolder = this.focusNodeId.includes('/') ? this.focusNodeId.split('/')[0] : '';
+        for (const n of activeNodes) {
+          if (visited.size >= 15) break;
+          if (!visited.has(n.id) && currentFolder && n.id.startsWith(currentFolder + '/')) {
+            visited.add(n.id);
+          }
+        }
+      }
+
+      activeNodes = this.data.nodes.filter(n => visited.has(n.id));
       activeLinks = this.data.links.filter(l => {
         const s = typeof l.source === 'object' ? l.source.id : l.source;
         const t = typeof l.target === 'object' ? l.target.id : l.target;
-        return neighborIds.has(s) && neighborIds.has(t);
+        return visited.has(s) && visited.has(t);
+      });
+    } else if (this.mode === 'global' && activeNodes.length > 150) {
+      // Cap global graph to top 150 interconnected nodes for smooth rendering
+      const degreeMap = new Map();
+      activeLinks.forEach(l => {
+        const s = typeof l.source === 'object' ? l.source.id : l.source;
+        const t = typeof l.target === 'object' ? l.target.id : l.target;
+        degreeMap.set(s, (degreeMap.get(s) || 0) + 1);
+        degreeMap.set(t, (degreeMap.get(t) || 0) + 1);
+      });
+      const topNodes = [...activeNodes]
+        .sort((a, b) => (degreeMap.get(b.id) || 0) - (degreeMap.get(a.id) || 0))
+        .slice(0, 150);
+      const topSet = new Set(topNodes.map(n => n.id));
+      if (this.focusNodeId) topSet.add(this.focusNodeId);
+
+      activeNodes = this.data.nodes.filter(n => topSet.has(n.id));
+      activeLinks = this.data.links.filter(l => {
+        const s = typeof l.source === 'object' ? l.source.id : l.source;
+        const t = typeof l.target === 'object' ? l.target.id : l.target;
+        return topSet.has(s) && topSet.has(t);
       });
     }
 
     this.simNodes = activeNodes.map((n, i) => {
       const angle = (i / (activeNodes.length || 1)) * 2 * Math.PI;
-      const radius = 40 + Math.random() * (this.isMini ? 70 : 180);
+      const radius = 30 + Math.random() * (this.isMini ? 60 : 160);
       return {
         ...n,
-        x: n.x || (width / 2 + Math.cos(angle) * radius),
-        y: n.y || (height / 2 + Math.sin(angle) * radius),
+        x: n.x || (Math.cos(angle) * radius),
+        y: n.y || (Math.sin(angle) * radius),
         vx: 0,
         vy: 0
       };
@@ -1385,8 +1570,12 @@ class ObsidianGraphRenderer {
     this.transform = {
       x: width / 2,
       y: height / 2,
-      k: this.isMini ? 0.8 : 1
+      k: this.isMini ? 0.9 : 1
     };
+
+    this.stepCount = 0;
+    this.isSleeping = false;
+    this.start();
   }
 
   updateFocus(nodeId, mode = 'local') {
@@ -1396,17 +1585,22 @@ class ObsidianGraphRenderer {
   }
 
   resize() {
-    const rect = this.canvas.parentElement.getBoundingClientRect();
+    const parent = this.canvas.parentElement;
+    if (!parent) return;
+    const rect = parent.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
     const dpr = window.devicePixelRatio || 1;
     this.canvas.width = rect.width * dpr;
     this.canvas.height = rect.height * dpr;
     this.canvas.style.width = `${rect.width}px`;
     this.canvas.style.height = `${rect.height}px`;
+    this.ctx.setTransform(1, 0, 0, 1, 0, 0);
     this.ctx.scale(dpr, dpr);
     this.width = rect.width;
     this.height = rect.height;
     this.transform.x = this.width / 2;
     this.transform.y = this.height / 2;
+    this.render();
   }
 
   setupEvents() {
@@ -1447,6 +1641,7 @@ class ObsidianGraphRenderer {
   }
 
   onPointerDown(e) {
+    this.wake();
     const node = this.findNodeUnderPointer(e.clientX, e.clientY);
     if (node) {
       this.draggedNode = node;
@@ -1460,6 +1655,7 @@ class ObsidianGraphRenderer {
 
   onPointerMove(e) {
     if (this.draggedNode) {
+      this.wake();
       const { x, y } = this.toWorld(e.clientX, e.clientY);
       this.draggedNode.x = x;
       this.draggedNode.y = y;
@@ -1468,12 +1664,14 @@ class ObsidianGraphRenderer {
       if (Math.hypot(e.clientX - this.downPos.x, e.clientY - this.downPos.y) > 4) {
         this.hasMoved = true;
       }
+      this.render();
       return;
     }
 
     if (this.isPanning) {
       this.transform.x = e.clientX - this.startPan.x;
       this.transform.y = e.clientY - this.startPan.y;
+      this.render();
       return;
     }
 
@@ -1481,6 +1679,7 @@ class ObsidianGraphRenderer {
     if (hovered !== this.hoveredNode) {
       this.hoveredNode = hovered;
       this.canvas.style.cursor = hovered ? 'pointer' : 'grab';
+      this.render();
     }
   }
 
@@ -1494,7 +1693,8 @@ class ObsidianGraphRenderer {
 
   onWheel(e) {
     e.preventDefault();
-    const zoomFactor = e.deltaY < 0 ? 1.15 : 0.85;
+    this.wake();
+    const zoomFactor = e.deltaY < 0 ? 1.12 : 0.88;
     const newK = Math.max(0.2, Math.min(4, this.transform.k * zoomFactor));
 
     const rect = this.canvas.getBoundingClientRect();
@@ -1504,6 +1704,15 @@ class ObsidianGraphRenderer {
     this.transform.x = mouseX - (mouseX - this.transform.x) * (newK / this.transform.k);
     this.transform.y = mouseY - (mouseY - this.transform.y) * (newK / this.transform.k);
     this.transform.k = newK;
+    this.render();
+  }
+
+  wake() {
+    this.stepCount = 0;
+    this.isSleeping = false;
+    if (!this.isRunning) {
+      this.start();
+    }
   }
 
   start() {
@@ -1511,9 +1720,14 @@ class ObsidianGraphRenderer {
       this.isRunning = true;
       const step = () => {
         if (!this.isRunning) return;
-        this.tickPhysics();
+        const settled = this.tickPhysics();
         this.render();
-        this.animFrame = requestAnimationFrame(step);
+        if (settled) {
+          this.stop();
+          this.isSleeping = true;
+        } else {
+          this.animFrame = requestAnimationFrame(step);
+        }
       };
       step();
     }
@@ -1527,11 +1741,14 @@ class ObsidianGraphRenderer {
   tickPhysics() {
     const nodes = this.simNodes;
     const links = this.simLinks;
-    const repulsion = this.isMini ? 800 : 2500;
-    const springLength = this.isMini ? 50 : 80;
+    const repulsion = this.isMini ? 600 : 1800;
+    const springLength = this.isMini ? 45 : 75;
     const springK = 0.04;
-    const damping = 0.82;
-    const centerPull = 0.008;
+    const damping = 0.84;
+    const centerPull = 0.005;
+
+    let totalVelocity = 0;
+    this.stepCount = (this.stepCount || 0) + 1;
 
     for (let i = 0; i < nodes.length; i++) {
       const a = nodes[i];
@@ -1541,7 +1758,7 @@ class ObsidianGraphRenderer {
         const dy = b.y - a.y;
         const distSq = dx * dx + dy * dy || 1;
         const dist = Math.sqrt(distSq);
-        if (dist < 350) {
+        if (dist < 320) {
           const force = repulsion / distSq;
           const fx = (dx / dist) * force;
           const fy = (dy / dist) * force;
@@ -1572,11 +1789,21 @@ class ObsidianGraphRenderer {
       if (node === this.draggedNode) continue;
       node.vx -= node.x * centerPull;
       node.vy -= node.y * centerPull;
-      node.vx *= damping;
-      node.vy *= damping;
+      node.vx = Math.max(-12, Math.min(12, node.vx * damping));
+      node.vy = Math.max(-12, Math.min(12, node.vy * damping));
       node.x += node.vx;
       node.y += node.vy;
+      totalVelocity += Math.abs(node.vx) + Math.abs(node.vy);
     }
+
+    // Stabilized / Sleep condition
+    if (this.stepCount > 35 && (totalVelocity / (nodes.length || 1)) < 0.05) {
+      return true;
+    }
+    if (this.stepCount > 150) {
+      return true;
+    }
+    return false;
   }
 
   render() {

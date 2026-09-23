@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes" />
-  <title>Obsidian Notes Workspace</title>
+  <title>BBA 5Th Semester — Shared Obsidian Notes</title>
   <meta name="description" content="Obsidian digital garden workspace." />
   <link rel="icon" href="../site-lib/media/favicon.png" />
 
@@ -16,7 +16,7 @@
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
-<body data-vault-folder="4th Semester">
+<body data-vault-folder="5th-semester">
   <header class="obsidian-app-header">
     <div class="header-left">
       <button id="btn-toggle-left" class="tool-btn active" title="Toggle File Explorer">
@@ -34,6 +34,12 @@
         </svg>
         <span>Shared Vault</span>
       </a>
+
+      <div id="breadcrumb-container" class="breadcrumb-nav">
+        <a href="../" class="breadcrumb-crumb">Vault</a>
+        <span class="sep">/</span>
+        <span class="current-crumb">Overview</span>
+      </div>
     </div>
 
     <div class="header-center">
@@ -48,6 +54,21 @@
     </div>
 
     <div class="header-right">
+      <div class="header-action-group">
+        <button id="btn-open-graph" class="tool-btn" title="Open Interactive Knowledge Graph">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="6" cy="6" r="3"></circle>
+            <circle cx="18" cy="18" r="3"></circle>
+            <circle cx="18" cy="6" r="3"></circle>
+            <line x1="8.5" y1="7.5" x2="15.5" y2="16.5"></line>
+            <line x1="8.5" y1="6" x2="15.5" y2="6"></line>
+          </svg>
+          <span class="btn-label-desktop">Graph View</span>
+        </button>
+      </div>
+
+      <div class="header-divider" role="separator"></div>
+
       <div class="header-action-group">
         <button id="btn-toggle-width" class="tool-btn" title="Toggle Readable Line Length / Full Width">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -102,15 +123,8 @@
   <main class="obsidian-workspace">
     <aside id="sidebar-left" class="obsidian-sidebar left">
       <div class="sidebar-header">
-        <span class="sidebar-title">Workspace Notes</span>
-        <button id="btn-collapse-expand-all" class="tool-btn" title="Collapse or Expand all directories" aria-label="Toggle All Folders">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <polyline points="4 14 10 14 10 20"></polyline>
-            <polyline points="20 10 14 10 14 4"></polyline>
-            <line x1="14" y1="10" x2="21" y2="3"></line>
-            <line x1="3" y1="21" x2="10" y2="14"></line>
-          </svg>
-        </button>
+        <span class="sidebar-title">5Th Semester Notes</span>
+        <a href="../" class="tool-btn" style="padding: 2px 8px; font-size: 0.75rem;">All Vaults</a>
       </div>
       <div id="file-tree-container" class="sidebar-scrollable"></div>
     </aside>
@@ -157,11 +171,13 @@
           <div id="toc-container"></div>
         </div>
 
-        <div id="backlinks-section" class="tree-container" style="display: none; margin-top: 16px;">
+        <div id="backlinks-section" class="tree-container" style="margin-top: 16px;">
           <div class="feature-header">
             <div class="feature-title">Linked References</div>
           </div>
-          <div id="backlinks-container"></div>
+          <div id="backlinks-container">
+            <div class="backlinks-empty">Select a note to view backlinks.</div>
+          </div>
         </div>
       </div>
     </aside>
@@ -212,5 +228,5 @@
   <div id="toast-notification" class="toast-msg"></div>
 
   <script src="../site-lib/scripts/app-reader.js"></script>
-<script defer src="../site-lib/scripts/gatekeeper.js"></script><script defer src="../site-lib/scripts/isolate-nav.js"></script></body>
+</body>
 </html>
