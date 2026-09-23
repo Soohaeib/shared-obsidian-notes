@@ -108,6 +108,34 @@ app.get('/api/vault-discovery', (req, res) => {
   res.json({ files });
 });
 
+// Vault Health & Diagnostics API
+app.get('/api/vault-health', (req, res) => {
+  const healthPath = path.join(__dirname, 'site-lib', 'vault-health.json');
+  res.setHeader('Content-Type', 'application/json; charset=UTF-8');
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+  
+  if (fs.existsSync(healthPath)) {
+    try {
+      const raw = fs.readFileSync(healthPath, 'utf-8');
+      return res.send(raw);
+    } catch (e) {
+      console.error('Error reading vault-health.json:', e);
+    }
+  }
+
+  return res.json({
+    summary: {
+      totalFiles: 0,
+      cleanFiles: 0,
+      filesWithWarnings: 0,
+      totalIssues: 0,
+      autoFixedIssues: 0,
+      healthScore: 100
+    },
+    issues: []
+  });
+});
+
 // Middleware for setting proper MIME types and disabling caching
 app.use((req, res, next) => {
   const cleanPath = req.path.split('?')[0];

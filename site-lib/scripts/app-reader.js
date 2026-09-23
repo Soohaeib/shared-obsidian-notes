@@ -776,8 +776,14 @@ class ObsidianVaultApp {
 
     // 0a. Temporarily extract fenced code blocks and inline code so math/wiki/comments inside code blocks are preserved intact
     let codeBlockIdx = 0;
-    text = text.replace(/(```[\s\S]*?```|`[^`\n]+`)/g, (match) => {
-      const token = `%%CODE_BLOCK_${codeBlockIdx++}%%`;
+    text = text.replace(/```[\s\S]*?```/g, (match) => {
+      const token = `@@OBS_FENCED_BLOCK_${codeBlockIdx++}@@`;
+      this.currentCodeBlocksMap.set(token, match);
+      return token;
+    });
+
+    text = text.replace(/`[^`\n\r]+`/g, (match) => {
+      const token = `@@OBS_INLINE_CODE_${codeBlockIdx++}@@`;
       this.currentCodeBlocksMap.set(token, match);
       return token;
     });
@@ -800,7 +806,7 @@ class ObsidianVaultApp {
       const cleanFormula = formula.replace(/^[ \t]*>[ \t]*/gm, '').trim();
       const token = `@@KATEX_BLOCK_${mathBlockIdx++}@@`;
       this.currentMathBlocksMap.set(token, cleanFormula);
-      return token;
+      return `\n\n${token}\n\n`;
     });
 
     // Single-line display math: $$ formula $$
@@ -808,7 +814,7 @@ class ObsidianVaultApp {
       const cleanFormula = formula.trim();
       const token = `@@KATEX_BLOCK_${mathBlockIdx++}@@`;
       this.currentMathBlocksMap.set(token, cleanFormula);
-      return token;
+      return `\n\n${token}\n\n`;
     });
 
     // 0e. Extract LaTeX environments: \begin{equation}...\end{equation}, \begin{array}...\end{array}, etc.
@@ -817,12 +823,12 @@ class ObsidianVaultApp {
       const cleanFormula = full.replace(/^[ \t]*>[ \t]*/gm, '').trim();
       const token = `@@KATEX_BLOCK_${mathBlockIdx++}@@`;
       this.currentMathBlocksMap.set(token, cleanFormula);
-      return token;
+      return `\n\n${token}\n\n`;
     });
 
-    // 0f. Extract inline Math: $formula$ (using CommonMark math rules, strictly within single lines)
+    // 0f. Extract inline Math: $formula$ (Obsidian & CommonMark math rules)
     let mathInlineIdx = 0;
-    text = text.replace(/(?<![\w\\\$])\$(?!\s)([^\$\n\r]+?)(?<!\s)\$(?![\w\d\$])/g, (match, formula) => {
+    text = text.replace(/(?<![\\\$\w])\$(?!\s)([^\$\n\r]+?)(?<!\s)\$(?![\\\$\w\d])/g, (match, formula) => {
       const trimmed = formula.trim();
       if (/^[\d,.]+(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b))?$/i.test(trimmed)) {
         return match;
@@ -929,9 +935,9 @@ class ObsidianVaultApp {
     text = text.replace(/^(\s*)-\s+\[ \]\s+(.*)$/gm, '$1- <input type="checkbox" disabled class="task-checkbox"> $2');
     text = text.replace(/^(\s*)-\s+\[x\]\s+(.*)$/gim, '$1- <input type="checkbox" checked disabled class="task-checkbox"> $2');
 
-    // 9. Restore code blocks
+    // 9. Cleanly restore code blocks so marked can parse them into semantic HTML
     for (const [token, codeContent] of this.currentCodeBlocksMap.entries()) {
-      text = text.replace(token, () => codeContent);
+      text = text.replaceAll(token, codeContent);
     }
 
     return text;

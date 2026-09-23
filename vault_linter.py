@@ -2,9 +2,8 @@
 """
 Vault Health & Markdown Syntax Diagnostic Engine
 ------------------------------------------------
-Scans, lints, and auto-resolves common Obsidian Markdown syntax errors:
+Scans, lints, and auto-resolves Obsidian Markdown syntax errors:
 - Nested/unbalanced math delimiters ($...$$)
-- Cross-paragraph unclosed display math ($$)
 - Malformed Obsidian callouts (> [!type])
 - Broken WikiLinks and missing attachment embeds
 - Unformatted headings (missing space after #)
@@ -45,13 +44,21 @@ class VaultLinter:
         for root, _, files in os.walk(self.vault_dir):
             for f in files:
                 rel = os.path.relpath(os.path.join(root, f), self.root_dir).replace('\\', '/')
+                f_lower = f.lower()
+                rel_lower = rel.lower()
+                self.all_assets.add(f_lower)
+                self.all_assets.add(rel_lower)
+                
+                # Strip prefix containers
+                clean_rel = re.sub(r'^(?:note-res|\[inside\][^/]+)/', '', rel_lower)
+                self.all_assets.add(clean_rel)
+
                 if f.endswith('.md'):
                     self.all_notes.append(rel)
-                    clean_stem = f.replace('.md', '').lower()
+                    clean_stem = f.replace('.md', '').lower().strip()
                     self.note_stems[clean_stem] = rel
-                else:
-                    self.all_assets.add(f.lower())
-                    self.all_assets.add(rel.lower())
+                    self.note_stems[clean_rel.replace('.md', '')] = rel
+                    self.note_stems[rel_lower.replace('.md', '')] = rel
 
     def lint_file(self, file_path):
         """Lint an individual markdown file and optionally auto-fix safe typos."""
@@ -75,18 +82,17 @@ class VaultLinter:
 
         lines = content.split('\n')
         file_issues = []
-        modified_content = content
         is_file_modified = False
 
         # 1. Check & Repair Heading format (e.g., "###Heading" -> "### Heading")
         for idx, line in enumerate(lines, start=1):
-            m = re.match(r'^(#{1,6})([^\s#].*)$', line)
+            m = re.match(r'^(#{1,6})([^\s#\n\r].*)$', line)
             if m and not line.startswith('#!'):
                 fixed_line = f"{m.group(1)} {m.group(2)}"
                 file_issues.append({
                     "file": file_path,
                     "line": idx,
-                    "category": "Markdown Syntax",
+                    "category": "Callout",
                     "severity": "warning",
                     "message": "Heading missing space after '#' delimiter.",
                     "snippet": line[:100],
@@ -116,9 +122,8 @@ class VaultLinter:
                     lines[idx-1] = fixed_line
                     is_file_modified = True
 
-        # 3. Check & Repair Nested / Unbalanced Math Delimiters (e.g. "$e.g., $\text{S99}$$")
+        # 3. Check & Repair Nested Math Delimiters (e.g. "$e.g., $\text{S99}$$")
         for idx, line in enumerate(lines, start=1):
-            # Nested math pattern like "$...$...$$"
             nested_math = re.search(r'\$([a-zA-Z\s,.:;]+)\$([^\$\n\r]+)\$\$', line)
             if nested_math:
                 fixed_line = line.replace(nested_math.group(0), f"({nested_math.group(1).strip()} ${nested_math.group(2).strip()}$)")
@@ -127,32 +132,17 @@ class VaultLinter:
                     "line": idx,
                     "category": "LaTeX / Math",
                     "severity": "error",
-                    "message": "Nested math delimiters detected (unbalanced '$' and '$$' collision).",
+                    "message": "Nested math delimiters detected ($ text $ math $$ collision).",
                     "snippet": nested_math.group(0),
-                    "suggestion": f"Parenthesize text prefix: '{fixed_line[:100]}'",
+                    "suggestion": f"Change to: '{fixed_line[:100]}'",
                     "autoFixed": self.auto_fix
                 })
                 if self.auto_fix:
                     lines[idx-1] = fixed_line
                     is_file_modified = True
 
-            # Double dollar right next to word without math block
-            dangling_dd = re.search(r'(?<!\n)\$\$(?!\s*\n)(?!\s*[\w\\{])', line)
-            if dangling_dd and not line.strip().startswith('$$'):
-                file_issues.append({
-                    "file": file_path,
-                    "line": idx,
-                    "category": "LaTeX / Math",
-                    "severity": "warning",
-                    "message": "Potential dangling '$$' display math tag inside text line.",
-                    "snippet": line[:100],
-                    "suggestion": "Ensure '$$' is either placed on its own line or encloses a valid formula.",
-                    "autoFixed": False
-                })
-
         # Re-join lines for block-level checks
-        if is_file_modified:
-            modified_content = '\n'.join(lines)
+        modified_content = '\n'.join(lines)
 
         # 4. Check Code Fences (odd count of ```)
         code_fence_count = len(re.findall(r'^[ \t]*```', modified_content, flags=re.MULTILINE))
@@ -160,11 +150,11 @@ class VaultLinter:
             file_issues.append({
                 "file": file_path,
                 "line": len(lines),
-                "category": "Code Fence",
+                "category": "Callout",
                 "severity": "error",
                 "message": f"Unbalanced code fences detected ({code_fence_count} triple backtick markers).",
                 "snippet": "```",
-                "suggestion": "Close the open code block with ``` at the appropriate line.",
+                "suggestion": "Ensure all code blocks are properly closed with ```.",
                 "autoFixed": False
             })
 
@@ -179,10 +169,14 @@ class VaultLinter:
             if not inner:
                 continue
 
-            # If link points to media/graphic (e.g. .svg, .png)
-            if inner.lower().endswith(('.svg', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp', '.pdf')):
-                base_fname = os.path.basename(inner).lower()
-                if base_fname not in self.all_assets:
+            # Strip vault prefixes
+            clean_inner = re.sub(r'^(?:bba study|note-res|vault)/', '', inner, flags=re.IGNORECASE).strip()
+            target_clean = clean_inner.replace('.md', '').lower().split('/')[-1]
+
+            # If link points to media/graphic
+            if clean_inner.lower().endswith(('.svg', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp', '.pdf')):
+                base_fname = os.path.basename(clean_inner).lower()
+                if base_fname not in self.all_assets and clean_inner.lower() not in self.all_assets:
                     file_issues.append({
                         "file": file_path,
                         "line": 1,
@@ -195,8 +189,7 @@ class VaultLinter:
                     })
                 continue
 
-            target_clean = inner.replace('.md', '').lower().split('/')[-1]
-            if target_clean not in self.note_stems:
+            if target_clean not in self.note_stems and clean_inner.lower() not in self.note_stems:
                 file_issues.append({
                     "file": file_path,
                     "line": 1,
@@ -212,9 +205,10 @@ class VaultLinter:
         media_embeds = re.findall(r'!\[\[([^\]\n]+)\]\]', modified_content)
         for embed in media_embeds:
             fname = embed.split('|')[0].strip()
-            if fname.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.bmp', '.mp4', '.webm')):
-                base_fname = os.path.basename(fname).lower()
-                if base_fname not in self.all_assets:
+            clean_fname = re.sub(r'^(?:bba study|note-res|vault)/', '', fname, flags=re.IGNORECASE).strip()
+            if clean_fname.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.bmp', '.mp4', '.webm')):
+                base_fname = os.path.basename(clean_fname).lower()
+                if base_fname not in self.all_assets and clean_fname.lower() not in self.all_assets:
                     file_issues.append({
                         "file": file_path,
                         "line": 1,
@@ -254,7 +248,6 @@ class VaultLinter:
         total_files = len(self.all_notes)
         files_with_issues = total_files - clean_count
         
-        # Calculate clean score percentage
         health_score = int((clean_count / max(1, total_files)) * 100) if total_files > 0 else 100
 
         self.report = {
@@ -270,7 +263,9 @@ class VaultLinter:
         }
 
         # Write site-lib/vault-health.json
-        health_json_path = os.path.join(self.root_dir, 'site-lib', 'vault-health.json')
+        site_lib_dir = os.path.join(self.root_dir, 'site-lib')
+        os.makedirs(site_lib_dir, exist_ok=True)
+        health_json_path = os.path.join(site_lib_dir, 'vault-health.json')
         try:
             with open(health_json_path, 'w', encoding='utf-8') as out_h:
                 json.dump(self.report, out_h, indent=2)
@@ -281,7 +276,8 @@ class VaultLinter:
 
 if __name__ == '__main__':
     import sys
-    root = sys.argv[1] if len(sys.argv) > 1 else '.'
+    args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    root = args[0] if len(args) > 0 else '.'
     fix = '--fix' in sys.argv or '--auto-fix' in sys.argv
     linter = VaultLinter(root, auto_fix=fix)
     rep = linter.run_all()

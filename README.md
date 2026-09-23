@@ -201,6 +201,45 @@ The built-in sanitizer (`sync_site.py --sanitize`):
 
 ---
 
+## 🔐 GitHub Authentication & Obsidian Sync Troubleshooting
+
+If you encounter authentication errors when signing in to GitHub or pushing notes via Obsidian Git / command-line:
+
+### Why GitHub Sign-in Fails with Password
+GitHub retired password authentication for Git operations. Standard account passwords will return `Authentication failed` or `Invalid username or password`.
+
+### Method 1: Personal Access Token (PAT) — Recommended
+1. Log in to [GitHub.com](https://github.com) and go to **Settings** → **Developer Settings** → **Personal access tokens** → **Tokens (classic)**.
+2. Click **Generate new token (classic)**.
+3. Set Note to `Obsidian Vault Sync` and select the **`repo`** scope (full control of private repositories).
+4. Copy your generated token (format starts with `ghp_...`).
+5. **In Obsidian Git Plugin:**
+   - Open Obsidian **Settings** → **Community Plugins** → **Obsidian Git**.
+   - Under Authentication, paste your Personal Access Token in the **Token** field.
+6. **In Terminal / Git:**
+   - When prompted for Password, paste your `ghp_...` token.
+   - Or configure remote URL with your token:
+     ```bash
+     git remote set-url origin https://<YOUR_TOKEN>@github.com/<USERNAME>/<REPO_NAME>.git
+     ```
+
+### Method 2: SSH Key Authentication
+1. Generate an SSH key:
+   ```bash
+   ssh-keygen -t ed25519 -C "your_email@example.com"
+   ```
+2. Copy your public key:
+   ```bash
+   cat ~/.ssh/id_ed25519.pub
+   ```
+3. Add it on GitHub: **Settings** → **SSH and GPG Keys** → **New SSH Key**.
+4. Set your repository remote to SSH:
+   ```bash
+   git remote set-url origin git@github.com:<USERNAME>/<REPO_NAME>.git
+   ```
+
+---
+
 ## 🌐 Deployment Guide
 
 ### GitHub Pages / Static Hosting

@@ -1247,9 +1247,9 @@ article#note-article .task-checkbox:checked {
   background-position: center;
 }
 
-/* KaTeX Math Styling & Math Blocks */
+/* KaTeX Math Styling & Math Blocks (Obsidian Standard) */
 .katex-display-wrapper {
-  margin: 1.5em 0 !important;
+  margin: 1.4em 0 !important;
   width: 100%;
   display: block;
   overflow-x: auto;
@@ -1270,17 +1270,54 @@ article#note-article .task-checkbox:checked {
   box-sizing: border-box;
 }
 
-main section div#note-viewport div#note-container article#note-article > span.katex-display,
-main section div#note-viewport div#note-container article#note-article > span {
-  display: block;
-  margin: 1.4em 0;
-  padding: 12px 16px;
-  background: var(--background-secondary, #2e3440);
+.katex-display .katex {
+  display: inline-block !important;
+  white-space: normal !important;
+  vertical-align: baseline !important;
+}
+
+.katex {
+  font-size: 1.05em !important;
+  color: var(--text-normal, #eceff4);
+  line-height: normal;
+  white-space: nowrap;
+  display: inline-block;
+  vertical-align: -0.05em;
+  text-rendering: auto;
+}
+
+/* Inline Code & Code Blocks (Obsidian Standard) */
+.markdown-rendered code,
+article#note-article code {
+  font-family: var(--font-monospace, monospace);
+  font-size: 0.88em;
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  background-color: var(--background-primary, #2e3440);
+  color: var(--orange, #d08770);
   border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.08));
+}
+
+.markdown-rendered pre,
+article#note-article pre {
+  margin: 1.2em 0;
+  padding: 14px 18px;
   border-radius: var(--radius-sm, 6px);
+  background-color: var(--background-secondary, #3b4252);
+  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.08));
   overflow-x: auto;
-  overflow-y: hidden;
-  text-align: center;
+  scrollbar-width: thin;
+}
+
+.markdown-rendered pre code,
+article#note-article pre code {
+  padding: 0;
+  background: transparent;
+  border: none;
+  color: var(--text-normal, #eceff4);
+  font-size: 0.9em;
+  line-height: 1.55;
+  white-space: pre;
 }
 
 main section div#note-viewport div#note-container article#note-article > p {
@@ -1296,11 +1333,6 @@ main section div#note-viewport {
   overflow-x: hidden;
   scrollbar-width: thin;
   scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
-}
-
-.katex {
-  font-size: 1.06em;
-  color: var(--text-normal, #eceff4);
 }
 
 /* Obsidian Tags */
