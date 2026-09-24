@@ -55,7 +55,7 @@ def slugify(text: str) -> str:
     text = html.unescape(text)
     text = text.replace('&', ' and ')
     text = text.lower()
-    text = re.sub(r'[^a-z0-9\s-]', '', text)
+    text = re.sub(r'[^a-z0-9\s_-]', '', text)
     text = re.sub(r'[\s_]+', '-', text)
     text = re.sub(r'-+', '-', text)
     return text.strip('-') or 'vault-folder'
@@ -146,11 +146,17 @@ for name in sorted(os.listdir(scan_base)):
                         stem.lower(),
                         stem_clean,
                         stem_clean.lower(),
+                        stem.replace('_', ' '),
+                        stem.replace('_', '-'),
+                        stem.replace('-', ' '),
+                        re.sub(r'[^a-z0-9]', '', stem.lower()),
                         slugify(stem),
+                        slugify(stem_clean),
                         f,
                         f.lower(),
                         title,
                         title.lower(),
+                        re.sub(r'[^a-z0-9]', '', title.lower()),
                         slugify(title),
                         rel_in_folder,
                         rel_in_folder[:-3] if rel_in_folder.endswith('.md') else rel_in_folder,

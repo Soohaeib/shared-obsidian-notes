@@ -124,7 +124,7 @@ def slugify_name(name: str, is_directory: bool = False) -> str:
     Standard URL-safe kebab-case slugification:
     1. html.unescape(text) to handle &amp;
     2. Replace & with ' and '
-    3. Strip illegal characters using re.sub(r'[^a-z0-9\s-]', '', text)
+    3. Strip illegal characters using re.sub(r'[^a-z0-9\s_-]', '', text)
     4. Collapse multiple spaces/underscores/hyphens into a single '-'
     5. Strip leading/trailing hyphens
     6. Preserve file extension for files
@@ -136,7 +136,7 @@ def slugify_name(name: str, is_directory: bool = False) -> str:
         text = html.unescape(base)
         text = text.replace('&', ' and ')
         text = text.lower()
-        text = re.sub(r'[^a-z0-9\s-]', '', text)
+        text = re.sub(r'[^a-z0-9\s_-]', '', text)
         text = re.sub(r'[\s_]+', '-', text)
         text = re.sub(r'-+', '-', text)
         slug = text.strip('-') or 'untitled'
@@ -145,7 +145,7 @@ def slugify_name(name: str, is_directory: bool = False) -> str:
         text = html.unescape(name)
         text = text.replace('&', ' and ')
         text = text.lower()
-        text = re.sub(r'[^a-z0-9\s-]', '', text)
+        text = re.sub(r'[^a-z0-9\s_-]', '', text)
         text = re.sub(r'[\s_]+', '-', text)
         text = re.sub(r'-+', '-', text)
         slug = text.strip('-') or 'untitled-folder'

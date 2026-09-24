@@ -1603,6 +1603,24 @@ class ObsidianVaultApp {
     return text;
   }
 
+  slugifyPart(part, isDirectory = false) {
+    if (!part || part === '.' || part === '..') return part;
+    let base = part;
+    let ext = '';
+    if (!isDirectory && part.includes('.')) {
+      const lastDot = part.lastIndexOf('.');
+      base = part.substring(0, lastDot);
+      ext = part.substring(lastDot).toLowerCase();
+      if (base.toLowerCase() === 'index') return `index${ext}`;
+    }
+    let str = base.replace(/&amp;/gi, '&').replace(/&lt;/gi, '<').replace(/&gt;/gi, '>').replace(/&quot;/gi, '"').replace(/&#39;/gi, "'");
+    str = str.replace(/&/g, ' and ').toLowerCase();
+    str = str.replace(/[^a-z0-9\s_-]/g, '');
+    str = str.replace(/[\s_]+/g, '-').replace(/-+/g, '-');
+    const slug = str.replace(/^-+|-+$/g, '') || (isDirectory ? 'folder' : 'asset');
+    return isDirectory ? slug : `${slug}${ext}`;
+  }
+
   resolveMediaPath(fileName) {
     if (!fileName) return '';
     if (fileName.startsWith('http://') || fileName.startsWith('https://') || fileName.startsWith('/')) {
@@ -1622,14 +1640,16 @@ class ObsidianVaultApp {
     }
 
     const noteDirectory = isVaultRootPath ? [] : (this.currentPath || '').split('/').slice(0, -1);
-    const targetParts = [...noteDirectory, ...cleanFile.split('/')];
+    const rawParts = [...noteDirectory, ...cleanFile.split('/')];
     const normalizedParts = [];
-    for (const part of targetParts) {
+    for (let i = 0; i < rawParts.length; i++) {
+      const part = rawParts[i];
       if (!part || part === '.') continue;
       if (part === '..') {
         normalizedParts.pop();
       } else {
-        normalizedParts.push(part);
+        const isDir = (i < rawParts.length - 1);
+        normalizedParts.push(this.slugifyPart(part, isDir));
       }
     }
     return `./${normalizedParts.join('/')}`;
@@ -1646,13 +1666,14 @@ class ObsidianVaultApp {
       let str = text.replace(/&amp;/gi, '&').replace(/&lt;/gi, '<').replace(/&gt;/gi, '>').replace(/&quot;/gi, '"').replace(/&#39;/gi, "'");
       str = str.replace(/&/g, ' and ');
       str = str.toLowerCase();
-      str = str.replace(/[^a-z0-9\s-]/g, '');
+      str = str.replace(/[^a-z0-9\s_-]/g, '');
       str = str.replace(/[\s_]+/g, '-').replace(/-+/g, '-');
       return str.replace(/^-+|-+$/g, '');
     };
 
     const slugified = slugifyText(clean);
     const stemSlugified = slugifyText(stem);
+    const alphaOnly = clean.replace(/[^a-z0-9]/g, '');
 
     // 1. Check in this.vaultLookup map first
     if (this.vaultLookup) {
@@ -1661,6 +1682,7 @@ class ObsidianVaultApp {
                     this.vaultLookup[slugified] || 
                     this.vaultLookup[stem] || 
                     this.vaultLookup[stemSlugified] || 
+                    this.vaultLookup[alphaOnly] ||
                     this.vaultLookup[slugifyText(raw)];
       if (match) {
         const fullRel = match.path.replace(/^(?:\[inside\][^/]+|note-res)\//, '');
@@ -1679,7 +1701,8 @@ class ObsidianVaultApp {
       const nStem = nClean.split('/').pop();
       const nSlug = slugifyText(nClean);
       const nStemSlug = slugifyText(nStem);
-      return nClean === clean || nSlug === slugified || nStem === stem || nStemSlug === stemSlugified || n.title.toLowerCase() === clean || slugifyText(n.title) === slugified;
+      const nAlpha = nClean.replace(/[^a-z0-9]/g, '');
+      return nClean === clean || nSlug === slugified || nStem === stem || nStemSlug === stemSlugified || nAlpha === alphaOnly || n.title.toLowerCase() === clean || slugifyText(n.title) === slugified;
     });
 
     if (found) {
@@ -1693,7 +1716,8 @@ class ObsidianVaultApp {
         const fStem = fClean.split('/').pop();
         const fSlug = slugifyText(fClean);
         const fStemSlug = slugifyText(fStem);
-        return fClean === clean || fSlug === slugified || fStem === stem || fStemSlug === stemSlugified || fClean.endsWith(`/${stem}`) || fClean.endsWith(`/${slugified}`);
+        const fAlpha = fClean.replace(/[^a-z0-9]/g, '');
+        return fClean === clean || fSlug === slugified || fStem === stem || fStemSlug === stemSlugified || fAlpha.endsWith(alphaOnly) || fClean.endsWith(`/${stem}`) || fClean.endsWith(`/${slugified}`);
       });
       if (globalFound) {
         const cleanPath = globalFound.replace(/^(?:\[inside\][^/]+|note-res)\//, '');

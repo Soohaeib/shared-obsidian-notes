@@ -13,6 +13,7 @@ Scans, lints, and auto-resolves Obsidian Markdown syntax errors:
 import os
 import re
 import json
+import html
 from pathlib import Path
 
 class VaultLinter:
@@ -23,6 +24,7 @@ class VaultLinter:
         self.all_notes = []
         self.all_assets = set()
         self.note_stems = {}
+        self.vault_lookup = {}
         self.report = {
             "summary": {
                 "totalFiles": 0,
@@ -35,8 +37,52 @@ class VaultLinter:
             "issues": []
         }
 
+    def slugify(self, text: str, is_directory: bool = False) -> str:
+        """Standard URL-safe kebab-case slugification matching sync_site.py."""
+        if not text:
+            return ""
+        if not is_directory:
+            base, ext = os.path.splitext(text)
+            if base.lower() == 'index':
+                return f"index{ext.lower()}"
+            t = html.unescape(base).replace('&', ' and ').lower()
+            t = re.sub(r'[^a-z0-9\s_-]', '', t)
+            t = re.sub(r'[\s_]+', '-', t)
+            t = re.sub(r'-+', '-', t)
+            slug = t.strip('-') or 'untitled'
+            return f"{slug}{ext.lower()}"
+        else:
+            t = html.unescape(text).replace('&', ' and ').lower()
+            t = re.sub(r'[^a-z0-9\s_-]', '', t)
+            t = re.sub(r'[\s_]+', '-', t)
+            t = re.sub(r'-+', '-', t)
+            slug = t.strip('-') or 'untitled-folder'
+            return slug
+
+    def slugify_path(self, path_str: str) -> str:
+        clean = re.sub(r'^(?:bba study|note-res|vault|\[inside\][^/]+)/', '', path_str, flags=re.IGNORECASE).strip('/\\')
+        parts = clean.replace('\\', '/').split('/')
+        if not parts or not parts[0]:
+            return path_str
+        slug_parts = [self.slugify(p, is_directory=True) for p in parts[:-1]]
+        slug_parts.append(self.slugify(parts[-1], is_directory=False))
+        return '/'.join(slug_parts)
+
+    def load_vault_index(self):
+        """Read site-lib/vault-index.json to utilize rich lookup dictionaries."""
+        index_path = os.path.join(self.root_dir, 'site-lib', 'vault-index.json')
+        if os.path.exists(index_path):
+            try:
+                with open(index_path, 'r', encoding='utf-8') as fh:
+                    data = json.load(fh)
+                    if isinstance(data, dict):
+                        self.vault_lookup = data.get('lookup', {})
+            except Exception as e:
+                print(f"Notice: Could not load vault-index.json for linter: {e}")
+
     def collect_vault_index(self):
         """Map all notes and assets for link and embed validation."""
+        self.load_vault_index()
         self.all_notes = []
         self.all_assets = set()
         self.note_stems = {}
@@ -46,12 +92,15 @@ class VaultLinter:
                 rel = os.path.relpath(os.path.join(root, f), self.root_dir).replace('\\', '/')
                 f_lower = f.lower()
                 rel_lower = rel.lower()
+                clean_rel = re.sub(r'^(?:note-res|\[inside\][^/]+)/', '', rel_lower)
+                
                 self.all_assets.add(f_lower)
                 self.all_assets.add(rel_lower)
-                
-                # Strip prefix containers
-                clean_rel = re.sub(r'^(?:note-res|\[inside\][^/]+)/', '', rel_lower)
                 self.all_assets.add(clean_rel)
+                self.all_assets.add(self.slugify(f, is_directory=False))
+                self.all_assets.add(self.slugify_path(clean_rel))
+                self.all_assets.add(re.sub(r'[^a-z0-9]', '', f_lower))
+                self.all_assets.add(re.sub(r'[^a-z0-9]', '', clean_rel))
 
                 if f.endswith('.md'):
                     self.all_notes.append(rel)
@@ -59,10 +108,71 @@ class VaultLinter:
                     self.note_stems[clean_stem] = rel
                     self.note_stems[clean_stem.replace('-', ' ')] = rel
                     self.note_stems[clean_stem.replace(' ', '-')] = rel
+                    self.note_stems[clean_stem.replace('_', '-')] = rel
+                    self.note_stems[clean_stem.replace('_', ' ')] = rel
                     self.note_stems[clean_rel.replace('.md', '')] = rel
                     self.note_stems[clean_rel.replace('.md', '').replace('-', ' ')] = rel
                     self.note_stems[clean_rel.replace('.md', '').replace(' ', '-')] = rel
                     self.note_stems[rel_lower.replace('.md', '')] = rel
+
+    def is_wikilink_resolved(self, inner):
+        """Check if internal wikilink target exists via lookup dictionary or stem mapping."""
+        if not inner:
+            return True
+        clean_inner = re.sub(r'^(?:bba study|note-res|vault)/', '', inner, flags=re.IGNORECASE).strip()
+        
+        # 1. Try vault_lookup dictionary from vault-index.json
+        if self.vault_lookup:
+            keys_to_check = [
+                inner,
+                inner.lower(),
+                clean_inner,
+                clean_inner.lower(),
+                self.slugify(clean_inner),
+                clean_inner.replace('_', ' '),
+                clean_inner.replace('_', '-'),
+                clean_inner.replace('-', ' '),
+                re.sub(r'[^a-z0-9]', '', clean_inner.lower()),
+                os.path.basename(clean_inner),
+                os.path.basename(clean_inner).lower(),
+                self.slugify(os.path.basename(clean_inner)),
+                re.sub(r'[^a-z0-9]', '', os.path.basename(clean_inner).lower())
+            ]
+            for k in keys_to_check:
+                if k in self.vault_lookup:
+                    return True
+
+        # 2. Fallback check against note_stems
+        target_clean = clean_inner.replace('.md', '').lower().split('/')[-1]
+        stems_to_check = [
+            target_clean,
+            clean_inner.lower(),
+            self.slugify(target_clean),
+            target_clean.replace('_', '-'),
+            target_clean.replace('_', ' '),
+            target_clean.replace('-', ' '),
+            re.sub(r'[^a-z0-9]', '', target_clean)
+        ]
+        for s in stems_to_check:
+            if s in self.note_stems:
+                return True
+
+        return False
+
+    def is_asset_resolved(self, fname):
+        """Check if asset or media file exists in all_assets."""
+        clean_fname = re.sub(r'^(?:bba study|note-res|vault)/', '', fname, flags=re.IGNORECASE).strip().lower()
+        base_fname = os.path.basename(clean_fname)
+
+        candidates = [
+            clean_fname,
+            base_fname,
+            self.slugify_path(clean_fname),
+            self.slugify(base_fname, is_directory=False),
+            re.sub(r'[^a-z0-9]', '', base_fname),
+            re.sub(r'[^a-z0-9]', '', clean_fname)
+        ]
+        return any(c in self.all_assets for c in candidates)
 
     def lint_file(self, file_path):
         """Lint an individual markdown file and optionally auto-fix safe typos."""
@@ -156,12 +266,10 @@ class VaultLinter:
 
             # Strip vault prefixes
             clean_inner = re.sub(r'^(?:bba study|note-res|vault)/', '', inner, flags=re.IGNORECASE).strip()
-            target_clean = clean_inner.replace('.md', '').lower().split('/')[-1]
 
             # If link points to media/graphic
             if clean_inner.lower().endswith(('.svg', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp', '.pdf')):
-                base_fname = os.path.basename(clean_inner).lower()
-                if base_fname not in self.all_assets and clean_inner.lower() not in self.all_assets:
+                if not self.is_asset_resolved(clean_inner):
                     file_issues.append({
                         "file": file_path,
                         "line": 1,
@@ -174,7 +282,7 @@ class VaultLinter:
                     })
                 continue
 
-            if target_clean not in self.note_stems and clean_inner.lower() not in self.note_stems:
+            if not self.is_wikilink_resolved(clean_inner):
                 file_issues.append({
                     "file": file_path,
                     "line": 1,
@@ -222,8 +330,7 @@ class VaultLinter:
             fname = embed.split('|')[0].strip()
             clean_fname = re.sub(r'^(?:bba study|note-res|vault)/', '', fname, flags=re.IGNORECASE).strip()
             if clean_fname.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.bmp', '.mp4', '.webm')):
-                base_fname = os.path.basename(clean_fname).lower()
-                if base_fname not in self.all_assets and clean_fname.lower() not in self.all_assets:
+                if not self.is_asset_resolved(clean_fname):
                     file_issues.append({
                         "file": file_path,
                         "line": 1,
@@ -255,16 +362,31 @@ class VaultLinter:
         clean_reference = re.sub(r'^(?:bba study|vault)/', '', clean_reference, flags=re.IGNORECASE)
         clean_reference = re.sub(r'^note-res/', '', clean_reference, flags=re.IGNORECASE)
 
+        slugified_ref = self.slugify_path(clean_reference)
+
         note_path = Path(self.root_dir) / file_path
         note_directory = note_path.parent
         candidates = []
         if clean_reference:
             candidates.append((Path(self.vault_dir) / clean_reference, clean_reference))
             candidates.append((note_directory / clean_reference, reference))
+            candidates.append((Path(self.vault_dir) / slugified_ref, slugified_ref))
+            candidates.append((note_directory / os.path.basename(slugified_ref), os.path.basename(slugified_ref)))
 
         for candidate, published_reference in candidates:
             if candidate.is_file():
                 return published_reference.replace('\\', '/')
+
+        # Fuzzy search in vault_dir for file with matching alphanumeric basename
+        base_clean = re.sub(r'[^a-z0-9]', '', os.path.basename(clean_reference).lower())
+        for root, _, files in os.walk(self.vault_dir):
+            for f in files:
+                f_clean = re.sub(r'[^a-z0-9]', '', f.lower())
+                if f_clean == base_clean:
+                    found_abs = os.path.join(root, f)
+                    rel_to_root = os.path.relpath(found_abs, self.root_dir).replace('\\', '/')
+                    rel_to_vault = re.sub(r'^(?:note-res|\[inside\][^/]+)/', '', rel_to_root)
+                    return rel_to_vault
 
         return reference
 

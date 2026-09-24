@@ -238,7 +238,7 @@ Combining the target weights and component costs of debt, preferred stock, and c
 
 
 
-![[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg]]
+![[ai-curated-notes/acc-302-financial-management/assets/acc302mcciosschedule.svg]]
 
 
 
