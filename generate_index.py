@@ -49,6 +49,14 @@ ignored_folders = set(config.get('excludedFolders', [])).union(source_exclusion_
 ignored_files = set(config.get('excludedFiles', [])).union(source_exclusion_files)
 ignored_patterns = [re.compile(p) for p in config.get('excludedPatterns', [])]
 
+def slugify(text: str) -> str:
+    """Generates clean, URL-safe kebab-case slugs eliminating whitespace and %20 encoding."""
+    slug = text.strip().lower()
+    slug = re.sub(r'[\s_]+', '-', slug)
+    slug = re.sub(r'[^a-z0-9\-]', '', slug)
+    slug = re.sub(r'-+', '-', slug)
+    return slug.strip('-') or 'vault-folder'
+
 def is_ignored_folder(name):
     low = name.lower()
     if name in ignored_folders or name.startswith('.'):
@@ -102,6 +110,7 @@ for name in sorted(os.listdir(scan_base)):
                     rel = os.path.relpath(os.path.join(root, f), source_dir).replace('\\', '/')
                     all_md_files.append(rel)
 
+        rel_slug = slugify(name)
         rel_url = f"./{vault_container}/{name}/" if scan_base == container_path else f"./{name}/"
         entries.append((name, rel_url, sub_count))
 
@@ -402,8 +411,29 @@ html_template = r'''<!DOCTYPE html>
         let draggedNode = null;
         let isDragging = false; 
         let time = 0; 
+        let lastFrameTime = performance.now();
+        const frameInterval = 1000 / 60;
 
-        function draw() {
+        // Background stardust particles
+        const stardust = Array.from({ length: 45 }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 1.2 + 0.4,
+            speed: Math.random() * 0.2 + 0.05,
+            opacity: Math.random() * 0.5 + 0.2
+        }));
+
+        function draw(now = performance.now()) {
+            requestAnimationFrame(draw);
+
+            // Pause CPU cycles when tab is hidden
+            if (document.hidden) return;
+
+            // Cap at 60 FPS cleanly to prevent layout thrashing
+            const elapsed = now - lastFrameTime;
+            if (elapsed < frameInterval) return;
+            lastFrameTime = now - (elapsed % frameInterval);
+
             time += 0.015; 
 
             const cBg = getCSSColor('--background-primary', '#1e1e1e');
@@ -416,7 +446,7 @@ html_template = r'''<!DOCTYPE html>
 
             ctx.clearRect(0, 0, width, height);
 
-            // --- A. DYNAMIC BACKGROUND NEBULA EFFECTS ---
+            // --- A. DYNAMIC BACKGROUND NEBULA & STARDUST ---
             ctx.save();
             
             const neb1X = width * 0.4 + Math.cos(time * 0.05) * (width * 0.2);
@@ -451,6 +481,17 @@ html_template = r'''<!DOCTYPE html>
             ctx.globalAlpha = 0.03;
             ctx.beginPath(); ctx.arc(neb3X, neb3Y, rad3, 0, Math.PI * 2); ctx.fill();
             
+            // Cosmic stardust
+            stardust.forEach(star => {
+                star.y -= star.speed;
+                if (star.y < 0) { star.y = height; star.x = Math.random() * width; }
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffffff';
+                ctx.globalAlpha = star.opacity * (0.8 + Math.sin(time + star.x) * 0.2);
+                ctx.fill();
+            });
+
             ctx.restore();
 
             // --- B. CALCULATE FORCES ---
@@ -533,11 +574,21 @@ html_template = r'''<!DOCTYPE html>
                     ctx.restore();
                 }
 
-                // MOONS
+                // MOONS & ORBIT RINGS
                 if (!n.isRoot && n.moons > 0) {
                     const visibleMoons = Math.min(n.moons, 10);
                     const orbitRadius = r + 11;
                     const rotationDir = (n.id.charCodeAt(0) % 2 === 0) ? 1 : -1;
+
+                    // Delicate orbital ring
+                    ctx.save();
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, orbitRadius, 0, Math.PI * 2);
+                    ctx.strokeStyle = isHovered ? cNodeHover : cLine;
+                    ctx.lineWidth = 0.75;
+                    ctx.globalAlpha = isHovered ? 0.45 : 0.2;
+                    ctx.stroke();
+                    ctx.restore();
 
                     for (let m = 0; m < visibleMoons; m++) {
                         const baseAngle = (m / visibleMoons) * Math.PI * 2;

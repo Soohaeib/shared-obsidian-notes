@@ -11,6 +11,9 @@ class ObsidianVaultApp {
     this.graphData = { nodes: [], links: [] };
     this.currentPath = null;
     this.noteContents = new Map();
+    this.activePrefetches = new Map();
+    this.idlePrefetchQueue = [];
+    this.isIdleScheduled = false;
     this.healthIssuesByFile = new Map();
 
     // Reading preferences
@@ -82,6 +85,100 @@ class ObsidianVaultApp {
     }
 
     return '5th-semester';
+  }
+
+  // ==========================================
+  // Client-Side Cache & Speculative Prefetcher
+  // ==========================================
+  getNoteFromCache(path) {
+    if (!path) return null;
+    if (this.noteContents.has(path)) {
+      return this.noteContents.get(path);
+    }
+    try {
+      const cached = sessionStorage.getItem(`obsidian_cache_${path}`);
+      if (cached) {
+        this.noteContents.set(path, cached);
+        return cached;
+      }
+    } catch (e) {}
+    return null;
+  }
+
+  setNoteToCache(path, content) {
+    if (!path || !content) return;
+    this.noteContents.set(path, content);
+    try {
+      sessionStorage.setItem(`obsidian_cache_${path}`, content);
+    } catch (e) {}
+  }
+
+  prefetchNote(path) {
+    if (!path) return Promise.resolve(null);
+    const cached = this.getNoteFromCache(path);
+    if (cached) return Promise.resolve(cached);
+
+    if (this.activePrefetches.has(path)) {
+      return this.activePrefetches.get(path);
+    }
+
+    const fetchUrl = `./${path}`;
+    const p = fetch(fetchUrl)
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return res.text();
+      })
+      .then(text => {
+        this.setNoteToCache(path, text);
+        this.activePrefetches.delete(path);
+        return text;
+      })
+      .catch(err => {
+        this.activePrefetches.delete(path);
+        return null;
+      });
+
+    this.activePrefetches.set(path, p);
+    return p;
+  }
+
+  // Speculative idle queue: lazily fetches remaining notes during idle browser cycles
+  enqueueIdlePrefetch(notePaths) {
+    if (!Array.isArray(notePaths) || notePaths.length === 0) return;
+    const pending = notePaths.filter(p => !this.noteContents.has(p) && !this.activePrefetches.has(p));
+    if (pending.length === 0) return;
+
+    this.idlePrefetchQueue = [...new Set([...this.idlePrefetchQueue, ...pending])];
+    this.scheduleIdlePrefetch();
+  }
+
+  scheduleIdlePrefetch() {
+    if (this.isIdleScheduled || this.idlePrefetchQueue.length === 0) return;
+    this.isIdleScheduled = true;
+
+    const runQueue = (deadline) => {
+      this.isIdleScheduled = false;
+      const hasTime = () => deadline ? deadline.timeRemaining() > 8 : true;
+
+      let processedInBatch = 0;
+      while (this.idlePrefetchQueue.length > 0 && hasTime() && processedInBatch < 3) {
+        const nextPath = this.idlePrefetchQueue.shift();
+        if (nextPath && !this.noteContents.has(nextPath)) {
+          this.prefetchNote(nextPath);
+          processedInBatch++;
+        }
+      }
+
+      if (this.idlePrefetchQueue.length > 0) {
+        this.scheduleIdlePrefetch();
+      }
+    };
+
+    if (typeof window.requestIdleCallback === 'function') {
+      window.requestIdleCallback(runQueue, { timeout: 3000 });
+    } else {
+      setTimeout(() => runQueue(null), 200);
+    }
   }
 
   async init() {
@@ -667,6 +764,9 @@ class ObsidianVaultApp {
     this.allNotes = notes;
     this.buildGraphData();
     this.updateWorkspaceBranding();
+
+    // Speculative Intent-Based Prefetching: Enqueue idle prefetching for active folder notes
+    this.enqueueIdlePrefetch(notes.map(n => n.path));
   }
 
   updateWorkspaceBranding() {
@@ -857,6 +957,13 @@ class ObsidianVaultApp {
     });
 
     document.querySelectorAll('.tree-item-self.note-item').forEach(el => {
+      // Speculative Intent-Based Prefetching on hover or touch-start
+      const notePath = el.dataset.notePath;
+      if (notePath) {
+        el.addEventListener('mouseenter', () => this.prefetchNote(notePath), { passive: true });
+        el.addEventListener('touchstart', () => this.prefetchNote(notePath), { passive: true });
+      }
+
       el.addEventListener('click', () => {
         if (typeof window !== 'undefined' && window.innerWidth <= 768) {
           this.isLeftOpen = false;
@@ -975,14 +1082,11 @@ class ObsidianVaultApp {
     `;
 
     try {
-      // Fetch markdown content
-      let rawMarkdown = this.noteContents.get(relPath);
+      // Fetch markdown content using fast in-memory cache or deduplicated prefetch
+      let rawMarkdown = this.getNoteFromCache(relPath);
       if (!rawMarkdown) {
-        const fetchUrl = `./${relPath}`;
-        const res = await fetch(fetchUrl);
-        if (!res.ok) throw new Error(`Could not fetch ${fetchUrl}`);
-        rawMarkdown = await res.text();
-        this.noteContents.set(relPath, rawMarkdown);
+        rawMarkdown = await this.prefetchNote(relPath);
+        if (!rawMarkdown) throw new Error(`Could not fetch ${relPath}`);
       }
 
       this.renderMarkdownNote(rawMarkdown, relPath);
@@ -1816,16 +1920,7 @@ class ObsidianVaultApp {
     for (const note of this.allNotes) {
       if (note.path === currentRelPath) continue;
 
-      let content = this.noteContents.get(note.path);
-      if (!content) {
-        try {
-          const res = await fetch(`./${note.path}`);
-          if (res.ok) {
-            content = await res.text();
-            this.noteContents.set(note.path, content);
-          }
-        } catch (e) {}
-      }
+      const content = this.getNoteFromCache(note.path);
 
       if (content) {
         const lower = content.toLowerCase();
@@ -1854,7 +1949,7 @@ class ObsidianVaultApp {
       backlinksContainer.innerHTML = '<div class="backlinks-empty">No linked references to this note yet.</div>';
     } else {
       backlinksContainer.innerHTML = backlinks.map(b => `
-        <a href="#${encodeURIComponent(b.note.path)}" class="backlink-item">
+        <a href="#${encodeURIComponent(b.note.path)}" class="backlink-item" data-note-path="${b.note.path}">
           <div class="backlink-title">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
@@ -1865,6 +1960,15 @@ class ObsidianVaultApp {
           <div class="backlink-snippet">${b.snippet}</div>
         </a>
       `).join('');
+
+      // Speculative prefetch for backlink anchors
+      backlinksContainer.querySelectorAll('.backlink-item').forEach(el => {
+        const p = el.dataset.notePath;
+        if (p) {
+          el.addEventListener('mouseenter', () => this.prefetchNote(p), { passive: true });
+          el.addEventListener('touchstart', () => this.prefetchNote(p), { passive: true });
+        }
+      });
     }
   }
 
@@ -1894,6 +1998,18 @@ class ObsidianVaultApp {
   }
 
   initInteractiveWidgets() {
+    // Speculative Intent-Based Prefetching for Internal Note Links
+    document.querySelectorAll('#note-container a.internal-link, #note-container a[href^="#"]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href && href.startsWith('#') && !href.startsWith('#fn-') && !href.startsWith('#fnref-')) {
+        const rawTarget = decodeURIComponent(href.slice(1)).split('#')[0];
+        if (rawTarget) {
+          link.addEventListener('mouseenter', () => this.prefetchNote(rawTarget), { passive: true });
+          link.addEventListener('touchstart', () => this.prefetchNote(rawTarget), { passive: true });
+        }
+      }
+    });
+
     // Callouts collapsible toggle
     document.querySelectorAll('.callout[data-callout-fold="true"]').forEach(callout => {
       callout.querySelector('.callout-title')?.addEventListener('click', () => {
