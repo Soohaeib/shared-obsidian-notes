@@ -350,22 +350,21 @@ class ObsidianVaultApp {
     });
 
     // Note Tools from Options Popover
-    document.getElementById('opt-btn-export-pdf')?.addEventListener('click', () => {
+    document.getElementById('opt-btn-download-pageless')?.addEventListener('click', () => {
       toggleOptions(false);
-      if (this.activeNoteRawMarkdown) {
-        this.openPdfExportModal(this.activeNoteTitle, this.activeNotePath, this.activeNoteRawMarkdown);
+      if (this.activeNoteRawMarkdown || document.getElementById('note-article')) {
+        this.downloadNotePageless(this.activeNoteTitle, this.activeNotePath, this.activeNoteRawMarkdown);
       } else {
-        this.showToast('No active note to export');
+        this.showToast('No active note to download');
       }
     });
 
-    document.getElementById('opt-btn-copy-md')?.addEventListener('click', () => {
+    document.getElementById('opt-btn-download-md')?.addEventListener('click', () => {
       toggleOptions(false);
       if (this.activeNoteRawMarkdown) {
-        navigator.clipboard.writeText(this.activeNoteRawMarkdown);
-        this.showToast('Markdown copied to clipboard');
+        this.downloadMarkdownFile(this.activeNoteTitle, this.activeNotePath, this.activeNoteRawMarkdown);
       } else {
-        this.showToast('No active note to copy');
+        this.showToast('No active note to download');
       }
     });
 
@@ -438,10 +437,19 @@ class ObsidianVaultApp {
       this.showToast(anyOpen ? 'Collapsed all folders' : 'Expanded all folders');
     });
 
-    // Quick Search Palette
-    document.getElementById('btn-quick-search')?.addEventListener('click', () => {
-      this.openSearchModal();
-    });
+    // Quick Search Palette & Non-Minimal Header Search Bar
+    const triggerSearch = () => this.openSearchModal();
+    document.getElementById('btn-quick-search')?.addEventListener('click', triggerSearch);
+    const headerSearchBar = document.getElementById('header-search-bar-trigger');
+    if (headerSearchBar) {
+      headerSearchBar.addEventListener('click', triggerSearch);
+      headerSearchBar.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          triggerSearch();
+        }
+      });
+    }
 
     // Vault Health Diagnostics Modal
     document.getElementById('btn-vault-health')?.addEventListener('click', () => {
@@ -956,25 +964,15 @@ class ObsidianVaultApp {
     this.activeNotePath = relPath;
     this.activeNoteRawMarkdown = rawMarkdown;
 
+    // Update header metadata badges
+    const rtVal = document.getElementById('reading-time-val');
+    if (rtVal) rtVal.textContent = `${readingTime} min read`;
+    const wcVal = document.getElementById('word-count-val');
+    if (wcVal) wcVal.textContent = `${words.toLocaleString()} words`;
+    const headerBadges = document.getElementById('header-meta-badges');
+    if (headerBadges) headerBadges.style.display = 'inline-flex';
+
     container.innerHTML = `
-      <div class="note-header-card">
-        <div class="note-meta-badges">
-          <span class="meta-badge" id="note-reading-time" title="Estimated reading time remaining">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
-            ${readingTime} min read
-          </span>
-          <span class="meta-badge" title="Total word count">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-              <polyline points="14 2 14 8 20 8"></polyline>
-            </svg>
-            ${words} words
-          </span>
-        </div>
-      </div>
       <article class="markdown-rendered" id="note-article">
         ${renderedHtml}
       </article>
@@ -2401,96 +2399,285 @@ class ObsidianVaultApp {
       document.body.appendChild(previewEl);
     }
 
+    this.isPreviewPinned = false;
     let hideTimeout = null;
     let dismissTimeout = null;
+    let isDragging = false;
+    let startX = 0, startY = 0, initialLeft = 0, initialTop = 0;
 
-    const showPreview = async (targetPath, e) => {
+    // Draggable window handlers for preview popover
+    const onDragStart = (e) => {
+      // Do not initiate drag if user clicked pin, close, or a link
+      if (e.target.closest('.preview-pin-btn, .preview-close-btn, a, button:not(.preview-drag-handle)')) return;
+      isDragging = true;
+      const point = e.touches ? e.touches[0] : e;
+      startX = point.clientX;
+      startY = point.clientY;
+      const rect = previewEl.getBoundingClientRect();
+      initialLeft = rect.left;
+      initialTop = rect.top;
+      previewEl.classList.add('is-dragging');
+      document.addEventListener('mousemove', onDragMove);
+      document.addEventListener('mouseup', onDragEnd);
+      document.addEventListener('touchmove', onDragMove, { passive: false });
+      document.addEventListener('touchend', onDragEnd);
+    };
+
+    const onDragMove = (e) => {
+      if (!isDragging) return;
+      if (e.cancelable) e.preventDefault();
+      const point = e.touches ? e.touches[0] : e;
+      const dx = point.clientX - startX;
+      const dy = point.clientY - startY;
+      const newX = Math.max(8, Math.min(window.innerWidth - previewEl.offsetWidth - 8, initialLeft + dx));
+      const newY = Math.max(8, Math.min(window.innerHeight - previewEl.offsetHeight - 8, initialTop + dy));
+      previewEl.style.left = `${newX}px`;
+      previewEl.style.top = `${newY}px`;
+    };
+
+    const onDragEnd = () => {
+      isDragging = false;
+      previewEl.classList.remove('is-dragging');
+      document.removeEventListener('mousemove', onDragMove);
+      document.removeEventListener('mouseup', onDragEnd);
+      document.removeEventListener('touchmove', onDragMove);
+      document.removeEventListener('touchend', onDragEnd);
+    };
+
+    const showPreview = async (targetPath, linkText, rawHref, e) => {
       clearTimeout(hideTimeout);
-      if (!targetPath) return;
+      if (!targetPath && !rawHref) return;
 
-      const cleanPath = targetPath.replace(/^#/, '').replace(/^\.\//, '');
-      const note = this.allNotes.find(n => n.path === cleanPath || n.path.endsWith(cleanPath));
-      if (!note) return;
+      const isExternal = Boolean(rawHref && (rawHref.startsWith('http://') || rawHref.startsWith('https://')));
+      let title = linkText || 'Embedded Link';
+      let bodyHtml = '';
+      let isInternalNote = false;
 
-      let content = this.noteContents.get(note.path);
-      if (!content) {
+      if (isExternal) {
+        let domain = 'external';
         try {
-          const res = await fetch(`./${note.path}`);
-          if (res.ok) {
-            content = await res.text();
-            this.noteContents.set(note.path, content);
-          }
+          domain = new URL(rawHref).hostname.replace(/^www\./, '');
         } catch (err) {}
-      }
+        title = linkText || domain;
+        bodyHtml = `
+          <div class="preview-external-badge">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+              <polyline points="15 3 21 3 21 9"></polyline>
+              <line x1="10" y1="14" x2="21" y2="3"></line>
+            </svg>
+            <span>External Link • ${domain}</span>
+          </div>
+          <div style="font-size: 0.85rem; font-weight: 600; color: var(--text-normal); margin-bottom: 4px;">${title}</div>
+          <div style="font-size: 0.76rem; color: var(--text-muted); word-break: break-all; margin-bottom: 10px;">${rawHref}</div>
+          <a href="${rawHref}" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; font-size: 0.76rem; background: var(--interactive-accent-subtle); color: var(--interactive-accent); border-radius: 4px; text-decoration: none; font-weight: 600;">
+            <span>Open Link in New Tab</span>
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        `;
+      } else {
+        const cleanPath = (targetPath || '').replace(/^#/, '').replace(/^\.\//, '');
+        const note = this.allNotes.find(n => n.path === cleanPath || n.path.endsWith(cleanPath) || n.title.toLowerCase() === cleanPath.toLowerCase());
+        if (note) {
+          isInternalNote = true;
+          title = note.title;
+          let content = this.noteContents.get(note.path);
+          if (!content) {
+            try {
+              const res = await fetch(`./${note.path}`);
+              if (res.ok) {
+                content = await res.text();
+                this.noteContents.set(note.path, content);
+              }
+            } catch (err) {}
+          }
 
-      let snippet = 'No preview text available.';
-      if (content) {
-        const cleanText = content
-          .replace(/---[\s\S]*?---/, '')
-          .replace(/#+\s+.*?\n/g, '')
-          .replace(/\[\[(.*?)\]\]/g, '$1')
-          .replace(/[#*`_~]/g, '')
-          .trim();
-        snippet = cleanText.substring(0, 220) + (cleanText.length > 220 ? '...' : '');
+          let snippet = 'No preview text available.';
+          if (content) {
+            const cleanText = content
+              .replace(/---[\s\S]*?---/, '')
+              .replace(/#+\s+.*?\n/g, '')
+              .replace(/\[\[(.*?)\]\]/g, '$1')
+              .replace(/[#*`_~]/g, '')
+              .trim();
+            snippet = cleanText.substring(0, 240) + (cleanText.length > 240 ? '...' : '');
+          }
+
+          bodyHtml = `
+            <div style="margin-bottom: 8px;">${snippet}</div>
+            <a href="#${note.path}" style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; font-size: 0.74rem; background: var(--interactive-accent-subtle); color: var(--interactive-accent); border-radius: 4px; text-decoration: none; font-weight: 600;">
+              <span>Jump to Note</span>
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </a>
+          `;
+        } else {
+          title = linkText || 'Internal Reference';
+          bodyHtml = `<div style="font-size: 0.8rem; color: var(--text-muted);">Reference: ${targetPath || rawHref}</div>`;
+        }
       }
 
       previewEl.innerHTML = `
-        <div class="preview-popover-title">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-            <polyline points="14 2 14 8 20 8"></polyline>
-          </svg>
-          <span>${note.title}</span>
-          <button class="preview-close" type="button" aria-label="Close note preview" title="Close preview">&times;</button>
+        <div class="preview-popover-header">
+          <div class="preview-popover-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            <span class="preview-title-text">${title}</span>
+          </div>
+          <div class="preview-popover-actions">
+            <button class="preview-action-btn preview-drag-handle" type="button" aria-label="Drag preview window" title="Drag preview window">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="9" cy="6" r="1.5" fill="currentColor"></circle>
+                <circle cx="15" cy="6" r="1.5" fill="currentColor"></circle>
+                <circle cx="9" cy="12" r="1.5" fill="currentColor"></circle>
+                <circle cx="15" cy="12" r="1.5" fill="currentColor"></circle>
+                <circle cx="9" cy="18" r="1.5" fill="currentColor"></circle>
+                <circle cx="15" cy="18" r="1.5" fill="currentColor"></circle>
+              </svg>
+            </button>
+            <button class="preview-action-btn preview-pin-btn ${this.isPreviewPinned ? 'is-pinned' : ''}" type="button" aria-label="${this.isPreviewPinned ? 'Unpin preview window' : 'Pin preview window'}" title="${this.isPreviewPinned ? 'Unpin preview (allow auto-close)' : 'Pin preview (keep window open while reading)'}">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="12" y1="17" x2="12" y2="22"></line>
+                <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.89A2 2 0 0 1 15 10.77V6a3 3 0 0 0-6 0v4.77a2 2 0 0 1-1.11 1.79l-1.78.89A2 2 0 0 0 5 15.24Z"></path>
+              </svg>
+            </button>
+            <button class="preview-action-btn preview-close-btn" type="button" aria-label="Close preview" title="Close preview">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
         </div>
-        <div class="preview-popover-body">${snippet}</div>
+        <div class="preview-popover-body">${bodyHtml}</div>
       `;
 
-      const x = Math.min(window.innerWidth - 340, Math.max(16, e.clientX + 12));
-      const y = Math.min(window.innerHeight - 220, Math.max(16, e.clientY + 16));
-      previewEl.style.left = `${x}px`;
-      previewEl.style.top = `${y}px`;
-      previewEl.style.display = 'block';
-      previewEl.classList.add('is-visible');
-      previewEl.querySelector('.preview-close')?.addEventListener('click', () => {
-        previewEl.classList.remove('is-visible');
-        previewEl.style.display = 'none';
+      // Setup Dragging on header and drag button
+      const headerEl = previewEl.querySelector('.preview-popover-header');
+      if (headerEl) {
+        headerEl.addEventListener('mousedown', onDragStart);
+        headerEl.addEventListener('touchstart', onDragStart, { passive: true });
+      }
+
+      // Setup Pin Button
+      const pinBtn = previewEl.querySelector('.preview-pin-btn');
+      if (pinBtn) {
+        pinBtn.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          this.isPreviewPinned = !this.isPreviewPinned;
+          previewEl.classList.toggle('is-pinned', this.isPreviewPinned);
+          pinBtn.classList.toggle('is-pinned', this.isPreviewPinned);
+          pinBtn.setAttribute('title', this.isPreviewPinned ? 'Unpin preview (allow auto-close)' : 'Pin preview (keep open while reading)');
+          if (this.isPreviewPinned) {
+            clearTimeout(hideTimeout);
+            clearTimeout(dismissTimeout);
+            this.showToast('Preview pinned to workspace');
+          } else {
+            this.showToast('Preview unpinned');
+          }
+        });
+      }
+
+      // Setup Close Button
+      const closeBtn = previewEl.querySelector('.preview-close-btn');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          this.isPreviewPinned = false;
+          previewEl.classList.remove('is-pinned', 'is-visible');
+          previewEl.style.display = 'none';
+        });
+      }
+
+      // If user clicks internal jump link, close preview
+      previewEl.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', () => {
+          this.isPreviewPinned = false;
+          previewEl.classList.remove('is-pinned', 'is-visible');
+          previewEl.style.display = 'none';
+        });
       });
-      clearTimeout(dismissTimeout);
-      dismissTimeout = setTimeout(() => {
-        previewEl.classList.remove('is-visible');
-        previewEl.style.display = 'none';
-      }, 5000);
+
+      // Position preview near cursor if not already pinned
+      if (!this.isPreviewPinned) {
+        const x = Math.min(window.innerWidth - 360, Math.max(16, e.clientX + 14));
+        const y = Math.min(window.innerHeight - 260, Math.max(16, e.clientY + 18));
+        previewEl.style.left = `${x}px`;
+        previewEl.style.top = `${y}px`;
+      }
+
+      previewEl.style.display = 'flex';
+      previewEl.classList.add('is-visible');
+
+      if (!this.isPreviewPinned) {
+        clearTimeout(dismissTimeout);
+        dismissTimeout = setTimeout(() => {
+          if (!this.isPreviewPinned && !isDragging) {
+            previewEl.classList.remove('is-visible');
+            previewEl.style.display = 'none';
+          }
+        }, 5500);
+      }
     };
 
     const hidePreview = () => {
+      if (this.isPreviewPinned || isDragging) return;
       hideTimeout = setTimeout(() => {
-        previewEl.classList.remove('is-visible');
-        previewEl.style.display = 'none';
-      }, 150);
+        if (!this.isPreviewPinned && !isDragging) {
+          previewEl.classList.remove('is-visible');
+          previewEl.style.display = 'none';
+        }
+      }, 200);
     };
 
+    // User requirement: PREVIEWS ONLY TRIGGER INSIDE NOTES ON EMBEDDED LINKS
     document.addEventListener('mouseover', (e) => {
-      const link = e.target.closest('a.internal-link, .backlink-item, a[data-note-path], .tree-item-self.note-item');
+      if (this.isPreviewPinned || isDragging) return;
+
+      const noteArticle = document.getElementById('note-article');
+      if (!noteArticle || !noteArticle.contains(e.target)) return;
+
+      const link = e.target.closest('a.internal-link, a[href]');
       if (link) {
-        const targetPath = link.dataset.notePath || link.dataset.target || link.getAttribute('href');
-        if (targetPath && !targetPath.startsWith('http')) {
-          showPreview(targetPath, e);
-        }
+        const rawHref = link.getAttribute('href') || '';
+        const targetPath = link.dataset.notePath || link.dataset.target || rawHref;
+        const linkText = link.textContent.trim();
+        showPreview(targetPath, linkText, rawHref, e);
       }
     });
 
     document.addEventListener('mouseout', (e) => {
-      const link = e.target.closest('a.internal-link, .backlink-item, a[data-note-path], .tree-item-self.note-item');
+      if (this.isPreviewPinned || isDragging) return;
+
+      const noteArticle = document.getElementById('note-article');
+      if (!noteArticle || !noteArticle.contains(e.target)) return;
+
+      const link = e.target.closest('a.internal-link, a[href]');
       if (link) {
         hidePreview();
       }
     });
 
-    previewEl.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
-    previewEl.addEventListener('mouseleave', () => {
+    previewEl.addEventListener('mouseenter', () => {
+      clearTimeout(hideTimeout);
       clearTimeout(dismissTimeout);
-      dismissTimeout = setTimeout(() => previewEl.classList.remove('is-visible'), 1200);
+    });
+
+    previewEl.addEventListener('mouseleave', () => {
+      if (this.isPreviewPinned || isDragging) return;
+      clearTimeout(dismissTimeout);
+      dismissTimeout = setTimeout(() => {
+        if (!this.isPreviewPinned && !isDragging) {
+          previewEl.classList.remove('is-visible');
+          previewEl.style.display = 'none';
+        }
+      }, 1500);
     });
   }
 
@@ -2912,13 +3099,21 @@ class ObsidianVaultApp {
               </svg>
               <span>Copy Raw MD</span>
             </button>
+            <button class="btn-primary-pdf" id="pdf-btn-download-html" type="button" style="background: var(--interactive-accent, #a882ff); color: #ffffff;" title="Direct download as pageless self-contained HTML document (zero page-cut issues)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              <span>Download Pageless (.html)</span>
+            </button>
             <button class="btn-primary-pdf" id="pdf-btn-generate" type="button">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="6 9 6 2 18 2 18 9"></polyline>
                 <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                 <rect x="6" y="14" width="12" height="8"></rect>
               </svg>
-              <span>Download / Print PDF</span>
+              <span>Print / PDF</span>
             </button>
           </div>
         </div>
@@ -2956,6 +3151,12 @@ class ObsidianVaultApp {
           this.showToast('Raw markdown copied to clipboard');
         }
       });
+
+      // Direct Pageless HTML Download Button
+      document.getElementById('pdf-btn-download-html')?.addEventListener('click', () => {
+        overlay.classList.remove('is-open');
+        this.downloadNotePageless(noteTitle, relPath, rawMarkdown);
+      });
     }
 
     // Bind generate PDF button
@@ -2981,6 +3182,221 @@ class ObsidianVaultApp {
     }
 
     overlay.classList.add('is-open');
+  }
+
+  /* ==========================================================================
+     Direct Pageless HTML Exporter (Zero Page Cut Issues, Full Fidelity)
+     ========================================================================== */
+  downloadNotePageless(noteTitle, relPath, rawMarkdown) {
+    const article = document.getElementById('note-article');
+    if (!article) {
+      this.showToast('Unable to export: note content not found');
+      return;
+    }
+
+    const safeTitle = (noteTitle || 'Obsidian-Note').replace(/[/\\?%*:|"<>]/g, '-').trim();
+    const clone = article.cloneNode(true);
+    clone.querySelectorAll('.diagram-corner-action-btn, .copy-code-button, .toc-twisty-btn').forEach(el => el.remove());
+
+    // Generate in-document TOC if headings exist
+    let tocHtml = '';
+    const headings = clone.querySelectorAll('h1, h2, h3, h4');
+    if (headings.length > 0) {
+      const tocItems = [];
+      headings.forEach((h, idx) => {
+        const level = parseInt(h.tagName.substring(1), 10) || 2;
+        const text = h.textContent.replace(/^#+\s*/, '').trim();
+        const anchorId = h.id || `pageless-heading-${idx}`;
+        h.id = anchorId;
+        const indent = Math.max(0, (level - 1) * 16);
+        tocItems.push(`
+          <li style="margin: 4px 0; padding-left: ${indent}px; list-style: none;">
+            <a href="#${anchorId}" style="text-decoration: none; color: inherit; font-size: 0.88rem; display: inline-flex; align-items: baseline; gap: 6px;">
+              <span style="opacity: 0.5; font-size: 0.75rem;">${'▪'.repeat(Math.max(1, level - 1))}</span>
+              <span>${text}</span>
+            </a>
+          </li>
+        `);
+      });
+
+      tocHtml = `
+        <details class="pageless-toc-drawer" open style="border: 1px solid var(--border); background: var(--surface); border-radius: 8px; padding: 14px 20px; margin-bottom: 30px;">
+          <summary style="font-weight: 700; font-size: 1rem; color: var(--accent); cursor: pointer; user-select: none;">
+            Table of Contents (${headings.length} sections)
+          </summary>
+          <ul style="margin: 12px 0 0 0; padding: 0;">
+            ${tocItems.join('')}
+          </ul>
+        </details>
+      `;
+    }
+
+    const isDark = this.themeMode === 'dark';
+    const bg = isDark ? '#12151d' : '#ffffff';
+    const text = isDark ? '#f8fafc' : '#0f172a';
+    const surface = isDark ? '#181d28' : '#f8fafc';
+    const border = isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(15, 23, 42, 0.12)';
+    const accent = isDark ? '#a882ff' : '#7c3aed';
+    const h1 = isDark ? '#ffffff' : '#0f172a';
+    const h2 = isDark ? '#a882ff' : '#6d28d9';
+    const h3 = isDark ? '#5ce1e6' : '#0284c7';
+    const codeBg = isDark ? '#181d28' : '#f1f5f9';
+
+    const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${noteTitle}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <style>
+    :root {
+      --bg: ${bg};
+      --text: ${text};
+      --surface: ${surface};
+      --border: ${border};
+      --accent: ${accent};
+      --h1: ${h1};
+      --h2: ${h2};
+      --h3: ${h3};
+      --code-bg: ${codeBg};
+      --font-default: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-default);
+      font-size: ${this.fontSize || 16}px;
+      line-height: 1.68;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      scroll-behavior: smooth;
+    }
+    .pageless-container {
+      max-width: 860px;
+      margin: 48px auto;
+      padding: 0 24px;
+    }
+    .pageless-header {
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 32px;
+    }
+    .pageless-header h1 {
+      font-size: 2.2em;
+      font-weight: 800;
+      color: var(--h1);
+      margin: 0 0 8px 0;
+      letter-spacing: -0.02em;
+    }
+    .pageless-meta {
+      font-size: 0.85em;
+      opacity: 0.75;
+      color: var(--text);
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+      margin-bottom: 0.5em;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    h1 { font-size: 1.85em; color: var(--h1); border-bottom: 1px solid var(--border); padding-bottom: 0.3em; }
+    h2 { font-size: 1.45em; color: var(--h2); }
+    h3 { font-size: 1.22em; color: var(--h3); }
+    h4 { font-size: 1.08em; color: var(--accent); }
+    p, ul, ol, blockquote { margin: 0.85em 0; }
+    strong, b { color: ${isDark ? '#ffffff' : '#000000'}; font-weight: 700; }
+    a { color: var(--accent); text-decoration: underline; }
+    pre, code { font-family: var(--font-mono); }
+    pre {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 18px;
+      overflow-x: auto;
+      font-size: 0.9em;
+    }
+    code:not(pre code) {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 5px;
+      font-size: 0.9em;
+      color: var(--h3);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.2em 0;
+      border: 1px solid var(--border);
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 9px 14px;
+      text-align: left;
+    }
+    th { background: var(--surface); font-weight: 700; }
+    blockquote {
+      border-left: 4px solid var(--accent);
+      margin: 1.2em 0;
+      padding: 8px 18px;
+      background: var(--surface);
+      border-radius: 0 6px 6px 0;
+    }
+    .callout {
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent);
+      background: var(--surface);
+      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 1.2em 0;
+    }
+    .mermaid-diagram-container {
+      display: flex;
+      justify-content: center;
+      margin: 1.4em 0;
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .mermaid-diagram-container svg { max-width: 100%; height: auto; }
+    .katex-display { margin: 1em 0; overflow-x: auto; text-align: center; }
+    img { max-width: 100%; height: auto; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <div class="pageless-container">
+    <div class="pageless-header">
+      <h1>${noteTitle}</h1>
+      <div class="pageless-meta">Obsidian Vault • Pageless Continuous Document • ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+    </div>
+    ${tocHtml}
+    <div class="pageless-content">
+      ${clone.innerHTML}
+    </div>
+  </div>
+</body>
+</html>`;
+
+    const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    const downloadUrl = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = downloadUrl;
+    a.download = `${safeTitle}.html`;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(downloadUrl);
+    }, 150);
+
+    this.showToast(`Pageless document downloaded: ${safeTitle}.html`);
   }
 
   generateLookalikeThemedPdf({ noteTitle, mode, font, theme, includeToc, fontSize }) {
@@ -3029,7 +3445,7 @@ class ObsidianVaultApp {
 
     // 2. Clone article and remove interactive tool-buttons or corner preview buttons
     const clone = article.cloneNode(true);
-    clone.querySelectorAll('.diagram-corner-action-btn, .copy-code-button').forEach(el => el.remove());
+    clone.querySelectorAll('.diagram-corner-action-btn, .copy-code-button, .toc-twisty-btn').forEach(el => el.remove());
 
     // 3. Define font imports and families
     let fontImport = '';
@@ -3053,30 +3469,30 @@ class ObsidianVaultApp {
       fontFamily = `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`;
     }
 
-    // 4. Color Palette Tokens for Theme
+    // 4. Color Palette Tokens for Theme (Cosmic Obsidian for dark)
     let colors = {
-      bg: '#2e3440',
-      text: '#eceff4',
-      surface: '#3b4252',
+      bg: '#12151d',
+      text: '#f8fafc',
+      surface: '#181d28',
       border: 'rgba(255, 255, 255, 0.12)',
-      accent: '#88c0d0',
-      h1: '#88c0d0',
-      h2: '#ebcb8b',
-      h3: '#a3be8c',
-      codeBg: '#242933',
-      calloutBg: '#3b4252'
+      accent: '#a882ff',
+      h1: '#ffffff',
+      h2: '#a882ff',
+      h3: '#5ce1e6',
+      codeBg: '#181d28',
+      calloutBg: '#181d28'
     };
 
     if (theme === 'light') {
       colors = {
         bg: '#ffffff',
-        text: '#1e293b',
+        text: '#0f172a',
         surface: '#f8fafc',
         border: '#e2e8f0',
-        accent: '#0284c7',
-        h1: '#0284c7',
-        h2: '#d97706',
-        h3: '#16a34a',
+        accent: '#7c3aed',
+        h1: '#0f172a',
+        h2: '#6d28d9',
+        h3: '#0284c7',
         codeBg: '#f1f5f9',
         calloutBg: '#f8fafc'
       };
@@ -3138,7 +3554,13 @@ class ObsidianVaultApp {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
       }
-      .callout, pre, .mermaid-diagram-container, table, .math-block, .pdf-toc-wrapper {
+      p, .callout, pre, blockquote, table, tr, li, figure, img, svg, .math-block, .katex-display, .mermaid-diagram-container, .accounting-table-wrapper, .accounting-schedule-table, .pdf-toc-wrapper {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        break-after: avoid !important;
+        page-break-after: avoid !important;
         break-inside: avoid !important;
         page-break-inside: avoid !important;
       }
@@ -3579,14 +4001,42 @@ class ObsidianVaultApp {
 
   updateReadingTimeRemaining() {
     const viewport = document.getElementById('note-viewport');
+    const valEl = document.getElementById('reading-time-val');
     const timeBadge = document.getElementById('note-reading-time');
-    if (!viewport || !timeBadge || !this.readingStats) return;
+    if (!viewport || !this.readingStats) return;
 
     const scrollRange = viewport.scrollHeight - viewport.clientHeight;
     const progress = scrollRange > 0 ? Math.min(1, Math.max(0, viewport.scrollTop / scrollRange)) : 0;
     const remaining = Math.max(0, Math.ceil(this.readingStats.totalMinutes * (1 - progress)));
-    timeBadge.lastChild.textContent = remaining > 0 ? `${remaining} min left` : 'Finished';
-    timeBadge.title = remaining > 0 ? 'Estimated reading time remaining' : 'End of note';
+    if (valEl) {
+      valEl.textContent = remaining > 0 ? `${remaining} min left` : 'Finished';
+    } else if (timeBadge && timeBadge.lastChild) {
+      timeBadge.lastChild.textContent = remaining > 0 ? `${remaining} min left` : 'Finished';
+    }
+    if (timeBadge) {
+      timeBadge.title = remaining > 0 ? `Estimated ${remaining} min remaining` : 'Finished reading note';
+    }
+  }
+
+  downloadMarkdownFile(title, path, rawMarkdown) {
+    const content = rawMarkdown || this.activeNoteRawMarkdown || '';
+    if (!content) {
+      this.showToast('No markdown content available to download');
+      return;
+    }
+    const filename = `${(title || 'Obsidian-Note').replace(/[\\/:*?"<>|]/g, '_').trim()}.md`;
+    const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 100);
+    this.showToast(`Downloaded ${filename}`);
   }
 
   openHealthModal() {
