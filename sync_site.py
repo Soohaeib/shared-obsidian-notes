@@ -24,6 +24,7 @@ import re
 import json
 import time
 import shutil
+import html
 import argparse
 from pathlib import Path
 
@@ -121,30 +122,68 @@ def is_excluded(item: str, full_path: str = "") -> bool:
 def slugify_name(name: str, is_directory: bool = False) -> str:
     """
     Standard URL-safe kebab-case slugification:
-    - Lowercase
-    - Replace spaces and underscores with hyphens
-    - Remove invalid special characters
-    - Collapse repeated hyphens
-    - Strip leading/trailing hyphens
-    - Preserve file extension for files
+    1. html.unescape(text) to handle &amp;
+    2. Replace & with ' and '
+    3. Strip illegal characters using re.sub(r'[^a-z0-9\s-]', '', text)
+    4. Collapse multiple spaces/underscores/hyphens into a single '-'
+    5. Strip leading/trailing hyphens
+    6. Preserve file extension for files
     """
     if not is_directory:
         base, ext = os.path.splitext(name)
-        # Keep index.html / index.md as index
         if base.lower() == 'index':
             return f"index{ext.lower()}"
-        slug = base.strip().lower()
-        slug = re.sub(r'[\s_]+', '-', slug)
-        slug = re.sub(r'[^a-z0-9\-]', '', slug)
-        slug = re.sub(r'-+', '-', slug)
-        slug = slug.strip('-') or 'untitled'
+        text = html.unescape(base)
+        text = text.replace('&', ' and ')
+        text = text.lower()
+        text = re.sub(r'[^a-z0-9\s-]', '', text)
+        text = re.sub(r'[\s_]+', '-', text)
+        text = re.sub(r'-+', '-', text)
+        slug = text.strip('-') or 'untitled'
         return f"{slug}{ext.lower()}"
     else:
-        slug = name.strip().lower()
-        slug = re.sub(r'[\s_]+', '-', slug)
-        slug = re.sub(r'[^a-z0-9\-]', '', slug)
-        slug = re.sub(r'-+', '-', slug)
-        return slug.strip('-') or 'untitled-folder'
+        text = html.unescape(name)
+        text = text.replace('&', ' and ')
+        text = text.lower()
+        text = re.sub(r'[^a-z0-9\s-]', '', text)
+        text = re.sub(r'[\s_]+', '-', text)
+        text = re.sub(r'-+', '-', text)
+        slug = text.strip('-') or 'untitled-folder'
+        return slug
+
+def merge_trees(src: Path, dst: Path):
+    """
+    Recursively merges directory src into dst.
+    Slugifies names, resolves conflicts, and deletes src directory tree once merged.
+    """
+    dst.mkdir(parents=True, exist_ok=True)
+    for item in list(src.iterdir()):
+        cleaned_item_name = slugify_name(item.name, is_directory=item.is_dir())
+        target = dst / cleaned_item_name
+        if item.is_dir():
+            merge_trees(item, target)
+        else:
+            if target.exists() and target != item:
+                if item.stat().st_size == target.stat().st_size or item.stat().st_mtime >= target.stat().st_mtime:
+                    try:
+                        target.unlink()
+                        shutil.move(str(item), str(target))
+                    except Exception:
+                        pass
+                else:
+                    try:
+                        item.unlink()
+                    except Exception:
+                        pass
+            else:
+                try:
+                    shutil.move(str(item), str(target))
+                except Exception:
+                    pass
+    try:
+        src.rmdir()
+    except Exception:
+        shutil.rmtree(str(src), ignore_errors=True)
 
 def sanitize_workspace(target_dir: Path):
     """
@@ -171,7 +210,6 @@ def sanitize_workspace(target_dir: Path):
                 old_path = Path(root) / fname
                 new_path = Path(root) / cleaned
                 if new_path.exists() and old_path != new_path:
-                    # If target exists and is identical or newer, remove old
                     if old_path.stat().st_size == new_path.stat().st_size:
                         try:
                             old_path.unlink()
@@ -191,39 +229,30 @@ def sanitize_workspace(target_dir: Path):
                 except Exception as e:
                     print(f"  ❌ Failed to rename {fname}: {e}")
 
-    # 2. Rename directories bottom-up
+    # 2. Rename and merge directories (bottom-up)
     for root, dirs, files in os.walk(target_dir, topdown=False):
-        for dname in dirs:
+        for dname in list(dirs):
             if is_excluded(dname, os.path.join(root, dname)):
                 continue
             cleaned = slugify_name(dname, is_directory=True)
             if cleaned != dname:
                 old_path = Path(root) / dname
                 new_path = Path(root) / cleaned
-                if new_path.exists() and old_path != new_path:
-                    # Directory merge: move contents of old_path into new_path
-                    try:
-                        for sub_item in old_path.iterdir():
-                            dest_sub = new_path / sub_item.name
-                            if not dest_sub.exists():
-                                shutil.move(str(sub_item), str(dest_sub))
-                            else:
-                                if sub_item.is_file():
-                                    sub_item.unlink()
-                                elif sub_item.is_dir():
-                                    shutil.rmtree(str(sub_item))
-                        shutil.rmtree(str(old_path))
-                        print(f"  ⚡ Merged directory: '{dname}' -> '{cleaned}'")
-                        renamed_count += 1
-                    except Exception as e:
-                        print(f"  ❌ Failed to merge directory {dname}: {e}")
-                else:
-                    try:
-                        old_path.rename(new_path)
-                        print(f"  ⚡ Slugified folder: '{dname}' -> '{cleaned}'")
-                        renamed_count += 1
-                    except Exception as e:
-                        print(f"  ❌ Failed to rename folder {dname}: {e}")
+                if old_path.exists():
+                    if new_path.exists() and old_path != new_path:
+                        try:
+                            merge_trees(old_path, new_path)
+                            print(f"  ⚡ Merged directory: '{dname}' -> '{cleaned}'")
+                            renamed_count += 1
+                        except Exception as e:
+                            print(f"  ❌ Failed to merge directory {dname}: {e}")
+                    else:
+                        try:
+                            old_path.rename(new_path)
+                            print(f"  ⚡ Slugified folder: '{dname}' -> '{cleaned}'")
+                            renamed_count += 1
+                        except Exception as e:
+                            print(f"  ❌ Failed to rename folder {dname}: {e}")
 
     print(f"✅ [Sanitizer] Completed. {renamed_count} items slugified/merged.")
 

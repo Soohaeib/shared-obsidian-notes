@@ -11,6 +11,7 @@ import json
 import os
 import sys
 import re
+import html
 from pathlib import Path
 
 # Parse CLI arguments and flags
@@ -51,11 +52,13 @@ ignored_patterns = [re.compile(p) for p in config.get('excludedPatterns', [])]
 
 def slugify(text: str) -> str:
     """Generates clean, URL-safe kebab-case slugs eliminating whitespace and %20 encoding."""
-    slug = text.strip().lower()
-    slug = re.sub(r'[\s_]+', '-', slug)
-    slug = re.sub(r'[^a-z0-9\-]', '', slug)
-    slug = re.sub(r'-+', '-', slug)
-    return slug.strip('-') or 'vault-folder'
+    text = html.unescape(text)
+    text = text.replace('&', ' and ')
+    text = text.lower()
+    text = re.sub(r'[^a-z0-9\s-]', '', text)
+    text = re.sub(r'[\s_]+', '-', text)
+    text = re.sub(r'-+', '-', text)
+    return text.strip('-') or 'vault-folder'
 
 def is_ignored_folder(name):
     low = name.lower().strip()
@@ -148,6 +151,7 @@ for name in sorted(os.listdir(scan_base)):
                         f.lower(),
                         title,
                         title.lower(),
+                        slugify(title),
                         rel_in_folder,
                         rel_in_folder[:-3] if rel_in_folder.endswith('.md') else rel_in_folder,
                         rel_in_folder.lower(),

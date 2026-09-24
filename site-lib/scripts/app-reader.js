@@ -1640,11 +1640,28 @@ class ObsidianVaultApp {
     const raw = noteName.trim();
     const clean = raw.replace(/\.md$/i, '').toLowerCase();
     const stem = clean.split('/').pop();
-    const slugified = clean.replace(/[\s_]+/g, '-').replace(/[^a-z0-9\-]/g, '');
+
+    const slugifyText = (text) => {
+      if (!text) return '';
+      let str = text.replace(/&amp;/gi, '&').replace(/&lt;/gi, '<').replace(/&gt;/gi, '>').replace(/&quot;/gi, '"').replace(/&#39;/gi, "'");
+      str = str.replace(/&/g, ' and ');
+      str = str.toLowerCase();
+      str = str.replace(/[^a-z0-9\s-]/g, '');
+      str = str.replace(/[\s_]+/g, '-').replace(/-+/g, '-');
+      return str.replace(/^-+|-+$/g, '');
+    };
+
+    const slugified = slugifyText(clean);
+    const stemSlugified = slugifyText(stem);
 
     // 1. Check in this.vaultLookup map first
     if (this.vaultLookup) {
-      const match = this.vaultLookup[raw] || this.vaultLookup[clean] || this.vaultLookup[slugified] || this.vaultLookup[stem];
+      const match = this.vaultLookup[raw] || 
+                    this.vaultLookup[clean] || 
+                    this.vaultLookup[slugified] || 
+                    this.vaultLookup[stem] || 
+                    this.vaultLookup[stemSlugified] || 
+                    this.vaultLookup[slugifyText(raw)];
       if (match) {
         const fullRel = match.path.replace(/^(?:\[inside\][^/]+|note-res)\//, '');
         const targetFolder = match.folder;
@@ -1660,7 +1677,9 @@ class ObsidianVaultApp {
     let found = this.allNotes.find(n => {
       const nClean = n.path.replace(/\.md$/i, '').toLowerCase();
       const nStem = nClean.split('/').pop();
-      return nClean === clean || nClean === slugified || nStem === stem || nStem === slugified || n.title.toLowerCase() === clean;
+      const nSlug = slugifyText(nClean);
+      const nStemSlug = slugifyText(nStem);
+      return nClean === clean || nSlug === slugified || nStem === stem || nStemSlug === stemSlugified || n.title.toLowerCase() === clean || slugifyText(n.title) === slugified;
     });
 
     if (found) {
@@ -1672,7 +1691,9 @@ class ObsidianVaultApp {
       const globalFound = this.allVaultFiles.find(f => {
         const fClean = f.replace(/^(?:\[inside\][^/]+|note-res)\//, '').replace(/\.md$/i, '').toLowerCase();
         const fStem = fClean.split('/').pop();
-        return fClean === clean || fClean === slugified || fStem === stem || fStem === slugified || fClean.endsWith(`/${stem}`) || fClean.endsWith(`/${slugified}`);
+        const fSlug = slugifyText(fClean);
+        const fStemSlug = slugifyText(fStem);
+        return fClean === clean || fSlug === slugified || fStem === stem || fStemSlug === stemSlugified || fClean.endsWith(`/${stem}`) || fClean.endsWith(`/${slugified}`);
       });
       if (globalFound) {
         const cleanPath = globalFound.replace(/^(?:\[inside\][^/]+|note-res)\//, '');
