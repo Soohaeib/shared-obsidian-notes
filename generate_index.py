@@ -250,7 +250,7 @@ html_template = r'''<!DOCTYPE html>
         width: 100%; height: 100%;
         background-color: var(--background-primary, #1e1e1e);
         overflow: hidden;
-        font-family: var(--font-interface, 'Inter', system-ui, sans-serif);
+        font-family: var(--font-interface, 'Linux Biolinium O', 'Linux Biolinium', Georgia, serif, sans-serif);
       }
 
       .bg-layer {

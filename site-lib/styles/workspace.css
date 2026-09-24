@@ -140,21 +140,10 @@ header:nth-of-type(1) > div:nth-of-type(1) > a:nth-of-type(1):hover {
   flex-shrink: 0;
 }
 
-.header-active-note-title {
-  display: inline-flex;
-  align-items: center;
-  max-width: 220px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--text-normal, #e2e8f0);
-  background: var(--interactive-accent-subtle, rgba(129, 140, 248, 0.12));
-  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.08));
-  padding: 4px 10px;
-  border-radius: 6px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  user-select: none;
+.header-active-note-title,
+#header-active-note-title,
+header:nth-of-type(1) > div:nth-of-type(1) > div#header-active-note-title:nth-of-type(1) {
+  display: none !important;
 }
 
 /* Floating Bottom-Right Reading Statistics Container */
@@ -575,13 +564,16 @@ button#btn-workspace-options svg {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 7px 10px;
+  gap: 8px;
+  padding: 8px 12px;
+  height: 36px;
+  box-sizing: border-box;
   background-color: var(--background-primary, #1e222a);
   border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.08));
   border-radius: var(--radius-sm, 6px);
   color: var(--text-normal, #eceff4);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.15s ease;
   user-select: none;
@@ -599,7 +591,22 @@ button#btn-workspace-options svg {
 
 .opt-tile-full {
   width: 100%;
-  justify-content: space-between;
+  justify-content: center;
+}
+
+button#opt-btn-download-md,
+header:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-type(1) > div#workspace-options-menu:nth-of-type(1) > div:nth-of-type(4) > div:nth-of-type(2) > button#opt-btn-download-md:nth-of-type(1) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 36px;
+  padding: 0 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm, 6px);
+  box-sizing: border-box;
 }
 
 @media (max-width: 480px) {
@@ -1208,12 +1215,24 @@ article#note-article a:hover,
 
 /* Obsidian Callouts (Obsidian Minimal Standard) */
 .callout {
-  margin: 1em 0;
-  border-radius: var(--radius-sm, 4px);
+  margin: 1.2em 0;
+  border-radius: var(--radius-md, 8px);
   border-left: 4px solid var(--callout-color, #88c0d0);
-  background-color: rgba(255, 255, 255, 0.04);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
   overflow: hidden;
-  box-shadow: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  transition: background-color 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+body.theme-light .callout {
+  border-top-color: rgba(0, 0, 0, 0.08);
+  border-right-color: rgba(0, 0, 0, 0.08);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.025) 0%, rgba(0, 0, 0, 0.01) 100%);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
 li > .callout,
@@ -1229,42 +1248,62 @@ article#note-article ul > li > div.callout {
 .callout-title {
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 9px 14px;
+  gap: 10px;
+  padding: 10px 16px;
   font-weight: 600;
-  font-size: 0.92rem;
+  font-size: 0.94rem;
   color: var(--callout-color, #88c0d0);
   user-select: none;
   background-color: transparent;
+  transition: background-color 0.15s ease;
 }
 
 .callout[data-callout-fold] .callout-title {
   cursor: pointer;
 }
 
+.callout[data-callout-fold] .callout-title:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+body.theme-light .callout[data-callout-fold] .callout-title:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
 .callout-icon {
   display: inline-flex;
   align-items: center;
-  width: 16px;
-  height: 16px;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
   flex-shrink: 0;
+  color: var(--callout-color, #88c0d0);
 }
 
 .callout-icon svg {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.25;
 }
 
 .callout-title-inner {
   flex: 1;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .callout-fold-indicator {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   display: inline-flex;
   align-items: center;
-  transition: transform 0.2s ease;
+  justify-content: center;
+  opacity: 0.75;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s ease;
+}
+
+.callout[data-callout-fold] .callout-title:hover .callout-fold-indicator {
+  opacity: 1;
 }
 
 .callout.is-collapsed .callout-fold-indicator svg {
@@ -1272,8 +1311,8 @@ article#note-article ul > li > div.callout {
 }
 
 .callout-content {
-  padding: 2px 14px 12px 14px;
-  line-height: 1.6;
+  padding: 4px 16px 14px 16px;
+  line-height: 1.65;
   color: var(--text-normal, #eceff4);
 }
 

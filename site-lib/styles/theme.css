@@ -2,17 +2,92 @@
    Obsidian Theme Engine (theme.css)
    - Dark Mode: Authentic Obsidian Nord (#2e3440, #3b4252) + Frost Accents (#88c0d0)
    - Light Mode: High-Contrast Snow Storm (#f4f6f9, #ffffff) + Deep Slate Typography
-   - Typography: Clean System UI / Inter font stack for distraction-free reading
+   - Typography: Linux Biolinium O default font family
    ========================================================================== */
+
+/* Linux Biolinium O Font Declarations */
+@font-face {
+  font-family: 'Linux Biolinium O';
+  src: url('../fonts/LinBiolinum_R.otf') format('opentype'),
+       url('../fonts/LinBiolinum_Rah.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Linux Biolinium O';
+  src: url('../fonts/LinBiolinum_RB.otf') format('opentype'),
+       url('../fonts/LinBiolinum_RBah.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Linux Biolinium O';
+  src: url('../fonts/LinBiolinum_RI.otf') format('opentype'),
+       url('../fonts/LinBiolinum_RIah.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Linux Biolinium O';
+  src: url('../fonts/LinBiolinum_K.otf') format('opentype'),
+       url('../fonts/LinBiolinum_Kah.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Alias for Linux Biolinium */
+@font-face {
+  font-family: 'Linux Biolinium';
+  src: url('../fonts/LinBiolinum_R.otf') format('opentype'),
+       url('../fonts/LinBiolinum_Rah.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Linux Biolinium';
+  src: url('../fonts/LinBiolinum_RB.otf') format('opentype'),
+       url('../fonts/LinBiolinum_RBah.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Linux Biolinium';
+  src: url('../fonts/LinBiolinum_RI.otf') format('opentype'),
+       url('../fonts/LinBiolinum_RIah.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Linux Biolinium';
+  src: url('../fonts/LinBiolinum_K.otf') format('opentype'),
+       url('../fonts/LinBiolinum_Kah.ttf') format('truetype');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
 
 :root {
   --radius-xs: 4px;
   --radius-s: 6px;
   --radius-m: 10px;
   --radius-l: 14px;
-  --font-interface: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-text: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-interface: 'Linux Biolinium O', 'Linux Biolinium', Georgia, serif, system-ui, -apple-system, sans-serif;
+  --font-text: 'Linux Biolinium O', 'Linux Biolinium', Georgia, serif, system-ui, -apple-system, sans-serif;
+  --font-heading: 'Linux Biolinium O', 'Linux Biolinium', Georgia, serif, system-ui, -apple-system, sans-serif;
+  --default-font: 'Linux Biolinium O', 'Linux Biolinium', Georgia, serif, system-ui, -apple-system, sans-serif;
   --font-monospace: 'JetBrains Mono', 'Fira Code', Menlo, Monaco, Consolas, monospace;
 }
 
