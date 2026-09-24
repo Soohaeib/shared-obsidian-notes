@@ -124,6 +124,7 @@ class ObsidianVaultApp {
     await this.loadVaultNotes();
     this.buildFileTree();
     this.setupHoverLinkPreviews();
+    this.setupMediaPreview();
     this.setupGraph();
     this.handleRoute();
     this.loadVaultHealth();
@@ -2232,6 +2233,7 @@ class ObsidianVaultApp {
     }
 
     let hideTimeout = null;
+    let dismissTimeout = null;
 
     const showPreview = async (targetPath, e) => {
       clearTimeout(hideTimeout);
@@ -2270,6 +2272,7 @@ class ObsidianVaultApp {
             <polyline points="14 2 14 8 20 8"></polyline>
           </svg>
           <span>${note.title}</span>
+          <button class="preview-close" type="button" aria-label="Close note preview" title="Close preview">&times;</button>
         </div>
         <div class="preview-popover-body">${snippet}</div>
       `;
@@ -2279,6 +2282,11 @@ class ObsidianVaultApp {
       previewEl.style.left = `${x}px`;
       previewEl.style.top = `${y}px`;
       previewEl.classList.add('is-visible');
+      previewEl.querySelector('.preview-close')?.addEventListener('click', () => {
+        previewEl.classList.remove('is-visible');
+      });
+      clearTimeout(dismissTimeout);
+      dismissTimeout = setTimeout(() => previewEl.classList.remove('is-visible'), 5000);
     };
 
     const hidePreview = () => {
@@ -2303,6 +2311,95 @@ class ObsidianVaultApp {
         hidePreview();
       }
     });
+
+    previewEl.addEventListener('mouseenter', () => clearTimeout(hideTimeout));
+    previewEl.addEventListener('mouseleave', () => {
+      clearTimeout(dismissTimeout);
+      dismissTimeout = setTimeout(() => previewEl.classList.remove('is-visible'), 1200);
+    });
+  }
+
+  setupMediaPreview() {
+    if (document.getElementById('media-preview-overlay')) return;
+
+    const overlay = document.createElement('div');
+    overlay.id = 'media-preview-overlay';
+    overlay.className = 'media-preview-overlay';
+    overlay.innerHTML = `
+      <div class="media-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="media-preview-title">
+        <div class="media-preview-toolbar">
+          <span id="media-preview-title" class="media-preview-title">Preview</span>
+          <div class="media-preview-actions">
+            <a class="media-preview-download tool-btn" download title="Download preview">Download</a>
+            <button class="media-preview-close tool-btn" type="button" title="Close preview">Close</button>
+          </div>
+        </div>
+        <div class="media-preview-content"></div>
+      </div>
+    `;
+    document.body.appendChild(overlay);
+
+    const close = () => {
+      overlay.classList.remove('is-open');
+      overlay.querySelector('.media-preview-content')?.replaceChildren();
+      if (this.mediaPreviewObjectUrl) {
+        URL.revokeObjectURL(this.mediaPreviewObjectUrl);
+        this.mediaPreviewObjectUrl = null;
+      }
+    };
+
+    overlay.querySelector('.media-preview-close')?.addEventListener('click', close);
+    overlay.addEventListener('click', event => {
+      if (event.target === overlay) close();
+    });
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && overlay.classList.contains('is-open')) close();
+    });
+
+    document.addEventListener('click', event => {
+      const image = event.target.closest('.obsidian-media-embed img');
+      const diagram = event.target.closest('.mermaid-diagram-container svg, svg[id^="mermaid-diag"]');
+      if (image) {
+        event.preventDefault();
+        this.openMediaPreview(image.getAttribute('src'), 'image', image.alt || 'Diagram');
+      } else if (diagram) {
+        event.preventDefault();
+        this.openMediaPreview(diagram.outerHTML, 'svg', 'Diagram');
+      }
+    });
+  }
+
+  openMediaPreview(source, type, title) {
+    const overlay = document.getElementById('media-preview-overlay');
+    const content = overlay?.querySelector('.media-preview-content');
+    const titleElement = overlay?.querySelector('.media-preview-title');
+    const download = overlay?.querySelector('.media-preview-download');
+    if (!overlay || !content || !titleElement || !download) return;
+
+    if (this.mediaPreviewObjectUrl) URL.revokeObjectURL(this.mediaPreviewObjectUrl);
+    this.mediaPreviewObjectUrl = null;
+    titleElement.textContent = title;
+    content.replaceChildren();
+    let downloadUrl = source;
+
+    if (type === 'svg') {
+      this.mediaPreviewObjectUrl = URL.createObjectURL(new Blob([source], { type: 'image/svg+xml;charset=utf-8' }));
+      downloadUrl = this.mediaPreviewObjectUrl;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'media-preview-svg';
+      wrapper.innerHTML = source;
+      content.appendChild(wrapper);
+    } else {
+      const image = document.createElement('img');
+      image.src = source;
+      image.alt = title;
+      content.appendChild(image);
+    }
+
+    download.href = downloadUrl;
+    const sourceExtension = type === 'svg' ? 'svg' : (source.split('?')[0].split('.').pop() || 'image');
+    download.download = `${title.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase() || 'diagram'}.${sourceExtension}`;
+    overlay.classList.add('is-open');
   }
 
   updateBreadcrumbs(parent, current) {
