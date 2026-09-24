@@ -505,6 +505,46 @@ body {
 }
 
 @media (max-width: 720px) {
+  .obsidian-app-header {
+    padding: 0 4px;
+    gap: 2px;
+  }
+
+  .header-left,
+  .header-right,
+  .header-center {
+    gap: 2px;
+  }
+
+  .header-title-badge {
+    padding: 4px;
+  }
+
+  .header-title-badge span,
+  #btn-quick-search span,
+  #btn-quick-search kbd,
+  #vault-health-badge {
+    display: none !important;
+  }
+
+  .header-center {
+    flex: 0 0 38px;
+    max-width: 38px;
+  }
+
+  .header-right .tool-btn,
+  .header-left .tool-btn {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  #btn-quick-search {
+    width: 38px;
+    max-width: 38px;
+    justify-content: center;
+    padding: 6px 7px;
+  }
+
   .header-divider,
   .segmented-control {
     display: none !important;
@@ -2064,7 +2104,7 @@ body.theme-light .graph-view-placeholder {
     right: 0;
   }
 
-  .note-viewport-scrollable {
+  main section div#note-viewport.note-viewport-scrollable {
     padding: 16px 12px 60px 12px;
   }
 }
