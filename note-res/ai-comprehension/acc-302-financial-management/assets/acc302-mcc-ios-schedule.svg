@@ -1,0 +1,49 @@
+<svg width="600" height="350" viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text {
+      font-family: Inter, sans-serif;
+      fill: var(--text-normal, #f0f0f0);
+    }
+    .axis, line[stroke="#888"], line[stroke="#ccc"] {
+      stroke: var(--text-muted, #999999);
+    }
+    @media (prefers-color-scheme: light) {
+      text {
+        fill: #222222 !important;
+      }
+      .axis, line[stroke="#888"], line[stroke="#ccc"] {
+        stroke: #666666 !important;
+      }
+    }
+  </style>
+
+    <!-- Background -->
+    <rect width="100%" height="100%" fill="none" />
+    
+    <!-- Axes -->
+    <line x1="60" y1="300" x2="560" y2="300" stroke="#888" stroke-width="2" />
+    <line x1="60" y1="40" x2="60" y2="300" stroke="#888" stroke-width="2" />
+    <text x="310" y="340" fill="#ccc" font-family="Inter, sans-serif" font-size="14" text-anchor="middle">New Capital Raised / Invested ($)</text>
+    <text x="25" y="170" fill="#ccc" font-family="Inter, sans-serif" font-size="14" text-anchor="middle" transform="rotate(-90 25,170)">Rate of Return / Cost (%)</text>
+
+    <!-- IOS Schedule (Downward Stepping) -->
+    <path d="M 60 80 L 150 80 L 150 130 L 280 130 L 280 190 L 400 190 L 400 250 L 520 250" fill="none" stroke="#2ecc71" stroke-width="3" />
+    <text x="100" y="70" fill="#2ecc71" font-family="Inter, sans-serif" font-size="14" font-weight="bold">Project A</text>
+    <text x="200" y="120" fill="#2ecc71" font-family="Inter, sans-serif" font-size="14" font-weight="bold">Project B</text>
+    <text x="450" y="240" fill="#2ecc71" font-family="Inter, sans-serif" font-size="16" font-weight="bold">IOS</text>
+
+    <!-- MCC Schedule (Upward Stepping) -->
+    <path d="M 60 160 L 220 160 L 220 210 L 380 210 L 380 270 L 520 270" fill="none" stroke="#e74c3c" stroke-width="3" />
+    <text x="140" y="150" fill="#e74c3c" font-family="Inter, sans-serif" font-size="14" font-weight="bold">WACC (using r_s)</text>
+    <text x="290" y="200" fill="#e74c3c" font-family="Inter, sans-serif" font-size="14" font-weight="bold">WACC (using r_e)</text>
+    <text x="450" y="260" fill="#e74c3c" font-family="Inter, sans-serif" font-size="16" font-weight="bold">MCC</text>
+
+    <!-- Intersection / Breakpoint Line -->
+    <line x1="220" y1="160" x2="220" y2="300" stroke="#888" stroke-dasharray="5,5" />
+    <text x="220" y="320" fill="#fff" font-family="Inter, sans-serif" font-size="12" text-anchor="middle">RE Breakpoint</text>
+    
+    <!-- Optimal Capital Budget -->
+    <circle cx="280" cy="190" r="0" fill="none" /> <!-- Reference point for intersection logic -->
+    <line x1="280" y1="130" x2="280" y2="300" stroke="#ffb347" stroke-dasharray="5,5" stroke-width="2" />
+    <text x="280" y="320" fill="#ffb347" font-family="Inter, sans-serif" font-size="12" text-anchor="middle">Optimal Budget</text>
+  </svg>

@@ -1,0 +1,45 @@
+<svg width="600" height="350" viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text {
+      font-family: Inter, sans-serif;
+      fill: var(--text-normal, #f0f0f0);
+    }
+    .axis, line[stroke="#888"], line[stroke="#ccc"] {
+      stroke: var(--text-muted, #999999);
+    }
+    @media (prefers-color-scheme: light) {
+      text {
+        fill: #222222 !important;
+      }
+      .axis, line[stroke="#888"], line[stroke="#ccc"] {
+        stroke: #666666 !important;
+      }
+    }
+  </style>
+
+    <!-- Background -->
+    <rect width="100%" height="100%" fill="none" />
+    
+    <!-- Axes -->
+    <line x1="60" y1="300" x2="560" y2="300" stroke="#888" stroke-width="2" />
+    <line x1="60" y1="40" x2="60" y2="300" stroke="#888" stroke-width="2" />
+    <text x="310" y="340" fill="#ccc" font-family="Inter, sans-serif" font-size="14" text-anchor="middle">Order Quantity (Q)</text>
+    <text x="25" y="170" fill="#ccc" font-family="Inter, sans-serif" font-size="14" text-anchor="middle" transform="rotate(-90 25,170)">Cost ($)</text>
+
+    <!-- Carrying Cost (Linear Up) -->
+    <line x1="60" y1="300" x2="500" y2="60" stroke="#ffb347" stroke-width="3" />
+    <text x="510" y="65" fill="#ffb347" font-family="Inter, sans-serif" font-size="14" font-weight="bold">Carrying Cost</text>
+
+    <!-- Ordering Cost (Curved Down) -->
+    <path d="M 80 60 Q 120 280 500 280" fill="none" stroke="#3498db" stroke-width="3" />
+    <text x="510" y="285" fill="#3498db" font-family="Inter, sans-serif" font-size="14" font-weight="bold">Ordering Cost</text>
+
+    <!-- Total Cost (U-Shape) -->
+    <path d="M 90 70 Q 230 250 480 70" fill="none" stroke="#e74c3c" stroke-width="4" />
+    <text x="490" y="70" fill="#e74c3c" font-family="Inter, sans-serif" font-size="14" font-weight="bold">Total Cost</text>
+
+    <!-- EOQ Intersection -->
+    <circle cx="280" cy="180" r="6" fill="#2ecc71" />
+    <line x1="280" y1="180" x2="280" y2="300" stroke="#2ecc71" stroke-dasharray="5,5" stroke-width="2" />
+    <text x="280" y="320" fill="#2ecc71" font-family="Inter, sans-serif" font-size="14" text-anchor="middle" font-weight="bold">Q* (EOQ)</text>
+  </svg>
