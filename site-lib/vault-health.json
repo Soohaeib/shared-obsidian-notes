@@ -1,11 +1,662 @@
 {
   "summary": {
     "totalFiles": 298,
-    "cleanFiles": 298,
-    "filesWithWarnings": 0,
-    "totalIssues": 0,
+    "cleanFiles": 291,
+    "filesWithWarnings": 7,
+    "totalIssues": 65,
     "autoFixedIssues": 0,
-    "healthScore": 100
+    "healthScore": 97
   },
-  "issues": []
+  "issues": [
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q1]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q1#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q1.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q1]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q1#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q1.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q1]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q1#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q1.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q2]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q2#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q2.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q2]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q2#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q2.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q2]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q2#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q2.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q2]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q2#d| (d) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q2.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q2]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q2#e| (e) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q2.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q4]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q4#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q4.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q4]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q4#b_i| i) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q4.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q4]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q4#b_ii| ii) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q4.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q4]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q4#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q4.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q1]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q1#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q1.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q1]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q1#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q1.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q2]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q2#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q2.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q2]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q2#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q2.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q2]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q2#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q2.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q2]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q2#d| (d) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q2.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q2]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q2#e| (e) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q2.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q3]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q3#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q3.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q4]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q4#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q4.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q1]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q1#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q1.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q3]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q3#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q3.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q3]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q3#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q3.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q3]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q3#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q3.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q4]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q4#d| (d) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q4.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q3]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q3#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q3.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q4]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q4#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q4.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q4]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q4#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q4.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q4]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q4#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q4.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q4]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q4#d| (d) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q4.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q6]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q6#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q6.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q6]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q6#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q6.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q6]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q6#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q6.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q5]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q5#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q5.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q5]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q5#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q5.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q5]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q5#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q5.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q5]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q5#d| (d) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q5.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q7]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q7#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q7.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q7]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q7#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q7.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q7]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q7#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q7.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q7]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q7#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q7.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q6]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q6#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q6.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q6]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q6#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q6.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q6]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q6#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q6.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q5]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q5#d| (d) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q5.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q3]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q3#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q3.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q5]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q5#a| (a) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q5.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q5]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q5#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q5.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_4th Exam Q5]]'.",
+      "snippet": "[[IRM 2022_4th Exam Q5#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_4th Exam Q5.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q7]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q7#b| (b) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q7.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-206/pyq-bcc-206.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[IRM 2022_5th Exam Q7]]'.",
+      "snippet": "[[IRM 2022_5th Exam Q7#c| (c) ]]",
+      "suggestion": "Verify note 'IRM 2022_5th Exam Q7.md' exists or update the target name.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-curated-notes/acc-302-financial-management/acc-302-notes-phase-2.md",
+      "line": 1,
+      "category": "Media Embed",
+      "severity": "warning",
+      "message": "Asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg' not found in vault.",
+      "snippet": "[[AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg]]",
+      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg' exists in the attachments directory.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-curated-notes/acc-302-financial-management/acc-302-notes-phase-2.md",
+      "line": 1,
+      "category": "Media Embed",
+      "severity": "warning",
+      "message": "Missing image or attachment asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg'.",
+      "snippet": "![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg]]",
+      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg' is copied into the vault or note-res asset directory.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-curated-notes/acc-302-financial-management/acc-302-notes-phase-3.md",
+      "line": 1,
+      "category": "Media Embed",
+      "severity": "warning",
+      "message": "Asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg' not found in vault.",
+      "snippet": "[[AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg]]",
+      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg' exists in the attachments directory.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-curated-notes/acc-302-financial-management/acc-302-notes-phase-3.md",
+      "line": 1,
+      "category": "Media Embed",
+      "severity": "warning",
+      "message": "Missing image or attachment asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg'.",
+      "snippet": "![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg]]",
+      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg' is copied into the vault or note-res asset directory.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-curated-notes/acc-302-financial-management/acc-302-notes-phase-4.md",
+      "line": 1,
+      "category": "Media Embed",
+      "severity": "warning",
+      "message": "Asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg' not found in vault.",
+      "snippet": "[[AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg]]",
+      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg' exists in the attachments directory.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-curated-notes/acc-302-financial-management/acc-302-notes-phase-4.md",
+      "line": 1,
+      "category": "Media Embed",
+      "severity": "warning",
+      "message": "Missing image or attachment asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg'.",
+      "snippet": "![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg]]",
+      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg' is copied into the vault or note-res asset directory.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-curated-notes/acc-302-financial-management/acc-302-notes-phase-5.md",
+      "line": 1,
+      "category": "Media Embed",
+      "severity": "warning",
+      "message": "Asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg' not found in vault.",
+      "snippet": "[[AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg]]",
+      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg' exists in the attachments directory.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-curated-notes/acc-302-financial-management/acc-302-notes-phase-5.md",
+      "line": 1,
+      "category": "Media Embed",
+      "severity": "warning",
+      "message": "Missing image or attachment asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg'.",
+      "snippet": "![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg]]",
+      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg' is copied into the vault or note-res asset directory.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-curated-notes/acc-302-financial-management/acc-302-notes-phase-8.md",
+      "line": 1,
+      "category": "Media Embed",
+      "severity": "warning",
+      "message": "Asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg' not found in vault.",
+      "snippet": "[[AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg]]",
+      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg' exists in the attachments directory.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-curated-notes/acc-302-financial-management/acc-302-notes-phase-8.md",
+      "line": 1,
+      "category": "Media Embed",
+      "severity": "warning",
+      "message": "Asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg' not found in vault.",
+      "snippet": "[[AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg]]",
+      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg' exists in the attachments directory.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-curated-notes/acc-302-financial-management/acc-302-notes-phase-8.md",
+      "line": 1,
+      "category": "Media Embed",
+      "severity": "warning",
+      "message": "Missing image or attachment asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg'.",
+      "snippet": "![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg]]",
+      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg' is copied into the vault or note-res asset directory.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-curated-notes/acc-302-financial-management/acc-302-notes-phase-8.md",
+      "line": 1,
+      "category": "Media Embed",
+      "severity": "warning",
+      "message": "Missing image or attachment asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg'.",
+      "snippet": "![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg]]",
+      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg' is copied into the vault or note-res asset directory.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-curated-notes/index.md",
+      "line": 1,
+      "category": "WikiLink",
+      "severity": "info",
+      "message": "Unresolved internal link to '[[ACC 305 Auditing & Assurance]]'.",
+      "snippet": "[[ACC 305 Auditing & Assurance]]",
+      "suggestion": "Verify note 'ACC 305 Auditing & Assurance.md' exists or update the target name.",
+      "autoFixed": false
+    }
+  ]
 }

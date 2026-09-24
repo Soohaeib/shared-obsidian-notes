@@ -57,7 +57,11 @@ class VaultLinter:
                     self.all_notes.append(rel)
                     clean_stem = f.replace('.md', '').lower().strip()
                     self.note_stems[clean_stem] = rel
+                    self.note_stems[clean_stem.replace('-', ' ')] = rel
+                    self.note_stems[clean_stem.replace(' ', '-')] = rel
                     self.note_stems[clean_rel.replace('.md', '')] = rel
+                    self.note_stems[clean_rel.replace('.md', '').replace('-', ' ')] = rel
+                    self.note_stems[clean_rel.replace('.md', '').replace(' ', '-')] = rel
                     self.note_stems[rel_lower.replace('.md', '')] = rel
 
     def lint_file(self, file_path):

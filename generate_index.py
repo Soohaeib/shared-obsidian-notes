@@ -3,8 +3,8 @@
 Platform-Independent Obsidian Digital Garden Index Generator
 ------------------------------------------------------------
 Scans site folders inside the configured 'note-res' vault directory,
-provisions viewer index.html files, updates vault-index.json,
-and generates the original cosmic nebula landing page.
+provisions viewer index.html files, updates vault-index.json with rich
+Wikilink lookup maps, and generates the cosmic nebula landing page.
 """
 
 import json
@@ -58,7 +58,7 @@ def slugify(text: str) -> str:
     return slug.strip('-') or 'vault-folder'
 
 def is_ignored_folder(name):
-    low = name.lower()
+    low = name.lower().strip()
     if name in ignored_folders or name.startswith('.'):
         return True
     for f in ignored_folders:
@@ -71,7 +71,7 @@ def is_ignored_folder(name):
     return False
 
 def is_ignored_file(name):
-    low = name.lower()
+    low = name.lower().strip()
     if name in ignored_files or name.startswith('.'):
         return True
     for f in ignored_files:
@@ -89,6 +89,8 @@ scan_base = container_path if os.path.exists(container_path) and os.path.isdir(c
 
 entries = []
 all_md_files = []
+vault_lookup = {}
+discovered_folders = []
 
 template_viewer = os.path.join(source_dir, 'site-lib', 'html', 'viewer.html')
 t_content_raw = ""
@@ -96,21 +98,72 @@ if os.path.exists(template_viewer):
     with open(template_viewer, 'r', encoding='utf-8') as tf:
         t_content_raw = tf.read()
 
+def extract_note_title(file_path):
+    """Extract first H1 title from Markdown note or return clean filename."""
+    try:
+        with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+            for line in f:
+                line_str = line.strip()
+                if line_str.startswith('# ') and not line_str.startswith('#!'):
+                    return line_str[2:].strip()
+                if line_str and not line_str.startswith('---') and not line_str.startswith('>'):
+                    break
+    except Exception:
+        pass
+    stem = Path(file_path).stem
+    return stem.replace('-', ' ').replace('_', ' ').title()
+
 for name in sorted(os.listdir(scan_base)):
     if is_ignored_folder(name) or (scan_base == source_dir and name == vault_container):
         continue
     full_path = os.path.join(scan_base, name)
     if os.path.isdir(full_path):
+        discovered_folders.append(name)
         sub_count = 0
+        folder_md_files = []
         for root, dirs, fnames in os.walk(full_path):
             dirs[:] = [d for d in dirs if not is_ignored_folder(d)]
             sub_count += len(dirs)
-            for f in fnames:
+            for f in sorted(fnames):
                 if f.endswith('.md') and not is_ignored_file(f):
-                    rel = os.path.relpath(os.path.join(root, f), source_dir).replace('\\', '/')
+                    full_md_path = os.path.join(root, f)
+                    rel = os.path.relpath(full_md_path, source_dir).replace('\\', '/')
                     all_md_files.append(rel)
+                    folder_md_files.append(rel)
 
-        rel_slug = slugify(name)
+                    # Populate Wikilink lookup dictionary
+                    stem = f[:-3] # remove .md
+                    stem_clean = stem.replace('-', ' ').replace('_', ' ')
+                    title = extract_note_title(full_md_path)
+                    rel_in_folder = os.path.relpath(full_md_path, full_path).replace('\\', '/')
+
+                    # Register various aliases for instant Wikilink lookup
+                    keys_to_register = [
+                        stem,
+                        stem.lower(),
+                        stem_clean,
+                        stem_clean.lower(),
+                        slugify(stem),
+                        f,
+                        f.lower(),
+                        title,
+                        title.lower(),
+                        rel_in_folder,
+                        rel_in_folder[:-3] if rel_in_folder.endswith('.md') else rel_in_folder,
+                        rel_in_folder.lower(),
+                        rel,
+                        rel.lower()
+                    ]
+                    for k in keys_to_register:
+                        if k and k not in vault_lookup:
+                            vault_lookup[k] = {
+                                "path": rel,
+                                "folder": name,
+                                "relInFolder": rel_in_folder,
+                                "title": title,
+                                "fileName": f
+                            }
+
         rel_url = f"./{vault_container}/{name}/" if scan_base == container_path else f"./{name}/"
         entries.append((name, rel_url, sub_count))
 
@@ -140,8 +193,12 @@ for name in sorted(os.listdir(scan_base)):
 vault_index_path = os.path.join(source_dir, 'site-lib', 'vault-index.json')
 try:
     with open(vault_index_path, 'w', encoding='utf-8') as fh:
-        json.dump({'files': sorted(all_md_files)}, fh, indent=2)
-    print(f"Updated {vault_index_path} with {len(all_md_files)} notes.")
+        json.dump({
+            'files': sorted(all_md_files),
+            'folders': sorted(discovered_folders),
+            'lookup': vault_lookup
+        }, fh, indent=2)
+    print(f"Updated {vault_index_path} with {len(all_md_files)} notes and {len(vault_lookup)} lookup entries.")
 except Exception as e:
     print(f"Notice: Could not write vault-index.json: {e}")
 
@@ -175,7 +232,7 @@ html_template = r'''<!DOCTYPE html>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
-    <meta name="description" content="Shared Obsidian Notes landing page" />
+    <meta name="description" content="Public collection of shared notes, ideas, and coursework digital garden." />
     <title>Shared Obsidian Notes</title>
     <link rel="icon" href="./site-lib/media/favicon.png" />
     
@@ -424,6 +481,7 @@ html_template = r'''<!DOCTYPE html>
         }));
 
         function draw(now = performance.now()) {
+            // Schedule single frame at the beginning of loop tick
             requestAnimationFrame(draw);
 
             // Pause CPU cycles when tab is hidden
@@ -629,11 +687,9 @@ html_template = r'''<!DOCTYPE html>
                 ctx.fillStyle = isHovered ? cText : (n.isRoot ? cText : cTextMuted);
                 ctx.fillText(n.label, n.x, n.y + r + 8);
             });
-
-            requestAnimationFrame(draw);
         }
 
-        // --- Interaction Events (Updated for Touch precision & dragging) ---
+        // --- Interaction Events (Touch precision & dragging) ---
         function getMousePos(e) {
             const rect = canvas.getBoundingClientRect();
             const touch = e.touches && e.touches.length > 0 ? e.touches[0] : (e.changedTouches ? e.changedTouches[0] : null);

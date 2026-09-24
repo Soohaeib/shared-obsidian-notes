@@ -688,6 +688,9 @@ class ObsidianVaultApp {
             const data = await res.json();
             if (data.files && data.files.length > 0) {
               files = data.files;
+              if (data.lookup) {
+                this.vaultLookup = data.lookup;
+              }
               break;
             }
           }
@@ -1637,27 +1640,43 @@ class ObsidianVaultApp {
     const raw = noteName.trim();
     const clean = raw.replace(/\.md$/i, '').toLowerCase();
     const stem = clean.split('/').pop();
+    const slugified = clean.replace(/[\s_]+/g, '-').replace(/[^a-z0-9\-]/g, '');
 
-    // 1. Check in this.allNotes (in-folder)
+    // 1. Check in this.vaultLookup map first
+    if (this.vaultLookup) {
+      const match = this.vaultLookup[raw] || this.vaultLookup[clean] || this.vaultLookup[slugified] || this.vaultLookup[stem];
+      if (match) {
+        const fullRel = match.path.replace(/^(?:\[inside\][^/]+|note-res)\//, '');
+        const targetFolder = match.folder;
+        const targetRel = match.relInFolder;
+        if (targetFolder !== this.currentFolder) {
+          return { path: `../${targetFolder}/#${encodeURIComponent(targetRel)}`, resolved: true, title: match.title, isCrossFolder: true };
+        }
+        return { path: targetRel, resolved: true, title: match.title };
+      }
+    }
+
+    // 2. Check in this.allNotes (in-folder)
     let found = this.allNotes.find(n => {
       const nClean = n.path.replace(/\.md$/i, '').toLowerCase();
       const nStem = nClean.split('/').pop();
-      return nClean === clean || nStem === stem || n.title.toLowerCase() === clean;
+      return nClean === clean || nClean === slugified || nStem === stem || nStem === slugified || n.title.toLowerCase() === clean;
     });
 
     if (found) {
       return { path: found.path, resolved: true, title: found.title };
     }
 
-    // 2. Check in this.allVaultFiles across other folders
+    // 3. Check in this.allVaultFiles across other folders
     if (this.allVaultFiles && this.allVaultFiles.length > 0) {
       const globalFound = this.allVaultFiles.find(f => {
-        const fClean = f.replace(/\.md$/i, '').toLowerCase();
+        const fClean = f.replace(/^(?:\[inside\][^/]+|note-res)\//, '').replace(/\.md$/i, '').toLowerCase();
         const fStem = fClean.split('/').pop();
-        return fClean === clean || fStem === stem || fClean.endsWith(`/${stem}`);
+        return fClean === clean || fClean === slugified || fStem === stem || fStem === slugified || fClean.endsWith(`/${stem}`) || fClean.endsWith(`/${slugified}`);
       });
       if (globalFound) {
-        const parts = globalFound.split('/');
+        const cleanPath = globalFound.replace(/^(?:\[inside\][^/]+|note-res)\//, '');
+        const parts = cleanPath.split('/');
         const targetFolder = parts[0];
         const targetRel = parts.slice(1).join('/');
         if (targetFolder !== this.currentFolder) {
@@ -1667,8 +1686,8 @@ class ObsidianVaultApp {
       }
     }
 
-    // 3. Fallback: unresolved internal link
-    return { path: `${raw}.md`, resolved: false, title: raw };
+    // Fallback: unresolved internal link
+    return { path: `${slugified || raw}.md`, resolved: false, title: raw };
   }
 
   // Pre-process Obsidian Callouts into clean atomic blocks with intact LaTeX and nested content

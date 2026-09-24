@@ -7,8 +7,8 @@ Reads structure & ignore configurations directly from locations.json.
 
 Automated Sync Workflow:
   1. Checks external Obsidian Vault path(s) listed in locations.json
-  2. Copies updated notes into the organized 'note-res' container
-  3. Sanitizes filenames for Git / cross-platform safety
+  2. Copies updated notes into the organized 'note-res' container with URL-safe slugification
+  3. Sanitizes and slugifies filenames/folders for Git / cross-platform / GitHub Pages safety
   4. Generates vault-index.json and folder viewer index.html files
 
 Usage:
@@ -71,8 +71,8 @@ SOURCE_VAULT_PATHS = config.get('sourceVaultPaths', [])
 
 PROTECTED_FILES = {
     'package.json', 'package-lock.json', 'metadata.json', 'server.js', 
-    'generate_index.py', 'sync_site.py', 'locations.json', '.gitignore', 
-    '.nojekyll', 'README.md', '.env.example'
+    'generate_index.py', 'sync_site.py', 'vault_linter.py', 'locations.json', '.gitignore', 
+    '.nojekyll', 'README.md', '.env.example', 'index.html'
 }
 
 def is_excluded(item: str, full_path: str = "") -> bool:
@@ -118,35 +118,47 @@ def is_excluded(item: str, full_path: str = "") -> bool:
         return True
     return False
 
-def clean_filename(name: str) -> str:
-    """Sanitizes file and directory names for strict cross-platform & Git compatibility."""
-    base, ext = os.path.splitext(name)
-    base = base.replace(':', ' - ')
-    base = base.replace('?', '').replace('*', '-').replace('"', "'")
-    base = base.replace('|', '-').replace('<', '-').replace('>', '-').replace('\\', '-')
-    base = re.sub(r'\s+', ' ', base)
-    base = re.sub(r'-+', '-', base)
-    base = base.strip(' .')
-    
-    reserved = {'con', 'prn', 'aux', 'nul', 'com1', 'com2', 'com3', 'com4', 
-                'com5', 'com6', 'com7', 'com8', 'com9', 'lpt1', 'lpt2', 'lpt3', 
-                'lpt4', 'lpt5', 'lpt6', 'lpt7', 'lpt8', 'lpt9'}
-    if base.lower() in reserved:
-        base = f"{base}_note"
-        
-    if not base:
-        base = "untitled"
-        
-    return f"{base}{ext}"
+def slugify_name(name: str, is_directory: bool = False) -> str:
+    """
+    Standard URL-safe kebab-case slugification:
+    - Lowercase
+    - Replace spaces and underscores with hyphens
+    - Remove invalid special characters
+    - Collapse repeated hyphens
+    - Strip leading/trailing hyphens
+    - Preserve file extension for files
+    """
+    if not is_directory:
+        base, ext = os.path.splitext(name)
+        # Keep index.html / index.md as index
+        if base.lower() == 'index':
+            return f"index{ext.lower()}"
+        slug = base.strip().lower()
+        slug = re.sub(r'[\s_]+', '-', slug)
+        slug = re.sub(r'[^a-z0-9\-]', '', slug)
+        slug = re.sub(r'-+', '-', slug)
+        slug = slug.strip('-') or 'untitled'
+        return f"{slug}{ext.lower()}"
+    else:
+        slug = name.strip().lower()
+        slug = re.sub(r'[\s_]+', '-', slug)
+        slug = re.sub(r'[^a-z0-9\-]', '', slug)
+        slug = re.sub(r'-+', '-', slug)
+        return slug.strip('-') or 'untitled-folder'
 
 def sanitize_workspace(target_dir: Path):
-    """Walks the directory tree bottom-up to rename illegal characters safely."""
-    print(f"🔍 [Sanitizer] Auditing filenames in {target_dir} for Git compatibility...")
+    """
+    Walks the directory tree bottom-up to convert all note and folder names
+    to URL-safe slugified format, preventing %20 encoding and broken links.
+    Handles merges and deduplication safely.
+    """
+    print(f"🔍 [Sanitizer] Auditing and slugifying names in {target_dir} for URL/Git safety...")
     renamed_count = 0
 
     if not target_dir.exists():
         return
 
+    # 1. Rename files first (bottom-up)
     for root, dirs, files in os.walk(target_dir, topdown=False):
         dirs[:] = [d for d in dirs if not is_excluded(d, os.path.join(root, d))]
         
@@ -154,42 +166,72 @@ def sanitize_workspace(target_dir: Path):
             full_file = os.path.join(root, fname)
             if is_excluded(fname, full_file) or fname in PROTECTED_FILES or fname in EXCLUDED_FILES:
                 continue
-            cleaned = clean_filename(fname)
+            cleaned = slugify_name(fname, is_directory=False)
             if cleaned != fname:
                 old_path = Path(root) / fname
                 new_path = Path(root) / cleaned
                 if new_path.exists() and old_path != new_path:
+                    # If target exists and is identical or newer, remove old
+                    if old_path.stat().st_size == new_path.stat().st_size:
+                        try:
+                            old_path.unlink()
+                            renamed_count += 1
+                            continue
+                        except Exception:
+                            pass
                     count = 1
                     base, ext = os.path.splitext(cleaned)
                     while new_path.exists():
-                        new_path = Path(root) / f"{base}_{count}{ext}"
+                        new_path = Path(root) / f"{base}-{count}{ext}"
                         count += 1
                 try:
                     old_path.rename(new_path)
-                    print(f"  ⚠️  Sanitized file: '{fname}' -> '{new_path.name}'")
+                    print(f"  ⚡ Slugified file: '{fname}' -> '{new_path.name}'")
                     renamed_count += 1
                 except Exception as e:
                     print(f"  ❌ Failed to rename {fname}: {e}")
 
+    # 2. Rename directories bottom-up
+    for root, dirs, files in os.walk(target_dir, topdown=False):
         for dname in dirs:
             if is_excluded(dname, os.path.join(root, dname)):
                 continue
-            cleaned = clean_filename(dname)
+            cleaned = slugify_name(dname, is_directory=True)
             if cleaned != dname:
                 old_path = Path(root) / dname
                 new_path = Path(root) / cleaned
-                if not new_path.exists():
+                if new_path.exists() and old_path != new_path:
+                    # Directory merge: move contents of old_path into new_path
+                    try:
+                        for sub_item in old_path.iterdir():
+                            dest_sub = new_path / sub_item.name
+                            if not dest_sub.exists():
+                                shutil.move(str(sub_item), str(dest_sub))
+                            else:
+                                if sub_item.is_file():
+                                    sub_item.unlink()
+                                elif sub_item.is_dir():
+                                    shutil.rmtree(str(sub_item))
+                        shutil.rmtree(str(old_path))
+                        print(f"  ⚡ Merged directory: '{dname}' -> '{cleaned}'")
+                        renamed_count += 1
+                    except Exception as e:
+                        print(f"  ❌ Failed to merge directory {dname}: {e}")
+                else:
                     try:
                         old_path.rename(new_path)
-                        print(f"  ⚠️  Sanitized folder: '{dname}' -> '{cleaned}'")
+                        print(f"  ⚡ Slugified folder: '{dname}' -> '{cleaned}'")
                         renamed_count += 1
                     except Exception as e:
                         print(f"  ❌ Failed to rename folder {dname}: {e}")
 
-    print(f"✅ [Sanitizer] Completed. {renamed_count} items sanitized.")
+    print(f"✅ [Sanitizer] Completed. {renamed_count} items slugified/merged.")
 
 def sync_from_source_vault(src_path_str: str, dst_root: Path):
-    """Automatically pulls and syncs notes from an external Obsidian Vault path."""
+    """
+    Automatically pulls notes from external Obsidian Vault and maps them
+    into clean, slugified destination paths in note-res without folder duplication.
+    """
     expanded_path = Path(os.path.expanduser(src_path_str)).resolve()
     if not expanded_path.exists() or not expanded_path.is_dir():
         return False
@@ -204,7 +246,14 @@ def sync_from_source_vault(src_path_str: str, dst_root: Path):
     for root, dirs, files in os.walk(expanded_path):
         dirs[:] = [d for d in dirs if not is_excluded(d, os.path.join(root, d))]
         rel = os.path.relpath(root, expanded_path)
-        target = container_target / rel if rel != '.' else container_target
+        
+        # Slugify directory segments
+        if rel != '.':
+            slug_parts = [slugify_name(p, is_directory=True) for p in Path(rel).parts]
+            target = container_target.joinpath(*slug_parts)
+        else:
+            target = container_target
+            
         target.mkdir(parents=True, exist_ok=True)
 
         for f in files:
@@ -212,7 +261,8 @@ def sync_from_source_vault(src_path_str: str, dst_root: Path):
             if is_excluded(f, full_f) or f in PROTECTED_FILES or f in EXCLUDED_FILES:
                 continue
             src_file = Path(root) / f
-            dst_file = target / f
+            slug_file_name = slugify_name(f, is_directory=False)
+            dst_file = target / slug_file_name
             try:
                 if not dst_file.exists() or src_file.stat().st_mtime > dst_file.stat().st_mtime:
                     shutil.copy2(src_file, dst_file)
