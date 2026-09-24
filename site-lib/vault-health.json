@@ -1,10 +1,10 @@
 {
   "summary": {
-    "totalFiles": 312,
-    "cleanFiles": 305,
+    "totalFiles": 298,
+    "cleanFiles": 291,
     "filesWithWarnings": 7,
     "totalIssues": 65,
-    "autoFixedIssues": 0,
+    "autoFixedIssues": 9,
     "healthScore": 97
   },
   "issues": [
@@ -533,9 +533,9 @@
       "line": 1,
       "category": "Media Embed",
       "severity": "warning",
-      "message": "Asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg' not found in vault.",
-      "snippet": "[[AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg]]",
-      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg' exists in the attachments directory.",
+      "message": "Asset 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg' not found in vault.",
+      "snippet": "[[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg]]",
+      "suggestion": "Ensure 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg' exists in the attachments directory.",
       "autoFixed": false
     },
     {
@@ -543,9 +543,9 @@
       "line": 1,
       "category": "Media Embed",
       "severity": "warning",
-      "message": "Missing image or attachment asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg'.",
-      "snippet": "![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg]]",
-      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg' is copied into the vault or note-res asset directory.",
+      "message": "Missing image or attachment asset 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg'.",
+      "snippet": "![[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg]]",
+      "suggestion": "Ensure 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg' is copied into the vault or note-res asset directory.",
       "autoFixed": false
     },
     {
@@ -553,9 +553,9 @@
       "line": 1,
       "category": "Media Embed",
       "severity": "warning",
-      "message": "Asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg' not found in vault.",
-      "snippet": "[[AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg]]",
-      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg' exists in the attachments directory.",
+      "message": "Asset 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg' not found in vault.",
+      "snippet": "[[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg]]",
+      "suggestion": "Ensure 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg' exists in the attachments directory.",
       "autoFixed": false
     },
     {
@@ -563,9 +563,9 @@
       "line": 1,
       "category": "Media Embed",
       "severity": "warning",
-      "message": "Missing image or attachment asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg'.",
-      "snippet": "![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg]]",
-      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg' is copied into the vault or note-res asset directory.",
+      "message": "Missing image or attachment asset 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg'.",
+      "snippet": "![[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg]]",
+      "suggestion": "Ensure 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_security_market_line.svg' is copied into the vault or note-res asset directory.",
       "autoFixed": false
     },
     {
@@ -573,9 +573,9 @@
       "line": 1,
       "category": "Media Embed",
       "severity": "warning",
-      "message": "Asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg' not found in vault.",
-      "snippet": "[[AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg]]",
-      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg' exists in the attachments directory.",
+      "message": "Asset 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg' not found in vault.",
+      "snippet": "[[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg]]",
+      "suggestion": "Ensure 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg' exists in the attachments directory.",
       "autoFixed": false
     },
     {
@@ -583,9 +583,9 @@
       "line": 1,
       "category": "Media Embed",
       "severity": "warning",
-      "message": "Missing image or attachment asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg'.",
-      "snippet": "![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg]]",
-      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg' is copied into the vault or note-res asset directory.",
+      "message": "Missing image or attachment asset 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg'.",
+      "snippet": "![[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg]]",
+      "suggestion": "Ensure 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg' is copied into the vault or note-res asset directory.",
       "autoFixed": false
     },
     {
@@ -593,9 +593,9 @@
       "line": 1,
       "category": "Media Embed",
       "severity": "warning",
-      "message": "Asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg' not found in vault.",
-      "snippet": "[[AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg]]",
-      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg' exists in the attachments directory.",
+      "message": "Asset 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg' not found in vault.",
+      "snippet": "[[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg]]",
+      "suggestion": "Ensure 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg' exists in the attachments directory.",
       "autoFixed": false
     },
     {
@@ -603,9 +603,9 @@
       "line": 1,
       "category": "Media Embed",
       "severity": "warning",
-      "message": "Missing image or attachment asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg'.",
-      "snippet": "![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg]]",
-      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg' is copied into the vault or note-res asset directory.",
+      "message": "Missing image or attachment asset 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg'.",
+      "snippet": "![[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg]]",
+      "suggestion": "Ensure 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg' is copied into the vault or note-res asset directory.",
       "autoFixed": false
     },
     {
@@ -613,9 +613,9 @@
       "line": 1,
       "category": "Media Embed",
       "severity": "warning",
-      "message": "Asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg' not found in vault.",
-      "snippet": "[[AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg]]",
-      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg' exists in the attachments directory.",
+      "message": "Asset 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg' not found in vault.",
+      "snippet": "[[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg]]",
+      "suggestion": "Ensure 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg' exists in the attachments directory.",
       "autoFixed": false
     },
     {
@@ -623,9 +623,9 @@
       "line": 1,
       "category": "Media Embed",
       "severity": "warning",
-      "message": "Asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg' not found in vault.",
-      "snippet": "[[AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg]]",
-      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg' exists in the attachments directory.",
+      "message": "Asset 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg' not found in vault.",
+      "snippet": "[[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg]]",
+      "suggestion": "Ensure 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg' exists in the attachments directory.",
       "autoFixed": false
     },
     {
@@ -633,9 +633,9 @@
       "line": 1,
       "category": "Media Embed",
       "severity": "warning",
-      "message": "Missing image or attachment asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg'.",
-      "snippet": "![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg]]",
-      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg' is copied into the vault or note-res asset directory.",
+      "message": "Missing image or attachment asset 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg'.",
+      "snippet": "![[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg]]",
+      "suggestion": "Ensure 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg' is copied into the vault or note-res asset directory.",
       "autoFixed": false
     },
     {
@@ -643,9 +643,9 @@
       "line": 1,
       "category": "Media Embed",
       "severity": "warning",
-      "message": "Missing image or attachment asset 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg'.",
-      "snippet": "![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg]]",
-      "suggestion": "Ensure 'AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg' is copied into the vault or note-res asset directory.",
+      "message": "Missing image or attachment asset 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg'.",
+      "snippet": "![[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg]]",
+      "suggestion": "Ensure 'BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg' is copied into the vault or note-res asset directory.",
       "autoFixed": false
     },
     {
