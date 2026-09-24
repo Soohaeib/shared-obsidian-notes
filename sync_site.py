@@ -224,10 +224,10 @@ def sync_from_source_vault(src_path_str: str, dst_root: Path):
     return True
 
 def run_index_generation(app_dir: Path):
-    """Executes generate_index.py to rebuild vault-index.json and index.html."""
+    """Rebuild indexes and apply safe Markdown fixes during normal builds."""
     generate_py = app_dir / "generate_index.py"
     if generate_py.exists():
-        os.system(f'"{sys.executable}" "{generate_py}" "{app_dir}" "{app_dir / "index.html"}"')
+        os.system(f'"{sys.executable}" "{generate_py}" --auto-fix "{app_dir}" "{app_dir / "index.html"}"')
     else:
         print("❌ generate_index.py not found.")
 

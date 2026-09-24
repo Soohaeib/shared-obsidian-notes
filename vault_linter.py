@@ -183,6 +183,36 @@ class VaultLinter:
                 })
 
         # 6. Check Media Embeds: ![[image.png]]
+        def normalize_media_embed(match):
+            nonlocal is_file_modified
+
+            embed = match.group(1)
+            reference, separator, options = embed.partition('|')
+            reference = reference.strip()
+            normalized = self.normalize_media_reference(file_path, reference)
+            if not normalized or normalized == reference:
+                return match.group(0)
+
+            file_issues.append({
+                "file": file_path,
+                "line": 1,
+                "category": "Media Embed",
+                "severity": "info",
+                "message": f"Normalized media path '{reference}' for the published reader.",
+                "snippet": f"![[{embed}]]",
+                "suggestion": f"Use '![[{normalized}{separator}{options}]]'.",
+                "autoFixed": True
+            })
+            is_file_modified = True
+            suffix = f"{separator}{options}" if separator else ''
+            return f"![[{normalized}{suffix}]]"
+
+        modified_content = re.sub(
+            r'!\[\[([^\]\n]+)\]\]',
+            normalize_media_embed,
+            modified_content
+        )
+
         media_embeds = re.findall(r'!\[\[([^\]\n]+)\]\]', modified_content)
         for embed in media_embeds:
             fname = embed.split('|')[0].strip()
@@ -211,6 +241,79 @@ class VaultLinter:
 
         return file_issues
 
+    def normalize_media_reference(self, file_path, reference):
+        """Return a published-vault media path only when the asset exists."""
+        if not reference.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.bmp', '.mp4', '.webm')):
+            return reference
+
+        clean_reference = reference.replace('\\', '/').strip()
+        clean_reference = re.sub(r'^\./', '', clean_reference)
+        clean_reference = re.sub(r'^(?:bba study|vault)/', '', clean_reference, flags=re.IGNORECASE)
+        clean_reference = re.sub(r'^note-res/', '', clean_reference, flags=re.IGNORECASE)
+
+        note_path = Path(self.root_dir) / file_path
+        note_directory = note_path.parent
+        candidates = []
+        if clean_reference:
+            candidates.append((Path(self.vault_dir) / clean_reference, clean_reference))
+            candidates.append((note_directory / clean_reference, reference))
+
+        for candidate, published_reference in candidates:
+            if candidate.is_file():
+                return published_reference.replace('\\', '/')
+
+        return reference
+
+    def normalize_svg_fonts(self):
+        """Normalize SVG font declarations to the bundled reader font."""
+        fixes = []
+        for root, _, files in os.walk(self.vault_dir):
+            for name in files:
+                if not name.lower().endswith('.svg'):
+                    continue
+
+                abs_path = os.path.join(root, name)
+                rel_path = os.path.relpath(abs_path, self.root_dir).replace('\\', '/')
+                try:
+                    with open(abs_path, 'r', encoding='utf-8') as fh:
+                        content = fh.read()
+                except (OSError, UnicodeDecodeError):
+                    continue
+
+                normalized = re.sub(
+                    r'(font-family\s*:\s*)[^;}]+(?=;|})',
+                    r'\1Inter, sans-serif',
+                    content,
+                    flags=re.IGNORECASE
+                )
+                normalized = re.sub(
+                    r'(font-family\s*=\s*["\'])[^"\']+(["\'])',
+                    r'\1Inter, sans-serif\2',
+                    normalized,
+                    flags=re.IGNORECASE
+                )
+                if normalized == content:
+                    continue
+
+                fixes.append({
+                    "file": rel_path,
+                    "line": 1,
+                    "category": "Diagram Font",
+                    "severity": "info",
+                    "message": "Normalized SVG font declarations to the bundled Inter font.",
+                    "snippet": "font-family",
+                    "suggestion": "Use Inter, sans-serif for diagram labels.",
+                    "autoFixed": self.auto_fix
+                })
+                if self.auto_fix:
+                    try:
+                        with open(abs_path, 'w', encoding='utf-8') as fh:
+                            fh.write(normalized)
+                    except OSError:
+                        fixes[-1]["autoFixed"] = False
+
+        return fixes
+
     def run_all(self):
         """Run full scan and produce health report."""
         self.collect_vault_index()
@@ -218,12 +321,17 @@ class VaultLinter:
         clean_count = 0
         fixed_count = 0
 
+        asset_issues = self.normalize_svg_fonts()
+        fixed_count += sum(1 for issue in asset_issues if issue.get('autoFixed'))
+        all_issues.extend(issue for issue in asset_issues if not issue.get('autoFixed'))
+
         for note_path in sorted(self.all_notes):
             issues = self.lint_file(note_path)
-            if issues:
-                all_issues.extend(issues)
-                fixed_count += sum(1 for i in issues if i.get('autoFixed'))
-            else:
+            fixed_issues = [issue for issue in issues if issue.get('autoFixed')]
+            unresolved_issues = [issue for issue in issues if not issue.get('autoFixed')]
+            fixed_count += len(fixed_issues)
+            all_issues.extend(unresolved_issues)
+            if not unresolved_issues:
                 clean_count += 1
 
         total_files = len(self.all_notes)

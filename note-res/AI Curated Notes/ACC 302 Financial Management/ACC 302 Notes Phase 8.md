@@ -51,7 +51,7 @@ Current assets consist of two temporal components:
 
 
 
-![[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg]]
+![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg]]
 
 
 
@@ -181,7 +181,7 @@ Determines the optimal order quantity ($Q^*$) that minimizes total annual invent
 
 
 
-![[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg]]
+![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg]]
 
 
 

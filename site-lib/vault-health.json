@@ -4,7 +4,7 @@
     "cleanFiles": 298,
     "filesWithWarnings": 0,
     "totalIssues": 0,
-    "autoFixedIssues": 0,
+    "autoFixedIssues": 6,
     "healthScore": 100
   },
   "issues": []

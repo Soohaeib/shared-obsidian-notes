@@ -342,6 +342,22 @@ body {
   transform: rotate(-90deg);
 }
 
+.note-health-icon.health-pending {
+  color: var(--text-faint, #d8dee9);
+}
+
+.note-health-icon.health-clean {
+  color: var(--green, #a3be8c);
+}
+
+.note-health-icon.health-warning {
+  color: var(--yellow, #ebcb8b);
+}
+
+.note-health-icon.health-error {
+  color: var(--red, #bf616a);
+}
+
 .tree-item-children {
   padding-left: 14px;
   margin-left: 4px;
@@ -374,6 +390,8 @@ body {
 
 .note-container {
   width: 100%;
+  align-self: flex-start;
+  min-height: max-content;
   transition: max-width var(--transition-speed) ease;
 }
 
@@ -385,19 +403,16 @@ body {
   max-width: 96% !important;
 }
 
-.note-container.text-align-left {
-  text-align: left;
-}
-
-.note-container.text-align-justify {
-  text-align: justify;
-}
-
 /* Note Top Header / Meta Bar */
 .note-header-card {
+  position: sticky;
+  top: 0;
+  z-index: 10;
   margin-bottom: 20px;
-  padding-bottom: 12px;
+  padding: 12px 0;
+  background: var(--background-primary, #2e3440);
   border-bottom: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.08));
+  box-shadow: 0 8px 16px -16px rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -491,8 +506,7 @@ body {
 
 @media (max-width: 720px) {
   .header-divider,
-  .segmented-control,
-  #btn-toggle-align {
+  .segmented-control {
     display: none !important;
   }
 }
@@ -1453,7 +1467,7 @@ main section div#note-viewport div#note-container article#note-article > p {
   margin: 1em 0;
   line-height: 1.75;
   color: var(--text-normal, #eceff4);
-  font-size: 1rem;
+  font-size: inherit;
 }
 
 main section div#note-viewport {

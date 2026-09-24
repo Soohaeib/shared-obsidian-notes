@@ -11,10 +11,10 @@ class ObsidianVaultApp {
     this.graphData = { nodes: [], links: [] };
     this.currentPath = null;
     this.noteContents = new Map();
+    this.healthIssuesByFile = new Map();
 
     // Reading preferences
     this.isFullWidth = localStorage.getItem('obsidian_full_width') === 'true';
-    this.textAlign = localStorage.getItem('obsidian_text_align') || 'left';
     this.fontSize = parseInt(localStorage.getItem('obsidian_font_size') || '16', 10);
     this.theme = localStorage.getItem('obsidian_theme') || 'dark';
 
@@ -172,8 +172,6 @@ class ObsidianVaultApp {
         noteContainer.classList.add('readable-line-length');
         if (btnWidth) btnWidth.classList.remove('active');
       }
-      noteContainer.classList.remove('text-align-left', 'text-align-justify');
-      noteContainer.classList.add(`text-align-${this.textAlign}`);
       noteContainer.style.fontSize = `${this.fontSize}px`;
     }
   }
@@ -199,13 +197,6 @@ class ObsidianVaultApp {
       localStorage.setItem('obsidian_full_width', this.isFullWidth);
       this.applyPreferences();
       this.showToast(this.isFullWidth ? 'Full width layout activated' : 'Readable column width activated');
-    });
-
-    document.getElementById('btn-toggle-align')?.addEventListener('click', () => {
-      this.textAlign = this.textAlign === 'left' ? 'justify' : 'left';
-      localStorage.setItem('obsidian_text_align', this.textAlign);
-      this.applyPreferences();
-      this.showToast(`Text alignment: ${this.textAlign}`);
     });
 
     document.getElementById('btn-font-minus')?.addEventListener('click', () => {
@@ -553,7 +544,7 @@ class ObsidianVaultApp {
         html += `
           <div class="nav-file" data-note-path="${note.path}">
             <a href="#${note.path}" class="tree-item-self note-item" data-note-path="${note.path}">
-              <span class="tree-item-icon" style="opacity: 0.6;">
+              <span class="tree-item-icon note-health-icon health-pending" role="img" aria-label="Health status loading" title="Health status loading" style="opacity: 0.8;">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                   <polyline points="14 2 14 8 20 8"></polyline>
@@ -771,7 +762,7 @@ class ObsidianVaultApp {
     container.innerHTML = `
       <div class="note-header-card">
         <div class="note-meta-badges">
-          <span class="meta-badge" title="Estimated reading time">
+          <span class="meta-badge" id="note-reading-time" title="Estimated reading time remaining">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <circle cx="12" cy="12" r="10"></circle>
               <polyline points="12 6 12 12 16 14"></polyline>
@@ -808,6 +799,8 @@ class ObsidianVaultApp {
         ${renderedHtml}
       </article>
     `;
+
+    this.setupReadingTimeTracking(readingTime);
 
     document.getElementById('btn-copy-md')?.addEventListener('click', () => {
       navigator.clipboard.writeText(rawMarkdown);
@@ -1238,10 +1231,31 @@ class ObsidianVaultApp {
     if (fileName.startsWith('http://') || fileName.startsWith('https://') || fileName.startsWith('/')) {
       return fileName;
     }
-    if (fileName.startsWith('./') || fileName.startsWith('../')) {
-      return fileName;
+    let cleanFile = fileName.replace(/^\.\//, '');
+    let isVaultRootPath = false;
+    if (/^BBA Study\//i.test(cleanFile)) {
+      cleanFile = cleanFile.replace(/^BBA Study\//i, '');
+      isVaultRootPath = true;
     }
-    return `./${fileName}`;
+
+    const folderPrefix = `${this.currentFolder}/`;
+    if (cleanFile.startsWith(folderPrefix)) {
+      cleanFile = cleanFile.substring(folderPrefix.length);
+      isVaultRootPath = true;
+    }
+
+    const noteDirectory = isVaultRootPath ? [] : (this.currentPath || '').split('/').slice(0, -1);
+    const targetParts = [...noteDirectory, ...cleanFile.split('/')];
+    const normalizedParts = [];
+    for (const part of targetParts) {
+      if (!part || part === '.') continue;
+      if (part === '..') {
+        normalizedParts.pop();
+      } else {
+        normalizedParts.push(part);
+      }
+    }
+    return `./${normalizedParts.join('/')}`;
   }
 
   resolveWikiLink(noteName) {
@@ -2479,6 +2493,14 @@ class ObsidianVaultApp {
 
     if (!data) return;
     this.vaultHealthData = data;
+    this.healthIssuesByFile = new Map();
+    for (const issue of data.issues || []) {
+      const key = this.normalizeHealthPath(issue.file);
+      const issues = this.healthIssuesByFile.get(key) || [];
+      issues.push(issue);
+      this.healthIssuesByFile.set(key, issues);
+    }
+    this.updateNoteHealthBadges();
 
     // Update Header Badge
     const badge = document.getElementById('vault-health-badge');
@@ -2490,6 +2512,55 @@ class ObsidianVaultApp {
         badge.classList.remove('has-warnings');
       }
     }
+  }
+
+  normalizeHealthPath(filePath) {
+    return String(filePath || '').replaceAll('\\', '/').replace(/^\.\//, '');
+  }
+
+  updateNoteHealthBadges() {
+    document.querySelectorAll('.tree-item-self.note-item').forEach(noteElement => {
+      const note = this.allNotes.find(item => item.path === noteElement.dataset.notePath);
+      const icon = noteElement.querySelector('.note-health-icon');
+      if (!note || !icon) return;
+
+      const issues = this.healthIssuesByFile.get(this.normalizeHealthPath(note.fullPath)) || [];
+      const hasError = issues.some(issue => issue.severity === 'error');
+      const status = hasError ? 'error' : issues.length > 0 ? 'warning' : 'clean';
+      const label = status === 'clean' ? 'Clean note' : `${issues.length} health issue${issues.length === 1 ? '' : 's'}`;
+
+      icon.classList.remove('health-pending', 'health-clean', 'health-warning', 'health-error');
+      icon.classList.add(`health-${status}`);
+      icon.setAttribute('aria-label', label);
+      icon.setAttribute('title', label);
+      noteElement.setAttribute('title', label);
+    });
+  }
+
+  setupReadingTimeTracking(totalMinutes) {
+    const viewport = document.getElementById('note-viewport');
+    if (!viewport) return;
+
+    if (this.readingScrollHandler) {
+      viewport.removeEventListener('scroll', this.readingScrollHandler);
+    }
+
+    this.readingStats = { totalMinutes };
+    this.readingScrollHandler = () => this.updateReadingTimeRemaining();
+    viewport.addEventListener('scroll', this.readingScrollHandler, { passive: true });
+    this.updateReadingTimeRemaining();
+  }
+
+  updateReadingTimeRemaining() {
+    const viewport = document.getElementById('note-viewport');
+    const timeBadge = document.getElementById('note-reading-time');
+    if (!viewport || !timeBadge || !this.readingStats) return;
+
+    const scrollRange = viewport.scrollHeight - viewport.clientHeight;
+    const progress = scrollRange > 0 ? Math.min(1, Math.max(0, viewport.scrollTop / scrollRange)) : 0;
+    const remaining = Math.max(0, Math.ceil(this.readingStats.totalMinutes * (1 - progress)));
+    timeBadge.lastChild.textContent = remaining > 0 ? `${remaining} min left` : 'Finished';
+    timeBadge.title = remaining > 0 ? 'Estimated reading time remaining' : 'End of note';
   }
 
   openHealthModal() {

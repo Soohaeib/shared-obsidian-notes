@@ -30,7 +30,7 @@ Economic development cannot be completely captured by a single monetary metric. 
 #### The Kuznets Hypothesis of Economic Growth and Income Distribution
 The Kuznets Hypothesis, advanced by economist Simon Kuznets in 1955, postulates an **Inverted-U relationship** between the level of economic development (measured by per capita income) and income inequality.
 
-![[BBA Study/4th Semester/BCC 210/Solutions/Graphs/kuznets-curve.svg]]
+![[4th Semester/BCC 210/Solutions/Graphs/kuznets-curve.svg]]
 
 According to this hypothesis:
 1. **Early Stage of Development:** As a low-income agricultural economy begins to industrialize and grow, income distribution initially worsens, causing inequality to rise.

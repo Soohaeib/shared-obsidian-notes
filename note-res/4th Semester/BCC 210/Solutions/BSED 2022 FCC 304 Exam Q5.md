@@ -97,6 +97,6 @@ $p = \frac{s}{c+v} = \frac{s/v}{(c/v) + 1}$
 
 Where $s/v$ is the rate of exploitation, and $c/v$ is the organic composition of capital. As $c/v$ approaches infinity due to automation, $p$ trends downward toward zero.
 
-![[BBA Study/4th Semester/BCC 210/Solutions/Graphs/rate-of-profit.svg]]
+![[4th Semester/BCC 210/Solutions/Graphs/rate-of-profit.svg]]
 
 The diagram illustrates that over time, as capital accumulation increases and technology displaces human labor, the rate of profit experiences a secular decline from $p_1$ to $p_3$. While capitalists introduce counter-tendencies (e.g., expanding foreign trade, intensifying exploitation), the system ultimately hits a structural boundary where production is no longer profitable, inducing massive cyclical crises that pave the way for a proletarian revolution.

@@ -21,11 +21,11 @@
 /* Note Article Reading Typography */
 main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1),
 article#note-article {
-  max-width: var(--file-line-width, 780px);
+  max-width: none;
   width: 100%;
   margin: 0 auto;
   line-height: 1.65;
-  font-size: 1rem;
+  font-size: inherit;
   color: var(--text-normal, #eceff4);
 }
 

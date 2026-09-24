@@ -126,7 +126,7 @@ Assuming market required rates ($r_d$) remain constant over time, the price of a
 
 
 
-![[BBA Study/AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg]]
+![[AI Curated Notes/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg]]
 
 
 #### 5. Quoted Prices vs. Invoice Prices (Clean vs. Dirty Price)

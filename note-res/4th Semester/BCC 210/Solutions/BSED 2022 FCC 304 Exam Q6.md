@@ -85,7 +85,7 @@ $\Delta k = s \cdot f(k) - (n + \delta)k$
 
 #### Steady-State Dynamics Under Parameter Changes
 
-![[BBA Study/4th Semester/BCC 210/Solutions/Graphs/solow-model.svg]]
+![[4th Semester/BCC 210/Solutions/Graphs/solow-model.svg]]
 
 #### (c\_i)
 
