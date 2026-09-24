@@ -197,6 +197,15 @@ def sanitize_workspace(target_dir: Path):
     if not target_dir.exists():
         return
 
+    name_map_path = target_dir.parent / 'site-lib' / 'name-map.json'
+    name_map = {}
+    if name_map_path.exists():
+        try:
+            with open(name_map_path, 'r', encoding='utf-8') as nfh:
+                name_map = json.load(nfh)
+        except Exception:
+            pass
+
     # 1. Rename files first (bottom-up)
     for root, dirs, files in os.walk(target_dir, topdown=False):
         dirs[:] = [d for d in dirs if not is_excluded(d, os.path.join(root, d))]
@@ -226,6 +235,21 @@ def sanitize_workspace(target_dir: Path):
                     old_path.rename(new_path)
                     print(f"  ⚡ Slugified file: '{fname}' -> '{new_path.name}'")
                     renamed_count += 1
+
+                    # Record mapping!
+                    f_stem = old_path.stem
+                    slug_f_stem = new_path.stem
+                    try:
+                        dst_file_rel = new_path.relative_to(target_dir.parent).as_posix()
+                        dst_file_rel_in_folder = new_path.relative_to(target_dir).as_posix()
+                        
+                        name_map[new_path.name] = f_stem
+                        name_map[slug_f_stem] = f_stem
+                        name_map[dst_file_rel] = f_stem
+                        name_map[dst_file_rel_in_folder] = f_stem
+                        name_map[fname] = f_stem
+                    except Exception:
+                        pass
                 except Exception as e:
                     print(f"  ❌ Failed to rename {fname}: {e}")
 
@@ -251,8 +275,26 @@ def sanitize_workspace(target_dir: Path):
                             old_path.rename(new_path)
                             print(f"  ⚡ Slugified folder: '{dname}' -> '{cleaned}'")
                             renamed_count += 1
+
+                            # Record mapping!
+                            name_map[cleaned] = dname
+                            try:
+                                dst_folder_rel = new_path.relative_to(target_dir.parent).as_posix()
+                                dst_folder_rel_in_folder = new_path.relative_to(target_dir).as_posix()
+                                name_map[dst_folder_rel] = dname
+                                name_map[dst_folder_rel_in_folder] = dname
+                            except Exception:
+                                pass
                         except Exception as e:
                             print(f"  ❌ Failed to rename folder {dname}: {e}")
+
+    if name_map:
+        try:
+            name_map_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(name_map_path, 'w', encoding='utf-8') as nfh:
+                json.dump(name_map, nfh, indent=2)
+        except Exception:
+            pass
 
     print(f"✅ [Sanitizer] Completed. {renamed_count} items slugified/merged.")
 
@@ -271,6 +313,15 @@ def sync_from_source_vault(src_path_str: str, dst_root: Path):
     print(f"🔄 Auto-syncing from Obsidian Vault: {expanded_path}")
     print(f"   Destination: {container_target}")
     
+    name_map_path = dst_root / 'site-lib' / 'name-map.json'
+    name_map = {}
+    if name_map_path.exists():
+        try:
+            with open(name_map_path, 'r', encoding='utf-8') as nfh:
+                name_map = json.load(nfh)
+        except Exception:
+            pass
+
     copied = 0
     for root, dirs, files in os.walk(expanded_path):
         dirs[:] = [d for d in dirs if not is_excluded(d, os.path.join(root, d))]
@@ -278,8 +329,16 @@ def sync_from_source_vault(src_path_str: str, dst_root: Path):
         
         # Slugify directory segments
         if rel != '.':
-            slug_parts = [slugify_name(p, is_directory=True) for p in Path(rel).parts]
+            original_parts = Path(rel).parts
+            slug_parts = [slugify_name(p, is_directory=True) for p in original_parts]
             target = container_target.joinpath(*slug_parts)
+            
+            # Record folder mappings to preserve exact original directory and folder names
+            for idx, (o_part, s_part) in enumerate(zip(original_parts, slug_parts)):
+                name_map[s_part] = o_part
+                s_subpath = "/".join(slug_parts[:idx+1])
+                name_map[s_subpath] = o_part
+                name_map[f"note-res/{s_subpath}"] = o_part
         else:
             target = container_target
             
@@ -292,6 +351,22 @@ def sync_from_source_vault(src_path_str: str, dst_root: Path):
             src_file = Path(root) / f
             slug_file_name = slugify_name(f, is_directory=False)
             dst_file = target / slug_file_name
+            
+            # Record file mapping to preserve exact original file name
+            f_stem = src_file.stem
+            slug_f_stem = Path(slug_file_name).stem
+            try:
+                dst_file_rel = dst_file.relative_to(dst_root).as_posix()
+                dst_file_rel_in_folder = dst_file.relative_to(container_target).as_posix()
+                
+                name_map[slug_file_name] = f_stem
+                name_map[slug_f_stem] = f_stem
+                name_map[dst_file_rel] = f_stem
+                name_map[dst_file_rel_in_folder] = f_stem
+                name_map[f] = f_stem
+            except Exception:
+                pass
+
             try:
                 if not dst_file.exists() or src_file.stat().st_mtime > dst_file.stat().st_mtime:
                     shutil.copy2(src_file, dst_file)
@@ -299,6 +374,15 @@ def sync_from_source_vault(src_path_str: str, dst_root: Path):
             except Exception as e:
                 print(f"  ❌ Error copying {f}: {e}")
                 
+    if name_map:
+        try:
+            name_map_path.parent.mkdir(parents=True, exist_ok=True)
+            with open(name_map_path, 'w', encoding='utf-8') as nfh:
+                json.dump(name_map, nfh, indent=2)
+            print(f"   [Sync] Updated {name_map_path} with original unslugified name mappings.")
+        except Exception as e:
+            print(f"   [Sync] Warning: Could not save name-map.json: {e}")
+
     print(f"✅ Auto-sync completed ({copied} files updated from Obsidian Vault).")
     return True
 

@@ -1,10 +1,10 @@
 {
   "summary": {
-    "totalFiles": 367,
-    "cleanFiles": 367,
+    "totalFiles": 312,
+    "cleanFiles": 312,
     "filesWithWarnings": 0,
     "totalIssues": 0,
-    "autoFixedIssues": 12,
+    "autoFixedIssues": 0,
     "healthScore": 100
   },
   "issues": []

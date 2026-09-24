@@ -101,7 +101,14 @@ if os.path.exists(template_viewer):
     with open(template_viewer, 'r', encoding='utf-8') as tf:
         t_content_raw = tf.read()
 
+name_map_path = os.path.join(source_dir, 'site-lib', 'name-map.json')
 name_map = {}
+if os.path.exists(name_map_path):
+    try:
+        with open(name_map_path, 'r', encoding='utf-8') as nfh:
+            name_map = json.load(nfh)
+    except Exception:
+        pass
 
 def extract_note_title(file_path):
     """Extract YAML title property, or first H1 title from Markdown note, or clean filename stem."""
@@ -133,7 +140,8 @@ for name in sorted(os.listdir(scan_base)):
     if os.path.isdir(full_path):
         discovered_folders.append(name)
         folder_unslugified = name.replace('-', ' ').replace('_', ' ').title()
-        name_map[name] = folder_unslugified
+        if name not in name_map:
+            name_map[name] = folder_unslugified
 
         sub_count = 0
         folder_md_files = []
@@ -142,8 +150,11 @@ for name in sorted(os.listdir(scan_base)):
             sub_count += len(dirs)
             for d in dirs:
                 sub_rel = os.path.relpath(os.path.join(root, d), full_path).replace('\\', '/')
-                name_map[d] = d.replace('-', ' ').replace('_', ' ').title()
-                name_map[sub_rel] = d.replace('-', ' ').replace('_', ' ').title()
+                folder_d_unslugified = d.replace('-', ' ').replace('_', ' ').title()
+                if d not in name_map:
+                    name_map[d] = folder_d_unslugified
+                if sub_rel not in name_map:
+                    name_map[sub_rel] = folder_d_unslugified
 
             for f in sorted(fnames):
                 if f.endswith('.md') and not is_ignored_file(f):
@@ -158,10 +169,15 @@ for name in sorted(os.listdir(scan_base)):
                     title = extract_note_title(full_md_path)
                     rel_in_folder = os.path.relpath(full_md_path, full_path).replace('\\', '/')
 
-                    name_map[rel] = stem
-                    name_map[rel_in_folder] = stem
-                    name_map[f] = stem
-                    name_map[stem] = stem
+                    display_title = title if title else stem_clean.title()
+                    if rel not in name_map:
+                        name_map[rel] = display_title
+                    if rel_in_folder not in name_map:
+                        name_map[rel_in_folder] = display_title
+                    if f not in name_map:
+                        name_map[f] = display_title
+                    if stem not in name_map:
+                        name_map[stem] = display_title
 
                     # Register various aliases for instant Wikilink lookup
                     keys_to_register = [
@@ -203,7 +219,7 @@ for name in sorted(os.listdir(scan_base)):
         # Provision folder index.html viewer
         if t_content_raw:
             folder_index = os.path.join(full_path, 'index.html')
-            folder_title = name.replace('-', ' ').title()
+            folder_title = name_map.get(name, name.replace('-', ' ').replace('_', ' ').title())
             
             rel_to_root = os.path.relpath(source_dir, full_path).replace('\\', '/')
             if not rel_to_root.endswith('/'):
@@ -259,7 +275,7 @@ except Exception as e:
 # Generate Node Data for the Graph Physics Engine
 nodes_data = [{"id": "root", "label": "Shared Vault", "url": None, "isRoot": True, "moons": 0}]
 for name, rel_url, sub_count in entries:
-    label = name.replace('-', ' ').replace('_', ' ').title()
+    label = name_map.get(name, name.replace('-', ' ').replace('_', ' ').title())
     nodes_data.append({
         "id": name, 
         "label": label, 
