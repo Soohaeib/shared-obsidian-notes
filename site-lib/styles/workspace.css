@@ -4187,178 +4187,75 @@ header:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-typ
 }
 
 /* ==========================================================================
-   VARIATION 11 DESIGN SYSTEM ENHANCEMENTS
+   Obsidian Reader Standard Base Theme
    ========================================================================== */
 
-/* Starry Canvas Overlay & Nebula Glow */
-.starry-overlay {
-  position: fixed;
-  inset: 0;
-  background-image: 
-    radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 50px 160px, rgba(255,255,255,0.5), rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0));
-  background-size: 200px 200px;
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.nebula-glow {
-  position: fixed;
-  width: 60vw;
-  height: 60vh;
-  top: 15%;
-  left: 20%;
-  background: radial-gradient(circle, var(--interactive-accent-glow, rgba(168, 130, 255, 0.2)) 0%, transparent 70%);
-  filter: blur(80px);
-  pointer-events: none;
-  z-index: 1;
-}
-
-.theme-light .starry-overlay {
-  opacity: 0.04;
-  background-image: 
-    radial-gradient(1px 1px at 20px 30px, #0f172a, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 40px 70px, #0f172a, rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 50px 160px, rgba(15,23,42,0.25), rgba(0,0,0,0)),
-    radial-gradient(2px 2px at 90px 40px, #0f172a, rgba(0,0,0,0)),
-    radial-gradient(1px 1px at 130px 80px, #0f172a, rgba(0,0,0,0));
-}
-
-.theme-light .nebula-glow {
-  background: radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, transparent 70%);
-}
-
-/* Rounded Pill Search Bar */
-.header-search-bar {
-  border-radius: 99px !important;
-  background-color: var(--background-primary-alt, rgba(13, 13, 18, 0.8)) !important;
-  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.10)) !important;
-  transition: all 0.2s ease !important;
-}
-
-.header-search-bar:hover {
-  border-color: var(--interactive-accent, #a882ff) !important;
-  box-shadow: 0 0 16px rgba(168, 130, 255, 0.25) !important;
-}
-
-/* Active Note Header Monospace Pill */
+/* Active Note Header Title (Focused Element) */
+header:nth-of-type(1) > div:nth-of-type(1) > div#header-active-note-title:nth-of-type(1),
 #header-active-note-title {
-  font-family: var(--font-monospace, 'JetBrains Mono', monospace) !important;
-  font-size: 0.72rem !important;
-  letter-spacing: 0.06em !important;
-  text-transform: uppercase !important;
-  color: var(--interactive-accent, #a882ff) !important;
-  background: rgba(168, 130, 255, 0.10) !important;
-  border: 1px solid rgba(168, 130, 255, 0.25) !important;
-  padding: 4px 10px !important;
-  border-radius: 6px !important;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--text-normal, #eceff4);
+  background: var(--background-secondary, #3b4252);
+  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.1));
+  padding: 4px 10px;
+  border-radius: var(--radius-sm, 6px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 280px;
 }
 
-/* Sidebar Section Headers / Directory Labels */
-.sidebar-title,
-.feature-title,
-.nav-label {
-  font-family: var(--font-monospace, 'JetBrains Mono', monospace) !important;
-  font-size: 0.65rem !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.15em !important;
-  color: var(--text-muted, rgba(228, 224, 231, 0.5)) !important;
-}
-
-/* Syne Display Headings */
+/* Base Clean Headings */
 .markdown-rendered h1,
 article#note-article h1,
 h1 {
-  font-family: var(--font-heading, 'Syne', sans-serif) !important;
-  font-size: clamp(2rem, 3.8vw, 2.85rem) !important;
-  line-height: 1.02 !important;
-  letter-spacing: -0.04em !important;
-  font-weight: 700 !important;
-  margin-top: 1.25rem !important;
-  margin-bottom: 1.5rem !important;
+  font-family: var(--font-heading, system-ui, sans-serif);
+  font-size: 1.95rem;
+  font-weight: 700;
+  color: var(--h1-color, #bf616a);
+  margin-top: 1.25rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
 }
 
 .markdown-rendered h2,
 article#note-article h2,
 h2 {
-  font-family: var(--font-heading, 'Syne', sans-serif) !important;
-  font-size: clamp(1.4rem, 2.4vw, 1.85rem) !important;
-  letter-spacing: -0.025em !important;
-  font-weight: 700 !important;
+  font-family: var(--font-heading, system-ui, sans-serif);
+  font-size: 1.45rem;
+  font-weight: 600;
+  color: var(--h2-color, #88c0d0);
+  margin-top: 1.4rem;
+  margin-bottom: 0.8rem;
 }
 
 .markdown-rendered h3,
 article#note-article h3,
 h3 {
-  font-family: var(--font-heading, 'Syne', sans-serif) !important;
-  font-size: clamp(1.15rem, 1.8vw, 1.38rem) !important;
-  letter-spacing: -0.015em !important;
-  font-weight: 700 !important;
-}
-
-/* Variation 11 Cosmic Callouts */
-.callout {
-  background: rgba(255, 255, 255, 0.03) !important;
-  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.08)) !important;
-  border-radius: 12px !important;
-  border-left: 4px solid var(--callout-color, var(--interactive-accent, #a882ff)) !important;
-  padding: 18px 22px !important;
-  margin: 20px 0 !important;
-  position: relative !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25) !important;
-}
-
-.theme-light .callout {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border: 1px solid rgba(15, 23, 42, 0.08) !important;
-  border-left: 4px solid var(--callout-color, var(--interactive-accent, #4f46e5)) !important;
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04) !important;
-}
-
-.callout-title {
-  display: flex !important;
-  align-items: center !important;
-  gap: 10px !important;
-  font-weight: 600 !important;
-  margin-bottom: 12px !important;
-  font-size: 0.88rem !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.05em !important;
-  color: var(--callout-color, var(--interactive-accent, #a882ff)) !important;
-  padding: 0 !important;
-}
-
-.callout-content {
-  padding: 0 !important;
+  font-family: var(--font-heading, system-ui, sans-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--h3-color, #a3be8c);
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
 }
 
 /* Floating Bottom-Right Metadata Pill */
 #floating-note-meta {
-  font-family: var(--font-monospace, 'JetBrains Mono', monospace) !important;
-  font-size: 0.65rem !important;
-  letter-spacing: 0.08em !important;
-  text-transform: uppercase !important;
-  background: rgba(13, 13, 18, 0.75) !important;
-  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.08)) !important;
-  border-radius: 99px !important;
-  backdrop-filter: blur(14px) !important;
-  -webkit-backdrop-filter: blur(14px) !important;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  background: var(--background-secondary, #3b4252);
+  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 6px);
+  color: var(--text-muted, #d8dee9);
 }
 
 .theme-light #floating-note-meta {
-  background: rgba(255, 255, 255, 0.85) !important;
-  border: 1px solid rgba(15, 23, 42, 0.09) !important;
-}
-
-/* Selection Highlight */
-::selection {
-  background: var(--interactive-accent, #a882ff) !important;
-  color: #07070a !important;
+  background: #ffffff;
+  border: 1px solid rgba(46, 52, 64, 0.14);
+  color: #475569;
 }
 

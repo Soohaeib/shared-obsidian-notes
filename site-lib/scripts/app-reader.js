@@ -688,11 +688,15 @@ class ObsidianVaultApp {
     }
   }
 
-  updateBreadcrumbs(folder, title) {
+  updateBreadcrumbs(folder, fileName) {
     const titleBadge = document.getElementById('header-active-note-title');
     if (titleBadge) {
-      titleBadge.textContent = title || 'Overview';
-      titleBadge.title = folder ? `${folder} / ${title}` : (title || 'Overview');
+      let displayName = fileName || 'Overview';
+      if (displayName.toLowerCase() === 'index') {
+        displayName = `${folder || ''} Overview`.trim() || 'Coursework Overview';
+      }
+      titleBadge.textContent = displayName;
+      titleBadge.title = folder ? `${folder} / ${displayName}` : displayName;
     }
   }
 
@@ -1067,7 +1071,8 @@ class ObsidianVaultApp {
     this.initInteractiveWidgets();
     this.buildTableOfContents();
     this.buildBacklinks(relPath);
-    this.updateBreadcrumbs(this.formatFolderTitle(this.currentFolder), title);
+    const fileNameWithoutExt = relPath.split('/').pop().replace(/\.md$/i, '');
+    this.updateBreadcrumbs(this.formatFolderTitle(this.currentFolder), fileNameWithoutExt);
 
     if (this.sidebarGraph) this.sidebarGraph.updateFocus(relPath, this.graphMode);
   }

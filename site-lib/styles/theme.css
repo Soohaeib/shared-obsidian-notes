@@ -1,8 +1,8 @@
 /* ==========================================================================
-   Obsidian Theme Engine (theme.css) - Variation 11
-   - Dark Mode: Cosmic Obsidian Canvas (#07070a, #0d0d12) + Radiant Lavender/Violet (#a882ff)
-   - Light Mode: Clean Inverse Canvas (#f8fafc) + Soft Non-Distracting Dot Grid + Royal Indigo Accents
-   - Typography: Syne Display Headings + Inter Body + JetBrains Mono Monospace
+   Obsidian Theme Engine (theme.css)
+   - Dark Mode: Authentic Obsidian Nord (#2e3440, #3b4252) + Frost Accents (#88c0d0)
+   - Light Mode: High-Contrast Snow Storm (#f4f6f9, #ffffff) + Deep Slate Typography
+   - Typography: Clean System UI / Inter font stack for distraction-free reading
    ========================================================================== */
 
 :root {
@@ -10,10 +10,10 @@
   --radius-s: 6px;
   --radius-m: 10px;
   --radius-l: 14px;
-  --font-interface: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-text: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-heading: 'Syne', -apple-system, sans-serif;
-  --font-monospace: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-interface: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-text: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-monospace: 'JetBrains Mono', 'Fira Code', Menlo, Monaco, Consolas, monospace;
 }
 
 body {
@@ -31,90 +31,90 @@ body {
 }
 
 /* ==========================================================================
-   DARK MODE (Variation 11 Cosmic Palette)
+   DARK MODE (Authentic Obsidian Nord Palette)
    ========================================================================== */
 :root,
 .theme-dark,
 [data-theme-mode="dark"],
 [data-theme="nord"][data-theme-mode="dark"],
 [data-theme="cosmic"][data-theme-mode="dark"] {
-  /* Semantic Accent Spectrum */
-  --color-purple: #c084fc;
-  --color-cyan: #38bdf8;
-  --color-blue: #a882ff;
-  --color-green: #34d399;
-  --color-yellow: #fbbf24;
-  --color-orange: #fb923c;
-  --color-red: #f43f5e;
+  /* Nord Aurora & Frost Spectrum */
+  --color-purple: #b48ead;
+  --color-cyan: #88c0d0;
+  --color-blue: #81a1c1;
+  --color-green: #a3be8c;
+  --color-yellow: #ebcb8b;
+  --color-orange: #d08770;
+  --color-red: #bf616a;
 
-  /* Variation 11 Cosmic Dark Canvas & Background */
-  --background-primary: #07070a;
-  --background-primary-alt: #0d0d12;
-  --canvas-dot-color: rgba(255, 255, 255, 0.05);
-  --background-secondary: rgba(13, 13, 18, 0.75);
-  --background-secondary-alt: rgba(20, 20, 28, 0.85);
+  /* Nord Dark Canvas Hierarchy */
+  --background-primary: #2e3440;
+  --background-primary-alt: #242933;
+  --canvas-dot-color: rgba(236, 239, 244, 0.05);
+  --background-secondary: #3b4252;
+  --background-secondary-alt: #434c5e;
   --background-modifier-border: rgba(255, 255, 255, 0.08);
-  --background-modifier-hover: rgba(168, 130, 255, 0.12);
-  --background-modifier-active: rgba(168, 130, 255, 0.22);
-  --background-glass: rgba(13, 13, 18, 0.80);
+  --background-modifier-hover: rgba(136, 192, 208, 0.12);
+  --background-modifier-active: rgba(136, 192, 208, 0.22);
+  --background-glass: rgba(46, 52, 64, 0.88);
 
   /* Translucent & Glass Panes */
-  --glass-bg: rgba(13, 13, 18, 0.80);
-  --glass-border: rgba(168, 130, 255, 0.18);
-  --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 24px rgba(168, 130, 255, 0.12);
-  --header-glass-bg: rgba(7, 7, 10, 0.85);
-  --sidebar-glass-bg: rgba(13, 13, 18, 0.65);
-  --btn-glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-bg: rgba(59, 66, 82, 0.85);
+  --glass-border: rgba(136, 192, 208, 0.20);
+  --glass-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  --header-glass-bg: rgba(46, 52, 64, 0.92);
+  --sidebar-glass-bg: rgba(46, 52, 64, 0.85);
+  --btn-glass-bg: rgba(255, 255, 255, 0.06);
   --btn-glass-border: rgba(255, 255, 255, 0.10);
-  --btn-glass-hover: rgba(168, 130, 255, 0.16);
-  --btn-glass-hover-border: rgba(168, 130, 255, 0.45);
-  --btn-glass-glow: 0 0 14px rgba(168, 130, 255, 0.35);
-  --hover-preview-bg: rgba(13, 13, 18, 0.94);
+  --btn-glass-hover: rgba(136, 192, 208, 0.18);
+  --btn-glass-hover-border: rgba(136, 192, 208, 0.45);
+  --btn-glass-glow: 0 0 12px rgba(136, 192, 208, 0.3);
+  --hover-preview-bg: rgba(46, 52, 64, 0.96);
 
   /* Distinct Text Types for Optimal Long-Form Reading */
-  --text-normal: #e4e4e7;       /* Comfortable reading text */
-  --text-muted: rgba(228, 224, 231, 0.6);        /* Soft secondary captions & metadata */
-  --text-faint: rgba(228, 224, 231, 0.4);        /* Subtle timestamps & path hierarchy */
-  --bold-color: #ffffff;        /* High-contrast crisp bold highlights */
-  --italic-color: #c084fc;      /* Soft orchid violet for emphasis */
+  --text-normal: #eceff4;       /* Snow storm light */
+  --text-muted: #d8dee9;        /* Snow storm dark */
+  --text-faint: #4c566a;        /* Polar night faint */
+  --bold-color: #ffffff;        /* High-contrast crisp bold */
+  --italic-color: #88c0d0;      /* Frost cyan nuance */
 
-  /* Interactive Elements (Variation 11 Radiant Lavender Accent) */
-  --interactive-accent: #a882ff;
-  --interactive-accent-hover: #c4a7ff;
-  --interactive-accent-rgb: 168, 130, 255;
-  --interactive-accent-subtle: rgba(168, 130, 255, 0.14);
-  --interactive-accent-glow: 0 0 18px rgba(168, 130, 255, 0.35);
-  --link-url: #a882ff;
+  /* Interactive Elements (Nord Frost) */
+  --interactive-accent: #88c0d0;
+  --interactive-accent-hover: #8fbcbb;
+  --interactive-accent-rgb: 136, 192, 208;
+  --interactive-accent-subtle: rgba(136, 192, 208, 0.14);
+  --interactive-accent-glow: 0 0 14px rgba(136, 192, 208, 0.35);
+  --link-url: #88c0d0;
 
-  /* Harmonic Heading Hierarchy */
-  --h1-color: #f43f5e; /* Rose Crimson */
-  --h2-color: #38bdf8; /* Sky Cerulean */
-  --h3-color: #34d399; /* Mint Emerald */
-  --h4-color: #a882ff; /* Lavender Purple */
-  --h5-color: #fbbf24; /* Warm Amber */
-  --h6-color: #94a3b8; /* Refined Slate */
+  /* Nord Heading Hierarchy */
+  --h1-color: #bf616a; /* Aurora Red */
+  --h2-color: #88c0d0; /* Frost Cyan */
+  --h3-color: #a3be8c; /* Aurora Green */
+  --h4-color: #b48ead; /* Aurora Purple */
+  --h5-color: #ebcb8b; /* Aurora Yellow */
+  --h6-color: #d8dee9; /* Snow Storm */
 
   /* Text Emphasis & Code Blocks */
-  --text-highlight-bg: #fbbf24;
-  --text-highlight-fg: #07070a;
-  --text-accent: #38bdf8;
-  --text-accent-hover: #a882ff;
+  --text-highlight-bg: #ebcb8b;
+  --text-highlight-fg: #2e3440;
+  --text-accent: #88c0d0;
+  --text-accent-hover: #81a1c1;
 
-  --tag-color: #a882ff;
-  --tag-background: rgba(168, 130, 255, 0.14);
-  --tag-background-hover: rgba(168, 130, 255, 0.25);
+  --tag-color: #88c0d0;
+  --tag-background: rgba(136, 192, 208, 0.14);
+  --tag-background-hover: rgba(136, 192, 208, 0.25);
 
-  --checkbox-color: #a882ff;
-  --code-normal: #38bdf8;
-  --code-background: #0d0d14;
-  --table-header-background: #0d0d14;
-  --table-row-even-background: rgba(20, 20, 28, 0.5);
-  --table-row-odd-background: rgba(13, 13, 18, 0.35);
-  --table-row-background-hover: rgba(168, 130, 255, 0.12);
+  --checkbox-color: #88c0d0;
+  --code-normal: #88c0d0;
+  --code-background: #3b4252;
+  --table-header-background: #3b4252;
+  --table-row-even-background: rgba(59, 66, 82, 0.5);
+  --table-row-odd-background: rgba(46, 52, 64, 0.35);
+  --table-row-background-hover: rgba(136, 192, 208, 0.12);
 }
 
 /* ==========================================================================
-   LIGHT MODE (Clean Inverted Canvas + Deep Royal Indigo Hierarchy)
+   LIGHT MODE (High-Contrast Snow Storm & Slate)
    ========================================================================== */
 .theme-light,
 [data-theme-mode="light"],
@@ -123,76 +123,76 @@ body {
   /* Semantic Accent Spectrum */
   --color-purple: #7c3aed;
   --color-cyan: #0284c7;
-  --color-blue: #4f46e5;
+  --color-blue: #2563eb;
   --color-green: #059669;
   --color-yellow: #d97706;
   --color-orange: #ea580c;
-  --color-red: #e11d48;
+  --color-red: #dc2626;
 
-  /* Clean Inverted Canvas Hierarchy */
-  --background-primary: #f8fafc;
+  /* High Contrast Snow Storm Canvas */
+  --background-primary: #f4f6f9;
   --background-primary-alt: #ffffff;
-  --canvas-dot-color: rgba(15, 23, 42, 0.05);
-  --background-secondary: rgba(255, 255, 255, 0.88);
-  --background-secondary-alt: rgba(241, 245, 249, 0.92);
-  --background-modifier-border: rgba(15, 23, 42, 0.09);
-  --background-modifier-hover: rgba(79, 70, 229, 0.08);
-  --background-modifier-active: rgba(79, 70, 229, 0.18);
-  --background-glass: rgba(255, 255, 255, 0.92);
+  --canvas-dot-color: rgba(46, 52, 64, 0.06);
+  --background-secondary: #ffffff;
+  --background-secondary-alt: #e5e9f0;
+  --background-modifier-border: rgba(46, 52, 64, 0.12);
+  --background-modifier-hover: rgba(37, 99, 235, 0.08);
+  --background-modifier-active: rgba(37, 99, 235, 0.16);
+  --background-glass: rgba(255, 255, 255, 0.94);
 
   /* Translucent & Glass Panes for Light Mode */
-  --glass-bg: rgba(255, 255, 255, 0.94);
-  --glass-border: rgba(79, 70, 229, 0.18);
-  --glass-shadow: 0 16px 40px rgba(15, 23, 42, 0.08), 0 0 20px rgba(79, 70, 229, 0.06);
-  --header-glass-bg: rgba(255, 255, 255, 0.92);
-  --sidebar-glass-bg: rgba(248, 250, 252, 0.90);
-  --btn-glass-bg: rgba(15, 23, 42, 0.04);
-  --btn-glass-border: rgba(15, 23, 42, 0.10);
-  --btn-glass-hover: rgba(79, 70, 229, 0.10);
-  --btn-glass-hover-border: rgba(79, 70, 229, 0.35);
-  --btn-glass-glow: 0 0 12px rgba(79, 70, 229, 0.20);
-  --hover-preview-bg: rgba(255, 255, 255, 0.96);
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(37, 99, 235, 0.18);
+  --glass-shadow: 0 12px 32px rgba(46, 52, 64, 0.08);
+  --header-glass-bg: rgba(244, 246, 249, 0.95);
+  --sidebar-glass-bg: rgba(238, 241, 246, 0.92);
+  --btn-glass-bg: rgba(46, 52, 64, 0.04);
+  --btn-glass-border: rgba(46, 52, 64, 0.12);
+  --btn-glass-hover: rgba(37, 99, 235, 0.10);
+  --btn-glass-hover-border: rgba(37, 99, 235, 0.35);
+  --btn-glass-glow: 0 0 10px rgba(37, 99, 235, 0.18);
+  --hover-preview-bg: rgba(255, 255, 255, 0.98);
 
   /* Deep Slate Typography for High Contrast & Fatigue-Free Reading */
-  --text-normal: #0f172a;       /* Deep slate black, razor-sharp clarity */
+  --text-normal: #1e293b;       /* Deep slate, crystal clear */
   --text-muted: #475569;        /* Medium slate for secondary elements */
-  --text-faint: #94a3b8;        /* Soft gray for metadata */
-  --bold-color: #020617;        /* Pitch black bold emphasis */
-  --italic-color: #7c3aed;      /* Royal violet for italic nuance */
+  --text-faint: #64748b;        /* Subtle slate for metadata */
+  --bold-color: #0f172a;        /* High-contrast bold black */
+  --italic-color: #4f46e5;      /* Deep indigo nuance */
 
-  /* Interactive Elements (Royal Indigo) */
-  --interactive-accent: #4f46e5;
-  --interactive-accent-hover: #4338ca;
-  --interactive-accent-rgb: 79, 70, 229;
-  --interactive-accent-subtle: rgba(79, 70, 229, 0.12);
-  --interactive-accent-glow: 0 0 14px rgba(79, 70, 229, 0.22);
-  --link-url: #4f46e5;
+  /* Interactive Elements (Deep Frost Blue) */
+  --interactive-accent: #0284c7;
+  --interactive-accent-hover: #0369a1;
+  --interactive-accent-rgb: 2, 132, 199;
+  --interactive-accent-subtle: rgba(2, 132, 199, 0.12);
+  --interactive-accent-glow: 0 0 12px rgba(2, 132, 199, 0.22);
+  --link-url: #0284c7;
 
   /* Harmonic Heading Hierarchy */
-  --h1-color: #e11d48; /* Ruby Red */
-  --h2-color: #0284c7; /* Ocean Blue */
-  --h3-color: #059669; /* Forest Emerald */
-  --h4-color: #7c3aed; /* Royal Violet */
-  --h5-color: #d97706; /* Amber Bronze */
-  --h6-color: #475569; /* Deep Slate */
+  --h1-color: #b91c1c; /* Deep Crimson */
+  --h2-color: #0369a1; /* Deep Cerulean */
+  --h3-color: #047857; /* Deep Emerald */
+  --h4-color: #6d28d9; /* Deep Purple */
+  --h5-color: #b45309; /* Deep Amber */
+  --h6-color: #475569; /* Slate */
 
   /* Text Emphasis & Badges */
-  --text-highlight-bg: #fde047;
-  --text-highlight-fg: #0f172a;
+  --text-highlight-bg: #fef08a;
+  --text-highlight-fg: #1e293b;
   --text-accent: #0284c7;
-  --text-accent-hover: #4f46e5;
+  --text-accent-hover: #0369a1;
 
-  --tag-color: #4f46e5;
-  --tag-background: rgba(79, 70, 229, 0.08);
-  --tag-background-hover: rgba(79, 70, 229, 0.16);
+  --tag-color: #0284c7;
+  --tag-background: rgba(2, 132, 199, 0.09);
+  --tag-background-hover: rgba(2, 132, 199, 0.18);
 
-  --checkbox-color: #4f46e5;
-  --code-normal: #0284c7;
+  --checkbox-color: #0284c7;
+  --code-normal: #0369a1;
   --code-background: #e2e8f0;
   --table-header-background: #e2e8f0;
   --table-row-even-background: rgba(241, 245, 249, 0.7);
   --table-row-odd-background: #ffffff;
-  --table-row-background-hover: rgba(79, 70, 229, 0.06);
+  --table-row-background-hover: rgba(2, 132, 199, 0.08);
 }
 
 /* ==========================================================================
