@@ -8,11 +8,11 @@
    5. snippets.css   - Obsidian custom snippets & personal overrides
    ========================================================================== */
 
-@import url("./theme.css");
-@import url("./obsidian.css");
-@import url("./workspace.css");
-@import url("./diagrams.css");
-@import url("./snippets.css");
+@import url("./theme.css?v=20260924");
+@import url("./obsidian.css?v=20260924");
+@import url("./workspace.css?v=20260924");
+@import url("./diagrams.css?v=20260924");
+@import url("./snippets.css?v=20260924");
 
 /* ==========================================================================
    Additional Targeted Note Overrides & Math Polish
