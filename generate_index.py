@@ -101,20 +101,30 @@ if os.path.exists(template_viewer):
     with open(template_viewer, 'r', encoding='utf-8') as tf:
         t_content_raw = tf.read()
 
+name_map = {}
+
 def extract_note_title(file_path):
-    """Extract first H1 title from Markdown note or return clean filename."""
+    """Extract YAML title property, or first H1 title from Markdown note, or clean filename stem."""
+    stem = Path(file_path).stem
     try:
         with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
-            for line in f:
-                line_str = line.strip()
-                if line_str.startswith('# ') and not line_str.startswith('#!'):
-                    return line_str[2:].strip()
-                if line_str and not line_str.startswith('---') and not line_str.startswith('>'):
-                    break
+            content = f.read()
+            # 1. YAML Frontmatter title property
+            if content.startswith('---'):
+                fm_end = content.find('\n---', 3)
+                if fm_end != -1:
+                    frontmatter = content[3:fm_end]
+                    title_match = re.search(r'^\s*title\s*:\s*["\']?([^"\n\r\']+)', frontmatter, re.IGNORECASE | re.MULTILINE)
+                    if title_match and title_match.group(1).strip():
+                        return title_match.group(1).strip()
+            
+            # 2. First Markdown H1 (# Heading)
+            h1_match = re.search(r'^\s*#\s+([^\n\r]+)', content, re.MULTILINE)
+            if h1_match and h1_match.group(1).strip():
+                return h1_match.group(1).strip()
     except Exception:
         pass
-    stem = Path(file_path).stem
-    return stem.replace('-', ' ').replace('_', ' ').title()
+    return stem
 
 for name in sorted(os.listdir(scan_base)):
     if is_ignored_folder(name) or (scan_base == source_dir and name == vault_container):
@@ -122,11 +132,19 @@ for name in sorted(os.listdir(scan_base)):
     full_path = os.path.join(scan_base, name)
     if os.path.isdir(full_path):
         discovered_folders.append(name)
+        folder_unslugified = name.replace('-', ' ').replace('_', ' ').title()
+        name_map[name] = folder_unslugified
+
         sub_count = 0
         folder_md_files = []
         for root, dirs, fnames in os.walk(full_path):
             dirs[:] = [d for d in dirs if not is_ignored_folder(d)]
             sub_count += len(dirs)
+            for d in dirs:
+                sub_rel = os.path.relpath(os.path.join(root, d), full_path).replace('\\', '/')
+                name_map[d] = d.replace('-', ' ').replace('_', ' ').title()
+                name_map[sub_rel] = d.replace('-', ' ').replace('_', ' ').title()
+
             for f in sorted(fnames):
                 if f.endswith('.md') and not is_ignored_file(f):
                     full_md_path = os.path.join(root, f)
@@ -134,11 +152,16 @@ for name in sorted(os.listdir(scan_base)):
                     all_md_files.append(rel)
                     folder_md_files.append(rel)
 
-                    # Populate Wikilink lookup dictionary
+                    # Populate Wikilink lookup dictionary & name_map
                     stem = f[:-3] # remove .md
                     stem_clean = stem.replace('-', ' ').replace('_', ' ')
                     title = extract_note_title(full_md_path)
                     rel_in_folder = os.path.relpath(full_md_path, full_path).replace('\\', '/')
+
+                    name_map[rel] = stem
+                    name_map[rel_in_folder] = stem
+                    name_map[f] = stem
+                    name_map[stem] = stem
 
                     # Register various aliases for instant Wikilink lookup
                     keys_to_register = [
@@ -199,14 +222,24 @@ for name in sorted(os.listdir(scan_base)):
             except Exception as e:
                 print(f"Notice: Could not write viewer for {name}: {e}")
 
-# Update site-lib/vault-index.json
+# Update site-lib/vault-index.json and site-lib/name-map.json
 vault_index_path = os.path.join(source_dir, 'site-lib', 'vault-index.json')
+name_map_path = os.path.join(source_dir, 'site-lib', 'name-map.json')
+
+try:
+    with open(name_map_path, 'w', encoding='utf-8') as nfh:
+        json.dump(name_map, nfh, indent=2)
+    print(f"Updated {name_map_path} with {len(name_map)} mappings.")
+except Exception as e:
+    print(f"Notice: Could not write name-map.json: {e}")
+
 try:
     with open(vault_index_path, 'w', encoding='utf-8') as fh:
         json.dump({
             'files': sorted(all_md_files),
             'folders': sorted(discovered_folders),
-            'lookup': vault_lookup
+            'lookup': vault_lookup,
+            'nameMap': name_map
         }, fh, indent=2)
     print(f"Updated {vault_index_path} with {len(all_md_files)} notes and {len(vault_lookup)} lookup entries.")
 except Exception as e:

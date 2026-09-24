@@ -632,7 +632,7 @@ class ObsidianVaultApp {
     // Initialize Table of Contents global controls
     this.setupTocGlobalControls();
 
-    // Internal link click delegation (WikiLinks and Footnotes)
+    // Internal link click delegation (WikiLinks, Footnotes, and Properties Collapse)
     document.addEventListener('click', (e) => {
       const link = e.target.closest('.internal-link');
       if (link) {
@@ -654,12 +654,199 @@ class ObsidianVaultApp {
           }
         }
       }
+
+      // Toggle Collapsible Properties Block
+      const heading = e.target.closest('.metadata-properties-heading');
+      if (heading) {
+        const container = heading.closest('.metadata-container');
+        if (container) {
+          container.classList.toggle('is-collapsed');
+        }
+      }
     });
+
+    document.addEventListener('keydown', (e) => {
+      const heading = e.target.closest('.metadata-properties-heading');
+      if (heading && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        const container = heading.closest('.metadata-container');
+        if (container) {
+          container.classList.toggle('is-collapsed');
+        }
+      }
+    });
+  }
+
+  getOriginalFileName(relPath, fileName) {
+    if (!fileName) fileName = (relPath || '').split('/').pop();
+    const stem = (fileName || '').replace(/\.md$/i, '');
+    if (this.nameMap) {
+      if (relPath && this.nameMap[relPath]) return this.nameMap[relPath].replace(/\.md$/i, '');
+      if (fileName && this.nameMap[fileName]) return this.nameMap[fileName].replace(/\.md$/i, '');
+      if (stem && this.nameMap[stem]) return this.nameMap[stem].replace(/\.md$/i, '');
+    }
+    return stem;
+  }
+
+  getOriginalFolderName(folderKey, fullPath) {
+    if (this.nameMap) {
+      if (fullPath && this.nameMap[fullPath]) return this.nameMap[fullPath];
+      if (folderKey && this.nameMap[folderKey]) return this.nameMap[folderKey];
+    }
+    if (!folderKey) return 'Folder';
+    return folderKey.replace(/[-_]/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  }
+
+  parseYamlFrontmatter(frontmatterStr) {
+    if (!frontmatterStr || !frontmatterStr.trim()) return {};
+    const data = {};
+    const lines = frontmatterStr.split('\n');
+    let currentKey = null;
+
+    for (let line of lines) {
+      line = line.trim();
+      if (!line || line.startsWith('#')) continue;
+
+      if (line.startsWith('- ') && currentKey) {
+        const itemVal = line.substring(2).trim().replace(/^['"]|['"]$/g, '');
+        if (!Array.isArray(data[currentKey])) {
+          data[currentKey] = [];
+        }
+        data[currentKey].push(itemVal);
+        continue;
+      }
+
+      const colonIdx = line.indexOf(':');
+      if (colonIdx !== -1) {
+        const key = line.substring(0, colonIdx).trim();
+        let valStr = line.substring(colonIdx + 1).trim();
+
+        currentKey = key;
+
+        if (!valStr) {
+          data[key] = [];
+        } else if (valStr.startsWith('[') && valStr.endsWith(']')) {
+          const inner = valStr.substring(1, valStr.length - 1).trim();
+          if (inner) {
+            data[key] = inner.split(',').map(s => s.trim().replace(/^['"]|['"]$/g, '')).filter(Boolean);
+          } else {
+            data[key] = [];
+          }
+        } else {
+          valStr = valStr.replace(/^['"]|['"]$/g, '');
+          data[key] = valStr;
+        }
+      }
+    }
+    return data;
+  }
+
+  renderPropertiesBlock(frontmatterData) {
+    if (!frontmatterData || typeof frontmatterData !== 'object') return '';
+
+    const EXCLUDED_KEYS = new Set(['pass', 'password', 'secret']);
+    const keys = Object.keys(frontmatterData).filter(k => !EXCLUDED_KEYS.has(k.toLowerCase()));
+
+    if (keys.length === 0) return '';
+
+    let html = `<div class="metadata-container is-collapsed">`;
+    html += `
+      <div class="metadata-properties-heading" tabindex="0">
+        <span class="metadata-property-icon" style="margin-right: 4px; display: inline-flex; align-items: center;">
+          <svg class="collapse-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition: transform 0.2s ease;">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </span>
+        <span>Properties</span>
+      </div>
+    `;
+    html += `<div class="metadata-properties font-ui-small">`;
+
+    for (const key of keys) {
+      const rawVal = frontmatterData[key];
+      if (rawVal === undefined || rawVal === null || rawVal === '' || (Array.isArray(rawVal) && rawVal.length === 0)) continue;
+
+      const iconSvg = this.getPropertyIconSvg(key);
+      let renderedValHtml = '';
+
+      if (Array.isArray(rawVal)) {
+        if (key.toLowerCase() === 'tags' || key.toLowerCase() === 'tag') {
+          renderedValHtml = rawVal.map(t => `<span class="metadata-tag">#${this.escapeHtml(String(t).replace(/^#/, ''))}</span>`).join(' ');
+        } else {
+          renderedValHtml = rawVal.map(v => `<span class="metadata-pill">${this.escapeHtml(String(v))}</span>`).join(' ');
+        }
+      } else if (typeof rawVal === 'string') {
+        if (key.toLowerCase() === 'tags' || key.toLowerCase() === 'tag') {
+          const tagList = rawVal.split(/[\s,]+/).filter(Boolean);
+          renderedValHtml = tagList.map(t => `<span class="metadata-tag">#${this.escapeHtml(t.replace(/^#/, ''))}</span>`).join(' ');
+        } else {
+          let processedStr = rawVal.replace(/\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g, (match, target, alias) => {
+            const res = this.resolveWikiLink(target);
+            const display = alias || target;
+            return `<a class="internal-link ${res.resolved ? 'is-resolved' : 'is-unresolved'}" href="${res.path}">${this.escapeHtml(display)}</a>`;
+          });
+          renderedValHtml = `<span class="metadata-property-value-text">${processedStr}</span>`;
+        }
+      } else {
+        renderedValHtml = `<span class="metadata-property-value-text">${this.escapeHtml(String(rawVal))}</span>`;
+      }
+
+      html += `
+        <div class="metadata-property" data-property-key="${this.escapeHtml(key)}">
+          <div class="metadata-property-key">
+            <span class="metadata-property-icon">${iconSvg}</span>
+            <span class="metadata-property-key-text">${this.escapeHtml(key)}</span>
+          </div>
+          <div class="metadata-property-value">
+            ${renderedValHtml}
+          </div>
+        </div>
+      `;
+    }
+
+    html += `</div></div>`;
+    return html;
+  }
+
+  getPropertyIconSvg(key) {
+    const k = (key || '').toLowerCase();
+    if (['tags', 'tag'].includes(k)) {
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>`;
+    }
+    if (['aliases', 'alias'].includes(k)) {
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>`;
+    }
+    if (['date', 'created', 'modified', 'updated', 'due'].includes(k)) {
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`;
+    }
+    if (['title', 'author', 'source'].includes(k)) {
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>`;
+    }
+    return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="12" x2="12" y2="12.01"></line></svg>`;
   }
 
   // Load vault notes list
   async loadVaultNotes() {
     let files = [];
+    let nameMap = {};
+
+    // Try fetching name-map.json
+    const nameMapPaths = [
+      '../../site-lib/name-map.json',
+      '../site-lib/name-map.json',
+      './site-lib/name-map.json',
+      'site-lib/name-map.json',
+      '/site-lib/name-map.json'
+    ];
+    for (const p of nameMapPaths) {
+      try {
+        const res = await fetch(p);
+        if (res.ok) {
+          nameMap = await res.json();
+          break;
+        }
+      } catch (e) {}
+    }
 
     // 1. Try server endpoint
     try {
@@ -691,6 +878,9 @@ class ObsidianVaultApp {
               if (data.lookup) {
                 this.vaultLookup = data.lookup;
               }
+              if (data.nameMap) {
+                nameMap = { ...data.nameMap, ...nameMap };
+              }
               break;
             }
           }
@@ -698,6 +888,7 @@ class ObsidianVaultApp {
       }
     }
 
+    this.nameMap = nameMap;
     this.allVaultFiles = files;
     this.currentFolder = this.detectCurrentFolder(files);
 
@@ -720,11 +911,13 @@ class ObsidianVaultApp {
       if (relInFolder) {
         const parts = relInFolder.split('/');
         const fileName = parts[parts.length - 1];
-        const title = fileName.replace(/\.md$/, '').replace(/-/g, ' ');
+        const originalName = this.getOriginalFileName(relInFolder, fileName);
         notes.push({
           fullPath: f,
           path: relInFolder,
-          title: this.formatTitle(title),
+          fileName: fileName,
+          fileNameWithoutExt: originalName,
+          title: originalName,
           folder: parts.length > 1 ? parts[0] : 'root'
         });
       }
@@ -753,10 +946,13 @@ class ObsidianVaultApp {
           if (relInFolder) {
             const parts = relInFolder.split('/');
             const fileName = parts[parts.length - 1];
+            const originalName = this.getOriginalFileName(relInFolder, fileName);
             notes.push({
               fullPath: f,
               path: relInFolder,
-              title: this.formatTitle(fileName.replace(/\.md$/, '').replace(/-/g, ' ')),
+              fileName: fileName,
+              fileNameWithoutExt: originalName,
+              title: originalName,
               folder: parts.length > 1 ? parts[0] : 'root'
             });
           }
@@ -820,7 +1016,7 @@ class ObsidianVaultApp {
       const isIndex = note.path === 'index.md';
       const nodeObj = {
         id: note.path,
-        title: note.title,
+        title: note.fileNameWithoutExt || this.getOriginalFileName(note.path, note.fileName),
         color: isIndex ? '#bf616a' : (note.path.includes('pyq') ? '#ebcb8b' : '#88c0d0'),
         radius: isIndex ? 10 : 6
       };
@@ -895,7 +1091,7 @@ class ObsidianVaultApp {
       const itemPath = parentPath ? `${parentPath}/${key}` : key;
 
       if (item._isFolder) {
-        const folderLabel = this.formatFolderTitle(key);
+        const folderLabel = this.getOriginalFolderName(key, itemPath);
         html += `
           <div class="nav-folder" data-path="${itemPath}">
             <div class="tree-item-self folder-item" data-folder-path="${itemPath}">
@@ -907,7 +1103,7 @@ class ObsidianVaultApp {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.8; margin-right: 2px;">
                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
               </svg>
-              <span class="tree-item-title">${folderLabel}</span>
+              <span class="tree-item-title">${this.escapeHtml(folderLabel)}</span>
             </div>
             <div class="tree-item-children is-hidden">
               ${this.renderTreeFolder(item._children, itemPath)}
@@ -916,6 +1112,7 @@ class ObsidianVaultApp {
         `;
       } else {
         const note = item.note;
+        const fileLabel = note.fileNameWithoutExt || this.getOriginalFileName(note.path, note.fileName || key);
         html += `
           <div class="nav-file" data-note-path="${note.path}">
             <a href="#${note.path}" class="tree-item-self note-item" data-note-path="${note.path}">
@@ -925,7 +1122,7 @@ class ObsidianVaultApp {
                   <polyline points="14 2 14 8 20 8"></polyline>
                 </svg>
               </span>
-              <span class="tree-item-title">${note.title}</span>
+              <span class="tree-item-title">${this.escapeHtml(fileLabel)}</span>
             </a>
           </div>
         `;
@@ -935,13 +1132,7 @@ class ObsidianVaultApp {
   }
 
   formatFolderTitle(name) {
-    if (name === 'acc-301') return 'ACC 301 (Auditing)';
-    if (name === 'acc-302') return 'ACC 302 (Cost Accounting)';
-    if (name === 'acc-303') return 'ACC 303 (Management Accounting)';
-    if (name === 'acc-304') return 'ACC 304 (Corporate Finance)';
-    if (name === 'acc-305') return 'ACC 305 (Financial Markets)';
-    if (name === 'others') return 'Course Syllabi & References';
-    return name.replace(/-/g, ' ').toUpperCase();
+    return this.getOriginalFolderName(name);
   }
 
   setupTreeClickHandlers() {
@@ -1115,19 +1306,19 @@ class ObsidianVaultApp {
     const container = document.getElementById('note-container');
     if (!container) return;
 
-    // Gatekeeper verification: Check for YAML Frontmatter pass: <token>
-    let frontmatter = '';
+    // Gatekeeper & Frontmatter Extraction
+    let frontmatterStr = '';
     let bodyMarkdown = rawMarkdown;
 
     if (rawMarkdown.startsWith('---')) {
       const fmEnd = rawMarkdown.indexOf('\n---', 3);
       if (fmEnd !== -1) {
-        frontmatter = rawMarkdown.substring(3, fmEnd);
+        frontmatterStr = rawMarkdown.substring(3, fmEnd);
         bodyMarkdown = rawMarkdown.substring(fmEnd + 4).trim();
       }
     }
 
-    const passMatch = frontmatter.match(/pass:\s*(.+)/);
+    const passMatch = frontmatterStr.match(/pass:\s*(.+)/);
     if (passMatch) {
       const expectedToken = passMatch[1].trim();
       const sessionKey = `gatekeeper_unlocked_${relPath}`;
@@ -1140,22 +1331,44 @@ class ObsidianVaultApp {
       }
     }
 
+    // Parse Frontmatter Data into Object
+    const frontmatterData = this.parseYamlFrontmatter(frontmatterStr);
+
+    // Resolve Content Title (Priority 1: YAML title, Priority 2: First Markdown H1, Priority 3: Original File Name)
+    let contentTitle = '';
+    let matchedH1Text = '';
+
+    if (frontmatterData.title && typeof frontmatterData.title === 'string' && frontmatterData.title.trim()) {
+      contentTitle = frontmatterData.title.trim();
+    }
+
+    const firstH1Match = bodyMarkdown.match(/^#\s+(.+)$/m);
+    if (!contentTitle && firstH1Match) {
+      contentTitle = firstH1Match[1].trim();
+      matchedH1Text = contentTitle;
+    } else if (firstH1Match) {
+      matchedH1Text = firstH1Match[1].trim();
+    }
+
+    if (!contentTitle) {
+      contentTitle = this.getOriginalFileName(relPath);
+    }
+
+    // If bodyMarkdown starts with a matching top-level H1, strip it to avoid duplication with <h1 class="inline-title">
+    if (matchedH1Text && (matchedH1Text.toLowerCase() === contentTitle.toLowerCase())) {
+      bodyMarkdown = bodyMarkdown.replace(/^#\s+[^\n]+\n?/, '').trim();
+    }
+
+    const propertiesBlockHtml = this.renderPropertiesBlock(frontmatterData);
+
     const words = bodyMarkdown.trim().split(/\s+/).length;
     const readingTime = Math.ceil(words / 200);
-
-    let title = relPath.split('/').pop().replace(/\.md$/, '').replace(/-/g, ' ');
-    const titleMatch = bodyMarkdown.match(/^#\s+(.+)$/m);
-    if (titleMatch) {
-      title = titleMatch[1].trim();
-    } else {
-      title = this.formatTitle(title);
-    }
 
     let processed = this.preprocessObsidianMarkdown(bodyMarkdown);
     let renderedHtml = marked.parse(processed);
     renderedHtml = this.postprocessObsidianHtml(renderedHtml);
 
-    this.activeNoteTitle = title;
+    this.activeNoteTitle = contentTitle;
     this.activeNotePath = relPath;
     this.activeNoteRawMarkdown = rawMarkdown;
 
@@ -1169,6 +1382,8 @@ class ObsidianVaultApp {
 
     container.innerHTML = `
       <article class="markdown-rendered" id="note-article">
+        <h1 class="inline-title">${this.escapeHtml(contentTitle)}</h1>
+        ${propertiesBlockHtml}
         ${renderedHtml}
       </article>
     `;
@@ -1178,8 +1393,7 @@ class ObsidianVaultApp {
     this.initInteractiveWidgets();
     this.buildTableOfContents();
     this.buildBacklinks(relPath);
-    const fileNameWithoutExt = relPath.split('/').pop().replace(/\.md$/i, '');
-    this.updateBreadcrumbs(this.formatFolderTitle(this.currentFolder), fileNameWithoutExt);
+    this.updateBreadcrumbs(this.formatFolderTitle(this.currentFolder), contentTitle);
 
     if (this.sidebarGraph) this.sidebarGraph.updateFocus(relPath, this.graphMode);
   }
@@ -1702,11 +1916,12 @@ class ObsidianVaultApp {
       const nSlug = slugifyText(nClean);
       const nStemSlug = slugifyText(nStem);
       const nAlpha = nClean.replace(/[^a-z0-9]/g, '');
-      return nClean === clean || nSlug === slugified || nStem === stem || nStemSlug === stemSlugified || nAlpha === alphaOnly || n.title.toLowerCase() === clean || slugifyText(n.title) === slugified;
+      const nTitle = n.title || n.fileNameWithoutExt || '';
+      return nClean === clean || nSlug === slugified || nStem === stem || nStemSlug === stemSlugified || nAlpha === alphaOnly || nTitle.toLowerCase() === clean || slugifyText(nTitle) === slugified;
     });
 
     if (found) {
-      return { path: found.path, resolved: true, title: found.title };
+      return { path: found.path, resolved: true, title: found.title || found.fileNameWithoutExt || stem };
     }
 
     // 3. Check in this.allVaultFiles across other folders
@@ -2771,10 +2986,13 @@ class ObsidianVaultApp {
         `;
       } else {
         const cleanPath = (targetPath || '').replace(/^#/, '').replace(/^\.\//, '');
-        const note = this.allNotes.find(n => n.path === cleanPath || n.path.endsWith(cleanPath) || n.title.toLowerCase() === cleanPath.toLowerCase());
+        const note = this.allNotes.find(n => {
+          const nTitle = n.title || n.fileNameWithoutExt || '';
+          return n.path === cleanPath || n.path.endsWith(cleanPath) || nTitle.toLowerCase() === cleanPath.toLowerCase();
+        });
         if (note) {
           isInternalNote = true;
-          title = note.title;
+          title = note.title || note.fileNameWithoutExt || cleanPath;
           let content = this.noteContents.get(note.path);
           if (!content) {
             try {
@@ -4165,7 +4383,8 @@ class ObsidianVaultApp {
     const q = query.toLowerCase().trim();
     const matches = this.allNotes.filter(n => {
       if (!q) return true;
-      return n.title.toLowerCase().includes(q) || n.path.toLowerCase().includes(q);
+      const nTitle = n.title || n.fileNameWithoutExt || '';
+      return nTitle.toLowerCase().includes(q) || n.path.toLowerCase().includes(q);
     }).slice(0, 25);
 
     if (matches.length === 0) {
@@ -4175,7 +4394,8 @@ class ObsidianVaultApp {
 
     let html = '';
     matches.forEach(note => {
-      const highlightedTitle = this.highlightSearchMatch(note.title, q);
+      const displayTitle = note.title || note.fileNameWithoutExt || note.path;
+      const highlightedTitle = this.highlightSearchMatch(displayTitle, q);
       const highlightedPath = this.highlightSearchMatch(note.path, q);
       html += `
         <div class="search-item" onclick="window.location.hash='#${note.path}'; window.ObsidianApp.closeSearchModal();">
