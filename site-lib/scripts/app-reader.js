@@ -1208,6 +1208,14 @@ class ObsidianVaultApp {
     // If formula is wrapped in redundant escapes or currency artifacts, clean it
     clean = clean.replace(/&#36;/g, '\\$');
 
+    // Auto-heal corrupted Greek letter and common macro backslashes from raw imports
+    clean = clean.replace(/\\hat\{[ \t]*(?:eta|beta)\}/g, '\\hat{\\beta}');
+    clean = clean.replace(/\\hat\{[ \t]*(?:lpha|alpha)\}/g, '\\hat{\\alpha}');
+    clean = clean.replace(/\\hat\{[ \t]*(?:sigma)\}/g, '\\hat{\\sigma}');
+    clean = clean.replace(/(^|[^\\a-zA-Z])(?:lpha)\b/g, '$1\\alpha');
+    clean = clean.replace(/(^|[^\\a-zA-Z])(?:eta)\b/g, '$1\\beta');
+    clean = clean.replace(/(^|[^\\a-zA-Z])(?:heta)\b/g, '$1\\theta');
+
     const mathId = `math-${displayMode ? 'block' : 'inline'}-${this.mathIdCounter++}`;
 
     // Multicolumn & Cline LaTeX array support: Obsidian/KaTeX cannot render \multicolumn or \cline inside \begin{array},
@@ -1226,19 +1234,31 @@ class ObsidianVaultApp {
         renderedKatex = window.katex.renderToString(clean, {
           displayMode: displayMode,
           throwOnError: false,
+          errorColor: '#cc0000',
           output: 'htmlAndMathml',
-          trust: true
+          trust: true,
+          strict: false,
+          macros: {
+            "\\var": "\\operatorname{var}",
+            "\\cov": "\\operatorname{cov}",
+            "\\se": "\\operatorname{se}",
+            "\\df": "\\operatorname{df}",
+            "\\MLE": "\\operatorname{MLE}",
+            "\\RR": "\\mathbb{R}",
+            "\\NN": "\\mathbb{N}",
+            "\\ZZ": "\\mathbb{Z}",
+            "\\QQ": "\\mathbb{Q}",
+            "\\CC": "\\mathbb{C}",
+            "\\bm": "\\mathbf",
+            "\\boldsymbol": "\\mathbf",
+            "\\bold": "\\mathbf"
+          }
         });
       } else {
         renderedKatex = displayMode ? `$$${clean}$$` : `$${clean}$`;
       }
     } catch (err) {
       console.warn('KaTeX render warning:', err);
-      renderedKatex = `<span class="math-fallback">${this.escapeHtml(clean)}</span>`;
-    }
-
-    // Safety fallback: if KaTeX output contains parse error, render clean text without red error box
-    if (renderedKatex.includes('katex-error')) {
       renderedKatex = `<span class="math-fallback">${this.escapeHtml(clean)}</span>`;
     }
 
@@ -1255,9 +1275,8 @@ class ObsidianVaultApp {
 
     // 1. Display math blocks: $$ ... $$
     text = text.replace(/(?<!\\)\$\$([\s\S]*?)(?<!\\)\$\$/g, (match, formula) => {
-      // Obsidian-standard safety: Display math blocks cannot swallow markdown headings,
-      // horizontal rules, blank paragraphs, or bullet lists
-      if (/\n\s*(?:#{1,6}\s|---|===|\*\*\*|[-*+]\s|\d+\.\s|\n\s*\n)/.test(formula)) {
+      // Safety: Only skip if empty or containing actual markdown top-level headers (# Header)
+      if (/^\s*$/.test(formula) || /\n\s*#{1,6}\s+[^\n]+/.test(formula)) {
         return match;
       }
       const cleanFormula = formula.replace(/^[ \t]*>+[ \t]*/gm, '').trim();
@@ -1441,10 +1460,9 @@ class ObsidianVaultApp {
     // 0b. Strip Obsidian top-level comments: %% comment %%
     text = text.replace(/%%[\s\S]*?%%/g, '');
 
-    // 0c. Normalize Obsidian & LaTeX-wrapped currency amounts (e.g. $\\$1.00$, $$1.00$, $\\$20,000$)
-    // In monetary notes, figures are frequently written as $\\$1.00$ or $$1.00$ to prevent markdown parsers from confusing currency with LaTeX math delimiters.
-    text = text.replace(/\$\\\$[ \t]*(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b))?)\$/gi, '&#36;$1');
-    text = text.replace(/\$\$[ \t]*(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b))?)\$/gi, '&#36;$1');
+    // 0c. Normalize Obsidian & LaTeX-wrapped currency amounts (e.g. $\\$1.00$, $\\$20,000$)
+    // In monetary notes, figures are frequently written as $\\$1.00$ to prevent markdown parsers from confusing currency with LaTeX math delimiters.
+    text = text.replace(/(?<!\$)\$\\\$[ \t]*(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b))?)\$(?!\$)/gi, '&#36;$1');
 
     // 0d. Unify & Process Obsidian Callouts FIRST so inner math and content stay bundled inside the callout container
     text = this.processObsidianCallouts(text);

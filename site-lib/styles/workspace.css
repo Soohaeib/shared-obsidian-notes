@@ -2507,6 +2507,50 @@ body.theme-light .graph-view-placeholder {
 }
 
 @media (max-width: 768px) {
+  /* Hide header active note title on mobile screens to save space */
+  header:nth-of-type(1) > div:nth-of-type(1) > div#header-active-note-title:nth-of-type(1),
+  #header-active-note-title,
+  .header-active-note-title {
+    display: none !important;
+  }
+
+  header:nth-of-type(1),
+  .obsidian-app-header {
+    height: var(--header-height, 46px);
+    min-height: var(--header-height, 46px);
+    max-height: var(--header-height, 46px);
+    padding: 0 8px;
+    gap: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+  }
+
+  .header-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    min-width: 0;
+    max-width: none;
+    padding: 0 4px;
+  }
+
+  .header-action-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
   .mobile-sidebar-backdrop {
     display: block;
     position: fixed;
@@ -2583,18 +2627,12 @@ body.theme-light .graph-view-placeholder {
 @media (max-width: 640px) {
   header:nth-of-type(1),
   .obsidian-app-header {
-    padding: 0 8px;
-    gap: 6px;
-  }
-
-  .header-left, .header-right, .header-center {
+    padding: 0 6px;
     gap: 4px;
   }
 
-  .header-active-note-title {
-    max-width: 95px;
-    font-size: 0.72rem;
-    padding: 2px 6px;
+  .header-left, .header-right, .header-center {
+    gap: 3px;
   }
 
   .header-search-bar {
@@ -2617,6 +2655,37 @@ body.theme-light .graph-view-placeholder {
     padding: 4px 10px;
     font-size: 0.72rem;
     gap: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  header:nth-of-type(1),
+  .obsidian-app-header {
+    padding: 0 4px;
+    gap: 2px;
+  }
+
+  header:nth-of-type(1) button.tool-btn,
+  .header-title-badge,
+  button#btn-toggle-left,
+  button#btn-toggle-width,
+  button#btn-workspace-options,
+  button#btn-toggle-right {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
+    padding: 0 !important;
+  }
+
+  .header-search-bar {
+    max-width: 32px !important;
+    width: 32px !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
   }
 }
 

@@ -7,6 +7,11 @@
   <meta name="description" content="Obsidian digital garden workspace." />
   <link rel="icon" href="../../site-lib/media/favicon.png" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
   <link rel="stylesheet" href="../../site-lib/styles/theme.css?v=20260924" />
   <link rel="stylesheet" href="../../site-lib/styles/obsidian.css?v=20260924" />
   <link rel="stylesheet" href="../../site-lib/styles/workspace.css?v=20260924" />
@@ -14,7 +19,6 @@
   <link rel="stylesheet" href="../../site-lib/styles/snippets.css?v=20260924" />
   <link rel="stylesheet" href="../../site-lib/styles/app-custom.css?v=20260924" />
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/mhchem.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
@@ -30,30 +34,51 @@
         </svg>
       </button>
 
-      <a href="../../" class="header-title-badge" title="Return to Cosmic Landing Page" aria-label="Return to Cosmic Landing Page">
-        <svg class="vault-logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="16" x2="12" y2="12"></line>
-          <line x1="12" y1="8" x2="12.01" y2="8"></line>
+      <a href="../../" class="header-title-badge tool-btn" title="Return to Cosmic Landing Page" aria-label="Return to Cosmic Landing Page">
+        <svg class="vault-logo-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="6" cy="6" r="2.5"></circle>
+          <circle cx="18" cy="7" r="2.5"></circle>
+          <circle cx="12" cy="18" r="2.5"></circle>
+          <line x1="8.2" y1="6.3" x2="15.8" y2="6.7"></line>
+          <line x1="7.4" y1="8.2" x2="10.8" y2="15.8"></line>
+          <line x1="16.6" y1="9.2" x2="13.2" y2="15.8"></line>
         </svg>
       </a>
+
+      <div id="header-active-note-title" class="header-active-note-title" title="Active Note">Coursework Overview</div>
     </div>
 
     <div class="header-center">
-      <button id="btn-quick-search" class="tool-btn header-search-minimal" title="Quick Search (Ctrl + K)" aria-label="Quick Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <div class="header-search-bar" id="header-search-bar-trigger" role="button" tabindex="0" aria-label="Search notes (Ctrl + K)" title="Search notes (Ctrl + K)">
+        <svg class="search-bar-icon" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-      </button>
+        <span class="search-bar-placeholder">Search notes...</span>
+        <div class="search-bar-shortcut">
+          <kbd>Ctrl</kbd>
+          <kbd>K</kbd>
+        </div>
+      </div>
+      <button id="btn-quick-search" style="display: none;" aria-hidden="true" title="Search Notes"></button>
     </div>
 
     <div class="header-right">
       <div class="header-action-group">
-        <!-- Dedicated Workspace Options Button -->
+        <!-- Direct Width Toggle (Icon Only) -->
+        <button id="btn-toggle-width" class="tool-btn" title="Toggle Full Width / Readable Column" aria-label="Toggle Full Width Mode">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <polyline points="9 21 3 21 3 15"></polyline>
+            <line x1="21" y1="3" x2="14" y2="10"></line>
+            <line x1="3" y1="21" x2="10" y2="14"></line>
+          </svg>
+        </button>
+
+        <!-- Dedicated Workspace Options Button (Icon Only) -->
         <div class="options-menu-wrapper">
-          <button id="btn-workspace-options" class="tool-btn" title="Options & Appearance" aria-label="Options" aria-expanded="false" aria-haspopup="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <button id="btn-workspace-options" class="tool-btn" title="Workspace Settings & Scaling" aria-label="Workspace Options" aria-expanded="false" aria-haspopup="true">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="4" y1="21" x2="4" y2="14"></line>
               <line x1="4" y1="10" x2="4" y2="3"></line>
               <line x1="12" y1="21" x2="12" y2="12"></line>
@@ -69,55 +94,30 @@
           <!-- Dedicated Options Popover -->
           <div id="workspace-options-menu" class="workspace-options-popover" role="menu" aria-label="Workspace Options">
             <div class="options-popover-header">
-              <span class="options-header-title">Options</span>
-              <button id="btn-close-options" class="options-close-btn" aria-label="Close options" title="Close">
-                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
-                  <line x1="18" y1="6" x2="6" y2="18"></line>
-                  <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-              </button>
+              <span class="options-header-title">Workspace Settings</span>
             </div>
 
-            <!-- Theme & Mode Section -->
+            <!-- Appearance & Theme Section -->
             <div class="options-section">
-              <div class="options-section-label">Theme</div>
-              <div class="theme-picker-grid" id="theme-family-picker">
-                <button class="theme-chip active" data-theme-family="nord" title="Nord">
-                  <span class="theme-chip-preview nord-prev"></span>
-                  <span class="theme-chip-name">Nord</span>
-                </button>
-                <button class="theme-chip" data-theme-family="minimal" title="Obsidian Minimal">
-                  <span class="theme-chip-preview minimal-prev"></span>
-                  <span class="theme-chip-name">Minimal</span>
-                </button>
-                <button class="theme-chip" data-theme-family="gruvbox" title="Gruvbox">
-                  <span class="theme-chip-preview gruvbox-prev"></span>
-                  <span class="theme-chip-name">Gruvbox</span>
-                </button>
-                <button class="theme-chip" data-theme-family="solarized" title="Solarized">
-                  <span class="theme-chip-preview solarized-prev"></span>
-                  <span class="theme-chip-name">Solarized</span>
-                </button>
-                <button class="theme-chip" data-theme-family="dracula" title="Dracula">
-                  <span class="theme-chip-preview dracula-prev"></span>
-                  <span class="theme-chip-name">Dracula</span>
-                </button>
-                <button class="theme-chip" data-theme-family="catppuccin" title="Catppuccin">
-                  <span class="theme-chip-preview catppuccin-prev"></span>
-                  <span class="theme-chip-name">Catppuccin</span>
-                </button>
+              <div class="options-section-label">Appearance</div>
+              <div class="theme-signature-banner">
+                <div class="theme-banner-badge">
+                  <span class="theme-banner-dot"></span>
+                  <span class="theme-banner-text">Seamless Workspace</span>
+                </div>
+                <div class="theme-banner-sub">Cosmic Dark matching landing page & Crisp Clean Light reading mode</div>
               </div>
 
               <!-- Dark / Light Mode Switcher -->
               <div class="mode-toggle-segmented" role="radiogroup" aria-label="Theme Mode">
-                <button id="opt-btn-mode-dark" class="mode-seg-btn active" title="Dark Mode" aria-label="Dark Mode">
-                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                <button id="opt-btn-mode-dark" class="mode-seg-btn active" title="Cosmic Dark Mode" aria-label="Cosmic Dark Mode">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                   </svg>
                   <span>Dark</span>
                 </button>
                 <button id="opt-btn-mode-light" class="mode-seg-btn" title="Light Mode" aria-label="Light Mode">
-                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
                     <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -136,49 +136,21 @@
             <!-- Typography & Viewport -->
             <div class="options-section">
               <div class="options-section-label">Reading View</div>
-              <div class="options-row">
+              <div class="options-row options-col">
                 <div class="options-row-info">
-                  <span class="options-item-title">Font Size</span>
-                  <span id="opt-font-size-val" class="options-item-val">16px</span>
+                  <span class="options-item-title">Font Size Scaling</span>
+                  <span id="opt-font-scale-val" class="options-item-val">100%</span>
                 </div>
-                <div class="font-size-control-group">
-                  <button id="btn-font-minus" class="font-step-btn" title="Decrease font size" aria-label="Decrease font size">
+                <div class="font-scale-slider-container">
+                  <button id="btn-font-scale-minus" class="font-step-btn" title="Decrease scaling (5%)" aria-label="Decrease font scale">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                   </button>
-                  <div class="font-size-select-wrapper">
-                    <select id="select-font-size" class="font-size-select" aria-label="Font size" title="Select exact font size">
-                      <option value="12">12px</option>
-                      <option value="13">13px</option>
-                      <option value="14">14px</option>
-                      <option value="15">15px</option>
-                      <option value="16" selected>16px</option>
-                      <option value="17">17px</option>
-                      <option value="18">18px</option>
-                      <option value="20">20px</option>
-                      <option value="22">22px</option>
-                      <option value="24">24px</option>
-                      <option value="26">26px</option>
-                    </select>
-                    <span class="font-size-arrow">▾</span>
-                  </div>
-                  <button id="btn-font-plus" class="font-step-btn" title="Increase font size" aria-label="Increase font size">
+                  <input type="range" id="slider-font-scale" min="70" max="180" step="5" value="100" class="font-scale-slider" aria-label="Font scale percentage" />
+                  <button id="btn-font-scale-plus" class="font-step-btn" title="Increase scaling (5%)" aria-label="Increase font scale">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                   </button>
+                  <button id="btn-font-scale-reset" class="font-reset-btn" title="Reset font scale to 100%" aria-label="Reset font scale">100%</button>
                 </div>
-              </div>
-
-              <div class="options-row">
-                <div class="options-row-info">
-                  <span class="options-item-title">Full Width Mode</span>
-                </div>
-                <button id="btn-toggle-width" class="tool-btn" title="Toggle Full Width / Readable Column" aria-label="Toggle width">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polyline points="15 3 21 3 21 9"></polyline>
-                    <polyline points="9 21 3 21 3 15"></polyline>
-                    <line x1="21" y1="3" x2="14" y2="10"></line>
-                    <line x1="3" y1="21" x2="10" y2="14"></line>
-                  </svg>
-                </button>
               </div>
             </div>
 
@@ -186,23 +158,13 @@
             <div class="options-section">
               <div class="options-section-label">Note Actions</div>
               <div class="options-actions-grid">
-                <button id="opt-btn-export-pdf" class="opt-action-tile" title="Export note as pageless or print PDF">
+                <button id="opt-btn-download-md" class="opt-action-tile opt-tile-full highlight-action" title="Download active note as raw Markdown file (.md)">
                   <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                    <line x1="12" y1="18" x2="12" y2="12"></line>
-                    <line x1="9" y1="15" x2="12" y2="18"></line>
-                    <line x1="15" y1="15" x2="12" y2="18"></line>
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <line x1="12" y1="15" x2="12" y2="3"></line>
                   </svg>
-                  <span>Export PDF</span>
-                </button>
-
-                <button id="opt-btn-copy-md" class="opt-action-tile" title="Copy raw Markdown to clipboard">
-                  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-                  </svg>
-                  <span>Copy Markdown</span>
+                  <span>Download Markdown (.md)</span>
                 </button>
               </div>
             </div>
@@ -221,6 +183,7 @@
           </div>
         </div>
 
+        <!-- Right Sidebar Toggle (Icon Only) -->
         <button id="btn-toggle-right" class="tool-btn active" title="Toggle Outline & Graph Sidebar" aria-label="Toggle Outline & Graph Sidebar">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -232,6 +195,7 @@
   </header>
 
   <main class="obsidian-workspace">
+    <div id="mobile-sidebar-backdrop" class="mobile-sidebar-backdrop" aria-hidden="true"></div>
     <aside id="sidebar-left" class="obsidian-sidebar left">
       <div class="sidebar-header">
         <span class="sidebar-title">5Th Semester Notes</span>
@@ -250,6 +214,25 @@
     <section class="obsidian-main-center">
       <div id="note-viewport" class="note-viewport-scrollable">
         <div id="note-container" class="note-container readable-line-length"></div>
+      </div>
+
+      <!-- Translucent Floating Bottom-Right Reading Time & Word Count Meta -->
+      <div id="floating-note-meta" class="floating-note-meta" title="Active Note Statistics" aria-label="Reading Statistics">
+        <span class="floating-meta-item" id="note-reading-time">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span id="reading-time-val">1 min read</span>
+        </span>
+        <span class="floating-meta-sep">•</span>
+        <span class="floating-meta-item" id="note-word-count">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+          </svg>
+          <span id="word-count-val">0 words</span>
+        </span>
       </div>
     </section>
 
