@@ -27,6 +27,12 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Generate indexes and apply safe fixes
+        run: python3 generate_index.py --auto-fix . ./index.html
+
+      - name: Verify generated indexes
+        run: test -s site-lib/vault-index.json && test -s site-lib/vault-health.json
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
