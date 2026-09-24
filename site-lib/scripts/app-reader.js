@@ -76,6 +76,49 @@ class ObsidianVaultApp {
   }
 
   async init() {
+    // Configure marked for Obsidian heading IDs and GitHub-flavored markdown
+    if (typeof marked !== 'undefined') {
+      const renderer = new marked.Renderer();
+      renderer.heading = function(...args) {
+        let headingText = '';
+        let headingLevel = 1;
+        let headingRaw = '';
+
+        if (args[0] && typeof args[0] === 'object') {
+          // Marked v12+ signature: { tokens, depth, text, raw }
+          headingText = args[0].text || '';
+          headingLevel = args[0].depth || 1;
+          headingRaw = args[0].raw || headingText;
+        } else {
+          // Marked classic signature: (text, level, raw)
+          headingText = typeof args[0] === 'string' ? args[0] : String(args[0] || '');
+          headingLevel = args[1] || 1;
+          headingRaw = typeof args[2] === 'string' ? args[2] : headingText;
+        }
+
+        // Clean any internal tokens, math placeholders, or HTML from slug and data-heading
+        const plainHeading = String(headingRaw || headingText || '')
+          .replace(/@@[A-Z0-9_]+@@/g, '')
+          .replace(/<[^>]+>/g, '')
+          .trim();
+
+        const slug = plainHeading
+          .toLowerCase()
+          .replace(/[^\w\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/^-+|-+$/g, '') || `heading-${headingLevel}`;
+
+        const safeDataHeading = plainHeading.replace(/"/g, '&quot;');
+
+        return `<h${headingLevel} id="${slug}" data-heading="${safeDataHeading}">${headingText}</h${headingLevel}>`;
+      };
+      marked.setOptions({
+        gfm: true,
+        breaks: false,
+        renderer: renderer
+      });
+    }
+
     this.applyPreferences();
     this.setupUIEventListeners();
     await this.loadVaultNotes();
@@ -490,7 +533,7 @@ class ObsidianVaultApp {
         html += `
           <div class="nav-folder" data-path="${itemPath}">
             <div class="tree-item-self folder-item" data-folder-path="${itemPath}">
-              <span class="tree-item-icon">
+              <span class="tree-item-icon is-collapsed">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                   <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
@@ -500,7 +543,7 @@ class ObsidianVaultApp {
               </svg>
               <span class="tree-item-title">${folderLabel}</span>
             </div>
-            <div class="tree-item-children">
+            <div class="tree-item-children is-hidden">
               ${this.renderTreeFolder(item._children, itemPath)}
             </div>
           </div>
@@ -539,32 +582,57 @@ class ObsidianVaultApp {
     document.querySelectorAll('.tree-item-self.folder-item').forEach(el => {
       el.addEventListener('click', () => {
         const folder = el.closest('.nav-folder');
-        const children = folder?.querySelector('.tree-item-children');
+        const children = folder?.querySelector(':scope > .tree-item-children');
         const icon = el.querySelector('.tree-item-icon');
         if (children) {
-          children.classList.toggle('is-hidden');
-          icon?.classList.toggle('is-collapsed');
+          const isHidden = children.classList.toggle('is-hidden');
+          if (icon) {
+            icon.classList.toggle('is-collapsed', isHidden);
+          }
         }
       });
     });
   }
 
   highlightActiveTreeItem() {
+    // 1. Collapse all folders and clear active highlights by default
+    document.querySelectorAll('.nav-folder').forEach(folder => {
+      const children = folder.querySelector(':scope > .tree-item-children');
+      const icon = folder.querySelector(':scope > .folder-item .tree-item-icon');
+      if (children) children.classList.add('is-hidden');
+      if (icon) icon.classList.add('is-collapsed');
+    });
+
     document.querySelectorAll('.tree-item-self.note-item').forEach(el => {
-      if (el.dataset.notePath === this.currentPath) {
-        el.classList.add('is-active');
-        let parent = el.closest('.nav-folder');
-        while (parent) {
-          const children = parent.querySelector('.tree-item-children');
-          const icon = parent.querySelector('.folder-item .tree-item-icon');
-          if (children) children.classList.remove('is-hidden');
-          if (icon) icon.classList.remove('is-collapsed');
-          parent = parent.parentElement?.closest('.nav-folder');
-        }
-      } else {
-        el.classList.remove('is-active');
+      el.classList.remove('is-active');
+    });
+
+    // 2. Locate active note in left nav
+    const cleanCurrent = (this.currentPath || '').replace(/^\.?\//, '').toLowerCase();
+    let matchedEl = null;
+
+    document.querySelectorAll('.tree-item-self.note-item').forEach(el => {
+      const notePath = (el.dataset.notePath || '').replace(/^\.?\//, '').toLowerCase();
+      if (notePath === cleanCurrent || notePath.endsWith(`/${cleanCurrent}`) || cleanCurrent.endsWith(`/${notePath}`)) {
+        matchedEl = el;
       }
     });
+
+    // 3. Highlight only the active file and expand only its direct ancestor folders
+    if (matchedEl) {
+      matchedEl.classList.add('is-active');
+      let parent = matchedEl.closest('.nav-folder');
+      while (parent) {
+        const children = parent.querySelector(':scope > .tree-item-children');
+        const icon = parent.querySelector(':scope > .folder-item .tree-item-icon');
+        if (children) children.classList.remove('is-hidden');
+        if (icon) icon.classList.remove('is-collapsed');
+        parent = parent.parentElement?.closest('.nav-folder');
+      }
+      setTimeout(() => {
+        matchedEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }, 50);
+    }
   }
 
   // Routing Handler
@@ -764,98 +832,257 @@ class ObsidianVaultApp {
     if (this.sidebarGraph) this.sidebarGraph.updateFocus(relPath, this.graphMode);
   }
 
-  // Pre-process Obsidian Markdown: Comments, Footnotes, Math placeholders, Highlights, Media Embeds, WikiLinks, and Tasks
-  preprocessObsidianMarkdown(text) {
-    // Dynamic runtime sanitizer that automatically corrects common formatting typos
-    text = this.autoHealMarkdownTypos(text);
+  // Parse LaTeX arrays containing \multicolumn or \cline into responsive, multi-column HTML accounting tables
+  // This solves the fundamental limitation in Obsidian/KaTeX which throws errors on \multicolumn and \cline
+  parseLatexArrayToHtmlTable(latex) {
+    if (!latex || (!latex.includes('\\multicolumn') && !latex.includes('\\cline')) || !latex.includes('\\begin{array}')) {
+      return null;
+    }
 
-    this.currentFootnotesMap = new Map();
-    this.currentMathBlocksMap = new Map();
-    this.currentMathInlinesMap = new Map();
-    this.currentCodeBlocksMap = new Map();
+    try {
+      const cleanLatex = latex.replace(/^[ \t]*>+[ \t]*/gm, '').trim();
+      const bodyMatch = cleanLatex.match(/\\begin\{array\}\{([lrc|]+)\}([\s\S]*?)\\end\{array\}/);
+      if (!bodyMatch) return null;
 
-    // 0a. Temporarily extract fenced code blocks and inline code so math/wiki/comments inside code blocks are preserved intact
-    let codeBlockIdx = 0;
-    text = text.replace(/```[\s\S]*?```/g, (match) => {
-      const token = `@@OBS_FENCED_BLOCK_${codeBlockIdx++}@@`;
-      this.currentCodeBlocksMap.set(token, match);
-      return token;
-    });
+      const colAlignments = bodyMatch[1].replace(/\|/g, '').split('').map(c => c === 'r' ? 'right' : (c === 'c' ? 'center' : 'left'));
+      const rawBody = bodyMatch[2].trim();
+      const rawRows = rawBody.split(/\\\\/);
+      const processedRows = [];
 
-    text = text.replace(/`[^`\n\r]+`/g, (match) => {
-      const token = `@@OBS_INLINE_CODE_${codeBlockIdx++}@@`;
-      this.currentCodeBlocksMap.set(token, match);
-      return token;
-    });
+      for (let r = 0; r < rawRows.length; r++) {
+        let rowStr = rawRows[r].trim();
+        if (!rowStr) continue;
 
-    // 0b. Strip Obsidian top-level comments: %% comment %%
-    text = text.replace(/%%[\s\S]*?%%/g, '');
+        let borderTop = false;
+        let borderBottom = false;
+        let clineCols = null;
 
-    // 0c. Protect escaped dollar signs (currency / literal \$)
-    text = text.replace(/\\(\$)/g, '&#36;');
+        if (rowStr.includes('\\hline \\hline') || rowStr.includes('\\hline\\hline')) {
+          borderBottom = true;
+          rowStr = rowStr.replace(/\\hline\s*\\hline/g, '').trim();
+        }
+        if (rowStr.includes('\\hline')) {
+          borderTop = true;
+          rowStr = rowStr.replace(/\\hline/g, '').trim();
+        }
 
-    // 0d. Extract Display Math blocks: $$ ... $$
-    // Handles multi-line blockquotes (> $$ ... > $$) and single-line display math
-    let mathBlockIdx = 0;
+        const clineMatch = rowStr.match(/\\cline\{(\d+)-(\d+)\}/);
+        if (clineMatch) {
+          clineCols = { start: parseInt(clineMatch[1], 10), end: parseInt(clineMatch[2], 10) };
+          rowStr = rowStr.replace(/\\cline\{\d+-\d+\}/g, '').trim();
+        }
 
-    // Multi-line display math (with optional blockquote > prefixes on lines)
-    text = text.replace(/^[ \t]*(?:>[ \t]*)?\$\$\s*\n([\s\S]*?)\n[ \t]*(?:>[ \t]*)?\$\$/gm, (match, formula) => {
-      if (/\n\s*(?:#{1,6}\s|---|\*\*\*)/.test(formula)) {
+        if (!rowStr) {
+          if (borderBottom && processedRows.length > 0) {
+            processedRows[processedRows.length - 1].borderBottom = true;
+          }
+          if (borderTop && processedRows.length > 0) {
+            processedRows[processedRows.length - 1].borderTop = true;
+          }
+          continue;
+        }
+
+        processedRows.push({ text: rowStr, borderTop, borderBottom, clineCols });
+      }
+
+      let html = '<div class="accounting-table-wrapper"><table class="accounting-schedule-table"><tbody>';
+
+      for (const row of processedRows) {
+        const { text: rowStr, borderTop, borderBottom, clineCols } = row;
+
+        const borderClasses = [];
+        if (borderTop) borderClasses.push('border-single-top');
+        if (borderBottom) borderClasses.push('border-double-bottom');
+        const trClass = borderClasses.join(' ');
+
+        const multiMatch = rowStr.match(/^\\multicolumn\{(\d+)\}\{([lrc])\}\{([\s\S]+?)\}$/);
+        if (multiMatch) {
+          const colspan = multiMatch[1];
+          const align = multiMatch[2] === 'r' ? 'right' : (multiMatch[2] === 'c' ? 'center' : 'left');
+          let content = multiMatch[3];
+          content = content.replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>');
+          content = content.replace(/\\mathbf\{([^}]+)\}/g, '<strong>$1</strong>');
+          content = content.replace(/\\text\{([^}]+)\}/g, '$1');
+          content = content.replace(/\\(\$)/g, '$');
+          content = content.replace(/[{}]/g, '');
+          html += `<tr class="table-header-row ${trClass}"><td colspan="${colspan}" style="text-align: ${align};" class="multicolumn-cell">${content}</td></tr>`;
+          continue;
+        }
+
+        const cells = rowStr.split('&');
+        html += `<tr class="${trClass}">`;
+
+        for (let c = 0; c < cells.length; c++) {
+          let cell = cells[c].trim();
+          const align = colAlignments[c] || (c > 0 ? 'right' : 'left');
+
+          let isBold = false;
+          if (/\\textbf\{([^}]+)\}/.test(cell) || /\\mathbf\{([^}]+)\}/.test(cell)) {
+            isBold = true;
+          }
+          cell = cell.replace(/\\textbf\{([^}]+)\}/g, '$1');
+          cell = cell.replace(/\\mathbf\{([^}]+)\}/g, '$1');
+          cell = cell.replace(/\\text\{([^}]+)\}/g, '$1');
+          cell = cell.replace(/\\quad/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+          cell = cell.replace(/\\qquad/g, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+          cell = cell.replace(/\\(\$)/g, '$');
+          cell = cell.replace(/[{}]/g, '');
+
+          let style = `text-align: ${align};`;
+          if (isBold) style += ' font-weight: 600;';
+
+          const cellClasses = [];
+          const isNumeric = /^[\$]?[\d,.-]+[\%]?$/.test(cell);
+          if (isNumeric) cellClasses.push('cell-numeric');
+          else cellClasses.push('cell-text');
+
+          // If row has a partial horizontal line (\cline{i-j}), add border-cline-top to columns in range
+          if (clineCols && (c + 1) >= clineCols.start && (c + 1) <= clineCols.end) {
+            cellClasses.push('border-cline-top');
+          }
+
+          html += `<td class="${cellClasses.join(' ')}" style="${style}">${cell}</td>`;
+        }
+        html += '</tr>';
+      }
+
+      html += '</tbody></table></div>';
+      return html;
+    } catch (e) {
+      console.warn('Multicolumn/cline array conversion error:', e);
+      return null;
+    }
+  }
+
+  // Render KaTeX Math formula with Obsidian-standard HTML ID and wrapper classes
+  renderMathExpression(formula, displayMode = false) {
+    if (!formula) return '';
+    let clean = formula.trim();
+    if (!clean) return '';
+
+    // If formula is wrapped in redundant escapes or currency artifacts, clean it
+    clean = clean.replace(/&#36;/g, '\\$');
+
+    const mathId = `math-${displayMode ? 'block' : 'inline'}-${this.mathIdCounter++}`;
+
+    // Multicolumn & Cline LaTeX array support: Obsidian/KaTeX cannot render \multicolumn or \cline inside \begin{array},
+    // which causes financial statements, schedules, and trial balances to fail with red \multicolumn or \cline errors.
+    // In this web app, we parse \begin{array} containing \multicolumn or \cline into responsive, semantic HTML accounting tables.
+    if (displayMode && (clean.includes('\\multicolumn') || clean.includes('\\cline')) && clean.includes('\\begin{array}')) {
+      const htmlTable = this.parseLatexArrayToHtmlTable(clean);
+      if (htmlTable) {
+        return `<div class="math math-block accounting-table-container" id="${mathId}"><span class="katex-display">${htmlTable}</span></div>`;
+      }
+    }
+
+    let renderedKatex = '';
+    try {
+      if (window.katex && typeof window.katex.renderToString === 'function') {
+        renderedKatex = window.katex.renderToString(clean, {
+          displayMode: displayMode,
+          throwOnError: false,
+          output: 'htmlAndMathml',
+          trust: true
+        });
+      } else {
+        renderedKatex = displayMode ? `$$${clean}$$` : `$${clean}$`;
+      }
+    } catch (err) {
+      console.warn('KaTeX render warning:', err);
+      renderedKatex = `<span class="math-fallback">${this.escapeHtml(clean)}</span>`;
+    }
+
+    // Safety fallback: if KaTeX output contains parse error, render clean text without red error box
+    if (renderedKatex.includes('katex-error')) {
+      renderedKatex = `<span class="math-fallback">${this.escapeHtml(clean)}</span>`;
+    }
+
+    if (displayMode) {
+      return `<div class="math math-block" id="${mathId}">${renderedKatex}</div>`;
+    } else {
+      return `<span class="math math-inline" id="${mathId}">${renderedKatex}</span>`;
+    }
+  }
+
+  // Extract LaTeX display & inline math into tokens without breaking layout
+  extractMathAndReplaceTokens(text) {
+    if (!text) return text;
+
+    // 1. Display math blocks: $$ ... $$
+    text = text.replace(/(?<!\\)\$\$([\s\S]*?)(?<!\\)\$\$/g, (match, formula) => {
+      // Obsidian-standard safety: Display math blocks cannot swallow markdown headings,
+      // horizontal rules, blank paragraphs, or bullet lists
+      if (/\n\s*(?:#{1,6}\s|---|===|\*\*\*|[-*+]\s|\d+\.\s|\n\s*\n)/.test(formula)) {
         return match;
       }
-      const cleanFormula = formula.replace(/^[ \t]*>[ \t]*/gm, '').trim();
-      const token = `@@KATEX_BLOCK_${mathBlockIdx++}@@`;
-      this.currentMathBlocksMap.set(token, cleanFormula);
+      const cleanFormula = formula.replace(/^[ \t]*>+[ \t]*/gm, '').trim();
+      const token = `@@KATEX_BLOCK_${this.mathTokenIdx++}@@`;
+      const html = this.renderMathExpression(cleanFormula, true);
+      this.currentMathBlocksMap.set(token, html);
       return `\n\n${token}\n\n`;
     });
 
-    // Single-line display math: $$ formula $$
-    text = text.replace(/\$\$([^\$\n\r]+?)\$\$/g, (match, formula) => {
-      const cleanFormula = formula.trim();
-      const token = `@@KATEX_BLOCK_${mathBlockIdx++}@@`;
-      this.currentMathBlocksMap.set(token, cleanFormula);
-      return `\n\n${token}\n\n`;
-    });
-
-    // 0e. Extract LaTeX environments: \begin{equation}...\end{equation}, \begin{array}...\end{array}, etc.
-    text = text.replace(/\\begin\{([a-zA-Z0-9*]+)\}([\s\S]*?)\\end\{\1\}/g, (match, env, body) => {
+    // 2. LaTeX environments: \begin{equation}...\end{equation}, \begin{align}...\end{align}, etc.
+    text = text.replace(/(?<!\\)\\begin\{([a-zA-Z0-9*]+)\}([\s\S]*?)\\end\{\1\}/g, (match, env, body) => {
       const full = `\\begin{${env}}${body}\\end{${env}}`;
-      const cleanFormula = full.replace(/^[ \t]*>[ \t]*/gm, '').trim();
-      const token = `@@KATEX_BLOCK_${mathBlockIdx++}@@`;
-      this.currentMathBlocksMap.set(token, cleanFormula);
+      const cleanFormula = full.replace(/^[ \t]*>+[ \t]*/gm, '').trim();
+      const token = `@@KATEX_BLOCK_${this.mathTokenIdx++}@@`;
+      const html = this.renderMathExpression(cleanFormula, true);
+      this.currentMathBlocksMap.set(token, html);
       return `\n\n${token}\n\n`;
     });
 
-    // 0f. Extract inline Math: $formula$ (Obsidian & CommonMark math rules)
-    let mathInlineIdx = 0;
-    text = text.replace(/(?<![\\\$\w])\$(?!\s)([^\$\n\r]+?)(?<!\s)\$(?![\\\$\w\d])/g, (match, formula) => {
+    // 3. Inline math: $formula$
+    text = text.replace(/(?<![\\\$])\$(?!\s)((?:\\\$|[^\$\n\r])+?)(?<![\s\\\$])\$(?!\$)/g, (match, formula) => {
       const trimmed = formula.trim();
-      if (/^[\d,.]+(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b))?$/i.test(trimmed)) {
+      // Exclude standalone currency numbers or percentages like $100, $25.50, $1,000, $5 million, etc.
+      if (/^(?:&#36;|\$|\\\$)?\s*[\d,.]+(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b|%))?$/i.test(trimmed)) {
         return match;
       }
-      const token = `@@KATEX_INLINE_${mathInlineIdx++}@@`;
-      this.currentMathInlinesMap.set(token, trimmed);
+      const token = `@@KATEX_INLINE_${this.mathTokenIdx++}@@`;
+      const html = this.renderMathExpression(trimmed, false);
+      this.currentMathInlinesMap.set(token, html);
       return token;
     });
 
-    // 1. Footnote definitions: ^[^1]: Text or multi-line
-    text = text.replace(/^\[\^([a-zA-Z0-9_\-]+)\]:\s*([^\n]+(?:\n(?!\n|\[\^|\#|\-|\*).*)*)/gm, (match, fnId, fnContent) => {
-      this.currentFootnotesMap.set(fnId, fnContent.trim());
-      return ''; // remove definition block from body text
-    });
+    return text;
+  }
 
-    // 2. Footnote in-text references: [^1]
-    text = text.replace(/\[\^([a-zA-Z0-9_\-]+)\]/g, (match, fnId) => {
-      return `<sup class="footnote-ref" id="fnref-${fnId}"><a href="#fn-${fnId}" class="footnote-link" title="Jump to footnote">[^${fnId}]</a></sup>`;
-    });
+  // Restore Math HTML into document or callout HTML
+  restoreMathTokensInHtml(html) {
+    if (!html) return html;
 
-    // 3. Highlights: ==text== -> <mark>text</mark>
+    // Restore Math Blocks
+    if (this.currentMathBlocksMap && this.currentMathBlocksMap.size > 0) {
+      for (const [token, renderedMath] of this.currentMathBlocksMap.entries()) {
+        const pRegex = new RegExp(`<p>\\s*${token}\\s*<\\/p>`, 'g');
+        if (pRegex.test(html)) {
+          html = html.replace(pRegex, () => renderedMath);
+        } else {
+          html = html.replaceAll(token, () => renderedMath);
+        }
+      }
+    }
+
+    // Restore Inline Math
+    if (this.currentMathInlinesMap && this.currentMathInlinesMap.size > 0) {
+      for (const [token, renderedMath] of this.currentMathInlinesMap.entries()) {
+        html = html.replaceAll(token, () => renderedMath);
+      }
+    }
+
+    return html;
+  }
+
+  // Process internal markdown features (WikiLinks, embeds, highlights, tags, tasks)
+  processInternalMarkdownFeatures(text) {
+    // 1. Highlights: ==text== -> <mark>text</mark>
     text = text.replace(/==([^=\n]+)==/g, '<mark>$1</mark>');
 
-    // 4. Obsidian Block References: ^block-id at end of line
+    // 2. Obsidian Block References: ^block-id at end of line
     text = text.replace(/\s+\^([a-zA-Z0-9\-]+)$/gm, ' <span id="$1" class="obsidian-block-anchor"></span>');
 
-    // 5. Obsidian Media & Note Transclusion Embeds: ![[...]]
+    // 3. Obsidian Media & Note Transclusion Embeds: ![[...]]
     text = text.replace(/!\[\[([^\]\n]+)\]\]/g, (match, inner) => {
       let [file, opt] = inner.split('|').map(s => s ? s.trim() : '');
       const cleanFile = file.trim();
@@ -889,7 +1116,7 @@ class ObsidianVaultApp {
       `;
     });
 
-    // 6. Obsidian WikiLinks: [[Note|Label]], [[Note#Heading|Label]], [[#Heading|Label]], [[Note#Heading]], [[#Heading]], [[Note]]
+    // 4. Obsidian WikiLinks: [[...]]
     text = text.replace(/\[\[([^\]\n]+)\]\]/g, (match, inner) => {
       let notePart = inner;
       let label = '';
@@ -928,14 +1155,77 @@ class ObsidianVaultApp {
       return `<a class="internal-link ${isResolved ? 'is-resolved' : 'is-unresolved'}" href="${targetHref}" data-note-path="${res.path}" title="${isResolved ? `Open: ${display}` : `Unresolved note: ${noteName}`}">${display}</a>`;
     });
 
-    // 7. Obsidian Tags: #tag or #folder/subtag (excluding headings '# ' and hex colors '#fff')
+    // 5. Obsidian Tags: #tag or #folder/subtag
     text = text.replace(/(^|[\s(])#([a-zA-Z0-9_\-\/]+)(?=[\s).,;:!?]|$)/g, '$1<span class="obsidian-tag">#$2</span>');
 
-    // 8. Task lists
+    // 6. Task lists
     text = text.replace(/^(\s*)-\s+\[ \]\s+(.*)$/gm, '$1- <input type="checkbox" disabled class="task-checkbox"> $2');
     text = text.replace(/^(\s*)-\s+\[x\]\s+(.*)$/gim, '$1- <input type="checkbox" checked disabled class="task-checkbox"> $2');
 
-    // 9. Cleanly restore code blocks so marked can parse them into semantic HTML
+    return text;
+  }
+
+  // Pre-process Obsidian Markdown: Comments, Footnotes, Math placeholders, Highlights, Media Embeds, WikiLinks, and Tasks
+  preprocessObsidianMarkdown(text) {
+    // Dynamic runtime sanitizer that automatically corrects common formatting typos
+    text = this.autoHealMarkdownTypos(text);
+
+    this.currentFootnotesMap = new Map();
+    this.currentMathBlocksMap = new Map();
+    this.currentMathInlinesMap = new Map();
+    this.currentCodeBlocksMap = new Map();
+    this.currentCalloutsMap = new Map();
+    this.mathIdCounter = 0;
+    this.mathTokenIdx = 0;
+    this.calloutTokenIdx = 0;
+
+    // 0a. Temporarily extract fenced code blocks and inline code so math/wiki/comments inside code blocks are preserved intact
+    let codeBlockIdx = 0;
+    text = text.replace(/```[\s\S]*?```/g, (match) => {
+      const token = `@@OBS_FENCED_BLOCK_${codeBlockIdx++}@@`;
+      this.currentCodeBlocksMap.set(token, match);
+      return token;
+    });
+
+    text = text.replace(/`[^`\n\r]+`/g, (match) => {
+      const token = `@@OBS_INLINE_CODE_${codeBlockIdx++}@@`;
+      this.currentCodeBlocksMap.set(token, match);
+      return token;
+    });
+
+    // 0b. Strip Obsidian top-level comments: %% comment %%
+    text = text.replace(/%%[\s\S]*?%%/g, '');
+
+    // 0c. Normalize Obsidian & LaTeX-wrapped currency amounts (e.g. $\\$1.00$, $$1.00$, $\\$20,000$)
+    // In monetary notes, figures are frequently written as $\\$1.00$ or $$1.00$ to prevent markdown parsers from confusing currency with LaTeX math delimiters.
+    text = text.replace(/\$\\\$[ \t]*(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b))?)\$/gi, '&#36;$1');
+    text = text.replace(/\$\$[ \t]*(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b))?)\$/gi, '&#36;$1');
+
+    // 0d. Unify & Process Obsidian Callouts FIRST so inner math and content stay bundled inside the callout container
+    text = this.processObsidianCallouts(text);
+
+    // 0e. Extract Display & Inline Math in document body (preserves numerical ranges like $101–199$, equations, and tokens)
+    text = this.extractMathAndReplaceTokens(text);
+
+    // 0f. Normalize standalone currency amounts and remaining escaped dollar signs safely without capturing math delimiters or tokens
+    text = text.replace(/(?<![\$\w\\])(?:\\\$|\$)[ \t]*(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b))?)(?!\$|\w)/gi, '&#36;$1');
+    text = text.replace(/\\(\$)/g, '&#36;');
+
+    // 1. Footnote definitions: ^[^1]: Text or multi-line
+    text = text.replace(/^\[\^([a-zA-Z0-9_\-]+)\]:\s*([^\n]+(?:\n(?!\n|\[\^|\#|\-|\*).*)*)/gm, (match, fnId, fnContent) => {
+      this.currentFootnotesMap.set(fnId, fnContent.trim());
+      return ''; // remove definition block from body text
+    });
+
+    // 2. Footnote in-text references: [^1]
+    text = text.replace(/\[\^([a-zA-Z0-9_\-]+)\]/g, (match, fnId) => {
+      return `<sup class="footnote-ref" id="fnref-${fnId}"><a href="#fn-${fnId}" class="footnote-link" title="Jump to footnote">[^${fnId}]</a></sup>`;
+    });
+
+    // 3. Process remaining Markdown features (Highlights, Embeds, WikiLinks, Tags, Tasks)
+    text = this.processInternalMarkdownFeatures(text);
+
+    // 4. Cleanly restore code blocks so marked can parse them into semantic HTML
     for (const [token, codeContent] of this.currentCodeBlocksMap.entries()) {
       text = text.replaceAll(token, codeContent);
     }
@@ -993,52 +1283,159 @@ class ObsidianVaultApp {
     return { path: `${raw}.md`, resolved: false, title: raw };
   }
 
+  // Pre-process Obsidian Callouts into clean atomic blocks with intact LaTeX and nested content
+  processObsidianCallouts(text) {
+    if (!this.currentCalloutsMap) {
+      this.currentCalloutsMap = new Map();
+    }
+
+    const lines = text.split('\n');
+    const resultLines = [];
+    let inCallout = false;
+    let calloutType = '';
+    let foldChar = '';
+    let calloutTitle = '';
+    let calloutLines = [];
+
+    const flushCallout = () => {
+      if (!inCallout) return;
+      const type = calloutType.toLowerCase();
+      const isCollapsible = foldChar === '+' || foldChar === '-';
+      const isFolded = foldChar === '-';
+      let rawTitle = (calloutTitle && calloutTitle.trim()) ? calloutTitle.trim() : (type.charAt(0).toUpperCase() + type.slice(1));
+
+      // Pre-render any math inside callout title (e.g. `[!quote] Formula $EPS$`)
+      rawTitle = this.extractMathAndReplaceTokens(rawTitle);
+      rawTitle = this.restoreMathTokensInHtml(rawTitle);
+
+      const iconSvg = this.getCalloutIconSvg(type);
+
+      let foldIndicator = '';
+      if (isCollapsible) {
+        foldIndicator = `
+          <span class="callout-fold-indicator">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </span>
+        `;
+      }
+
+      // Strip the leading '>' or '> ' from each line inside the callout
+      let innerMarkdown = calloutLines.map(l => l.replace(/^[ \t]*>[ \t]?/, '')).join('\n');
+
+      // Restore code blocks inside the callout before parsing
+      for (const [codeToken, codeContent] of this.currentCodeBlocksMap.entries()) {
+        if (innerMarkdown.includes(codeToken)) {
+          innerMarkdown = innerMarkdown.replaceAll(codeToken, codeContent);
+        }
+      }
+
+      // Extract and pre-render math expressions inside the callout body
+      innerMarkdown = this.extractMathAndReplaceTokens(innerMarkdown);
+
+      // Process internal Markdown features (WikiLinks, embeds, highlights, tags, tasks) inside callout
+      innerMarkdown = this.processInternalMarkdownFeatures(innerMarkdown);
+
+      // Parse inner markdown through marked (clean nested formatting)
+      let innerHtml = '';
+      try {
+        if (typeof marked !== 'undefined') {
+          innerHtml = marked.parse(innerMarkdown);
+        } else {
+          innerHtml = innerMarkdown;
+        }
+      } catch (e) {
+        innerHtml = innerMarkdown;
+      }
+
+      // Restore math tokens inside innerHtml
+      innerHtml = this.restoreMathTokensInHtml(innerHtml);
+
+      const token = `@@OBS_CALLOUT_BLOCK_${this.calloutTokenIdx++}@@`;
+      const fullCalloutHtml = `
+        <div class="callout ${isFolded ? 'is-collapsed' : ''}" data-callout="${type}" ${isCollapsible ? 'data-callout-fold="true"' : ''}>
+          <div class="callout-title">
+            <span class="callout-icon">${iconSvg}</span>
+            <span class="callout-title-inner">${rawTitle}</span>
+            ${foldIndicator}
+          </div>
+          <div class="callout-content">${innerHtml}</div>
+        </div>
+      `;
+      this.currentCalloutsMap.set(token, fullCalloutHtml);
+      resultLines.push(token);
+
+      inCallout = false;
+      calloutType = '';
+      foldChar = '';
+      calloutTitle = '';
+      calloutLines = [];
+    };
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      const calloutHeaderMatch = line.match(/^[ \t]*>[ \t]*\[!([a-zA-Z0-9_\-]+)\]([+\-])?\s*(.*)$/i);
+
+      if (calloutHeaderMatch) {
+        if (inCallout) flushCallout();
+        inCallout = true;
+        calloutType = calloutHeaderMatch[1];
+        foldChar = calloutHeaderMatch[2] || '';
+        calloutTitle = calloutHeaderMatch[3] || '';
+        calloutLines = [];
+        continue;
+      }
+
+      if (inCallout) {
+        if (/^[ \t]*>/.test(line)) {
+          calloutLines.push(line);
+        } else if (line.trim() === '') {
+          // Check if upcoming non-empty line still continues the callout with '>'
+          let hasMoreQuote = false;
+          for (let j = i + 1; j < lines.length; j++) {
+            if (lines[j].trim() === '') continue;
+            if (/^[ \t]*>/.test(lines[j])) hasMoreQuote = true;
+            break;
+          }
+          if (hasMoreQuote) {
+            calloutLines.push('>');
+          } else {
+            flushCallout();
+            resultLines.push(line);
+          }
+        } else {
+          flushCallout();
+          resultLines.push(line);
+        }
+      } else {
+        resultLines.push(line);
+      }
+    }
+
+    if (inCallout) flushCallout();
+
+    return resultLines.join('\n');
+  }
+
   // Post-process HTML for Math, Callouts, and Footnotes
   postprocessObsidianHtml(html) {
-    // 1. Render Math Blocks
-    if (this.currentMathBlocksMap && this.currentMathBlocksMap.size > 0) {
-      for (const [token, formula] of this.currentMathBlocksMap.entries()) {
-        let renderedMath = '';
-        try {
-          if (window.katex) {
-            renderedMath = window.katex.renderToString(formula, { displayMode: true, throwOnError: false });
-          } else {
-            renderedMath = `<div class="katex-display">$$${formula}$$</div>`;
-          }
-        } catch (e) {
-          renderedMath = `<div class="katex-display">$$${formula}$$</div>`;
-        }
-        if (!renderedMath.startsWith('<div')) {
-          renderedMath = `<div class="katex-display-wrapper">${renderedMath}</div>`;
-        }
-        // Match token even if marked wrapped it in <p>...</p>
+    // 0. Render Preprocessed Callouts
+    if (this.currentCalloutsMap && this.currentCalloutsMap.size > 0) {
+      for (const [token, calloutHtml] of this.currentCalloutsMap.entries()) {
         const pRegex = new RegExp(`<p>\\s*${token}\\s*<\\/p>`, 'g');
         if (pRegex.test(html)) {
-          html = html.replace(new RegExp(`<p>\\s*${token}\\s*<\\/p>`, 'g'), () => renderedMath);
+          html = html.replace(pRegex, () => calloutHtml);
         } else {
-          html = html.replaceAll(token, () => renderedMath);
+          html = html.replaceAll(token, () => calloutHtml);
         }
       }
     }
 
-    // 2. Render Inline Math
-    if (this.currentMathInlinesMap && this.currentMathInlinesMap.size > 0) {
-      for (const [token, formula] of this.currentMathInlinesMap.entries()) {
-        let renderedMath = '';
-        try {
-          if (window.katex) {
-            renderedMath = window.katex.renderToString(formula, { displayMode: false, throwOnError: false });
-          } else {
-            renderedMath = `<span class="katex">$${formula}$</span>`;
-          }
-        } catch (e) {
-          renderedMath = `<span class="katex">$${formula}$</span>`;
-        }
-        html = html.replaceAll(token, () => renderedMath);
-      }
-    }
+    // 1. Restore any remaining Math Blocks & Inline Math in document body
+    html = this.restoreMathTokensInHtml(html);
 
-    // 3. Append Footnotes Section if any were defined in the document
+    // 2. Append Footnotes Section if any were defined in the document
     if (this.currentFootnotesMap && this.currentFootnotesMap.size > 0) {
       let fnHtml = '<section class="footnotes"><hr class="footnotes-sep"><ol class="footnotes-list">';
       for (const [key, content] of this.currentFootnotesMap.entries()) {
@@ -1054,13 +1451,17 @@ class ObsidianVaultApp {
       html += fnHtml;
     }
 
-    // 4. Obsidian Callouts
+    // 3. Fallback Obsidian Callouts from standard blockquotes
     const calloutRegex = /<blockquote>\s*<p>\[!([a-zA-Z0-9_\-]+)\]([+\-])?\s*([^\n<]*)?([\s\S]*?)<\/blockquote>/gi;
     html = html.replace(calloutRegex, (match, rawType, foldChar, title, rest) => {
       const type = rawType.toLowerCase();
       const isCollapsible = foldChar === '+' || foldChar === '-';
       const isFolded = foldChar === '-';
-      const displayTitle = (title && title.trim()) ? title.trim() : (type.charAt(0).toUpperCase() + type.slice(1));
+      let displayTitle = (title && title.trim()) ? title.trim() : (type.charAt(0).toUpperCase() + type.slice(1));
+      
+      displayTitle = this.extractMathAndReplaceTokens(displayTitle);
+      displayTitle = this.restoreMathTokensInHtml(displayTitle);
+
       const iconSvg = this.getCalloutIconSvg(type);
 
       let foldIndicator = '';
@@ -1082,6 +1483,9 @@ class ObsidianVaultApp {
         bodyHtml = `<p>${bodyHtml}</p>`;
       }
 
+      bodyHtml = this.extractMathAndReplaceTokens(bodyHtml);
+      bodyHtml = this.restoreMathTokensInHtml(bodyHtml);
+
       return `
         <div class="callout ${isFolded ? 'is-collapsed' : ''}" data-callout="${type}" ${isCollapsible ? 'data-callout-fold="true"' : ''}>
           <div class="callout-title">
@@ -1093,6 +1497,18 @@ class ObsidianVaultApp {
         </div>
       `;
     });
+
+    // 4. Safe postprocessing: avoid re-running raw math extractors on rendered HTML to prevent tag corruption
+
+    // 5. Clean up heading IDs generated with temporary math tokens
+    html = html.replace(/<h([1-6])([^>]*)id="([^"]*)"([^>]*)>/gi, (match, level, before, id, after) => {
+      let cleanId = id.replace(/-?katex_(inline|block)_\d+/gi, '').replace(/-+$/, '').replace(/^-+/, '');
+      if (!cleanId) cleanId = `heading-${level}`;
+      return `<h${level}${before}id="${cleanId}"${after}>`;
+    });
+
+    // 6. Restore currency symbol entities
+    html = html.replaceAll('&#36;', '$');
 
     return html;
   }
@@ -1169,8 +1585,14 @@ class ObsidianVaultApp {
   }
 
   getCalloutIconSvg(type) {
+    if (['quote', 'cite'].includes(type)) {
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path></svg>`;
+    }
     if (['tip', 'hint', 'important'].includes(type)) {
       return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>`;
+    }
+    if (['abstract', 'summary', 'tldr'].includes(type)) {
+      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>`;
     }
     if (['warning', 'caution', 'attention'].includes(type)) {
       return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`;
@@ -1198,19 +1620,89 @@ class ObsidianVaultApp {
     // Mermaid & Mindmap Diagrams
     const diagramCodes = document.querySelectorAll('pre code[class*="language-mermaid"], pre code[class*="mermaid"], pre code[class*="language-mindmap"], pre code[class*="mindmap"], pre code[class*="language-markmap"]');
     if (diagramCodes.length > 0 && window.mermaid) {
+      const isDark = this.theme !== 'light';
       try {
         window.mermaid.initialize({
           startOnLoad: false,
           securityLevel: 'loose',
-          theme: this.theme === 'dark' ? 'dark' : 'default',
-          themeVariables: {
-            darkMode: this.theme === 'dark',
-            primaryColor: '#88c0d0',
-            primaryTextColor: '#eceff4',
-            primaryBorderColor: '#81a1c1',
-            lineColor: '#4c566a',
-            secondaryColor: '#ebcb8b',
-            tertiaryColor: '#434c5e'
+          theme: 'base',
+          fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+          flowchart: {
+            useMaxWidth: false,
+            htmlLabels: true,
+            curve: 'basis',
+            padding: 16
+          },
+          mindmap: {
+            useMaxWidth: false,
+            padding: 16
+          },
+          themeVariables: isDark ? {
+            darkMode: true,
+            background: 'transparent',
+            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            fontSize: '13px',
+            mainBkg: '#242933',
+            nodeBkg: '#242933',
+            nodeTextColor: '#f8fafc',
+            textColor: '#f8fafc',
+            primaryColor: '#242933',
+            primaryTextColor: '#f8fafc',
+            primaryBorderColor: '#88c0d0',
+            lineColor: '#81a1c1',
+            secondaryColor: '#2e3440',
+            secondaryTextColor: '#f8fafc',
+            secondaryBorderColor: '#b48ead',
+            tertiaryColor: '#222630',
+            tertiaryTextColor: '#d8dee9',
+            tertiaryBorderColor: '#a3be8c',
+            edgeLabelBackground: '#1e222a',
+            clusterBkg: 'rgba(36, 41, 51, 0.6)',
+            clusterBorder: 'rgba(136, 192, 208, 0.4)',
+            nodeBorder: '#88c0d0',
+            git0: '#2e3440',
+            gitBranchLabel0: '#ffffff',
+            cScale0: '#242933', cScaleLabel0: '#f8fafc', cScaleInv0: '#88c0d0',
+            cScale1: '#242933', cScaleLabel1: '#f8fafc', cScaleInv1: '#b48ead',
+            cScale2: '#242933', cScaleLabel2: '#f8fafc', cScaleInv2: '#ebcb8b',
+            cScale3: '#242933', cScaleLabel3: '#f8fafc', cScaleInv3: '#a3be8c',
+            cScale4: '#242933', cScaleLabel4: '#f8fafc', cScaleInv4: '#81a1c1',
+            cScale5: '#242933', cScaleLabel5: '#f8fafc', cScaleInv5: '#d08770',
+            cScale6: '#242933', cScaleLabel6: '#f8fafc', cScaleInv6: '#bf616a',
+            cScale7: '#242933', cScaleLabel7: '#f8fafc', cScaleInv7: '#8fbcbb'
+          } : {
+            darkMode: false,
+            background: 'transparent',
+            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            fontSize: '13px',
+            mainBkg: '#ffffff',
+            nodeBkg: '#ffffff',
+            nodeTextColor: '#0f172a',
+            textColor: '#0f172a',
+            primaryColor: '#ffffff',
+            primaryTextColor: '#0f172a',
+            primaryBorderColor: '#5e81ac',
+            lineColor: '#64748b',
+            secondaryColor: '#f1f5f9',
+            secondaryTextColor: '#0f172a',
+            secondaryBorderColor: '#b48ead',
+            tertiaryColor: '#f8fafc',
+            tertiaryTextColor: '#475569',
+            tertiaryBorderColor: '#a3be8c',
+            edgeLabelBackground: '#ffffff',
+            clusterBkg: 'rgba(241, 245, 249, 0.8)',
+            clusterBorder: 'rgba(100, 116, 139, 0.3)',
+            nodeBorder: '#5e81ac',
+            git0: '#ffffff',
+            gitBranchLabel0: '#0f172a',
+            cScale0: '#ffffff', cScaleLabel0: '#0f172a', cScaleInv0: '#0284c7',
+            cScale1: '#ffffff', cScaleLabel1: '#0f172a', cScaleInv1: '#9333ea',
+            cScale2: '#ffffff', cScaleLabel2: '#0f172a', cScaleInv2: '#d97706',
+            cScale3: '#ffffff', cScaleLabel3: '#0f172a', cScaleInv3: '#16a34a',
+            cScale4: '#ffffff', cScaleLabel4: '#0f172a', cScaleInv4: '#2563eb',
+            cScale5: '#ffffff', cScaleLabel5: '#0f172a', cScaleInv5: '#ea580c',
+            cScale6: '#ffffff', cScaleLabel6: '#0f172a', cScaleInv6: '#dc2626',
+            cScale7: '#ffffff', cScaleLabel7: '#0f172a', cScaleInv7: '#0d9488'
           }
         });
       } catch (e) {}
@@ -1224,14 +1716,212 @@ class ObsidianVaultApp {
         }
 
         const container = document.createElement('div');
-        container.className = 'mermaid-diagram-container';
+        container.className = 'mermaid-diagram-container mermaid';
         const id = `mermaid-diag-${Date.now()}-${index}`;
 
         try {
           window.mermaid.render(id, codeText).then(({ svg }) => {
             container.innerHTML = svg;
+
+            const svgEl = container.querySelector('svg');
+            if (svgEl) {
+              const isDark = this.theme !== 'light';
+              const isMindmapDiagram = isMindmap || !!svgEl.querySelector('.mindmap-node') || codeText.startsWith('mindmap');
+
+              // Ensure SVG and foreignObject do not clip labels or text
+              svgEl.style.setProperty('overflow', 'visible', 'important');
+              svgEl.querySelectorAll('foreignObject').forEach(fo => {
+                fo.style.setProperty('overflow', 'visible', 'important');
+              });
+
+              if (isMindmapDiagram) {
+                // ==========================================
+                // SPECIFIC ISOLATED MINDMAP STYLING
+                // ==========================================
+                const branchColorsDark = [
+                  { fill: '#242933', stroke: '#88c0d0', text: '#f8fafc' }, // 0: Frost cyan
+                  { fill: '#242933', stroke: '#b48ead', text: '#f8fafc' }, // 1: Purple
+                  { fill: '#242933', stroke: '#ebcb8b', text: '#f8fafc' }, // 2: Amber
+                  { fill: '#242933', stroke: '#a3be8c', text: '#f8fafc' }, // 3: Green
+                  { fill: '#242933', stroke: '#81a1c1', text: '#f8fafc' }, // 4: Blue
+                  { fill: '#242933', stroke: '#d08770', text: '#f8fafc' }, // 5: Orange
+                  { fill: '#242933', stroke: '#bf616a', text: '#f8fafc' }, // 6: Coral red
+                  { fill: '#242933', stroke: '#8fbcbb', text: '#f8fafc' }, // 7: Teal
+                ];
+
+                const branchColorsLight = [
+                  { fill: '#ffffff', stroke: '#0284c7', text: '#0f172a' }, // 0: Cyan / Sky
+                  { fill: '#ffffff', stroke: '#9333ea', text: '#0f172a' }, // 1: Purple
+                  { fill: '#ffffff', stroke: '#d97706', text: '#0f172a' }, // 2: Amber
+                  { fill: '#ffffff', stroke: '#16a34a', text: '#0f172a' }, // 3: Green
+                  { fill: '#ffffff', stroke: '#2563eb', text: '#0f172a' }, // 4: Blue
+                  { fill: '#ffffff', stroke: '#ea580c', text: '#0f172a' }, // 5: Orange
+                  { fill: '#ffffff', stroke: '#dc2626', text: '#0f172a' }, // 6: Red
+                  { fill: '#ffffff', stroke: '#0d9488', text: '#0f172a' }, // 7: Teal
+                ];
+
+                const palette = isDark ? branchColorsDark : branchColorsLight;
+
+                // Root Node
+                svgEl.querySelectorAll('.section-root rect, .section-root circle, .section-root path').forEach(el => {
+                  el.style.setProperty('fill', isDark ? '#2e3440' : '#ffffff', 'important');
+                  el.style.setProperty('stroke', isDark ? '#b48ead' : '#7c3aed', 'important');
+                  el.style.setProperty('stroke-width', '2.5px', 'important');
+                });
+                svgEl.querySelectorAll('.section-root text').forEach(el => {
+                  el.style.setProperty('fill', isDark ? '#ffffff' : '#1e1b4b', 'important');
+                  el.style.setProperty('font-weight', '700', 'important');
+                });
+
+                // Branches 0..7
+                palette.forEach((b, idx) => {
+                  svgEl.querySelectorAll(`.section-${idx} rect, .section-${idx} path, .section-${idx} circle`).forEach(el => {
+                    el.style.setProperty('fill', b.fill, 'important');
+                    el.style.setProperty('fill-opacity', isDark ? '0.95' : '0.98', 'important');
+                    el.style.setProperty('stroke', b.stroke, 'important');
+                    el.style.setProperty('stroke-width', '1.5px', 'important');
+                  });
+                  svgEl.querySelectorAll(`.section-${idx} text, .section-${idx} .nodeLabel`).forEach(el => {
+                    el.style.setProperty('fill', b.text, 'important');
+                    el.style.setProperty('color', b.text, 'important');
+                  });
+                  svgEl.querySelectorAll(`.section-edge-${idx}, path.section-${idx}`).forEach(el => {
+                    el.style.setProperty('stroke', b.stroke, 'important');
+                    el.style.setProperty('stroke-width', '2px', 'important');
+                  });
+                });
+
+                // Catch-all for any unclassed mindmap nodes or leaf nodes
+                svgEl.querySelectorAll('.mindmap-node rect, .mindmap-node path, .mindmap-node circle').forEach(el => {
+                  if (!el.style.getPropertyValue('fill')) {
+                    el.style.setProperty('fill', isDark ? '#242933' : '#ffffff', 'important');
+                    el.style.setProperty('stroke', isDark ? '#88c0d0' : '#5e81ac', 'important');
+                    el.style.setProperty('stroke-width', '1.5px', 'important');
+                  }
+                });
+                svgEl.querySelectorAll('.mindmap-node text, .mindmap-node .nodeLabel').forEach(el => {
+                  el.style.setProperty('fill', isDark ? '#f8fafc' : '#0f172a', 'important');
+                  el.style.setProperty('color', isDark ? '#f8fafc' : '#0f172a', 'important');
+                });
+              } else {
+                // ==========================================
+                // FLOWCHART-SPECIFIC ISOLATED STYLING
+                // ==========================================
+                // Round rect corners
+                svgEl.querySelectorAll('.node rect, rect.basic, rect.label-container').forEach(r => {
+                  if (!r.getAttribute('rx')) {
+                    r.setAttribute('rx', '8');
+                    r.setAttribute('ry', '8');
+                  }
+                });
+
+                if (isDark) {
+                  // Flowchart dark shapes (#242933) with Nord stroke (#88c0d0)
+                  svgEl.querySelectorAll('.node rect, .node circle, .node ellipse, .node polygon, .node path, rect.basic, rect.label-container').forEach(el => {
+                    el.style.setProperty('fill', '#242933', 'important');
+                    el.style.setProperty('fill-opacity', '0.92', 'important');
+                    el.style.setProperty('stroke', '#88c0d0', 'important');
+                    el.style.setProperty('stroke-width', '1.5px', 'important');
+                  });
+
+                  // Flowchart text & typography
+                  svgEl.querySelectorAll('.node text, .nodeLabel, .node foreignObject div, .node foreignObject span').forEach(el => {
+                    el.style.setProperty('fill', '#f8fafc', 'important');
+                    el.style.setProperty('color', '#f8fafc', 'important');
+                    el.style.setProperty('line-height', '1.45', 'important');
+                    el.style.setProperty('overflow', 'visible', 'important');
+                  });
+
+                  // Edge labels
+                  svgEl.querySelectorAll('.edgeLabel, .edgeLabel div, .edgeLabel span, .edgeLabel rect').forEach(el => {
+                    el.style.setProperty('background-color', '#1e222a', 'important');
+                    el.style.setProperty('fill', '#1e222a', 'important');
+                    el.style.setProperty('color', '#eceff4', 'important');
+                  });
+
+                  // Edge paths and arrowheads
+                  svgEl.querySelectorAll('.edgePath path, .edgePath .path, .flowchart-link').forEach(el => {
+                    el.style.setProperty('stroke', '#81a1c1', 'important');
+                    el.style.setProperty('stroke-width', '1.5px', 'important');
+                  });
+                  svgEl.querySelectorAll('marker path, .arrowheadPath').forEach(el => {
+                    el.style.setProperty('fill', '#88c0d0', 'important');
+                    el.style.setProperty('stroke', '#88c0d0', 'important');
+                  });
+                } else {
+                  // Flowchart light shapes (#ffffff) with slate stroke (#5e81ac)
+                  svgEl.querySelectorAll('.node rect, .node circle, .node ellipse, .node polygon, .node path, rect.basic, rect.label-container').forEach(el => {
+                    el.style.setProperty('fill', '#ffffff', 'important');
+                    el.style.setProperty('fill-opacity', '0.95', 'important');
+                    el.style.setProperty('stroke', '#5e81ac', 'important');
+                    el.style.setProperty('stroke-width', '1.5px', 'important');
+                  });
+
+                  svgEl.querySelectorAll('.node text, .nodeLabel, .node foreignObject div, .node foreignObject span').forEach(el => {
+                    el.style.setProperty('fill', '#0f172a', 'important');
+                    el.style.setProperty('color', '#0f172a', 'important');
+                    el.style.setProperty('line-height', '1.45', 'important');
+                    el.style.setProperty('overflow', 'visible', 'important');
+                  });
+
+                  svgEl.querySelectorAll('.edgeLabel, .edgeLabel div, .edgeLabel span, .edgeLabel rect').forEach(el => {
+                    el.style.setProperty('background-color', '#f1f5f9', 'important');
+                    el.style.setProperty('fill', '#f1f5f9', 'important');
+                    el.style.setProperty('color', '#0f172a', 'important');
+                  });
+
+                  svgEl.querySelectorAll('.edgePath path, .edgePath .path, .flowchart-link').forEach(el => {
+                    el.style.setProperty('stroke', '#64748b', 'important');
+                    el.style.setProperty('stroke-width', '1.5px', 'important');
+                  });
+                  svgEl.querySelectorAll('marker path, .arrowheadPath').forEach(el => {
+                    el.style.setProperty('fill', '#5e81ac', 'important');
+                    el.style.setProperty('stroke', '#5e81ac', 'important');
+                  });
+                }
+              }
+            }
+
             if (parent && parent.parentNode) {
               parent.replaceWith(container);
+            }
+
+            // Clean up any stray offscreen mermaid div left by mermaid.render
+            const stray = document.getElementById(`d${id}`);
+            if (stray && stray !== container && stray.parentNode) {
+              stray.remove();
+            }
+
+            // Post-insertion: Dynamically measure and resize node rects and foreignObjects
+            // to eliminate vertical text bleeding/cropping and guarantee generous padding
+            if (svgEl) {
+              requestAnimationFrame(() => {
+                svgEl.querySelectorAll('.node').forEach(node => {
+                  const rect = node.querySelector('rect.basic, rect.label-container, rect');
+                  const fo = node.querySelector('foreignObject');
+                  if (!rect || !fo) return;
+
+                  const labelDiv = fo.querySelector('div, span, .nodeLabel');
+                  if (!labelDiv) return;
+
+                  const contentH = Math.ceil(labelDiv.scrollHeight || labelDiv.getBoundingClientRect().height);
+                  const currentRectH = parseFloat(rect.getAttribute('height') || '0');
+                  const neededH = contentH + 20; // 10px padding top/bottom
+
+                  if (neededH > currentRectH) {
+                    const diffH = neededH - currentRectH;
+                    const currentY = parseFloat(rect.getAttribute('y') || '0');
+                    rect.setAttribute('height', neededH);
+                    rect.setAttribute('y', currentY - diffH / 2);
+
+                    fo.setAttribute('height', neededH);
+                    const currentFoY = parseFloat(fo.getAttribute('y') || '0');
+                    if (!isNaN(currentFoY)) {
+                      fo.setAttribute('y', currentFoY - diffH / 2);
+                    }
+                  }
+                });
+              });
             }
           }).catch(err => {
             console.warn('Mermaid render issue:', err);
@@ -1759,11 +2449,9 @@ class ObsidianVaultApp {
   // Real-time markdown typo sanitizer
   autoHealMarkdownTypos(text) {
     if (!text) return text;
-    // 1. Nested/unbalanced math delimiter typos: $e.g., $\text{S99}$$ -> (e.g., $\text{S99}$)
-    text = text.replace(/\$([a-zA-Z\s,.:;]+)\$([^\$\n\r]+)\$\$/g, '($1 $$$2$$)');
-    // 2. Fix unspaced callouts: >[!tip]Title -> > [!tip] Title
+    // 1. Fix unspaced callouts: >[!tip]Title -> > [!tip] Title
     text = text.replace(/^[ \t]*>\[!([a-zA-Z0-9_\-]+)\]([^\s\n<].*)$/gm, '> [!$1] $2');
-    // 3. Fix unspaced headings: ###Heading -> ### Heading
+    // 2. Fix unspaced headings: ###Heading -> ### Heading
     text = text.replace(/^(#{1,6})([^\s#\n\r].*)$/gm, '$1 $2');
     return text;
   }

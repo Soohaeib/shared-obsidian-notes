@@ -68,7 +68,7 @@ In financial management, the primary objective of corporate decision-making is t
 #### 2. Intrinsic Value vs. Current Market Price
 * **Intrinsic Value:** An unbiased estimate of a stock's true, long-run value based on complete, accurate risk and expected cash flow data. It cannot be observed directly in real time; it is estimated using valuation models.
 * **Market Price:** The actual trading price established in public stock exchanges based on perceived investor cash flows and perceived risk.
-* **Market Equilibrium:** Occurs when a stock's market price equals its intrinsic value $$P_0 = \text{Intrinsic Value}$$. Management's primary long-term goal is to take actions that maximize the stock's **intrinsic value**, ensuring that as full information is communicated to the market, long-term share prices reach their highest achievable sustainable level.
+* **Market Equilibrium:** Occurs when a stock's market price equals its intrinsic value ($P_0 = \text{Intrinsic Value}$). Management's primary long-term goal is to take actions that maximize the stock's **intrinsic value**, ensuring that as full information is communicated to the market, long-term share prices reach their highest achievable sustainable level.
 
 #### 3. Critique: Why Profit Maximization / EPS Maximization Fails
 Corporations report accounting profits in terms of **Earnings Per Share $EPS$**:
@@ -191,7 +191,7 @@ flowchart TD
 ```
 
 #### 4. Finance vs. Economics and Accounting
-* **Finance vs. Economics:** The primary economic principle used is **Marginal Cost-Benefit Analysis** $$\Delta \text{Benefits} > \Delta \text{Costs}$$.
+* **Finance vs. Economics:** The primary economic principle used is **Marginal Cost-Benefit Analysis** ($\Delta \text{Benefits} > \Delta \text{Costs}$).
 * **Finance vs. Accounting:** Accountants use the **accrual basis**; financial managers focus on **cash basis thinking** to maintain solvency and assess risk for valuation.
 
 ---
@@ -203,12 +203,13 @@ flowchart TD
 > **Opportunity Cost:** The rate of return ($r$ or $i$) that could be earned on an alternative investment of similar risk.
 
 #### 2. Simple Interest vs. Compound Interest
-* **Simple Interest ((SI $):** Interest paid or earned strictly on the original principal amount$)PV_0$$.
+* **Simple Interest ($SI$):** Interest paid or earned strictly on the original principal amount ($PV_0$).
   $$SI = PV_0 \times r \times n$$
   $$FV_n = PV_0 + SI = PV_0 \times [1 + (r \times n)]$$
 * **Compound Interest:** Interest earned on both the original principal balance and on all accumulated interest from prior periods. Creates exponential growth.
-#### 3. Future Value $$FV_n$$ of a Single Amount (Compounding)
-**Compounding** is the arithmetic process of going from a present value $$PV_0$$ to a future value $$FV_n$$.
+
+#### 3. Future Value ($FV_n$) of a Single Amount (Compounding)
+**Compounding** is the arithmetic process of going from a present value ($PV_0$) to a future value ($FV_n$).
 
 > [!quote] Formula & Derivation: Future Value
 >
@@ -227,8 +228,8 @@ flowchart LR
     class P0,Pn node;
 ```
 
-#### 4. Present Value $$PV_0$$ of a Single Amount (Discounting)
-**Discounting** is the arithmetic process of finding the present value $$PV_0$$ of a future cash flow $$FV_n$$. It is the inverse of compounding.
+#### 4. Present Value ($PV_0$) of a Single Amount (Discounting)
+**Discounting** is the arithmetic process of finding the present value ($PV_0$) of a future cash flow ($FV_n$). It is the inverse of compounding.
 
 > [!quote] Formula & Derivation: Present Value
 >
@@ -268,14 +269,14 @@ Because every payment in an annuity due occurs one period earlier, it earns inte
 $$FV_{\text{Annuity Due}} = FV_{\text{Ordinary Annuity}} \times (1 + r)$$
 $$PV_{\text{Annuity Due}} = PV_{\text{Ordinary Annuity}} \times (1 + r)$$
 
-#### 3. Future Value of an Ordinary Annuity $$FV_{OA}$$
+#### 3. Future Value of an Ordinary Annuity ($FV_{OA}$)
 Calculates the accumulated terminal sum at time $n$ of equal end-of-period deposits.
 
 > [!quote] Formula & Derivation: FV of Ordinary Annuity
 >
 > $$FV_{OA} = PMT \times \left[ \frac{(1 + r)^n - 1}{r} \right]$$
 
-#### 4. Present Value of an Ordinary Annuity $$PV_{OA}$$
+#### 4. Present Value of an Ordinary Annuity ($PV_{OA}$)
 Calculates the current lump-sum equivalent at time 0 of a series of equal end-of-period cash flows.
 
 > [!quote] Formula & Derivation: PV of Ordinary Annuity
@@ -283,7 +284,7 @@ Calculates the current lump-sum equivalent at time 0 of a series of equal end-of
 > $$PV_{OA} = PMT \times \left[ \frac{1 - (1 + r)^{-n}}{r} \right]$$
 
 #### 5. Perpetuities
-A **Perpetuity** is an ordinary annuity whose equal periodic payments continue indefinitely $$n \to \infty$$.
+A **Perpetuity** is an ordinary annuity whose equal periodic payments continue indefinitely ($n \to \infty$).
 
 > [!quote] Formula & Derivation: Perpetuities
 >
@@ -316,11 +317,11 @@ When interest is credited more frequently than once a year ($m$ times):
 #### 3. Effective Annual Rate $EAR$
 > [!warning] Key Exam Pitfall: Nominal vs. Effective Rates
 >
-> Do not use the Nominal/Stated Rate $$r_{\text{nom}}$$ to compare alternative investments with different compounding frequencies. Always convert to EAR!
+> Do not use the Nominal/Stated Rate ($r_{\text{nom}}$) to compare alternative investments with different compounding frequencies. Always convert to EAR!
 
 $$ \text{EAR} = \left(1 + \frac{r_{\text{nom}}}{m}\right)^m - 1.0 $$
 
-#### 4. Continuous Compounding $$m \to \infty$$
+#### 4. Continuous Compounding ($m \to \infty$)
 Using the mathematical constant $e \approx 2.71828$:
 * **Future Value:** $FV_n = PV_0 \times e^{r_{\text{nom}} \times n}$
 * **Present Value:** $PV_0 = FV_n \times e^{-r_{\text{nom}} \times n}$
@@ -344,6 +345,6 @@ $$ \begin{array}{cccccc}
 \hline \hline
 \end{array} $$
 
-* **Key Property:** Over time, the interest component $$I_t$$ steadily **decreases**, while the principal repayment component $$P_t$$ steadily **increases**.
+* **Key Property:** Over time, the interest component ($I_t$) steadily **decreases**, while the principal repayment component ($P_t$) steadily **increases**.
 
 

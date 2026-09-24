@@ -122,25 +122,6 @@ class VaultLinter:
                     lines[idx-1] = fixed_line
                     is_file_modified = True
 
-        # 3. Check & Repair Nested Math Delimiters (e.g. "$e.g., $\text{S99}$$")
-        for idx, line in enumerate(lines, start=1):
-            nested_math = re.search(r'\$([a-zA-Z\s,.:;]+)\$([^\$\n\r]+)\$\$', line)
-            if nested_math:
-                fixed_line = line.replace(nested_math.group(0), f"({nested_math.group(1).strip()} ${nested_math.group(2).strip()}$)")
-                file_issues.append({
-                    "file": file_path,
-                    "line": idx,
-                    "category": "LaTeX / Math",
-                    "severity": "error",
-                    "message": "Nested math delimiters detected ($ text $ math $$ collision).",
-                    "snippet": nested_math.group(0),
-                    "suggestion": f"Change to: '{fixed_line[:100]}'",
-                    "autoFixed": self.auto_fix
-                })
-                if self.auto_fix:
-                    lines[idx-1] = fixed_line
-                    is_file_modified = True
-
         # Re-join lines for block-level checks
         modified_content = '\n'.join(lines)
 

@@ -1,0 +1,675 @@
+/* ==========================================================================
+   Obsidian Dedicated Diagrams & Visualizations Stylesheet (diagrams.css)
+   Handles Mermaid Flowcharts, Mindmaps, Sequence Diagrams, and Canvas Graphics.
+   Completely isolated to prevent style bleed or corruption into Obsidian UI.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Diagram Card Container
+   -------------------------------------------------------------------------- */
+.mermaid-diagram-container,
+div[id^="dmermaid-diag"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 26px 20px;
+  margin: 1.8em 0;
+  background: var(--background-primary-alt, #1e222a);
+  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.08));
+  border-radius: var(--radius-md, 10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  overflow-x: auto;
+  overflow-y: hidden;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.theme-light .mermaid-diagram-container,
+.theme-light div[id^="dmermaid-diag"] {
+  background: #f8fafc;
+  border-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.mermaid-diagram-container:hover {
+  border-color: var(--background-modifier-border-hover, rgba(136, 192, 208, 0.3));
+}
+
+/* Base SVG sizing & crisp vector rendering */
+.mermaid-diagram-container svg,
+svg[id^="mermaid-diag"],
+div[id^="dmermaid-diag"] > svg,
+.mermaid svg {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  overflow: visible !important;
+  shape-rendering: geometricPrecision;
+  text-rendering: geometricPrecision;
+}
+
+/* Ensure SVG foreignObject containers do not clip text */
+.mermaid-diagram-container foreignObject,
+svg[id^="mermaid-diag"] foreignObject {
+  overflow: visible !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. Flowchart Typography & Shapes
+   -------------------------------------------------------------------------- */
+
+/* Flowchart Typography - Dark Mode */
+.mermaid-diagram-container:not(:has(.mindmap-node)) svg text,
+svg[id^="mermaid-diag"]:not(:has(.mindmap-node)) text,
+.mermaid:not(:has(.mindmap-node)) svg text,
+.mermaid-diagram-container:not(:has(.mindmap-node)) .nodeLabel,
+.mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject div,
+.mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject span {
+  font-family: var(--font-interface, 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif) !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  font-weight: 500 !important;
+  fill: #f8fafc !important;
+  color: #f8fafc !important;
+  overflow: visible !important;
+}
+
+.mermaid-diagram-container:not(:has(.mindmap-node)) .node foreignObject div,
+.mermaid-diagram-container:not(:has(.mindmap-node)) .node foreignObject span,
+.mermaid-diagram-container:not(:has(.mindmap-node)) .nodeLabel {
+  text-align: left !important;
+  display: inline-block !important;
+  box-sizing: border-box !important;
+}
+
+/* Flowchart Typography - Light Mode */
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) svg text,
+.theme-light svg[id^="mermaid-diag"]:not(:has(.mindmap-node)) text,
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .nodeLabel,
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject div,
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject span {
+  fill: #0f172a !important;
+  color: #0f172a !important;
+}
+
+/* Flowchart Node Shapes - Dark Mode */
+.mermaid-diagram-container:not(:has(.mindmap-node)) .node rect,
+svg[id^="mermaid-diag"]:not(:has(.mindmap-node)) .node rect,
+.mermaid-diagram-container:not(:has(.mindmap-node)) .label-container {
+  fill: #242933 !important;
+  fill-opacity: 0.95 !important;
+  stroke: var(--frost1, #88c0d0) !important;
+  stroke-width: 1.5px !important;
+  rx: 8px !important;
+  ry: 8px !important;
+}
+
+/* Flowchart Node Shapes - Light Mode */
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .node rect,
+.theme-light svg[id^="mermaid-diag"]:not(:has(.mindmap-node)) .node rect,
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .label-container {
+  fill: #ffffff !important;
+  fill-opacity: 0.95 !important;
+  stroke: #5e81ac !important;
+  stroke-width: 1.5px !important;
+}
+
+/* Flowchart Edge Connectors & Paths */
+.mermaid-diagram-container .edgePath path,
+svg[id^="mermaid-diag"] .edgePath path,
+.mermaid-diagram-container .flowchart-link {
+  stroke: var(--frost2, #81a1c1) !important;
+  stroke-width: 1.5px !important;
+  fill: none !important;
+}
+
+.theme-light .mermaid-diagram-container .edgePath path,
+.theme-light svg[id^="mermaid-diag"] .edgePath path {
+  stroke: #64748b !important;
+}
+
+.mermaid-diagram-container marker path,
+.mermaid-diagram-container .arrowheadPath {
+  fill: var(--frost1, #88c0d0) !important;
+  stroke: var(--frost1, #88c0d0) !important;
+}
+
+.theme-light .mermaid-diagram-container marker path,
+.theme-light .mermaid-diagram-container .arrowheadPath {
+  fill: #5e81ac !important;
+  stroke: #5e81ac !important;
+}
+
+/* Flowchart Edge Labels / Badges */
+.mermaid-diagram-container .edgeLabel,
+.mermaid-diagram-container .edgeLabel div,
+.mermaid-diagram-container .edgeLabel span {
+  background-color: #1e222a !important;
+  color: #eceff4 !important;
+  font-size: 11.5px !important;
+  font-weight: 500;
+  border-radius: 4px;
+}
+
+.theme-light .mermaid-diagram-container .edgeLabel,
+.theme-light .mermaid-diagram-container .edgeLabel div,
+.theme-light .mermaid-diagram-container .edgeLabel span {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. Obsidian Mindmaps Styling (Refined Nord Color Spectrum)
+   Specifically targeting:
+   - Root nodes (.section-root)
+   - Branch hierarchies (.section-0 through .section-7)
+   - Paths, rects, circles, and typography
+   -------------------------------------------------------------------------- */
+
+.mermaid-diagram-container .mindmap-node,
+svg[id^="mermaid-diag"] .mindmap-node {
+  cursor: default;
+}
+
+/* Base Mindmap Curves / Edges */
+.mermaid-diagram-container .mindmap-edges path,
+.mermaid-diagram-container .mindmap-edge,
+svg[id^="mermaid-diag"] .mindmap-edges path,
+svg[id^="mermaid-diag"] .mindmap-edge,
+.mermaid-diagram-container path.edge,
+svg[id^="mermaid-diag"] path.edge {
+  stroke-width: 2px !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  fill: none !important;
+}
+
+/* Generic Mindmap Node Defaults (Fallback for any untyped leaf node) */
+.mermaid-diagram-container .mindmap-node rect,
+.mermaid-diagram-container .mindmap-node path,
+.mermaid-diagram-container .mindmap-node circle,
+svg[id^="mermaid-diag"] .mindmap-node rect,
+svg[id^="mermaid-diag"] .mindmap-node path,
+svg[id^="mermaid-diag"] .mindmap-node circle {
+  fill: #242933 !important;
+  fill-opacity: 0.95 !important;
+  stroke: #88c0d0 !important;
+  stroke-width: 1.5px !important;
+  rx: 8px !important;
+  ry: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+.mermaid-diagram-container .mindmap-node text,
+.mermaid-diagram-container .mindmap-node .nodeLabel,
+.mermaid-diagram-container .mindmap-node foreignObject div,
+svg[id^="mermaid-diag"] .mindmap-node text,
+svg[id^="mermaid-diag"] .mindmap-node .nodeLabel {
+  font-family: var(--font-interface, 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif) !important;
+  font-size: 12.5px !important;
+  line-height: 1.4 !important;
+  font-weight: 500 !important;
+  fill: #f8fafc !important;
+  color: #f8fafc !important;
+}
+
+.theme-light .mermaid-diagram-container .mindmap-node rect,
+.theme-light .mermaid-diagram-container .mindmap-node path,
+.theme-light .mermaid-diagram-container .mindmap-node circle,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node rect,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node path,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node circle {
+  fill: #ffffff !important;
+  fill-opacity: 0.98 !important;
+  stroke: #5e81ac !important;
+  stroke-width: 1.5px !important;
+}
+
+.theme-light .mermaid-diagram-container .mindmap-node text,
+.theme-light .mermaid-diagram-container .mindmap-node .nodeLabel,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node text {
+  fill: #0f172a !important;
+  color: #0f172a !important;
+}
+
+/* 3.1 Mindmap Root Node */
+.mermaid-diagram-container .mindmap-node.section-root rect,
+.mermaid-diagram-container .mindmap-node.section-root circle,
+.mermaid-diagram-container .mindmap-node.section-root path,
+svg[id^="mermaid-diag"] .mindmap-node.section-root rect,
+svg[id^="mermaid-diag"] .mindmap-node.section-root circle,
+svg[id^="mermaid-diag"] .mindmap-node.section-root path,
+.mermaid-diagram-container .section-root rect,
+.mermaid-diagram-container .section-root circle,
+.mermaid-diagram-container .section-root path,
+svg[id^="mermaid-diag"] .section-root rect,
+svg[id^="mermaid-diag"] .section-root circle,
+svg[id^="mermaid-diag"] .section-root path {
+  fill: #2e3440 !important;
+  fill-opacity: 0.98 !important;
+  stroke: var(--interactive-accent, #b48ead) !important;
+  stroke-width: 2.5px !important;
+  rx: 12px !important;
+  ry: 12px !important;
+}
+
+.mermaid-diagram-container .mindmap-node.section-root text,
+svg[id^="mermaid-diag"] .mindmap-node.section-root text,
+.mermaid-diagram-container .section-root text,
+svg[id^="mermaid-diag"] .section-root text {
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  fill: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.theme-light .mermaid-diagram-container .mindmap-node.section-root rect,
+.theme-light .mermaid-diagram-container .mindmap-node.section-root circle,
+.theme-light .mermaid-diagram-container .mindmap-node.section-root path,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node.section-root rect,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node.section-root circle,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node.section-root path {
+  fill: #ffffff !important;
+  stroke: #7c3aed !important;
+  stroke-width: 2.5px !important;
+}
+
+.theme-light .mermaid-diagram-container .mindmap-node.section-root text,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node.section-root text {
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  fill: #1e1b4b !important;
+  color: #1e1b4b !important;
+}
+
+/* 3.2 Branch 0: Frost Cyan (Relevance / Fundamental) */
+.mermaid-diagram-container .mindmap-node.section-0 rect,
+.mermaid-diagram-container .mindmap-node.section-0 path,
+.mermaid-diagram-container .mindmap-node.section-0 circle,
+svg[id^="mermaid-diag"] .mindmap-node.section-0 rect,
+svg[id^="mermaid-diag"] .mindmap-node.section-0 path,
+svg[id^="mermaid-diag"] .mindmap-node.section-0 circle,
+.mermaid-diagram-container .section-0 rect,
+.mermaid-diagram-container .section-0 path,
+.mermaid-diagram-container .section-0 circle,
+svg[id^="mermaid-diag"] .section-0 rect,
+svg[id^="mermaid-diag"] .section-0 path,
+svg[id^="mermaid-diag"] .section-0 circle {
+  fill: #242933 !important;
+  fill-opacity: 0.95 !important;
+  stroke: #88c0d0 !important;
+  stroke-width: 1.5px !important;
+}
+
+.mermaid-diagram-container .section-0 text,
+svg[id^="mermaid-diag"] .section-0 text {
+  fill: #eceff4 !important;
+}
+
+.mermaid-diagram-container .mindmap-edges path.section-0,
+.mermaid-diagram-container .section-edge-0,
+svg[id^="mermaid-diag"] .mindmap-edges path.section-0,
+svg[id^="mermaid-diag"] .section-edge-0,
+svg[id^="mermaid-diag"] path.section-0 {
+  stroke: #88c0d0 !important;
+  stroke-width: 2px !important;
+}
+
+.theme-light .mermaid-diagram-container .mindmap-node.section-0 rect,
+.theme-light .mermaid-diagram-container .mindmap-node.section-0 path,
+.theme-light .mermaid-diagram-container .mindmap-node.section-0 circle,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node.section-0 rect,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node.section-0 path,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node.section-0 circle {
+  fill: #ffffff !important;
+  stroke: #0284c7 !important;
+  stroke-width: 1.5px !important;
+}
+
+.theme-light .mermaid-diagram-container .section-0 text,
+.theme-light svg[id^="mermaid-diag"] .section-0 text {
+  fill: #0f172a !important;
+}
+
+.theme-light .mermaid-diagram-container .mindmap-edges path.section-0,
+.theme-light .mermaid-diagram-container .section-edge-0,
+.theme-light svg[id^="mermaid-diag"] .mindmap-edges path.section-0,
+.theme-light svg[id^="mermaid-diag"] .section-edge-0 {
+  stroke: #0284c7 !important;
+}
+
+/* 3.3 Branch 1: Aurora Purple (Faithful Representation / Fundamental) */
+.mermaid-diagram-container .mindmap-node.section-1 rect,
+.mermaid-diagram-container .mindmap-node.section-1 path,
+.mermaid-diagram-container .mindmap-node.section-1 circle,
+svg[id^="mermaid-diag"] .mindmap-node.section-1 rect,
+svg[id^="mermaid-diag"] .mindmap-node.section-1 path,
+svg[id^="mermaid-diag"] .mindmap-node.section-1 circle,
+.mermaid-diagram-container .section-1 rect,
+.mermaid-diagram-container .section-1 path,
+.mermaid-diagram-container .section-1 circle,
+svg[id^="mermaid-diag"] .section-1 rect,
+svg[id^="mermaid-diag"] .section-1 path,
+svg[id^="mermaid-diag"] .section-1 circle {
+  fill: #242933 !important;
+  fill-opacity: 0.95 !important;
+  stroke: #b48ead !important;
+  stroke-width: 1.5px !important;
+}
+
+.mermaid-diagram-container .section-1 text,
+svg[id^="mermaid-diag"] .section-1 text {
+  fill: #eceff4 !important;
+}
+
+.mermaid-diagram-container .mindmap-edges path.section-1,
+.mermaid-diagram-container .section-edge-1,
+svg[id^="mermaid-diag"] .mindmap-edges path.section-1,
+svg[id^="mermaid-diag"] .section-edge-1,
+svg[id^="mermaid-diag"] path.section-1 {
+  stroke: #b48ead !important;
+  stroke-width: 2px !important;
+}
+
+.theme-light .mermaid-diagram-container .mindmap-node.section-1 rect,
+.theme-light .mermaid-diagram-container .mindmap-node.section-1 path,
+.theme-light .mermaid-diagram-container .mindmap-node.section-1 circle,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node.section-1 rect,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node.section-1 path,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node.section-1 circle {
+  fill: #ffffff !important;
+  stroke: #9333ea !important;
+  stroke-width: 1.5px !important;
+}
+
+.theme-light .mermaid-diagram-container .section-1 text,
+.theme-light svg[id^="mermaid-diag"] .section-1 text {
+  fill: #0f172a !important;
+}
+
+.theme-light .mermaid-diagram-container .mindmap-edges path.section-1,
+.theme-light .mermaid-diagram-container .section-edge-1,
+.theme-light svg[id^="mermaid-diag"] .mindmap-edges path.section-1,
+.theme-light svg[id^="mermaid-diag"] .section-edge-1 {
+  stroke: #9333ea !important;
+}
+
+/* 3.4 Branch 2: Aurora Amber (Enhancing Qualities / Comparability) */
+.mermaid-diagram-container .mindmap-node.section-2 rect,
+.mermaid-diagram-container .mindmap-node.section-2 path,
+.mermaid-diagram-container .mindmap-node.section-2 circle,
+svg[id^="mermaid-diag"] .mindmap-node.section-2 rect,
+svg[id^="mermaid-diag"] .mindmap-node.section-2 path,
+svg[id^="mermaid-diag"] .mindmap-node.section-2 circle,
+.mermaid-diagram-container .section-2 rect,
+.mermaid-diagram-container .section-2 path,
+.mermaid-diagram-container .section-2 circle,
+svg[id^="mermaid-diag"] .section-2 rect,
+svg[id^="mermaid-diag"] .section-2 path,
+svg[id^="mermaid-diag"] .section-2 circle {
+  fill: #242933 !important;
+  fill-opacity: 0.95 !important;
+  stroke: #ebcb8b !important;
+  stroke-width: 1.5px !important;
+}
+
+.mermaid-diagram-container .section-2 text,
+svg[id^="mermaid-diag"] .section-2 text {
+  fill: #eceff4 !important;
+}
+
+.mermaid-diagram-container .mindmap-edges path.section-2,
+.mermaid-diagram-container .section-edge-2,
+svg[id^="mermaid-diag"] .mindmap-edges path.section-2,
+svg[id^="mermaid-diag"] .section-edge-2,
+svg[id^="mermaid-diag"] path.section-2 {
+  stroke: #ebcb8b !important;
+  stroke-width: 2px !important;
+}
+
+.theme-light .mermaid-diagram-container .mindmap-node.section-2 rect,
+.theme-light .mermaid-diagram-container .mindmap-node.section-2 path,
+.theme-light .mermaid-diagram-container .mindmap-node.section-2 circle,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node.section-2 rect,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node.section-2 path,
+.theme-light svg[id^="mermaid-diag"] .mindmap-node.section-2 circle {
+  fill: #ffffff !important;
+  stroke: #d97706 !important;
+  stroke-width: 1.5px !important;
+}
+
+.theme-light .mermaid-diagram-container .section-2 text,
+.theme-light svg[id^="mermaid-diag"] .section-2 text {
+  fill: #0f172a !important;
+}
+
+.theme-light .mermaid-diagram-container .mindmap-edges path.section-2,
+.theme-light .mermaid-diagram-container .section-edge-2,
+.theme-light svg[id^="mermaid-diag"] .mindmap-edges path.section-2,
+.theme-light svg[id^="mermaid-diag"] .section-edge-2 {
+  stroke: #d97706 !important;
+}
+
+/* 3.5 Branch 3: Aurora Green */
+.mermaid-diagram-container .mindmap-node.section-3 rect,
+.mermaid-diagram-container .mindmap-node.section-3 path,
+.mermaid-diagram-container .mindmap-node.section-3 circle,
+svg[id^="mermaid-diag"] .mindmap-node.section-3 rect,
+svg[id^="mermaid-diag"] .mindmap-node.section-3 path,
+svg[id^="mermaid-diag"] .mindmap-node.section-3 circle,
+.mermaid-diagram-container .section-3 rect,
+.mermaid-diagram-container .section-3 path,
+.mermaid-diagram-container .section-3 circle,
+svg[id^="mermaid-diag"] .section-3 rect,
+svg[id^="mermaid-diag"] .section-3 path,
+svg[id^="mermaid-diag"] .section-3 circle {
+  fill: #242933 !important;
+  fill-opacity: 0.95 !important;
+  stroke: #a3be8c !important;
+  stroke-width: 1.5px !important;
+}
+.mermaid-diagram-container .section-3 text,
+svg[id^="mermaid-diag"] .section-3 text { fill: #eceff4 !important; }
+.mermaid-diagram-container .section-edge-3,
+svg[id^="mermaid-diag"] .section-edge-3 { stroke: #a3be8c !important; stroke-width: 2px !important; }
+
+.theme-light .mermaid-diagram-container .section-3 rect,
+.theme-light .mermaid-diagram-container .section-3 path,
+.theme-light .mermaid-diagram-container .section-3 circle { fill: #ffffff !important; stroke: #16a34a !important; }
+.theme-light .mermaid-diagram-container .section-3 text { fill: #0f172a !important; }
+.theme-light .mermaid-diagram-container .section-edge-3 { stroke: #16a34a !important; }
+
+/* 3.6 Branch 4: Frost Blue */
+.mermaid-diagram-container .mindmap-node.section-4 rect,
+.mermaid-diagram-container .mindmap-node.section-4 path,
+.mermaid-diagram-container .mindmap-node.section-4 circle,
+svg[id^="mermaid-diag"] .mindmap-node.section-4 rect,
+svg[id^="mermaid-diag"] .mindmap-node.section-4 path,
+svg[id^="mermaid-diag"] .mindmap-node.section-4 circle,
+.mermaid-diagram-container .section-4 rect,
+.mermaid-diagram-container .section-4 path,
+.mermaid-diagram-container .section-4 circle,
+svg[id^="mermaid-diag"] .section-4 rect,
+svg[id^="mermaid-diag"] .section-4 path,
+svg[id^="mermaid-diag"] .section-4 circle {
+  fill: #242933 !important;
+  fill-opacity: 0.95 !important;
+  stroke: #81a1c1 !important;
+  stroke-width: 1.5px !important;
+}
+.mermaid-diagram-container .section-4 text,
+svg[id^="mermaid-diag"] .section-4 text { fill: #eceff4 !important; }
+.mermaid-diagram-container .section-edge-4,
+svg[id^="mermaid-diag"] .section-edge-4 { stroke: #81a1c1 !important; stroke-width: 2px !important; }
+
+.theme-light .mermaid-diagram-container .section-4 rect,
+.theme-light .mermaid-diagram-container .section-4 path,
+.theme-light .mermaid-diagram-container .section-4 circle { fill: #ffffff !important; stroke: #2563eb !important; }
+.theme-light .mermaid-diagram-container .section-4 text { fill: #0f172a !important; }
+.theme-light .mermaid-diagram-container .section-edge-4 { stroke: #2563eb !important; }
+
+/* 3.7 Branch 5: Aurora Orange */
+.mermaid-diagram-container .mindmap-node.section-5 rect,
+.mermaid-diagram-container .mindmap-node.section-5 path,
+.mermaid-diagram-container .mindmap-node.section-5 circle,
+svg[id^="mermaid-diag"] .mindmap-node.section-5 rect,
+svg[id^="mermaid-diag"] .mindmap-node.section-5 path,
+svg[id^="mermaid-diag"] .mindmap-node.section-5 circle,
+.mermaid-diagram-container .section-5 rect,
+.mermaid-diagram-container .section-5 path,
+.mermaid-diagram-container .section-5 circle,
+svg[id^="mermaid-diag"] .section-5 rect,
+svg[id^="mermaid-diag"] .section-5 path,
+svg[id^="mermaid-diag"] .section-5 circle {
+  fill: #242933 !important;
+  fill-opacity: 0.95 !important;
+  stroke: #d08770 !important;
+  stroke-width: 1.5px !important;
+}
+.mermaid-diagram-container .section-5 text,
+svg[id^="mermaid-diag"] .section-5 text { fill: #eceff4 !important; }
+.mermaid-diagram-container .section-edge-5,
+svg[id^="mermaid-diag"] .section-edge-5 { stroke: #d08770 !important; stroke-width: 2px !important; }
+
+.theme-light .mermaid-diagram-container .section-5 rect,
+.theme-light .mermaid-diagram-container .section-5 path,
+.theme-light .mermaid-diagram-container .section-5 circle { fill: #ffffff !important; stroke: #ea580c !important; }
+.theme-light .mermaid-diagram-container .section-5 text { fill: #0f172a !important; }
+.theme-light .mermaid-diagram-container .section-edge-5 { stroke: #ea580c !important; }
+
+/* 3.8 Branch 6: Aurora Coral Red */
+.mermaid-diagram-container .mindmap-node.section-6 rect,
+.mermaid-diagram-container .mindmap-node.section-6 path,
+.mermaid-diagram-container .mindmap-node.section-6 circle,
+svg[id^="mermaid-diag"] .mindmap-node.section-6 rect,
+svg[id^="mermaid-diag"] .mindmap-node.section-6 path,
+svg[id^="mermaid-diag"] .mindmap-node.section-6 circle,
+.mermaid-diagram-container .section-6 rect,
+.mermaid-diagram-container .section-6 path,
+.mermaid-diagram-container .section-6 circle,
+svg[id^="mermaid-diag"] .section-6 rect,
+svg[id^="mermaid-diag"] .section-6 path,
+svg[id^="mermaid-diag"] .section-6 circle {
+  fill: #242933 !important;
+  fill-opacity: 0.95 !important;
+  stroke: #bf616a !important;
+  stroke-width: 1.5px !important;
+}
+.mermaid-diagram-container .section-6 text,
+svg[id^="mermaid-diag"] .section-6 text { fill: #eceff4 !important; }
+.mermaid-diagram-container .section-edge-6,
+svg[id^="mermaid-diag"] .section-edge-6 { stroke: #bf616a !important; stroke-width: 2px !important; }
+
+.theme-light .mermaid-diagram-container .section-6 rect,
+.theme-light .mermaid-diagram-container .section-6 path,
+.theme-light .mermaid-diagram-container .section-6 circle { fill: #ffffff !important; stroke: #dc2626 !important; }
+.theme-light .mermaid-diagram-container .section-6 text { fill: #0f172a !important; }
+.theme-light .mermaid-diagram-container .section-edge-6 { stroke: #dc2626 !important; }
+
+/* 3.9 Branch 7: Polar Night Teal */
+.mermaid-diagram-container .mindmap-node.section-7 rect,
+.mermaid-diagram-container .mindmap-node.section-7 path,
+.mermaid-diagram-container .mindmap-node.section-7 circle,
+svg[id^="mermaid-diag"] .mindmap-node.section-7 rect,
+svg[id^="mermaid-diag"] .mindmap-node.section-7 path,
+svg[id^="mermaid-diag"] .mindmap-node.section-7 circle,
+.mermaid-diagram-container .section-7 rect,
+.mermaid-diagram-container .section-7 path,
+.mermaid-diagram-container .section-7 circle,
+svg[id^="mermaid-diag"] .section-7 rect,
+svg[id^="mermaid-diag"] .section-7 path,
+svg[id^="mermaid-diag"] .section-7 circle {
+  fill: #242933 !important;
+  fill-opacity: 0.95 !important;
+  stroke: #8fbcbb !important;
+  stroke-width: 1.5px !important;
+}
+.mermaid-diagram-container .section-7 text,
+svg[id^="mermaid-diag"] .section-7 text { fill: #eceff4 !important; }
+.mermaid-diagram-container .section-edge-7,
+svg[id^="mermaid-diag"] .section-edge-7 { stroke: #8fbcbb !important; stroke-width: 2px !important; }
+
+.theme-light .mermaid-diagram-container .section-7 rect,
+.theme-light .mermaid-diagram-container .section-7 path,
+.theme-light .mermaid-diagram-container .section-7 circle { fill: #ffffff !important; stroke: #0d9488 !important; }
+.theme-light .mermaid-diagram-container .section-7 text { fill: #0f172a !important; }
+.theme-light .mermaid-diagram-container .section-edge-7 { stroke: #0d9488 !important; }
+
+/* Mindmap node hover states */
+.mermaid-diagram-container .mindmap-node:hover rect,
+.mermaid-diagram-container .mindmap-node:hover path,
+.mermaid-diagram-container .mindmap-node:hover circle {
+  filter: brightness(1.15) !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. Targeted Selector: Focused Mindmap Diagram Element
+   CSS selector 1: main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) > svg#mermaid-diag-1790182376193-2:nth-of-type(1)
+   -------------------------------------------------------------------------- */
+main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) > svg[id^="mermaid-diag"],
+main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) > svg#mermaid-diag-1790182376193-2:nth-of-type(1) {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  overflow: visible !important;
+}
+
+main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) > svg[id^="mermaid-diag"] .mindmap-node text,
+main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) > svg#mermaid-diag-1790182376193-2:nth-of-type(1) .mindmap-node text {
+  font-family: var(--font-interface, 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif) !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  fill: #f8fafc !important;
+}
+
+.theme-light main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) > svg[id^="mermaid-diag"] .mindmap-node text,
+.theme-light main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) > svg#mermaid-diag-1790182376193-2:nth-of-type(1) .mindmap-node text {
+  fill: #0f172a !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Interactive Diagram Zoom & Pan Floating Controls
+   -------------------------------------------------------------------------- */
+.diagram-zoom-controls {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--background-secondary, #3b4252);
+  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.12));
+  border-radius: var(--radius-sm, 6px);
+  padding: 3px 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  opacity: 0.6;
+  transition: opacity 0.2s ease, background-color 0.2s ease;
+  z-index: 10;
+}
+
+.mermaid-diagram-container:hover .diagram-zoom-controls {
+  opacity: 1;
+}
+
+.diagram-zoom-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted, #d8dee9);
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+
+.diagram-zoom-btn:hover {
+  background: var(--background-modifier-hover, rgba(255, 255, 255, 0.1));
+  color: var(--text-normal, #eceff4);
+}
