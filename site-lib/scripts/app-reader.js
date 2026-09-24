@@ -15,6 +15,7 @@ class ObsidianVaultApp {
 
     // Reading preferences
     this.isFullWidth = localStorage.getItem('obsidian_full_width') === 'true';
+    this.fontScale = parseInt(localStorage.getItem('obsidian_font_scale') || '100', 10);
     this.fontSize = parseInt(localStorage.getItem('obsidian_font_size') || '16', 10);
     this.themeFamily = localStorage.getItem('obsidian_theme_family') || 'nord';
     this.themeMode = localStorage.getItem('obsidian_theme_mode') || localStorage.getItem('obsidian_theme') || 'dark';
@@ -25,9 +26,10 @@ class ObsidianVaultApp {
     this.activeNotePath = '';
     this.activeNoteRawMarkdown = '';
 
-    // Sidebar states
-    this.isLeftOpen = localStorage.getItem('obsidian_left_open') !== 'false';
-    this.isRightOpen = localStorage.getItem('obsidian_right_open') !== 'false';
+    // Sidebar states (on mobile screens <= 768px, start collapsed for spacious viewing)
+    const isMobile = typeof window !== 'undefined' && window.innerWidth <= 768;
+    this.isLeftOpen = isMobile ? false : (localStorage.getItem('obsidian_left_open') !== 'false');
+    this.isRightOpen = isMobile ? false : (localStorage.getItem('obsidian_right_open') !== 'false');
 
     // Graph state
     this.graphMode = localStorage.getItem('obsidian_graph_mode') || 'local';
@@ -176,7 +178,7 @@ class ObsidianVaultApp {
       }
     });
 
-    // Update active state on mode buttons
+    // Update active state on mode buttons & direct toggle icons
     const btnDark = document.getElementById('opt-btn-mode-dark');
     const btnLight = document.getElementById('opt-btn-mode-light');
     if (btnDark && btnLight) {
@@ -187,6 +189,23 @@ class ObsidianVaultApp {
         btnDark.classList.remove('active');
         btnLight.classList.add('active');
       }
+    }
+
+    const iconMoon = document.getElementById('theme-icon-moon');
+    const iconSun = document.getElementById('theme-icon-sun');
+    if (iconMoon && iconSun) {
+      if (this.themeMode === 'dark') {
+        iconMoon.style.display = 'inline-block';
+        iconSun.style.display = 'none';
+      } else {
+        iconMoon.style.display = 'none';
+        iconSun.style.display = 'inline-block';
+      }
+    }
+
+    const btnToggleTheme = document.getElementById('btn-toggle-theme');
+    if (btnToggleTheme) {
+      btnToggleTheme.title = this.themeMode === 'dark' ? 'Switch to Light Gray Mode' : 'Switch to Cosmic Dark Mode';
     }
 
     const leftSidebar = document.getElementById('sidebar-left');
@@ -216,16 +235,17 @@ class ObsidianVaultApp {
 
     const noteContainer = document.getElementById('note-container');
     const btnWidth = document.getElementById('btn-toggle-width');
-    const selectFontSize = document.getElementById('select-font-size');
-    const optFontSizeVal = document.getElementById('opt-font-size-val');
+    const sliderFontScale = document.getElementById('slider-font-scale');
+    const optFontScaleVal = document.getElementById('opt-font-scale-val');
 
-    if (selectFontSize) {
-      selectFontSize.value = String(this.fontSize);
+    if (sliderFontScale) {
+      sliderFontScale.value = String(this.fontScale);
     }
-    if (optFontSizeVal) {
-      optFontSizeVal.textContent = `${this.fontSize}px`;
+    if (optFontScaleVal) {
+      optFontScaleVal.textContent = `${this.fontScale}%`;
     }
-    document.documentElement.style.setProperty('--obsidian-font-size', `${this.fontSize}px`);
+    document.documentElement.style.setProperty('--obsidian-font-scale', `${this.fontScale}%`);
+    document.documentElement.style.setProperty('--obsidian-font-size', `${Math.round(16 * (this.fontScale / 100))}px`);
 
     if (noteContainer) {
       if (this.isFullWidth) {
@@ -237,14 +257,35 @@ class ObsidianVaultApp {
         noteContainer.classList.add('readable-line-length');
         if (btnWidth) btnWidth.classList.remove('active');
       }
-      noteContainer.style.fontSize = `${this.fontSize}px`;
+      noteContainer.style.fontSize = `${this.fontScale}%`;
     }
 
     if (this.sidebarGraph) this.sidebarGraph.updateTheme(this.themeMode, this.themeFamily);
     if (this.modalGraph) this.modalGraph.updateTheme(this.themeMode, this.themeFamily);
+
+    // Mobile sidebar backdrop overlay state
+    const mobileBackdrop = document.getElementById('mobile-sidebar-backdrop');
+    if (mobileBackdrop) {
+      if (window.innerWidth <= 768 && (this.isLeftOpen || this.isRightOpen)) {
+        mobileBackdrop.classList.add('is-active');
+      } else {
+        mobileBackdrop.classList.remove('is-active');
+      }
+    }
   }
 
   setupUIEventListeners() {
+    const mobileBackdrop = document.getElementById('mobile-sidebar-backdrop');
+    if (mobileBackdrop) {
+      mobileBackdrop.addEventListener('click', () => {
+        this.isLeftOpen = false;
+        this.isRightOpen = false;
+        localStorage.setItem('obsidian_left_open', 'false');
+        localStorage.setItem('obsidian_right_open', 'false');
+        this.applyPreferences();
+      });
+    }
+
     const btnToggleLeft = document.getElementById('btn-toggle-left');
     if (btnToggleLeft) {
       btnToggleLeft.addEventListener('click', (e) => {
@@ -253,6 +294,9 @@ class ObsidianVaultApp {
           e.stopPropagation();
         }
         this.isLeftOpen = !this.isLeftOpen;
+        if (window.innerWidth <= 768 && this.isLeftOpen) {
+          this.isRightOpen = false; // Mutually exclusive drawer on small screens
+        }
         localStorage.setItem('obsidian_left_open', this.isLeftOpen);
         this.applyPreferences();
       });
@@ -266,6 +310,9 @@ class ObsidianVaultApp {
           e.stopPropagation();
         }
         this.isRightOpen = !this.isRightOpen;
+        if (window.innerWidth <= 768 && this.isRightOpen) {
+          this.isLeftOpen = false; // Mutually exclusive drawer on small screens
+        }
         localStorage.setItem('obsidian_right_open', this.isRightOpen);
         this.applyPreferences();
         if (this.isRightOpen && this.sidebarGraph) {
@@ -330,6 +377,18 @@ class ObsidianVaultApp {
       });
     });
 
+    // Direct Header Quick Theme Toggle
+    document.getElementById('btn-toggle-theme')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      this.themeMode = this.themeMode === 'dark' ? 'light' : 'dark';
+      this.theme = this.themeMode;
+      localStorage.setItem('obsidian_theme_mode', this.themeMode);
+      localStorage.setItem('obsidian_theme', this.themeMode);
+      this.applyPreferences();
+      this.showToast(this.themeMode === 'dark' ? 'Dark mode activated' : 'Light mode activated');
+    });
+
     // Theme Mode Switcher (Dark / Light)
     document.getElementById('opt-btn-mode-dark')?.addEventListener('click', () => {
       this.themeMode = 'dark';
@@ -350,15 +409,6 @@ class ObsidianVaultApp {
     });
 
     // Note Tools from Options Popover
-    document.getElementById('opt-btn-download-pageless')?.addEventListener('click', () => {
-      toggleOptions(false);
-      if (this.activeNoteRawMarkdown || document.getElementById('note-article')) {
-        this.downloadNotePageless(this.activeNoteTitle, this.activeNotePath, this.activeNoteRawMarkdown);
-      } else {
-        this.showToast('No active note to download');
-      }
-    });
-
     document.getElementById('opt-btn-download-md')?.addEventListener('click', () => {
       toggleOptions(false);
       if (this.activeNoteRawMarkdown) {
@@ -375,32 +425,37 @@ class ObsidianVaultApp {
       this.showToast(this.isFullWidth ? 'Full width layout activated' : 'Readable column width activated');
     });
 
-    // Font size selector dropdown
-    const selectFontSize = document.getElementById('select-font-size');
-    if (selectFontSize) {
-      selectFontSize.addEventListener('change', (e) => {
-        const val = parseInt(e.target.value, 10);
-        if (!isNaN(val)) {
-          this.fontSize = Math.min(26, Math.max(12, val));
-          localStorage.setItem('obsidian_font_size', this.fontSize);
-          this.applyPreferences();
-          this.showToast(`Font size set to ${this.fontSize}px`);
-        }
-      });
+    // Font scale slider & percentage controls
+    const sliderFontScale = document.getElementById('slider-font-scale');
+    if (sliderFontScale) {
+      const updateScale = (val) => {
+        this.fontScale = Math.min(180, Math.max(70, parseInt(val, 10) || 100));
+        localStorage.setItem('obsidian_font_scale', this.fontScale);
+        this.applyPreferences();
+      };
+      sliderFontScale.addEventListener('input', (e) => updateScale(e.target.value));
+      sliderFontScale.addEventListener('change', (e) => updateScale(e.target.value));
     }
 
-    document.getElementById('btn-font-minus')?.addEventListener('click', () => {
-      this.fontSize = Math.max(12, this.fontSize - 1);
-      localStorage.setItem('obsidian_font_size', this.fontSize);
+    document.getElementById('btn-font-scale-minus')?.addEventListener('click', () => {
+      this.fontScale = Math.max(70, this.fontScale - 5);
+      localStorage.setItem('obsidian_font_scale', this.fontScale);
       this.applyPreferences();
-      this.showToast(`Font size: ${this.fontSize}px`);
+      this.showToast(`Font scaling: ${this.fontScale}%`);
     });
 
-    document.getElementById('btn-font-plus')?.addEventListener('click', () => {
-      this.fontSize = Math.min(26, this.fontSize + 1);
-      localStorage.setItem('obsidian_font_size', this.fontSize);
+    document.getElementById('btn-font-scale-plus')?.addEventListener('click', () => {
+      this.fontScale = Math.min(180, this.fontScale + 5);
+      localStorage.setItem('obsidian_font_scale', this.fontScale);
       this.applyPreferences();
-      this.showToast(`Font size: ${this.fontSize}px`);
+      this.showToast(`Font scaling: ${this.fontScale}%`);
+    });
+
+    document.getElementById('btn-font-scale-reset')?.addEventListener('click', () => {
+      this.fontScale = 100;
+      localStorage.setItem('obsidian_font_scale', this.fontScale);
+      this.applyPreferences();
+      this.showToast('Font scale reset to 100%');
     });
 
     document.getElementById('btn-toggle-theme')?.addEventListener('click', () => {
@@ -624,8 +679,20 @@ class ObsidianVaultApp {
     if (currentCrumb && !window.location.hash) {
       currentCrumb.innerText = `${formatted} Overview`;
     }
+    const titleBadge = document.getElementById('header-active-note-title');
+    if (titleBadge && !window.location.hash) {
+      titleBadge.textContent = `${formatted} Overview`;
+    }
     if (!document.title.includes(formatted)) {
       document.title = `BBA ${formatted} — Shared Obsidian Notes`;
+    }
+  }
+
+  updateBreadcrumbs(folder, title) {
+    const titleBadge = document.getElementById('header-active-note-title');
+    if (titleBadge) {
+      titleBadge.textContent = title || 'Overview';
+      titleBadge.title = folder ? `${folder} / ${title}` : (title || 'Overview');
     }
   }
 
@@ -784,6 +851,15 @@ class ObsidianVaultApp {
         }
       });
     });
+
+    document.querySelectorAll('.tree-item-self.note-item').forEach(el => {
+      el.addEventListener('click', () => {
+        if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+          this.isLeftOpen = false;
+          this.applyPreferences();
+        }
+      });
+    });
   }
 
   highlightActiveTreeItem() {
@@ -829,6 +905,14 @@ class ObsidianVaultApp {
 
   // Routing Handler
   async handleRoute() {
+    if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+      if (this.isLeftOpen || this.isRightOpen) {
+        this.isLeftOpen = false;
+        this.isRightOpen = false;
+        this.applyPreferences();
+      }
+    }
+
     const rawHash = window.location.hash.slice(1);
     let decodedHash = decodeURIComponent(rawHash).trim();
 
@@ -964,13 +1048,13 @@ class ObsidianVaultApp {
     this.activeNotePath = relPath;
     this.activeNoteRawMarkdown = rawMarkdown;
 
-    // Update header metadata badges
+    // Update floating note metadata stats
     const rtVal = document.getElementById('reading-time-val');
     if (rtVal) rtVal.textContent = `${readingTime} min read`;
     const wcVal = document.getElementById('word-count-val');
     if (wcVal) wcVal.textContent = `${words.toLocaleString()} words`;
-    const headerBadges = document.getElementById('header-meta-badges');
-    if (headerBadges) headerBadges.style.display = 'inline-flex';
+    const floatingMeta = document.getElementById('floating-note-meta');
+    if (floatingMeta) floatingMeta.style.display = 'inline-flex';
 
     container.innerHTML = `
       <article class="markdown-rendered" id="note-article">
@@ -2329,6 +2413,10 @@ class ObsidianVaultApp {
         if (targetEl) {
           targetEl.scrollIntoView({ behavior: 'smooth' });
           history.replaceState(null, '', `#${headingId}`);
+          if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+            this.isRightOpen = false;
+            this.applyPreferences();
+          }
         }
       });
     });
@@ -2495,20 +2583,35 @@ class ObsidianVaultApp {
             } catch (err) {}
           }
 
-          let snippet = 'No preview text available.';
+          let snippetHtml = '<p style="color: var(--text-muted); font-size: 0.8rem; margin: 0;">No preview text available.</p>';
           if (content) {
-            const cleanText = content
-              .replace(/---[\s\S]*?---/, '')
-              .replace(/#+\s+.*?\n/g, '')
-              .replace(/\[\[(.*?)\]\]/g, '$1')
-              .replace(/[#*`_~]/g, '')
-              .trim();
-            snippet = cleanText.substring(0, 240) + (cleanText.length > 240 ? '...' : '');
+            // Strip YAML frontmatter
+            let body = content.replace(/^---[\s\S]*?---\s*/, '').trim();
+            // Extract a limited head section (first 2-3 non-empty lines / up to ~300 chars)
+            const headParagraphs = body.split(/\n\s*\n/).filter(p => p.trim().length > 0);
+            let headSection = headParagraphs.slice(0, 2).join('\n\n');
+            if (headSection.length > 300) {
+              headSection = headSection.substring(0, 300) + '...';
+            }
+            // Resolve wiki-links within the snippet cleanly
+            headSection = headSection.replace(/\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g, (_, target, alias) => alias || target);
+            
+            if (typeof marked !== 'undefined') {
+              try {
+                snippetHtml = marked.parse(headSection);
+              } catch (e) {
+                snippetHtml = `<p>${headSection}</p>`;
+              }
+            } else {
+              snippetHtml = `<p>${headSection}</p>`;
+            }
           }
 
           bodyHtml = `
-            <div style="margin-bottom: 8px;">${snippet}</div>
-            <a href="#${note.path}" style="display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; font-size: 0.74rem; background: var(--interactive-accent-subtle); color: var(--interactive-accent); border-radius: 4px; text-decoration: none; font-weight: 600;">
+            <div class="preview-markdown-head" style="margin-bottom: 10px; font-size: 0.82rem; line-height: 1.55; max-height: 140px; overflow: hidden; position: relative;">
+              ${snippetHtml}
+            </div>
+            <a href="#${note.path}" style="display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; font-size: 0.76rem; background: var(--interactive-accent-subtle); color: var(--interactive-accent); border-radius: 4px; text-decoration: none; font-weight: 600;">
               <span>Jump to Note</span>
               <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -2545,12 +2648,6 @@ class ObsidianVaultApp {
               <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="12" y1="17" x2="12" y2="22"></line>
                 <path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.89A2 2 0 0 1 15 10.77V6a3 3 0 0 0-6 0v4.77a2 2 0 0 1-1.11 1.79l-1.78.89A2 2 0 0 0 5 15.24Z"></path>
-              </svg>
-            </button>
-            <button class="preview-action-btn preview-close-btn" type="button" aria-label="Close preview" title="Close preview">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
               </svg>
             </button>
           </div>

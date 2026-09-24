@@ -1,8 +1,8 @@
 /* ==========================================================================
-   Obsidian Nord Theme Engine (theme.css)
-   Classic Obsidian Nord with Deep Dark Canvas (matching Landing Page):
-   - Dark Mode: Landing Page Deep Slate (#12151d, #181d28) + Classic Nord Frost & Aurora
-   - Light Mode: Nord Snow Storm Parchment (#f8fafc, #eceff4) + Deep Frost Indigo (#5e81ac)
+   Obsidian Theme Engine (theme.css) - Variation 11
+   - Dark Mode: Cosmic Obsidian Canvas (#07070a, #0d0d12) + Radiant Lavender/Violet (#a882ff)
+   - Light Mode: Clean Inverse Canvas (#f8fafc) + Soft Non-Distracting Dot Grid + Royal Indigo Accents
+   - Typography: Syne Display Headings + Inter Body + JetBrains Mono Monospace
    ========================================================================== */
 
 :root {
@@ -10,27 +10,10 @@
   --radius-s: 6px;
   --radius-m: 10px;
   --radius-l: 14px;
-  --font-interface: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-text: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --font-monospace: 'JetBrains Mono', 'Fira Code', Menlo, Monaco, Consolas, monospace;
-
-  /* Nord Palette References */
-  --nord0: #2e3440;
-  --nord1: #3b4252;
-  --nord2: #434c5e;
-  --nord3: #4c566a;
-  --nord4: #d8dee9;
-  --nord5: #e5e9f0;
-  --nord6: #eceff4;
-  --nord7: #8fbcbb;
-  --nord8: #88c0d0;
-  --nord9: #81a1c1;
-  --nord10: #5e81ac;
-  --nord11: #bf616a;
-  --nord12: #d08770;
-  --nord13: #ebcb8b;
-  --nord14: #a3be8c;
-  --nord15: #b48ead;
+  --font-interface: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-text: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Syne', -apple-system, sans-serif;
+  --font-monospace: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
 body {
@@ -48,136 +31,172 @@ body {
 }
 
 /* ==========================================================================
-   OBSIDIAN NORD DARK (Deep Landing-Page Background + Authentic Nord Accents)
+   DARK MODE (Variation 11 Cosmic Palette)
    ========================================================================== */
 :root,
 .theme-dark,
 [data-theme-mode="dark"],
 [data-theme="nord"][data-theme-mode="dark"],
 [data-theme="cosmic"][data-theme-mode="dark"] {
-  /* Semantic Accent Spectrum (Nord Aurora & Frost) */
-  --color-purple: #b48ead; /* Nord 15 Aurora Purple */
-  --color-cyan: #88c0d0;   /* Nord 8 Frost Cyan */
-  --color-blue: #81a1c1;   /* Nord 9 Frost Blue */
-  --color-green: #a3be8c;  /* Nord 14 Aurora Green */
-  --color-yellow: #ebcb8b; /* Nord 13 Aurora Yellow */
-  --color-orange: #d08770; /* Nord 12 Aurora Orange */
-  --color-red: #bf616a;    /* Nord 11 Aurora Red */
+  /* Semantic Accent Spectrum */
+  --color-purple: #c084fc;
+  --color-cyan: #38bdf8;
+  --color-blue: #a882ff;
+  --color-green: #34d399;
+  --color-yellow: #fbbf24;
+  --color-orange: #fb923c;
+  --color-red: #f43f5e;
 
-  /* Deep Landing-Page Matching Background Hierarchy */
-  --background-primary: #12151d;
-  --background-primary-alt: #0d1017;
-  --background-secondary: #181d28;
-  --background-secondary-alt: #141822;
-  --background-modifier-border: rgba(255, 255, 255, 0.12);
-  --background-modifier-hover: rgba(255, 255, 255, 0.08);
-  --background-modifier-active: rgba(136, 192, 208, 0.18);
-  --background-glass: rgba(18, 21, 29, 0.85);
+  /* Variation 11 Cosmic Dark Canvas & Background */
+  --background-primary: #07070a;
+  --background-primary-alt: #0d0d12;
+  --canvas-dot-color: rgba(255, 255, 255, 0.05);
+  --background-secondary: rgba(13, 13, 18, 0.75);
+  --background-secondary-alt: rgba(20, 20, 28, 0.85);
+  --background-modifier-border: rgba(255, 255, 255, 0.08);
+  --background-modifier-hover: rgba(168, 130, 255, 0.12);
+  --background-modifier-active: rgba(168, 130, 255, 0.22);
+  --background-glass: rgba(13, 13, 18, 0.80);
 
-  /* Snow Storm Typography */
-  --text-normal: #eceff4; /* Nord 6 - Pure Snow Storm */
-  --text-muted: #d8dee9;  /* Nord 4 - Crisp Muted Slate */
-  --text-faint: #9ba3af;
-  --bold-color: #ffffff;  /* High Contrast Brilliant Bold */
-  --italic-color: #8fbcbb; /* Nord 7 Frost Mint Turquoise */
+  /* Translucent & Glass Panes */
+  --glass-bg: rgba(13, 13, 18, 0.80);
+  --glass-border: rgba(168, 130, 255, 0.18);
+  --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.75), 0 0 24px rgba(168, 130, 255, 0.12);
+  --header-glass-bg: rgba(7, 7, 10, 0.85);
+  --sidebar-glass-bg: rgba(13, 13, 18, 0.65);
+  --btn-glass-bg: rgba(255, 255, 255, 0.05);
+  --btn-glass-border: rgba(255, 255, 255, 0.10);
+  --btn-glass-hover: rgba(168, 130, 255, 0.16);
+  --btn-glass-hover-border: rgba(168, 130, 255, 0.45);
+  --btn-glass-glow: 0 0 14px rgba(168, 130, 255, 0.35);
+  --hover-preview-bg: rgba(13, 13, 18, 0.94);
 
-  /* Interactive Elements (Classic Nord Frost) */
-  --interactive-accent: #88c0d0;       /* Nord 8 Cyan */
-  --interactive-accent-hover: #81a1c1; /* Nord 9 Frost Blue */
-  --interactive-accent-rgb: 136, 192, 208;
-  --interactive-accent-subtle: rgba(136, 192, 208, 0.15);
-  --link-url: #88c0d0;
+  /* Distinct Text Types for Optimal Long-Form Reading */
+  --text-normal: #e4e4e7;       /* Comfortable reading text */
+  --text-muted: rgba(228, 224, 231, 0.6);        /* Soft secondary captions & metadata */
+  --text-faint: rgba(228, 224, 231, 0.4);        /* Subtle timestamps & path hierarchy */
+  --bold-color: #ffffff;        /* High-contrast crisp bold highlights */
+  --italic-color: #c084fc;      /* Soft orchid violet for emphasis */
 
-  /* Classic Nord Heading Hierarchy */
-  --h1-color: #88c0d0; /* Nord 8 Frost Cyan */
-  --h2-color: #81a1c1; /* Nord 9 Frost Blue */
-  --h3-color: #ebcb8b; /* Nord 13 Aurora Yellow */
-  --h4-color: #a3be8c; /* Nord 14 Aurora Green */
-  --h5-color: #b48ead; /* Nord 15 Aurora Purple */
-  --h6-color: #d08770; /* Nord 12 Aurora Orange */
+  /* Interactive Elements (Variation 11 Radiant Lavender Accent) */
+  --interactive-accent: #a882ff;
+  --interactive-accent-hover: #c4a7ff;
+  --interactive-accent-rgb: 168, 130, 255;
+  --interactive-accent-subtle: rgba(168, 130, 255, 0.14);
+  --interactive-accent-glow: 0 0 18px rgba(168, 130, 255, 0.35);
+  --link-url: #a882ff;
 
-  /* Text Emphasis & Badges */
-  --text-highlight-bg: rgba(235, 203, 139, 0.3);
-  --text-highlight-fg: #eceff4;
-  --tag-color: #88c0d0;
-  --tag-background: rgba(136, 192, 208, 0.12);
-  --tag-background-hover: rgba(136, 192, 208, 0.22);
+  /* Harmonic Heading Hierarchy */
+  --h1-color: #f43f5e; /* Rose Crimson */
+  --h2-color: #38bdf8; /* Sky Cerulean */
+  --h3-color: #34d399; /* Mint Emerald */
+  --h4-color: #a882ff; /* Lavender Purple */
+  --h5-color: #fbbf24; /* Warm Amber */
+  --h6-color: #94a3b8; /* Refined Slate */
 
-  --checkbox-color: #88c0d0;
-  --code-normal: #88c0d0;
-  --code-background: #181d28;
-  --table-header-background: #181d28;
-  --table-row-even-background: rgba(24, 29, 40, 0.6);
-  --table-row-odd-background: rgba(18, 21, 29, 0.4);
-  --table-row-background-hover: rgba(136, 192, 208, 0.1);
+  /* Text Emphasis & Code Blocks */
+  --text-highlight-bg: #fbbf24;
+  --text-highlight-fg: #07070a;
+  --text-accent: #38bdf8;
+  --text-accent-hover: #a882ff;
+
+  --tag-color: #a882ff;
+  --tag-background: rgba(168, 130, 255, 0.14);
+  --tag-background-hover: rgba(168, 130, 255, 0.25);
+
+  --checkbox-color: #a882ff;
+  --code-normal: #38bdf8;
+  --code-background: #0d0d14;
+  --table-header-background: #0d0d14;
+  --table-row-even-background: rgba(20, 20, 28, 0.5);
+  --table-row-odd-background: rgba(13, 13, 18, 0.35);
+  --table-row-background-hover: rgba(168, 130, 255, 0.12);
 }
 
 /* ==========================================================================
-   OBSIDIAN NORD LIGHT (Snow Storm Canvas + Deep Frost Accents)
+   LIGHT MODE (Clean Inverted Canvas + Deep Royal Indigo Hierarchy)
    ========================================================================== */
 .theme-light,
 [data-theme-mode="light"],
 [data-theme="nord"][data-theme-mode="light"],
 [data-theme="cosmic"][data-theme-mode="light"] {
   /* Semantic Accent Spectrum */
-  --color-purple: #906c9e;
-  --color-cyan: #4e8899;
-  --color-blue: #5e81ac;
-  --color-green: #678b53;
-  --color-yellow: #a87e2a;
-  --color-orange: #b86237;
-  --color-red: #a33842;
+  --color-purple: #7c3aed;
+  --color-cyan: #0284c7;
+  --color-blue: #4f46e5;
+  --color-green: #059669;
+  --color-yellow: #d97706;
+  --color-orange: #ea580c;
+  --color-red: #e11d48;
 
-  /* Snow Storm Background Hierarchy */
+  /* Clean Inverted Canvas Hierarchy */
   --background-primary: #f8fafc;
   --background-primary-alt: #ffffff;
-  --background-secondary: #eceff4; /* Nord 6 */
-  --background-secondary-alt: #e5e9f0; /* Nord 5 */
-  --background-modifier-border: rgba(46, 52, 64, 0.14);
-  --background-modifier-hover: rgba(46, 52, 64, 0.06);
-  --background-modifier-active: rgba(94, 129, 172, 0.14);
-  --background-glass: rgba(248, 250, 252, 0.9);
+  --canvas-dot-color: rgba(15, 23, 42, 0.05);
+  --background-secondary: rgba(255, 255, 255, 0.88);
+  --background-secondary-alt: rgba(241, 245, 249, 0.92);
+  --background-modifier-border: rgba(15, 23, 42, 0.09);
+  --background-modifier-hover: rgba(79, 70, 229, 0.08);
+  --background-modifier-active: rgba(79, 70, 229, 0.18);
+  --background-glass: rgba(255, 255, 255, 0.92);
 
-  /* Polar Night Typography */
-  --text-normal: #2e3440; /* Nord 0 */
-  --text-muted: #434c5e;  /* Nord 2 */
-  --text-faint: #4c566a;  /* Nord 3 */
-  --bold-color: #1e232b;
-  --italic-color: #5e81ac; /* Nord 10 Deep Frost */
+  /* Translucent & Glass Panes for Light Mode */
+  --glass-bg: rgba(255, 255, 255, 0.94);
+  --glass-border: rgba(79, 70, 229, 0.18);
+  --glass-shadow: 0 16px 40px rgba(15, 23, 42, 0.08), 0 0 20px rgba(79, 70, 229, 0.06);
+  --header-glass-bg: rgba(255, 255, 255, 0.92);
+  --sidebar-glass-bg: rgba(248, 250, 252, 0.90);
+  --btn-glass-bg: rgba(15, 23, 42, 0.04);
+  --btn-glass-border: rgba(15, 23, 42, 0.10);
+  --btn-glass-hover: rgba(79, 70, 229, 0.10);
+  --btn-glass-hover-border: rgba(79, 70, 229, 0.35);
+  --btn-glass-glow: 0 0 12px rgba(79, 70, 229, 0.20);
+  --hover-preview-bg: rgba(255, 255, 255, 0.96);
 
-  /* Interactive Elements */
-  --interactive-accent: #5e81ac; /* Nord 10 Deep Frost */
-  --interactive-accent-hover: #4c6d96;
-  --interactive-accent-rgb: 94, 129, 172;
-  --interactive-accent-subtle: rgba(94, 129, 172, 0.14);
-  --link-url: #5e81ac;
+  /* Deep Slate Typography for High Contrast & Fatigue-Free Reading */
+  --text-normal: #0f172a;       /* Deep slate black, razor-sharp clarity */
+  --text-muted: #475569;        /* Medium slate for secondary elements */
+  --text-faint: #94a3b8;        /* Soft gray for metadata */
+  --bold-color: #020617;        /* Pitch black bold emphasis */
+  --italic-color: #7c3aed;      /* Royal violet for italic nuance */
 
-  /* Heading Hierarchy */
-  --h1-color: #2e3440;
-  --h2-color: #5e81ac;
-  --h3-color: #4e8899;
-  --h4-color: #b86237;
-  --h5-color: #678b53;
-  --h6-color: #906c9e;
+  /* Interactive Elements (Royal Indigo) */
+  --interactive-accent: #4f46e5;
+  --interactive-accent-hover: #4338ca;
+  --interactive-accent-rgb: 79, 70, 229;
+  --interactive-accent-subtle: rgba(79, 70, 229, 0.12);
+  --interactive-accent-glow: 0 0 14px rgba(79, 70, 229, 0.22);
+  --link-url: #4f46e5;
+
+  /* Harmonic Heading Hierarchy */
+  --h1-color: #e11d48; /* Ruby Red */
+  --h2-color: #0284c7; /* Ocean Blue */
+  --h3-color: #059669; /* Forest Emerald */
+  --h4-color: #7c3aed; /* Royal Violet */
+  --h5-color: #d97706; /* Amber Bronze */
+  --h6-color: #475569; /* Deep Slate */
 
   /* Text Emphasis & Badges */
-  --text-highlight-bg: rgba(235, 203, 139, 0.45);
-  --text-highlight-fg: #2e3440;
-  --tag-color: #5e81ac;
-  --tag-background: rgba(94, 129, 172, 0.12);
-  --tag-background-hover: rgba(94, 129, 172, 0.22);
+  --text-highlight-bg: #fde047;
+  --text-highlight-fg: #0f172a;
+  --text-accent: #0284c7;
+  --text-accent-hover: #4f46e5;
 
-  --checkbox-color: #5e81ac;
-  --code-normal: #5e81ac;
-  --code-background: #eceff4;
-  --table-header-background: #eceff4;
-  --table-row-even-background: rgba(236, 239, 244, 0.6);
+  --tag-color: #4f46e5;
+  --tag-background: rgba(79, 70, 229, 0.08);
+  --tag-background-hover: rgba(79, 70, 229, 0.16);
+
+  --checkbox-color: #4f46e5;
+  --code-normal: #0284c7;
+  --code-background: #e2e8f0;
+  --table-header-background: #e2e8f0;
+  --table-row-even-background: rgba(241, 245, 249, 0.7);
   --table-row-odd-background: #ffffff;
-  --table-row-background-hover: rgba(94, 129, 172, 0.08);
+  --table-row-background-hover: rgba(79, 70, 229, 0.06);
 }
 
 /* ==========================================================================
-   Typography & Psychological Contrast Hierarchy Rules
+   Typography & Contrast Hierarchy Rules
    ========================================================================== */
 strong, b,
 .markdown-rendered strong, .markdown-rendered b,
@@ -190,7 +209,7 @@ article#note-article strong, article#note-article b {
 em, i,
 .markdown-rendered em, .markdown-rendered i,
 article#note-article em, article#note-article i {
-  color: var(--italic-color, #8fbcbb) !important;
+  color: var(--italic-color, #c084fc) !important;
   font-style: italic !important;
   font-weight: 500;
 }
@@ -206,7 +225,7 @@ mark {
 /* Headings with clear contrast and distinct bottom accents */
 .markdown-rendered h1 {
   color: var(--h1-color);
-  border-bottom: 2px solid var(--interactive-accent-subtle, rgba(136, 192, 208, 0.25));
+  border-bottom: 2px solid var(--interactive-accent-subtle, rgba(129, 140, 248, 0.25));
   padding-bottom: 0.3em;
   margin-top: 1.4em;
   margin-bottom: 0.6em;
@@ -231,7 +250,7 @@ mark {
 .markdown-rendered h4 {
   color: var(--h4-color);
   margin-top: 1.1em;
-  margin-bottom: 0.4em;
+  margin-bottom: 0.3em;
   font-weight: 600;
 }
 
@@ -246,34 +265,98 @@ mark {
   color: var(--h6-color);
   margin-top: 1em;
   margin-bottom: 0.3em;
-  font-weight: 600;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.85em;
 }
 
-/* Inline Code & Monospace Blocks */
+/* Inline Code & Code Blocks */
 .markdown-rendered code:not(pre code) {
-  font-family: var(--font-monospace);
-  color: var(--code-normal);
-  background-color: var(--code-background);
+  color: var(--code-normal) !important;
+  background-color: var(--code-background) !important;
   border: 1px solid var(--background-modifier-border);
   border-radius: 4px;
-  padding: 2px 6px;
+  padding: 0.18em 0.45em;
   font-size: 0.88em;
+  font-family: var(--font-monospace);
 }
 
 .markdown-rendered pre {
-  background-color: var(--background-secondary) !important;
+  background-color: var(--background-secondary-alt) !important;
   border: 1px solid var(--background-modifier-border) !important;
-  border-radius: var(--radius-s, 6px);
-  padding: 14px 18px;
+  border-radius: 8px;
+  padding: 16px;
   overflow-x: auto;
 }
 
-.markdown-rendered pre code {
-  font-family: var(--font-monospace);
-  font-size: 0.9em;
+/* Blockquotes with Accent border */
+.markdown-rendered blockquote {
+  border-left: 3px solid var(--interactive-accent);
+  background: var(--interactive-accent-subtle);
+  padding: 10px 18px;
+  margin: 1.2em 0;
+  border-radius: 0 8px 8px 0;
+  color: var(--text-normal);
 }
 
-/* Callout Blocks with High Contrast Psychological Styling */
+/* Tables */
+.markdown-rendered table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.2em 0;
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.markdown-rendered th {
+  background-color: var(--table-header-background) !important;
+  color: var(--text-normal);
+  font-weight: 700;
+  padding: 10px 14px;
+  border: 1px solid var(--background-modifier-border);
+}
+
+.markdown-rendered td {
+  padding: 9px 14px;
+  border: 1px solid var(--background-modifier-border);
+  color: var(--text-normal);
+}
+
+.markdown-rendered tr:nth-child(even) td {
+  background-color: var(--table-row-even-background);
+}
+
+.markdown-rendered tr:nth-child(odd) td {
+  background-color: var(--table-row-odd-background);
+}
+
+.markdown-rendered tr:hover td {
+  background-color: var(--table-row-background-hover);
+}
+
+/* Obsidian Tags */
+.obsidian-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.82em;
+  font-weight: 600;
+  color: var(--tag-color) !important;
+  background-color: var(--tag-background) !important;
+  border: 1px solid var(--interactive-accent-subtle);
+  padding: 0.15em 0.55em;
+  border-radius: 6px;
+  text-decoration: none !important;
+  transition: all 0.15s ease;
+}
+
+.obsidian-tag:hover {
+  background-color: var(--tag-background-hover) !important;
+  box-shadow: 0 0 8px var(--interactive-accent-subtle);
+}
+
+/* Callout Blocks with Semantic Styling */
 .callout {
   border-radius: var(--radius-s, 6px);
   border: 1px solid var(--background-modifier-border);
