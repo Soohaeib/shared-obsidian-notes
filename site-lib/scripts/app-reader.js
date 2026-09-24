@@ -16,7 +16,14 @@ class ObsidianVaultApp {
     // Reading preferences
     this.isFullWidth = localStorage.getItem('obsidian_full_width') === 'true';
     this.fontSize = parseInt(localStorage.getItem('obsidian_font_size') || '16', 10);
-    this.theme = localStorage.getItem('obsidian_theme') || 'dark';
+    this.themeFamily = localStorage.getItem('obsidian_theme_family') || 'nord';
+    this.themeMode = localStorage.getItem('obsidian_theme_mode') || localStorage.getItem('obsidian_theme') || 'dark';
+    this.theme = this.themeMode;
+
+    // Active note state
+    this.activeNoteTitle = '';
+    this.activeNotePath = '';
+    this.activeNoteRawMarkdown = '';
 
     // Sidebar states
     this.isLeftOpen = localStorage.getItem('obsidian_left_open') !== 'false';
@@ -132,9 +139,55 @@ class ObsidianVaultApp {
     window.addEventListener('hashchange', () => this.handleRoute());
   }
 
+  formatThemeName(themeFamily) {
+    const names = {
+      nord: 'Nord',
+      minimal: 'Obsidian Minimal',
+      gruvbox: 'Gruvbox',
+      solarized: 'Solarized',
+      dracula: 'Dracula',
+      catppuccin: 'Catppuccin'
+    };
+    return names[themeFamily] || 'Nord';
+  }
+
   applyPreferences() {
-    document.documentElement.className = this.theme === 'light' ? 'theme-light' : 'theme-dark';
-    document.body.className = this.theme === 'light' ? 'theme-light' : 'theme-dark';
+    const root = document.documentElement;
+    const body = document.body;
+
+    // Apply attributes for CSS variable styling
+    root.setAttribute('data-theme', this.themeFamily);
+    root.setAttribute('data-theme-mode', this.themeMode);
+    body.setAttribute('data-theme', this.themeFamily);
+    body.setAttribute('data-theme-mode', this.themeMode);
+
+    // Apply classes for broad stylesheet compatibility
+    const modeClass = this.themeMode === 'light' ? 'theme-light' : 'theme-dark';
+    const comboClass = `theme-${this.themeFamily}-${this.themeMode}`;
+    root.className = `${modeClass} ${comboClass}`;
+    body.className = `${modeClass} ${comboClass}`;
+
+    // Update active state on theme chips in options popover
+    document.querySelectorAll('.theme-chip').forEach(chip => {
+      if (chip.dataset.themeFamily === this.themeFamily) {
+        chip.classList.add('active');
+      } else {
+        chip.classList.remove('active');
+      }
+    });
+
+    // Update active state on mode buttons
+    const btnDark = document.getElementById('opt-btn-mode-dark');
+    const btnLight = document.getElementById('opt-btn-mode-light');
+    if (btnDark && btnLight) {
+      if (this.themeMode === 'dark') {
+        btnDark.classList.add('active');
+        btnLight.classList.remove('active');
+      } else {
+        btnDark.classList.remove('active');
+        btnLight.classList.add('active');
+      }
+    }
 
     const leftSidebar = document.getElementById('sidebar-left');
     const rightSidebar = document.getElementById('sidebar-right');
@@ -163,6 +216,17 @@ class ObsidianVaultApp {
 
     const noteContainer = document.getElementById('note-container');
     const btnWidth = document.getElementById('btn-toggle-width');
+    const selectFontSize = document.getElementById('select-font-size');
+    const optFontSizeVal = document.getElementById('opt-font-size-val');
+
+    if (selectFontSize) {
+      selectFontSize.value = String(this.fontSize);
+    }
+    if (optFontSizeVal) {
+      optFontSizeVal.textContent = `${this.fontSize}px`;
+    }
+    document.documentElement.style.setProperty('--obsidian-font-size', `${this.fontSize}px`);
+
     if (noteContainer) {
       if (this.isFullWidth) {
         noteContainer.classList.add('full-width-mode');
@@ -175,21 +239,133 @@ class ObsidianVaultApp {
       }
       noteContainer.style.fontSize = `${this.fontSize}px`;
     }
+
+    if (this.sidebarGraph) this.sidebarGraph.updateTheme(this.themeMode, this.themeFamily);
+    if (this.modalGraph) this.modalGraph.updateTheme(this.themeMode, this.themeFamily);
   }
 
   setupUIEventListeners() {
-    document.getElementById('btn-toggle-left')?.addEventListener('click', () => {
-      this.isLeftOpen = !this.isLeftOpen;
-      localStorage.setItem('obsidian_left_open', this.isLeftOpen);
-      this.applyPreferences();
+    const btnToggleLeft = document.getElementById('btn-toggle-left');
+    if (btnToggleLeft) {
+      btnToggleLeft.addEventListener('click', (e) => {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        this.isLeftOpen = !this.isLeftOpen;
+        localStorage.setItem('obsidian_left_open', this.isLeftOpen);
+        this.applyPreferences();
+      });
+    }
+
+    const btnToggleRight = document.getElementById('btn-toggle-right');
+    if (btnToggleRight) {
+      btnToggleRight.addEventListener('click', (e) => {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        this.isRightOpen = !this.isRightOpen;
+        localStorage.setItem('obsidian_right_open', this.isRightOpen);
+        this.applyPreferences();
+        if (this.isRightOpen && this.sidebarGraph) {
+          setTimeout(() => this.sidebarGraph.resize(), 250);
+        }
+      });
+    }
+
+    // Dedicated Workspace Options Popover Menu
+    const btnOptions = document.getElementById('btn-workspace-options');
+    const optionsMenu = document.getElementById('workspace-options-menu');
+    const btnCloseOptions = document.getElementById('btn-close-options');
+
+    const toggleOptions = (forceState) => {
+      if (!optionsMenu) return;
+      const isOpen = forceState !== undefined ? forceState : !optionsMenu.classList.contains('is-open');
+      if (isOpen) {
+        optionsMenu.classList.add('is-open');
+        btnOptions?.classList.add('active');
+        btnOptions?.setAttribute('aria-expanded', 'true');
+      } else {
+        optionsMenu.classList.remove('is-open');
+        btnOptions?.classList.remove('active');
+        btnOptions?.setAttribute('aria-expanded', 'false');
+      }
+    };
+
+    if (btnOptions) {
+      btnOptions.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleOptions();
+      });
+    }
+
+    if (btnCloseOptions) {
+      btnCloseOptions.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleOptions(false);
+      });
+    }
+
+    // Close options popover when clicking anywhere outside
+    document.addEventListener('click', (e) => {
+      if (optionsMenu && optionsMenu.classList.contains('is-open')) {
+        const wrapper = document.querySelector('.options-menu-wrapper');
+        if (wrapper && !wrapper.contains(e.target)) {
+          toggleOptions(false);
+        }
+      }
     });
 
-    document.getElementById('btn-toggle-right')?.addEventListener('click', () => {
-      this.isRightOpen = !this.isRightOpen;
-      localStorage.setItem('obsidian_right_open', this.isRightOpen);
+    // Theme Family Chips
+    document.querySelectorAll('.theme-chip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const family = chip.dataset.themeFamily;
+        if (family) {
+          this.themeFamily = family;
+          localStorage.setItem('obsidian_theme_family', this.themeFamily);
+          this.applyPreferences();
+          this.showToast(`${this.formatThemeName(this.themeFamily)} theme active`);
+        }
+      });
+    });
+
+    // Theme Mode Switcher (Dark / Light)
+    document.getElementById('opt-btn-mode-dark')?.addEventListener('click', () => {
+      this.themeMode = 'dark';
+      this.theme = 'dark';
+      localStorage.setItem('obsidian_theme_mode', 'dark');
+      localStorage.setItem('obsidian_theme', 'dark');
       this.applyPreferences();
-      if (this.isRightOpen && this.sidebarGraph) {
-        setTimeout(() => this.sidebarGraph.resize(), 250);
+      this.showToast('Dark mode activated');
+    });
+
+    document.getElementById('opt-btn-mode-light')?.addEventListener('click', () => {
+      this.themeMode = 'light';
+      this.theme = 'light';
+      localStorage.setItem('obsidian_theme_mode', 'light');
+      localStorage.setItem('obsidian_theme', 'light');
+      this.applyPreferences();
+      this.showToast('Light mode activated');
+    });
+
+    // Note Tools from Options Popover
+    document.getElementById('opt-btn-export-pdf')?.addEventListener('click', () => {
+      toggleOptions(false);
+      if (this.activeNoteRawMarkdown) {
+        this.openPdfExportModal(this.activeNoteTitle, this.activeNotePath, this.activeNoteRawMarkdown);
+      } else {
+        this.showToast('No active note to export');
+      }
+    });
+
+    document.getElementById('opt-btn-copy-md')?.addEventListener('click', () => {
+      toggleOptions(false);
+      if (this.activeNoteRawMarkdown) {
+        navigator.clipboard.writeText(this.activeNoteRawMarkdown);
+        this.showToast('Markdown copied to clipboard');
+      } else {
+        this.showToast('No active note to copy');
       }
     });
 
@@ -200,25 +376,41 @@ class ObsidianVaultApp {
       this.showToast(this.isFullWidth ? 'Full width layout activated' : 'Readable column width activated');
     });
 
+    // Font size selector dropdown
+    const selectFontSize = document.getElementById('select-font-size');
+    if (selectFontSize) {
+      selectFontSize.addEventListener('change', (e) => {
+        const val = parseInt(e.target.value, 10);
+        if (!isNaN(val)) {
+          this.fontSize = Math.min(26, Math.max(12, val));
+          localStorage.setItem('obsidian_font_size', this.fontSize);
+          this.applyPreferences();
+          this.showToast(`Font size set to ${this.fontSize}px`);
+        }
+      });
+    }
+
     document.getElementById('btn-font-minus')?.addEventListener('click', () => {
       this.fontSize = Math.max(12, this.fontSize - 1);
       localStorage.setItem('obsidian_font_size', this.fontSize);
       this.applyPreferences();
+      this.showToast(`Font size: ${this.fontSize}px`);
     });
 
     document.getElementById('btn-font-plus')?.addEventListener('click', () => {
       this.fontSize = Math.min(26, this.fontSize + 1);
       localStorage.setItem('obsidian_font_size', this.fontSize);
       this.applyPreferences();
+      this.showToast(`Font size: ${this.fontSize}px`);
     });
 
     document.getElementById('btn-toggle-theme')?.addEventListener('click', () => {
-      this.theme = this.theme === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('obsidian_theme', this.theme);
+      this.themeMode = this.themeMode === 'dark' ? 'light' : 'dark';
+      this.theme = this.themeMode;
+      localStorage.setItem('obsidian_theme_mode', this.themeMode);
+      localStorage.setItem('obsidian_theme', this.themeMode);
       this.applyPreferences();
-      if (this.sidebarGraph) this.sidebarGraph.updateTheme(this.theme);
-      if (this.modalGraph) this.modalGraph.updateTheme(this.theme);
-      this.showToast(`${this.theme === 'dark' ? 'Nord Dark' : 'Nord Light'} theme active`);
+      this.showToast(`${this.formatThemeName(this.themeFamily)} (${this.themeMode}) active`);
     });
 
     // Expand / Collapse all directories
@@ -760,6 +952,10 @@ class ObsidianVaultApp {
     let renderedHtml = marked.parse(processed);
     renderedHtml = this.postprocessObsidianHtml(renderedHtml);
 
+    this.activeNoteTitle = title;
+    this.activeNotePath = relPath;
+    this.activeNoteRawMarkdown = rawMarkdown;
+
     container.innerHTML = `
       <div class="note-header-card">
         <div class="note-meta-badges">
@@ -778,23 +974,6 @@ class ObsidianVaultApp {
             ${words} words
           </span>
         </div>
-        <div class="note-actions-row">
-          <button class="tool-btn" id="btn-copy-md" title="Copy raw Markdown to clipboard">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
-            </svg>
-            <span>Copy MD</span>
-          </button>
-          <button class="tool-btn" id="btn-download-md" title="Download note as Markdown file">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            <span>Download</span>
-          </button>
-        </div>
       </div>
       <article class="markdown-rendered" id="note-article">
         ${renderedHtml}
@@ -802,21 +981,6 @@ class ObsidianVaultApp {
     `;
 
     this.setupReadingTimeTracking(readingTime);
-
-    document.getElementById('btn-copy-md')?.addEventListener('click', () => {
-      navigator.clipboard.writeText(rawMarkdown);
-      this.showToast('Raw markdown copied to clipboard');
-    });
-
-    document.getElementById('btn-download-md')?.addEventListener('click', () => {
-      const blob = new Blob([rawMarkdown], { type: 'text/markdown;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `${title}.md`;
-      a.click();
-      URL.revokeObjectURL(url);
-    });
 
     this.initInteractiveWidgets();
     this.buildTableOfContents();
@@ -1938,14 +2102,18 @@ class ObsidianVaultApp {
                 });
               });
             }
+            this.attachMediaCornerButtons();
           }).catch(err => {
             console.warn('Mermaid render issue:', err);
+          }).finally(() => {
+            this.attachMediaCornerButtons();
           });
         } catch (e) {
           console.warn('Mermaid render error:', e);
         }
       });
     }
+    this.attachMediaCornerButtons();
   }
 
   setupTocGlobalControls() {
@@ -2229,6 +2397,7 @@ class ObsidianVaultApp {
     if (!previewEl) {
       previewEl = document.createElement('div');
       previewEl.id = 'obsidian-hover-preview';
+      previewEl.style.display = 'none';
       document.body.appendChild(previewEl);
     }
 
@@ -2281,17 +2450,23 @@ class ObsidianVaultApp {
       const y = Math.min(window.innerHeight - 220, Math.max(16, e.clientY + 16));
       previewEl.style.left = `${x}px`;
       previewEl.style.top = `${y}px`;
+      previewEl.style.display = 'block';
       previewEl.classList.add('is-visible');
       previewEl.querySelector('.preview-close')?.addEventListener('click', () => {
         previewEl.classList.remove('is-visible');
+        previewEl.style.display = 'none';
       });
       clearTimeout(dismissTimeout);
-      dismissTimeout = setTimeout(() => previewEl.classList.remove('is-visible'), 5000);
+      dismissTimeout = setTimeout(() => {
+        previewEl.classList.remove('is-visible');
+        previewEl.style.display = 'none';
+      }, 5000);
     };
 
     const hidePreview = () => {
       hideTimeout = setTimeout(() => {
         previewEl.classList.remove('is-visible');
+        previewEl.style.display = 'none';
       }, 150);
     };
 
@@ -2319,6 +2494,143 @@ class ObsidianVaultApp {
     });
   }
 
+  attachMediaCornerButtons() {
+    const article = document.getElementById('note-article');
+    if (!article) return;
+
+    let diagramCounter = 0;
+    const noteTitle = this.currentNoteTitle || document.querySelector('.note-header-title')?.textContent || 'Note';
+
+    // 1. Mermaid diagrams and standalone SVGs
+    const diagrams = article.querySelectorAll('.mermaid-diagram-container, svg[id^="mermaid-diag"]');
+    diagrams.forEach(diag => {
+      let container = diag.classList.contains('mermaid-diagram-container') ? diag : diag.closest('.mermaid-diagram-container');
+      if (!container) container = diag;
+      if (container.querySelector('.diagram-corner-action-btn')) return;
+
+      diagramCounter++;
+      const currentOrder = diagramCounter;
+      const svgEl = container.querySelector('svg') || (container.tagName.toLowerCase() === 'svg' ? container : null);
+      const svgRaw = svgEl ? svgEl.outerHTML : '';
+      const diagramTitle = this.generateDiagramTitle(noteTitle, currentOrder, svgRaw);
+
+      const cornerBtn = document.createElement('button');
+      cornerBtn.type = 'button';
+      cornerBtn.className = 'diagram-corner-action-btn';
+      cornerBtn.setAttribute('aria-label', `Expand diagram preview: ${diagramTitle}`);
+      cornerBtn.setAttribute('title', `Preview & download: ${diagramTitle}`);
+      cornerBtn.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <polyline points="9 21 3 21 3 15"></polyline>
+          <line x1="21" y1="3" x2="14" y2="10"></line>
+          <line x1="3" y1="21" x2="10" y2="14"></line>
+        </svg>
+      `;
+
+      cornerBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const activeSvg = container.querySelector('svg');
+        if (activeSvg) {
+          this.openMediaPreview(activeSvg.outerHTML, 'svg', diagramTitle, true);
+        }
+      });
+
+      container.style.position = 'relative';
+      container.appendChild(cornerBtn);
+    });
+
+    // 2. Embedded images (.obsidian-media-embed img or regular note images)
+    const images = article.querySelectorAll('.obsidian-media-embed img, img:not(.emoji)');
+    images.forEach(img => {
+      const existingParent = img.closest('.media-preview-wrapper') || img.parentElement;
+      if (existingParent && existingParent.querySelector('.diagram-corner-action-btn')) return;
+
+      let wrapper = img.closest('.media-preview-wrapper');
+      if (!wrapper) {
+        wrapper = document.createElement('div');
+        wrapper.className = 'media-preview-wrapper';
+        img.parentNode.insertBefore(wrapper, img);
+        wrapper.appendChild(img);
+      }
+
+      const imgSrc = img.getAttribute('src') || '';
+      const imgAlt = img.getAttribute('alt') || '';
+      const imgName = this.getImageFileName(imgSrc, imgAlt);
+
+      const cornerBtn = document.createElement('button');
+      cornerBtn.type = 'button';
+      cornerBtn.className = 'diagram-corner-action-btn';
+      cornerBtn.setAttribute('aria-label', `Expand preview for ${imgName}`);
+      cornerBtn.setAttribute('title', `Preview & download: ${imgName}`);
+      cornerBtn.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <polyline points="9 21 3 21 3 15"></polyline>
+          <line x1="21" y1="3" x2="14" y2="10"></line>
+          <line x1="3" y1="21" x2="10" y2="14"></line>
+        </svg>
+      `;
+
+      cornerBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        this.openMediaPreview(imgSrc, 'image', imgName, false);
+      });
+
+      wrapper.appendChild(cornerBtn);
+    });
+  }
+
+  generateDiagramTitle(noteTitle, orderIndex, rawContent) {
+    const clean = (noteTitle || 'Note')
+      .split('/')
+      .pop()
+      .replace(/\.md$/i, '')
+      .trim();
+
+    // Abbreviate note name (e.g. "BCC 206 Principles of Management" -> "BCC206-POM")
+    const words = clean.split(/[\s_\-]+/).filter(Boolean);
+    let abbrev = '';
+    if (words.length <= 1) {
+      abbrev = clean.substring(0, 8).toUpperCase();
+    } else {
+      abbrev = words.map(w => {
+        if (/^\d+$/.test(w) || (/^[A-Z0-9]+$/i.test(w) && w.length <= 4)) {
+          return w.toUpperCase();
+        }
+        return w[0].toUpperCase();
+      }).join('');
+    }
+
+    // Deterministic 4-character hex hash based on content and title
+    let hashVal = 0;
+    const seed = (rawContent || clean) + orderIndex;
+    for (let i = 0; i < seed.length; i++) {
+      hashVal = ((hashVal << 5) - hashVal) + seed.charCodeAt(i);
+      hashVal |= 0;
+    }
+    const hex = Math.abs(hashVal).toString(16).substring(0, 4).toUpperCase().padStart(4, '8F');
+
+    return `${abbrev}-D${orderIndex}-${hex}`;
+  }
+
+  getImageFileName(src, alt) {
+    if (src && !src.startsWith('data:')) {
+      const cleanUrl = src.split('?')[0].split('#')[0];
+      const fileName = cleanUrl.split('/').pop();
+      if (fileName && fileName.includes('.')) {
+        return decodeURIComponent(fileName);
+      }
+    }
+    if (alt && alt.trim() && !alt.startsWith('Diagram')) {
+      const sanitized = alt.trim().replace(/[^a-zA-Z0-9_\-\.]/g, '_');
+      return sanitized.includes('.') ? sanitized : `${sanitized}.png`;
+    }
+    return 'embedded-image.png';
+  }
+
   setupMediaPreview() {
     if (document.getElementById('media-preview-overlay')) return;
 
@@ -2326,29 +2638,101 @@ class ObsidianVaultApp {
     overlay.id = 'media-preview-overlay';
     overlay.className = 'media-preview-overlay';
     overlay.innerHTML = `
-      <div class="media-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="media-preview-title">
+      <div class="media-preview-dialog" id="media-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="media-preview-title">
         <div class="media-preview-toolbar">
-          <span id="media-preview-title" class="media-preview-title">Preview</span>
+          <div class="media-preview-title-group">
+            <span id="media-preview-title" class="media-preview-title">Preview</span>
+            <span id="media-preview-badge" class="media-preview-badge">DIAGRAM</span>
+          </div>
           <div class="media-preview-actions">
-            <a class="media-preview-download tool-btn" download title="Download preview">Download</a>
-            <button class="media-preview-close tool-btn" type="button" title="Close preview">Close</button>
+            <!-- Theme Toggle Icon Button -->
+            <button class="media-icon-btn" id="media-btn-theme" type="button" aria-label="Toggle dark/light preview background" title="Toggle background theme">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+            </button>
+
+            <!-- Zoom In Icon Button -->
+            <button class="media-icon-btn" id="media-btn-zoom-in" type="button" aria-label="Zoom in" title="Zoom in (+)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </button>
+
+            <!-- Zoom Out Icon Button -->
+            <button class="media-icon-btn" id="media-btn-zoom-out" type="button" aria-label="Zoom out" title="Zoom out (-)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </button>
+
+            <!-- Reset Zoom Icon Button -->
+            <button class="media-icon-btn" id="media-btn-zoom-reset" type="button" aria-label="Reset zoom" title="Reset zoom (100%)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                <path d="M21 3v5h-5"></path>
+                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                <path d="M3 21v-5h5"></path>
+              </svg>
+            </button>
+
+            <!-- Download Icon Button -->
+            <a class="media-icon-btn" id="media-btn-download" download aria-label="Download image or diagram" title="Download file">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </a>
+
+            <!-- Close Icon Button -->
+            <button class="media-icon-btn btn-close-danger" id="media-btn-close" type="button" aria-label="Close preview" title="Close preview (Esc)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
           </div>
         </div>
-        <div class="media-preview-content"></div>
+        <div class="media-preview-content">
+          <div class="media-preview-viewport" id="media-preview-viewport"></div>
+        </div>
       </div>
     `;
     document.body.appendChild(overlay);
 
+    this.mediaZoom = 1;
+
     const close = () => {
       overlay.classList.remove('is-open');
-      overlay.querySelector('.media-preview-content')?.replaceChildren();
+      const dialog = document.getElementById('media-preview-dialog');
+      if (dialog) dialog.classList.remove('preview-theme-light');
+      const viewport = document.getElementById('media-preview-viewport');
+      if (viewport) {
+        viewport.replaceChildren();
+        viewport.style.transform = 'none';
+      }
+      this.mediaZoom = 1;
       if (this.mediaPreviewObjectUrl) {
         URL.revokeObjectURL(this.mediaPreviewObjectUrl);
         this.mediaPreviewObjectUrl = null;
       }
     };
 
-    overlay.querySelector('.media-preview-close')?.addEventListener('click', close);
+    document.getElementById('media-btn-close')?.addEventListener('click', close);
     overlay.addEventListener('click', event => {
       if (event.target === overlay) close();
     });
@@ -2356,30 +2740,67 @@ class ObsidianVaultApp {
       if (event.key === 'Escape' && overlay.classList.contains('is-open')) close();
     });
 
-    document.addEventListener('click', event => {
-      const image = event.target.closest('.obsidian-media-embed img');
-      const diagram = event.target.closest('.mermaid-diagram-container svg, svg[id^="mermaid-diag"]');
-      if (image) {
-        event.preventDefault();
-        this.openMediaPreview(image.getAttribute('src'), 'image', image.alt || 'Diagram');
-      } else if (diagram) {
-        event.preventDefault();
-        this.openMediaPreview(diagram.outerHTML, 'svg', 'Diagram');
+    // Zoom Controls
+    const updateZoom = () => {
+      const viewport = document.getElementById('media-preview-viewport');
+      if (viewport) {
+        viewport.style.transform = `scale(${this.mediaZoom})`;
+      }
+    };
+
+    document.getElementById('media-btn-zoom-in')?.addEventListener('click', () => {
+      this.mediaZoom = Math.min(3.5, this.mediaZoom + 0.25);
+      updateZoom();
+    });
+
+    document.getElementById('media-btn-zoom-out')?.addEventListener('click', () => {
+      this.mediaZoom = Math.max(0.4, this.mediaZoom - 0.25);
+      updateZoom();
+    });
+
+    document.getElementById('media-btn-zoom-reset')?.addEventListener('click', () => {
+      this.mediaZoom = 1;
+      updateZoom();
+    });
+
+    // Theme contrast toggle
+    document.getElementById('media-btn-theme')?.addEventListener('click', () => {
+      const dialog = document.getElementById('media-preview-dialog');
+      if (dialog) {
+        dialog.classList.toggle('preview-theme-light');
       }
     });
   }
 
-  openMediaPreview(source, type, title) {
+  openMediaPreview(source, type, title, isThemeAffectable = false) {
+    this.setupMediaPreview();
     const overlay = document.getElementById('media-preview-overlay');
-    const content = overlay?.querySelector('.media-preview-content');
-    const titleElement = overlay?.querySelector('.media-preview-title');
-    const download = overlay?.querySelector('.media-preview-download');
-    if (!overlay || !content || !titleElement || !download) return;
+    const viewport = document.getElementById('media-preview-viewport');
+    const titleElement = document.getElementById('media-preview-title');
+    const badgeElement = document.getElementById('media-preview-badge');
+    const download = document.getElementById('media-btn-download');
+    const themeBtn = document.getElementById('media-btn-theme');
+
+    if (!overlay || !viewport || !titleElement || !download) return;
 
     if (this.mediaPreviewObjectUrl) URL.revokeObjectURL(this.mediaPreviewObjectUrl);
     this.mediaPreviewObjectUrl = null;
+
     titleElement.textContent = title;
-    content.replaceChildren();
+    titleElement.setAttribute('title', title);
+
+    if (badgeElement) {
+      badgeElement.textContent = type === 'svg' ? 'DIAGRAM' : 'IMAGE';
+    }
+
+    if (themeBtn) {
+      themeBtn.style.display = 'inline-flex';
+    }
+
+    this.mediaZoom = 1;
+    viewport.style.transform = 'none';
+    viewport.replaceChildren();
+
     let downloadUrl = source;
 
     if (type === 'svg') {
@@ -2388,18 +2809,526 @@ class ObsidianVaultApp {
       const wrapper = document.createElement('div');
       wrapper.className = 'media-preview-svg';
       wrapper.innerHTML = source;
-      content.appendChild(wrapper);
+      viewport.appendChild(wrapper);
+      download.download = `${title}.svg`;
     } else {
       const image = document.createElement('img');
       image.src = source;
       image.alt = title;
-      content.appendChild(image);
+      viewport.appendChild(image);
+      download.download = title.includes('.') ? title : `${title}.png`;
     }
 
     download.href = downloadUrl;
-    const sourceExtension = type === 'svg' ? 'svg' : (source.split('?')[0].split('.').pop() || 'image');
-    download.download = `${title.replace(/[^a-z0-9]+/gi, '-').replace(/^-|-$/g, '').toLowerCase() || 'diagram'}.${sourceExtension}`;
     overlay.classList.add('is-open');
+  }
+
+  /* ==========================================================================
+     Lookalike Themed Pageless & Print PDF Engine with Table of Contents
+     ========================================================================== */
+  openPdfExportModal(noteTitle, relPath, rawMarkdown) {
+    let overlay = document.getElementById('pdf-export-modal-overlay');
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.id = 'pdf-export-modal-overlay';
+      overlay.className = 'pdf-export-modal-overlay';
+      overlay.innerHTML = `
+        <div class="pdf-export-dialog" role="dialog" aria-modal="true" aria-labelledby="pdf-modal-title">
+          <div class="pdf-export-header">
+            <h3 class="pdf-export-title" id="pdf-modal-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+              <span>Export Note as PDF</span>
+            </h3>
+            <button class="media-icon-btn btn-close-danger" id="pdf-modal-close" type="button" aria-label="Close export dialog" title="Close">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          <div class="pdf-export-body">
+            <!-- Format Selection -->
+            <div class="pdf-setting-group">
+              <label class="pdf-setting-label">Document Layout</label>
+              <div class="pdf-radio-cards">
+                <div class="pdf-radio-card is-selected" id="pdf-card-pageless" data-mode="pageless">
+                  <div class="pdf-card-title">📱 Digital (Pageless)</div>
+                  <div class="pdf-card-sub">Continuous reading flow for devices; no awkward page cuts across formulas or charts.</div>
+                </div>
+                <div class="pdf-radio-card" id="pdf-card-print" data-mode="print">
+                  <div class="pdf-card-title">🖨️ Physical Print</div>
+                  <div class="pdf-card-sub">Paginated A4 layout with margins and smart breaks between sections.</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Reading Font Selection -->
+            <div class="pdf-setting-group">
+              <label class="pdf-setting-label" for="pdf-select-font">Reading Typography (Web & Browser Fonts)</label>
+              <div class="pdf-setting-desc">Crisp vector typography preserved in the exported PDF with complete text selection.</div>
+              <select id="pdf-select-font" class="pdf-input-select">
+                <option value="Atkinson Hyperlegible" selected>Atkinson Hyperlegible (Accessibility & Reading Friendly)</option>
+                <option value="Inter">Inter (Obsidian Default Clean Sans)</option>
+                <option value="Lora">Lora (Contemporary Book Serif)</option>
+                <option value="Merriweather">Merriweather (Screen Reading Serif)</option>
+                <option value="JetBrains Mono">JetBrains Mono (Technical Monospace)</option>
+                <option value="System">System Sans-Serif (Browser Native)</option>
+              </select>
+            </div>
+
+            <!-- Theme Selection (Active for Digital) -->
+            <div class="pdf-setting-group" id="pdf-group-theme">
+              <label class="pdf-setting-label" for="pdf-select-theme">Color Theme</label>
+              <div class="pdf-setting-desc">Select visual styling for digital device copies (print mode optimizes for white paper).</div>
+              <select id="pdf-select-theme" class="pdf-input-select">
+                <option value="dark" selected>Obsidian Dark (Nord Night — #2e3440)</option>
+                <option value="light">Minimal Light (Clean White Paper)</option>
+                <option value="sepia">Warm Sepia (Eye Comfort Book)</option>
+              </select>
+            </div>
+
+            <!-- Table of Contents Toggle -->
+            <div class="pdf-setting-group">
+              <label class="pdf-checkbox-row">
+                <input type="checkbox" id="pdf-check-toc" checked />
+                <span class="pdf-card-title">Include Interactive Table of Contents (TOC)</span>
+              </label>
+              <div class="pdf-setting-desc" style="padding-left: 26px;">Generates hyperlinked section navigation at the start of the document.</div>
+            </div>
+          </div>
+
+          <div class="pdf-export-footer">
+            <button class="btn-secondary-pdf" id="pdf-btn-copy-raw" type="button" title="Copy raw Markdown to clipboard">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <span>Copy Raw MD</span>
+            </button>
+            <button class="btn-primary-pdf" id="pdf-btn-generate" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                <rect x="6" y="14" width="12" height="8"></rect>
+              </svg>
+              <span>Download / Print PDF</span>
+            </button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+
+      // Event Listeners for dialog
+      const close = () => overlay.classList.remove('is-open');
+      document.getElementById('pdf-modal-close')?.addEventListener('click', close);
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) close();
+      });
+
+      // Mode Selection cards
+      const cardPageless = document.getElementById('pdf-card-pageless');
+      const cardPrint = document.getElementById('pdf-card-print');
+      const selectTheme = document.getElementById('pdf-select-theme');
+
+      cardPageless?.addEventListener('click', () => {
+        cardPageless.classList.add('is-selected');
+        cardPrint?.classList.remove('is-selected');
+        if (selectTheme) selectTheme.value = 'dark';
+      });
+
+      cardPrint?.addEventListener('click', () => {
+        cardPrint.classList.add('is-selected');
+        cardPageless?.classList.remove('is-selected');
+        if (selectTheme) selectTheme.value = 'light'; // Recommend clean white paper to save ink
+      });
+
+      // Copy raw markdown alternative
+      document.getElementById('pdf-btn-copy-raw')?.addEventListener('click', () => {
+        if (rawMarkdown) {
+          navigator.clipboard.writeText(rawMarkdown);
+          this.showToast('Raw markdown copied to clipboard');
+        }
+      });
+    }
+
+    // Bind generate PDF button
+    const btnGenerate = document.getElementById('pdf-btn-generate');
+    if (btnGenerate) {
+      btnGenerate.onclick = () => {
+        const isPageless = document.getElementById('pdf-card-pageless')?.classList.contains('is-selected');
+        const mode = isPageless ? 'pageless' : 'print';
+        const font = document.getElementById('pdf-select-font')?.value || 'Atkinson Hyperlegible';
+        const theme = document.getElementById('pdf-select-theme')?.value || (mode === 'print' ? 'light' : 'dark');
+        const includeToc = document.getElementById('pdf-check-toc')?.checked ?? true;
+
+        overlay.classList.remove('is-open');
+        this.generateLookalikeThemedPdf({
+          noteTitle,
+          mode,
+          font,
+          theme,
+          includeToc,
+          fontSize: this.fontSize || 16
+        });
+      };
+    }
+
+    overlay.classList.add('is-open');
+  }
+
+  generateLookalikeThemedPdf({ noteTitle, mode, font, theme, includeToc, fontSize }) {
+    const article = document.getElementById('note-article');
+    if (!article) {
+      this.showToast('Unable to export: note content not found');
+      return;
+    }
+
+    this.showToast('Preparing PDF formatting & vector assets...');
+
+    // 1. Build Table of Contents HTML if requested
+    let tocHtml = '';
+    if (includeToc) {
+      const headings = article.querySelectorAll('h1, h2, h3, h4');
+      if (headings.length > 0) {
+        const tocItems = [];
+        headings.forEach((h, idx) => {
+          const level = parseInt(h.tagName.substring(1), 10) || 2;
+          const text = h.textContent.replace(/^#+\s*/, '').trim();
+          const anchorId = h.id || `pdf-heading-${idx}`;
+          h.id = anchorId;
+          const indent = Math.max(0, (level - 1) * 16);
+          tocItems.push(`
+            <li style="margin: 4px 0; padding-left: ${indent}px; list-style: none;">
+              <a href="#${anchorId}" style="text-decoration: none; color: inherit; font-size: 0.88rem; display: inline-flex; align-items: baseline; gap: 6px;">
+                <span style="opacity: 0.5; font-size: 0.75rem;">${'▪'.repeat(Math.max(1, level - 1))}</span>
+                <span>${text}</span>
+              </a>
+            </li>
+          `);
+        });
+
+        tocHtml = `
+          <div class="pdf-toc-wrapper" style="border: 1px solid var(--pdf-border); background: var(--pdf-surface); border-radius: 8px; padding: 18px 24px; margin-bottom: 32px; break-inside: avoid; page-break-inside: avoid;">
+            <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 12px; color: var(--pdf-accent); display: flex; align-items: center; gap: 8px;">
+              <span>Table of Contents</span>
+            </div>
+            <ul style="margin: 0; padding: 0;">
+              ${tocItems.join('')}
+            </ul>
+          </div>
+        `;
+      }
+    }
+
+    // 2. Clone article and remove interactive tool-buttons or corner preview buttons
+    const clone = article.cloneNode(true);
+    clone.querySelectorAll('.diagram-corner-action-btn, .copy-code-button').forEach(el => el.remove());
+
+    // 3. Define font imports and families
+    let fontImport = '';
+    let fontFamily = 'var(--font-default)';
+    if (font === 'Atkinson Hyperlegible') {
+      fontImport = `@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');`;
+      fontFamily = `'Atkinson Hyperlegible', sans-serif`;
+    } else if (font === 'Inter') {
+      fontImport = `@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');`;
+      fontFamily = `'Inter', -apple-system, BlinkMacSystemFont, sans-serif`;
+    } else if (font === 'Lora') {
+      fontImport = `@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&display=swap');`;
+      fontFamily = `'Lora', Georgia, serif`;
+    } else if (font === 'Merriweather') {
+      fontImport = `@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;1,300&display=swap');`;
+      fontFamily = `'Merriweather', Georgia, serif`;
+    } else if (font === 'JetBrains Mono') {
+      fontImport = `@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');`;
+      fontFamily = `'JetBrains Mono', monospace`;
+    } else {
+      fontFamily = `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`;
+    }
+
+    // 4. Color Palette Tokens for Theme
+    let colors = {
+      bg: '#2e3440',
+      text: '#eceff4',
+      surface: '#3b4252',
+      border: 'rgba(255, 255, 255, 0.12)',
+      accent: '#88c0d0',
+      h1: '#88c0d0',
+      h2: '#ebcb8b',
+      h3: '#a3be8c',
+      codeBg: '#242933',
+      calloutBg: '#3b4252'
+    };
+
+    if (theme === 'light') {
+      colors = {
+        bg: '#ffffff',
+        text: '#1e293b',
+        surface: '#f8fafc',
+        border: '#e2e8f0',
+        accent: '#0284c7',
+        h1: '#0284c7',
+        h2: '#d97706',
+        h3: '#16a34a',
+        codeBg: '#f1f5f9',
+        calloutBg: '#f8fafc'
+      };
+    } else if (theme === 'sepia') {
+      colors = {
+        bg: '#fbf0d9',
+        text: '#3c2f1f',
+        surface: '#f3e5c8',
+        border: 'rgba(60, 47, 31, 0.15)',
+        accent: '#92400e',
+        h1: '#92400e',
+        h2: '#b45309',
+        h3: '#4d7c0f',
+        codeBg: '#eedfbc',
+        calloutBg: '#f3e5c8'
+      };
+    }
+
+    // 5. Generate isolated iframe for print execution
+    const oldFrame = document.getElementById('pdf-print-sandbox');
+    if (oldFrame) oldFrame.remove();
+
+    const iframe = document.createElement('iframe');
+    iframe.id = 'pdf-print-sandbox';
+    iframe.style.position = 'fixed';
+    iframe.style.right = '0';
+    iframe.style.bottom = '0';
+    iframe.style.width = '0';
+    iframe.style.height = '0';
+    iframe.style.border = '0';
+    document.body.appendChild(iframe);
+
+    const doc = iframe.contentWindow.document;
+    doc.open();
+
+    const pageCss = mode === 'pageless' ? `
+      @page {
+        size: auto;
+        margin: 0;
+      }
+      body {
+        padding: 48px 56px;
+        max-width: 900px;
+        margin: 0 auto;
+        background-color: ${colors.bg} !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+    ` : `
+      @page {
+        size: A4;
+        margin: 16mm 14mm 16mm 14mm;
+      }
+      body {
+        padding: 0;
+        max-width: 100%;
+        margin: 0 auto;
+        background-color: ${colors.bg} !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .callout, pre, .mermaid-diagram-container, table, .math-block, .pdf-toc-wrapper {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+      }
+    `;
+
+    doc.write(`
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>${noteTitle}</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css" />
+        <style>
+          ${fontImport}
+          :root {
+            --pdf-bg: ${colors.bg};
+            --pdf-text: ${colors.text};
+            --pdf-surface: ${colors.surface};
+            --pdf-border: ${colors.border};
+            --pdf-accent: ${colors.accent};
+            --pdf-h1: ${colors.h1};
+            --pdf-h2: ${colors.h2};
+            --pdf-h3: ${colors.h3};
+            --pdf-code-bg: ${colors.codeBg};
+          }
+
+          * {
+            box-sizing: border-box;
+          }
+
+          html, body {
+            background-color: var(--pdf-bg);
+            color: var(--pdf-text);
+            font-family: ${fontFamily};
+            font-size: ${fontSize}px;
+            line-height: 1.68;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+          }
+
+          h1, h2, h3, h4, h5, h6 {
+            color: var(--pdf-text);
+            margin-top: 1.4em;
+            margin-bottom: 0.5em;
+            font-weight: 700;
+            line-height: 1.3;
+          }
+
+          h1 { font-size: 1.85em; color: var(--pdf-h1); border-bottom: 1px solid var(--pdf-border); padding-bottom: 0.3em; }
+          h2 { font-size: 1.45em; color: var(--pdf-h2); }
+          h3 { font-size: 1.22em; color: var(--pdf-h3); }
+          h4 { font-size: 1.08em; color: var(--pdf-accent); }
+
+          p, ul, ol, blockquote {
+            margin: 0.85em 0;
+          }
+
+          a {
+            color: var(--pdf-accent);
+            text-decoration: underline;
+          }
+
+          pre, code {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--pdf-code-bg);
+            border-radius: 4px;
+          }
+
+          pre {
+            padding: 14px 18px;
+            overflow-x: auto;
+            border: 1px solid var(--pdf-border);
+            font-size: 0.88em;
+          }
+
+          code {
+            padding: 2px 5px;
+            font-size: 0.9em;
+          }
+
+          table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.2em 0;
+            font-size: 0.9em;
+          }
+
+          th, td {
+            border: 1px solid var(--pdf-border);
+            padding: 8px 12px;
+            text-align: left;
+          }
+
+          th {
+            background: var(--pdf-surface);
+            font-weight: 600;
+          }
+
+          blockquote {
+            border-left: 4px solid var(--pdf-accent);
+            margin: 1em 0;
+            padding: 6px 16px;
+            background: var(--pdf-surface);
+            border-radius: 0 4px 4px 0;
+          }
+
+          .callout {
+            border: 1px solid var(--pdf-border);
+            border-left: 4px solid var(--pdf-accent);
+            background: var(--pdf-surface);
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin: 1.2em 0;
+          }
+
+          .mermaid-diagram-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1.4em 0;
+            padding: 16px;
+            background: var(--pdf-surface);
+            border: 1px solid var(--pdf-border);
+            border-radius: 8px;
+          }
+
+          .mermaid-diagram-container svg {
+            max-width: 100%;
+            height: auto;
+          }
+
+          .katex-display {
+            margin: 1em 0;
+            overflow-x: auto;
+            text-align: center;
+          }
+
+          img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+          }
+
+          .pdf-document-header {
+            margin-bottom: 28px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--pdf-border);
+          }
+
+          .pdf-document-header-title {
+            font-size: 2.2em;
+            font-weight: 800;
+            color: var(--pdf-h1);
+            margin: 0 0 6px 0;
+            letter-spacing: -0.02em;
+          }
+
+          .pdf-document-header-meta {
+            font-size: 0.85em;
+            color: var(--pdf-text);
+            opacity: 0.75;
+          }
+
+          ${pageCss}
+        </style>
+      </head>
+      <body>
+        <div class="pdf-document-header">
+          <h1 class="pdf-document-header-title">${noteTitle}</h1>
+          <div class="pdf-document-header-meta">Obsidian Digital Vault Workspace • ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+        </div>
+        ${tocHtml}
+        <div class="pdf-document-body">
+          ${clone.innerHTML}
+        </div>
+      </body>
+      </html>
+    `);
+
+    doc.close();
+
+    // Trigger printing once images, fonts and KaTeX resources are loaded
+    setTimeout(() => {
+      try {
+        iframe.contentWindow.focus();
+        iframe.contentWindow.print();
+      } catch (err) {
+        console.error('Print trigger error:', err);
+      }
+    }, 650);
   }
 
   updateBreadcrumbs(parent, current) {
@@ -2883,8 +3812,10 @@ class ObsidianGraphRenderer {
     this.initGraphSimulation();
   }
 
-  updateTheme(theme) {
+  updateTheme(theme, themeFamily) {
     this.theme = theme;
+    if (themeFamily) this.themeFamily = themeFamily;
+    this.render();
   }
 
   initGraphSimulation() {
@@ -3228,8 +4159,74 @@ class ObsidianGraphRenderer {
     ctx.scale(this.transform.k, this.transform.k);
 
     const isDark = this.theme === 'dark';
-    const linkColor = isDark ? 'rgba(76, 86, 106, 0.45)' : 'rgba(216, 222, 233, 0.6)';
-    const activeLinkColor = isDark ? 'rgba(136, 192, 208, 0.9)' : 'rgba(94, 129, 172, 0.9)';
+    const fam = this.themeFamily || 'nord';
+
+    const palettes = {
+      nord: {
+        accent: isDark ? '#88c0d0' : '#5e81ac',
+        link: isDark ? 'rgba(76, 86, 106, 0.45)' : 'rgba(216, 222, 233, 0.6)',
+        linkActive: isDark ? 'rgba(136, 192, 208, 0.9)' : 'rgba(94, 129, 172, 0.9)',
+        nodeDefault: isDark ? '#88c0d0' : '#5e81ac',
+        focused: '#bf616a',
+        hovered: '#d08770',
+        badgeBg: isDark ? 'rgba(46, 52, 64, 0.85)' : 'rgba(255, 255, 255, 0.85)',
+        badgeFg: isDark ? '#eceff4' : '#2e3440'
+      },
+      minimal: {
+        accent: isDark ? '#8b5cf6' : '#7c3aed',
+        link: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)',
+        linkActive: isDark ? 'rgba(139, 92, 246, 0.9)' : 'rgba(124, 58, 237, 0.9)',
+        nodeDefault: isDark ? '#8b5cf6' : '#7c3aed',
+        focused: '#ef4444',
+        hovered: '#f59e0b',
+        badgeBg: isDark ? 'rgba(18, 18, 18, 0.88)' : 'rgba(255, 255, 255, 0.92)',
+        badgeFg: isDark ? '#f4f4f5' : '#18181b'
+      },
+      gruvbox: {
+        accent: isDark ? '#fe8019' : '#d65d0e',
+        link: isDark ? 'rgba(80, 73, 69, 0.6)' : 'rgba(213, 196, 161, 0.7)',
+        linkActive: isDark ? 'rgba(254, 128, 25, 0.9)' : 'rgba(214, 93, 14, 0.9)',
+        nodeDefault: isDark ? '#fabd2f' : '#b57614',
+        focused: '#fb4934',
+        hovered: '#fe8019',
+        badgeBg: isDark ? 'rgba(40, 40, 40, 0.88)' : 'rgba(251, 241, 199, 0.92)',
+        badgeFg: isDark ? '#ebdbb2' : '#3c3836'
+      },
+      solarized: {
+        accent: isDark ? '#2aa198' : '#268bd2',
+        link: isDark ? 'rgba(88, 110, 117, 0.5)' : 'rgba(147, 161, 161, 0.6)',
+        linkActive: isDark ? 'rgba(42, 161, 152, 0.9)' : 'rgba(38, 139, 210, 0.9)',
+        nodeDefault: isDark ? '#2aa198' : '#268bd2',
+        focused: '#dc322f',
+        hovered: '#cb4b16',
+        badgeBg: isDark ? 'rgba(0, 43, 54, 0.88)' : 'rgba(253, 246, 227, 0.92)',
+        badgeFg: isDark ? '#839496' : '#586e75'
+      },
+      dracula: {
+        accent: isDark ? '#ff79c6' : '#bd93f9',
+        link: isDark ? 'rgba(98, 114, 164, 0.5)' : 'rgba(180, 180, 200, 0.6)',
+        linkActive: isDark ? 'rgba(255, 121, 198, 0.9)' : 'rgba(189, 147, 249, 0.9)',
+        nodeDefault: isDark ? '#bd93f9' : '#6272a4',
+        focused: '#ff5555',
+        hovered: '#ffb86c',
+        badgeBg: isDark ? 'rgba(40, 42, 54, 0.88)' : 'rgba(248, 249, 250, 0.92)',
+        badgeFg: isDark ? '#f8f8f2' : '#282a36'
+      },
+      catppuccin: {
+        accent: isDark ? '#cba6f7' : '#8839ef',
+        link: isDark ? 'rgba(88, 91, 112, 0.5)' : 'rgba(172, 176, 190, 0.6)',
+        linkActive: isDark ? 'rgba(203, 166, 247, 0.9)' : 'rgba(136, 57, 239, 0.9)',
+        nodeDefault: isDark ? '#cba6f7' : '#8839ef',
+        focused: '#f38ba8',
+        hovered: '#fab387',
+        badgeBg: isDark ? 'rgba(30, 30, 46, 0.88)' : 'rgba(239, 241, 245, 0.92)',
+        badgeFg: isDark ? '#cdd6f4' : '#4c4f69'
+      }
+    };
+
+    const p = palettes[fam] || palettes.nord;
+    const linkColor = p.link;
+    const activeLinkColor = p.linkActive;
 
     for (const link of this.simLinks) {
       const isConnected = this.hoveredNode && (link.source === this.hoveredNode || link.target === this.hoveredNode);
@@ -3249,15 +4246,15 @@ class ObsidianGraphRenderer {
       ctx.arc(node.x, node.y, node.radius * (isHovered ? 1.3 : 1), 0, 2 * Math.PI);
 
       if (isFocused) {
-        ctx.fillStyle = '#bf616a';
-        ctx.shadowColor = 'rgba(191, 97, 106, 0.6)';
+        ctx.fillStyle = p.focused;
+        ctx.shadowColor = 'rgba(239, 68, 68, 0.5)';
         ctx.shadowBlur = 10;
       } else if (isHovered) {
-        ctx.fillStyle = '#d08770';
-        ctx.shadowColor = 'rgba(208, 135, 112, 0.5)';
+        ctx.fillStyle = p.hovered;
+        ctx.shadowColor = 'rgba(245, 158, 11, 0.4)';
         ctx.shadowBlur = 8;
       } else {
-        ctx.fillStyle = node.color || '#88c0d0';
+        ctx.fillStyle = node.color || p.nodeDefault;
         ctx.shadowBlur = 0;
       }
 
@@ -3272,10 +4269,10 @@ class ObsidianGraphRenderer {
         const text = node.title || node.id;
         const metrics = ctx.measureText(text);
         const pad = 4;
-        ctx.fillStyle = isDark ? 'rgba(46, 52, 64, 0.85)' : 'rgba(255, 255, 255, 0.85)';
+        ctx.fillStyle = p.badgeBg;
         ctx.fillRect(node.x - metrics.width / 2 - pad, node.y + node.radius + 3, metrics.width + pad * 2, 14);
 
-        ctx.fillStyle = isDark ? '#eceff4' : '#2e3440';
+        ctx.fillStyle = p.badgeFg;
         ctx.fillText(text, node.x, node.y + node.radius + 4);
       }
     }
