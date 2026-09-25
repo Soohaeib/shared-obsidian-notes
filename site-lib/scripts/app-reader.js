@@ -829,6 +829,8 @@ class ObsidianVaultApp {
             if (t.toLowerCase() !== 'index') h1Title = t;
         }
 
+        const isHome = Boolean(this.vaultLookup[fileStem]?.isHome || this.vaultLookup[relInFolder]?.isHome);
+
         notes.push({
           fullPath: f,
           path: relInFolder,
@@ -836,7 +838,8 @@ class ObsidianVaultApp {
           fileNameWithoutExt: fileStem,
           originalName: realFileName, // For Sidebar & Graph
           title: h1Title,             // For Note Header
-          folder: parts.length > 1 ? parts[0] : 'root'
+          folder: parts.length > 1 ? parts[0] : 'root',
+          isHome: isHome
         });
       }
     }
@@ -872,6 +875,8 @@ class ObsidianVaultApp {
                 if (t.toLowerCase() !== 'index') h1Title = t;
             }
 
+            const isHome = Boolean(this.vaultLookup[fileStem]?.isHome || this.vaultLookup[relInFolder]?.isHome);
+
             notes.push({
               fullPath: f,
               path: relInFolder,
@@ -879,7 +884,8 @@ class ObsidianVaultApp {
               fileNameWithoutExt: fileStem,
               originalName: realFileName, // For Sidebar & Graph
               title: h1Title,             // For Note Header
-              folder: parts.length > 1 ? parts[0] : 'root'
+              folder: parts.length > 1 ? parts[0] : 'root',
+              isHome: isHome
             });
           }
         }
@@ -927,9 +933,11 @@ class ObsidianVaultApp {
     const nodes = [];
     const links = [];
     const nodeMap = new Map();
+    const homeNote = this.allNotes.find(n => n.isHome);
+    const hubPath = homeNote ? homeNote.path : 'index.md';
 
     for (const note of this.allNotes) {
-      const isIndex = note.path === 'index.md';
+      const isIndex = Boolean(note.isHome);
       const nodeObj = {
         id: note.path,
         title: note.originalName || note.fileNameWithoutExt, 
@@ -940,11 +948,11 @@ class ObsidianVaultApp {
       nodeMap.set(note.path, nodeObj);
     }
 
-    const indexNode = nodeMap.get('index.md');
+    const indexNode = nodeMap.get(hubPath);
     if (indexNode) {
       for (const note of this.allNotes) {
-        if (note.path !== 'index.md') {
-          links.push({ source: 'index.md', target: note.path });
+        if (note.path !== hubPath) {
+          links.push({ source: hubPath, target: note.path });
         }
       }
     } else if (nodes.length > 1) {
@@ -984,6 +992,11 @@ class ObsidianVaultApp {
   renderTreeFolder(folderObj, parentPath) {
     let html = '';
     const entries = Object.keys(folderObj).sort((a, b) => {
+      const aIsHome = folderObj[a].note?.isHome;
+      const bIsHome = folderObj[b].note?.isHome;
+      if (aIsHome && !bIsHome) return -1;
+      if (!aIsHome && bIsHome) return 1;
+
       const aIsFolder = folderObj[a]._isFolder;
       const bIsFolder = folderObj[b]._isFolder;
       if (aIsFolder && !bIsFolder) return -1;
@@ -1130,14 +1143,8 @@ class ObsidianVaultApp {
 
     let targetNote = decodedHash;
     if (!targetNote) {
-      const hasIndex = this.allNotes.find(n => n.path.toLowerCase() === 'index.md');
-      if (hasIndex) targetNote = hasIndex.path;
-      else {
-        const hasReadme = this.allNotes.find(n => n.path.toLowerCase() === 'readme.md');
-        if (hasReadme) targetNote = hasReadme.path;
-        else if (this.allNotes.length > 0) targetNote = this.allNotes[0].path;
-        else targetNote = 'index.md';
-      }
+      const homeNote = this.allNotes.find(n => n.isHome);
+      targetNote = homeNote ? homeNote.path : (this.allNotes[0]?.path || '');
     } else {
       if (!targetNote.endsWith('.md')) {
         const found = this.allNotes.find(n => n.path.toLowerCase() === `${targetNote.toLowerCase()}.md` || n.path.toLowerCase().endsWith(`/${targetNote.toLowerCase()}.md`));
