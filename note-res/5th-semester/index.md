@@ -2,9 +2,6 @@
 publish: true
 permalink: /index.md
 title: BBA 5th Semester 2026
-created: 2026-06-10T21:45:20.840+06:00
-modified: 2026-06-14T00:17:41.905+06:00
-published: 2026-06-14T00:17:41.905+06:00
 ---
 
 # You can make a good use of the following notebooks. [^1]
