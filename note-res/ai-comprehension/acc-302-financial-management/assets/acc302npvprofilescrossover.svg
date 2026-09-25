@@ -1,0 +1,47 @@
+<svg width="600" height="350" viewBox="0 0 600 350" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      fill: var(--text-normal, #f0f0f0);
+    }
+    .axis, line[stroke="#888"], line[stroke="#ccc"] {
+      stroke: var(--text-muted, #999999);
+    }
+    @media (prefers-color-scheme: light) {
+      text {
+        fill: #222222 !important;
+      }
+      .axis, line[stroke="#888"], line[stroke="#ccc"] {
+        stroke: #666666 !important;
+      }
+    }
+  </style>
+
+    <!-- Background -->
+    <rect width="100%" height="100%" fill="none" />
+    
+    <!-- Axes -->
+    <line x1="60" y1="280" x2="560" y2="280" stroke="#888" stroke-width="2" /> <!-- X axis at NPV=0 -->
+    <line x1="60" y1="40" x2="60" y2="320" stroke="#888" stroke-width="2" /> <!-- Y axis (NPV) -->
+    <text x="310" y="340" fill="#ccc" font-family="Arial" font-size="14" text-anchor="middle">Discount Rate (Cost of Capital, %)</text>
+    <text x="25" y="170" fill="#ccc" font-family="Arial" font-size="14" text-anchor="middle" transform="rotate(-90 25,170)">Net Present Value (NPV $)</text>
+
+    <!-- Project A Curve (Steeper) -->
+    <path d="M 60 60 Q 250 180 420 280" fill="none" stroke="#e74c3c" stroke-width="3" />
+    <text x="430" y="270" fill="#e74c3c" font-family="Arial" font-size="14" font-weight="bold">IRR_A</text>
+    <text x="70" y="75" fill="#e74c3c" font-family="Arial" font-size="14" font-weight="bold">Project A</text>
+
+    <!-- Project B Curve (Flatter) -->
+    <path d="M 60 140 Q 250 190 520 280" fill="none" stroke="#3498db" stroke-width="3" />
+    <text x="530" y="270" fill="#3498db" font-family="Arial" font-size="14" font-weight="bold">IRR_B</text>
+    <text x="70" y="135" fill="#3498db" font-family="Arial" font-size="14" font-weight="bold">Project B</text>
+
+    <!-- Crossover Point -->
+    <circle cx="230" cy="180" r="6" fill="#2ecc71" />
+    <line x1="230" y1="180" x2="230" y2="280" stroke="#2ecc71" stroke-dasharray="5,5" stroke-width="2" />
+    <text x="230" y="300" fill="#2ecc71" font-family="Arial" font-size="14" text-anchor="middle" font-weight="bold">Crossover Rate</text>
+    
+    <!-- Conflict Zone -->
+    <text x="145" y="250" fill="#ffb347" font-family="Arial" font-size="12" text-anchor="middle">Conflict Zone</text>
+    <text x="145" y="265" fill="#ffb347" font-family="Arial" font-size="12" text-anchor="middle">(NPV favors A, IRR favors B)</text>
+  </svg>
