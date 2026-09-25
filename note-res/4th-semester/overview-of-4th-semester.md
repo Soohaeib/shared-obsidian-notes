@@ -1,6 +1,6 @@
 ---
 publish: true
-permalink: /index.md
+home: true
 title: BBA 4th Semester 2025
 ---
 

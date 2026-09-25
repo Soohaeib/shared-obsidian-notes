@@ -1,6 +1,6 @@
 ---
 publish: true
-permalink: /index.md
+home: true
 title: BBA 5th Semester 2026
 ---
 

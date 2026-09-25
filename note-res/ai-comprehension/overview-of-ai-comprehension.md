@@ -1,8 +1,7 @@
 ---
 publish: true
-permalink: /index.md
+home: true
 title: AI Comprehension
-pass: NOTES_CURATED
 ---
 # Linear Learning Strategy
 > [!tip] Logical Learning Guides
