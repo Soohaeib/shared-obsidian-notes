@@ -2,9 +2,9 @@
 """
 Platform-Independent Obsidian Digital Garden Workspace Sync
 ---------------------------------------------------------
-Strict Opt-In Sync: Only copies notes with `publish: true`.
-One-Pass Slugification: Paths are sanitized during the copy phase,
-eliminating dangerous in-place directory merges and collisions.
+Two-Pass Sync with Source of Truth Manifest Architecture.
+- Pass 1: Scan vaults, resolve slugs/collisions, and build a manifest.
+- Pass 2: Physically sync files based on the manifest.
 """
 
 import os
@@ -12,7 +12,6 @@ import json
 import re
 import html
 import shutil
-import sys
 from pathlib import Path
 
 def slugify(text: str, is_file=False) -> str:
@@ -32,8 +31,14 @@ def slugify(text: str, is_file=False) -> str:
         text = re.sub(r'[\s_-]+', '-', text)
         return text.strip('-')
 
-def is_published(file_path):
-    """Opt-Out Mode: Publishes everything by default UNLESS `publish: false` is explicitly set."""
+def extract_metadata(file_path):
+    """Extracts publish status and basic metadata from frontmatter."""
+    is_home = False
+    publish = True
+    title = ""
+    if not str(file_path).endswith('.md'):
+        return publish, is_home, title
+        
     try:
         with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
             content = f.read(8192)
@@ -43,10 +48,18 @@ def is_published(file_path):
                     frontmatter = content[3:fm_end]
                     # If publish: false is found, DO NOT SYNC
                     if re.search(r'^\s*publish\s*:\s*(?:false|"false"|\'false\')\s*$', frontmatter, re.IGNORECASE | re.MULTILINE):
-                        return False
+                        publish = False
+                    # Home detection
+                    if re.search(r'^\s*permalink\s*:\s*["\']?/(?:index\.md)?["\']?\s*$', frontmatter, re.IGNORECASE | re.MULTILINE):
+                        is_home = True
+                    if re.search(r'^\s*(?:home|entry|isHome)\s*:\s*(?:true|"true")\s*$', frontmatter, re.IGNORECASE | re.MULTILINE):
+                        is_home = True
+                    title_match = re.search(r'^\s*title\s*:\s*["\']?([^"\n\r\']+)', frontmatter, re.IGNORECASE | re.MULTILINE)
+                    if title_match:
+                        title = title_match.group(1).strip()
     except Exception:
         pass
-    return True
+    return publish, is_home, title
 
 def sync_vault():
     source_dir = os.path.abspath('.')
@@ -60,99 +73,127 @@ def sync_vault():
         return
 
     target_dir = os.path.join(source_dir, config.get('targetVaultDirectory', 'note-res'))
-    source_paths = [os.path.expanduser(p) for p in config.get('sourceVaultPaths', [])]
+    source_paths = [os.path.abspath(os.path.expanduser(p)) for p in config.get('sourceVaultPaths', [])]
     
-    # Safely load the renamed vaultExclusionPaths
+    # DEV FALLBACK for AI Studio environment
+    if not any(os.path.exists(p) for p in source_paths):
+        print("[!] Dev Mode: Source vaults not found. Building manifest from existing note-res.")
+        source_paths = [target_dir]
+
     exclusion_paths = [os.path.abspath(os.path.expanduser(p)) for p in config.get('vaultExclusionPaths', config.get('sourceExclusionPaths', []))]
     excluded_files = set(config.get('excludedFiles', []))
     excluded_folders = set(config.get('excludedFolders', ['.git', '.github', '.obsidian', '.trash', 'node_modules', 'guide']))
     
     def is_excluded(full_path):
-        """Strict exclusion check using exact path components."""
         p = Path(full_path)
-        # Check if any component matches excluded_folders
-        if any(part in excluded_folders for part in p.parts):
-            return True
-        # Check hidden folders
-        if any(part.startswith('.') for part in p.parts if part not in ['.', '..']):
-            return True
-        # Check absolute exclusion paths
+        if any(part in excluded_folders for part in p.parts): return True
+        if any(part.startswith('.') for part in p.parts if part not in ['.', '..']): return True
         full_norm = os.path.abspath(full_path)
         for ex in exclusion_paths:
-            if full_norm.startswith(ex):
-                return True
+            if full_norm.startswith(ex): return True
         return False
 
-    name_map = {}
-    copied_md = 0
-    copied_assets = 0
+    manifest = []
     
-    print("[*] Starting Strict Opt-In Sync...")
-
+    print("[*] Pass 1: Scanning vaults and building manifest...")
+    
     for src_vault in source_paths:
-        src_vault = os.path.abspath(src_vault)
-        if not os.path.exists(src_vault):
-            continue
+        if not os.path.exists(src_vault): continue
             
         for root, dirs, files in os.walk(src_vault):
             if is_excluded(root):
-                dirs[:] = [] # Don't descend into excluded directories
+                dirs[:] = []
                 continue
 
-            for file in files:
-                if file.startswith('.') or file in excluded_files:
-                    continue
-                    
-                src_file = os.path.join(root, file)
-                is_md = file.endswith('.md')
+            # Process Folders for Manifest
+            rel_folder = os.path.relpath(root, src_vault)
+            if rel_folder != '.':
+                parts = rel_folder.split(os.sep)
+                slug_parts = [slugify(p, False) for p in parts]
+                slug_path = "/".join(slug_parts)
+                planet_slug = slug_parts[0]
                 
-                # 2. Strict Opt-In for Markdown files
-                if is_md and not is_published(src_file):
-                    continue
+                manifest.append({
+                    "type": "folder",
+                    "originalName": parts[-1],
+                    "originalPath": rel_folder.replace(os.sep, "/"),
+                    "slugPath": slug_path,
+                    "planetSlug": planet_slug
+                })
 
-                # 3. Slugify the path segment by segment
-                rel_path = os.path.relpath(src_file, src_vault)
-                parts = rel_path.split(os.sep)
+            # Process Files
+            for file in files:
+                if file.startswith('.') or file in excluded_files: continue
+                
+                src_file = os.path.join(root, file)
+                publish, is_home, title = extract_metadata(src_file)
+                
+                if file.endswith('.md') and not publish: continue
+                
+                rel_file = os.path.relpath(src_file, src_vault)
+                parts = rel_file.split(os.sep)
                 
                 slug_parts = []
                 for i, part in enumerate(parts):
                     is_file_part = (i == len(parts) - 1)
-                    slug_part = slugify(part, is_file_part)
-                    slug_parts.append(slug_part)
-                    
-                    # Store original pristine names for the frontend
-                    clean_original = part.rsplit('.', 1)[0] if is_file_part else part
-                    clean_slug = slug_part.replace('.md', '')
-                    name_map[slug_part] = clean_original
-                    name_map[clean_slug] = clean_original
-
-                # 4. Copy File safely
-                dest_file = os.path.join(target_dir, *slug_parts)
-                os.makedirs(os.path.dirname(dest_file), exist_ok=True)
+                    slug_parts.append(slugify(part, is_file_part))
                 
-                # Collision safety: if a folder has the exact same slug as this file
-                dst_p = Path(dest_file)
-                if dst_p.exists() and dst_p.is_dir():
-                    base, ext = os.path.splitext(dest_file)
-                    dest_file = f"{base}-1{ext}"
-                    # If -1 also exists (unlikely but possible), keep incrementing
-                    count = 2
-                    while os.path.exists(dest_file):
-                        dest_file = f"{base}-{count}{ext}"
-                        count += 1
+                slug_path = "/".join(slug_parts)
                 
-                shutil.copy2(src_file, dest_file)
-                if is_md:
-                    copied_md += 1
-                else:
-                    copied_assets += 1
+                # Collision safety check
+                dest_abs = os.path.join(target_dir, *slug_parts)
+                if os.path.exists(dest_abs) and os.path.isdir(dest_abs):
+                    # Slug collision with a directory
+                    base, ext = os.path.splitext(slug_parts[-1])
+                    slug_parts[-1] = f"{base}-1{ext}"
+                    slug_path = "/".join(slug_parts)
+                
+                planet_slug = slug_parts[0]
+                
+                manifest.append({
+                    "type": "file",
+                    "originalName": file.rsplit('.', 1)[0] if file.endswith('.md') else file,
+                    "originalPath": rel_file.replace(os.sep, "/"),
+                    "slugPath": slug_path,
+                    "planetSlug": planet_slug,
+                    "isHome": is_home,
+                    "title": title,
+                    "isMarkdown": file.endswith('.md'),
+                    "fullSrcPath": src_file
+                })
 
-    # Save name-map for the frontend
-    os.makedirs(os.path.join(source_dir, 'site-lib'), exist_ok=True)
-    with open(os.path.join(source_dir, 'site-lib', 'name-map.json'), 'w', encoding='utf-8') as f:
-        json.dump(name_map, f, indent=2)
+    print(f"[*] Pass 2: Syncing {len(manifest)} items to {target_dir}...")
+    
+    os.makedirs(target_dir, exist_ok=True)
+    
+    copied_md = 0
+    copied_assets = 0
+    
+    for item in manifest:
+        dest_path = os.path.join(target_dir, *item['slugPath'].split('/'))
         
-    print(f"[v] Sync Complete: {copied_md} published notes and {copied_assets} assets synced.")
+        if item['type'] == 'folder':
+            os.makedirs(dest_path, exist_ok=True)
+        else:
+            os.makedirs(os.path.dirname(dest_path), exist_ok=True)
+            if os.path.abspath(item['fullSrcPath']) != os.path.abspath(dest_path):
+                shutil.copy2(item['fullSrcPath'], dest_path)
+            if item['isMarkdown']: copied_md += 1
+            else: copied_assets += 1
+            
+    # Save manifest
+    lib_dir = os.path.join(source_dir, 'site-lib')
+    os.makedirs(lib_dir, exist_ok=True)
+    manifest_out = os.path.join(lib_dir, 'vault-manifest.json')
+    
+    # Clean up internal paths before saving
+    for item in manifest:
+        if 'fullSrcPath' in item: del item['fullSrcPath']
+        
+    with open(manifest_out, 'w', encoding='utf-8') as f:
+        json.dump(manifest, f, indent=2)
+        
+    print(f"[v] Sync Complete: {copied_md} notes, {copied_assets} assets. Manifest saved to {manifest_out}")
 
 if __name__ == '__main__':
     sync_vault()

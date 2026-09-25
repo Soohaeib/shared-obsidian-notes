@@ -175,8 +175,24 @@
       </p>
     </div>
 
+    <div id="search-modal" class="view-modal-overlay" onclick="if(event.target === this) window.ObsidianApp.closeSearchModal();" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: none; align-items: flex-start; justify-content: center; padding-top: 10vh; backdrop-filter: blur(4px);">
+      <div class="search-palette" style="width: 90%; max-width: 600px; background: var(--background-primary); border-radius: 12px; border: 1px solid var(--background-modifier-border); box-shadow: 0 24px 48px rgba(0,0,0,0.4); overflow: hidden; display: flex; flex-direction: column;">
+        <div class="search-input-wrapper" style="padding: 16px; border-bottom: 1px solid var(--background-modifier-border); display: flex; align-items: center; gap: 12px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input id="search-modal-input" class="search-palette-input" type="text" placeholder="Search notes..." autocomplete="off" style="flex: 1; background: transparent; border: none; color: var(--text-normal); font-size: 1.1rem; outline: none;" />
+          <select id="search-scope" class="search-scope-select" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); border-radius: 4px; font-size: 0.75rem; padding: 2px 8px; cursor: pointer; outline: none;">
+            <option value="local">Current Section</option>
+            <option value="global" selected>Entire Vault</option>
+          </select>
+        </div>
+        <div id="search-modal-results" class="search-results-list" style="max-height: 60vh; overflow-y: auto; padding: 8px;"></div>
+      </div>
+    </div>
+
+    <script src="./site-lib/scripts/app-reader.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        window.ObsidianApp = new ObsidianVaultApp();
         // --- 1. MODAL LOGIC ---
         const infoBtn = document.getElementById('info-btn');
         const modal = document.getElementById('about-modal');
@@ -196,7 +212,7 @@
         const canvas = document.getElementById('graph-canvas');
         const ctx = canvas.getContext('2d');
         
-        const rawNodes = [{"id": "root", "label": "Shared Vault", "url": null, "isRoot": true, "moons": 0, "status": "normal"}, {"id": "4th-semester", "label": "4Th Semester", "url": "./note-res/4th-semester/", "isRoot": false, "moons": 12, "status": "normal", "hasHome": true, "isLocked": false}, {"id": "5th-semester", "label": "5Th Semester", "url": "./note-res/5th-semester/", "isRoot": false, "moons": 7, "status": "normal", "hasHome": true, "isLocked": false}, {"id": "ai-comprehension", "label": "Ai Comprehension", "url": "./note-res/ai-comprehension/", "isRoot": false, "moons": 11, "status": "locked", "hasHome": true, "isLocked": true, "expectedToken": "NOTES_CURATED"}];
+        const rawNodes = [{"id": "root", "label": "Shared Vault", "url": null, "isRoot": true, "moons": 0, "status": "normal"}, {"id": "4th-semester", "label": "4th-semester", "url": "./note-res/4th-semester/", "isRoot": false, "moons": 12, "status": "normal", "hasHome": false, "isLocked": false}, {"id": "ai-comprehension", "label": "ai-comprehension", "url": "./note-res/ai-comprehension/", "isRoot": false, "moons": 11, "status": "normal", "hasHome": false, "isLocked": true, "expectedToken": "NOTES_CURATED"}, {"id": "5th-semester", "label": "5th-semester", "url": "./note-res/5th-semester/", "isRoot": false, "moons": 7, "status": "normal", "hasHome": false, "isLocked": false}];
         
         let width, height;
         function resize() {

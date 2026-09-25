@@ -17,6 +17,7 @@ class ObsidianVaultApp {
     this.healthIssuesByFile = new Map();
     this.vaultLookup = {};
     this.nameMap = {};
+    this.manifest = [];
 
     // Reading preferences
     this.isFullWidth = localStorage.getItem('obsidian_full_width') === 'true';
@@ -648,8 +649,10 @@ class ObsidianVaultApp {
   // ==========================================
 
   getOriginalFolderName(folderKey) {
-    if (this.nameMap && this.nameMap[folderKey]) {
-      return this.nameMap[folderKey];
+    if (this.nameMap && this.nameMap[folderKey]) return this.nameMap[folderKey];
+    if (this.manifest) {
+      const match = this.manifest.find(i => i.type === 'folder' && (i.slugPath === folderKey || i.slugPath.endsWith('/' + folderKey)));
+      if (match) return match.originalName;
     }
     return folderKey.replace(/[-_]/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   }
@@ -662,26 +665,21 @@ class ObsidianVaultApp {
     const stem = fileStem || '';
     const name = fileName || '';
 
-    // PRIORITY 1: The Real Original File Name from nameMap (For Sidebar and Graph)
+    if (this.manifest) {
+      const match = this.manifest.find(i => i.type === 'file' && (i.slugPath.endsWith(stem + '.md') || i.slugPath === stem || i.originalName === stem));
+      if (match) return match.originalName;
+    }
+
     if (stem && this.nameMap && this.nameMap[stem]) {
-      const val = this.nameMap[stem].replace(/\.md$/i, '');
-      if (val && val.toLowerCase() !== 'index') return val;
+      return this.nameMap[stem].replace(/\.md$/i, '');
     }
-    if (name && this.nameMap && this.nameMap[name]) {
-      const val = this.nameMap[name].replace(/\.md$/i, '');
-      if (val && val.toLowerCase() !== 'index') return val;
-    }
-
-    // PRIORITY 2: Only fallback to H1 Title if nameMap completely fails
-    if (stem && this.vaultLookup && this.vaultLookup[stem] && this.vaultLookup[stem].title) {
-      const t = this.vaultLookup[stem].title;
-      if (t && t.toLowerCase() !== 'index') return t;
+    
+    if (this.vaultLookup && this.vaultLookup[stem] && this.vaultLookup[stem].originalName) {
+      return this.vaultLookup[stem].originalName;
     }
 
-    if (stem.toLowerCase() === 'index') {
-      return 'Coursework Overview';
-    }
-    return stem;
+    if (stem.toLowerCase() === 'index') return 'Overview';
+    return stem.replace(/-/g, ' ');
   }
 
   parseYamlFrontmatter(frontmatterStr) {
@@ -811,139 +809,65 @@ class ObsidianVaultApp {
   }
 
   async loadVaultNotes() {
-    let files = [];
-    let nameMap = {};
-
-    const nameMapPaths = ['../../site-lib/name-map.json', '../site-lib/name-map.json', './site-lib/name-map.json', 'site-lib/name-map.json', '/site-lib/name-map.json'];
-    for (const p of nameMapPaths) {
+    let manifest = [];
+    const manifestPaths = ['../../site-lib/vault-manifest.json', '../site-lib/vault-manifest.json', './site-lib/vault-manifest.json', 'site-lib/vault-manifest.json', '/site-lib/vault-manifest.json'];
+    for (const p of manifestPaths) {
       try {
         const res = await fetch(p);
-        if (res.ok) { nameMap = await res.json(); break; }
+        if (res.ok) { manifest = await res.json(); break; }
       } catch (e) {}
     }
+    this.manifest = manifest;
 
-    try {
-      const res = await fetch('/api/vault-discovery');
-      if (res.ok) {
-        const data = await res.json();
-        if (data.files && data.files.length > 0) files = data.files;
+    // Build nameMap from manifest
+    const nameMap = {};
+    manifest.forEach(item => {
+      nameMap[item.slugPath] = item.originalName;
+      if (item.type === 'file') {
+        const stem = item.slugPath.split('/').pop().replace(/\.md$/i, '');
+        nameMap[stem] = item.originalName;
+        // Also map original path for wikilink resolution
+        nameMap[item.originalPath] = item.slugPath;
       }
-    } catch (e) {}
+    });
+    this.nameMap = nameMap;
 
+    // Load vault-index.json for lookup and metadata
     const pathsToTry = ['../../site-lib/vault-index.json', '../site-lib/vault-index.json', './site-lib/vault-index.json', 'site-lib/vault-index.json', '/site-lib/vault-index.json'];
     for (const p of pathsToTry) {
       try {
         const res = await fetch(p);
         if (res.ok) {
           const data = await res.json();
-          if (data.files && data.files.length > 0) {
-            // ALWAYS merge files and lookup data from vault-index.json
-            files = [...new Set([...files, ...data.files])];
-            if (data.lookup) this.vaultLookup = { ...this.vaultLookup, ...data.lookup };
-            if (data.nameMap) nameMap = { ...nameMap, ...data.nameMap };
-            break;
-          }
+          if (data.lookup) this.vaultLookup = { ...this.vaultLookup, ...data.lookup };
+          break;
         }
       } catch (e) {}
     }
 
-    this.nameMap = nameMap;
-    this.allVaultFiles = files;
-    this.currentFolder = this.detectCurrentFolder(files);
+    this.allVaultFiles = manifest.filter(i => i.type === 'file').map(i => i.slugPath);
+    this.currentFolder = document.body.dataset.vaultFolder || this.detectCurrentFolder(this.allVaultFiles);
 
-    let notes = [];
-    const targetFolder = this.currentFolder;
-
-    for (const f of files) {
-      let relInFolder = null;
-      const matchPattern = `/${targetFolder}/`;
-      const matchIdx = f.indexOf(matchPattern);
-      if (matchIdx !== -1) {
-        relInFolder = f.substring(matchIdx + matchPattern.length);
-      } else if (f.startsWith(`${targetFolder}/`)) {
-        relInFolder = f.substring(targetFolder.length + 1);
-      }
-
-      if (relInFolder) {
-        const parts = relInFolder.split('/');
-        const fileName = parts[parts.length - 1];
-        const fileStem = fileName.replace(/\.md$/i, '');
-        
-        // Use smart label which prioritizes nameMap (Real File Name)
-        const realFileName = this.resolveSmartLabel(fileStem, fileName, null);
-        
-        // ONLY use lookup for the H1 title
-        let h1Title = realFileName;
-        if (this.vaultLookup && this.vaultLookup[fileStem] && this.vaultLookup[fileStem].title) {
-            const t = this.vaultLookup[fileStem].title;
-            if (t.toLowerCase() !== 'index') h1Title = t;
-        }
-
-        const noteObj = {
-          fullPath: f,
-          path: relInFolder,
-          fileName: fileName,
-          fileNameWithoutExt: fileStem,
-          originalName: realFileName, // For Sidebar & Graph
-          title: h1Title,             // For Note Header
-          folder: parts.length > 1 ? parts[0] : 'root'
-        };
-        noteObj.isHome = this.isNoteHome(noteObj, fileStem, relInFolder);
-        notes.push(noteObj);
-      }
-    }
-
-    if (notes.length === 0 && files.length > 0) {
-      const folderCounts = {};
-      for (const f of files) {
-        const cleanF = f.replace(/^(?:\[inside\][^/]+|note-res)\//, '');
-        const fld = cleanF.split('/')[0];
-        folderCounts[fld] = (folderCounts[fld] || 0) + 1;
-      }
-      const bestFolder = Object.keys(folderCounts).sort((a, b) => folderCounts[b] - folderCounts[a])[0];
-      if (bestFolder) {
-        this.currentFolder = bestFolder;
-        for (const f of files) {
-          let relInFolder = null;
-          const matchPattern = `/${bestFolder}/`;
-          const matchIdx = f.indexOf(matchPattern);
-          if (matchIdx !== -1) {
-            relInFolder = f.substring(matchIdx + matchPattern.length);
-          } else if (f.startsWith(`${bestFolder}/`)) {
-            relInFolder = f.substring(bestFolder.length + 1);
-          }
-          if (relInFolder) {
-            const parts = relInFolder.split('/');
-            const fileName = parts[parts.length - 1];
-            const fileStem = fileName.replace(/\.md$/i, '');
-            
-            const realFileName = this.resolveSmartLabel(fileStem, fileName, null);
-            let h1Title = realFileName;
-            if (this.vaultLookup && this.vaultLookup[fileStem] && this.vaultLookup[fileStem].title) {
-                const t = this.vaultLookup[fileStem].title;
-                if (t.toLowerCase() !== 'index') h1Title = t;
-            }
-
-            const noteObj = {
-              fullPath: f,
-              path: relInFolder,
-              fileName: fileName,
-              fileNameWithoutExt: fileStem,
-              originalName: realFileName, // For Sidebar & Graph
-              title: h1Title,             // For Note Header
-              folder: parts.length > 1 ? parts[0] : 'root'
-            };
-            noteObj.isHome = this.isNoteHome(noteObj, fileStem, relInFolder);
-            notes.push(noteObj);
-          }
-        }
-      }
-    }
+    const notes = manifest.filter(item => item.type === 'file' && item.isMarkdown && item.planetSlug === this.currentFolder).map(item => {
+      const slugParts = item.slugPath.split('/');
+      const relInFolder = slugParts.slice(1).join('/');
+      return {
+        path: relInFolder,
+        folder: item.planetSlug,
+        fileName: slugParts.pop(),
+        fileNameWithoutExt: item.originalName,
+        title: item.title || item.originalName,
+        originalName: item.originalName,
+        isHome: item.isHome || false,
+        originalPath: item.originalPath,
+        slugPath: item.slugPath
+      };
+    });
 
     this.allNotes = notes;
-    this.buildGraphData();
+    this.updateGraphData();
     this.updateWorkspaceBranding();
-    this.enqueueIdlePrefetch(notes.map(n => n.path));
+    this.enqueueIdlePrefetch(notes.map(n => n.path).slice(0, 15));
   }
 
   updateWorkspaceBranding() {
@@ -1042,14 +966,11 @@ class ObsidianVaultApp {
   renderTreeFolder(folderObj, parentPath) {
     let html = '';
     const entries = Object.keys(folderObj).sort((a, b) => {
-      const itemA = folderObj[a];
-      const itemB = folderObj[b];
-      
-      const aIsFolder = itemA._isFolder;
-      const bIsFolder = itemB._isFolder;
-      if (aIsFolder && !bIsFolder) return -1;
-      if (!aIsFolder && bIsFolder) return 1;
-      return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
+        const aIsFolder = folderObj[a]._isFolder;
+        const bIsFolder = folderObj[b]._isFolder;
+        if (aIsFolder && !bIsFolder) return -1;
+        if (!aIsFolder && bIsFolder) return 1;
+        return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
     });
 
     for (const key of entries) {
@@ -1082,16 +1003,13 @@ class ObsidianVaultApp {
         let fileLabel = note.originalName;
         if (fileLabel.toLowerCase() === 'index') fileLabel = 'Overview';
         
-        const homeIcon = note.isHome ? `<span class="home-note-icon" title="Home/Overview Note" style="margin-left: 6px; opacity: 0.6; display: inline-flex; align-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span>` : '';
+        const homeIcon = note.isHome ? `<svg style="margin-left: 6px; color: var(--interactive-accent); vertical-align: text-bottom;" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>` : '';
 
         html += `
           <div class="nav-file" data-note-path="${note.path}">
             <a href="#${note.path}" class="tree-item-self note-item" data-note-path="${note.path}">
-              <span class="tree-item-icon note-health-icon health-pending" role="img" aria-label="Health status loading" title="Health status loading" style="opacity: 0.8;">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                </svg>
+              <span class="tree-item-icon note-health-icon health-pending" role="img" style="opacity: 0.8;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
               </span>
               <span class="tree-item-title">${this.escapeHtml(fileLabel)}${homeIcon}</span>
             </a>
@@ -1286,10 +1204,6 @@ class ObsidianVaultApp {
       contentTitle = this.resolveSmartLabel(relPath.split('/').pop().replace(/\.md$/i, ''), null, null);
     }
 
-    let matchedH1Text = '';
-    const firstH1Match = bodyMarkdown.match(/^#\s+(.+)$/m);
-    if (firstH1Match) matchedH1Text = firstH1Match[1].trim();
-
     const propertiesBlockHtml = this.renderPropertiesBlock(frontmatterData);
     const words = bodyMarkdown.trim().split(/\s+/).length;
     const readingTime = Math.ceil(words / 200);
@@ -1313,7 +1227,7 @@ class ObsidianVaultApp {
     this.activeNoteOriginalName = realFileName;
     container.innerHTML = `
       <article class="markdown-rendered" id="note-article">
-        <div class="note-real-filename">${this.escapeHtml(realFileName)}</div>
+        <div class="note-real-filename" style="font-family: var(--font-mono); color: var(--text-muted); font-size: 0.85rem; margin-bottom: 8px;">${this.escapeHtml(noteObj ? noteObj.originalName : relPath)}</div>
         <h1 class="inline-title">${this.escapeHtml(contentTitle)}</h1>
         ${propertiesBlockHtml}
         ${renderedHtml}
@@ -1721,33 +1635,43 @@ class ObsidianVaultApp {
   }
 
   resolveWikiLink(noteName) {
-    if (!noteName) return { path: '', resolved: false };
+    if (!noteName) return { path: 'javascript:void(0)', resolved: false, title: '' };
     const raw = noteName.trim();
     const clean = raw.replace(/\.md$/i, '').toLowerCase();
     const stem = clean.split('/').pop();
-
+    
     const slugifyText = (text) => {
       if (!text) return '';
       let str = text.replace(/&amp;/gi, '&').replace(/&lt;/gi, '<').replace(/&gt;/gi, '>').replace(/&quot;/gi, '"').replace(/&#39;/gi, "'");
       str = str.replace(/&/g, ' and ').toLowerCase();
       str = str.replace(/[^a-z0-9\s_-]/g, '');
-      str = str.replace(/[\s_]+/g, '-').replace(/-+/g, '-');
-      return str.replace(/^-+|-+$/g, '');
+      return str.replace(/[\s_]+/g, '-').replace(/-+/g, '-').replace(/^-+|-+$/g, '');
     };
 
     const slugified = slugifyText(clean);
     const stemSlugified = slugifyText(stem);
     const alphaOnly = clean.replace(/[^a-z0-9]/g, '');
 
+    // 1. LOCAL-FIRST SEARCH: Look in the current planet first
+    let localFound = this.allNotes.find(n => {
+      if (n.folder !== this.currentFolder) return false;
+      const nClean = n.path.replace(/\.md$/i, '').toLowerCase();
+      const nStem = nClean.split('/').pop();
+      const nTitle = n.title || n.originalName || n.fileNameWithoutExt || '';
+      return nClean === clean || slugifyText(nClean) === slugified || nStem === stem || slugifyText(nStem) === stemSlugified || nTitle.toLowerCase() === clean || slugifyText(nTitle) === slugified;
+    });
+
+    if (localFound) {
+      const resolvedTitle = localFound.originalName || localFound.title || localFound.fileNameWithoutExt || this.resolveSmartLabel(stem, localFound.fileName, null);
+      return { path: localFound.path, resolved: true, title: resolvedTitle };
+    }
+
+    // 2. GLOBAL VAULT FALLBACK
     if (this.vaultLookup) {
-      const match = this.vaultLookup[raw] || this.vaultLookup[clean] || this.vaultLookup[slugified] || 
-                    this.vaultLookup[stem] || this.vaultLookup[stemSlugified] || this.vaultLookup[alphaOnly] ||
-                    this.vaultLookup[slugifyText(raw)];
+      const match = this.vaultLookup[raw] || this.vaultLookup[clean] || this.vaultLookup[slugified] || this.vaultLookup[stem] || this.vaultLookup[stemSlugified] || this.vaultLookup[alphaOnly];
       if (match) {
-        const fullRel = match.path.replace(/^(?:\[inside\][^/]+|note-res)\//, '');
         const targetFolder = match.folder;
         const targetRel = match.relInFolder;
-        // Use the actual file name from nameMap if possible
         const resolvedTitle = this.nameMap[stem] || match.title || this.resolveSmartLabel(stem, null, null);
         if (targetFolder !== this.currentFolder) {
           return { path: `../${targetFolder}/#${encodeURIComponent(targetRel)}`, resolved: true, title: resolvedTitle, isCrossFolder: true };
@@ -1756,44 +1680,8 @@ class ObsidianVaultApp {
       }
     }
 
-    let found = this.allNotes.find(n => {
-      const nClean = n.path.replace(/\.md$/i, '').toLowerCase();
-      const nStem = nClean.split('/').pop();
-      const nSlug = slugifyText(nClean);
-      const nStemSlug = slugifyText(nStem);
-      const nAlpha = nClean.replace(/[^a-z0-9]/g, '');
-      const nTitle = n.title || n.fileNameWithoutExt || '';
-      return nClean === clean || nSlug === slugified || nStem === stem || nStemSlug === stemSlugified || nAlpha === alphaOnly || nTitle.toLowerCase() === clean || slugifyText(nTitle) === slugified;
-    });
-
-    if (found) {
-      const resolvedTitle = found.originalName || found.title || found.fileNameWithoutExt || this.resolveSmartLabel(stem, found.fileName, null);
-      return { path: found.path, resolved: true, title: resolvedTitle };
-    }
-
-    if (this.allVaultFiles && this.allVaultFiles.length > 0) {
-      const globalFound = this.allVaultFiles.find(f => {
-        const fClean = f.replace(/^(?:\[inside\][^/]+|note-res)\//, '').replace(/\.md$/i, '').toLowerCase();
-        const fStem = fClean.split('/').pop();
-        const fSlug = slugifyText(fClean);
-        const fStemSlug = slugifyText(fStem);
-        const fAlpha = fClean.replace(/[^a-z0-9]/g, '');
-        return fClean === clean || fSlug === slugified || fStem === stem || fStemSlug === stemSlugified || fAlpha.endsWith(alphaOnly) || fClean.endsWith(`/${stem}`) || fClean.endsWith(`/${slugified}`);
-      });
-      if (globalFound) {
-        const cleanPath = globalFound.replace(/^(?:\[inside\][^/]+|note-res)\//, '');
-        const parts = cleanPath.split('/');
-        const targetFolder = parts[0];
-        const targetRel = parts.slice(1).join('/');
-        const resolvedTitle = this.resolveSmartLabel(stem, parts.pop(), null);
-        if (targetFolder !== this.currentFolder) {
-          return { path: `../${targetFolder}/#${encodeURIComponent(targetRel)}`, resolved: true, title: resolvedTitle, isCrossFolder: true };
-        }
-        return { path: targetRel, resolved: true, title: resolvedTitle };
-      }
-    }
-
-    return { path: 'javascript:void(0)', resolved: false, title: raw };
+    // 3. DEAD LINK HANDLING
+    return { path: 'javascript:void(0)', resolved: false, title: this.resolveSmartLabel(stem, null, null) || raw };
   }
 
   processObsidianCallouts(text) {
@@ -3018,8 +2906,11 @@ class ObsidianVaultApp {
     const updateZoom = () => {
       const viewport = document.getElementById('media-preview-viewport');
       if (viewport) {
-        viewport.style.transformOrigin = 'top left';
-        viewport.style.transform = `scale(${this.mediaZoom})`;
+          viewport.style.transformOrigin = 'top left';
+          viewport.style.transform = `scale(${this.mediaZoom})`;
+          viewport.parentElement.style.overflow = 'auto';
+          viewport.parentElement.style.width = '100%';
+          viewport.parentElement.style.height = '100%';
       }
     };
 
@@ -3594,13 +3485,22 @@ class ObsidianVaultApp {
 
   handleSearch(query) {
     const container = document.getElementById('search-modal-results');
+    const scopeEl = document.getElementById('search-scope');
     if (!container) return;
 
     const q = query.toLowerCase().trim();
-    const matches = this.allNotes.filter(n => {
+    const scope = scopeEl ? scopeEl.value : 'global';
+
+    let pool = this.manifest || [];
+    if (scope === 'local') {
+      pool = pool.filter(item => item.planetSlug === this.currentFolder);
+    }
+
+    const matches = pool.filter(item => {
+      if (item.type !== 'file' || !item.isMarkdown) return false;
       if (!q) return true;
-      const nTitle = n.title || n.fileNameWithoutExt || '';
-      return nTitle.toLowerCase().includes(q) || n.path.toLowerCase().includes(q);
+      const title = item.title || item.originalName || '';
+      return title.toLowerCase().includes(q) || item.originalPath.toLowerCase().includes(q) || item.slugPath.toLowerCase().includes(q);
     }).slice(0, 25);
 
     if (matches.length === 0) {
@@ -3609,14 +3509,28 @@ class ObsidianVaultApp {
     }
 
     let html = '';
-    matches.forEach(note => {
-      const displayTitle = note.title || note.fileNameWithoutExt || note.path;
+    matches.forEach(item => {
+      const displayTitle = item.title || item.originalName;
       const highlightedTitle = this.highlightSearchMatch(displayTitle, q);
-      const highlightedPath = this.highlightSearchMatch(note.path, q);
+      
+      // Build breadcrumbs
+      const pathParts = item.originalPath.split('/');
+      const breadcrumbs = pathParts.slice(0, -1).join(' > ');
+      const highlightedPath = this.highlightSearchMatch(breadcrumbs, q);
+
+      // Resolve URL: if local section, just hash. If cross-folder, full path.
+      let targetUrl = `#${item.slugPath.split('/').slice(1).join('/')}`;
+      let onClick = `window.location.hash='${targetUrl}'; window.ObsidianApp.closeSearchModal();`;
+      
+      if (item.planetSlug !== this.currentFolder) {
+        targetUrl = `../${item.planetSlug}/${targetUrl}`;
+        onClick = `window.location.href='${targetUrl}'; window.ObsidianApp.closeSearchModal();`;
+      }
+
       html += `
-        <div class="search-item" onclick="window.location.hash='#${note.path}'; window.ObsidianApp.closeSearchModal();">
+        <div class="search-item" onclick="${onClick}">
           <span class="search-item-title">${highlightedTitle}</span>
-          <span class="search-item-path">${highlightedPath}</span>
+          <div class="search-item-path" style="font-size:0.75rem; color:var(--text-muted);">${highlightedPath}</div>
         </div>
       `;
     });
@@ -3701,42 +3615,48 @@ class ObsidianVaultApp {
   }
 
   setupReadingTimeTracking(totalMinutes) {
-    const viewport = document.getElementById('note-viewport');
-    const meta = document.getElementById('floating-note-meta');
-    if (!viewport) return;
-    if (this.readingScrollHandler) viewport.removeEventListener('scroll', this.readingScrollHandler);
+    let statsEl = document.getElementById('reading-stats-overlay');
+    if (!statsEl) {
+        statsEl = document.createElement('div');
+        statsEl.id = 'reading-stats-overlay';
+        statsEl.style.cssText = `
+            position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+            background: rgba(25, 25, 25, 0.45); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px;
+            padding: 8px 18px; display: flex; gap: 16px; align-items: center;
+            color: #e2e8f0; font-size: 0.85rem; font-weight: 500;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3); z-index: 100;
+            opacity: 0; transition: opacity 0.4s ease; pointer-events: none;
+        `;
+        statsEl.innerHTML = `
+            <div style="display:flex; align-items:center; gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span id="stats-time"></span></div>
+            <div style="display:flex; align-items:center; gap:6px;"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg><span id="stats-words"></span></div>
+        `;
+        document.body.appendChild(statsEl);
+    }
+    
+    const words = document.getElementById('word-count-val')?.textContent || '0 words';
+    document.getElementById('stats-words').textContent = words;
 
     this.readingStats = { totalMinutes };
-    
-    let hideTimeout = null;
-    this.readingScrollHandler = () => {
-      this.updateReadingTimeRemaining();
-      
-      if (meta) {
-        meta.classList.add('is-visible');
-        clearTimeout(hideTimeout);
-        hideTimeout = setTimeout(() => {
-          meta.classList.remove('is-visible');
-        }, 1500);
-      }
-    };
-    
-    viewport.addEventListener('scroll', this.readingScrollHandler, { passive: true });
-    this.updateReadingTimeRemaining();
-  }
+    let hideTimeout;
 
-  updateReadingTimeRemaining() {
     const viewport = document.getElementById('note-viewport');
-    const valEl = document.getElementById('reading-time-val');
-    const timeBadge = document.getElementById('note-reading-time');
-    if (!viewport || !this.readingStats) return;
-
-    const scrollRange = viewport.scrollHeight - viewport.clientHeight;
-    const progress = scrollRange > 0 ? Math.min(1, Math.max(0, viewport.scrollTop / scrollRange)) : 0;
-    const remaining = Math.max(0, Math.ceil(this.readingStats.totalMinutes * (1 - progress)));
-    if (valEl) valEl.textContent = remaining > 0 ? `${remaining} min left` : 'Finished';
-    else if (timeBadge && timeBadge.lastChild) timeBadge.lastChild.textContent = remaining > 0 ? `${remaining} min left` : 'Finished';
-    if (timeBadge) timeBadge.title = remaining > 0 ? `Estimated ${remaining} min remaining` : 'Finished reading note';
+    if (!viewport) return;
+    
+    if (this.readingScrollHandler) viewport.removeEventListener('scroll', this.readingScrollHandler);
+    
+    this.readingScrollHandler = () => {
+        const scrollRange = viewport.scrollHeight - viewport.clientHeight;
+        const progress = scrollRange > 0 ? Math.min(1, Math.max(0, viewport.scrollTop / scrollRange)) : 0;
+        const remaining = Math.max(0, Math.ceil(this.readingStats.totalMinutes * (1 - progress)));
+        document.getElementById('stats-time').textContent = remaining > 0 ? `${remaining} min left` : 'Finished';
+        
+        statsEl.style.opacity = '1';
+        clearTimeout(hideTimeout);
+        hideTimeout = setTimeout(() => { statsEl.style.opacity = '0'; }, 1500);
+    };
+    viewport.addEventListener('scroll', this.readingScrollHandler, { passive: true });
   }
 
   downloadMarkdownFile(title, path, rawMarkdown) {

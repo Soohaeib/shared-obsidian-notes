@@ -177,140 +177,104 @@ def extract_note_metadata(file_path):
 planet_status_map = {}
 planet_hashome_map = {}
 
-for name in sorted(os.listdir(scan_base)):
-    full_path = os.path.join(scan_base, name)
-    if is_ignored_folder(name, full_path) or (scan_base == source_dir and name == vault_container):
-        continue
-    if os.path.isdir(full_path):
-        discovered_folders.append(name)
-        folder_unslugified = name.replace('-', ' ').replace('_', ' ').title()
-        if name not in name_map:
-            name_map[name] = folder_unslugified
+# 1. Load Manifest
+manifest_path = os.path.join(source_dir, 'site-lib', 'vault-manifest.json')
+if not os.path.exists(manifest_path):
+    print(f"[!] Error: Manifest not found at {manifest_path}. Run sync_site.py first.")
+    sys.exit(1)
 
-        sub_count = 0
-        folder_md_files = []
-        planet_root_homes = []
-        for root, dirs, fnames in os.walk(full_path):
-            dirs[:] = [d for d in dirs if not is_ignored_folder(d, os.path.join(root, d))]
-            sub_count += len(dirs)
-            for d in dirs:
-                sub_rel = os.path.relpath(os.path.join(root, d), full_path).replace('\\', '/')
-                folder_d_unslugified = d.replace('-', ' ').replace('_', ' ').title()
-                if d not in name_map:
-                    name_map[d] = folder_d_unslugified
-                if sub_rel not in name_map:
-                    name_map[sub_rel] = folder_d_unslugified
+with open(manifest_path, 'r', encoding='utf-8') as f:
+    manifest = json.load(f)
 
-            for f in sorted(fnames):
-                if f.endswith('.md') and not is_ignored_file(f):
-                    full_md_path = os.path.join(root, f)
-                    
-                    # Only index publishable notes
-                    if not is_publishable(full_md_path):
-                        continue
+# 2. Build Data Structures from Manifest
+all_md_files = []
+vault_lookup = {}
+planet_stats = {} # planetSlug -> { sub_folders, md_files, has_home }
+planet_notes = {} # planetSlug -> [notes]
+discovered_folders = []
 
-                    rel = os.path.relpath(full_md_path, source_dir).replace('\\', '/')
-                    all_md_files.append(rel)
-                    folder_md_files.append(rel)
+# First pass: identify planet folders
+for item in manifest:
+    if item['type'] == 'folder' and '/' not in item['originalPath']:
+        p_slug = item['slugPath']
+        if p_slug not in planet_stats:
+            planet_stats[p_slug] = {'sub_folders': 0, 'md_files': 0, 'has_home': False, 'originalName': item['originalName']}
+            discovered_folders.append(p_slug)
 
-                    # Populate Wikilink lookup dictionary & name_map
-                    stem = f[:-3] # remove .md
-                    stem_clean = stem.replace('-', ' ').replace('_', ' ')
-                    title, is_home = extract_note_metadata(full_md_path)
-                    
-                    # Track if root-level note has is_home == True
-                    is_at_planet_root = (os.path.dirname(full_md_path) == full_path)
-                    if is_at_planet_root and is_home:
-                        planet_root_homes.append(f)
-                        
-                    rel_in_folder = os.path.relpath(full_md_path, full_path).replace('\\', '/')
-
-                    display_title = title if title else stem_clean.title()
-                    if rel not in name_map:
-                        name_map[rel] = display_title
-                    if rel_in_folder not in name_map:
-                        name_map[rel_in_folder] = display_title
-                    if f not in name_map:
-                        name_map[f] = display_title
-                    if stem not in name_map:
-                        name_map[stem] = display_title
-
-                    # Register various aliases for instant Wikilink lookup
-                    keys_to_register = [
-                        stem,
-                        stem.lower(),
-                        stem_clean,
-                        stem_clean.lower(),
-                        stem.replace('_', ' '),
-                        stem.replace('_', '-'),
-                        stem.replace('-', ' '),
-                        re.sub(r'[^a-z0-9]', '', stem.lower()),
-                        slugify(stem),
-                        slugify(stem_clean),
-                        f,
-                        f.lower(),
-                        title,
-                        title.lower(),
-                        re.sub(r'[^a-z0-9]', '', title.lower()),
-                        slugify(title),
-                        rel_in_folder,
-                        rel_in_folder[:-3] if rel_in_folder.endswith('.md') else rel_in_folder,
-                        rel_in_folder.lower(),
-                        rel,
-                        rel.lower()
-                    ]
-                    for k in keys_to_register:
-                        if k and k not in vault_lookup:
-                            vault_lookup[k] = {
-                                "path": rel,
-                                "folder": name,
-                                "relInFolder": rel_in_folder,
-                                "title": title,
-                                "fileName": f,
-                                "isHome": is_home
-                            }
-
-        has_home = len(planet_root_homes) > 0
-        if name in locked_sections:
-            status = "locked"
-        elif has_home:
-            status = "normal"
-        else:
-            status = "fallback"
-
-        planet_status_map[name] = status
-        planet_hashome_map[name] = has_home
-
-        rel_url = f"./{vault_container}/{name}/" if scan_base == container_path else f"./{name}/"
-        entries.append((name, rel_url, sub_count))
-
-        # Provision folder index.html viewer
-        if t_content_raw:
-            folder_index = os.path.join(full_path, 'index.html')
-            folder_title = name_map.get(name, name.replace('-', ' ').replace('_', ' ').title())
+for item in manifest:
+    p_slug = item['planetSlug']
+    if p_slug not in planet_stats:
+        # Fallback if the folder wasn't in the root of any vault
+        planet_stats[p_slug] = {'sub_folders': 0, 'md_files': 0, 'has_home': False, 'originalName': p_slug.replace('-', ' ').title()}
+        discovered_folders.append(p_slug)
+        
+    if item['type'] == 'folder':
+        if '/' in item['originalPath']:
+            planet_stats[p_slug]['sub_folders'] += 1
+        name_map[item['slugPath']] = item['originalName']
+    else:
+        if item['isMarkdown']:
+            all_md_files.append(item['slugPath'])
+            planet_stats[p_slug]['md_files'] += 1
+            if item.get('isHome'):
+                planet_stats[p_slug]['has_home'] = True
             
-            rel_to_root = os.path.relpath(source_dir, full_path).replace('\\', '/')
-            if not rel_to_root.endswith('/'):
-                rel_to_root += '/'
-
-            t_content = t_content_raw
-            t_content = re.sub(r'(\.\./)*site-lib/', f'{rel_to_root}site-lib/', t_content)
-            t_content = re.sub(r'<a href="\.\./"', f'<a href="{rel_to_root}"', t_content)
-            t_content = re.sub(r'<title>.*?</title>', f'<title>BBA {folder_title} — Shared Obsidian Notes</title>', t_content, flags=re.IGNORECASE)
+            # Build Wikilink Lookup
+            slug_path = item['slugPath']
+            orig_name = item['originalName']
+            stem = Path(slug_path).stem
             
-            is_locked_folder = name in locked_sections
-            body_attrs = f'data-vault-folder="{name}"'
-            if is_locked_folder:
-                body_attrs += f' data-vault-locked="true" data-vault-token="{locked_sections[name]}"'
-            t_content = re.sub(r'<body([^>]*)>', f'<body\\1 {body_attrs}>', t_content, count=1, flags=re.IGNORECASE)
+            lookup_entry = {
+                "path": slug_path,
+                "folder": p_slug,
+                "relInFolder": slug_path[len(p_slug)+1:],
+                "title": item.get('title') or orig_name,
+                "originalName": orig_name,
+                "isHome": item.get('isHome', False)
+            }
             
-            t_content = re.sub(r'<span class="sidebar-title">.*?</span>', f'<span class="sidebar-title">{folder_title} Notes</span>', t_content, flags=re.IGNORECASE)
+            vault_lookup[orig_name] = lookup_entry
+            vault_lookup[orig_name.lower()] = lookup_entry
+            vault_lookup[slug_path] = lookup_entry
+            vault_lookup[stem] = lookup_entry
+            if item.get('title'):
+                vault_lookup[item['title']] = lookup_entry
+                vault_lookup[item['title'].lower()] = lookup_entry
+            
+            name_map[slug_path] = item.get('title') or orig_name
 
-            try:
-                with open(folder_index, 'w', encoding='utf-8') as out_f:
-                    out_f.write(t_content)
-            except Exception as e:
-                print(f"Notice: Could not write viewer for {name}: {e}")
+# 3. Provision Folder Viewers
+for p_slug, stats in planet_stats.items():
+    planet_path = os.path.join(source_dir, vault_container, p_slug)
+    if not os.path.isdir(planet_path): continue
+    
+    if t_content_raw:
+        folder_index = os.path.join(planet_path, 'index.html')
+        folder_title = stats['originalName']
+        
+        rel_to_root = "../../"
+        
+        t_content = t_content_raw
+        t_content = re.sub(r'(\.\./)*site-lib/', f'{rel_to_root}site-lib/', t_content)
+        t_content = re.sub(r'<a href="\.\./"', f'<a href="{rel_to_root}"', t_content)
+        t_content = re.sub(r'<title>.*?</title>', f'<title>{folder_title} — Shared Notes</title>', t_content, flags=re.IGNORECASE)
+        
+        is_locked = p_slug in locked_sections
+        body_attrs = f'data-vault-folder="{p_slug}"'
+        if is_locked:
+            body_attrs += f' data-vault-locked="true" data-vault-token="{locked_sections[p_slug]}"'
+        t_content = re.sub(r'<body([^>]*)>', f'<body\\1 {body_attrs}>', t_content, count=1, flags=re.IGNORECASE)
+        t_content = re.sub(r'<span class="sidebar-title">.*?</span>', f'<span class="sidebar-title">{folder_title}</span>', t_content, flags=re.IGNORECASE)
+
+        try:
+            with open(folder_index, 'w', encoding='utf-8') as out_f:
+                out_f.write(t_content)
+        except Exception: pass
+
+entries = []
+for p_slug, stats in planet_stats.items():
+    rel_url = f"./{vault_container}/{p_slug}/" if scan_base == container_path else f"./{p_slug}/"
+    entries.append((p_slug, rel_url, stats['sub_folders']))
 
 # Update site-lib/vault-index.json and site-lib/name-map.json
 vault_index_path = os.path.join(source_dir, 'site-lib', 'vault-index.json')
@@ -547,8 +511,24 @@ html_template = r'''<!DOCTYPE html>
       </p>
     </div>
 
+    <div id="search-modal" class="view-modal-overlay" onclick="if(event.target === this) window.ObsidianApp.closeSearchModal();" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: none; align-items: flex-start; justify-content: center; padding-top: 10vh; backdrop-filter: blur(4px);">
+      <div class="search-palette" style="width: 90%; max-width: 600px; background: var(--background-primary); border-radius: 12px; border: 1px solid var(--background-modifier-border); box-shadow: 0 24px 48px rgba(0,0,0,0.4); overflow: hidden; display: flex; flex-direction: column;">
+        <div class="search-input-wrapper" style="padding: 16px; border-bottom: 1px solid var(--background-modifier-border); display: flex; align-items: center; gap: 12px;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input id="search-modal-input" class="search-palette-input" type="text" placeholder="Search notes..." autocomplete="off" style="flex: 1; background: transparent; border: none; color: var(--text-normal); font-size: 1.1rem; outline: none;" />
+          <select id="search-scope" class="search-scope-select" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); border-radius: 4px; font-size: 0.75rem; padding: 2px 8px; cursor: pointer; outline: none;">
+            <option value="local">Current Section</option>
+            <option value="global" selected>Entire Vault</option>
+          </select>
+        </div>
+        <div id="search-modal-results" class="search-results-list" style="max-height: 60vh; overflow-y: auto; padding: 8px;"></div>
+      </div>
+    </div>
+
+    <script src="./site-lib/scripts/app-reader.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
+        window.ObsidianApp = new ObsidianVaultApp();
         // --- 1. MODAL LOGIC ---
         const infoBtn = document.getElementById('info-btn');
         const modal = document.getElementById('about-modal');

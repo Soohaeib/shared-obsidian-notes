@@ -1,0 +1,3533 @@
+[
+  {
+    "type": "folder",
+    "originalName": "4th-semester",
+    "originalPath": "4th-semester",
+    "slugPath": "4th-semester",
+    "planetSlug": "4th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "overview-of-4th-semester",
+    "originalPath": "4th-semester/overview-of-4th-semester.md",
+    "slugPath": "4th-semester/overview-of-4th-semester.md",
+    "planetSlug": "4th-semester",
+    "isHome": true,
+    "title": "BBA 4th Semester 2025",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "pyq-final-2025",
+    "originalPath": "4th-semester/pyq-final-2025.md",
+    "slugPath": "4th-semester/pyq-final-2025.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "index.html",
+    "originalPath": "4th-semester/index.html",
+    "slugPath": "4th-semester/index.html",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "folder",
+    "originalName": "bcc-206",
+    "originalPath": "4th-semester/bcc-206",
+    "slugPath": "4th-semester/bcc-206",
+    "planetSlug": "4th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "realisations-about-risk-vs-loss",
+    "originalPath": "4th-semester/bcc-206/realisations-about-risk-vs-loss.md",
+    "slugPath": "4th-semester/bcc-206/realisations-about-risk-vs-loss.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "pyq-bcc-206",
+    "originalPath": "4th-semester/bcc-206/pyq-bcc-206.md",
+    "slugPath": "4th-semester/bcc-206/pyq-bcc-206.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "solutions",
+    "originalPath": "4th-semester/bcc-206/solutions",
+    "slugPath": "4th-semester/bcc-206/solutions",
+    "planetSlug": "4th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2021-exam-q5",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q5.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2020-exam-q5",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q5.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2020-exam-q3",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q3.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-4th-exam-q1",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q1.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2019-exam-q3",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q3.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2021-exam-q2",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q2.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2024-exam-q5",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q5.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2021-exam-q6",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q6.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-5th-exam-q7",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q7.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2023-exam-q7",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q7.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2019-exam-q2",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q2.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2024-exam-q6",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q6.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2019-exam-q7",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q7.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2020-exam-q2",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q2.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2021-exam-q3",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q3.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2023-exam-q3",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q3.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2020-exam-q7",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q7.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2024-exam-q2",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q2.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2024-exam-q4",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q4.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2019-exam-q5",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q5.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2020-exam-q4",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q4.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2021-exam-q4",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q4.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2023-exam-q4",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q4.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-4th-exam-q3",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q3.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2023-exam-q1",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q1.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-5th-exam-q4",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q4.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-5th-exam-q1",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q1.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2024-exam-q1",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q1.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-4th-exam-q5",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q5.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2020-exam-q6",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q6.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2019-exam-q1",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q1.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-5th-exam-q2",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q2.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2020-exam-q1",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q1.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-4th-exam-q7",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q7.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-5th-exam-q6",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q6.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2024-exam-q7",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q7.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2023-exam-q5",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q5.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2019-exam-q6",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q6.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-4th-exam-q4",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q4.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-5th-exam-q5",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q5.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2023-exam-q6",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q6.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2021-exam-q7",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q7.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2021-exam-q1",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q1.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-4th-exam-q6",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q6.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2024-exam-q3",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q3.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2019-exam-q4",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q4.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-5th-exam-q3",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q3.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2022-4th-exam-q2",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q2.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-2023-exam-q2",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q2.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20225th-exam-q5",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q5.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20224th-exam-q5",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q5.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20225th-exam-q3",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q3.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20225th-exam-q7",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q7.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20225th-exam-q4",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q4.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20224th-exam-q3",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q3.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20224th-exam-q6",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q6.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20224th-exam-q7",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q7.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20225th-exam-q6",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q6.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20224th-exam-q1",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q1.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20224th-exam-q4",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q4.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20224th-exam-q2",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q2.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20224th-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20225th-exam-q1",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q1.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "irm-20225th-exam-q2",
+    "originalPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q2.md",
+    "slugPath": "4th-semester/bcc-206/solutions/irm-20225th-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "bcc-208",
+    "originalPath": "4th-semester/bcc-208",
+    "slugPath": "4th-semester/bcc-208",
+    "planetSlug": "4th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "ed-lo-notes",
+    "originalPath": "4th-semester/bcc-208/ed-lo-notes.md",
+    "slugPath": "4th-semester/bcc-208/ed-lo-notes.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "pyq-bcc-208",
+    "originalPath": "4th-semester/bcc-208/pyq-bcc-208.md",
+    "slugPath": "4th-semester/bcc-208/pyq-bcc-208.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "solutions",
+    "originalPath": "4th-semester/bcc-208/solutions",
+    "slugPath": "4th-semester/bcc-208/solutions",
+    "planetSlug": "4th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2021-exam-q5",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q5.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2019-exam-q5",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q5.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2019-exam-q4",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q4.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2024-exam-q1",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q1.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2022-exam-q3",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q3.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2019-exam-q7",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q7.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2021-exam-q4",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q4.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2020-exam-q6",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q6.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2022-exam-q1",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q1.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2020-exam-q2",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q2.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2020-exam-q4",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q4.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2023-exam-q5",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q5.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2022-exam-q5",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q5.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2023-exam-q6",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q6.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2024-exam-q7",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q7.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2020-exam-q1",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q1.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2021-exam-q3",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q3.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2022-exam-q4",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q4.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2020-exam-q5",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q5.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2023-exam-q7",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q7.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2023-exam-q4",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q4.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2024-exam-q5",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q5.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2021-exam-q6",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q6.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2024-exam-q2",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q2.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2022-exam-q6",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q6.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2021-exam-q2",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q2.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2021-exam-q7",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q7.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2019-exam-q1",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q1.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2019-exam-q2",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q2.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2024-exam-q4",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q4.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2020-exam-q3",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q3.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2023-exam-q1",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q1.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2021-exam-q1",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q1.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2022-exam-q7",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q7.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2024-exam-q6",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q6.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2019-exam-q6",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q6.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2023-exam-q3",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q3.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2022-exam-q2",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q2.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2020-exam-q7",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q7.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2024-exam-q3",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q3.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2019-exam-q3",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q3.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ed-2023-exam-q2",
+    "originalPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q2.md",
+    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "bcc-209",
+    "originalPath": "4th-semester/bcc-209",
+    "slugPath": "4th-semester/bcc-209",
+    "planetSlug": "4th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "pyq-bcc-209",
+    "originalPath": "4th-semester/bcc-209/pyq-bcc-209.md",
+    "slugPath": "4th-semester/bcc-209/pyq-bcc-209.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-lo-notes",
+    "originalPath": "4th-semester/bcc-209/ob-lo-notes.md",
+    "slugPath": "4th-semester/bcc-209/ob-lo-notes.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "solutions",
+    "originalPath": "4th-semester/bcc-209/solutions",
+    "slugPath": "4th-semester/bcc-209/solutions",
+    "planetSlug": "4th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-5th-sem-exam-q1",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q1.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-4th-sem-exam-q5",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q5.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-5th-sem-exam-q6",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q6.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2020-exam-q4",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q4.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2021-exam-q5",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q5.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-5th-sem-exam-q4",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q4.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2021-exam-q4",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q4.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2020-exam-q1",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q1.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2024-exam-q1",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q1.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2021-exam-q3",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q3.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2024-exam-q7",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q7.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2023-exam-q2",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q2.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-5th-sem-exam-q7",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q7.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-4th-sem-exam-q7",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q7.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-5th-sem-exam-q2",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q2.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2023-exam-q5",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q5.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2023-exam-q3",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q3.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-4th-sem-exam-q1",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q1.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2024-exam-q4",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q4.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-4th-sem-exam-q6",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q6.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2023-exam-q6",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q6.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2021-exam-q1",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q1.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2020-exam-q3",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q3.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2023-exam-q1",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q1.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2020-exam-q2",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q2.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-4th-sem-exam-q3",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q3.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2020-exam-q6",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q6.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2024-exam-q6",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q6.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2020-exam-q7",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q7.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-4th-sem-exam-q2",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q2.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2024-exam-q3",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q3.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-5th-sem-exam-q3",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q3.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2021-exam-q6",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q6.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2024-exam-q2",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q2.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2023-exam-q4",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q4.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2024-exam-q5",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q5.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2023-exam-q7",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q7.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2021-exam-q2",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q2.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2020-exam-q5",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q5.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-4th-sem-exam-q4",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q4.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2021-exam-q7",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q7.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ob-2022-5th-sem-exam-q5",
+    "originalPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q5.md",
+    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "bcc-207",
+    "originalPath": "4th-semester/bcc-207",
+    "slugPath": "4th-semester/bcc-207",
+    "planetSlug": "4th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "be-cases",
+    "originalPath": "4th-semester/bcc-207/be-cases.md",
+    "slugPath": "4th-semester/bcc-207/be-cases.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-lo-notes",
+    "originalPath": "4th-semester/bcc-207/be-lo-notes.md",
+    "slugPath": "4th-semester/bcc-207/be-lo-notes.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-case-solutions",
+    "originalPath": "4th-semester/bcc-207/be-case-solutions.md",
+    "slugPath": "4th-semester/bcc-207/be-case-solutions.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "pyq-bcc-207",
+    "originalPath": "4th-semester/bcc-207/pyq-bcc-207.md",
+    "slugPath": "4th-semester/bcc-207/pyq-bcc-207.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "solutions",
+    "originalPath": "4th-semester/bcc-207/solutions",
+    "slugPath": "4th-semester/bcc-207/solutions",
+    "planetSlug": "4th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "be-2020-exam-q1",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2020-exam-q1.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2018-exam-q1",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2018-exam-q1.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2018-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2024-exam-q7",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2024-exam-q7.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2020-exam-q3",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2020-exam-q3.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2023-exam-q1",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2023-exam-q1.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2023-exam-q5",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2023-exam-q5.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2023-exam-q6",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2023-exam-q6.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2022-exam-q1",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2022-exam-q1.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2022-exam-q5",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2022-exam-q5.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2020-exam-q2",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2020-exam-q2.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2019-exam-q7",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2019-exam-q7.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2020-exam-q6",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2020-exam-q6.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2020-exam-q4",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2020-exam-q4.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2024-exam-q6",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2024-exam-q6.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2020-exam-q7",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2020-exam-q7.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2019-exam-q6",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2019-exam-q6.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2024-exam-q3",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2024-exam-q3.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2022-exam-q2",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2022-exam-q2.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2018-exam-q3",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2018-exam-q3.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2018-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2019-exam-q5",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2019-exam-q5.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2024-exam-q1",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2024-exam-q1.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2022-exam-q3",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2022-exam-q3.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2019-exam-q3",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2019-exam-q3.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2022-exam-q7",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2022-exam-q7.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2018-exam-q5",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2018-exam-q5.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2018-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2023-exam-q2",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2023-exam-q2.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2023-exam-q3",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2023-exam-q3.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2019-exam-q1",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2019-exam-q1.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2024-exam-q4",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2024-exam-q4.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2019-exam-q2",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2019-exam-q2.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2019-exam-q4",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2019-exam-q4.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2024-exam-q2",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2024-exam-q2.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2022-exam-q6",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2022-exam-q6.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2023-exam-q7",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2023-exam-q7.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2023-exam-q4",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2023-exam-q4.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2018-exam-q2",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2018-exam-q2.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2018-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2024-exam-q5",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2024-exam-q5.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2018-exam-q4",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2018-exam-q4.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2018-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2022-exam-q4",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2022-exam-q4.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "be-2020-exam-q5",
+    "originalPath": "4th-semester/bcc-207/solutions/be-2020-exam-q5.md",
+    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "bcc-210",
+    "originalPath": "4th-semester/bcc-210",
+    "slugPath": "4th-semester/bcc-210",
+    "planetSlug": "4th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "pyq-bcc-210",
+    "originalPath": "4th-semester/bcc-210/pyq-bcc-210.md",
+    "slugPath": "4th-semester/bcc-210/pyq-bcc-210.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-notes",
+    "originalPath": "4th-semester/bcc-210/bsed-notes.md",
+    "slugPath": "4th-semester/bcc-210/bsed-notes.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "solutions",
+    "originalPath": "4th-semester/bcc-210/solutions",
+    "slugPath": "4th-semester/bcc-210/solutions",
+    "planetSlug": "4th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2020-exam-q3",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q3.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2021-exam-q7",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q7.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2024-exam-q2",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q2.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2020-exam-q1",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q1.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2021-exam-q4",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q4.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2024-exam-q5",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q5.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2022-fcc-304-exam-q6",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q6.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2022-fcc-304-exam-q4",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q4.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2022-exam-q5",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q5.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2022-fcc-304-exam-q1",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q1.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2022-exam-q1",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q1.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2023-exam-q2",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q2.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2022-exam-q3",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q3.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2024-exam-q7",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q7.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2022-fcc-304-exam-q5",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q5.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2022-fcc-304-exam-q3",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q3.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2022-exam-q4",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q4.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2023-exam-q6",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q6.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2020-exam-q6",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q6.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2021-exam-q3",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q3.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2024-exam-q1",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q1.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2023-exam-q5",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q5.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2021-exam-q5",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q5.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2020-exam-q2",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q2.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2022-fcc-304-exam-q2",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q2.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2022-exam-q2",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q2.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2023-exam-q4",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q4.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2024-exam-q6",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q6.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2023-exam-q1",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q1.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2023-exam-q7",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q7.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2021-exam-q2",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q2.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q2.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2021-exam-q1",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q1.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q1.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2024-exam-q4",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q4.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2023-exam-q3",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q3.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2022-fcc-304-exam-q7",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q7.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2020-exam-q5",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q5.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q5.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2022-exam-q6",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q6.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2021-exam-q6",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q6.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q6.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2020-exam-q7",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q7.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q7.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2024-exam-q3",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q3.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q3.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "bsed-2020-exam-q4",
+    "originalPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q4.md",
+    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q4.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "graphs",
+    "originalPath": "4th-semester/bcc-210/solutions/graphs",
+    "slugPath": "4th-semester/bcc-210/solutions/graphs",
+    "planetSlug": "4th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "kuznets-curve.svg",
+    "originalPath": "4th-semester/bcc-210/solutions/graphs/kuznets-curve.svg",
+    "slugPath": "4th-semester/bcc-210/solutions/graphs/kuznets-curve.svg",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "solow-model.svg",
+    "originalPath": "4th-semester/bcc-210/solutions/graphs/solow-model.svg",
+    "slugPath": "4th-semester/bcc-210/solutions/graphs/solow-model.svg",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "rate-of-profit.svg",
+    "originalPath": "4th-semester/bcc-210/solutions/graphs/rate-of-profit.svg",
+    "slugPath": "4th-semester/bcc-210/solutions/graphs/rate-of-profit.svg",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "folder",
+    "originalName": "others",
+    "originalPath": "4th-semester/others",
+    "slugPath": "4th-semester/others",
+    "planetSlug": "4th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "final-2025-hints",
+    "originalPath": "4th-semester/others/final-2025-hints.md",
+    "slugPath": "4th-semester/others/final-2025-hints.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "syllabus-4th-semester",
+    "originalPath": "4th-semester/others/syllabus-4th-semester.md",
+    "slugPath": "4th-semester/others/syllabus-4th-semester.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "ai-comprehension",
+    "originalPath": "ai-comprehension",
+    "slugPath": "ai-comprehension",
+    "planetSlug": "ai-comprehension"
+  },
+  {
+    "type": "file",
+    "originalName": "index.html",
+    "originalPath": "ai-comprehension/index.html",
+    "slugPath": "ai-comprehension/index.html",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "overview-of-ai-comprehension",
+    "originalPath": "ai-comprehension/overview-of-ai-comprehension.md",
+    "slugPath": "ai-comprehension/overview-of-ai-comprehension.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": true,
+    "title": "AI Comprehension",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "acc-303-advanced-statistical-techniques",
+    "originalPath": "ai-comprehension/acc-303-advanced-statistical-techniques",
+    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques",
+    "planetSlug": "ai-comprehension"
+  },
+  {
+    "type": "file",
+    "originalName": "acc-303-notes-module-2",
+    "originalPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-2.md",
+    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-2.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-303-notes-module-6",
+    "originalPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-6.md",
+    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-6.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-303-notes-module-5",
+    "originalPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-5.md",
+    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-5.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-303-notes-module-3",
+    "originalPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-3.md",
+    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-3.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-303-notes-module-1",
+    "originalPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-1.md",
+    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-1.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-303-notes-module-4",
+    "originalPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-4.md",
+    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-4.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "acc-302-financial-management",
+    "originalPath": "ai-comprehension/acc-302-financial-management",
+    "slugPath": "ai-comprehension/acc-302-financial-management",
+    "planetSlug": "ai-comprehension"
+  },
+  {
+    "type": "file",
+    "originalName": "acc-302-notes-phase-2",
+    "originalPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-2.md",
+    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-2.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-302-notes-phase-8",
+    "originalPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-8.md",
+    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-8.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-302-notes-phase-4",
+    "originalPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-4.md",
+    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-4.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-302-notes-phase-1",
+    "originalPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-1.md",
+    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-1.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-302-notes-phase-3",
+    "originalPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-3.md",
+    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-3.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-302-notes-phase-9",
+    "originalPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-9.md",
+    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-9.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-302-notes-phase-7",
+    "originalPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-7.md",
+    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-7.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-302-notes-phase-5",
+    "originalPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-5.md",
+    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-5.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-302-notes-phase-6",
+    "originalPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-6.md",
+    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-6.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "assets",
+    "originalPath": "ai-comprehension/acc-302-financial-management/assets",
+    "slugPath": "ai-comprehension/acc-302-financial-management/assets",
+    "planetSlug": "ai-comprehension"
+  },
+  {
+    "type": "file",
+    "originalName": "acc302-mcc-ios-schedule.svg",
+    "originalPath": "ai-comprehension/acc-302-financial-management/assets/acc302-mcc-ios-schedule.svg",
+    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302-mcc-ios-schedule.svg",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302-npv-profiles-crossover.svg",
+    "originalPath": "ai-comprehension/acc-302-financial-management/assets/acc302-npv-profiles-crossover.svg",
+    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302-npv-profiles-crossover.svg",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302-bond-price-time-path.svg",
+    "originalPath": "ai-comprehension/acc-302-financial-management/assets/acc302-bond-price-time-path.svg",
+    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302-bond-price-time-path.svg",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302-security-market-line.svg",
+    "originalPath": "ai-comprehension/acc-302-financial-management/assets/acc302-security-market-line.svg",
+    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302-security-market-line.svg",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302-current-asset-financing-curves.svg",
+    "originalPath": "ai-comprehension/acc-302-financial-management/assets/acc302-current-asset-financing-curves.svg",
+    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302-current-asset-financing-curves.svg",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302-economic-order-quantity-curves.svg",
+    "originalPath": "ai-comprehension/acc-302-financial-management/assets/acc302-economic-order-quantity-curves.svg",
+    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302-economic-order-quantity-curves.svg",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302npvprofilescrossover.svg",
+    "originalPath": "ai-comprehension/acc-302-financial-management/assets/acc302npvprofilescrossover.svg",
+    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302npvprofilescrossover.svg",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302economicorderquantitycurves.svg",
+    "originalPath": "ai-comprehension/acc-302-financial-management/assets/acc302economicorderquantitycurves.svg",
+    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302economicorderquantitycurves.svg",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302securitymarketline.svg",
+    "originalPath": "ai-comprehension/acc-302-financial-management/assets/acc302securitymarketline.svg",
+    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302securitymarketline.svg",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302bondpricetimepath.svg",
+    "originalPath": "ai-comprehension/acc-302-financial-management/assets/acc302bondpricetimepath.svg",
+    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302bondpricetimepath.svg",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302mcciosschedule.svg",
+    "originalPath": "ai-comprehension/acc-302-financial-management/assets/acc302mcciosschedule.svg",
+    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302mcciosschedule.svg",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302currentassetfinancingcurves.svg",
+    "originalPath": "ai-comprehension/acc-302-financial-management/assets/acc302currentassetfinancingcurves.svg",
+    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302currentassetfinancingcurves.svg",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "folder",
+    "originalName": "acc-301-intermediate-accounting",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting",
+    "planetSlug": "ai-comprehension"
+  },
+  {
+    "type": "folder",
+    "originalName": "phase-2",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2",
+    "planetSlug": "ai-comprehension"
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-8",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-8.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-8.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-5",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-5.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-5.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-6",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-6.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-6.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-9",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-9.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-9.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-7",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-7.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-7.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "phase-1",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1",
+    "planetSlug": "ai-comprehension"
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-2",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-2.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-2.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-4",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-4.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-4.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-3",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-3.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-3.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-1",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-1.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-1.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "phase-3",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-3",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-3",
+    "planetSlug": "ai-comprehension"
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-10",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-10.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-10.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-12",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-12.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-12.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-11",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-11.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-11.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "phase-4",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-4",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-4",
+    "planetSlug": "ai-comprehension"
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-13",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-4/acc-301-notes-step-13.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-4/acc-301-notes-step-13.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-notes-step-14",
+    "originalPath": "ai-comprehension/acc-301-intermediate-accounting/phase-4/acc-301-notes-step-14.md",
+    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-4/acc-301-notes-step-14.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "acc-304-cost-accounting-i",
+    "originalPath": "ai-comprehension/acc-304-cost-accounting-i",
+    "slugPath": "ai-comprehension/acc-304-cost-accounting-i",
+    "planetSlug": "ai-comprehension"
+  },
+  {
+    "type": "file",
+    "originalName": "acc-304-notes-step-2",
+    "originalPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-2.md",
+    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-2.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-304-notes-step-4",
+    "originalPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-4.md",
+    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-4.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-304-notes-step-6",
+    "originalPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-6.md",
+    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-6.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-304-notes-step-7",
+    "originalPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-7.md",
+    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-7.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-304-notes-step-1",
+    "originalPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-1.md",
+    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-1.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-304-notes-step-8",
+    "originalPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-8.md",
+    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-8.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-304-notes-step-3",
+    "originalPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-3.md",
+    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-3.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-304-notes-step-5",
+    "originalPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-5.md",
+    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-5.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "acc-305-auditing-and-assurance",
+    "originalPath": "ai-comprehension/acc-305-auditing-and-assurance",
+    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance",
+    "planetSlug": "ai-comprehension"
+  },
+  {
+    "type": "file",
+    "originalName": "acc-305-notes-module-11",
+    "originalPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-11.md",
+    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-11.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-305-notes-module-7",
+    "originalPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-7.md",
+    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-7.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-305-notes-module-6",
+    "originalPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-6.md",
+    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-6.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-305-notes-module-5",
+    "originalPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-5.md",
+    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-5.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-305-notes-module-1",
+    "originalPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-1.md",
+    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-1.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-305-notes-module-4",
+    "originalPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-4.md",
+    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-4.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-305-notes-module-10",
+    "originalPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-10.md",
+    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-10.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-305-notes-module-9",
+    "originalPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-9.md",
+    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-9.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-305-notes-module-12",
+    "originalPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-12.md",
+    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-12.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-305-notes-module-8",
+    "originalPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-8.md",
+    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-8.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-305-notes-module-2",
+    "originalPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-2.md",
+    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-2.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-305-notes-module-3",
+    "originalPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-3.md",
+    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-3.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "logical-learning-guides",
+    "originalPath": "ai-comprehension/logical-learning-guides",
+    "slugPath": "ai-comprehension/logical-learning-guides",
+    "planetSlug": "ai-comprehension"
+  },
+  {
+    "type": "file",
+    "originalName": "acc-305-auditing-and-assurance",
+    "originalPath": "ai-comprehension/logical-learning-guides/acc-305-auditing-and-assurance.md",
+    "slugPath": "ai-comprehension/logical-learning-guides/acc-305-auditing-and-assurance.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-302-financial-management",
+    "originalPath": "ai-comprehension/logical-learning-guides/acc-302-financial-management.md",
+    "slugPath": "ai-comprehension/logical-learning-guides/acc-302-financial-management.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-301-intermediate-accounting",
+    "originalPath": "ai-comprehension/logical-learning-guides/acc-301-intermediate-accounting.md",
+    "slugPath": "ai-comprehension/logical-learning-guides/acc-301-intermediate-accounting.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-304-cost-accounting-i",
+    "originalPath": "ai-comprehension/logical-learning-guides/acc-304-cost-accounting-i.md",
+    "slugPath": "ai-comprehension/logical-learning-guides/acc-304-cost-accounting-i.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "acc-303-advanced-statistical-techniques",
+    "originalPath": "ai-comprehension/logical-learning-guides/acc-303-advanced-statistical-techniques.md",
+    "slugPath": "ai-comprehension/logical-learning-guides/acc-303-advanced-statistical-techniques.md",
+    "planetSlug": "ai-comprehension",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "5th-semester",
+    "originalPath": "5th-semester",
+    "slugPath": "5th-semester",
+    "planetSlug": "5th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "index.html",
+    "originalPath": "5th-semester/index.html",
+    "slugPath": "5th-semester/index.html",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "overview-of-5th-semester",
+    "originalPath": "5th-semester/overview-of-5th-semester.md",
+    "slugPath": "5th-semester/overview-of-5th-semester.md",
+    "planetSlug": "5th-semester",
+    "isHome": true,
+    "title": "BBA 5th Semester 2026",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "others",
+    "originalPath": "5th-semester/others",
+    "slugPath": "5th-semester/others",
+    "planetSlug": "5th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "semester-syllabus-mapping",
+    "originalPath": "5th-semester/others/semester-syllabus-mapping.md",
+    "slugPath": "5th-semester/others/semester-syllabus-mapping.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "syllabus-5th-semester",
+    "originalPath": "5th-semester/others/syllabus-5th-semester.md",
+    "slugPath": "5th-semester/others/syllabus-5th-semester.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "raw-pyqs",
+    "originalPath": "5th-semester/others/raw-pyqs",
+    "slugPath": "5th-semester/others/raw-pyqs",
+    "planetSlug": "5th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "raw-acc-305",
+    "originalPath": "5th-semester/others/raw-pyqs/raw-acc-305.md",
+    "slugPath": "5th-semester/others/raw-pyqs/raw-acc-305.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "raw-acc-303",
+    "originalPath": "5th-semester/others/raw-pyqs/raw-acc-303.md",
+    "slugPath": "5th-semester/others/raw-pyqs/raw-acc-303.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "raw-acc-302",
+    "originalPath": "5th-semester/others/raw-pyqs/raw-acc-302.md",
+    "slugPath": "5th-semester/others/raw-pyqs/raw-acc-302.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "raw-acc-304",
+    "originalPath": "5th-semester/others/raw-pyqs/raw-acc-304.md",
+    "slugPath": "5th-semester/others/raw-pyqs/raw-acc-304.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "raw-acc-301",
+    "originalPath": "5th-semester/others/raw-pyqs/raw-acc-301.md",
+    "slugPath": "5th-semester/others/raw-pyqs/raw-acc-301.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "acc-304",
+    "originalPath": "5th-semester/acc-304",
+    "slugPath": "5th-semester/acc-304",
+    "planetSlug": "5th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "pyq-acc-304",
+    "originalPath": "5th-semester/acc-304/pyq-acc-304.md",
+    "slugPath": "5th-semester/acc-304/pyq-acc-304.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "acc-302",
+    "originalPath": "5th-semester/acc-302",
+    "slugPath": "5th-semester/acc-302",
+    "planetSlug": "5th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "pyq-acc-302",
+    "originalPath": "5th-semester/acc-302/pyq-acc-302.md",
+    "slugPath": "5th-semester/acc-302/pyq-acc-302.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "acc-301",
+    "originalPath": "5th-semester/acc-301",
+    "slugPath": "5th-semester/acc-301",
+    "planetSlug": "5th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "pyq-acc-301",
+    "originalPath": "5th-semester/acc-301/pyq-acc-301.md",
+    "slugPath": "5th-semester/acc-301/pyq-acc-301.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "acc-305",
+    "originalPath": "5th-semester/acc-305",
+    "slugPath": "5th-semester/acc-305",
+    "planetSlug": "5th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "pyq-acc-305",
+    "originalPath": "5th-semester/acc-305/pyq-acc-305.md",
+    "slugPath": "5th-semester/acc-305/pyq-acc-305.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "acc-303",
+    "originalPath": "5th-semester/acc-303",
+    "slugPath": "5th-semester/acc-303",
+    "planetSlug": "5th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "pyq-acc-303",
+    "originalPath": "5th-semester/acc-303/pyq-acc-303.md",
+    "slugPath": "5th-semester/acc-303/pyq-acc-303.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  }
+]
