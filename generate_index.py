@@ -29,7 +29,8 @@ config = {
     'sourceExclusionFiles': [],
     'excludedFolders': ['.git', '.github', '.obsidian', '.trash', 'node_modules', 'guide', 'site-lib', 'backup', 'backups', 'backup-directory', '__pycache__'],
     'excludedFiles': ['.DS_Store', 'desktop.ini', 'Thumbs.db', 'ehthumbs.db', 'package-lock.json', 'bun.lock'],
-    'excludedPatterns': [r'^\..*', r'.*\.bak$', r'.*\.tmp$', r'.*~$']
+    'excludedPatterns': [r'^\..*', r'.*\.bak$', r'.*\.tmp$', r'.*~$'],
+    'vaultExclusionPaths': []
 }
 
 if os.path.exists(loc_file):
@@ -42,6 +43,7 @@ if os.path.exists(loc_file):
 
 vault_container = config.get('targetVaultDirectory', 'note-res')
 locked_sections = config.get('lockedSections', {})
+vault_exclusion_paths = config.get('vaultExclusionPaths', [])
 source_exclusion_files = set(config.get('sourceExclusionFiles', []))
 ignored_folders = set(config.get('excludedFolders', []))
 ignored_files = set(config.get('excludedFiles', [])).union(source_exclusion_files)
@@ -57,10 +59,18 @@ def slugify(text: str) -> str:
     text = re.sub(r'-+', '-', text)
     return text.strip('-') or 'vault-folder'
 
-def is_ignored_folder(name):
+def is_ignored_folder(name, full_path=""):
     low = name.lower().strip()
     if name in ignored_folders or name.startswith('.'):
         return True
+    
+    if full_path:
+        norm_path = os.path.normpath(full_path).replace('\\', '/')
+        for excl in vault_exclusion_paths:
+            excl_norm = os.path.normpath(excl).replace('\\', '/')
+            if excl_norm in norm_path:
+                return True
+
     for f in ignored_folders:
         if f.lower().strip() == low:
             return True
@@ -159,9 +169,9 @@ planet_status_map = {}
 planet_hashome_map = {}
 
 for name in sorted(os.listdir(scan_base)):
-    if is_ignored_folder(name) or (scan_base == source_dir and name == vault_container):
-        continue
     full_path = os.path.join(scan_base, name)
+    if is_ignored_folder(name, full_path) or (scan_base == source_dir and name == vault_container):
+        continue
     if os.path.isdir(full_path):
         discovered_folders.append(name)
         folder_unslugified = name.replace('-', ' ').replace('_', ' ').title()
@@ -172,7 +182,7 @@ for name in sorted(os.listdir(scan_base)):
         folder_md_files = []
         planet_root_homes = []
         for root, dirs, fnames in os.walk(full_path):
-            dirs[:] = [d for d in dirs if not is_ignored_folder(d)]
+            dirs[:] = [d for d in dirs if not is_ignored_folder(d, os.path.join(root, d))]
             sub_count += len(dirs)
             for d in dirs:
                 sub_rel = os.path.relpath(os.path.join(root, d), full_path).replace('\\', '/')
@@ -895,8 +905,8 @@ html_template = r'''<!DOCTYPE html>
             overlay.id = 'canvas-gatekeeper-overlay';
             overlay.style.cssText = `
                 position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-                background: rgba(30, 30, 30, 0.9);
-                backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+                background: rgba(25, 25, 25, 0.45);
+                backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
                 z-index: 10000; display: flex; flex-direction: column;
                 align-items: center; justify-content: center;
                 font-family: var(--font-interface, sans-serif);

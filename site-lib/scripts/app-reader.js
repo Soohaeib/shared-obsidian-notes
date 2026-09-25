@@ -1283,10 +1283,6 @@ class ObsidianVaultApp {
     const firstH1Match = bodyMarkdown.match(/^#\s+(.+)$/m);
     if (firstH1Match) matchedH1Text = firstH1Match[1].trim();
 
-    if (matchedH1Text && (matchedH1Text.toLowerCase() === contentTitle.toLowerCase())) {
-      bodyMarkdown = bodyMarkdown.replace(/^#\s+[^\n]+\n?/, '').trim();
-    }
-
     const propertiesBlockHtml = this.renderPropertiesBlock(frontmatterData);
     const words = bodyMarkdown.trim().split(/\s+/).length;
     const readingTime = Math.ceil(words / 200);
@@ -1787,7 +1783,7 @@ class ObsidianVaultApp {
       }
     }
 
-    return { path: `${slugified || raw}.md`, resolved: false, title: this.resolveSmartLabel(stem, null, null) || raw };
+    return { path: '', resolved: false, title: raw };
   }
 
   processObsidianCallouts(text) {

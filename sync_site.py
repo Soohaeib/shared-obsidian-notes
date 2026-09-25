@@ -46,7 +46,8 @@ def load_locations_config(base_dir: Path):
             '.DS_Store', 'desktop.ini', 'Thumbs.db', 'ehthumbs.db', 
             'package-lock.json', 'bun.lock'
         ],
-        'excludedPatterns': [r'^\..*', r'.*\.bak$', r'.*\.tmp$', r'.*~$']
+        'excludedPatterns': [r'^\..*', r'.*\.bak$', r'.*\.tmp$', r'.*~$'],
+        'vaultExclusionPaths': []
     }
 
     if loc_file.exists():
@@ -64,6 +65,7 @@ SOURCE_EXCLUSION_FILES = set(config.get('sourceExclusionFiles', []))
 EXCLUDED_FOLDERS = set(config.get('excludedFolders', []))
 EXCLUDED_FILES = set(config.get('excludedFiles', []))
 EXCLUDED_PATTERNS = [re.compile(p) for p in config.get('excludedPatterns', [])]
+VAULT_EXCLUSION_PATHS = config.get('vaultExclusionPaths', [])
 SOURCE_VAULT_PATHS = config.get('sourceVaultPaths', [])
 
 PROTECTED_FILES = {
@@ -110,6 +112,14 @@ def is_excluded(item: str, full_path: str = "") -> bool:
             
     if any(p.match(item) for p in EXCLUDED_PATTERNS):
         return True
+
+    if full_path:
+        full_norm = str(Path(full_path).resolve()).lower().replace('\\', '/')
+        for excl in VAULT_EXCLUSION_PATHS:
+            excl_norm = str(Path(os.path.expanduser(excl)).resolve()).lower().replace('\\', '/')
+            if excl_norm in full_norm:
+                return True
+
     if 'backup' in low_name or low_name.endswith('.bak'):
         return True
     return False
@@ -393,6 +403,16 @@ def sync_from_source_vault(src_path_str: str, dst_root: Path):
             slug_file_name = slugify_name(f, is_directory=False)
             dst_file = target / slug_file_name
             
+            # SLUG COLLISION FIX: If a directory already exists with the same slugged name, 
+            # we must rename our file to avoid overwriting/merging incorrectly.
+            if dst_file.exists() and dst_file.is_dir():
+                base, ext = os.path.splitext(slug_file_name)
+                count = 1
+                while (target / f"{base}-{count}{ext}").exists():
+                    count += 1
+                slug_file_name = f"{base}-{count}{ext}"
+                dst_file = target / slug_file_name
+
             # Record file mapping to preserve exact original file name
             f_stem = src_file.stem
             slug_f_stem = Path(slug_file_name).stem
