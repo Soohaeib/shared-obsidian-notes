@@ -4,6 +4,7 @@
     "~/Documents/Obsidian Vault/BBA Study"
   ],
   "sourceExclusionFiles": [],
+  "vaultExclusionPaths": ["/Expansion of Class Notes"],
   "excludedFolders": [
     ".git",
     ".github",
@@ -31,7 +32,6 @@
     ".*\\.tmp$",
     ".*~$"
   ],
-  "vaultExclusionPaths": [],
   "lockedSections": {
     "ai-comprehension": "NOTES_CURATED"
   }
