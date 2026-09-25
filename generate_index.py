@@ -314,10 +314,17 @@ except Exception as e:
 # Generate Node Data for the Graph Physics Engine
 nodes_data = [{"id": "root", "label": "Shared Vault", "url": None, "isRoot": True, "moons": 0, "status": "normal"}]
 for name, rel_url, sub_count in entries:
-    label = name_map.get(name, name.replace('-', ' ').replace('_', ' ').title())
+    stats = planet_stats.get(name, {})
+    raw_label = stats.get('originalName') or name_map.get(name, name)
+    if '-' in raw_label or '_' in raw_label:
+        label = raw_label.replace('-', ' ').replace('_', ' ').title()
+    else:
+        label = raw_label
+    label = re.sub(r'\bAi\b', 'AI', label)
+    label = re.sub(r'(\d+)[Tt]h\b', r'\1th', label)
     is_locked = name in locked_sections
-    status = planet_status_map.get(name, "normal")
-    has_home = planet_hashome_map.get(name, False)
+    has_home = stats.get('has_home', False)
+    status = "locked" if is_locked else ("normal" if has_home else "fallback")
     node_obj = {
         "id": name, 
         "label": label, 
@@ -388,9 +395,9 @@ html_template = r'''<!DOCTYPE html>
         text-transform: uppercase; letter-spacing: 0.05em;
       }
 
-      /* --- INFO BUTTON --- */
-      .info-btn {
-        position: fixed; bottom: 30px; right: 30px;
+      /* --- FLOATING BUTTONS (SEARCH & INFO) --- */
+      .info-btn, .search-btn {
+        position: fixed; right: 30px;
         width: 54px; height: 54px; border-radius: 50%;
         background: hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.15);
         backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
@@ -401,7 +408,9 @@ html_template = r'''<!DOCTYPE html>
         z-index: 100; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         display: flex; justify-content: center; align-items: center;
       }
-      .info-btn:hover {
+      .info-btn { bottom: 30px; }
+      .search-btn { bottom: 96px; }
+      .info-btn:hover, .search-btn:hover {
         transform: translateY(-4px) scale(1.05);
         background: var(--interactive-accent, #8b6ce3);
         color: var(--text-on-accent, white);
@@ -472,6 +481,7 @@ html_template = r'''<!DOCTYPE html>
         .vault-header { top: 20px; left: 20px; }
         .vault-header h1 { font-size: 1.35rem; }
         .info-btn { bottom: 20px; right: 20px; width: 48px; height: 48px; }
+        .search-btn { bottom: 78px; right: 20px; width: 48px; height: 48px; }
         .about-modal { width: 85%; padding: 28px; }
       }
     </style>
@@ -487,8 +497,14 @@ html_template = r'''<!DOCTYPE html>
       <p>Digital Garden</p>
     </div>
 
-    <!-- Floating Info Interaction -->
-    <button class="info-btn" id="info-btn" aria-label="Vault Information">
+    <!-- Floating Search & Info Interactions -->
+    <button class="search-btn" id="search-btn" aria-label="Search Vault Notes (Ctrl+K)" title="Search Notes (Ctrl+K)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    </button>
+    <button class="info-btn" id="info-btn" aria-label="Vault Information" title="About Vault">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <circle cx="12" cy="12" r="10"></circle>
         <line x1="12" y1="16" x2="12" y2="12"></line>
@@ -511,13 +527,12 @@ html_template = r'''<!DOCTYPE html>
       </p>
     </div>
 
-    <div id="search-modal" class="view-modal-overlay" onclick="if(event.target === this) window.ObsidianApp.closeSearchModal();" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: none; align-items: flex-start; justify-content: center; padding-top: 10vh; backdrop-filter: blur(4px);">
+    <div id="search-modal" class="view-modal-overlay" onclick="if(event.target === this) window.closeLandingSearchModal();" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: none; align-items: flex-start; justify-content: center; padding-top: 10vh; backdrop-filter: blur(4px);">
       <div class="search-palette" style="width: 90%; max-width: 600px; background: var(--background-primary); border-radius: 12px; border: 1px solid var(--background-modifier-border); box-shadow: 0 24px 48px rgba(0,0,0,0.4); overflow: hidden; display: flex; flex-direction: column;">
         <div class="search-input-wrapper" style="padding: 16px; border-bottom: 1px solid var(--background-modifier-border); display: flex; align-items: center; gap: 12px;">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted);"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
           <input id="search-modal-input" class="search-palette-input" type="text" placeholder="Search notes..." autocomplete="off" style="flex: 1; background: transparent; border: none; color: var(--text-normal); font-size: 1.1rem; outline: none;" />
           <select id="search-scope" class="search-scope-select" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted); border-radius: 4px; font-size: 0.75rem; padding: 2px 8px; cursor: pointer; outline: none;">
-            <option value="local">Current Section</option>
             <option value="global" selected>Entire Vault</option>
           </select>
         </div>
@@ -525,10 +540,8 @@ html_template = r'''<!DOCTYPE html>
       </div>
     </div>
 
-    <script src="./site-lib/scripts/app-reader.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        window.ObsidianApp = new ObsidianVaultApp();
         // --- 1. MODAL LOGIC ---
         const infoBtn = document.getElementById('info-btn');
         const modal = document.getElementById('about-modal');
@@ -543,6 +556,96 @@ html_template = r'''<!DOCTYPE html>
         infoBtn.addEventListener('click', toggleModal);
         closeBtn.addEventListener('click', toggleModal);
         overlay.addEventListener('click', toggleModal);
+
+        // --- 1B. STANDALONE QUICK SEARCH MODAL LOGIC ---
+        let manifestData = null;
+        const searchBtn = document.getElementById('search-btn');
+        const searchModal = document.getElementById('search-modal');
+        const searchInput = document.getElementById('search-modal-input');
+        const searchResults = document.getElementById('search-modal-results');
+
+        function openSearchModal() {
+          if (!searchModal) return;
+          searchModal.style.display = 'flex';
+          if (searchInput) {
+            searchInput.value = '';
+            searchInput.focus();
+          }
+          if (!manifestData) {
+            fetch('./site-lib/vault-manifest.json')
+              .then(r => r.json())
+              .then(data => { manifestData = data; renderSearchResults(''); })
+              .catch(() => {});
+          } else {
+            renderSearchResults('');
+          }
+        }
+
+        function closeSearchModal() {
+          if (searchModal) searchModal.style.display = 'none';
+        }
+
+        window.closeLandingSearchModal = closeSearchModal;
+        window.openLandingSearchModal = openSearchModal;
+        window.ObsidianApp = { closeSearchModal, openSearchModal };
+
+        function escapeHtml(str) {
+          if (!str) return '';
+          return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        }
+
+        function renderSearchResults(query) {
+          if (!searchResults) return;
+          if (!manifestData) {
+            searchResults.innerHTML = '<div style="padding: 16px; text-align: center; color: var(--text-muted, #888);">Loading vault manifest...</div>';
+            return;
+          }
+          const q = (query || '').toLowerCase().trim();
+          const matches = manifestData.filter(item => {
+            if (item.type !== 'file' || !item.isMarkdown) return false;
+            if (!q) return true;
+            const title = item.title || item.originalName || '';
+            return title.toLowerCase().includes(q) || item.originalPath.toLowerCase().includes(q) || item.slugPath.toLowerCase().includes(q);
+          }).slice(0, 25);
+
+          if (matches.length === 0) {
+            searchResults.innerHTML = '<div style="padding: 24px; text-align: center; color: var(--text-muted, #888);">No matching notes found.</div>';
+            return;
+          }
+
+          let html = '';
+          matches.forEach(item => {
+            const displayTitle = item.title || item.originalName;
+            const pathParts = item.originalPath.split('/');
+            const breadcrumbs = pathParts.slice(0, -1).join(' > ');
+            const relInFolder = item.slugPath.split('/').slice(1).join('/');
+            const targetUrl = `./note-res/${item.planetSlug}/#${relInFolder}`;
+
+            html += `
+              <div class="search-item" style="padding: 10px 14px; border-radius: 8px; cursor: pointer; transition: background 0.15s ease;"
+                   onmouseover="this.style.background='rgba(255,255,255,0.06)'" onmouseout="this.style.background='transparent'"
+                   onclick="window.location.href='${targetUrl}';">
+                <div style="font-weight: 500; color: var(--text-normal, #fff); font-size: 0.95rem;">${escapeHtml(displayTitle)}</div>
+                <div class="search-item-path" style="font-size:0.75rem; color:var(--text-muted, #888); margin-top: 2px;">${escapeHtml(breadcrumbs || item.planetSlug)}</div>
+              </div>
+            `;
+          });
+          searchResults.innerHTML = html;
+        }
+
+        if (searchBtn) searchBtn.addEventListener('click', openSearchModal);
+        if (searchInput) searchInput.addEventListener('input', (e) => renderSearchResults(e.target.value));
+
+        window.addEventListener('keydown', (e) => {
+          if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            if (searchModal && searchModal.style.display === 'flex') closeSearchModal();
+            else openSearchModal();
+          }
+          if (e.key === 'Escape') {
+            closeSearchModal();
+          }
+        });
 
         // --- 2. GRAPH PHYSICS & RENDERING ---
         const canvas = document.getElementById('graph-canvas');

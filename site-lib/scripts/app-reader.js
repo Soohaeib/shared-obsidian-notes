@@ -179,6 +179,11 @@ class ObsidianVaultApp {
   }
 
   async init() {
+    // CRITICAL GUARD: Only run the Reader engine on reader/viewer pages with note workspace
+    if (!document.getElementById('note-container') && !document.querySelector('.obsidian-workspace')) {
+      return;
+    }
+
     if (typeof marked !== 'undefined') {
       const renderer = new marked.Renderer();
       renderer.heading = function(...args) {
@@ -598,6 +603,7 @@ class ObsidianVaultApp {
     });
 
     document.getElementById('search-modal-input')?.addEventListener('input', (e) => this.handleSearch(e.target.value));
+    document.getElementById('search-scope')?.addEventListener('change', () => this.handleSearch(document.getElementById('search-modal-input')?.value || ''));
     document.getElementById('btn-open-graph')?.addEventListener('click', () => this.openGraphModal());
     document.getElementById('graph-sidebar-expand')?.addEventListener('click', () => this.openGraphModal());
     document.getElementById('graph-sidebar-global')?.addEventListener('click', () => this.toggleGraphMode());
@@ -865,7 +871,7 @@ class ObsidianVaultApp {
     });
 
     this.allNotes = notes;
-    this.updateGraphData();
+    this.buildGraphData();
     this.updateWorkspaceBranding();
     this.enqueueIdlePrefetch(notes.map(n => n.path).slice(0, 15));
   }
@@ -3396,6 +3402,9 @@ class ObsidianVaultApp {
   }
 
   setupGraph() {
+    if (!document.getElementById('note-container') && !document.querySelector('.obsidian-workspace')) {
+      return;
+    }
     const sidebarCanvas = document.getElementById('graph-canvas');
     if (sidebarCanvas) {
       this.sidebarGraph = new ObsidianGraphRenderer(sidebarCanvas, this.graphData, {
@@ -4336,5 +4345,7 @@ class ObsidianGraphRenderer {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  window.ObsidianApp = new ObsidianVaultApp();
+  if (document.getElementById('note-container') || document.querySelector('.obsidian-workspace')) {
+    window.ObsidianApp = new ObsidianVaultApp();
+  }
 });
