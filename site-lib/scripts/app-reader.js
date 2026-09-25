@@ -546,6 +546,17 @@ class ObsidianVaultApp {
         return ch && !ch.classList.contains('is-hidden');
       });
 
+      const icon = document.getElementById('icon-folders-toggle');
+      if (icon) {
+        if (anyOpen) {
+          // Change to Expand icon
+          icon.innerHTML = '<path d="m15 15 6 6"></path><path d="m9 9-6-6"></path><path d="M21 15v6h-6"></path><path d="M9 3H3v6"></path>';
+        } else {
+          // Change to Collapse icon
+          icon.innerHTML = '<path d="M4 14h6v6"></path><path d="M20 10h-6V4"></path><path d="m14 10 7-7"></path><path d="m10 14-7 7"></path>';
+        }
+      }
+
       folders.forEach(f => {
         const ch = f.querySelector('.tree-item-children');
         const icon = f.querySelector('.folder-item .tree-item-icon');
@@ -1034,17 +1045,13 @@ class ObsidianVaultApp {
       const itemA = folderObj[a];
       const itemB = folderObj[b];
       
-      // Pin Home notes to the top
-      if (itemA.note?.isHome && !itemB.note?.isHome) return -1;
-      if (!itemA.note?.isHome && itemB.note?.isHome) return 1;
-
       const aIsFolder = itemA._isFolder;
       const bIsFolder = itemB._isFolder;
       if (aIsFolder && !bIsFolder) return -1;
       if (!aIsFolder && bIsFolder) return 1;
       if (a === 'index.md') return -1;
       if (b === 'index.md') return 1;
-      return a.localeCompare(b);
+      return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
     });
 
     for (const key of entries) {
@@ -1077,6 +1084,8 @@ class ObsidianVaultApp {
         let fileLabel = note.originalName;
         if (fileLabel.toLowerCase() === 'index') fileLabel = 'Overview';
         
+        const homeIcon = note.isHome ? `<span class="home-note-icon" title="Home/Overview Note" style="margin-left: 6px; opacity: 0.6; display: inline-flex; align-items: center;"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></span>` : '';
+
         html += `
           <div class="nav-file" data-note-path="${note.path}">
             <a href="#${note.path}" class="tree-item-self note-item" data-note-path="${note.path}">
@@ -1086,7 +1095,7 @@ class ObsidianVaultApp {
                   <polyline points="14 2 14 8 20 8"></polyline>
                 </svg>
               </span>
-              <span class="tree-item-title">${this.escapeHtml(fileLabel)}</span>
+              <span class="tree-item-title">${this.escapeHtml(fileLabel)}${homeIcon}</span>
             </a>
           </div>
         `;
@@ -1302,8 +1311,11 @@ class ObsidianVaultApp {
     const floatingMeta = document.getElementById('floating-note-meta');
     if (floatingMeta) floatingMeta.style.display = 'inline-flex';
 
+    const realFileName = noteObj ? noteObj.originalName : contentTitle;
+    this.activeNoteOriginalName = realFileName;
     container.innerHTML = `
       <article class="markdown-rendered" id="note-article">
+        <div class="note-real-filename">${this.escapeHtml(realFileName)}</div>
         <h1 class="inline-title">${this.escapeHtml(contentTitle)}</h1>
         ${propertiesBlockHtml}
         ${renderedHtml}
@@ -2295,6 +2307,18 @@ class ObsidianVaultApp {
         if (!allChildren.length) return;
 
         const anyOpen = Array.from(allChildren).some(el => !el.classList.contains('is-collapsed'));
+        
+        const icon = document.getElementById('icon-toc-toggle');
+        if (icon) {
+          if (anyOpen) {
+            // Change to Expand icon
+            icon.innerHTML = '<path d="m15 15 6 6"></path><path d="m9 9-6-6"></path><path d="M21 15v6h-6"></path><path d="M9 3H3v6"></path>';
+          } else {
+            // Change to Collapse icon
+            icon.innerHTML = '<path d="M4 14h6v6"></path><path d="M20 10h-6V4"></path><path d="m14 10 7-7"></path><path d="m10 14-7 7"></path>';
+          }
+        }
+
         allChildren.forEach(el => {
           if (anyOpen) el.classList.add('is-collapsed');
           else el.classList.remove('is-collapsed');
@@ -2926,19 +2950,6 @@ class ObsidianVaultApp {
             <span id="media-preview-badge" class="media-preview-badge">DIAGRAM</span>
           </div>
           <div class="media-preview-actions">
-            <button class="media-icon-btn" id="media-btn-theme" type="button" aria-label="Toggle dark/light preview background" title="Toggle background theme">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="5"></circle>
-                <line x1="12" y1="1" x2="12" y2="3"></line>
-                <line x1="12" y1="21" x2="12" y2="23"></line>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                <line x1="1" y1="12" x2="3" y2="12"></line>
-                <line x1="21" y1="12" x2="23" y2="12"></line>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-              </svg>
-            </button>
             <button class="media-icon-btn" id="media-btn-zoom-in" type="button" aria-label="Zoom in" title="Zoom in (+)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="11" cy="11" r="8"></circle>
@@ -3008,16 +3019,15 @@ class ObsidianVaultApp {
 
     const updateZoom = () => {
       const viewport = document.getElementById('media-preview-viewport');
-      if (viewport) viewport.style.transform = `scale(${this.mediaZoom})`;
+      if (viewport) {
+        viewport.style.transformOrigin = 'top left';
+        viewport.style.transform = `scale(${this.mediaZoom})`;
+      }
     };
 
     document.getElementById('media-btn-zoom-in')?.addEventListener('click', () => { this.mediaZoom = Math.min(3.5, this.mediaZoom + 0.25); updateZoom(); });
     document.getElementById('media-btn-zoom-out')?.addEventListener('click', () => { this.mediaZoom = Math.max(0.4, this.mediaZoom - 0.25); updateZoom(); });
     document.getElementById('media-btn-zoom-reset')?.addEventListener('click', () => { this.mediaZoom = 1; updateZoom(); });
-    document.getElementById('media-btn-theme')?.addEventListener('click', () => {
-      const dialog = document.getElementById('media-preview-dialog');
-      if (dialog) dialog.classList.toggle('preview-theme-light');
-    });
   }
 
   openMediaPreview(source, type, title, isThemeAffectable = false) {
@@ -3037,7 +3047,6 @@ class ObsidianVaultApp {
     titleElement.textContent = title;
     titleElement.setAttribute('title', title);
     if (badgeElement) badgeElement.textContent = type === 'svg' ? 'DIAGRAM' : 'IMAGE';
-    if (themeBtn) themeBtn.style.display = 'inline-flex';
 
     this.mediaZoom = 1;
     viewport.style.transform = 'none';
@@ -3696,11 +3705,25 @@ class ObsidianVaultApp {
 
   setupReadingTimeTracking(totalMinutes) {
     const viewport = document.getElementById('note-viewport');
+    const meta = document.getElementById('floating-note-meta');
     if (!viewport) return;
     if (this.readingScrollHandler) viewport.removeEventListener('scroll', this.readingScrollHandler);
 
     this.readingStats = { totalMinutes };
-    this.readingScrollHandler = () => this.updateReadingTimeRemaining();
+    
+    let hideTimeout = null;
+    this.readingScrollHandler = () => {
+      this.updateReadingTimeRemaining();
+      
+      if (meta) {
+        meta.classList.add('is-visible');
+        clearTimeout(hideTimeout);
+        hideTimeout = setTimeout(() => {
+          meta.classList.remove('is-visible');
+        }, 1500);
+      }
+    };
+    
     viewport.addEventListener('scroll', this.readingScrollHandler, { passive: true });
     this.updateReadingTimeRemaining();
   }
@@ -3725,7 +3748,16 @@ class ObsidianVaultApp {
       this.showToast('No markdown content available to download');
       return;
     }
-    const filename = `${(title || 'Obsidian-Note').replace(/[\\/:*?"<>|]/g, '_').trim()}.md`;
+    
+    // Use the original name from the sidebar if available
+    let displayName = this.activeNoteOriginalName || title || 'Obsidian-Note';
+    
+    // Ensure .md extension
+    if (!displayName.toLowerCase().endsWith('.md')) {
+      displayName += '.md';
+    }
+    
+    const filename = displayName.replace(/[\\/:*?"<>|]/g, '_').trim();
     const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
