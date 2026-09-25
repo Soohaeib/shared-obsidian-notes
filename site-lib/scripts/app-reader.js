@@ -15,6 +15,8 @@ class ObsidianVaultApp {
     this.idlePrefetchQueue = [];
     this.isIdleScheduled = false;
     this.healthIssuesByFile = new Map();
+    this.vaultLookup = {};
+    this.nameMap = {};
 
     // Reading preferences
     this.isFullWidth = localStorage.getItem('obsidian_full_width') === 'true';
@@ -255,38 +257,17 @@ class ObsidianVaultApp {
     window.addEventListener('hashchange', () => this.handleRoute());
   }
 
-  formatThemeName(themeFamily) {
-    const names = {
-      nord: 'Nord',
-      minimal: 'Obsidian Minimal',
-      gruvbox: 'Gruvbox',
-      solarized: 'Solarized',
-      dracula: 'Dracula',
-      catppuccin: 'Catppuccin'
-    };
-    return names[themeFamily] || 'Nord';
-  }
-
   applyPreferences() {
     const root = document.documentElement;
     const body = document.body;
-    root.setAttribute('data-theme', this.themeFamily);
+    root.setAttribute('data-theme', 'nord');
     root.setAttribute('data-theme-mode', this.themeMode);
-    body.setAttribute('data-theme', this.themeFamily);
+    body.setAttribute('data-theme', 'nord');
     body.setAttribute('data-theme-mode', this.themeMode);
 
     const modeClass = this.themeMode === 'light' ? 'theme-light' : 'theme-dark';
-    const comboClass = `theme-${this.themeFamily}-${this.themeMode}`;
-    root.className = `${modeClass} ${comboClass}`;
-    body.className = `${modeClass} ${comboClass}`;
-
-    document.querySelectorAll('.theme-chip').forEach(chip => {
-      if (chip.dataset.themeFamily === this.themeFamily) {
-        chip.classList.add('active');
-      } else {
-        chip.classList.remove('active');
-      }
-    });
+    root.className = modeClass;
+    body.className = modeClass;
 
     const btnDark = document.getElementById('opt-btn-mode-dark');
     const btnLight = document.getElementById('opt-btn-mode-light');
@@ -369,8 +350,8 @@ class ObsidianVaultApp {
       noteContainer.style.fontSize = `${this.fontScale}%`;
     }
 
-    if (this.sidebarGraph) this.sidebarGraph.updateTheme(this.themeMode, this.themeFamily);
-    if (this.modalGraph) this.modalGraph.updateTheme(this.themeMode, this.themeFamily);
+    if (this.sidebarGraph) this.sidebarGraph.updateTheme(this.themeMode);
+    if (this.modalGraph) this.modalGraph.updateTheme(this.themeMode);
 
     const mobileBackdrop = document.getElementById('mobile-sidebar-backdrop');
     if (mobileBackdrop) {
@@ -449,18 +430,6 @@ class ObsidianVaultApp {
         const wrapper = document.querySelector('.options-menu-wrapper');
         if (wrapper && !wrapper.contains(e.target)) toggleOptions(false);
       }
-    });
-
-    document.querySelectorAll('.theme-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        const family = chip.dataset.themeFamily;
-        if (family) {
-          this.themeFamily = family;
-          localStorage.setItem('obsidian_theme_family', this.themeFamily);
-          this.applyPreferences();
-          this.showToast(`${this.formatThemeName(this.themeFamily)} theme active`);
-        }
-      });
     });
 
     document.getElementById('btn-toggle-theme')?.addEventListener('click', (e) => {
@@ -688,16 +657,39 @@ class ObsidianVaultApp {
   }
 
   resolveSmartLabel(fileStem, fileName, folderName) {
-    if (folderName) return this.getOriginalFolderName(folderName, folderName);
-    
-    // Use the perfectly resolved titles in allNotes if available
-    if (this.allNotes) {
-      const cleanStem = (fileStem || fileName || '').toLowerCase().replace(/\.md$/i, '');
-      const found = this.allNotes.find(n => n.fileName.toLowerCase().replace(/\.md$/i, '') === cleanStem || n.path.toLowerCase().replace(/\.md$/i, '') === cleanStem);
-      if (found && found.title) return found.title;
+    if (folderName) {
+      if (this.nameMap && this.nameMap[folderName]) {
+        return this.nameMap[folderName];
+      }
+      return folderName.replace(/[-_]/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
     }
-    
-    return this.getOriginalFileName(fileName || fileStem, fileName || fileStem, null);
+
+    const stem = fileStem || '';
+    const name = fileName || '';
+
+    // 1. Check vaultIndex.lookup[fileStem]?.title
+    if (stem && this.vaultLookup && this.vaultLookup[stem] && this.vaultLookup[stem].title) {
+      const t = this.vaultLookup[stem].title;
+      if (t && t.toLowerCase() !== 'index') return t;
+    }
+
+    // 2. Fall back to vaultIndex.nameMap[fileStem]
+    if (stem && this.nameMap && this.nameMap[stem]) {
+      const val = this.nameMap[stem].replace(/\.md$/i, '');
+      if (val && val.toLowerCase() !== 'index') return val;
+    }
+
+    // 3. Fall back to vaultIndex.nameMap[fileName]
+    if (name && this.nameMap && this.nameMap[name]) {
+      const val = this.nameMap[name].replace(/\.md$/i, '');
+      if (val && val.toLowerCase() !== 'index') return val;
+    }
+
+    // 4. Only use the raw stem (e.g. 'index' or 'acc-302...') if all else fails
+    if (stem.toLowerCase() === 'index') {
+      return 'Coursework Overview';
+    }
+    return stem;
   }
 
   parseYamlFrontmatter(frontmatterStr) {
@@ -876,12 +868,13 @@ class ObsidianVaultApp {
       if (relInFolder) {
         const parts = relInFolder.split('/');
         const fileName = parts[parts.length - 1];
-        const originalName = this.getOriginalFileName(relInFolder, fileName, f);
+        const fileStem = fileName.replace(/\.md$/i, '');
+        const originalName = this.resolveSmartLabel(fileStem, fileName);
         notes.push({
           fullPath: f,
           path: relInFolder,
           fileName: fileName,
-          fileNameWithoutExt: originalName,
+          fileNameWithoutExt: fileStem,
           title: originalName,
           folder: parts.length > 1 ? parts[0] : 'root'
         });
@@ -910,12 +903,13 @@ class ObsidianVaultApp {
           if (relInFolder) {
             const parts = relInFolder.split('/');
             const fileName = parts[parts.length - 1];
-            const originalName = this.getOriginalFileName(relInFolder, fileName, f);
+            const fileStem = fileName.replace(/\.md$/i, '');
+            const originalName = this.resolveSmartLabel(fileStem, fileName);
             notes.push({
               fullPath: f,
               path: relInFolder,
               fileName: fileName,
-              fileNameWithoutExt: originalName,
+              fileNameWithoutExt: fileStem,
               title: originalName,
               folder: parts.length > 1 ? parts[0] : 'root'
             });
@@ -1037,7 +1031,7 @@ class ObsidianVaultApp {
 
       if (item._isFolder) {
         const fullFolderPath = `note-res/${this.currentFolder}/${itemPath}`;
-        const folderLabel = this.getOriginalFolderName(key, fullFolderPath);
+        const folderLabel = this.resolveSmartLabel(null, null, key);
         
         html += `
           <div class="nav-folder" data-path="${itemPath}">
@@ -1059,7 +1053,8 @@ class ObsidianVaultApp {
         `;
       } else {
         const note = item.note;
-        const fileLabel = note.title || note.fileNameWithoutExt;
+        const fileStem = note.path.replace(/\.md$/i, '').split('/').pop();
+        const fileLabel = this.resolveSmartLabel(fileStem, note.fileName);
         
         html += `
           <div class="nav-file" data-note-path="${note.path}">
@@ -4257,66 +4252,25 @@ class ObsidianGraphRenderer {
     ctx.scale(this.transform.k, this.transform.k);
 
     const isDark = this.theme === 'dark';
-    const fam = this.themeFamily || 'nord';
-
-    const palettes = {
-      nord: {
-        accent: isDark ? '#88c0d0' : '#5e81ac',
-        link: isDark ? 'rgba(76, 86, 106, 0.45)' : 'rgba(216, 222, 233, 0.6)',
-        linkActive: isDark ? 'rgba(136, 192, 208, 0.9)' : 'rgba(94, 129, 172, 0.9)',
-        nodeDefault: isDark ? '#88c0d0' : '#5e81ac',
-        focused: '#bf616a', hovered: '#d08770',
-        badgeBg: isDark ? 'rgba(46, 52, 64, 0.85)' : 'rgba(255, 255, 255, 0.85)',
-        badgeFg: isDark ? '#eceff4' : '#2e3440'
-      },
-      minimal: {
-        accent: isDark ? '#8b5cf6' : '#7c3aed',
-        link: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)',
-        linkActive: isDark ? 'rgba(139, 92, 246, 0.9)' : 'rgba(124, 58, 237, 0.9)',
-        nodeDefault: isDark ? '#8b5cf6' : '#7c3aed',
-        focused: '#ef4444', hovered: '#f59e0b',
-        badgeBg: isDark ? 'rgba(18, 18, 18, 0.88)' : 'rgba(255, 255, 255, 0.92)',
-        badgeFg: isDark ? '#f4f4f5' : '#18181b'
-      },
-      gruvbox: {
-        accent: isDark ? '#fe8019' : '#d65d0e',
-        link: isDark ? 'rgba(80, 73, 69, 0.6)' : 'rgba(213, 196, 161, 0.7)',
-        linkActive: isDark ? 'rgba(254, 128, 25, 0.9)' : 'rgba(214, 93, 14, 0.9)',
-        nodeDefault: isDark ? '#fabd2f' : '#b57614',
-        focused: '#fb4934', hovered: '#fe8019',
-        badgeBg: isDark ? 'rgba(40, 40, 40, 0.88)' : 'rgba(251, 241, 199, 0.92)',
-        badgeFg: isDark ? '#ebdbb2' : '#3c3836'
-      },
-      solarized: {
-        accent: isDark ? '#2aa198' : '#268bd2',
-        link: isDark ? 'rgba(88, 110, 117, 0.5)' : 'rgba(147, 161, 161, 0.6)',
-        linkActive: isDark ? 'rgba(42, 161, 152, 0.9)' : 'rgba(38, 139, 210, 0.9)',
-        nodeDefault: isDark ? '#2aa198' : '#268bd2',
-        focused: '#dc322f', hovered: '#cb4b16',
-        badgeBg: isDark ? 'rgba(0, 43, 54, 0.88)' : 'rgba(253, 246, 227, 0.92)',
-        badgeFg: isDark ? '#839496' : '#586e75'
-      },
-      dracula: {
-        accent: isDark ? '#ff79c6' : '#bd93f9',
-        link: isDark ? 'rgba(98, 114, 164, 0.5)' : 'rgba(180, 180, 200, 0.6)',
-        linkActive: isDark ? 'rgba(255, 121, 198, 0.9)' : 'rgba(189, 147, 249, 0.9)',
-        nodeDefault: isDark ? '#bd93f9' : '#6272a4',
-        focused: '#ff5555', hovered: '#ffb86c',
-        badgeBg: isDark ? 'rgba(40, 42, 54, 0.88)' : 'rgba(248, 249, 250, 0.92)',
-        badgeFg: isDark ? '#f8f8f2' : '#282a36'
-      },
-      catppuccin: {
-        accent: isDark ? '#cba6f7' : '#8839ef',
-        link: isDark ? 'rgba(88, 91, 112, 0.5)' : 'rgba(172, 176, 190, 0.6)',
-        linkActive: isDark ? 'rgba(203, 166, 247, 0.9)' : 'rgba(136, 57, 239, 0.9)',
-        nodeDefault: isDark ? '#cba6f7' : '#8839ef',
-        focused: '#f38ba8', hovered: '#fab387',
-        badgeBg: isDark ? 'rgba(30, 30, 46, 0.88)' : 'rgba(239, 241, 245, 0.92)',
-        badgeFg: isDark ? '#cdd6f4' : '#4c4f69'
-      }
+    const p = isDark ? {
+      accent: '#88c0d0',
+      link: 'rgba(76, 86, 106, 0.45)',
+      linkActive: 'rgba(136, 192, 208, 0.9)',
+      nodeDefault: '#88c0d0',
+      focused: '#bf616a',
+      hovered: '#d08770',
+      badgeBg: 'rgba(46, 52, 64, 0.85)',
+      badgeFg: '#eceff4'
+    } : {
+      accent: '#5e81ac',
+      link: 'rgba(216, 222, 233, 0.6)',
+      linkActive: 'rgba(94, 129, 172, 0.9)',
+      nodeDefault: '#5e81ac',
+      focused: '#dc322f',
+      hovered: '#cb4b16',
+      badgeBg: 'rgba(255, 255, 255, 0.85)',
+      badgeFg: '#2e3440'
     };
-
-    const p = palettes[fam] || palettes.nord;
 
     for (const link of this.simLinks) {
       const isConnected = this.hoveredNode && (link.source === this.hoveredNode || link.target === this.hoveredNode);
