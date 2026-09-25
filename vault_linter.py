@@ -80,21 +80,19 @@ class VaultLinter:
             except Exception as e:
                 print(f"Notice: Could not load vault-index.json for linter: {e}")
 
-    def has_publish_true(self, abs_path):
-        """Returns True if the file has publish: true in its YAML frontmatter."""
+    def is_publishable(self, abs_path):
+        """Returns False ONLY if markdown file has publish: false in its YAML frontmatter."""
         try:
             with open(abs_path, 'r', encoding='utf-8', errors='ignore') as f:
                 first_line = f.readline()
                 if not first_line.startswith('---'):
-                    return False
+                    return True
                 
                 frontmatter_lines = []
                 for line in f:
                     if line.startswith('---'):
                         break
                     frontmatter_lines.append(line)
-                else:
-                    return False
                 
                 for line in frontmatter_lines:
                     line = line.strip()
@@ -104,11 +102,11 @@ class VaultLinter:
                         key, val = line.split(':', 1)
                         if key.strip().lower() == 'publish':
                             val_cleaned = val.strip().strip("'\"").lower()
-                            if val_cleaned == 'true':
-                                return True
+                            if val_cleaned == 'false':
+                                return False
         except Exception:
             pass
-        return False
+        return True
 
     def collect_vault_index(self):
         """Map all notes and assets for link and embed validation."""
@@ -134,8 +132,8 @@ class VaultLinter:
                 self.all_assets.add(re.sub(r'[^a-z0-9]', '', clean_rel))
 
                 if f.endswith('.md'):
-                    # STRICT OPT-IN: Only lints and resolves targets of notes with publish: true
-                    if self.has_publish_true(abs_f):
+                    # Only lints and resolves targets of publishable notes
+                    if self.is_publishable(abs_f):
                         self.all_notes.append(rel)
                         clean_stem = f.replace('.md', '').lower().strip()
                         self.note_stems[clean_stem] = rel

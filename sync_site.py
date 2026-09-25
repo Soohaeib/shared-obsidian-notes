@@ -37,9 +37,6 @@ def load_locations_config(base_dir: Path):
     config = {
         'targetVaultDirectory': 'note-res',
         'sourceVaultPaths': ['~/Documents/Obsidian Vault/BBA Study'],
-        'sourceExclusionPaths': [
-            '~/Documents/Obsidian Vault/BBA Study/Expansion of class notes'
-        ],
         'sourceExclusionFiles': [],
         'excludedFolders': [
             '.git', '.github', '.obsidian', '.trash', 'node_modules', 
@@ -63,7 +60,6 @@ def load_locations_config(base_dir: Path):
 
 config = load_locations_config(SCRIPT_DIR)
 VAULT_CONTAINER = config.get('targetVaultDirectory', 'note-res')
-SOURCE_EXCLUSION_PATHS = set(config.get('sourceExclusionPaths', []))
 SOURCE_EXCLUSION_FILES = set(config.get('sourceExclusionFiles', []))
 EXCLUDED_FOLDERS = set(config.get('excludedFolders', []))
 EXCLUDED_FILES = set(config.get('excludedFiles', []))
@@ -81,9 +77,8 @@ def is_excluded(item: str, full_path: str = "") -> bool:
     if item.startswith('.') and item != '.':
         return True
     
-    # Check folder and source exclusion path matches
-    all_excluded_folders = EXCLUDED_FOLDERS.union(SOURCE_EXCLUSION_PATHS)
-    for folder in all_excluded_folders:
+    # Check folder exclusion matches
+    for folder in EXCLUDED_FOLDERS:
         f_clean = folder.strip().lower()
         if not f_clean:
             continue
@@ -298,23 +293,21 @@ def sanitize_workspace(target_dir: Path):
 
     print(f"✅ [Sanitizer] Completed. {renamed_count} items slugified/merged.")
 
-def has_publish_true(file_path: Path) -> bool:
-    """Returns True if it's not a markdown file or has publish: true in its YAML frontmatter."""
+def is_publishable(file_path: Path) -> bool:
+    """Returns False ONLY if markdown file has publish: false in its YAML frontmatter."""
     if file_path.suffix.lower() != '.md':
         return True
     try:
         with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
             first_line = f.readline()
             if not first_line.startswith('---'):
-                return False
+                return True
             
             frontmatter_lines = []
             for line in f:
                 if line.startswith('---'):
                     break
                 frontmatter_lines.append(line)
-            else:
-                return False
             
             for line in frontmatter_lines:
                 line = line.strip()
@@ -324,11 +317,11 @@ def has_publish_true(file_path: Path) -> bool:
                     key, val = line.split(':', 1)
                     if key.strip().lower() == 'publish':
                         val_cleaned = val.strip().strip("'\"").lower()
-                        if val_cleaned == 'true':
-                            return True
+                        if val_cleaned == 'false':
+                            return False
     except Exception:
         pass
-    return False
+    return True
 
 def remove_empty_directories(path: Path):
     """Recursively removes empty directories under path."""
@@ -393,8 +386,8 @@ def sync_from_source_vault(src_path_str: str, dst_root: Path):
                 continue
             src_file = Path(root) / f
             
-            # STRICT OPT-IN: Parse YAML, only copy markdown files with publish: true
-            if not has_publish_true(src_file):
+            # Publish if not explicitly publish: false
+            if not is_publishable(src_file):
                 continue
 
             slug_file_name = slugify_name(f, is_directory=False)

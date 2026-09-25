@@ -826,11 +826,10 @@ class ObsidianVaultApp {
         if (res.ok) {
           const data = await res.json();
           if (data.files && data.files.length > 0) {
-            if (files.length === 0) {
-              files = data.files;
-            }
-            if (data.lookup) this.vaultLookup = data.lookup;
-            if (data.nameMap) nameMap = { ...data.nameMap, ...nameMap };
+            // ALWAYS merge files and lookup data from vault-index.json
+            files = [...new Set([...files, ...data.files])];
+            if (data.lookup) this.vaultLookup = { ...this.vaultLookup, ...data.lookup };
+            if (data.nameMap) nameMap = { ...nameMap, ...data.nameMap };
             break;
           }
         }
@@ -1035,11 +1034,9 @@ class ObsidianVaultApp {
       const itemA = folderObj[a];
       const itemB = folderObj[b];
       
-      const aIsHome = itemA.note && itemA.note.isHome && !itemA.note.path.includes('/');
-      const bIsHome = itemB.note && itemB.note.isHome && !itemB.note.path.includes('/');
-      
-      if (aIsHome && !bIsHome) return -1;
-      if (!aIsHome && bIsHome) return 1;
+      // Pin Home notes to the top
+      if (itemA.note?.isHome && !itemB.note?.isHome) return -1;
+      if (!itemA.note?.isHome && itemB.note?.isHome) return 1;
 
       const aIsFolder = itemA._isFolder;
       const bIsFolder = itemB._isFolder;
@@ -3849,59 +3846,103 @@ class ObsidianVaultApp {
     overlay.id = 'gatekeeper-overlay';
     overlay.style.cssText = `
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(32, 33, 36, 0.95);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
       z-index: 999999; display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       font-family: var(--font-interface, sans-serif);
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      transition: opacity 0.4s ease;
     `;
 
+    const modal = document.createElement('div');
+    modal.style.cssText = `
+      background: var(--background-primary, #1e1e1e);
+      padding: 40px; border-radius: 20px; border: 1px solid var(--background-modifier-border, rgba(255,255,255,0.1));
+      box-shadow: 0 32px 64px rgba(0,0,0,0.6);
+      display: flex; flex-direction: column; align-items: center;
+      position: relative; width: 90%; max-width: 400px;
+      animation: gatekeeper-appear 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    `;
+
+    const style = document.createElement('style');
+    style.innerHTML = `
+      @keyframes gatekeeper-appear {
+        from { transform: scale(0.9) translateY(20px); opacity: 0; }
+        to { transform: scale(1) translateY(0); opacity: 1; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+    closeBtn.style.cssText = `
+      position: absolute; top: 16px; right: 16px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.05);
+      color: #b3b3b3; cursor: pointer; display: flex; justify-content: center; align-items: center;
+      transition: all 0.2s ease;
+    `;
+    closeBtn.onclick = () => {
+      overlay.style.opacity = '0';
+      setTimeout(() => {
+        overlay.remove();
+        document.body.style.overflow = '';
+      }, 400);
+    };
+
     const title = document.createElement('h2');
-    title.innerText = "Oops! Seems like there is an issue. What could it be?";
+    title.innerText = "Locked Note";
     title.style.cssText = `
-      margin: 0 0 24px 0; font-size: 1.25rem; font-weight: 500;
-      color: #e8e8e8; text-align: center; padding: 0 20px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      margin: 0 0 12px 0; font-size: 1.5rem; font-weight: 600;
+      color: var(--text-normal, #e8e8e8); text-align: center;
+    `;
+
+    const subtitle = document.createElement('p');
+    subtitle.innerText = "This note is protected. Please enter the access token to view its contents.";
+    subtitle.style.cssText = `
+      margin: 0 0 24px 0; font-size: 0.95rem; color: var(--text-muted, #b3b3b3);
+      text-align: center; line-height: 1.5;
     `;
 
     const inputWrapper = document.createElement('div');
-    inputWrapper.style.cssText = "position: relative; width: 80%; max-width: 340px;";
+    inputWrapper.style.cssText = "position: relative; width: 100%;";
 
     const input = document.createElement('input');
     input.type = "password";
-    input.placeholder = "Enter Access Token...";
+    input.placeholder = "Access Token";
     input.style.cssText = `
       width: 100%; box-sizing: border-box;
-      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 16px 20px; border-radius: 12px; color: white; font-size: 1.05rem;
-      text-align: center; outline: none; letter-spacing: 2px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3); transition: all 0.3s ease;
+      background: var(--background-secondary, rgba(255, 255, 255, 0.05));
+      border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.2));
+      padding: 14px 18px; border-radius: 10px; color: white; font-size: 1rem;
+      text-align: center; outline: none; letter-spacing: 1px;
+      transition: all 0.3s ease;
     `;
 
     input.addEventListener('focus', () => {
       input.style.borderColor = "var(--interactive-accent, #8b6ce3)";
-      input.style.boxShadow = "0 0 0 3px hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.3)";
+      input.style.boxShadow = "0 0 0 3px hsla(var(--interactive-accent-hsl, 258, 88%, 66%), 0.2)";
     });
 
     input.addEventListener('blur', () => {
-      input.style.borderColor = "rgba(255, 255, 255, 0.2)";
-      input.style.boxShadow = "0 8px 32px rgba(0,0,0,0.3)";
+      input.style.borderColor = "var(--background-modifier-border, rgba(255, 255, 255, 0.2))";
+      input.style.boxShadow = "none";
     });
 
     document.body.style.overflow = 'hidden';
 
     inputWrapper.appendChild(input);
-    overlay.appendChild(title);
-    overlay.appendChild(inputWrapper);
+    modal.appendChild(closeBtn);
+    modal.appendChild(title);
+    modal.appendChild(subtitle);
+    modal.appendChild(inputWrapper);
+    overlay.appendChild(modal);
     document.body.appendChild(overlay);
 
     input.addEventListener('input', (e) => {
       if (e.target.value === expectedToken) {
         input.style.borderColor = "#4ade80"; 
         input.style.color = "#4ade80";
-        input.style.textShadow = "0 0 12px rgba(74, 222, 128, 0.5)";
-        input.style.boxShadow = "0 0 0 3px rgba(74, 222, 128, 0.3)";
         input.disabled = true; 
         
         setTimeout(() => {
@@ -3910,7 +3951,7 @@ class ObsidianVaultApp {
           setTimeout(() => {
             overlay.remove();
             if (onUnlock) onUnlock();
-          }, 500);
+          }, 400);
         }, 500); 
       }
     });

@@ -26,9 +26,6 @@ loc_file = os.path.join(source_dir, 'locations.json')
 config = {
     'targetVaultDirectory': 'note-res',
     'sourceVaultPaths': ['~/Documents/Obsidian Vault/BBA Study'],
-    'sourceExclusionPaths': [
-        '~/Documents/Obsidian Vault/BBA Study/Expansion of class notes'
-    ],
     'sourceExclusionFiles': [],
     'excludedFolders': ['.git', '.github', '.obsidian', '.trash', 'node_modules', 'guide', 'site-lib', 'backup', 'backups', 'backup-directory', '__pycache__'],
     'excludedFiles': ['.DS_Store', 'desktop.ini', 'Thumbs.db', 'ehthumbs.db', 'package-lock.json', 'bun.lock'],
@@ -45,9 +42,8 @@ if os.path.exists(loc_file):
 
 vault_container = config.get('targetVaultDirectory', 'note-res')
 locked_sections = config.get('lockedSections', {})
-source_exclusion_paths = set(config.get('sourceExclusionPaths', []))
 source_exclusion_files = set(config.get('sourceExclusionFiles', []))
-ignored_folders = set(config.get('excludedFolders', [])).union(source_exclusion_paths)
+ignored_folders = set(config.get('excludedFolders', []))
 ignored_files = set(config.get('excludedFiles', [])).union(source_exclusion_files)
 ignored_patterns = [re.compile(p) for p in config.get('excludedPatterns', [])]
 
@@ -87,6 +83,23 @@ def is_ignored_file(name):
         return True
     return False
 
+def is_publishable(file_path):
+    """Returns False ONLY if markdown file has publish: false in its YAML frontmatter."""
+    if not str(file_path).endswith('.md'):
+        return True
+    try:
+        with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+            content = f.read(4096) # Read first 4KB for frontmatter
+            if content.startswith('---'):
+                fm_end = content.find('\n---', 3)
+                if fm_end != -1:
+                    frontmatter = content[3:fm_end]
+                    if re.search(r'^\s*publish\s*:\s*(?:false|"false")\s*$', frontmatter, re.IGNORECASE | re.MULTILINE):
+                        return False
+    except Exception:
+        pass
+    return True
+
 # Scan directories inside note-res
 container_path = os.path.join(source_dir, vault_container)
 scan_base = container_path if os.path.exists(container_path) and os.path.isdir(container_path) else source_dir
@@ -118,7 +131,7 @@ def extract_note_metadata(file_path):
     is_home = False
     try:
         with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
-            content = f.read()
+            content = f.read(8192)
             if content.startswith('---'):
                 fm_end = content.find('\n---', 3)
                 if fm_end != -1:
@@ -127,6 +140,8 @@ def extract_note_metadata(file_path):
                     if re.search(r'^\s*permalink\s*:\s*["\']?/(?:index\.md)?["\']?\s*$', frontmatter, re.IGNORECASE | re.MULTILINE):
                         is_home = True
                     if re.search(r'^\s*(?:home|entry|isHome)\s*:\s*(?:true|"true")\s*$', frontmatter, re.IGNORECASE | re.MULTILINE):
+                        is_home = True
+                    if re.search(r'^\s*permalink\s*:\s*["\']?/(?:index)?["\']?\s*$', frontmatter, re.IGNORECASE | re.MULTILINE):
                         is_home = True
 
                     title_match = re.search(r'^\s*title\s*:\s*["\']?([^"\n\r\']+)', frontmatter, re.IGNORECASE | re.MULTILINE)
@@ -170,6 +185,11 @@ for name in sorted(os.listdir(scan_base)):
             for f in sorted(fnames):
                 if f.endswith('.md') and not is_ignored_file(f):
                     full_md_path = os.path.join(root, f)
+                    
+                    # Only index publishable notes
+                    if not is_publishable(full_md_path):
+                        continue
+
                     rel = os.path.relpath(full_md_path, source_dir).replace('\\', '/')
                     all_md_files.append(rel)
                     folder_md_files.append(rel)
