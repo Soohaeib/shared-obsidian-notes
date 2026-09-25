@@ -218,6 +218,30 @@ class ObsidianVaultApp {
 
         return `<h${headingLevel} id="${slug}" data-heading="${safeDataHeading}">${headingText}</h${headingLevel}>`;
       };
+      renderer.link = (href, title, text) => {
+        let linkHref = '';
+        let linkTitle = '';
+        let linkText = '';
+        if (href && typeof href === 'object') {
+          linkHref = href.href || '';
+          linkTitle = href.title || '';
+          linkText = href.text || '';
+        } else {
+          linkHref = href || '';
+          linkTitle = title || '';
+          linkText = text || '';
+        }
+        const cleanHref = decodeURIComponent(linkHref).replace(/\.md$/i, '').trim();
+        const stem = cleanHref.split('/').pop();
+        const textIsSlug = !linkText || linkText === linkHref || linkText.toLowerCase() === cleanHref.toLowerCase() || linkText.replace(/[-_]/g, ' ').toLowerCase() === stem.replace(/[-_]/g, ' ').toLowerCase();
+        if (textIsSlug) {
+          const smartLabel = this.resolveSmartLabel(stem, null);
+          if (smartLabel && smartLabel !== stem) {
+            linkText = smartLabel;
+          }
+        }
+        return `<a href="${linkHref}" ${linkTitle ? `title="${linkTitle}"` : ''}>${linkText}</a>`;
+      };
       marked.setOptions({
         gfm: true,
         breaks: false,
@@ -677,15 +701,51 @@ class ObsidianVaultApp {
     });
   }
 
+  resolveSmartLabel(fileStem, fileName, folderName) {
+    if (folderName) {
+      if (this.nameMap && this.nameMap[folderName]) {
+        return this.nameMap[folderName];
+      }
+      return folderName.replace(/[-_]/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    }
+
+    if (fileStem) {
+      // 1. Check vaultIndex.lookup[fileStem]?.title
+      if (this.vaultLookup) {
+        const entry = this.vaultLookup[fileStem] || this.vaultLookup[fileStem.toLowerCase()];
+        if (entry && entry.title) {
+          return entry.title;
+        }
+      }
+      // 2. Fall back to vaultIndex.nameMap[fileStem]
+      if (this.nameMap) {
+        const mapped = this.nameMap[fileStem] || this.nameMap[fileStem.toLowerCase()];
+        if (mapped) {
+          return mapped.replace(/\.md$/i, '');
+        }
+      }
+      // 3. Fall back to vaultIndex.nameMap[fileName]
+      if (fileName && this.nameMap) {
+        const mappedFile = this.nameMap[fileName] || this.nameMap[fileName.toLowerCase()];
+        if (mappedFile) {
+          return mappedFile.replace(/\.md$/i, '');
+        }
+      }
+    }
+    // 4. Only use the raw stem if all else fails.
+    return fileStem || fileName || '';
+  }
+
   getOriginalFileName(relPath, fileName) {
     if (!fileName) fileName = (relPath || '').split('/').pop();
     const stem = (fileName || '').replace(/\.md$/i, '');
-    if (this.nameMap) {
-      if (relPath && this.nameMap[relPath]) return this.nameMap[relPath].replace(/\.md$/i, '');
-      if (fileName && this.nameMap[fileName]) return this.nameMap[fileName].replace(/\.md$/i, '');
-      if (stem && this.nameMap[stem]) return this.nameMap[stem].replace(/\.md$/i, '');
+    
+    // Check if nameMap has a direct mapping for the entire relPath first
+    if (this.nameMap && relPath && this.nameMap[relPath]) {
+      return this.nameMap[relPath].replace(/\.md$/i, '');
     }
-    return stem;
+    
+    return this.resolveSmartLabel(stem, fileName);
   }
 
   getOriginalFolderName(folderKey, fullPath) {
@@ -694,7 +754,7 @@ class ObsidianVaultApp {
       if (folderKey && this.nameMap[folderKey]) return this.nameMap[folderKey];
     }
     if (!folderKey) return 'Folder';
-    return folderKey.replace(/[-_]/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    return this.resolveSmartLabel(null, null, folderKey);
   }
 
   parseYamlFrontmatter(frontmatterStr) {
@@ -1902,10 +1962,11 @@ class ObsidianVaultApp {
         const fullRel = match.path.replace(/^(?:\[inside\][^/]+|note-res)\//, '');
         const targetFolder = match.folder;
         const targetRel = match.relInFolder;
+        const resolvedTitle = match.title || this.resolveSmartLabel(stem, null);
         if (targetFolder !== this.currentFolder) {
-          return { path: `../${targetFolder}/#${encodeURIComponent(targetRel)}`, resolved: true, title: match.title, isCrossFolder: true };
+          return { path: `../${targetFolder}/#${encodeURIComponent(targetRel)}`, resolved: true, title: resolvedTitle, isCrossFolder: true };
         }
-        return { path: targetRel, resolved: true, title: match.title };
+        return { path: targetRel, resolved: true, title: resolvedTitle };
       }
     }
 
@@ -1921,7 +1982,8 @@ class ObsidianVaultApp {
     });
 
     if (found) {
-      return { path: found.path, resolved: true, title: found.title || found.fileNameWithoutExt || stem };
+      const resolvedTitle = found.title || found.fileNameWithoutExt || this.resolveSmartLabel(stem, found.fileName);
+      return { path: found.path, resolved: true, title: resolvedTitle };
     }
 
     // 3. Check in this.allVaultFiles across other folders
@@ -1939,15 +2001,16 @@ class ObsidianVaultApp {
         const parts = cleanPath.split('/');
         const targetFolder = parts[0];
         const targetRel = parts.slice(1).join('/');
+        const resolvedTitle = this.resolveSmartLabel(stem, parts.pop());
         if (targetFolder !== this.currentFolder) {
-          return { path: `../${targetFolder}/#${encodeURIComponent(targetRel)}`, resolved: true, title: stem, isCrossFolder: true };
+          return { path: `../${targetFolder}/#${encodeURIComponent(targetRel)}`, resolved: true, title: resolvedTitle, isCrossFolder: true };
         }
-        return { path: targetRel, resolved: true, title: stem };
+        return { path: targetRel, resolved: true, title: resolvedTitle };
       }
     }
 
     // Fallback: unresolved internal link
-    return { path: `${slugified || raw}.md`, resolved: false, title: raw };
+    return { path: `${slugified || raw}.md`, resolved: false, title: this.resolveSmartLabel(stem, null) || raw };
   }
 
   // Pre-process Obsidian Callouts into clean atomic blocks with intact LaTeX and nested content
