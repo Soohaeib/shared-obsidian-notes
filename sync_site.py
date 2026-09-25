@@ -33,7 +33,7 @@ def slugify(text: str, is_file=False) -> str:
         return text.strip('-')
 
 def is_published(file_path):
-    """Strict Opt-In: Only returns True if `publish: true` is explicitly in the YAML."""
+    """Opt-Out Mode: Publishes everything by default UNLESS `publish: false` is explicitly set."""
     try:
         with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
             content = f.read(8192)
@@ -41,11 +41,12 @@ def is_published(file_path):
                 fm_end = content.find('\n---', 3)
                 if fm_end != -1:
                     frontmatter = content[3:fm_end]
-                    if re.search(r'^\s*publish\s*:\s*["\']?true["\']?', frontmatter, re.IGNORECASE | re.MULTILINE):
-                        return True
+                    # If publish: false is found, DO NOT SYNC
+                    if re.search(r'^\s*publish\s*:\s*(?:false|"false"|\'false\')\s*$', frontmatter, re.IGNORECASE | re.MULTILINE):
+                        return False
     except Exception:
         pass
-    return False
+    return True
 
 def sync_vault():
     source_dir = os.path.abspath('.')
