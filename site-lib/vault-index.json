@@ -226,16 +226,15 @@
     "note-res/4th-semester/bcc-210/solutions/bsed-2024-exam-q5.md",
     "note-res/4th-semester/bcc-210/solutions/bsed-2024-exam-q6.md",
     "note-res/4th-semester/bcc-210/solutions/bsed-2024-exam-q7.md",
-    "note-res/4th-semester/index.md",
     "note-res/4th-semester/others/final-2025-hints.md",
     "note-res/4th-semester/others/syllabus-4th-semester.md",
+    "note-res/4th-semester/overview-of-4th-semester.md",
     "note-res/4th-semester/pyq-final-2025.md",
     "note-res/5th-semester/acc-301/pyq-acc-301.md",
     "note-res/5th-semester/acc-302/pyq-acc-302.md",
     "note-res/5th-semester/acc-303/pyq-acc-303.md",
     "note-res/5th-semester/acc-304/pyq-acc-304.md",
     "note-res/5th-semester/acc-305/pyq-acc-305.md",
-    "note-res/5th-semester/index.md",
     "note-res/5th-semester/others/raw-pyqs/raw-acc-301.md",
     "note-res/5th-semester/others/raw-pyqs/raw-acc-302.md",
     "note-res/5th-semester/others/raw-pyqs/raw-acc-303.md",
@@ -243,6 +242,7 @@
     "note-res/5th-semester/others/raw-pyqs/raw-acc-305.md",
     "note-res/5th-semester/others/semester-syllabus-mapping.md",
     "note-res/5th-semester/others/syllabus-5th-semester.md",
+    "note-res/5th-semester/overview-of-5th-semester.md",
     "note-res/ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-1.md",
     "note-res/ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-2.md",
     "note-res/ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-3.md",
@@ -292,7 +292,7 @@
     "note-res/ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-7.md",
     "note-res/ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-8.md",
     "note-res/ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-9.md",
-    "note-res/ai-comprehension/index.md"
+    "note-res/ai-comprehension/overview-of-ai-comprehension.md"
   ],
   "folders": [
     "4th-semester",
@@ -300,54 +300,68 @@
     "ai-comprehension"
   ],
   "lookup": {
-    "index": {
-      "path": "note-res/4th-semester/index.md",
+    "overview-of-4th-semester": {
+      "path": "note-res/4th-semester/overview-of-4th-semester.md",
       "folder": "4th-semester",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-4th-semester.md",
       "title": "BBA 4th Semester 2025",
-      "fileName": "index.md"
+      "fileName": "overview-of-4th-semester.md"
     },
-    "index.md": {
-      "path": "note-res/4th-semester/index.md",
+    "overview of 4th semester": {
+      "path": "note-res/4th-semester/overview-of-4th-semester.md",
       "folder": "4th-semester",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-4th-semester.md",
       "title": "BBA 4th Semester 2025",
-      "fileName": "index.md"
+      "fileName": "overview-of-4th-semester.md"
+    },
+    "overviewof4thsemester": {
+      "path": "note-res/4th-semester/overview-of-4th-semester.md",
+      "folder": "4th-semester",
+      "relInFolder": "overview-of-4th-semester.md",
+      "title": "BBA 4th Semester 2025",
+      "fileName": "overview-of-4th-semester.md"
+    },
+    "overview-of-4th-semester.md": {
+      "path": "note-res/4th-semester/overview-of-4th-semester.md",
+      "folder": "4th-semester",
+      "relInFolder": "overview-of-4th-semester.md",
+      "title": "BBA 4th Semester 2025",
+      "fileName": "overview-of-4th-semester.md"
     },
     "BBA 4th Semester 2025": {
-      "path": "note-res/4th-semester/index.md",
+      "path": "note-res/4th-semester/overview-of-4th-semester.md",
       "folder": "4th-semester",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-4th-semester.md",
       "title": "BBA 4th Semester 2025",
-      "fileName": "index.md"
+      "fileName": "overview-of-4th-semester.md"
     },
     "bba 4th semester 2025": {
-      "path": "note-res/4th-semester/index.md",
+      "path": "note-res/4th-semester/overview-of-4th-semester.md",
       "folder": "4th-semester",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-4th-semester.md",
       "title": "BBA 4th Semester 2025",
-      "fileName": "index.md"
+      "fileName": "overview-of-4th-semester.md"
     },
     "bba4thsemester2025": {
-      "path": "note-res/4th-semester/index.md",
+      "path": "note-res/4th-semester/overview-of-4th-semester.md",
       "folder": "4th-semester",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-4th-semester.md",
       "title": "BBA 4th Semester 2025",
-      "fileName": "index.md"
+      "fileName": "overview-of-4th-semester.md"
     },
     "bba-4th-semester-2025": {
-      "path": "note-res/4th-semester/index.md",
+      "path": "note-res/4th-semester/overview-of-4th-semester.md",
       "folder": "4th-semester",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-4th-semester.md",
       "title": "BBA 4th Semester 2025",
-      "fileName": "index.md"
+      "fileName": "overview-of-4th-semester.md"
     },
-    "note-res/4th-semester/index.md": {
-      "path": "note-res/4th-semester/index.md",
+    "note-res/4th-semester/overview-of-4th-semester.md": {
+      "path": "note-res/4th-semester/overview-of-4th-semester.md",
       "folder": "4th-semester",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-4th-semester.md",
       "title": "BBA 4th Semester 2025",
-      "fileName": "index.md"
+      "fileName": "overview-of-4th-semester.md"
     },
     "pyq-final-2025": {
       "path": "note-res/4th-semester/pyq-final-2025.md",
@@ -11836,40 +11850,68 @@
       "title": "ob-2024-exam-q7",
       "fileName": "ob-2024-exam-q7.md"
     },
-    "BBA 5th Semester 2026": {
-      "path": "note-res/5th-semester/index.md",
+    "overview-of-5th-semester": {
+      "path": "note-res/5th-semester/overview-of-5th-semester.md",
       "folder": "5th-semester",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-5th-semester.md",
       "title": "BBA 5th Semester 2026",
-      "fileName": "index.md"
+      "fileName": "overview-of-5th-semester.md"
+    },
+    "overview of 5th semester": {
+      "path": "note-res/5th-semester/overview-of-5th-semester.md",
+      "folder": "5th-semester",
+      "relInFolder": "overview-of-5th-semester.md",
+      "title": "BBA 5th Semester 2026",
+      "fileName": "overview-of-5th-semester.md"
+    },
+    "overviewof5thsemester": {
+      "path": "note-res/5th-semester/overview-of-5th-semester.md",
+      "folder": "5th-semester",
+      "relInFolder": "overview-of-5th-semester.md",
+      "title": "BBA 5th Semester 2026",
+      "fileName": "overview-of-5th-semester.md"
+    },
+    "overview-of-5th-semester.md": {
+      "path": "note-res/5th-semester/overview-of-5th-semester.md",
+      "folder": "5th-semester",
+      "relInFolder": "overview-of-5th-semester.md",
+      "title": "BBA 5th Semester 2026",
+      "fileName": "overview-of-5th-semester.md"
+    },
+    "BBA 5th Semester 2026": {
+      "path": "note-res/5th-semester/overview-of-5th-semester.md",
+      "folder": "5th-semester",
+      "relInFolder": "overview-of-5th-semester.md",
+      "title": "BBA 5th Semester 2026",
+      "fileName": "overview-of-5th-semester.md"
     },
     "bba 5th semester 2026": {
-      "path": "note-res/5th-semester/index.md",
+      "path": "note-res/5th-semester/overview-of-5th-semester.md",
       "folder": "5th-semester",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-5th-semester.md",
       "title": "BBA 5th Semester 2026",
-      "fileName": "index.md"
+      "fileName": "overview-of-5th-semester.md"
     },
     "bba5thsemester2026": {
-      "path": "note-res/5th-semester/index.md",
+      "path": "note-res/5th-semester/overview-of-5th-semester.md",
       "folder": "5th-semester",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-5th-semester.md",
       "title": "BBA 5th Semester 2026",
-      "fileName": "index.md"
+      "fileName": "overview-of-5th-semester.md"
     },
     "bba-5th-semester-2026": {
-      "path": "note-res/5th-semester/index.md",
+      "path": "note-res/5th-semester/overview-of-5th-semester.md",
       "folder": "5th-semester",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-5th-semester.md",
       "title": "BBA 5th Semester 2026",
-      "fileName": "index.md"
+      "fileName": "overview-of-5th-semester.md"
     },
-    "note-res/5th-semester/index.md": {
-      "path": "note-res/5th-semester/index.md",
+    "note-res/5th-semester/overview-of-5th-semester.md": {
+      "path": "note-res/5th-semester/overview-of-5th-semester.md",
       "folder": "5th-semester",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-5th-semester.md",
       "title": "BBA 5th Semester 2026",
-      "fileName": "index.md"
+      "fileName": "overview-of-5th-semester.md"
     },
     "pyq-acc-304": {
       "path": "note-res/5th-semester/acc-304/pyq-acc-304.md",
@@ -12795,40 +12837,68 @@
       "title": "ACC 303 Advanced Statistical Techniques",
       "fileName": "pyq-acc-303.md"
     },
-    "AI Comprehension": {
-      "path": "note-res/ai-comprehension/index.md",
+    "overview-of-ai-comprehension": {
+      "path": "note-res/ai-comprehension/overview-of-ai-comprehension.md",
       "folder": "ai-comprehension",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-ai-comprehension.md",
       "title": "AI Comprehension",
-      "fileName": "index.md"
+      "fileName": "overview-of-ai-comprehension.md"
+    },
+    "overview of ai comprehension": {
+      "path": "note-res/ai-comprehension/overview-of-ai-comprehension.md",
+      "folder": "ai-comprehension",
+      "relInFolder": "overview-of-ai-comprehension.md",
+      "title": "AI Comprehension",
+      "fileName": "overview-of-ai-comprehension.md"
+    },
+    "overviewofaicomprehension": {
+      "path": "note-res/ai-comprehension/overview-of-ai-comprehension.md",
+      "folder": "ai-comprehension",
+      "relInFolder": "overview-of-ai-comprehension.md",
+      "title": "AI Comprehension",
+      "fileName": "overview-of-ai-comprehension.md"
+    },
+    "overview-of-ai-comprehension.md": {
+      "path": "note-res/ai-comprehension/overview-of-ai-comprehension.md",
+      "folder": "ai-comprehension",
+      "relInFolder": "overview-of-ai-comprehension.md",
+      "title": "AI Comprehension",
+      "fileName": "overview-of-ai-comprehension.md"
+    },
+    "AI Comprehension": {
+      "path": "note-res/ai-comprehension/overview-of-ai-comprehension.md",
+      "folder": "ai-comprehension",
+      "relInFolder": "overview-of-ai-comprehension.md",
+      "title": "AI Comprehension",
+      "fileName": "overview-of-ai-comprehension.md"
     },
     "ai comprehension": {
-      "path": "note-res/ai-comprehension/index.md",
+      "path": "note-res/ai-comprehension/overview-of-ai-comprehension.md",
       "folder": "ai-comprehension",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-ai-comprehension.md",
       "title": "AI Comprehension",
-      "fileName": "index.md"
+      "fileName": "overview-of-ai-comprehension.md"
     },
     "aicomprehension": {
-      "path": "note-res/ai-comprehension/index.md",
+      "path": "note-res/ai-comprehension/overview-of-ai-comprehension.md",
       "folder": "ai-comprehension",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-ai-comprehension.md",
       "title": "AI Comprehension",
-      "fileName": "index.md"
+      "fileName": "overview-of-ai-comprehension.md"
     },
     "ai-comprehension": {
-      "path": "note-res/ai-comprehension/index.md",
+      "path": "note-res/ai-comprehension/overview-of-ai-comprehension.md",
       "folder": "ai-comprehension",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-ai-comprehension.md",
       "title": "AI Comprehension",
-      "fileName": "index.md"
+      "fileName": "overview-of-ai-comprehension.md"
     },
-    "note-res/ai-comprehension/index.md": {
-      "path": "note-res/ai-comprehension/index.md",
+    "note-res/ai-comprehension/overview-of-ai-comprehension.md": {
+      "path": "note-res/ai-comprehension/overview-of-ai-comprehension.md",
       "folder": "ai-comprehension",
-      "relInFolder": "index.md",
+      "relInFolder": "overview-of-ai-comprehension.md",
       "title": "AI Comprehension",
-      "fileName": "index.md"
+      "fileName": "overview-of-ai-comprehension.md"
     },
     "acc-303-notes-module-1": {
       "path": "note-res/ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-1.md",
@@ -18633,6 +18703,21 @@
     "4th-semester/others/syllabus-4th-semester.md": "Syllabus 4th Semester",
     "Syllabus 4th Semester.md": "Syllabus 4th Semester",
     "4th-semester/others/final-2025-hints.md": "Final 2025 Hints",
-    "Final 2025 Hints.md": "Final 2025 Hints"
+    "Final 2025 Hints.md": "Final 2025 Hints",
+    "overview-of-ai-comprehension.md": "Overview of AI Comprehension",
+    "overview-of-ai-comprehension": "Overview of AI Comprehension",
+    "note-res/ai-comprehension/overview-of-ai-comprehension.md": "Overview of AI Comprehension",
+    "ai-comprehension/overview-of-ai-comprehension.md": "Overview of AI Comprehension",
+    "Overview of AI Comprehension.md": "Overview of AI Comprehension",
+    "overview-of-5th-semester.md": "Overview of 5th Semester",
+    "overview-of-5th-semester": "Overview of 5th Semester",
+    "note-res/5th-semester/overview-of-5th-semester.md": "Overview of 5th Semester",
+    "5th-semester/overview-of-5th-semester.md": "Overview of 5th Semester",
+    "Overview of 5th Semester.md": "Overview of 5th Semester",
+    "overview-of-4th-semester.md": "Overview of 4th Semester",
+    "overview-of-4th-semester": "Overview of 4th Semester",
+    "note-res/4th-semester/overview-of-4th-semester.md": "Overview of 4th Semester",
+    "4th-semester/overview-of-4th-semester.md": "Overview of 4th Semester",
+    "Overview of 4th Semester.md": "Overview of 4th Semester"
   }
 }

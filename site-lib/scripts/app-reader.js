@@ -229,7 +229,7 @@ class ObsidianVaultApp {
         const textIsSlug = !linkText || linkText === linkHref || linkText.toLowerCase() === cleanHref.toLowerCase() || linkText.replace(/[-_]/g, ' ').toLowerCase() === stem.replace(/[-_]/g, ' ').toLowerCase();
         
         if (textIsSlug) {
-          const smartLabel = this.resolveSmartLabel(stem, null);
+          const smartLabel = this.resolveSmartLabel(stem, null, null);
           if (smartLabel && smartLabel !== stem) {
             linkText = smartLabel;
           }
@@ -604,88 +604,37 @@ class ObsidianVaultApp {
   // SMART NAME & TITLE RESOLVERS
   // ==========================================
 
-  getOriginalFileName(relPath, fileName, fullPath) {
-    if (!fileName) fileName = (relPath || '').split('/').pop();
-    const stem = (fileName || '').replace(/\.md$/i, '');
-
-    // 1. Check vaultLookup first for YAML titles
-    if (this.vaultLookup) {
-      // Find by full path first (most accurate)
-      if (fullPath) {
-        const matchByPath = Object.values(this.vaultLookup).find(entry => entry.path === fullPath || entry.path === relPath);
-        if (matchByPath && matchByPath.title) return matchByPath.title;
-      }
-      // Find by stem
-      if (this.vaultLookup[stem] && this.vaultLookup[stem].title) {
-        return this.vaultLookup[stem].title;
-      }
+  getOriginalFolderName(folderKey) {
+    if (this.nameMap && this.nameMap[folderKey]) {
+      return this.nameMap[folderKey];
     }
-
-    // 2. Check nameMap for original file capitalization
-    if (this.nameMap) {
-      const keysToTry = [
-        fullPath,
-        relPath,
-        `note-res/${this.currentFolder}/${relPath}`,
-        fileName,
-        stem
-      ];
-      for (const k of keysToTry) {
-        if (k && this.nameMap[k]) return this.nameMap[k].replace(/\.md$/i, '');
-      }
-    }
-
-    // 3. Fallback: Format the slug gracefully
-    if (stem.toLowerCase() === 'index') return 'Coursework Overview';
-    return stem.replace(/[-_]/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-  }
-
-  getOriginalFolderName(folderKey, fullFolderPath) {
-    if (this.nameMap) {
-      const keysToTry = [
-        fullFolderPath,
-        `note-res/${this.currentFolder}/${fullFolderPath}`,
-        `note-res/${fullFolderPath}`,
-        folderKey
-      ];
-      for (const k of keysToTry) {
-        if (k && this.nameMap[k]) return this.nameMap[k];
-      }
-    }
-    if (!folderKey) return 'Folder';
     return folderKey.replace(/[-_]/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   }
 
   resolveSmartLabel(fileStem, fileName, folderName) {
     if (folderName) {
-      if (this.nameMap && this.nameMap[folderName]) {
-        return this.nameMap[folderName];
-      }
-      return folderName.replace(/[-_]/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+      return this.getOriginalFolderName(folderName);
     }
 
     const stem = fileStem || '';
     const name = fileName || '';
 
-    // 1. Check vaultIndex.lookup[fileStem]?.title
-    if (stem && this.vaultLookup && this.vaultLookup[stem] && this.vaultLookup[stem].title) {
-      const t = this.vaultLookup[stem].title;
-      if (t && t.toLowerCase() !== 'index') return t;
-    }
-
-    // 2. Fall back to vaultIndex.nameMap[fileStem]
+    // PRIORITY 1: The Real Original File Name from nameMap (For Sidebar and Graph)
     if (stem && this.nameMap && this.nameMap[stem]) {
       const val = this.nameMap[stem].replace(/\.md$/i, '');
       if (val && val.toLowerCase() !== 'index') return val;
     }
-
-    // 3. Fall back to vaultIndex.nameMap[fileName]
     if (name && this.nameMap && this.nameMap[name]) {
       const val = this.nameMap[name].replace(/\.md$/i, '');
       if (val && val.toLowerCase() !== 'index') return val;
     }
 
-    // 4. Only use the raw stem (e.g. 'index' or 'acc-302...') if all else fails
+    // PRIORITY 2: Only fallback to H1 Title if nameMap completely fails
+    if (stem && this.vaultLookup && this.vaultLookup[stem] && this.vaultLookup[stem].title) {
+      const t = this.vaultLookup[stem].title;
+      if (t && t.toLowerCase() !== 'index') return t;
+    }
+
     if (stem.toLowerCase() === 'index') {
       return 'Coursework Overview';
     }
@@ -869,13 +818,24 @@ class ObsidianVaultApp {
         const parts = relInFolder.split('/');
         const fileName = parts[parts.length - 1];
         const fileStem = fileName.replace(/\.md$/i, '');
-        const originalName = this.resolveSmartLabel(fileStem, fileName);
+        
+        // Use smart label which prioritizes nameMap (Real File Name)
+        const realFileName = this.resolveSmartLabel(fileStem, fileName, null);
+        
+        // ONLY use lookup for the H1 title
+        let h1Title = realFileName;
+        if (this.vaultLookup && this.vaultLookup[fileStem] && this.vaultLookup[fileStem].title) {
+            const t = this.vaultLookup[fileStem].title;
+            if (t.toLowerCase() !== 'index') h1Title = t;
+        }
+
         notes.push({
           fullPath: f,
           path: relInFolder,
           fileName: fileName,
           fileNameWithoutExt: fileStem,
-          title: originalName,
+          originalName: realFileName, // For Sidebar & Graph
+          title: h1Title,             // For Note Header
           folder: parts.length > 1 ? parts[0] : 'root'
         });
       }
@@ -904,13 +864,21 @@ class ObsidianVaultApp {
             const parts = relInFolder.split('/');
             const fileName = parts[parts.length - 1];
             const fileStem = fileName.replace(/\.md$/i, '');
-            const originalName = this.resolveSmartLabel(fileStem, fileName);
+            
+            const realFileName = this.resolveSmartLabel(fileStem, fileName, null);
+            let h1Title = realFileName;
+            if (this.vaultLookup && this.vaultLookup[fileStem] && this.vaultLookup[fileStem].title) {
+                const t = this.vaultLookup[fileStem].title;
+                if (t.toLowerCase() !== 'index') h1Title = t;
+            }
+
             notes.push({
               fullPath: f,
               path: relInFolder,
               fileName: fileName,
               fileNameWithoutExt: fileStem,
-              title: originalName,
+              originalName: realFileName, // For Sidebar & Graph
+              title: h1Title,             // For Note Header
               folder: parts.length > 1 ? parts[0] : 'root'
             });
           }
@@ -964,7 +932,7 @@ class ObsidianVaultApp {
       const isIndex = note.path === 'index.md';
       const nodeObj = {
         id: note.path,
-        title: note.title || note.fileNameWithoutExt, 
+        title: note.originalName || note.fileNameWithoutExt, 
         color: isIndex ? '#bf616a' : (note.path.includes('pyq') ? '#ebcb8b' : '#88c0d0'),
         radius: isIndex ? 10 : 6
       };
@@ -1030,7 +998,6 @@ class ObsidianVaultApp {
       const itemPath = parentPath ? `${parentPath}/${key}` : key;
 
       if (item._isFolder) {
-        const fullFolderPath = `note-res/${this.currentFolder}/${itemPath}`;
         const folderLabel = this.resolveSmartLabel(null, null, key);
         
         html += `
@@ -1053,8 +1020,8 @@ class ObsidianVaultApp {
         `;
       } else {
         const note = item.note;
-        const fileStem = note.path.replace(/\.md$/i, '').split('/').pop();
-        const fileLabel = this.resolveSmartLabel(fileStem, note.fileName);
+        let fileLabel = note.originalName;
+        if (fileLabel.toLowerCase() === 'index') fileLabel = 'Overview';
         
         html += `
           <div class="nav-file" data-note-path="${note.path}">
@@ -1253,13 +1220,13 @@ class ObsidianVaultApp {
 
     const frontmatterData = this.parseYamlFrontmatter(frontmatterStr);
     
-    // We already resolved the perfect title during instantiation. Let's retrieve it from allNotes.
+    // Retrieve the H1 title for the top of the reading pane
     let contentTitle = '';
     const noteObj = this.allNotes.find(n => n.path === relPath);
     if (noteObj) {
-      contentTitle = noteObj.title;
+      contentTitle = noteObj.title; 
     } else {
-      contentTitle = this.getOriginalFileName(relPath, null, null);
+      contentTitle = this.resolveSmartLabel(relPath.split('/').pop().replace(/\.md$/i, ''), null, null);
     }
 
     let matchedH1Text = '';
@@ -1301,7 +1268,10 @@ class ObsidianVaultApp {
     this.initInteractiveWidgets();
     this.buildTableOfContents();
     this.buildBacklinks(relPath);
-    this.updateBreadcrumbs(this.formatFolderTitle(this.currentFolder), contentTitle);
+    
+    // Update breadcrumbs with the Original File Name instead of the H1
+    const cleanFileName = noteObj ? noteObj.originalName : contentTitle;
+    this.updateBreadcrumbs(this.formatFolderTitle(this.currentFolder), cleanFileName);
 
     if (this.sidebarGraph) this.sidebarGraph.updateFocus(relPath, this.graphMode);
   }
@@ -1721,7 +1691,8 @@ class ObsidianVaultApp {
         const fullRel = match.path.replace(/^(?:\[inside\][^/]+|note-res)\//, '');
         const targetFolder = match.folder;
         const targetRel = match.relInFolder;
-        const resolvedTitle = match.title || this.resolveSmartLabel(stem, null);
+        // Use the actual file name from nameMap if possible
+        const resolvedTitle = this.nameMap[stem] || match.title || this.resolveSmartLabel(stem, null, null);
         if (targetFolder !== this.currentFolder) {
           return { path: `../${targetFolder}/#${encodeURIComponent(targetRel)}`, resolved: true, title: resolvedTitle, isCrossFolder: true };
         }
@@ -1740,7 +1711,7 @@ class ObsidianVaultApp {
     });
 
     if (found) {
-      const resolvedTitle = found.title || found.fileNameWithoutExt || this.resolveSmartLabel(stem, found.fileName);
+      const resolvedTitle = found.originalName || found.title || found.fileNameWithoutExt || this.resolveSmartLabel(stem, found.fileName, null);
       return { path: found.path, resolved: true, title: resolvedTitle };
     }
 
@@ -1758,7 +1729,7 @@ class ObsidianVaultApp {
         const parts = cleanPath.split('/');
         const targetFolder = parts[0];
         const targetRel = parts.slice(1).join('/');
-        const resolvedTitle = this.resolveSmartLabel(stem, parts.pop());
+        const resolvedTitle = this.resolveSmartLabel(stem, parts.pop(), null);
         if (targetFolder !== this.currentFolder) {
           return { path: `../${targetFolder}/#${encodeURIComponent(targetRel)}`, resolved: true, title: resolvedTitle, isCrossFolder: true };
         }
@@ -1766,7 +1737,7 @@ class ObsidianVaultApp {
       }
     }
 
-    return { path: `${slugified || raw}.md`, resolved: false, title: this.resolveSmartLabel(stem, null) || raw };
+    return { path: `${slugified || raw}.md`, resolved: false, title: this.resolveSmartLabel(stem, null, null) || raw };
   }
 
   processObsidianCallouts(text) {
@@ -2592,12 +2563,12 @@ class ObsidianVaultApp {
       } else {
         const cleanPath = (targetPath || '').replace(/^#/, '').replace(/^\.\//, '');
         const note = this.allNotes.find(n => {
-          const nTitle = n.title || n.fileNameWithoutExt || '';
+          const nTitle = n.originalName || n.title || n.fileNameWithoutExt || '';
           return n.path === cleanPath || n.path.endsWith(cleanPath) || nTitle.toLowerCase() === cleanPath.toLowerCase();
         });
         if (note) {
           isInternalNote = true;
-          title = note.title || note.fileNameWithoutExt || cleanPath;
+          title = note.title || note.originalName || note.fileNameWithoutExt || cleanPath;
           let content = this.noteContents.get(note.path);
           if (!content) {
             try {

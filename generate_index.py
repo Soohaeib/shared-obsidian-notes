@@ -110,28 +110,34 @@ if os.path.exists(name_map_path):
     except Exception:
         pass
 
-def extract_note_title(file_path):
-    """Extract YAML title property, or first H1 title from Markdown note, or clean filename stem."""
+def extract_note_metadata(file_path):
+    """Extract YAML title, is_home flag (from permalink or home property), or H1."""
     stem = Path(file_path).stem
+    title = stem
+    is_home = False
     try:
         with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
             content = f.read()
-            # 1. YAML Frontmatter title property
             if content.startswith('---'):
                 fm_end = content.find('\n---', 3)
                 if fm_end != -1:
                     frontmatter = content[3:fm_end]
+                    # Detect permalink: /index.md or home: true
+                    if re.search(r'^\s*permalink\s*:\s*["\']?/(?:index\.md)?["\']?', frontmatter, re.IGNORECASE | re.MULTILINE):
+                        is_home = True
+                    if re.search(r'^\s*(?:home|entry|isHome)\s*:\s*true', frontmatter, re.IGNORECASE | re.MULTILINE):
+                        is_home = True
+
                     title_match = re.search(r'^\s*title\s*:\s*["\']?([^"\n\r\']+)', frontmatter, re.IGNORECASE | re.MULTILINE)
                     if title_match and title_match.group(1).strip():
-                        return title_match.group(1).strip()
-            
-            # 2. First Markdown H1 (# Heading)
+                        return title_match.group(1).strip(), is_home
+
             h1_match = re.search(r'^\s*#\s+([^\n\r]+)', content, re.MULTILINE)
             if h1_match and h1_match.group(1).strip():
-                return h1_match.group(1).strip()
+                title = h1_match.group(1).strip()
     except Exception:
         pass
-    return stem
+    return title, is_home
 
 for name in sorted(os.listdir(scan_base)):
     if is_ignored_folder(name) or (scan_base == source_dir and name == vault_container):
@@ -166,7 +172,7 @@ for name in sorted(os.listdir(scan_base)):
                     # Populate Wikilink lookup dictionary & name_map
                     stem = f[:-3] # remove .md
                     stem_clean = stem.replace('-', ' ').replace('_', ' ')
-                    title = extract_note_title(full_md_path)
+                    title, is_home = extract_note_metadata(full_md_path)
                     rel_in_folder = os.path.relpath(full_md_path, full_path).replace('\\', '/')
 
                     display_title = title if title else stem_clean.title()
@@ -210,7 +216,8 @@ for name in sorted(os.listdir(scan_base)):
                                 "folder": name,
                                 "relInFolder": rel_in_folder,
                                 "title": title,
-                                "fileName": f
+                                "fileName": f,
+                                "isHome": is_home
                             }
 
         rel_url = f"./{vault_container}/{name}/" if scan_base == container_path else f"./{name}/"

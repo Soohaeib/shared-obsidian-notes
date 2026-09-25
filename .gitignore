@@ -38,3 +38,6 @@ backup-directory/
 .env
 .env.local
 .env.*.local
+
+#custom ignore rules for specific files or directories
+test-script.py
