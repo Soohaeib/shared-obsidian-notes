@@ -21058,5 +21058,8 @@
     "note-res/4th-semester/overview-of-4th-semester.md": "Overview of 4th Semester",
     "4th-semester/overview-of-4th-semester.md": "Overview of 4th Semester",
     "Overview of 4th Semester.md": "Overview of 4th Semester"
+  },
+  "lockedSections": {
+    "ai-comprehension": "NOTES_CURATED"
   }
 }

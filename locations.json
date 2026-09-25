@@ -33,5 +33,8 @@
     ".*\\.bak$",
     ".*\\.tmp$",
     ".*~$"
-  ]
+  ],
+  "lockedSections": {
+    "ai-comprehension": "NOTES_CURATED"
+  }
 }

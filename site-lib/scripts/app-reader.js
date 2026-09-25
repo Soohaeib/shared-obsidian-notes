@@ -246,13 +246,45 @@ class ObsidianVaultApp {
 
     this.applyPreferences();
     this.setupUIEventListeners();
-    await this.loadVaultNotes();
-    this.buildFileTree();
-    this.setupHoverLinkPreviews();
-    this.setupMediaPreview();
-    this.setupGraph();
-    this.handleRoute();
-    this.loadVaultHealth();
+
+    if (document.body.dataset.vaultLocked === 'true' && sessionStorage.getItem('vault_unlocked_' + this.currentFolder) !== 'true') {
+      const style = document.createElement('style');
+      style.id = 'vault-lock-blur-styles';
+      style.innerHTML = `
+        .obsidian-workspace, .obsidian-app-header {
+          filter: blur(20px) grayscale(0.5);
+          opacity: 0.25;
+          pointer-events: none !important;
+          user-select: none !important;
+          transition: filter 0.5s ease, opacity 0.5s ease;
+        }
+      `;
+      document.head.appendChild(style);
+
+      const expectedToken = document.body.dataset.vaultToken || 'NOTES_CURATED';
+      
+      this.triggerGatekeeper(expectedToken, async () => {
+        sessionStorage.setItem('vault_unlocked_' + this.currentFolder, 'true');
+        const styleEl = document.getElementById('vault-lock-blur-styles');
+        if (styleEl) styleEl.remove();
+
+        await this.loadVaultNotes();
+        this.buildFileTree();
+        this.setupHoverLinkPreviews();
+        this.setupMediaPreview();
+        this.setupGraph();
+        this.handleRoute();
+        this.loadVaultHealth();
+      });
+    } else {
+      await this.loadVaultNotes();
+      this.buildFileTree();
+      this.setupHoverLinkPreviews();
+      this.setupMediaPreview();
+      this.setupGraph();
+      this.handleRoute();
+      this.loadVaultHealth();
+    }
 
     window.addEventListener('hashchange', () => this.handleRoute());
   }

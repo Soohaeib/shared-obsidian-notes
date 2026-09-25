@@ -44,6 +44,7 @@ if os.path.exists(loc_file):
         print(f"Notice: Could not parse locations.json ({e})")
 
 vault_container = config.get('targetVaultDirectory', 'note-res')
+locked_sections = config.get('lockedSections', {})
 source_exclusion_paths = set(config.get('sourceExclusionPaths', []))
 source_exclusion_files = set(config.get('sourceExclusionFiles', []))
 ignored_folders = set(config.get('excludedFolders', [])).union(source_exclusion_paths)
@@ -236,7 +237,13 @@ for name in sorted(os.listdir(scan_base)):
             t_content = re.sub(r'(\.\./)*site-lib/', f'{rel_to_root}site-lib/', t_content)
             t_content = re.sub(r'<a href="\.\./"', f'<a href="{rel_to_root}"', t_content)
             t_content = re.sub(r'<title>.*?</title>', f'<title>BBA {folder_title} — Shared Obsidian Notes</title>', t_content, flags=re.IGNORECASE)
-            t_content = re.sub(r'<body([^>]*)>', f'<body\\1 data-vault-folder="{name}">', t_content, count=1, flags=re.IGNORECASE)
+            
+            is_locked_folder = name in locked_sections
+            body_attrs = f'data-vault-folder="{name}"'
+            if is_locked_folder:
+                body_attrs += f' data-vault-locked="true" data-vault-token="{locked_sections[name]}"'
+            t_content = re.sub(r'<body([^>]*)>', f'<body\\1 {body_attrs}>', t_content, count=1, flags=re.IGNORECASE)
+            
             t_content = re.sub(r'<span class="sidebar-title">.*?</span>', f'<span class="sidebar-title">{folder_title} Notes</span>', t_content, flags=re.IGNORECASE)
 
             try:
@@ -262,7 +269,8 @@ try:
             'files': sorted(all_md_files),
             'folders': sorted(discovered_folders),
             'lookup': vault_lookup,
-            'nameMap': name_map
+            'nameMap': name_map,
+            'lockedSections': locked_sections
         }, fh, indent=2)
     print(f"Updated {vault_index_path} with {len(all_md_files)} notes and {len(vault_lookup)} lookup entries.")
 except Exception as e:
@@ -283,13 +291,18 @@ except Exception as e:
 nodes_data = [{"id": "root", "label": "Shared Vault", "url": None, "isRoot": True, "moons": 0}]
 for name, rel_url, sub_count in entries:
     label = name_map.get(name, name.replace('-', ' ').replace('_', ' ').title())
-    nodes_data.append({
+    is_locked = name in locked_sections
+    node_obj = {
         "id": name, 
         "label": label, 
         "url": rel_url, 
         "isRoot": False,
         "moons": sub_count
-    })
+    }
+    if is_locked:
+        node_obj["isLocked"] = True
+        node_obj["expectedToken"] = locked_sections[name]
+    nodes_data.append(node_obj)
 
 nodes_json = json.dumps(nodes_data)
 
@@ -822,13 +835,113 @@ html_template = r'''<!DOCTYPE html>
         canvas.addEventListener('touchend', handleUp);
         canvas.addEventListener('mouseleave', handleUp);
 
+        function triggerGatekeeper(expectedToken, onUnlock) {
+            if (document.getElementById('canvas-gatekeeper-overlay')) return;
+
+            const overlay = document.createElement('div');
+            overlay.id = 'canvas-gatekeeper-overlay';
+            overlay.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+                background: rgba(30, 30, 30, 0.9);
+                backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+                z-index: 10000; display: flex; flex-direction: column;
+                align-items: center; justify-content: center;
+                font-family: var(--font-interface, sans-serif);
+                transition: opacity 0.4s ease;
+            `;
+
+            const closeBtn = document.createElement('button');
+            closeBtn.innerHTML = '<svg width="18" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>';
+            closeBtn.style.cssText = `
+                position: absolute; top: 30px; right: 30px;
+                width: 40px; height: 40px; border-radius: 50%;
+                background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+                color: #b3b3b3; font-size: 1.2rem; cursor: pointer; 
+                display: flex; justify-content: center; align-items: center; transition: all 0.2s ease;
+            `;
+            closeBtn.onclick = () => {
+                overlay.style.opacity = '0';
+                setTimeout(() => overlay.remove(), 400);
+            };
+
+            const title = document.createElement('h2');
+            title.innerText = "This folder is protected. Enter Access Token:";
+            title.style.cssText = `
+                margin: 0 0 24px 0; font-size: 1.3rem; font-weight: 600;
+                color: #e8e8e8; text-align: center; padding: 0 20px;
+                text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            `;
+
+            const inputWrapper = document.createElement('div');
+            inputWrapper.style.cssText = "position: relative; width: 80%; max-width: 340px;";
+
+            const input = document.createElement('input');
+            input.type = "password";
+            input.placeholder = "Enter Access Token...";
+            input.style.cssText = `
+                width: 100%; box-sizing: border-box;
+                background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.2);
+                padding: 16px 20px; border-radius: 12px; color: white; font-size: 1.05rem;
+                text-align: center; outline: none; letter-spacing: 2px;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.3); transition: all 0.3s ease;
+            `;
+
+            input.addEventListener('focus', () => {
+                input.style.borderColor = "var(--interactive-accent, #8b6ce3)";
+                input.style.boxShadow = "0 0 0 3px rgba(139, 108, 227, 0.3)";
+            });
+
+            input.addEventListener('blur', () => {
+                input.style.borderColor = "rgba(255, 255, 255, 0.2)";
+                input.style.boxShadow = "0 8px 32px rgba(0,0,0,0.3)";
+            });
+
+            input.addEventListener('input', (e) => {
+                if (e.target.value === expectedToken) {
+                    input.style.borderColor = "#4ade80"; 
+                    input.style.color = "#4ade80";
+                    input.style.textShadow = "0 0 12px rgba(74, 222, 128, 0.5)";
+                    input.style.boxShadow = "0 0 0 3px rgba(74, 222, 128, 0.3)";
+                    input.disabled = true; 
+                    
+                    setTimeout(() => {
+                        overlay.style.opacity = '0';
+                        setTimeout(() => {
+                            overlay.remove();
+                            if (typeof onUnlock === 'function') onUnlock();
+                        }, 400);
+                    }, 500); 
+                }
+            });
+
+            inputWrapper.appendChild(input);
+            overlay.appendChild(closeBtn);
+            overlay.appendChild(title);
+            overlay.appendChild(inputWrapper);
+            document.body.appendChild(overlay);
+
+            setTimeout(() => input.focus(), 150);
+        }
+
         canvas.addEventListener('click', (e) => {
             if (isDragging) return;
             const pos = getMousePos(e);
             const clickedNode = getHoveredNode(pos, 1000);
 
             if (clickedNode && !clickedNode.isRoot && clickedNode.url) {
-                window.location.href = clickedNode.url;
+                if (clickedNode.isLocked) {
+                    const sessionKey = 'vault_unlocked_' + clickedNode.id;
+                    if (sessionStorage.getItem(sessionKey) === 'true') {
+                        window.location.href = clickedNode.url;
+                    } else {
+                        triggerGatekeeper(clickedNode.expectedToken, () => {
+                            sessionStorage.setItem(sessionKey, 'true');
+                            window.location.href = clickedNode.url;
+                        });
+                    }
+                } else {
+                    window.location.href = clickedNode.url;
+                }
             }
         });
 
