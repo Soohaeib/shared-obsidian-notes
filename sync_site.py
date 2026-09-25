@@ -65,7 +65,24 @@ def sync_vault():
     # Safely load the renamed vaultExclusionPaths
     exclusion_paths = [os.path.abspath(os.path.expanduser(p)) for p in config.get('vaultExclusionPaths', config.get('sourceExclusionPaths', []))]
     excluded_files = set(config.get('excludedFiles', []))
+    excluded_folders = set(config.get('excludedFolders', ['.git', '.github', '.obsidian', '.trash', 'node_modules', 'guide']))
     
+    def is_excluded(full_path):
+        """Strict exclusion check using exact path components."""
+        p = Path(full_path)
+        # Check if any component matches excluded_folders
+        if any(part in excluded_folders for part in p.parts):
+            return True
+        # Check hidden folders
+        if any(part.startswith('.') for part in p.parts if part not in ['.', '..']):
+            return True
+        # Check absolute exclusion paths
+        full_norm = os.path.abspath(full_path)
+        for ex in exclusion_paths:
+            if full_norm.startswith(ex):
+                return True
+        return False
+
     name_map = {}
     copied_md = 0
     copied_assets = 0
@@ -78,12 +95,8 @@ def sync_vault():
             continue
             
         for root, dirs, files in os.walk(src_vault):
-            # 1. Check if current directory is in the exclusion list
-            if any(root.startswith(ex) for ex in exclusion_paths):
-                continue
-                
-            # Skip hidden/system folders
-            if '.obsidian' in root or '.git' in root or '.trash' in root:
+            if is_excluded(root):
+                dirs[:] = [] # Don't descend into excluded directories
                 continue
 
             for file in files:
@@ -118,12 +131,15 @@ def sync_vault():
                 os.makedirs(os.path.dirname(dest_file), exist_ok=True)
                 
                 # Collision safety: if a folder has the exact same slug as this file
-                if os.path.exists(dest_file) and os.path.isdir(dest_file):
+                dst_p = Path(dest_file)
+                if dst_p.exists() and dst_p.is_dir():
                     base, ext = os.path.splitext(dest_file)
-                    count = 1
-                    while os.path.exists(f"{base}-{count}{ext}"):
+                    dest_file = f"{base}-1{ext}"
+                    # If -1 also exists (unlikely but possible), keep incrementing
+                    count = 2
+                    while os.path.exists(dest_file):
+                        dest_file = f"{base}-{count}{ext}"
                         count += 1
-                    dest_file = f"{base}-{count}{ext}"
                 
                 shutil.copy2(src_file, dest_file)
                 if is_md:

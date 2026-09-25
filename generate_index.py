@@ -60,23 +60,32 @@ def slugify(text: str) -> str:
     return text.strip('-') or 'vault-folder'
 
 def is_ignored_folder(name, full_path=""):
-    low = name.lower().strip()
-    if name in ignored_folders or name.startswith('.'):
+    """Strictly ignores folders based on exact name matches in path components."""
+    p = Path(full_path or name)
+    parts = p.parts
+    
+    # 1. Check if any path component is in the ignored_folders list
+    if any(part in ignored_folders for part in parts):
+        return True
+        
+    # 2. Check for hidden folders in any part of the path
+    if any(part.startswith('.') for part in parts if part not in ['.', '..']):
         return True
     
+    # 3. Check for absolute exclusion paths (prefix matching)
     if full_path:
         norm_path = os.path.normpath(full_path).replace('\\', '/')
         for excl in vault_exclusion_paths:
             excl_norm = os.path.normpath(excl).replace('\\', '/')
-            if excl_norm in norm_path:
+            # Ensure it's a full component match by checking prefix + separator or exact
+            if norm_path == excl_norm or norm_path.startswith(excl_norm + '/'):
                 return True
 
-    for f in ignored_folders:
-        if f.lower().strip() == low:
-            return True
-    if any(p.match(name) for p in ignored_patterns):
+    # 4. Pattern and specific suffix matches
+    low = name.lower().strip()
+    if any(pat.match(name) for pat in ignored_patterns):
         return True
-    if 'backup' in low or low.endswith('.bak'):
+    if low == 'backup' or low.endswith('.bak'):
         return True
     return False
 
