@@ -43,12 +43,10 @@ class ObsidianVaultApp {
   }
 
   detectCurrentFolder(discoveredFiles = []) {
-    // 1. Explicit body attribute injected by generate_index.py or template
     if (document.body && document.body.dataset && document.body.dataset.vaultFolder) {
       return document.body.dataset.vaultFolder;
     }
 
-    // 2. Discover known top-level folder names from discoveredFiles
     const knownFolders = new Set();
     if (Array.isArray(discoveredFiles)) {
       for (const f of discoveredFiles) {
@@ -62,14 +60,12 @@ class ObsidianVaultApp {
     const currentHref = decodeURIComponent(window.location.href);
     const currentPath = decodeURIComponent(window.location.pathname);
 
-    // 3. Match against known folders in URL (supports subpaths, GitHub Pages, file:///)
     for (const folder of knownFolders) {
       if (currentHref.includes(`/${folder}/`) || currentHref.endsWith(`/${folder}`) || currentPath.includes(`/${folder}/`) || currentPath.endsWith(`/${folder}`)) {
         return folder;
       }
     }
 
-    // 4. Extract from pathname (last folder before index.html)
     const cleanPath = currentPath.replace(/\/index\.html?$/i, '').replace(/\/+$/, '');
     const segments = cleanPath.split('/').filter(Boolean);
     if (segments.length > 0) {
@@ -79,7 +75,6 @@ class ObsidianVaultApp {
       }
     }
 
-    // 5. If we have known folders from index, default to the first one
     if (knownFolders.size > 0) {
       return Array.from(knownFolders)[0];
     }
@@ -142,7 +137,6 @@ class ObsidianVaultApp {
     return p;
   }
 
-  // Speculative idle queue: lazily fetches remaining notes during idle browser cycles
   enqueueIdlePrefetch(notePaths) {
     if (!Array.isArray(notePaths) || notePaths.length === 0) return;
     const pending = notePaths.filter(p => !this.noteContents.has(p) && !this.activePrefetches.has(p));
@@ -182,7 +176,6 @@ class ObsidianVaultApp {
   }
 
   async init() {
-    // Configure marked for Obsidian heading IDs and GitHub-flavored markdown
     if (typeof marked !== 'undefined') {
       const renderer = new marked.Renderer();
       renderer.heading = function(...args) {
@@ -191,18 +184,15 @@ class ObsidianVaultApp {
         let headingRaw = '';
 
         if (args[0] && typeof args[0] === 'object') {
-          // Marked v12+ signature: { tokens, depth, text, raw }
           headingText = args[0].text || '';
           headingLevel = args[0].depth || 1;
           headingRaw = args[0].raw || headingText;
         } else {
-          // Marked classic signature: (text, level, raw)
           headingText = typeof args[0] === 'string' ? args[0] : String(args[0] || '');
           headingLevel = args[1] || 1;
           headingRaw = typeof args[2] === 'string' ? args[2] : headingText;
         }
 
-        // Clean any internal tokens, math placeholders, or HTML from slug and data-heading
         const plainHeading = String(headingRaw || headingText || '')
           .replace(/@@[A-Z0-9_]+@@/g, '')
           .replace(/<[^>]+>/g, '')
@@ -218,6 +208,7 @@ class ObsidianVaultApp {
 
         return `<h${headingLevel} id="${slug}" data-heading="${safeDataHeading}">${headingText}</h${headingLevel}>`;
       };
+      
       renderer.link = (href, title, text) => {
         let linkHref = '';
         let linkTitle = '';
@@ -234,6 +225,7 @@ class ObsidianVaultApp {
         const cleanHref = decodeURIComponent(linkHref).replace(/\.md$/i, '').trim();
         const stem = cleanHref.split('/').pop();
         const textIsSlug = !linkText || linkText === linkHref || linkText.toLowerCase() === cleanHref.toLowerCase() || linkText.replace(/[-_]/g, ' ').toLowerCase() === stem.replace(/[-_]/g, ' ').toLowerCase();
+        
         if (textIsSlug) {
           const smartLabel = this.resolveSmartLabel(stem, null);
           if (smartLabel && smartLabel !== stem) {
@@ -242,6 +234,7 @@ class ObsidianVaultApp {
         }
         return `<a href="${linkHref}" ${linkTitle ? `title="${linkTitle}"` : ''}>${linkText}</a>`;
       };
+      
       marked.setOptions({
         gfm: true,
         breaks: false,
@@ -277,20 +270,16 @@ class ObsidianVaultApp {
   applyPreferences() {
     const root = document.documentElement;
     const body = document.body;
-
-    // Apply attributes for CSS variable styling
     root.setAttribute('data-theme', this.themeFamily);
     root.setAttribute('data-theme-mode', this.themeMode);
     body.setAttribute('data-theme', this.themeFamily);
     body.setAttribute('data-theme-mode', this.themeMode);
 
-    // Apply classes for broad stylesheet compatibility
     const modeClass = this.themeMode === 'light' ? 'theme-light' : 'theme-dark';
     const comboClass = `theme-${this.themeFamily}-${this.themeMode}`;
     root.className = `${modeClass} ${comboClass}`;
     body.className = `${modeClass} ${comboClass}`;
 
-    // Update active state on theme chips in options popover
     document.querySelectorAll('.theme-chip').forEach(chip => {
       if (chip.dataset.themeFamily === this.themeFamily) {
         chip.classList.add('active');
@@ -299,7 +288,6 @@ class ObsidianVaultApp {
       }
     });
 
-    // Update active state on mode buttons & direct toggle icons
     const btnDark = document.getElementById('opt-btn-mode-dark');
     const btnLight = document.getElementById('opt-btn-mode-light');
     if (btnDark && btnLight) {
@@ -384,7 +372,6 @@ class ObsidianVaultApp {
     if (this.sidebarGraph) this.sidebarGraph.updateTheme(this.themeMode, this.themeFamily);
     if (this.modalGraph) this.modalGraph.updateTheme(this.themeMode, this.themeFamily);
 
-    // Mobile sidebar backdrop overlay state
     const mobileBackdrop = document.getElementById('mobile-sidebar-backdrop');
     if (mobileBackdrop) {
       if (window.innerWidth <= 768 && (this.isLeftOpen || this.isRightOpen)) {
@@ -410,14 +397,9 @@ class ObsidianVaultApp {
     const btnToggleLeft = document.getElementById('btn-toggle-left');
     if (btnToggleLeft) {
       btnToggleLeft.addEventListener('click', (e) => {
-        if (e) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
+        if (e) { e.preventDefault(); e.stopPropagation(); }
         this.isLeftOpen = !this.isLeftOpen;
-        if (window.innerWidth <= 768 && this.isLeftOpen) {
-          this.isRightOpen = false; // Mutually exclusive drawer on small screens
-        }
+        if (window.innerWidth <= 768 && this.isLeftOpen) this.isRightOpen = false;
         localStorage.setItem('obsidian_left_open', this.isLeftOpen);
         this.applyPreferences();
       });
@@ -426,14 +408,9 @@ class ObsidianVaultApp {
     const btnToggleRight = document.getElementById('btn-toggle-right');
     if (btnToggleRight) {
       btnToggleRight.addEventListener('click', (e) => {
-        if (e) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
+        if (e) { e.preventDefault(); e.stopPropagation(); }
         this.isRightOpen = !this.isRightOpen;
-        if (window.innerWidth <= 768 && this.isRightOpen) {
-          this.isLeftOpen = false; // Mutually exclusive drawer on small screens
-        }
+        if (window.innerWidth <= 768 && this.isRightOpen) this.isLeftOpen = false;
         localStorage.setItem('obsidian_right_open', this.isRightOpen);
         this.applyPreferences();
         if (this.isRightOpen && this.sidebarGraph) {
@@ -442,7 +419,6 @@ class ObsidianVaultApp {
       });
     }
 
-    // Dedicated Workspace Options Popover Menu
     const btnOptions = document.getElementById('btn-workspace-options');
     const optionsMenu = document.getElementById('workspace-options-menu');
     const btnCloseOptions = document.getElementById('btn-close-options');
@@ -462,30 +438,19 @@ class ObsidianVaultApp {
     };
 
     if (btnOptions) {
-      btnOptions.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleOptions();
-      });
+      btnOptions.addEventListener('click', (e) => { e.stopPropagation(); toggleOptions(); });
     }
-
     if (btnCloseOptions) {
-      btnCloseOptions.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleOptions(false);
-      });
+      btnCloseOptions.addEventListener('click', (e) => { e.stopPropagation(); toggleOptions(false); });
     }
 
-    // Close options popover when clicking anywhere outside
     document.addEventListener('click', (e) => {
       if (optionsMenu && optionsMenu.classList.contains('is-open')) {
         const wrapper = document.querySelector('.options-menu-wrapper');
-        if (wrapper && !wrapper.contains(e.target)) {
-          toggleOptions(false);
-        }
+        if (wrapper && !wrapper.contains(e.target)) toggleOptions(false);
       }
     });
 
-    // Theme Family Chips
     document.querySelectorAll('.theme-chip').forEach(chip => {
       chip.addEventListener('click', () => {
         const family = chip.dataset.themeFamily;
@@ -498,10 +463,8 @@ class ObsidianVaultApp {
       });
     });
 
-    // Direct Header Quick Theme Toggle
     document.getElementById('btn-toggle-theme')?.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
+      e.preventDefault(); e.stopPropagation();
       this.themeMode = this.themeMode === 'dark' ? 'light' : 'dark';
       this.theme = this.themeMode;
       localStorage.setItem('obsidian_theme_mode', this.themeMode);
@@ -510,10 +473,8 @@ class ObsidianVaultApp {
       this.showToast(this.themeMode === 'dark' ? 'Dark mode activated' : 'Light mode activated');
     });
 
-    // Theme Mode Switcher (Dark / Light)
     document.getElementById('opt-btn-mode-dark')?.addEventListener('click', () => {
-      this.themeMode = 'dark';
-      this.theme = 'dark';
+      this.themeMode = 'dark'; this.theme = 'dark';
       localStorage.setItem('obsidian_theme_mode', 'dark');
       localStorage.setItem('obsidian_theme', 'dark');
       this.applyPreferences();
@@ -521,15 +482,13 @@ class ObsidianVaultApp {
     });
 
     document.getElementById('opt-btn-mode-light')?.addEventListener('click', () => {
-      this.themeMode = 'light';
-      this.theme = 'light';
+      this.themeMode = 'light'; this.theme = 'light';
       localStorage.setItem('obsidian_theme_mode', 'light');
       localStorage.setItem('obsidian_theme', 'light');
       this.applyPreferences();
       this.showToast('Light mode activated');
     });
 
-    // Note Tools from Options Popover
     document.getElementById('opt-btn-download-md')?.addEventListener('click', () => {
       toggleOptions(false);
       if (this.activeNoteRawMarkdown) {
@@ -546,7 +505,6 @@ class ObsidianVaultApp {
       this.showToast(this.isFullWidth ? 'Full width layout activated' : 'Readable column width activated');
     });
 
-    // Font scale slider & percentage controls
     const sliderFontScale = document.getElementById('slider-font-scale');
     if (sliderFontScale) {
       const updateScale = (val) => {
@@ -579,16 +537,6 @@ class ObsidianVaultApp {
       this.showToast('Font scale reset to 100%');
     });
 
-    document.getElementById('btn-toggle-theme')?.addEventListener('click', () => {
-      this.themeMode = this.themeMode === 'dark' ? 'light' : 'dark';
-      this.theme = this.themeMode;
-      localStorage.setItem('obsidian_theme_mode', this.themeMode);
-      localStorage.setItem('obsidian_theme', this.themeMode);
-      this.applyPreferences();
-      this.showToast(`${this.formatThemeName(this.themeFamily)} (${this.themeMode}) active`);
-    });
-
-    // Expand / Collapse all directories
     document.getElementById('btn-collapse-expand-all')?.addEventListener('click', () => {
       const folders = document.querySelectorAll('.nav-folder');
       if (!folders.length) return;
@@ -613,24 +561,17 @@ class ObsidianVaultApp {
       this.showToast(anyOpen ? 'Collapsed all folders' : 'Expanded all folders');
     });
 
-    // Quick Search Palette & Non-Minimal Header Search Bar
     const triggerSearch = () => this.openSearchModal();
     document.getElementById('btn-quick-search')?.addEventListener('click', triggerSearch);
     const headerSearchBar = document.getElementById('header-search-bar-trigger');
     if (headerSearchBar) {
       headerSearchBar.addEventListener('click', triggerSearch);
       headerSearchBar.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          triggerSearch();
-        }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); triggerSearch(); }
       });
     }
 
-    // Vault Health Diagnostics Modal
-    document.getElementById('btn-vault-health')?.addEventListener('click', () => {
-      this.openHealthModal();
-    });
+    document.getElementById('btn-vault-health')?.addEventListener('click', () => this.openHealthModal());
 
     window.addEventListener('keydown', (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
@@ -643,20 +584,14 @@ class ObsidianVaultApp {
       }
     });
 
-    document.getElementById('search-modal-input')?.addEventListener('input', (e) => {
-      this.handleSearch(e.target.value);
-    });
-
-    // Graph triggers
+    document.getElementById('search-modal-input')?.addEventListener('input', (e) => this.handleSearch(e.target.value));
     document.getElementById('btn-open-graph')?.addEventListener('click', () => this.openGraphModal());
     document.getElementById('graph-sidebar-expand')?.addEventListener('click', () => this.openGraphModal());
     document.getElementById('graph-sidebar-global')?.addEventListener('click', () => this.toggleGraphMode());
     document.getElementById('modal-toggle-local-global')?.addEventListener('click', () => this.toggleGraphMode());
 
-    // Initialize Table of Contents global controls
     this.setupTocGlobalControls();
 
-    // Internal link click delegation (WikiLinks, Footnotes, and Properties Collapse)
     document.addEventListener('click', (e) => {
       const link = e.target.closest('.internal-link');
       if (link) {
@@ -679,13 +614,10 @@ class ObsidianVaultApp {
         }
       }
 
-      // Toggle Collapsible Properties Block
       const heading = e.target.closest('.metadata-properties-heading');
       if (heading) {
         const container = heading.closest('.metadata-container');
-        if (container) {
-          container.classList.toggle('is-collapsed');
-        }
+        if (container) container.classList.toggle('is-collapsed');
       }
     });
 
@@ -694,67 +626,78 @@ class ObsidianVaultApp {
       if (heading && (e.key === 'Enter' || e.key === ' ')) {
         e.preventDefault();
         const container = heading.closest('.metadata-container');
-        if (container) {
-          container.classList.toggle('is-collapsed');
-        }
+        if (container) container.classList.toggle('is-collapsed');
       }
     });
   }
 
-  resolveSmartLabel(fileStem, fileName, folderName) {
-    if (folderName) {
-      if (this.nameMap && this.nameMap[folderName]) {
-        return this.nameMap[folderName];
-      }
-      return folderName.replace(/[-_]/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-    }
+  // ==========================================
+  // SMART NAME & TITLE RESOLVERS
+  // ==========================================
 
-    if (fileStem) {
-      // 1. Check vaultIndex.lookup[fileStem]?.title
-      if (this.vaultLookup) {
-        const entry = this.vaultLookup[fileStem] || this.vaultLookup[fileStem.toLowerCase()];
-        if (entry && entry.title) {
-          return entry.title;
-        }
-      }
-      // 2. Fall back to vaultIndex.nameMap[fileStem]
-      if (this.nameMap) {
-        const mapped = this.nameMap[fileStem] || this.nameMap[fileStem.toLowerCase()];
-        if (mapped) {
-          return mapped.replace(/\.md$/i, '');
-        }
-      }
-      // 3. Fall back to vaultIndex.nameMap[fileName]
-      if (fileName && this.nameMap) {
-        const mappedFile = this.nameMap[fileName] || this.nameMap[fileName.toLowerCase()];
-        if (mappedFile) {
-          return mappedFile.replace(/\.md$/i, '');
-        }
-      }
-    }
-    // 4. Only use the raw stem if all else fails.
-    return fileStem || fileName || '';
-  }
-
-  getOriginalFileName(relPath, fileName) {
+  getOriginalFileName(relPath, fileName, fullPath) {
     if (!fileName) fileName = (relPath || '').split('/').pop();
     const stem = (fileName || '').replace(/\.md$/i, '');
-    
-    // Check if nameMap has a direct mapping for the entire relPath first
-    if (this.nameMap && relPath && this.nameMap[relPath]) {
-      return this.nameMap[relPath].replace(/\.md$/i, '');
+
+    // 1. Check vaultLookup first for YAML titles
+    if (this.vaultLookup) {
+      // Find by full path first (most accurate)
+      if (fullPath) {
+        const matchByPath = Object.values(this.vaultLookup).find(entry => entry.path === fullPath || entry.path === relPath);
+        if (matchByPath && matchByPath.title) return matchByPath.title;
+      }
+      // Find by stem
+      if (this.vaultLookup[stem] && this.vaultLookup[stem].title) {
+        return this.vaultLookup[stem].title;
+      }
     }
-    
-    return this.resolveSmartLabel(stem, fileName);
+
+    // 2. Check nameMap for original file capitalization
+    if (this.nameMap) {
+      const keysToTry = [
+        fullPath,
+        relPath,
+        `note-res/${this.currentFolder}/${relPath}`,
+        fileName,
+        stem
+      ];
+      for (const k of keysToTry) {
+        if (k && this.nameMap[k]) return this.nameMap[k].replace(/\.md$/i, '');
+      }
+    }
+
+    // 3. Fallback: Format the slug gracefully
+    if (stem.toLowerCase() === 'index') return 'Coursework Overview';
+    return stem.replace(/[-_]/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   }
 
-  getOriginalFolderName(folderKey, fullPath) {
+  getOriginalFolderName(folderKey, fullFolderPath) {
     if (this.nameMap) {
-      if (fullPath && this.nameMap[fullPath]) return this.nameMap[fullPath];
-      if (folderKey && this.nameMap[folderKey]) return this.nameMap[folderKey];
+      const keysToTry = [
+        fullFolderPath,
+        `note-res/${this.currentFolder}/${fullFolderPath}`,
+        `note-res/${fullFolderPath}`,
+        folderKey
+      ];
+      for (const k of keysToTry) {
+        if (k && this.nameMap[k]) return this.nameMap[k];
+      }
     }
     if (!folderKey) return 'Folder';
-    return this.resolveSmartLabel(null, null, folderKey);
+    return folderKey.replace(/[-_]/g, ' ').split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+  }
+
+  resolveSmartLabel(fileStem, fileName, folderName) {
+    if (folderName) return this.getOriginalFolderName(folderName, folderName);
+    
+    // Use the perfectly resolved titles in allNotes if available
+    if (this.allNotes) {
+      const cleanStem = (fileStem || fileName || '').toLowerCase().replace(/\.md$/i, '');
+      const found = this.allNotes.find(n => n.fileName.toLowerCase().replace(/\.md$/i, '') === cleanStem || n.path.toLowerCase().replace(/\.md$/i, '') === cleanStem);
+      if (found && found.title) return found.title;
+    }
+    
+    return this.getOriginalFileName(fileName || fileStem, fileName || fileStem, null);
   }
 
   parseYamlFrontmatter(frontmatterStr) {
@@ -769,9 +712,7 @@ class ObsidianVaultApp {
 
       if (line.startsWith('- ') && currentKey) {
         const itemVal = line.substring(2).trim().replace(/^['"]|['"]$/g, '');
-        if (!Array.isArray(data[currentKey])) {
-          data[currentKey] = [];
-        }
+        if (!Array.isArray(data[currentKey])) data[currentKey] = [];
         data[currentKey].push(itemVal);
         continue;
       }
@@ -870,64 +811,35 @@ class ObsidianVaultApp {
 
   getPropertyIconSvg(key) {
     const k = (key || '').toLowerCase();
-    if (['tags', 'tag'].includes(k)) {
-      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>`;
-    }
-    if (['aliases', 'alias'].includes(k)) {
-      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>`;
-    }
-    if (['date', 'created', 'modified', 'updated', 'due'].includes(k)) {
-      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`;
-    }
-    if (['title', 'author', 'source'].includes(k)) {
-      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>`;
-    }
+    if (['tags', 'tag'].includes(k)) return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>`;
+    if (['aliases', 'alias'].includes(k)) return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 7 4 4 20 4 20 7"></polyline><line x1="9" y1="20" x2="15" y2="20"></line><line x1="12" y1="4" x2="12" y2="20"></line></svg>`;
+    if (['date', 'created', 'modified', 'updated', 'due'].includes(k)) return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`;
+    if (['title', 'author', 'source'].includes(k)) return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>`;
     return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="12" x2="12" y2="12.01"></line></svg>`;
   }
 
-  // Load vault notes list
   async loadVaultNotes() {
     let files = [];
     let nameMap = {};
 
-    // Try fetching name-map.json
-    const nameMapPaths = [
-      '../../site-lib/name-map.json',
-      '../site-lib/name-map.json',
-      './site-lib/name-map.json',
-      'site-lib/name-map.json',
-      '/site-lib/name-map.json'
-    ];
+    const nameMapPaths = ['../../site-lib/name-map.json', '../site-lib/name-map.json', './site-lib/name-map.json', 'site-lib/name-map.json', '/site-lib/name-map.json'];
     for (const p of nameMapPaths) {
       try {
         const res = await fetch(p);
-        if (res.ok) {
-          nameMap = await res.json();
-          break;
-        }
+        if (res.ok) { nameMap = await res.json(); break; }
       } catch (e) {}
     }
 
-    // 1. Try server endpoint
     try {
       const res = await fetch('/api/vault-discovery');
       if (res.ok) {
         const data = await res.json();
-        if (data.files && data.files.length > 0) {
-          files = data.files;
-        }
+        if (data.files && data.files.length > 0) files = data.files;
       }
     } catch (e) {}
 
-    // 2. Fallback to static vault-index.json
     if (files.length === 0) {
-      const pathsToTry = [
-        '../../site-lib/vault-index.json',
-        '../site-lib/vault-index.json',
-        './site-lib/vault-index.json',
-        'site-lib/vault-index.json',
-        '/site-lib/vault-index.json'
-      ];
+      const pathsToTry = ['../../site-lib/vault-index.json', '../site-lib/vault-index.json', './site-lib/vault-index.json', 'site-lib/vault-index.json', '/site-lib/vault-index.json'];
       for (const p of pathsToTry) {
         try {
           const res = await fetch(p);
@@ -935,12 +847,8 @@ class ObsidianVaultApp {
             const data = await res.json();
             if (data.files && data.files.length > 0) {
               files = data.files;
-              if (data.lookup) {
-                this.vaultLookup = data.lookup;
-              }
-              if (data.nameMap) {
-                nameMap = { ...data.nameMap, ...nameMap };
-              }
+              if (data.lookup) this.vaultLookup = data.lookup;
+              if (data.nameMap) nameMap = { ...data.nameMap, ...nameMap };
               break;
             }
           }
@@ -952,26 +860,23 @@ class ObsidianVaultApp {
     this.allVaultFiles = files;
     this.currentFolder = this.detectCurrentFolder(files);
 
-    // Filter or normalize notes for current folder (supports [inside] containers and flat paths)
     let notes = [];
     const targetFolder = this.currentFolder;
 
     for (const f of files) {
       let relInFolder = null;
-      // Case 1: path is "[inside] ... / targetFolder / note.md"
       const matchPattern = `/${targetFolder}/`;
       const matchIdx = f.indexOf(matchPattern);
       if (matchIdx !== -1) {
         relInFolder = f.substring(matchIdx + matchPattern.length);
       } else if (f.startsWith(`${targetFolder}/`)) {
-        // Case 2: path is "targetFolder / note.md"
         relInFolder = f.substring(targetFolder.length + 1);
       }
 
       if (relInFolder) {
         const parts = relInFolder.split('/');
         const fileName = parts[parts.length - 1];
-        const originalName = this.getOriginalFileName(relInFolder, fileName);
+        const originalName = this.getOriginalFileName(relInFolder, fileName, f);
         notes.push({
           fullPath: f,
           path: relInFolder,
@@ -983,7 +888,6 @@ class ObsidianVaultApp {
       }
     }
 
-    // Fallback: If no notes matched this.currentFolder, auto-detect folder with most notes
     if (notes.length === 0 && files.length > 0) {
       const folderCounts = {};
       for (const f of files) {
@@ -1006,7 +910,7 @@ class ObsidianVaultApp {
           if (relInFolder) {
             const parts = relInFolder.split('/');
             const fileName = parts[parts.length - 1];
-            const originalName = this.getOriginalFileName(relInFolder, fileName);
+            const originalName = this.getOriginalFileName(relInFolder, fileName, f);
             notes.push({
               fullPath: f,
               path: relInFolder,
@@ -1023,28 +927,21 @@ class ObsidianVaultApp {
     this.allNotes = notes;
     this.buildGraphData();
     this.updateWorkspaceBranding();
-
-    // Speculative Intent-Based Prefetching: Enqueue idle prefetching for active folder notes
     this.enqueueIdlePrefetch(notes.map(n => n.path));
   }
 
   updateWorkspaceBranding() {
     const formatted = this.formatFolderTitle(this.currentFolder);
     const sidebarTitle = document.querySelector('.sidebar-title');
-    if (sidebarTitle) {
-      sidebarTitle.innerText = `${formatted} Notes`;
-    }
+    if (sidebarTitle) sidebarTitle.innerText = `${formatted} Notes`;
+    
     const currentCrumb = document.querySelector('.current-crumb');
-    if (currentCrumb && !window.location.hash) {
-      currentCrumb.innerText = `${formatted} Overview`;
-    }
+    if (currentCrumb && !window.location.hash) currentCrumb.innerText = `${formatted} Overview`;
+    
     const titleBadge = document.getElementById('header-active-note-title');
-    if (titleBadge && !window.location.hash) {
-      titleBadge.textContent = `${formatted} Overview`;
-    }
-    if (!document.title.includes(formatted)) {
-      document.title = `BBA ${formatted} — Shared Obsidian Notes`;
-    }
+    if (titleBadge && !window.location.hash) titleBadge.textContent = `${formatted} Overview`;
+    
+    if (!document.title.includes(formatted)) document.title = `BBA ${formatted} — Shared Obsidian Notes`;
   }
 
   updateBreadcrumbs(folder, fileName) {
@@ -1061,12 +958,9 @@ class ObsidianVaultApp {
 
   formatTitle(str) {
     if (str.toLowerCase() === 'index') return 'Coursework Overview';
-    return str.split(' ')
-      .map(w => w.charAt(0).toUpperCase() + w.slice(1))
-      .join(' ');
+    return str.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   }
 
-  // Build Graph Nodes & Links
   buildGraphData() {
     const nodes = [];
     const links = [];
@@ -1076,7 +970,7 @@ class ObsidianVaultApp {
       const isIndex = note.path === 'index.md';
       const nodeObj = {
         id: note.path,
-        title: note.fileNameWithoutExt || this.getOriginalFileName(note.path, note.fileName),
+        title: note.title || note.fileNameWithoutExt, 
         color: isIndex ? '#bf616a' : (note.path.includes('pyq') ? '#ebcb8b' : '#88c0d0'),
         radius: isIndex ? 10 : 6
       };
@@ -1084,32 +978,23 @@ class ObsidianVaultApp {
       nodeMap.set(note.path, nodeObj);
     }
 
-    // Connect index to chapter notes, or connect hub note
     const indexNode = nodeMap.get('index.md');
     if (indexNode) {
       for (const note of this.allNotes) {
         if (note.path !== 'index.md') {
-          links.push({
-            source: 'index.md',
-            target: note.path
-          });
+          links.push({ source: 'index.md', target: note.path });
         }
       }
     } else if (nodes.length > 1) {
-      // Connect notes to the first note as the root hub
       const firstId = nodes[0].id;
       for (let i = 1; i < nodes.length; i++) {
-        links.push({
-          source: firstId,
-          target: nodes[i].id
-        });
+        links.push({ source: firstId, target: nodes[i].id });
       }
     }
 
     this.graphData = { nodes, links };
   }
 
-  // Build the hierarchical file explorer
   buildFileTree() {
     const container = document.getElementById('file-tree-container');
     if (!container) return;
@@ -1151,7 +1036,9 @@ class ObsidianVaultApp {
       const itemPath = parentPath ? `${parentPath}/${key}` : key;
 
       if (item._isFolder) {
-        const folderLabel = this.getOriginalFolderName(key, itemPath);
+        const fullFolderPath = `note-res/${this.currentFolder}/${itemPath}`;
+        const folderLabel = this.getOriginalFolderName(key, fullFolderPath);
+        
         html += `
           <div class="nav-folder" data-path="${itemPath}">
             <div class="tree-item-self folder-item" data-folder-path="${itemPath}">
@@ -1172,7 +1059,8 @@ class ObsidianVaultApp {
         `;
       } else {
         const note = item.note;
-        const fileLabel = note.fileNameWithoutExt || this.getOriginalFileName(note.path, note.fileName || key);
+        const fileLabel = note.title || note.fileNameWithoutExt;
+        
         html += `
           <div class="nav-file" data-note-path="${note.path}">
             <a href="#${note.path}" class="tree-item-self note-item" data-note-path="${note.path}">
@@ -1192,7 +1080,7 @@ class ObsidianVaultApp {
   }
 
   formatFolderTitle(name) {
-    return this.getOriginalFolderName(name);
+    return this.getOriginalFolderName(name, name);
   }
 
   setupTreeClickHandlers() {
@@ -1203,15 +1091,12 @@ class ObsidianVaultApp {
         const icon = el.querySelector('.tree-item-icon');
         if (children) {
           const isHidden = children.classList.toggle('is-hidden');
-          if (icon) {
-            icon.classList.toggle('is-collapsed', isHidden);
-          }
+          if (icon) icon.classList.toggle('is-collapsed', isHidden);
         }
       });
     });
 
     document.querySelectorAll('.tree-item-self.note-item').forEach(el => {
-      // Speculative Intent-Based Prefetching on hover or touch-start
       const notePath = el.dataset.notePath;
       if (notePath) {
         el.addEventListener('mouseenter', () => this.prefetchNote(notePath), { passive: true });
@@ -1228,7 +1113,6 @@ class ObsidianVaultApp {
   }
 
   highlightActiveTreeItem() {
-    // 1. Collapse all folders and clear active highlights by default
     document.querySelectorAll('.nav-folder').forEach(folder => {
       const children = folder.querySelector(':scope > .tree-item-children');
       const icon = folder.querySelector(':scope > .folder-item .tree-item-icon');
@@ -1236,11 +1120,8 @@ class ObsidianVaultApp {
       if (icon) icon.classList.add('is-collapsed');
     });
 
-    document.querySelectorAll('.tree-item-self.note-item').forEach(el => {
-      el.classList.remove('is-active');
-    });
+    document.querySelectorAll('.tree-item-self.note-item').forEach(el => el.classList.remove('is-active'));
 
-    // 2. Locate active note in left nav
     const cleanCurrent = (this.currentPath || '').replace(/^\.?\//, '').toLowerCase();
     let matchedEl = null;
 
@@ -1251,7 +1132,6 @@ class ObsidianVaultApp {
       }
     });
 
-    // 3. Highlight only the active file and expand only its direct ancestor folders
     if (matchedEl) {
       matchedEl.classList.add('is-active');
       let parent = matchedEl.closest('.nav-folder');
@@ -1268,7 +1148,6 @@ class ObsidianVaultApp {
     }
   }
 
-  // Routing Handler
   async handleRoute() {
     if (typeof window !== 'undefined' && window.innerWidth <= 768) {
       if (this.isLeftOpen || this.isRightOpen) {
@@ -1280,8 +1159,6 @@ class ObsidianVaultApp {
 
     const rawHash = window.location.hash.slice(1);
     let decodedHash = decodeURIComponent(rawHash).trim();
-
-    // Check if hash has an anchor part (e.g. note.md#heading-abc or #heading-abc)
     let headingAnchor = '';
     if (decodedHash.includes('#')) {
       const parts = decodedHash.split('#');
@@ -1291,24 +1168,15 @@ class ObsidianVaultApp {
 
     let targetNote = decodedHash;
     if (!targetNote) {
-      // 1. Look for index.md
       const hasIndex = this.allNotes.find(n => n.path.toLowerCase() === 'index.md');
-      if (hasIndex) {
-        targetNote = hasIndex.path;
-      } else {
-        // 2. Look for README.md
+      if (hasIndex) targetNote = hasIndex.path;
+      else {
         const hasReadme = this.allNotes.find(n => n.path.toLowerCase() === 'readme.md');
-        if (hasReadme) {
-          targetNote = hasReadme.path;
-        } else if (this.allNotes.length > 0) {
-          // 3. Fallback to first note in folder
-          targetNote = this.allNotes[0].path;
-        } else {
-          targetNote = 'index.md';
-        }
+        if (hasReadme) targetNote = hasReadme.path;
+        else if (this.allNotes.length > 0) targetNote = this.allNotes[0].path;
+        else targetNote = 'index.md';
       }
     } else {
-      // If note without .md was requested, resolve it
       if (!targetNote.endsWith('.md')) {
         const found = this.allNotes.find(n => n.path.toLowerCase() === `${targetNote.toLowerCase()}.md` || n.path.toLowerCase().endsWith(`/${targetNote.toLowerCase()}.md`));
         if (found) targetNote = found.path;
@@ -1320,7 +1188,6 @@ class ObsidianVaultApp {
     await this.loadNote(targetNote, headingAnchor);
   }
 
-  // Fetch and render raw Markdown note
   async loadNote(relPath, headingAnchor = '') {
     const container = document.getElementById('note-container');
     if (!container) return;
@@ -1336,7 +1203,6 @@ class ObsidianVaultApp {
     `;
 
     try {
-      // Fetch markdown content using fast in-memory cache or deduplicated prefetch
       let rawMarkdown = this.getNoteFromCache(relPath);
       if (!rawMarkdown) {
         rawMarkdown = await this.prefetchNote(relPath);
@@ -1366,7 +1232,6 @@ class ObsidianVaultApp {
     const container = document.getElementById('note-container');
     if (!container) return;
 
-    // Gatekeeper & Frontmatter Extraction
     let frontmatterStr = '';
     let bodyMarkdown = rawMarkdown;
 
@@ -1391,36 +1256,26 @@ class ObsidianVaultApp {
       }
     }
 
-    // Parse Frontmatter Data into Object
     const frontmatterData = this.parseYamlFrontmatter(frontmatterStr);
-
-    // Resolve Content Title (Priority 1: YAML title, Priority 2: First Markdown H1, Priority 3: Original File Name)
+    
+    // We already resolved the perfect title during instantiation. Let's retrieve it from allNotes.
     let contentTitle = '';
+    const noteObj = this.allNotes.find(n => n.path === relPath);
+    if (noteObj) {
+      contentTitle = noteObj.title;
+    } else {
+      contentTitle = this.getOriginalFileName(relPath, null, null);
+    }
+
     let matchedH1Text = '';
-
-    if (frontmatterData.title && typeof frontmatterData.title === 'string' && frontmatterData.title.trim()) {
-      contentTitle = frontmatterData.title.trim();
-    }
-
     const firstH1Match = bodyMarkdown.match(/^#\s+(.+)$/m);
-    if (!contentTitle && firstH1Match) {
-      contentTitle = firstH1Match[1].trim();
-      matchedH1Text = contentTitle;
-    } else if (firstH1Match) {
-      matchedH1Text = firstH1Match[1].trim();
-    }
+    if (firstH1Match) matchedH1Text = firstH1Match[1].trim();
 
-    if (!contentTitle) {
-      contentTitle = this.getOriginalFileName(relPath);
-    }
-
-    // If bodyMarkdown starts with a matching top-level H1, strip it to avoid duplication with <h1 class="inline-title">
     if (matchedH1Text && (matchedH1Text.toLowerCase() === contentTitle.toLowerCase())) {
       bodyMarkdown = bodyMarkdown.replace(/^#\s+[^\n]+\n?/, '').trim();
     }
 
     const propertiesBlockHtml = this.renderPropertiesBlock(frontmatterData);
-
     const words = bodyMarkdown.trim().split(/\s+/).length;
     const readingTime = Math.ceil(words / 200);
 
@@ -1432,7 +1287,6 @@ class ObsidianVaultApp {
     this.activeNotePath = relPath;
     this.activeNoteRawMarkdown = rawMarkdown;
 
-    // Update floating note metadata stats
     const rtVal = document.getElementById('reading-time-val');
     if (rtVal) rtVal.textContent = `${readingTime} min read`;
     const wcVal = document.getElementById('word-count-val');
@@ -1449,7 +1303,6 @@ class ObsidianVaultApp {
     `;
 
     this.setupReadingTimeTracking(readingTime);
-
     this.initInteractiveWidgets();
     this.buildTableOfContents();
     this.buildBacklinks(relPath);
@@ -1458,12 +1311,8 @@ class ObsidianVaultApp {
     if (this.sidebarGraph) this.sidebarGraph.updateFocus(relPath, this.graphMode);
   }
 
-  // Parse LaTeX arrays containing \multicolumn or \cline into responsive, multi-column HTML accounting tables
-  // This solves the fundamental limitation in Obsidian/KaTeX which throws errors on \multicolumn and \cline
   parseLatexArrayToHtmlTable(latex) {
-    if (!latex || (!latex.includes('\\multicolumn') && !latex.includes('\\cline')) || !latex.includes('\\begin{array}')) {
-      return null;
-    }
+    if (!latex || (!latex.includes('\\multicolumn') && !latex.includes('\\cline')) || !latex.includes('\\begin{array}')) return null;
 
     try {
       const cleanLatex = latex.replace(/^[ \t]*>+[ \t]*/gm, '').trim();
@@ -1479,9 +1328,7 @@ class ObsidianVaultApp {
         let rowStr = rawRows[r].trim();
         if (!rowStr) continue;
 
-        let borderTop = false;
-        let borderBottom = false;
-        let clineCols = null;
+        let borderTop = false, borderBottom = false, clineCols = null;
 
         if (rowStr.includes('\\hline \\hline') || rowStr.includes('\\hline\\hline')) {
           borderBottom = true;
@@ -1499,12 +1346,8 @@ class ObsidianVaultApp {
         }
 
         if (!rowStr) {
-          if (borderBottom && processedRows.length > 0) {
-            processedRows[processedRows.length - 1].borderBottom = true;
-          }
-          if (borderTop && processedRows.length > 0) {
-            processedRows[processedRows.length - 1].borderTop = true;
-          }
+          if (borderBottom && processedRows.length > 0) processedRows[processedRows.length - 1].borderBottom = true;
+          if (borderTop && processedRows.length > 0) processedRows[processedRows.length - 1].borderTop = true;
           continue;
         }
 
@@ -1512,10 +1355,8 @@ class ObsidianVaultApp {
       }
 
       let html = '<div class="accounting-table-wrapper"><table class="accounting-schedule-table"><tbody>';
-
       for (const row of processedRows) {
         const { text: rowStr, borderTop, borderBottom, clineCols } = row;
-
         const borderClasses = [];
         if (borderTop) borderClasses.push('border-single-top');
         if (borderBottom) borderClasses.push('border-double-bottom');
@@ -1537,15 +1378,11 @@ class ObsidianVaultApp {
 
         const cells = rowStr.split('&');
         html += `<tr class="${trClass}">`;
-
         for (let c = 0; c < cells.length; c++) {
           let cell = cells[c].trim();
           const align = colAlignments[c] || (c > 0 ? 'right' : 'left');
-
-          let isBold = false;
-          if (/\\textbf\{([^}]+)\}/.test(cell) || /\\mathbf\{([^}]+)\}/.test(cell)) {
-            isBold = true;
-          }
+          let isBold = /\\textbf\{([^}]+)\}/.test(cell) || /\\mathbf\{([^}]+)\}/.test(cell);
+          
           cell = cell.replace(/\\textbf\{([^}]+)\}/g, '$1');
           cell = cell.replace(/\\mathbf\{([^}]+)\}/g, '$1');
           cell = cell.replace(/\\text\{([^}]+)\}/g, '$1');
@@ -1556,22 +1393,15 @@ class ObsidianVaultApp {
 
           let style = `text-align: ${align};`;
           if (isBold) style += ' font-weight: 600;';
-
           const cellClasses = [];
-          const isNumeric = /^[\$]?[\d,.-]+[\%]?$/.test(cell);
-          if (isNumeric) cellClasses.push('cell-numeric');
+          if (/^[\$]?[\d,.-]+[\%]?$/.test(cell)) cellClasses.push('cell-numeric');
           else cellClasses.push('cell-text');
-
-          // If row has a partial horizontal line (\cline{i-j}), add border-cline-top to columns in range
-          if (clineCols && (c + 1) >= clineCols.start && (c + 1) <= clineCols.end) {
-            cellClasses.push('border-cline-top');
-          }
+          if (clineCols && (c + 1) >= clineCols.start && (c + 1) <= clineCols.end) cellClasses.push('border-cline-top');
 
           html += `<td class="${cellClasses.join(' ')}" style="${style}">${cell}</td>`;
         }
         html += '</tr>';
       }
-
       html += '</tbody></table></div>';
       return html;
     } catch (e) {
@@ -1580,16 +1410,12 @@ class ObsidianVaultApp {
     }
   }
 
-  // Render KaTeX Math formula with Obsidian-standard HTML ID and wrapper classes
   renderMathExpression(formula, displayMode = false) {
     if (!formula) return '';
     let clean = formula.trim();
     if (!clean) return '';
 
-    // If formula is wrapped in redundant escapes or currency artifacts, clean it
     clean = clean.replace(/&#36;/g, '\\$');
-
-    // Auto-heal corrupted Greek letter and common macro backslashes from raw imports
     clean = clean.replace(/\\hat\{[ \t]*(?:eta|beta)\}/g, '\\hat{\\beta}');
     clean = clean.replace(/\\hat\{[ \t]*(?:lpha|alpha)\}/g, '\\hat{\\alpha}');
     clean = clean.replace(/\\hat\{[ \t]*(?:sigma)\}/g, '\\hat{\\sigma}');
@@ -1599,9 +1425,6 @@ class ObsidianVaultApp {
 
     const mathId = `math-${displayMode ? 'block' : 'inline'}-${this.mathIdCounter++}`;
 
-    // Multicolumn & Cline LaTeX array support: Obsidian/KaTeX cannot render \multicolumn or \cline inside \begin{array},
-    // which causes financial statements, schedules, and trial balances to fail with red \multicolumn or \cline errors.
-    // In this web app, we parse \begin{array} containing \multicolumn or \cline into responsive, semantic HTML accounting tables.
     if (displayMode && (clean.includes('\\multicolumn') || clean.includes('\\cline')) && clean.includes('\\begin{array}')) {
       const htmlTable = this.parseLatexArrayToHtmlTable(clean);
       if (htmlTable) {
@@ -1643,23 +1466,15 @@ class ObsidianVaultApp {
       renderedKatex = `<span class="math-fallback">${this.escapeHtml(clean)}</span>`;
     }
 
-    if (displayMode) {
-      return `<div class="math math-block" id="${mathId}">${renderedKatex}</div>`;
-    } else {
-      return `<span class="math math-inline" id="${mathId}">${renderedKatex}</span>`;
-    }
+    if (displayMode) return `<div class="math math-block" id="${mathId}">${renderedKatex}</div>`;
+    else return `<span class="math math-inline" id="${mathId}">${renderedKatex}</span>`;
   }
 
-  // Extract LaTeX display & inline math into tokens without breaking layout
   extractMathAndReplaceTokens(text) {
     if (!text) return text;
 
-    // 1. Display math blocks: $$ ... $$
     text = text.replace(/(?<!\\)\$\$([\s\S]*?)(?<!\\)\$\$/g, (match, formula) => {
-      // Safety: Only skip if empty or containing actual markdown top-level headers (# Header)
-      if (/^\s*$/.test(formula) || /\n\s*#{1,6}\s+[^\n]+/.test(formula)) {
-        return match;
-      }
+      if (/^\s*$/.test(formula) || /\n\s*#{1,6}\s+[^\n]+/.test(formula)) return match;
       const cleanFormula = formula.replace(/^[ \t]*>+[ \t]*/gm, '').trim();
       const token = `@@KATEX_BLOCK_${this.mathTokenIdx++}@@`;
       const html = this.renderMathExpression(cleanFormula, true);
@@ -1667,7 +1482,6 @@ class ObsidianVaultApp {
       return `\n\n${token}\n\n`;
     });
 
-    // 2. LaTeX environments: \begin{equation}...\end{equation}, \begin{align}...\end{align}, etc.
     text = text.replace(/(?<!\\)\\begin\{([a-zA-Z0-9*]+)\}([\s\S]*?)\\end\{\1\}/g, (match, env, body) => {
       const full = `\\begin{${env}}${body}\\end{${env}}`;
       const cleanFormula = full.replace(/^[ \t]*>+[ \t]*/gm, '').trim();
@@ -1677,10 +1491,8 @@ class ObsidianVaultApp {
       return `\n\n${token}\n\n`;
     });
 
-    // 3. Inline math: $formula$
     text = text.replace(/(?<![\\\$])\$(?!\s)((?:\\\$|[^\$\n\r])+?)(?<![\s\\\$])\$(?!\$)/g, (match, formula) => {
       const trimmed = formula.trim();
-      // Exclude standalone currency numbers or percentages like $100, $25.50, $1,000, $5 million, etc.
       if (/^(?:&#36;|\$|\\\$)?\s*[\d,.]+(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b|%))?$/i.test(trimmed)) {
         return match;
       }
@@ -1693,41 +1505,27 @@ class ObsidianVaultApp {
     return text;
   }
 
-  // Restore Math HTML into document or callout HTML
   restoreMathTokensInHtml(html) {
     if (!html) return html;
-
-    // Restore Math Blocks
     if (this.currentMathBlocksMap && this.currentMathBlocksMap.size > 0) {
       for (const [token, renderedMath] of this.currentMathBlocksMap.entries()) {
         const pRegex = new RegExp(`<p>\\s*${token}\\s*<\\/p>`, 'g');
-        if (pRegex.test(html)) {
-          html = html.replace(pRegex, () => renderedMath);
-        } else {
-          html = html.replaceAll(token, () => renderedMath);
-        }
+        if (pRegex.test(html)) html = html.replace(pRegex, () => renderedMath);
+        else html = html.replaceAll(token, () => renderedMath);
       }
     }
-
-    // Restore Inline Math
     if (this.currentMathInlinesMap && this.currentMathInlinesMap.size > 0) {
       for (const [token, renderedMath] of this.currentMathInlinesMap.entries()) {
         html = html.replaceAll(token, () => renderedMath);
       }
     }
-
     return html;
   }
 
-  // Process internal markdown features (WikiLinks, embeds, highlights, tags, tasks)
   processInternalMarkdownFeatures(text) {
-    // 1. Highlights: ==text== -> <mark>text</mark>
     text = text.replace(/==([^=\n]+)==/g, '<mark>$1</mark>');
-
-    // 2. Obsidian Block References: ^block-id at end of line
     text = text.replace(/\s+\^([a-zA-Z0-9\-]+)$/gm, ' <span id="$1" class="obsidian-block-anchor"></span>');
 
-    // 3. Obsidian Media & Note Transclusion Embeds: ![[...]]
     text = text.replace(/!\[\[([^\]\n]+)\]\]/g, (match, inner) => {
       let [file, opt] = inner.split('|').map(s => s ? s.trim() : '');
       const cleanFile = file.trim();
@@ -1735,9 +1533,7 @@ class ObsidianVaultApp {
       if (/\.(png|jpe?g|gif|svg|webp|bmp|mp4|webm|mov)$/i.test(cleanFile)) {
         const resolvedSrc = this.resolveMediaPath(cleanFile);
         let style = 'max-width: 100%; border-radius: 6px;';
-        if (opt && /^\d+$/.test(opt)) {
-          style += ` width: ${opt}px;`;
-        }
+        if (opt && /^\d+$/.test(opt)) style += ` width: ${opt}px;`;
         const alt = opt && !/^\d+$/.test(opt) ? opt : cleanFile;
         return `<figure class="obsidian-media-embed"><img src="${resolvedSrc}" alt="${alt}" style="${style}" loading="lazy" /></figure>`;
       }
@@ -1745,9 +1541,7 @@ class ObsidianVaultApp {
       const res = this.resolveWikiLink(cleanFile);
       const isResolved = Boolean(res.resolved);
       let targetHref = res.path;
-      if (!res.isCrossFolder) {
-        targetHref = `#${encodeURIComponent(res.path)}`;
-      }
+      if (!res.isCrossFolder) targetHref = `#${encodeURIComponent(res.path)}`;
       return `
         <div class="obsidian-embed-card">
           <div class="embed-card-header">
@@ -1761,7 +1555,6 @@ class ObsidianVaultApp {
       `;
     });
 
-    // 4. Obsidian WikiLinks: [[...]]
     text = text.replace(/\[\[([^\]\n]+)\]\]/g, (match, inner) => {
       let notePart = inner;
       let label = '';
@@ -1771,7 +1564,6 @@ class ObsidianVaultApp {
         label = parts.slice(1).join('|').trim();
       }
 
-      // Check if anchor-only link [[#Heading]]
       if (notePart.startsWith('#')) {
         const headingText = notePart.slice(1).trim();
         const display = label || headingText;
@@ -1779,7 +1571,6 @@ class ObsidianVaultApp {
         return `<a class="internal-link anchor-link" href="#heading-${slug}" data-heading="${slug}">${display}</a>`;
       }
 
-      // Split note name and heading [[Note#Heading]]
       let noteName = notePart;
       let heading = '';
       if (notePart.includes('#')) {
@@ -1800,19 +1591,14 @@ class ObsidianVaultApp {
       return `<a class="internal-link ${isResolved ? 'is-resolved' : 'is-unresolved'}" href="${targetHref}" data-note-path="${res.path}" title="${isResolved ? `Open: ${display}` : `Unresolved note: ${noteName}`}">${display}</a>`;
     });
 
-    // 5. Obsidian Tags: #tag or #folder/subtag
     text = text.replace(/(^|[\s(])#([a-zA-Z0-9_\-\/]+)(?=[\s).,;:!?]|$)/g, '$1<span class="obsidian-tag">#$2</span>');
-
-    // 6. Task lists
     text = text.replace(/^(\s*)-\s+\[ \]\s+(.*)$/gm, '$1- <input type="checkbox" disabled class="task-checkbox"> $2');
     text = text.replace(/^(\s*)-\s+\[x\]\s+(.*)$/gim, '$1- <input type="checkbox" checked disabled class="task-checkbox"> $2');
 
     return text;
   }
 
-  // Pre-process Obsidian Markdown: Comments, Footnotes, Math placeholders, Highlights, Media Embeds, WikiLinks, and Tasks
   preprocessObsidianMarkdown(text) {
-    // Dynamic runtime sanitizer that automatically corrects common formatting typos
     text = this.autoHealMarkdownTypos(text);
 
     this.currentFootnotesMap = new Map();
@@ -1824,7 +1610,6 @@ class ObsidianVaultApp {
     this.mathTokenIdx = 0;
     this.calloutTokenIdx = 0;
 
-    // 0a. Temporarily extract fenced code blocks and inline code so math/wiki/comments inside code blocks are preserved intact
     let codeBlockIdx = 0;
     text = text.replace(/```[\s\S]*?```/g, (match) => {
       const token = `@@OBS_FENCED_BLOCK_${codeBlockIdx++}@@`;
@@ -1838,38 +1623,25 @@ class ObsidianVaultApp {
       return token;
     });
 
-    // 0b. Strip Obsidian top-level comments: %% comment %%
     text = text.replace(/%%[\s\S]*?%%/g, '');
-
-    // 0c. Normalize Obsidian & LaTeX-wrapped currency amounts (e.g. $\\$1.00$, $\\$20,000$)
-    // In monetary notes, figures are frequently written as $\\$1.00$ to prevent markdown parsers from confusing currency with LaTeX math delimiters.
     text = text.replace(/(?<!\$)\$\\\$[ \t]*(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b))?)\$(?!\$)/gi, '&#36;$1');
-
-    // 0d. Unify & Process Obsidian Callouts FIRST so inner math and content stay bundled inside the callout container
     text = this.processObsidianCallouts(text);
-
-    // 0e. Extract Display & Inline Math in document body (preserves numerical ranges like $101–199$, equations, and tokens)
     text = this.extractMathAndReplaceTokens(text);
-
-    // 0f. Normalize standalone currency amounts and remaining escaped dollar signs safely without capturing math delimiters or tokens
+    
     text = text.replace(/(?<![\$\w\\])(?:\\\$|\$)[ \t]*(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b))?)(?!\$|\w)/gi, '&#36;$1');
     text = text.replace(/\\(\$)/g, '&#36;');
 
-    // 1. Footnote definitions: ^[^1]: Text or multi-line
     text = text.replace(/^\[\^([a-zA-Z0-9_\-]+)\]:\s*([^\n]+(?:\n(?!\n|\[\^|\#|\-|\*).*)*)/gm, (match, fnId, fnContent) => {
       this.currentFootnotesMap.set(fnId, fnContent.trim());
-      return ''; // remove definition block from body text
+      return '';
     });
 
-    // 2. Footnote in-text references: [^1]
     text = text.replace(/\[\^([a-zA-Z0-9_\-]+)\]/g, (match, fnId) => {
       return `<sup class="footnote-ref" id="fnref-${fnId}"><a href="#fn-${fnId}" class="footnote-link" title="Jump to footnote">[^${fnId}]</a></sup>`;
     });
 
-    // 3. Process remaining Markdown features (Highlights, Embeds, WikiLinks, Tags, Tasks)
     text = this.processInternalMarkdownFeatures(text);
 
-    // 4. Cleanly restore code blocks so marked can parse them into semantic HTML
     for (const [token, codeContent] of this.currentCodeBlocksMap.entries()) {
       text = text.replaceAll(token, codeContent);
     }
@@ -1897,9 +1669,8 @@ class ObsidianVaultApp {
 
   resolveMediaPath(fileName) {
     if (!fileName) return '';
-    if (fileName.startsWith('http://') || fileName.startsWith('https://') || fileName.startsWith('/')) {
-      return fileName;
-    }
+    if (fileName.startsWith('http://') || fileName.startsWith('https://') || fileName.startsWith('/')) return fileName;
+    
     let cleanFile = fileName.replace(/^\.\//, '');
     let isVaultRootPath = false;
     if (/^BBA Study\//i.test(cleanFile)) {
@@ -1919,9 +1690,8 @@ class ObsidianVaultApp {
     for (let i = 0; i < rawParts.length; i++) {
       const part = rawParts[i];
       if (!part || part === '.') continue;
-      if (part === '..') {
-        normalizedParts.pop();
-      } else {
+      if (part === '..') normalizedParts.pop();
+      else {
         const isDir = (i < rawParts.length - 1);
         normalizedParts.push(this.slugifyPart(part, isDir));
       }
@@ -1938,8 +1708,7 @@ class ObsidianVaultApp {
     const slugifyText = (text) => {
       if (!text) return '';
       let str = text.replace(/&amp;/gi, '&').replace(/&lt;/gi, '<').replace(/&gt;/gi, '>').replace(/&quot;/gi, '"').replace(/&#39;/gi, "'");
-      str = str.replace(/&/g, ' and ');
-      str = str.toLowerCase();
+      str = str.replace(/&/g, ' and ').toLowerCase();
       str = str.replace(/[^a-z0-9\s_-]/g, '');
       str = str.replace(/[\s_]+/g, '-').replace(/-+/g, '-');
       return str.replace(/^-+|-+$/g, '');
@@ -1949,14 +1718,9 @@ class ObsidianVaultApp {
     const stemSlugified = slugifyText(stem);
     const alphaOnly = clean.replace(/[^a-z0-9]/g, '');
 
-    // 1. Check in this.vaultLookup map first
     if (this.vaultLookup) {
-      const match = this.vaultLookup[raw] || 
-                    this.vaultLookup[clean] || 
-                    this.vaultLookup[slugified] || 
-                    this.vaultLookup[stem] || 
-                    this.vaultLookup[stemSlugified] || 
-                    this.vaultLookup[alphaOnly] ||
+      const match = this.vaultLookup[raw] || this.vaultLookup[clean] || this.vaultLookup[slugified] || 
+                    this.vaultLookup[stem] || this.vaultLookup[stemSlugified] || this.vaultLookup[alphaOnly] ||
                     this.vaultLookup[slugifyText(raw)];
       if (match) {
         const fullRel = match.path.replace(/^(?:\[inside\][^/]+|note-res)\//, '');
@@ -1970,7 +1734,6 @@ class ObsidianVaultApp {
       }
     }
 
-    // 2. Check in this.allNotes (in-folder)
     let found = this.allNotes.find(n => {
       const nClean = n.path.replace(/\.md$/i, '').toLowerCase();
       const nStem = nClean.split('/').pop();
@@ -1986,7 +1749,6 @@ class ObsidianVaultApp {
       return { path: found.path, resolved: true, title: resolvedTitle };
     }
 
-    // 3. Check in this.allVaultFiles across other folders
     if (this.allVaultFiles && this.allVaultFiles.length > 0) {
       const globalFound = this.allVaultFiles.find(f => {
         const fClean = f.replace(/^(?:\[inside\][^/]+|note-res)\//, '').replace(/\.md$/i, '').toLowerCase();
@@ -2009,23 +1771,14 @@ class ObsidianVaultApp {
       }
     }
 
-    // Fallback: unresolved internal link
     return { path: `${slugified || raw}.md`, resolved: false, title: this.resolveSmartLabel(stem, null) || raw };
   }
 
-  // Pre-process Obsidian Callouts into clean atomic blocks with intact LaTeX and nested content
   processObsidianCallouts(text) {
-    if (!this.currentCalloutsMap) {
-      this.currentCalloutsMap = new Map();
-    }
-
+    if (!this.currentCalloutsMap) this.currentCalloutsMap = new Map();
     const lines = text.split('\n');
     const resultLines = [];
-    let inCallout = false;
-    let calloutType = '';
-    let foldChar = '';
-    let calloutTitle = '';
-    let calloutLines = [];
+    let inCallout = false, calloutType = '', foldChar = '', calloutTitle = '', calloutLines = [];
 
     const flushCallout = () => {
       if (!inCallout) return;
@@ -2034,7 +1787,6 @@ class ObsidianVaultApp {
       const isFolded = foldChar === '-';
       let rawTitle = (calloutTitle && calloutTitle.trim()) ? calloutTitle.trim() : (type.charAt(0).toUpperCase() + type.slice(1));
 
-      // Pre-render any math inside callout title (e.g. `[!quote] Formula $EPS$`)
       rawTitle = this.extractMathAndReplaceTokens(rawTitle);
       rawTitle = this.restoreMathTokensInHtml(rawTitle);
 
@@ -2051,37 +1803,23 @@ class ObsidianVaultApp {
         `;
       }
 
-      // Strip the leading '>' or '> ' from each line inside the callout
       let innerMarkdown = calloutLines.map(l => l.replace(/^[ \t]*>[ \t]?/, '')).join('\n');
-
-      // Restore code blocks inside the callout before parsing
       for (const [codeToken, codeContent] of this.currentCodeBlocksMap.entries()) {
-        if (innerMarkdown.includes(codeToken)) {
-          innerMarkdown = innerMarkdown.replaceAll(codeToken, codeContent);
-        }
+        if (innerMarkdown.includes(codeToken)) innerMarkdown = innerMarkdown.replaceAll(codeToken, codeContent);
       }
 
-      // Extract and pre-render math expressions inside the callout body
       innerMarkdown = this.extractMathAndReplaceTokens(innerMarkdown);
-
-      // Process internal Markdown features (WikiLinks, embeds, highlights, tags, tasks) inside callout
       innerMarkdown = this.processInternalMarkdownFeatures(innerMarkdown);
 
-      // Parse inner markdown through marked (clean nested formatting)
       let innerHtml = '';
       try {
-        if (typeof marked !== 'undefined') {
-          innerHtml = marked.parse(innerMarkdown);
-        } else {
-          innerHtml = innerMarkdown;
-        }
+        if (typeof marked !== 'undefined') innerHtml = marked.parse(innerMarkdown);
+        else innerHtml = innerMarkdown;
       } catch (e) {
         innerHtml = innerMarkdown;
       }
 
-      // Restore math tokens inside innerHtml
       innerHtml = this.restoreMathTokensInHtml(innerHtml);
-
       const token = `@@OBS_CALLOUT_BLOCK_${this.calloutTokenIdx++}@@`;
       const fullCalloutHtml = `
         <div class="callout ${isFolded ? 'is-collapsed' : ''}" data-callout="${type}" ${isCollapsible ? 'data-callout-fold="true"' : ''}>
@@ -2096,11 +1834,7 @@ class ObsidianVaultApp {
       this.currentCalloutsMap.set(token, fullCalloutHtml);
       resultLines.push(token);
 
-      inCallout = false;
-      calloutType = '';
-      foldChar = '';
-      calloutTitle = '';
-      calloutLines = [];
+      inCallout = false; calloutType = ''; foldChar = ''; calloutTitle = ''; calloutLines = [];
     };
 
     for (let i = 0; i < lines.length; i++) {
@@ -2121,22 +1855,16 @@ class ObsidianVaultApp {
         if (/^[ \t]*>/.test(line)) {
           calloutLines.push(line);
         } else if (line.trim() === '') {
-          // Check if upcoming non-empty line still continues the callout with '>'
           let hasMoreQuote = false;
           for (let j = i + 1; j < lines.length; j++) {
             if (lines[j].trim() === '') continue;
             if (/^[ \t]*>/.test(lines[j])) hasMoreQuote = true;
             break;
           }
-          if (hasMoreQuote) {
-            calloutLines.push('>');
-          } else {
-            flushCallout();
-            resultLines.push(line);
-          }
+          if (hasMoreQuote) calloutLines.push('>');
+          else { flushCallout(); resultLines.push(line); }
         } else {
-          flushCallout();
-          resultLines.push(line);
+          flushCallout(); resultLines.push(line);
         }
       } else {
         resultLines.push(line);
@@ -2144,28 +1872,20 @@ class ObsidianVaultApp {
     }
 
     if (inCallout) flushCallout();
-
     return resultLines.join('\n');
   }
 
-  // Post-process HTML for Math, Callouts, and Footnotes
   postprocessObsidianHtml(html) {
-    // 0. Render Preprocessed Callouts
     if (this.currentCalloutsMap && this.currentCalloutsMap.size > 0) {
       for (const [token, calloutHtml] of this.currentCalloutsMap.entries()) {
         const pRegex = new RegExp(`<p>\\s*${token}\\s*<\\/p>`, 'g');
-        if (pRegex.test(html)) {
-          html = html.replace(pRegex, () => calloutHtml);
-        } else {
-          html = html.replaceAll(token, () => calloutHtml);
-        }
+        if (pRegex.test(html)) html = html.replace(pRegex, () => calloutHtml);
+        else html = html.replaceAll(token, () => calloutHtml);
       }
     }
 
-    // 1. Restore any remaining Math Blocks & Inline Math in document body
     html = this.restoreMathTokensInHtml(html);
 
-    // 2. Append Footnotes Section if any were defined in the document
     if (this.currentFootnotesMap && this.currentFootnotesMap.size > 0) {
       let fnHtml = '<section class="footnotes"><hr class="footnotes-sep"><ol class="footnotes-list">';
       for (const [key, content] of this.currentFootnotesMap.entries()) {
@@ -2181,7 +1901,6 @@ class ObsidianVaultApp {
       html += fnHtml;
     }
 
-    // 3. Fallback Obsidian Callouts from standard blockquotes
     const calloutRegex = /<blockquote>\s*<p>\[!([a-zA-Z0-9_\-]+)\]([+\-])?\s*([^\n<]*)?([\s\S]*?)<\/blockquote>/gi;
     html = html.replace(calloutRegex, (match, rawType, foldChar, title, rest) => {
       const type = rawType.toLowerCase();
@@ -2191,7 +1910,6 @@ class ObsidianVaultApp {
       
       displayTitle = this.extractMathAndReplaceTokens(displayTitle);
       displayTitle = this.restoreMathTokensInHtml(displayTitle);
-
       const iconSvg = this.getCalloutIconSvg(type);
 
       let foldIndicator = '';
@@ -2206,9 +1924,7 @@ class ObsidianVaultApp {
       }
 
       let bodyHtml = (rest || '').trim();
-      if (bodyHtml.startsWith('</p>')) {
-        bodyHtml = bodyHtml.slice(4).trim();
-      }
+      if (bodyHtml.startsWith('</p>')) bodyHtml = bodyHtml.slice(4).trim();
       if (bodyHtml && !bodyHtml.startsWith('<p') && !bodyHtml.startsWith('<div') && !bodyHtml.startsWith('<ul') && !bodyHtml.startsWith('<ol') && !bodyHtml.startsWith('<table') && !bodyHtml.startsWith('<blockquote')) {
         bodyHtml = `<p>${bodyHtml}</p>`;
       }
@@ -2228,40 +1944,29 @@ class ObsidianVaultApp {
       `;
     });
 
-    // 4. Safe postprocessing: avoid re-running raw math extractors on rendered HTML to prevent tag corruption
-
-    // 5. Clean up heading IDs generated with temporary math tokens
     html = html.replace(/<h([1-6])([^>]*)id="([^"]*)"([^>]*)>/gi, (match, level, before, id, after) => {
       let cleanId = id.replace(/-?katex_(inline|block)_\d+/gi, '').replace(/-+$/, '').replace(/^-+/, '');
       if (!cleanId) cleanId = `heading-${level}`;
       return `<h${level}${before}id="${cleanId}"${after}>`;
     });
 
-    // 6. Restore currency symbol entities
     html = html.replaceAll('&#36;', '$');
-
     return html;
   }
 
-  // Build Linked References / Backlinks in Right Sidebar
   async buildBacklinks(currentRelPath) {
     const backlinksContainer = document.getElementById('backlinks-container');
     const backlinksSection = document.getElementById('backlinks-section');
     if (!backlinksContainer) return;
-
-    if (backlinksSection) {
-      backlinksSection.style.display = 'block';
-    }
+    if (backlinksSection) backlinksSection.style.display = 'block';
 
     const stem = currentRelPath.replace(/\.md$/i, '').split('/').pop().toLowerCase();
     const currentNoteObj = this.allNotes.find(n => n.path === currentRelPath);
     const currentTitle = (currentNoteObj?.title || stem).toLowerCase();
-
     const backlinks = [];
 
     for (const note of this.allNotes) {
       if (note.path === currentRelPath) continue;
-
       const content = this.getNoteFromCache(note.path);
 
       if (content) {
@@ -2303,7 +2008,6 @@ class ObsidianVaultApp {
         </a>
       `).join('');
 
-      // Speculative prefetch for backlink anchors
       backlinksContainer.querySelectorAll('.backlink-item').forEach(el => {
         const p = el.dataset.notePath;
         if (p) {
@@ -2315,32 +2019,17 @@ class ObsidianVaultApp {
   }
 
   getCalloutIconSvg(type) {
-    if (['quote', 'cite'].includes(type)) {
-      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path></svg>`;
-    }
-    if (['tip', 'hint', 'important'].includes(type)) {
-      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>`;
-    }
-    if (['abstract', 'summary', 'tldr'].includes(type)) {
-      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>`;
-    }
-    if (['warning', 'caution', 'attention'].includes(type)) {
-      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`;
-    }
-    if (['danger', 'error', 'bug', 'failure', 'fail', 'flame'].includes(type)) {
-      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
-    }
-    if (['success', 'check', 'done'].includes(type)) {
-      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
-    }
-    if (['question', 'help', 'faq'].includes(type)) {
-      return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`;
-    }
+    if (['quote', 'cite'].includes(type)) return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path></svg>`;
+    if (['tip', 'hint', 'important'].includes(type)) return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path></svg>`;
+    if (['abstract', 'summary', 'tldr'].includes(type)) return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="21" y1="10" x2="3" y2="10"></line><line x1="21" y1="6" x2="3" y2="6"></line><line x1="21" y1="14" x2="3" y2="14"></line><line x1="21" y1="18" x2="3" y2="18"></line></svg>`;
+    if (['warning', 'caution', 'attention'].includes(type)) return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`;
+    if (['danger', 'error', 'bug', 'failure', 'fail', 'flame'].includes(type)) return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>`;
+    if (['success', 'check', 'done'].includes(type)) return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>`;
+    if (['question', 'help', 'faq'].includes(type)) return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`;
     return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`;
   }
 
   initInteractiveWidgets() {
-    // Speculative Intent-Based Prefetching for Internal Note Links
     document.querySelectorAll('#note-container a.internal-link, #note-container a[href^="#"]').forEach(link => {
       const href = link.getAttribute('href');
       if (href && href.startsWith('#') && !href.startsWith('#fn-') && !href.startsWith('#fnref-')) {
@@ -2352,14 +2041,12 @@ class ObsidianVaultApp {
       }
     });
 
-    // Callouts collapsible toggle
     document.querySelectorAll('.callout[data-callout-fold="true"]').forEach(callout => {
       callout.querySelector('.callout-title')?.addEventListener('click', () => {
         callout.classList.toggle('is-collapsed');
       });
     });
 
-    // Mermaid & Mindmap Diagrams
     const diagramCodes = document.querySelectorAll('pre code[class*="language-mermaid"], pre code[class*="mermaid"], pre code[class*="language-mindmap"], pre code[class*="mindmap"], pre code[class*="language-markmap"]');
     if (diagramCodes.length > 0 && window.mermaid) {
       const isDark = this.theme !== 'light';
@@ -2369,41 +2056,17 @@ class ObsidianVaultApp {
           securityLevel: 'loose',
           theme: 'base',
           fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-          flowchart: {
-            useMaxWidth: false,
-            htmlLabels: true,
-            curve: 'basis',
-            padding: 16
-          },
-          mindmap: {
-            useMaxWidth: false,
-            padding: 16
-          },
+          flowchart: { useMaxWidth: false, htmlLabels: true, curve: 'basis', padding: 16 },
+          mindmap: { useMaxWidth: false, padding: 16 },
           themeVariables: isDark ? {
-            darkMode: true,
-            background: 'transparent',
-            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-            fontSize: '13px',
-            mainBkg: '#242933',
-            nodeBkg: '#242933',
-            nodeTextColor: '#f8fafc',
-            textColor: '#f8fafc',
-            primaryColor: '#242933',
-            primaryTextColor: '#f8fafc',
-            primaryBorderColor: '#88c0d0',
-            lineColor: '#81a1c1',
-            secondaryColor: '#2e3440',
-            secondaryTextColor: '#f8fafc',
-            secondaryBorderColor: '#b48ead',
-            tertiaryColor: '#222630',
-            tertiaryTextColor: '#d8dee9',
-            tertiaryBorderColor: '#a3be8c',
-            edgeLabelBackground: '#1e222a',
-            clusterBkg: 'rgba(36, 41, 51, 0.6)',
-            clusterBorder: 'rgba(136, 192, 208, 0.4)',
-            nodeBorder: '#88c0d0',
-            git0: '#2e3440',
-            gitBranchLabel0: '#ffffff',
+            darkMode: true, background: 'transparent',
+            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontSize: '13px',
+            mainBkg: '#242933', nodeBkg: '#242933', nodeTextColor: '#f8fafc', textColor: '#f8fafc',
+            primaryColor: '#242933', primaryTextColor: '#f8fafc', primaryBorderColor: '#88c0d0', lineColor: '#81a1c1',
+            secondaryColor: '#2e3440', secondaryTextColor: '#f8fafc', secondaryBorderColor: '#b48ead',
+            tertiaryColor: '#222630', tertiaryTextColor: '#d8dee9', tertiaryBorderColor: '#a3be8c',
+            edgeLabelBackground: '#1e222a', clusterBkg: 'rgba(36, 41, 51, 0.6)', clusterBorder: 'rgba(136, 192, 208, 0.4)',
+            nodeBorder: '#88c0d0', git0: '#2e3440', gitBranchLabel0: '#ffffff',
             cScale0: '#242933', cScaleLabel0: '#f8fafc', cScaleInv0: '#88c0d0',
             cScale1: '#242933', cScaleLabel1: '#f8fafc', cScaleInv1: '#b48ead',
             cScale2: '#242933', cScaleLabel2: '#f8fafc', cScaleInv2: '#ebcb8b',
@@ -2413,30 +2076,14 @@ class ObsidianVaultApp {
             cScale6: '#242933', cScaleLabel6: '#f8fafc', cScaleInv6: '#bf616a',
             cScale7: '#242933', cScaleLabel7: '#f8fafc', cScaleInv7: '#8fbcbb'
           } : {
-            darkMode: false,
-            background: 'transparent',
-            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-            fontSize: '13px',
-            mainBkg: '#ffffff',
-            nodeBkg: '#ffffff',
-            nodeTextColor: '#0f172a',
-            textColor: '#0f172a',
-            primaryColor: '#ffffff',
-            primaryTextColor: '#0f172a',
-            primaryBorderColor: '#5e81ac',
-            lineColor: '#64748b',
-            secondaryColor: '#f1f5f9',
-            secondaryTextColor: '#0f172a',
-            secondaryBorderColor: '#b48ead',
-            tertiaryColor: '#f8fafc',
-            tertiaryTextColor: '#475569',
-            tertiaryBorderColor: '#a3be8c',
-            edgeLabelBackground: '#ffffff',
-            clusterBkg: 'rgba(241, 245, 249, 0.8)',
-            clusterBorder: 'rgba(100, 116, 139, 0.3)',
-            nodeBorder: '#5e81ac',
-            git0: '#ffffff',
-            gitBranchLabel0: '#0f172a',
+            darkMode: false, background: 'transparent',
+            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontSize: '13px',
+            mainBkg: '#ffffff', nodeBkg: '#ffffff', nodeTextColor: '#0f172a', textColor: '#0f172a',
+            primaryColor: '#ffffff', primaryTextColor: '#0f172a', primaryBorderColor: '#5e81ac', lineColor: '#64748b',
+            secondaryColor: '#f1f5f9', secondaryTextColor: '#0f172a', secondaryBorderColor: '#b48ead',
+            tertiaryColor: '#f8fafc', tertiaryTextColor: '#475569', tertiaryBorderColor: '#a3be8c',
+            edgeLabelBackground: '#ffffff', clusterBkg: 'rgba(241, 245, 249, 0.8)', clusterBorder: 'rgba(100, 116, 139, 0.3)',
+            nodeBorder: '#5e81ac', git0: '#ffffff', gitBranchLabel0: '#0f172a',
             cScale0: '#ffffff', cScaleLabel0: '#0f172a', cScaleInv0: '#0284c7',
             cScale1: '#ffffff', cScaleLabel1: '#0f172a', cScaleInv1: '#9333ea',
             cScale2: '#ffffff', cScaleLabel2: '#0f172a', cScaleInv2: '#d97706',
@@ -2453,9 +2100,7 @@ class ObsidianVaultApp {
         const parent = codeEl.closest('pre');
         let codeText = codeEl.innerText.trim();
         const isMindmap = codeEl.className.includes('mindmap') || codeEl.className.includes('markmap');
-        if (isMindmap && !codeText.startsWith('mindmap')) {
-          codeText = `mindmap\n${codeText}`;
-        }
+        if (isMindmap && !codeText.startsWith('mindmap')) codeText = `mindmap\n${codeText}`;
 
         const container = document.createElement('div');
         container.className = 'mermaid-diagram-container mermaid';
@@ -2464,47 +2109,29 @@ class ObsidianVaultApp {
         try {
           window.mermaid.render(id, codeText).then(({ svg }) => {
             container.innerHTML = svg;
-
             const svgEl = container.querySelector('svg');
             if (svgEl) {
               const isDark = this.theme !== 'light';
               const isMindmapDiagram = isMindmap || !!svgEl.querySelector('.mindmap-node') || codeText.startsWith('mindmap');
 
-              // Ensure SVG and foreignObject do not clip labels or text
               svgEl.style.setProperty('overflow', 'visible', 'important');
-              svgEl.querySelectorAll('foreignObject').forEach(fo => {
-                fo.style.setProperty('overflow', 'visible', 'important');
-              });
+              svgEl.querySelectorAll('foreignObject').forEach(fo => fo.style.setProperty('overflow', 'visible', 'important'));
 
               if (isMindmapDiagram) {
-                // ==========================================
-                // SPECIFIC ISOLATED MINDMAP STYLING
-                // ==========================================
                 const branchColorsDark = [
-                  { fill: '#242933', stroke: '#88c0d0', text: '#f8fafc' }, // 0: Frost cyan
-                  { fill: '#242933', stroke: '#b48ead', text: '#f8fafc' }, // 1: Purple
-                  { fill: '#242933', stroke: '#ebcb8b', text: '#f8fafc' }, // 2: Amber
-                  { fill: '#242933', stroke: '#a3be8c', text: '#f8fafc' }, // 3: Green
-                  { fill: '#242933', stroke: '#81a1c1', text: '#f8fafc' }, // 4: Blue
-                  { fill: '#242933', stroke: '#d08770', text: '#f8fafc' }, // 5: Orange
-                  { fill: '#242933', stroke: '#bf616a', text: '#f8fafc' }, // 6: Coral red
-                  { fill: '#242933', stroke: '#8fbcbb', text: '#f8fafc' }, // 7: Teal
+                  { fill: '#242933', stroke: '#88c0d0', text: '#f8fafc' }, { fill: '#242933', stroke: '#b48ead', text: '#f8fafc' },
+                  { fill: '#242933', stroke: '#ebcb8b', text: '#f8fafc' }, { fill: '#242933', stroke: '#a3be8c', text: '#f8fafc' },
+                  { fill: '#242933', stroke: '#81a1c1', text: '#f8fafc' }, { fill: '#242933', stroke: '#d08770', text: '#f8fafc' },
+                  { fill: '#242933', stroke: '#bf616a', text: '#f8fafc' }, { fill: '#242933', stroke: '#8fbcbb', text: '#f8fafc' },
                 ];
-
                 const branchColorsLight = [
-                  { fill: '#ffffff', stroke: '#0284c7', text: '#0f172a' }, // 0: Cyan / Sky
-                  { fill: '#ffffff', stroke: '#9333ea', text: '#0f172a' }, // 1: Purple
-                  { fill: '#ffffff', stroke: '#d97706', text: '#0f172a' }, // 2: Amber
-                  { fill: '#ffffff', stroke: '#16a34a', text: '#0f172a' }, // 3: Green
-                  { fill: '#ffffff', stroke: '#2563eb', text: '#0f172a' }, // 4: Blue
-                  { fill: '#ffffff', stroke: '#ea580c', text: '#0f172a' }, // 5: Orange
-                  { fill: '#ffffff', stroke: '#dc2626', text: '#0f172a' }, // 6: Red
-                  { fill: '#ffffff', stroke: '#0d9488', text: '#0f172a' }, // 7: Teal
+                  { fill: '#ffffff', stroke: '#0284c7', text: '#0f172a' }, { fill: '#ffffff', stroke: '#9333ea', text: '#0f172a' },
+                  { fill: '#ffffff', stroke: '#d97706', text: '#0f172a' }, { fill: '#ffffff', stroke: '#16a34a', text: '#0f172a' },
+                  { fill: '#ffffff', stroke: '#2563eb', text: '#0f172a' }, { fill: '#ffffff', stroke: '#ea580c', text: '#0f172a' },
+                  { fill: '#ffffff', stroke: '#dc2626', text: '#0f172a' }, { fill: '#ffffff', stroke: '#0d9488', text: '#0f172a' },
                 ];
-
                 const palette = isDark ? branchColorsDark : branchColorsLight;
 
-                // Root Node
                 svgEl.querySelectorAll('.section-root rect, .section-root circle, .section-root path').forEach(el => {
                   el.style.setProperty('fill', isDark ? '#2e3440' : '#ffffff', 'important');
                   el.style.setProperty('stroke', isDark ? '#b48ead' : '#7c3aed', 'important');
@@ -2515,7 +2142,6 @@ class ObsidianVaultApp {
                   el.style.setProperty('font-weight', '700', 'important');
                 });
 
-                // Branches 0..7
                 palette.forEach((b, idx) => {
                   svgEl.querySelectorAll(`.section-${idx} rect, .section-${idx} path, .section-${idx} circle`).forEach(el => {
                     el.style.setProperty('fill', b.fill, 'important');
@@ -2533,7 +2159,6 @@ class ObsidianVaultApp {
                   });
                 });
 
-                // Catch-all for any unclassed mindmap nodes or leaf nodes
                 svgEl.querySelectorAll('.mindmap-node rect, .mindmap-node path, .mindmap-node circle').forEach(el => {
                   if (!el.style.getPropertyValue('fill')) {
                     el.style.setProperty('fill', isDark ? '#242933' : '#ffffff', 'important');
@@ -2546,42 +2171,28 @@ class ObsidianVaultApp {
                   el.style.setProperty('color', isDark ? '#f8fafc' : '#0f172a', 'important');
                 });
               } else {
-                // ==========================================
-                // FLOWCHART-SPECIFIC ISOLATED STYLING
-                // ==========================================
-                // Round rect corners
                 svgEl.querySelectorAll('.node rect, rect.basic, rect.label-container').forEach(r => {
-                  if (!r.getAttribute('rx')) {
-                    r.setAttribute('rx', '8');
-                    r.setAttribute('ry', '8');
-                  }
+                  if (!r.getAttribute('rx')) { r.setAttribute('rx', '8'); r.setAttribute('ry', '8'); }
                 });
 
                 if (isDark) {
-                  // Flowchart dark shapes (#242933) with Nord stroke (#88c0d0)
                   svgEl.querySelectorAll('.node rect, .node circle, .node ellipse, .node polygon, .node path, rect.basic, rect.label-container').forEach(el => {
                     el.style.setProperty('fill', '#242933', 'important');
                     el.style.setProperty('fill-opacity', '0.92', 'important');
                     el.style.setProperty('stroke', '#88c0d0', 'important');
                     el.style.setProperty('stroke-width', '1.5px', 'important');
                   });
-
-                  // Flowchart text & typography
                   svgEl.querySelectorAll('.node text, .nodeLabel, .node foreignObject div, .node foreignObject span').forEach(el => {
                     el.style.setProperty('fill', '#f8fafc', 'important');
                     el.style.setProperty('color', '#f8fafc', 'important');
                     el.style.setProperty('line-height', '1.45', 'important');
                     el.style.setProperty('overflow', 'visible', 'important');
                   });
-
-                  // Edge labels
                   svgEl.querySelectorAll('.edgeLabel, .edgeLabel div, .edgeLabel span, .edgeLabel rect').forEach(el => {
                     el.style.setProperty('background-color', '#1e222a', 'important');
                     el.style.setProperty('fill', '#1e222a', 'important');
                     el.style.setProperty('color', '#eceff4', 'important');
                   });
-
-                  // Edge paths and arrowheads
                   svgEl.querySelectorAll('.edgePath path, .edgePath .path, .flowchart-link').forEach(el => {
                     el.style.setProperty('stroke', '#81a1c1', 'important');
                     el.style.setProperty('stroke-width', '1.5px', 'important');
@@ -2591,27 +2202,23 @@ class ObsidianVaultApp {
                     el.style.setProperty('stroke', '#88c0d0', 'important');
                   });
                 } else {
-                  // Flowchart light shapes (#ffffff) with slate stroke (#5e81ac)
                   svgEl.querySelectorAll('.node rect, .node circle, .node ellipse, .node polygon, .node path, rect.basic, rect.label-container').forEach(el => {
                     el.style.setProperty('fill', '#ffffff', 'important');
                     el.style.setProperty('fill-opacity', '0.95', 'important');
                     el.style.setProperty('stroke', '#5e81ac', 'important');
                     el.style.setProperty('stroke-width', '1.5px', 'important');
                   });
-
                   svgEl.querySelectorAll('.node text, .nodeLabel, .node foreignObject div, .node foreignObject span').forEach(el => {
                     el.style.setProperty('fill', '#0f172a', 'important');
                     el.style.setProperty('color', '#0f172a', 'important');
                     el.style.setProperty('line-height', '1.45', 'important');
                     el.style.setProperty('overflow', 'visible', 'important');
                   });
-
                   svgEl.querySelectorAll('.edgeLabel, .edgeLabel div, .edgeLabel span, .edgeLabel rect').forEach(el => {
                     el.style.setProperty('background-color', '#f1f5f9', 'important');
                     el.style.setProperty('fill', '#f1f5f9', 'important');
                     el.style.setProperty('color', '#0f172a', 'important');
                   });
-
                   svgEl.querySelectorAll('.edgePath path, .edgePath .path, .flowchart-link').forEach(el => {
                     el.style.setProperty('stroke', '#64748b', 'important');
                     el.style.setProperty('stroke-width', '1.5px', 'important');
@@ -2624,18 +2231,11 @@ class ObsidianVaultApp {
               }
             }
 
-            if (parent && parent.parentNode) {
-              parent.replaceWith(container);
-            }
+            if (parent && parent.parentNode) parent.replaceWith(container);
 
-            // Clean up any stray offscreen mermaid div left by mermaid.render
             const stray = document.getElementById(`d${id}`);
-            if (stray && stray !== container && stray.parentNode) {
-              stray.remove();
-            }
+            if (stray && stray !== container && stray.parentNode) stray.remove();
 
-            // Post-insertion: Dynamically measure and resize node rects and foreignObjects
-            // to eliminate vertical text bleeding/cropping and guarantee generous padding
             if (svgEl) {
               requestAnimationFrame(() => {
                 svgEl.querySelectorAll('.node').forEach(node => {
@@ -2648,7 +2248,7 @@ class ObsidianVaultApp {
 
                   const contentH = Math.ceil(labelDiv.scrollHeight || labelDiv.getBoundingClientRect().height);
                   const currentRectH = parseFloat(rect.getAttribute('height') || '0');
-                  const neededH = contentH + 20; // 10px padding top/bottom
+                  const neededH = contentH + 20; 
 
                   if (neededH > currentRectH) {
                     const diffH = neededH - currentRectH;
@@ -2666,21 +2266,14 @@ class ObsidianVaultApp {
               });
             }
             this.attachMediaCornerButtons();
-          }).catch(err => {
-            console.warn('Mermaid render issue:', err);
-          }).finally(() => {
-            this.attachMediaCornerButtons();
-          });
-        } catch (e) {
-          console.warn('Mermaid render error:', e);
-        }
+          }).catch(err => console.warn('Mermaid render issue:', err)).finally(() => this.attachMediaCornerButtons());
+        } catch (e) { console.warn('Mermaid render error:', e); }
       });
     }
     this.attachMediaCornerButtons();
   }
 
   setupTocGlobalControls() {
-    // Collapse / Expand All button in TOC header
     const btnToggleAll = document.getElementById('btn-toc-collapse-expand-all');
     if (btnToggleAll && !btnToggleAll._bound) {
       btnToggleAll._bound = true;
@@ -2691,11 +2284,8 @@ class ObsidianVaultApp {
 
         const anyOpen = Array.from(allChildren).some(el => !el.classList.contains('is-collapsed'));
         allChildren.forEach(el => {
-          if (anyOpen) {
-            el.classList.add('is-collapsed');
-          } else {
-            el.classList.remove('is-collapsed');
-          }
+          if (anyOpen) el.classList.add('is-collapsed');
+          else el.classList.remove('is-collapsed');
         });
         allTwists.forEach(btn => {
           if (anyOpen) {
@@ -2710,7 +2300,6 @@ class ObsidianVaultApp {
       });
     }
 
-    // Search Toggle Button
     const btnSearchToggle = document.getElementById('btn-toc-search-toggle');
     const searchBar = document.getElementById('toc-search-bar');
     const filterInput = document.getElementById('toc-filter-input');
@@ -2721,9 +2310,8 @@ class ObsidianVaultApp {
       btnSearchToggle.addEventListener('click', () => {
         searchBar.classList.toggle('is-hidden');
         btnSearchToggle.classList.toggle('active', !searchBar.classList.contains('is-hidden'));
-        if (!searchBar.classList.contains('is-hidden')) {
-          filterInput?.focus();
-        } else if (filterInput) {
+        if (!searchBar.classList.contains('is-hidden')) filterInput?.focus();
+        else if (filterInput) {
           filterInput.value = '';
           this.filterTocHeadings('');
         }
@@ -2732,9 +2320,7 @@ class ObsidianVaultApp {
 
     if (filterInput && !filterInput._bound) {
       filterInput._bound = true;
-      filterInput.addEventListener('input', (e) => {
-        this.filterTocHeadings(e.target.value);
-      });
+      filterInput.addEventListener('input', (e) => this.filterTocHeadings(e.target.value));
     }
 
     if (filterClear && filterInput && !filterClear._bound) {
@@ -2756,9 +2342,7 @@ class ObsidianVaultApp {
       tocNodes.forEach(node => {
         node.classList.remove('is-filtered-out');
         const link = node.querySelector(':scope > .toc-node-self > .toc-link');
-        if (link && link._rawText) {
-          link.textContent = link._rawText;
-        }
+        if (link && link._rawText) link.textContent = link._rawText;
       });
       return;
     }
@@ -2784,9 +2368,7 @@ class ObsidianVaultApp {
               parentTwist.setAttribute('aria-expanded', 'true');
             }
           }
-          if (parent.classList.contains('toc-node')) {
-            parent.classList.remove('is-filtered-out');
-          }
+          if (parent.classList.contains('toc-node')) parent.classList.remove('is-filtered-out');
           parent = parent.parentElement;
         }
       } else {
@@ -2816,31 +2398,19 @@ class ObsidianVaultApp {
       return;
     }
 
-    // Build hierarchical tree
     const root = { depth: 0, children: [] };
     const stack = [root];
 
     headings.forEach((h, index) => {
-      if (!h.id) {
-        h.id = `heading-${index}-${h.innerText.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-      }
+      if (!h.id) h.id = `heading-${index}-${h.innerText.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
       const depth = parseInt(h.tagName.substring(1), 10);
-      const node = {
-        id: h.id,
-        text: h.innerText.trim(),
-        depth: depth,
-        element: h,
-        children: []
-      };
+      const node = { id: h.id, text: h.innerText.trim(), depth: depth, element: h, children: [] };
 
-      while (stack.length > 1 && stack[stack.length - 1].depth >= depth) {
-        stack.pop();
-      }
+      while (stack.length > 1 && stack[stack.length - 1].depth >= depth) stack.pop();
       stack[stack.length - 1].children.push(node);
       stack.push(node);
     });
 
-    // Render tree recursively
     const renderTocNodes = (nodes) => {
       let html = '';
       nodes.forEach(node => {
@@ -2860,9 +2430,7 @@ class ObsidianVaultApp {
         }
         html += `<a href="#${node.id}" data-heading-id="${node.id}" class="toc-link depth-${node.depth}" title="${node.text}">${node.text}</a>`;
         html += `</div>`;
-        if (hasChildren) {
-          html += `<div class="toc-children">${renderTocNodes(node.children)}</div>`;
-        }
+        if (hasChildren) html += `<div class="toc-children">${renderTocNodes(node.children)}</div>`;
         html += `</div>`;
       });
       return html;
@@ -2870,7 +2438,6 @@ class ObsidianVaultApp {
 
     tocContainer.innerHTML = `<nav class="toc-nav">${renderTocNodes(root.children)}</nav>`;
 
-    // Wire up twisty toggle buttons
     tocContainer.querySelectorAll('.toc-twisty-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -2884,7 +2451,6 @@ class ObsidianVaultApp {
       });
     });
 
-    // Wire up TOC link clicks for smooth scrolling
     tocContainer.querySelectorAll('.toc-link').forEach(link => {
       link._rawText = link.textContent;
       link.addEventListener('click', (e) => {
@@ -2902,32 +2468,20 @@ class ObsidianVaultApp {
       });
     });
 
-    // Re-apply filter if filter input had a value
     const filterInput = document.getElementById('toc-filter-input');
-    if (filterInput && filterInput.value) {
-      this.filterTocHeadings(filterInput.value);
-    }
+    if (filterInput && filterInput.value) this.filterTocHeadings(filterInput.value);
 
-    // Active Scrollspy using IntersectionObserver
-    if (this._tocObserver) {
-      this._tocObserver.disconnect();
-    }
+    if (this._tocObserver) this._tocObserver.disconnect();
 
     const tocLinks = tocContainer.querySelectorAll('.toc-link');
     const headingVisibility = new Map();
 
     this._tocObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        headingVisibility.set(entry.target.id, entry.isIntersecting);
-      });
+      entries.forEach(entry => headingVisibility.set(entry.target.id, entry.isIntersecting));
 
-      // Find highest visible heading
       let activeHeadingId = null;
       for (const h of headings) {
-        if (headingVisibility.get(h.id)) {
-          activeHeadingId = h.id;
-          break;
-        }
+        if (headingVisibility.get(h.id)) { activeHeadingId = h.id; break; }
       }
 
       if (activeHeadingId) {
@@ -2951,10 +2505,7 @@ class ObsidianVaultApp {
           }
         });
       }
-    }, {
-      rootMargin: '-5% 0px -75% 0px',
-      threshold: [0, 1.0]
-    });
+    }, { rootMargin: '-5% 0px -75% 0px', threshold: [0, 1.0] });
 
     headings.forEach(h => this._tocObserver.observe(h));
   }
@@ -2974,9 +2525,7 @@ class ObsidianVaultApp {
     let isDragging = false;
     let startX = 0, startY = 0, initialLeft = 0, initialTop = 0;
 
-    // Draggable window handlers for preview popover
     const onDragStart = (e) => {
-      // Do not initiate drag if user clicked pin, close, or a link
       if (e.target.closest('.preview-pin-btn, .preview-close-btn, a, button:not(.preview-drag-handle)')) return;
       isDragging = true;
       const point = e.touches ? e.touches[0] : e;
@@ -3024,9 +2573,7 @@ class ObsidianVaultApp {
 
       if (isExternal) {
         let domain = 'external';
-        try {
-          domain = new URL(rawHref).hostname.replace(/^www\./, '');
-        } catch (err) {}
+        try { domain = new URL(rawHref).hostname.replace(/^www\./, ''); } catch (err) {}
         title = linkText || domain;
         bodyHtml = `
           <div class="preview-external-badge">
@@ -3069,26 +2616,15 @@ class ObsidianVaultApp {
 
           let snippetHtml = '<p style="color: var(--text-muted); font-size: 0.8rem; margin: 0;">No preview text available.</p>';
           if (content) {
-            // Strip YAML frontmatter
             let body = content.replace(/^---[\s\S]*?---\s*/, '').trim();
-            // Extract a limited head section (first 2-3 non-empty lines / up to ~300 chars)
             const headParagraphs = body.split(/\n\s*\n/).filter(p => p.trim().length > 0);
             let headSection = headParagraphs.slice(0, 2).join('\n\n');
-            if (headSection.length > 300) {
-              headSection = headSection.substring(0, 300) + '...';
-            }
-            // Resolve wiki-links within the snippet cleanly
+            if (headSection.length > 300) headSection = headSection.substring(0, 300) + '...';
             headSection = headSection.replace(/\[\[([^|\]]+)(?:\|([^\]]+))?\]\]/g, (_, target, alias) => alias || target);
             
             if (typeof marked !== 'undefined') {
-              try {
-                snippetHtml = marked.parse(headSection);
-              } catch (e) {
-                snippetHtml = `<p>${headSection}</p>`;
-              }
-            } else {
-              snippetHtml = `<p>${headSection}</p>`;
-            }
+              try { snippetHtml = marked.parse(headSection); } catch (e) { snippetHtml = `<p>${headSection}</p>`; }
+            } else snippetHtml = `<p>${headSection}</p>`;
           }
 
           bodyHtml = `
@@ -3139,14 +2675,12 @@ class ObsidianVaultApp {
         <div class="preview-popover-body">${bodyHtml}</div>
       `;
 
-      // Setup Dragging on header and drag button
       const headerEl = previewEl.querySelector('.preview-popover-header');
       if (headerEl) {
         headerEl.addEventListener('mousedown', onDragStart);
         headerEl.addEventListener('touchstart', onDragStart, { passive: true });
       }
 
-      // Setup Pin Button
       const pinBtn = previewEl.querySelector('.preview-pin-btn');
       if (pinBtn) {
         pinBtn.addEventListener('click', (ev) => {
@@ -3156,16 +2690,12 @@ class ObsidianVaultApp {
           pinBtn.classList.toggle('is-pinned', this.isPreviewPinned);
           pinBtn.setAttribute('title', this.isPreviewPinned ? 'Unpin preview (allow auto-close)' : 'Pin preview (keep open while reading)');
           if (this.isPreviewPinned) {
-            clearTimeout(hideTimeout);
-            clearTimeout(dismissTimeout);
+            clearTimeout(hideTimeout); clearTimeout(dismissTimeout);
             this.showToast('Preview pinned to workspace');
-          } else {
-            this.showToast('Preview unpinned');
-          }
+          } else this.showToast('Preview unpinned');
         });
       }
 
-      // Setup Close Button
       const closeBtn = previewEl.querySelector('.preview-close-btn');
       if (closeBtn) {
         closeBtn.addEventListener('click', (ev) => {
@@ -3176,7 +2706,6 @@ class ObsidianVaultApp {
         });
       }
 
-      // If user clicks internal jump link, close preview
       previewEl.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', () => {
           this.isPreviewPinned = false;
@@ -3185,7 +2714,6 @@ class ObsidianVaultApp {
         });
       });
 
-      // Position preview near cursor if not already pinned
       if (!this.isPreviewPinned) {
         const x = Math.min(window.innerWidth - 360, Math.max(16, e.clientX + 14));
         const y = Math.min(window.innerHeight - 260, Math.max(16, e.clientY + 18));
@@ -3217,13 +2745,10 @@ class ObsidianVaultApp {
       }, 200);
     };
 
-    // User requirement: PREVIEWS ONLY TRIGGER INSIDE NOTES ON EMBEDDED LINKS
     document.addEventListener('mouseover', (e) => {
       if (this.isPreviewPinned || isDragging) return;
-
       const noteArticle = document.getElementById('note-article');
       if (!noteArticle || !noteArticle.contains(e.target)) return;
-
       const link = e.target.closest('a.internal-link, a[href]');
       if (link) {
         const rawHref = link.getAttribute('href') || '';
@@ -3235,14 +2760,10 @@ class ObsidianVaultApp {
 
     document.addEventListener('mouseout', (e) => {
       if (this.isPreviewPinned || isDragging) return;
-
       const noteArticle = document.getElementById('note-article');
       if (!noteArticle || !noteArticle.contains(e.target)) return;
-
       const link = e.target.closest('a.internal-link, a[href]');
-      if (link) {
-        hidePreview();
-      }
+      if (link) hidePreview();
     });
 
     previewEl.addEventListener('mouseenter', () => {
@@ -3269,7 +2790,6 @@ class ObsidianVaultApp {
     let diagramCounter = 0;
     const noteTitle = this.currentNoteTitle || document.querySelector('.note-header-title')?.textContent || 'Note';
 
-    // 1. Mermaid diagrams and standalone SVGs
     const diagrams = article.querySelectorAll('.mermaid-diagram-container, svg[id^="mermaid-diag"]');
     diagrams.forEach(diag => {
       let container = diag.classList.contains('mermaid-diagram-container') ? diag : diag.closest('.mermaid-diagram-container');
@@ -3277,10 +2797,9 @@ class ObsidianVaultApp {
       if (container.querySelector('.diagram-corner-action-btn')) return;
 
       diagramCounter++;
-      const currentOrder = diagramCounter;
       const svgEl = container.querySelector('svg') || (container.tagName.toLowerCase() === 'svg' ? container : null);
       const svgRaw = svgEl ? svgEl.outerHTML : '';
-      const diagramTitle = this.generateDiagramTitle(noteTitle, currentOrder, svgRaw);
+      const diagramTitle = this.generateDiagramTitle(noteTitle, diagramCounter, svgRaw);
 
       const cornerBtn = document.createElement('button');
       cornerBtn.type = 'button';
@@ -3297,19 +2816,15 @@ class ObsidianVaultApp {
       `;
 
       cornerBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+        e.preventDefault(); e.stopPropagation();
         const activeSvg = container.querySelector('svg');
-        if (activeSvg) {
-          this.openMediaPreview(activeSvg.outerHTML, 'svg', diagramTitle, true);
-        }
+        if (activeSvg) this.openMediaPreview(activeSvg.outerHTML, 'svg', diagramTitle, true);
       });
 
       container.style.position = 'relative';
       container.appendChild(cornerBtn);
     });
 
-    // 2. Embedded images (.obsidian-media-embed img or regular note images)
     const images = article.querySelectorAll('.obsidian-media-embed img, img:not(.emoji)');
     images.forEach(img => {
       const existingParent = img.closest('.media-preview-wrapper') || img.parentElement;
@@ -3342,8 +2857,7 @@ class ObsidianVaultApp {
       `;
 
       cornerBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+        e.preventDefault(); e.stopPropagation();
         this.openMediaPreview(imgSrc, 'image', imgName, false);
       });
 
@@ -3352,27 +2866,17 @@ class ObsidianVaultApp {
   }
 
   generateDiagramTitle(noteTitle, orderIndex, rawContent) {
-    const clean = (noteTitle || 'Note')
-      .split('/')
-      .pop()
-      .replace(/\.md$/i, '')
-      .trim();
-
-    // Abbreviate note name (e.g. "BCC 206 Principles of Management" -> "BCC206-POM")
+    const clean = (noteTitle || 'Note').split('/').pop().replace(/\.md$/i, '').trim();
     const words = clean.split(/[\s_\-]+/).filter(Boolean);
     let abbrev = '';
-    if (words.length <= 1) {
-      abbrev = clean.substring(0, 8).toUpperCase();
-    } else {
+    if (words.length <= 1) abbrev = clean.substring(0, 8).toUpperCase();
+    else {
       abbrev = words.map(w => {
-        if (/^\d+$/.test(w) || (/^[A-Z0-9]+$/i.test(w) && w.length <= 4)) {
-          return w.toUpperCase();
-        }
+        if (/^\d+$/.test(w) || (/^[A-Z0-9]+$/i.test(w) && w.length <= 4)) return w.toUpperCase();
         return w[0].toUpperCase();
       }).join('');
     }
 
-    // Deterministic 4-character hex hash based on content and title
     let hashVal = 0;
     const seed = (rawContent || clean) + orderIndex;
     for (let i = 0; i < seed.length; i++) {
@@ -3380,7 +2884,6 @@ class ObsidianVaultApp {
       hashVal |= 0;
     }
     const hex = Math.abs(hashVal).toString(16).substring(0, 4).toUpperCase().padStart(4, '8F');
-
     return `${abbrev}-D${orderIndex}-${hex}`;
   }
 
@@ -3388,9 +2891,7 @@ class ObsidianVaultApp {
     if (src && !src.startsWith('data:')) {
       const cleanUrl = src.split('?')[0].split('#')[0];
       const fileName = cleanUrl.split('/').pop();
-      if (fileName && fileName.includes('.')) {
-        return decodeURIComponent(fileName);
-      }
+      if (fileName && fileName.includes('.')) return decodeURIComponent(fileName);
     }
     if (alt && alt.trim() && !alt.startsWith('Diagram')) {
       const sanitized = alt.trim().replace(/[^a-zA-Z0-9_\-\.]/g, '_');
@@ -3413,7 +2914,6 @@ class ObsidianVaultApp {
             <span id="media-preview-badge" class="media-preview-badge">DIAGRAM</span>
           </div>
           <div class="media-preview-actions">
-            <!-- Theme Toggle Icon Button -->
             <button class="media-icon-btn" id="media-btn-theme" type="button" aria-label="Toggle dark/light preview background" title="Toggle background theme">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="5"></circle>
@@ -3427,8 +2927,6 @@ class ObsidianVaultApp {
                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
               </svg>
             </button>
-
-            <!-- Zoom In Icon Button -->
             <button class="media-icon-btn" id="media-btn-zoom-in" type="button" aria-label="Zoom in" title="Zoom in (+)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="11" cy="11" r="8"></circle>
@@ -3437,8 +2935,6 @@ class ObsidianVaultApp {
                 <line x1="8" y1="11" x2="14" y2="11"></line>
               </svg>
             </button>
-
-            <!-- Zoom Out Icon Button -->
             <button class="media-icon-btn" id="media-btn-zoom-out" type="button" aria-label="Zoom out" title="Zoom out (-)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="11" cy="11" r="8"></circle>
@@ -3446,8 +2942,6 @@ class ObsidianVaultApp {
                 <line x1="8" y1="11" x2="14" y2="11"></line>
               </svg>
             </button>
-
-            <!-- Reset Zoom Icon Button -->
             <button class="media-icon-btn" id="media-btn-zoom-reset" type="button" aria-label="Reset zoom" title="Reset zoom (100%)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
@@ -3456,8 +2950,6 @@ class ObsidianVaultApp {
                 <path d="M3 21v-5h5"></path>
               </svg>
             </button>
-
-            <!-- Download Icon Button -->
             <a class="media-icon-btn" id="media-btn-download" download aria-label="Download image or diagram" title="Download file">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -3465,8 +2957,6 @@ class ObsidianVaultApp {
                 <line x1="12" y1="15" x2="12" y2="3"></line>
               </svg>
             </a>
-
-            <!-- Close Icon Button -->
             <button class="media-icon-btn btn-close-danger" id="media-btn-close" type="button" aria-label="Close preview" title="Close preview (Esc)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -3501,42 +2991,20 @@ class ObsidianVaultApp {
     };
 
     document.getElementById('media-btn-close')?.addEventListener('click', close);
-    overlay.addEventListener('click', event => {
-      if (event.target === overlay) close();
-    });
-    document.addEventListener('keydown', event => {
-      if (event.key === 'Escape' && overlay.classList.contains('is-open')) close();
-    });
+    overlay.addEventListener('click', event => { if (event.target === overlay) close(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && overlay.classList.contains('is-open')) close(); });
 
-    // Zoom Controls
     const updateZoom = () => {
       const viewport = document.getElementById('media-preview-viewport');
-      if (viewport) {
-        viewport.style.transform = `scale(${this.mediaZoom})`;
-      }
+      if (viewport) viewport.style.transform = `scale(${this.mediaZoom})`;
     };
 
-    document.getElementById('media-btn-zoom-in')?.addEventListener('click', () => {
-      this.mediaZoom = Math.min(3.5, this.mediaZoom + 0.25);
-      updateZoom();
-    });
-
-    document.getElementById('media-btn-zoom-out')?.addEventListener('click', () => {
-      this.mediaZoom = Math.max(0.4, this.mediaZoom - 0.25);
-      updateZoom();
-    });
-
-    document.getElementById('media-btn-zoom-reset')?.addEventListener('click', () => {
-      this.mediaZoom = 1;
-      updateZoom();
-    });
-
-    // Theme contrast toggle
+    document.getElementById('media-btn-zoom-in')?.addEventListener('click', () => { this.mediaZoom = Math.min(3.5, this.mediaZoom + 0.25); updateZoom(); });
+    document.getElementById('media-btn-zoom-out')?.addEventListener('click', () => { this.mediaZoom = Math.max(0.4, this.mediaZoom - 0.25); updateZoom(); });
+    document.getElementById('media-btn-zoom-reset')?.addEventListener('click', () => { this.mediaZoom = 1; updateZoom(); });
     document.getElementById('media-btn-theme')?.addEventListener('click', () => {
       const dialog = document.getElementById('media-preview-dialog');
-      if (dialog) {
-        dialog.classList.toggle('preview-theme-light');
-      }
+      if (dialog) dialog.classList.toggle('preview-theme-light');
     });
   }
 
@@ -3556,14 +3024,8 @@ class ObsidianVaultApp {
 
     titleElement.textContent = title;
     titleElement.setAttribute('title', title);
-
-    if (badgeElement) {
-      badgeElement.textContent = type === 'svg' ? 'DIAGRAM' : 'IMAGE';
-    }
-
-    if (themeBtn) {
-      themeBtn.style.display = 'inline-flex';
-    }
+    if (badgeElement) badgeElement.textContent = type === 'svg' ? 'DIAGRAM' : 'IMAGE';
+    if (themeBtn) themeBtn.style.display = 'inline-flex';
 
     this.mediaZoom = 1;
     viewport.style.transform = 'none';
@@ -3591,9 +3053,6 @@ class ObsidianVaultApp {
     overlay.classList.add('is-open');
   }
 
-  /* ==========================================================================
-     Lookalike Themed Pageless & Print PDF Engine with Table of Contents
-     ========================================================================== */
   openPdfExportModal(noteTitle, relPath, rawMarkdown) {
     let overlay = document.getElementById('pdf-export-modal-overlay');
     if (!overlay) {
@@ -3620,9 +3079,7 @@ class ObsidianVaultApp {
               </svg>
             </button>
           </div>
-
           <div class="pdf-export-body">
-            <!-- Format Selection -->
             <div class="pdf-setting-group">
               <label class="pdf-setting-label">Document Layout</label>
               <div class="pdf-radio-cards">
@@ -3636,8 +3093,6 @@ class ObsidianVaultApp {
                 </div>
               </div>
             </div>
-
-            <!-- Reading Font Selection -->
             <div class="pdf-setting-group">
               <label class="pdf-setting-label" for="pdf-select-font">Reading Typography (Web & Browser Fonts)</label>
               <div class="pdf-setting-desc">Crisp vector typography preserved in the exported PDF with complete text selection.</div>
@@ -3650,8 +3105,6 @@ class ObsidianVaultApp {
                 <option value="System">System Sans-Serif (Browser Native)</option>
               </select>
             </div>
-
-            <!-- Theme Selection (Active for Digital) -->
             <div class="pdf-setting-group" id="pdf-group-theme">
               <label class="pdf-setting-label" for="pdf-select-theme">Color Theme</label>
               <div class="pdf-setting-desc">Select visual styling for digital device copies (print mode optimizes for white paper).</div>
@@ -3661,8 +3114,6 @@ class ObsidianVaultApp {
                 <option value="sepia">Warm Sepia (Eye Comfort Book)</option>
               </select>
             </div>
-
-            <!-- Table of Contents Toggle -->
             <div class="pdf-setting-group">
               <label class="pdf-checkbox-row">
                 <input type="checkbox" id="pdf-check-toc" checked />
@@ -3671,7 +3122,6 @@ class ObsidianVaultApp {
               <div class="pdf-setting-desc" style="padding-left: 26px;">Generates hyperlinked section navigation at the start of the document.</div>
             </div>
           </div>
-
           <div class="pdf-export-footer">
             <button class="btn-secondary-pdf" id="pdf-btn-copy-raw" type="button" title="Copy raw Markdown to clipboard">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -3701,14 +3151,10 @@ class ObsidianVaultApp {
       `;
       document.body.appendChild(overlay);
 
-      // Event Listeners for dialog
       const close = () => overlay.classList.remove('is-open');
       document.getElementById('pdf-modal-close')?.addEventListener('click', close);
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) close();
-      });
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) close(); });
 
-      // Mode Selection cards
       const cardPageless = document.getElementById('pdf-card-pageless');
       const cardPrint = document.getElementById('pdf-card-print');
       const selectTheme = document.getElementById('pdf-select-theme');
@@ -3722,10 +3168,9 @@ class ObsidianVaultApp {
       cardPrint?.addEventListener('click', () => {
         cardPrint.classList.add('is-selected');
         cardPageless?.classList.remove('is-selected');
-        if (selectTheme) selectTheme.value = 'light'; // Recommend clean white paper to save ink
+        if (selectTheme) selectTheme.value = 'light';
       });
 
-      // Copy raw markdown alternative
       document.getElementById('pdf-btn-copy-raw')?.addEventListener('click', () => {
         if (rawMarkdown) {
           navigator.clipboard.writeText(rawMarkdown);
@@ -3733,14 +3178,12 @@ class ObsidianVaultApp {
         }
       });
 
-      // Direct Pageless HTML Download Button
       document.getElementById('pdf-btn-download-html')?.addEventListener('click', () => {
         overlay.classList.remove('is-open');
         this.downloadNotePageless(noteTitle, relPath, rawMarkdown);
       });
     }
 
-    // Bind generate PDF button
     const btnGenerate = document.getElementById('pdf-btn-generate');
     if (btnGenerate) {
       btnGenerate.onclick = () => {
@@ -3749,25 +3192,13 @@ class ObsidianVaultApp {
         const font = document.getElementById('pdf-select-font')?.value || 'Atkinson Hyperlegible';
         const theme = document.getElementById('pdf-select-theme')?.value || (mode === 'print' ? 'light' : 'dark');
         const includeToc = document.getElementById('pdf-check-toc')?.checked ?? true;
-
         overlay.classList.remove('is-open');
-        this.generateLookalikeThemedPdf({
-          noteTitle,
-          mode,
-          font,
-          theme,
-          includeToc,
-          fontSize: this.fontSize || 16
-        });
+        this.generateLookalikeThemedPdf({ noteTitle, mode, font, theme, includeToc, fontSize: this.fontSize || 16 });
       };
     }
-
     overlay.classList.add('is-open');
   }
 
-  /* ==========================================================================
-     Direct Pageless HTML Exporter (Zero Page Cut Issues, Full Fidelity)
-     ========================================================================== */
   downloadNotePageless(noteTitle, relPath, rawMarkdown) {
     const article = document.getElementById('note-article');
     if (!article) {
@@ -3779,7 +3210,6 @@ class ObsidianVaultApp {
     const clone = article.cloneNode(true);
     clone.querySelectorAll('.diagram-corner-action-btn, .copy-code-button, .toc-twisty-btn').forEach(el => el.remove());
 
-    // Generate in-document TOC if headings exist
     let tocHtml = '';
     const headings = clone.querySelectorAll('h1, h2, h3, h4');
     if (headings.length > 0) {
@@ -3833,59 +3263,22 @@ class ObsidianVaultApp {
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" />
   <style>
     :root {
-      --bg: ${bg};
-      --text: ${text};
-      --surface: ${surface};
-      --border: ${border};
-      --accent: ${accent};
-      --h1: ${h1};
-      --h2: ${h2};
-      --h3: ${h3};
-      --code-bg: ${codeBg};
+      --bg: ${bg}; --text: ${text}; --surface: ${surface}; --border: ${border}; --accent: ${accent};
+      --h1: ${h1}; --h2: ${h2}; --h3: ${h3}; --code-bg: ${codeBg};
       --font-default: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', Consolas, monospace;
     }
     * { box-sizing: border-box; }
     html, body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: var(--font-default);
-      font-size: ${this.fontSize || 16}px;
-      line-height: 1.68;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-      scroll-behavior: smooth;
+      margin: 0; padding: 0; background-color: var(--bg); color: var(--text);
+      font-family: var(--font-default); font-size: ${this.fontSize || 16}px; line-height: 1.68;
+      -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-behavior: smooth;
     }
-    .pageless-container {
-      max-width: 860px;
-      margin: 48px auto;
-      padding: 0 24px;
-    }
-    .pageless-header {
-      border-bottom: 2px solid var(--border);
-      padding-bottom: 20px;
-      margin-bottom: 32px;
-    }
-    .pageless-header h1 {
-      font-size: 2.2em;
-      font-weight: 800;
-      color: var(--h1);
-      margin: 0 0 8px 0;
-      letter-spacing: -0.02em;
-    }
-    .pageless-meta {
-      font-size: 0.85em;
-      opacity: 0.75;
-      color: var(--text);
-    }
-    h1, h2, h3, h4, h5, h6 {
-      margin-top: 1.4em;
-      margin-bottom: 0.5em;
-      font-weight: 700;
-      line-height: 1.3;
-    }
+    .pageless-container { max-width: 860px; margin: 48px auto; padding: 0 24px; }
+    .pageless-header { border-bottom: 2px solid var(--border); padding-bottom: 20px; margin-bottom: 32px; }
+    .pageless-header h1 { font-size: 2.2em; font-weight: 800; color: var(--h1); margin: 0 0 8px 0; letter-spacing: -0.02em; }
+    .pageless-meta { font-size: 0.85em; opacity: 0.75; color: var(--text); }
+    h1, h2, h3, h4, h5, h6 { margin-top: 1.4em; margin-bottom: 0.5em; font-weight: 700; line-height: 1.3; }
     h1 { font-size: 1.85em; color: var(--h1); border-bottom: 1px solid var(--border); padding-bottom: 0.3em; }
     h2 { font-size: 1.45em; color: var(--h2); }
     h3 { font-size: 1.22em; color: var(--h3); }
@@ -3894,58 +3287,14 @@ class ObsidianVaultApp {
     strong, b { color: ${isDark ? '#ffffff' : '#000000'}; font-weight: 700; }
     a { color: var(--accent); text-decoration: underline; }
     pre, code { font-family: var(--font-mono); }
-    pre {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 14px 18px;
-      overflow-x: auto;
-      font-size: 0.9em;
-    }
-    code:not(pre code) {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 2px 5px;
-      font-size: 0.9em;
-      color: var(--h3);
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 1.2em 0;
-      border: 1px solid var(--border);
-    }
-    th, td {
-      border: 1px solid var(--border);
-      padding: 9px 14px;
-      text-align: left;
-    }
+    pre { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px 18px; overflow-x: auto; font-size: 0.9em; }
+    code:not(pre code) { background: var(--surface); border: 1px solid var(--border); border-radius: 4px; padding: 2px 5px; font-size: 0.9em; color: var(--h3); }
+    table { width: 100%; border-collapse: collapse; margin: 1.2em 0; border: 1px solid var(--border); }
+    th, td { border: 1px solid var(--border); padding: 9px 14px; text-align: left; }
     th { background: var(--surface); font-weight: 700; }
-    blockquote {
-      border-left: 4px solid var(--accent);
-      margin: 1.2em 0;
-      padding: 8px 18px;
-      background: var(--surface);
-      border-radius: 0 6px 6px 0;
-    }
-    .callout {
-      border: 1px solid var(--border);
-      border-left: 4px solid var(--accent);
-      background: var(--surface);
-      border-radius: 6px;
-      padding: 14px 18px;
-      margin: 1.2em 0;
-    }
-    .mermaid-diagram-container {
-      display: flex;
-      justify-content: center;
-      margin: 1.4em 0;
-      padding: 16px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-    }
+    blockquote { border-left: 4px solid var(--accent); margin: 1.2em 0; padding: 8px 18px; background: var(--surface); border-radius: 0 6px 6px 0; }
+    .callout { border: 1px solid var(--border); border-left: 4px solid var(--accent); background: var(--surface); border-radius: 6px; padding: 14px 18px; margin: 1.2em 0; }
+    .mermaid-diagram-container { display: flex; justify-content: center; margin: 1.4em 0; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; }
     .mermaid-diagram-container svg { max-width: 100%; height: auto; }
     .katex-display { margin: 1em 0; overflow-x: auto; text-align: center; }
     img { max-width: 100%; height: auto; border-radius: 6px; }
@@ -3958,9 +3307,7 @@ class ObsidianVaultApp {
       <div class="pageless-meta">Obsidian Vault • Pageless Continuous Document • ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
     </div>
     ${tocHtml}
-    <div class="pageless-content">
-      ${clone.innerHTML}
-    </div>
+    <div class="pageless-content">${clone.innerHTML}</div>
   </div>
 </body>
 </html>`;
@@ -3968,15 +3315,10 @@ class ObsidianVaultApp {
     const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
     const downloadUrl = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = downloadUrl;
-    a.download = `${safeTitle}.html`;
+    a.href = downloadUrl; a.download = `${safeTitle}.html`;
     document.body.appendChild(a);
     a.click();
-    setTimeout(() => {
-      document.body.removeChild(a);
-      URL.revokeObjectURL(downloadUrl);
-    }, 150);
-
+    setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(downloadUrl); }, 150);
     this.showToast(`Pageless document downloaded: ${safeTitle}.html`);
   }
 
@@ -3986,10 +3328,8 @@ class ObsidianVaultApp {
       this.showToast('Unable to export: note content not found');
       return;
     }
-
     this.showToast('Preparing PDF formatting & vector assets...');
 
-    // 1. Build Table of Contents HTML if requested
     let tocHtml = '';
     if (includeToc) {
       const headings = article.querySelectorAll('h1, h2, h3, h4');
@@ -4016,19 +3356,15 @@ class ObsidianVaultApp {
             <div style="font-weight: 700; font-size: 1.05rem; margin-bottom: 12px; color: var(--pdf-accent); display: flex; align-items: center; gap: 8px;">
               <span>Table of Contents</span>
             </div>
-            <ul style="margin: 0; padding: 0;">
-              ${tocItems.join('')}
-            </ul>
+            <ul style="margin: 0; padding: 0;">${tocItems.join('')}</ul>
           </div>
         `;
       }
     }
 
-    // 2. Clone article and remove interactive tool-buttons or corner preview buttons
     const clone = article.cloneNode(true);
     clone.querySelectorAll('.diagram-corner-action-btn, .copy-code-button, .toc-twisty-btn').forEach(el => el.remove());
 
-    // 3. Define font imports and families
     let fontImport = '';
     let fontFamily = 'var(--font-default)';
     if (font === 'Atkinson Hyperlegible') {
@@ -4050,101 +3386,37 @@ class ObsidianVaultApp {
       fontFamily = `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif`;
     }
 
-    // 4. Color Palette Tokens for Theme (Cosmic Obsidian for dark)
     let colors = {
-      bg: '#12151d',
-      text: '#f8fafc',
-      surface: '#181d28',
-      border: 'rgba(255, 255, 255, 0.12)',
-      accent: '#a882ff',
-      h1: '#ffffff',
-      h2: '#a882ff',
-      h3: '#5ce1e6',
-      codeBg: '#181d28',
-      calloutBg: '#181d28'
+      bg: '#12151d', text: '#f8fafc', surface: '#181d28', border: 'rgba(255, 255, 255, 0.12)',
+      accent: '#a882ff', h1: '#ffffff', h2: '#a882ff', h3: '#5ce1e6', codeBg: '#181d28', calloutBg: '#181d28'
     };
 
     if (theme === 'light') {
-      colors = {
-        bg: '#ffffff',
-        text: '#0f172a',
-        surface: '#f8fafc',
-        border: '#e2e8f0',
-        accent: '#7c3aed',
-        h1: '#0f172a',
-        h2: '#6d28d9',
-        h3: '#0284c7',
-        codeBg: '#f1f5f9',
-        calloutBg: '#f8fafc'
-      };
+      colors = { bg: '#ffffff', text: '#0f172a', surface: '#f8fafc', border: '#e2e8f0', accent: '#7c3aed', h1: '#0f172a', h2: '#6d28d9', h3: '#0284c7', codeBg: '#f1f5f9', calloutBg: '#f8fafc' };
     } else if (theme === 'sepia') {
-      colors = {
-        bg: '#fbf0d9',
-        text: '#3c2f1f',
-        surface: '#f3e5c8',
-        border: 'rgba(60, 47, 31, 0.15)',
-        accent: '#92400e',
-        h1: '#92400e',
-        h2: '#b45309',
-        h3: '#4d7c0f',
-        codeBg: '#eedfbc',
-        calloutBg: '#f3e5c8'
-      };
+      colors = { bg: '#fbf0d9', text: '#3c2f1f', surface: '#f3e5c8', border: 'rgba(60, 47, 31, 0.15)', accent: '#92400e', h1: '#92400e', h2: '#b45309', h3: '#4d7c0f', codeBg: '#eedfbc', calloutBg: '#f3e5c8' };
     }
 
-    // 5. Generate isolated iframe for print execution
     const oldFrame = document.getElementById('pdf-print-sandbox');
     if (oldFrame) oldFrame.remove();
 
     const iframe = document.createElement('iframe');
     iframe.id = 'pdf-print-sandbox';
-    iframe.style.position = 'fixed';
-    iframe.style.right = '0';
-    iframe.style.bottom = '0';
-    iframe.style.width = '0';
-    iframe.style.height = '0';
-    iframe.style.border = '0';
+    iframe.style.position = 'fixed'; iframe.style.right = '0'; iframe.style.bottom = '0';
+    iframe.style.width = '0'; iframe.style.height = '0'; iframe.style.border = '0';
     document.body.appendChild(iframe);
 
     const doc = iframe.contentWindow.document;
     doc.open();
 
     const pageCss = mode === 'pageless' ? `
-      @page {
-        size: auto;
-        margin: 0;
-      }
-      body {
-        padding: 48px 56px;
-        max-width: 900px;
-        margin: 0 auto;
-        background-color: ${colors.bg} !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
+      @page { size: auto; margin: 0; }
+      body { padding: 48px 56px; max-width: 900px; margin: 0 auto; background-color: ${colors.bg} !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     ` : `
-      @page {
-        size: A4;
-        margin: 16mm 14mm 16mm 14mm;
-      }
-      body {
-        padding: 0;
-        max-width: 100%;
-        margin: 0 auto;
-        background-color: ${colors.bg} !important;
-        -webkit-print-color-adjust: exact !important;
-        print-color-adjust: exact !important;
-      }
-      p, .callout, pre, blockquote, table, tr, li, figure, img, svg, .math-block, .katex-display, .mermaid-diagram-container, .accounting-table-wrapper, .accounting-schedule-table, .pdf-toc-wrapper {
-        break-inside: avoid !important;
-        page-break-inside: avoid !important;
-      }
-      h1, h2, h3, h4, h5, h6 {
-        break-after: avoid !important;
-        page-break-after: avoid !important;
-        break-inside: avoid !important;
-        page-break-inside: avoid !important;
-      }
+      @page { size: A4; margin: 16mm 14mm 16mm 14mm; }
+      body { padding: 0; max-width: 100%; margin: 0 auto; background-color: ${colors.bg} !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+      p, .callout, pre, blockquote, table, tr, li, figure, img, svg, .math-block, .katex-display, .mermaid-diagram-container, .accounting-table-wrapper, .accounting-schedule-table, .pdf-toc-wrapper { break-inside: avoid !important; page-break-inside: avoid !important; }
+      h1, h2, h3, h4, h5, h6 { break-after: avoid !important; page-break-after: avoid !important; break-inside: avoid !important; page-break-inside: avoid !important; }
     `;
 
     doc.write(`
@@ -4157,154 +3429,37 @@ class ObsidianVaultApp {
         <style>
           ${fontImport}
           :root {
-            --pdf-bg: ${colors.bg};
-            --pdf-text: ${colors.text};
-            --pdf-surface: ${colors.surface};
-            --pdf-border: ${colors.border};
-            --pdf-accent: ${colors.accent};
-            --pdf-h1: ${colors.h1};
-            --pdf-h2: ${colors.h2};
-            --pdf-h3: ${colors.h3};
-            --pdf-code-bg: ${colors.codeBg};
+            --pdf-bg: ${colors.bg}; --pdf-text: ${colors.text}; --pdf-surface: ${colors.surface};
+            --pdf-border: ${colors.border}; --pdf-accent: ${colors.accent}; --pdf-h1: ${colors.h1};
+            --pdf-h2: ${colors.h2}; --pdf-h3: ${colors.h3}; --pdf-code-bg: ${colors.codeBg};
           }
-
-          * {
-            box-sizing: border-box;
-          }
-
+          * { box-sizing: border-box; }
           html, body {
-            background-color: var(--pdf-bg);
-            color: var(--pdf-text);
-            font-family: ${fontFamily};
-            font-size: ${fontSize}px;
-            line-height: 1.68;
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
+            background-color: var(--pdf-bg); color: var(--pdf-text); font-family: ${fontFamily};
+            font-size: ${fontSize}px; line-height: 1.68; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
           }
-
-          h1, h2, h3, h4, h5, h6 {
-            color: var(--pdf-text);
-            margin-top: 1.4em;
-            margin-bottom: 0.5em;
-            font-weight: 700;
-            line-height: 1.3;
-          }
-
+          h1, h2, h3, h4, h5, h6 { color: var(--pdf-text); margin-top: 1.4em; margin-bottom: 0.5em; font-weight: 700; line-height: 1.3; }
           h1 { font-size: 1.85em; color: var(--pdf-h1); border-bottom: 1px solid var(--pdf-border); padding-bottom: 0.3em; }
           h2 { font-size: 1.45em; color: var(--pdf-h2); }
           h3 { font-size: 1.22em; color: var(--pdf-h3); }
           h4 { font-size: 1.08em; color: var(--pdf-accent); }
-
-          p, ul, ol, blockquote {
-            margin: 0.85em 0;
-          }
-
-          a {
-            color: var(--pdf-accent);
-            text-decoration: underline;
-          }
-
-          pre, code {
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--pdf-code-bg);
-            border-radius: 4px;
-          }
-
-          pre {
-            padding: 14px 18px;
-            overflow-x: auto;
-            border: 1px solid var(--pdf-border);
-            font-size: 0.88em;
-          }
-
-          code {
-            padding: 2px 5px;
-            font-size: 0.9em;
-          }
-
-          table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.2em 0;
-            font-size: 0.9em;
-          }
-
-          th, td {
-            border: 1px solid var(--pdf-border);
-            padding: 8px 12px;
-            text-align: left;
-          }
-
-          th {
-            background: var(--pdf-surface);
-            font-weight: 600;
-          }
-
-          blockquote {
-            border-left: 4px solid var(--pdf-accent);
-            margin: 1em 0;
-            padding: 6px 16px;
-            background: var(--pdf-surface);
-            border-radius: 0 4px 4px 0;
-          }
-
-          .callout {
-            border: 1px solid var(--pdf-border);
-            border-left: 4px solid var(--pdf-accent);
-            background: var(--pdf-surface);
-            border-radius: 6px;
-            padding: 12px 16px;
-            margin: 1.2em 0;
-          }
-
-          .mermaid-diagram-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 1.4em 0;
-            padding: 16px;
-            background: var(--pdf-surface);
-            border: 1px solid var(--pdf-border);
-            border-radius: 8px;
-          }
-
-          .mermaid-diagram-container svg {
-            max-width: 100%;
-            height: auto;
-          }
-
-          .katex-display {
-            margin: 1em 0;
-            overflow-x: auto;
-            text-align: center;
-          }
-
-          img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 6px;
-          }
-
-          .pdf-document-header {
-            margin-bottom: 28px;
-            padding-bottom: 16px;
-            border-bottom: 2px solid var(--pdf-border);
-          }
-
-          .pdf-document-header-title {
-            font-size: 2.2em;
-            font-weight: 800;
-            color: var(--pdf-h1);
-            margin: 0 0 6px 0;
-            letter-spacing: -0.02em;
-          }
-
-          .pdf-document-header-meta {
-            font-size: 0.85em;
-            color: var(--pdf-text);
-            opacity: 0.75;
-          }
-
+          p, ul, ol, blockquote { margin: 0.85em 0; }
+          a { color: var(--pdf-accent); text-decoration: underline; }
+          pre, code { font-family: 'JetBrains Mono', monospace; background: var(--pdf-code-bg); border-radius: 4px; }
+          pre { padding: 14px 18px; overflow-x: auto; border: 1px solid var(--pdf-border); font-size: 0.88em; }
+          code { padding: 2px 5px; font-size: 0.9em; }
+          table { width: 100%; border-collapse: collapse; margin: 1.2em 0; font-size: 0.9em; }
+          th, td { border: 1px solid var(--pdf-border); padding: 8px 12px; text-align: left; }
+          th { background: var(--pdf-surface); font-weight: 600; }
+          blockquote { border-left: 4px solid var(--pdf-accent); margin: 1em 0; padding: 6px 16px; background: var(--pdf-surface); border-radius: 0 4px 4px 0; }
+          .callout { border: 1px solid var(--pdf-border); border-left: 4px solid var(--pdf-accent); background: var(--pdf-surface); border-radius: 6px; padding: 12px 16px; margin: 1.2em 0; }
+          .mermaid-diagram-container { display: flex; justify-content: center; align-items: center; margin: 1.4em 0; padding: 16px; background: var(--pdf-surface); border: 1px solid var(--pdf-border); border-radius: 8px; }
+          .mermaid-diagram-container svg { max-width: 100%; height: auto; }
+          .katex-display { margin: 1em 0; overflow-x: auto; text-align: center; }
+          img { max-width: 100%; height: auto; border-radius: 6px; }
+          .pdf-document-header { margin-bottom: 28px; padding-bottom: 16px; border-bottom: 2px solid var(--pdf-border); }
+          .pdf-document-header-title { font-size: 2.2em; font-weight: 800; color: var(--pdf-h1); margin: 0 0 6px 0; letter-spacing: -0.02em; }
+          .pdf-document-header-meta { font-size: 0.85em; color: var(--pdf-text); opacity: 0.75; }
           ${pageCss}
         </style>
       </head>
@@ -4314,16 +3469,13 @@ class ObsidianVaultApp {
           <div class="pdf-document-header-meta">Obsidian Digital Vault Workspace • ${new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
         </div>
         ${tocHtml}
-        <div class="pdf-document-body">
-          ${clone.innerHTML}
-        </div>
+        <div class="pdf-document-body">${clone.innerHTML}</div>
       </body>
       </html>
     `);
 
     doc.close();
 
-    // Trigger printing once images, fonts and KaTeX resources are loaded
     setTimeout(() => {
       try {
         iframe.contentWindow.focus();
@@ -4334,19 +3486,12 @@ class ObsidianVaultApp {
     }, 650);
   }
 
-  updateBreadcrumbs(parent, current) {
-    // Breadcrumb bar hidden per user layout request
-  }
-
   setupGraph() {
     const sidebarCanvas = document.getElementById('graph-canvas');
     if (sidebarCanvas) {
       this.sidebarGraph = new ObsidianGraphRenderer(sidebarCanvas, this.graphData, {
-        isMini: true,
-        theme: this.theme,
-        onNodeClick: (node) => {
-          window.location.hash = `#${node.id}`;
-        }
+        isMini: true, theme: this.theme,
+        onNodeClick: (node) => { window.location.hash = `#${node.id}`; }
       });
       this.sidebarGraph.start();
     }
@@ -4354,15 +3499,13 @@ class ObsidianVaultApp {
     const modalCanvas = document.getElementById('graph-canvas-modal');
     if (modalCanvas) {
       this.modalGraph = new ObsidianGraphRenderer(modalCanvas, this.graphData, {
-        isMini: false,
-        theme: this.theme,
+        isMini: false, theme: this.theme,
         onNodeClick: (node) => {
           this.closeGraphModal();
           window.location.hash = `#${node.id}`;
         }
       });
     }
-
     this.updateGraphModeUI();
   }
 
@@ -4382,18 +3525,11 @@ class ObsidianVaultApp {
     const modalBtn = document.getElementById('modal-toggle-local-global');
 
     if (btnGlobal) {
-      if (this.graphMode === 'global') {
-        btnGlobal.classList.add('is-active');
-      } else {
-        btnGlobal.classList.remove('is-active');
-      }
+      if (this.graphMode === 'global') btnGlobal.classList.add('is-active');
+      else btnGlobal.classList.remove('is-active');
     }
-    if (label) {
-      label.innerText = this.graphMode === 'local' ? 'Local Graph' : 'Global Graph';
-    }
-    if (modalBtn) {
-      modalBtn.innerText = this.graphMode === 'local' ? 'Switch to Global Graph' : 'Switch to Local Graph';
-    }
+    if (label) label.innerText = this.graphMode === 'local' ? 'Local Graph' : 'Global Graph';
+    if (modalBtn) modalBtn.innerText = this.graphMode === 'local' ? 'Switch to Global Graph' : 'Switch to Local Graph';
   }
 
   openGraphModal() {
@@ -4422,8 +3558,7 @@ class ObsidianVaultApp {
     const input = document.getElementById('search-modal-input');
     if (modal && input) {
       modal.classList.add('is-open');
-      input.value = '';
-      input.focus();
+      input.value = ''; input.focus();
       this.handleSearch('');
     }
   }
@@ -4476,49 +3611,29 @@ class ObsidianVaultApp {
     toast.innerText = message;
     toast.classList.add('is-visible');
     clearTimeout(this._toastTimeout);
-    this._toastTimeout = setTimeout(() => {
-      toast.classList.remove('is-visible');
-    }, 2400);
+    this._toastTimeout = setTimeout(() => { toast.classList.remove('is-visible'); }, 2400);
   }
 
   escapeHtml(str) {
     if (!str) return '';
-    return String(str)
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
   }
 
-  // Real-time markdown typo sanitizer
   autoHealMarkdownTypos(text) {
     if (!text) return text;
-    // 1. Fix unspaced callouts: >[!tip]Title -> > [!tip] Title
     text = text.replace(/^[ \t]*>\[!([a-zA-Z0-9_\-]+)\]([^\s\n<].*)$/gm, '> [!$1] $2');
-    // 2. Fix unspaced headings: ###Heading -> ### Heading
     text = text.replace(/^(#{1,6})([^\s#\n\r].*)$/gm, '$1 $2');
     return text;
   }
 
-  // Load Vault Health report
   async loadVaultHealth() {
-    const pathsToTry = [
-      '../../site-lib/vault-health.json',
-      '../site-lib/vault-health.json',
-      './site-lib/vault-health.json',
-      'site-lib/vault-health.json',
-      '/site-lib/vault-health.json'
-    ];
+    const pathsToTry = ['../../site-lib/vault-health.json', '../site-lib/vault-health.json', './site-lib/vault-health.json', 'site-lib/vault-health.json', '/site-lib/vault-health.json'];
 
     let data = null;
     for (const p of pathsToTry) {
       try {
         const res = await fetch(p);
-        if (res.ok) {
-          data = await res.json();
-          break;
-        }
+        if (res.ok) { data = await res.json(); break; }
       } catch (e) {}
     }
 
@@ -4533,7 +3648,6 @@ class ObsidianVaultApp {
     }
     this.updateNoteHealthBadges();
 
-    // Update Header Badge
     const badge = document.getElementById('vault-health-badge');
     if (badge && data.summary) {
       badge.innerText = `${data.summary.healthScore}%`;
@@ -4571,10 +3685,7 @@ class ObsidianVaultApp {
   setupReadingTimeTracking(totalMinutes) {
     const viewport = document.getElementById('note-viewport');
     if (!viewport) return;
-
-    if (this.readingScrollHandler) {
-      viewport.removeEventListener('scroll', this.readingScrollHandler);
-    }
+    if (this.readingScrollHandler) viewport.removeEventListener('scroll', this.readingScrollHandler);
 
     this.readingStats = { totalMinutes };
     this.readingScrollHandler = () => this.updateReadingTimeRemaining();
@@ -4591,14 +3702,9 @@ class ObsidianVaultApp {
     const scrollRange = viewport.scrollHeight - viewport.clientHeight;
     const progress = scrollRange > 0 ? Math.min(1, Math.max(0, viewport.scrollTop / scrollRange)) : 0;
     const remaining = Math.max(0, Math.ceil(this.readingStats.totalMinutes * (1 - progress)));
-    if (valEl) {
-      valEl.textContent = remaining > 0 ? `${remaining} min left` : 'Finished';
-    } else if (timeBadge && timeBadge.lastChild) {
-      timeBadge.lastChild.textContent = remaining > 0 ? `${remaining} min left` : 'Finished';
-    }
-    if (timeBadge) {
-      timeBadge.title = remaining > 0 ? `Estimated ${remaining} min remaining` : 'Finished reading note';
-    }
+    if (valEl) valEl.textContent = remaining > 0 ? `${remaining} min left` : 'Finished';
+    else if (timeBadge && timeBadge.lastChild) timeBadge.lastChild.textContent = remaining > 0 ? `${remaining} min left` : 'Finished';
+    if (timeBadge) timeBadge.title = remaining > 0 ? `Estimated ${remaining} min remaining` : 'Finished reading note';
   }
 
   downloadMarkdownFile(title, path, rawMarkdown) {
@@ -4611,14 +3717,9 @@ class ObsidianVaultApp {
     const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    setTimeout(() => {
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }, 100);
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click();
+    setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
     this.showToast(`Downloaded ${filename}`);
   }
 
@@ -4635,7 +3736,6 @@ class ObsidianVaultApp {
       document.getElementById('metric-warning-notes').innerText = s.filesWithWarnings || 0;
       document.getElementById('metric-auto-fixed').innerText = s.autoFixedIssues || 0;
 
-      // Calculate counts per category
       const issues = this.vaultHealthData.issues || [];
       const mathCount = issues.filter(i => i.category === 'LaTeX / Math').length;
       const linksCount = issues.filter(i => i.category === 'WikiLink').length;
@@ -4650,7 +3750,6 @@ class ObsidianVaultApp {
 
       this.renderHealthIssues('all');
 
-      // Wire filter buttons
       modal.querySelectorAll('.health-filter-btn').forEach(btn => {
         btn.onclick = () => {
           modal.querySelectorAll('.health-filter-btn').forEach(b => b.classList.remove('active'));
@@ -4686,11 +3785,8 @@ class ObsidianVaultApp {
 
     let issues = this.vaultHealthData.issues;
     if (filter !== 'all') {
-      if (filter === 'Callout') {
-        issues = issues.filter(i => i.category === 'Callout' || i.category === 'Markdown Syntax');
-      } else {
-        issues = issues.filter(i => i.category === filter);
-      }
+      if (filter === 'Callout') issues = issues.filter(i => i.category === 'Callout' || i.category === 'Markdown Syntax');
+      else issues = issues.filter(i => i.category === filter);
     }
 
     if (issues.length === 0) {
@@ -4723,16 +3819,11 @@ class ObsidianVaultApp {
       `;
     });
 
-    if (issues.length > 50) {
-      html += `<div style="text-align: center; padding: 12px; color: var(--text-muted, #d8dee9); font-size: 0.8rem;">Showing first 50 of ${issues.length} issues.</div>`;
-    }
-
+    if (issues.length > 50) html += `<div style="text-align: center; padding: 12px; color: var(--text-muted, #d8dee9); font-size: 0.8rem;">Showing first 50 of ${issues.length} issues.</div>`;
     list.innerHTML = html;
   }
 
-  // Gatekeeper Fullscreen Overlay for password-protected notes
   triggerGatekeeper(expectedToken, onUnlock) {
-    // Remove any existing overlay
     document.getElementById('gatekeeper-overlay')?.remove();
 
     const overlay = document.createElement('div');
@@ -4859,7 +3950,6 @@ class ObsidianGraphRenderer {
     let activeLinks = this.data.links || [];
 
     if (this.mode === 'local' && this.focusNodeId) {
-      // High-performance BFS 1-2 hop neighborhood with max 35 nodes cap
       const visited = new Set([this.focusNodeId]);
       const queue = [this.focusNodeId];
       const maxNodes = 35;
@@ -4870,16 +3960,13 @@ class ObsidianGraphRenderer {
           const s = typeof link.source === 'object' ? link.source.id : link.source;
           const t = typeof link.target === 'object' ? link.target.id : link.target;
           if (s === currId && !visited.has(t) && visited.size < maxNodes) {
-            visited.add(t);
-            queue.push(t);
+            visited.add(t); queue.push(t);
           } else if (t === currId && !visited.has(s) && visited.size < maxNodes) {
-            visited.add(s);
-            queue.push(s);
+            visited.add(s); queue.push(s);
           }
         }
       }
 
-      // If note has few links, add sibling notes in the same folder up to 15
       if (visited.size < 12) {
         const currentFolder = this.focusNodeId.includes('/') ? this.focusNodeId.split('/')[0] : '';
         for (const n of activeNodes) {
@@ -4897,7 +3984,6 @@ class ObsidianGraphRenderer {
         return visited.has(s) && visited.has(t);
       });
     } else if (this.mode === 'global' && activeNodes.length > 150) {
-      // Cap global graph to top 150 interconnected nodes for smooth rendering
       const degreeMap = new Map();
       activeLinks.forEach(l => {
         const s = typeof l.source === 'object' ? l.source.id : l.source;
@@ -4937,19 +4023,11 @@ class ObsidianGraphRenderer {
       .map(l => {
         const sId = typeof l.source === 'object' ? l.source.id : l.source;
         const tId = typeof l.target === 'object' ? l.target.id : l.target;
-        return {
-          source: nodeMap.get(sId),
-          target: nodeMap.get(tId)
-        };
+        return { source: nodeMap.get(sId), target: nodeMap.get(tId) };
       })
       .filter(l => l.source && l.target);
 
-    this.transform = {
-      x: width / 2,
-      y: height / 2,
-      k: this.isMini ? 0.9 : 1
-    };
-
+    this.transform = { x: width / 2, y: height / 2, k: this.isMini ? 0.9 : 1 };
     this.stepCount = 0;
     this.isSleeping = false;
     this.start();
@@ -5010,9 +4088,7 @@ class ObsidianGraphRenderer {
     for (let i = this.simNodes.length - 1; i >= 0; i--) {
       const node = this.simNodes[i];
       const dist = Math.hypot(node.x - x, node.y - y);
-      if (dist <= node.radius + 6) {
-        return node;
-      }
+      if (dist <= node.radius + 6) return node;
     }
     return null;
   }
@@ -5087,9 +4163,7 @@ class ObsidianGraphRenderer {
   wake() {
     this.stepCount = 0;
     this.isSleeping = false;
-    if (!this.isRunning) {
-      this.start();
-    }
+    if (!this.isRunning) this.start();
   }
 
   start() {
@@ -5139,10 +4213,8 @@ class ObsidianGraphRenderer {
           const force = repulsion / distSq;
           const fx = (dx / dist) * force;
           const fy = (dy / dist) * force;
-          a.vx -= fx;
-          a.vy -= fy;
-          b.vx += fx;
-          b.vy += fy;
+          a.vx -= fx; a.vy -= fy;
+          b.vx += fx; b.vy += fy;
         }
       }
     }
@@ -5156,10 +4228,8 @@ class ObsidianGraphRenderer {
       const force = (dist - springLength) * springK;
       const fx = (dx / dist) * force;
       const fy = (dy / dist) * force;
-      a.vx += fx;
-      a.vy += fy;
-      b.vx -= fx;
-      b.vy -= fy;
+      a.vx += fx; a.vy += fy;
+      b.vx -= fx; b.vy -= fy;
     }
 
     for (const node of nodes) {
@@ -5173,13 +4243,8 @@ class ObsidianGraphRenderer {
       totalVelocity += Math.abs(node.vx) + Math.abs(node.vy);
     }
 
-    // Stabilized / Sleep condition
-    if (this.stepCount > 35 && (totalVelocity / (nodes.length || 1)) < 0.05) {
-      return true;
-    }
-    if (this.stepCount > 150) {
-      return true;
-    }
+    if (this.stepCount > 35 && (totalVelocity / (nodes.length || 1)) < 0.05) return true;
+    if (this.stepCount > 150) return true;
     return false;
   }
 
@@ -5200,8 +4265,7 @@ class ObsidianGraphRenderer {
         link: isDark ? 'rgba(76, 86, 106, 0.45)' : 'rgba(216, 222, 233, 0.6)',
         linkActive: isDark ? 'rgba(136, 192, 208, 0.9)' : 'rgba(94, 129, 172, 0.9)',
         nodeDefault: isDark ? '#88c0d0' : '#5e81ac',
-        focused: '#bf616a',
-        hovered: '#d08770',
+        focused: '#bf616a', hovered: '#d08770',
         badgeBg: isDark ? 'rgba(46, 52, 64, 0.85)' : 'rgba(255, 255, 255, 0.85)',
         badgeFg: isDark ? '#eceff4' : '#2e3440'
       },
@@ -5210,8 +4274,7 @@ class ObsidianGraphRenderer {
         link: isDark ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.12)',
         linkActive: isDark ? 'rgba(139, 92, 246, 0.9)' : 'rgba(124, 58, 237, 0.9)',
         nodeDefault: isDark ? '#8b5cf6' : '#7c3aed',
-        focused: '#ef4444',
-        hovered: '#f59e0b',
+        focused: '#ef4444', hovered: '#f59e0b',
         badgeBg: isDark ? 'rgba(18, 18, 18, 0.88)' : 'rgba(255, 255, 255, 0.92)',
         badgeFg: isDark ? '#f4f4f5' : '#18181b'
       },
@@ -5220,8 +4283,7 @@ class ObsidianGraphRenderer {
         link: isDark ? 'rgba(80, 73, 69, 0.6)' : 'rgba(213, 196, 161, 0.7)',
         linkActive: isDark ? 'rgba(254, 128, 25, 0.9)' : 'rgba(214, 93, 14, 0.9)',
         nodeDefault: isDark ? '#fabd2f' : '#b57614',
-        focused: '#fb4934',
-        hovered: '#fe8019',
+        focused: '#fb4934', hovered: '#fe8019',
         badgeBg: isDark ? 'rgba(40, 40, 40, 0.88)' : 'rgba(251, 241, 199, 0.92)',
         badgeFg: isDark ? '#ebdbb2' : '#3c3836'
       },
@@ -5230,8 +4292,7 @@ class ObsidianGraphRenderer {
         link: isDark ? 'rgba(88, 110, 117, 0.5)' : 'rgba(147, 161, 161, 0.6)',
         linkActive: isDark ? 'rgba(42, 161, 152, 0.9)' : 'rgba(38, 139, 210, 0.9)',
         nodeDefault: isDark ? '#2aa198' : '#268bd2',
-        focused: '#dc322f',
-        hovered: '#cb4b16',
+        focused: '#dc322f', hovered: '#cb4b16',
         badgeBg: isDark ? 'rgba(0, 43, 54, 0.88)' : 'rgba(253, 246, 227, 0.92)',
         badgeFg: isDark ? '#839496' : '#586e75'
       },
@@ -5240,8 +4301,7 @@ class ObsidianGraphRenderer {
         link: isDark ? 'rgba(98, 114, 164, 0.5)' : 'rgba(180, 180, 200, 0.6)',
         linkActive: isDark ? 'rgba(255, 121, 198, 0.9)' : 'rgba(189, 147, 249, 0.9)',
         nodeDefault: isDark ? '#bd93f9' : '#6272a4',
-        focused: '#ff5555',
-        hovered: '#ffb86c',
+        focused: '#ff5555', hovered: '#ffb86c',
         badgeBg: isDark ? 'rgba(40, 42, 54, 0.88)' : 'rgba(248, 249, 250, 0.92)',
         badgeFg: isDark ? '#f8f8f2' : '#282a36'
       },
@@ -5250,23 +4310,20 @@ class ObsidianGraphRenderer {
         link: isDark ? 'rgba(88, 91, 112, 0.5)' : 'rgba(172, 176, 190, 0.6)',
         linkActive: isDark ? 'rgba(203, 166, 247, 0.9)' : 'rgba(136, 57, 239, 0.9)',
         nodeDefault: isDark ? '#cba6f7' : '#8839ef',
-        focused: '#f38ba8',
-        hovered: '#fab387',
+        focused: '#f38ba8', hovered: '#fab387',
         badgeBg: isDark ? 'rgba(30, 30, 46, 0.88)' : 'rgba(239, 241, 245, 0.92)',
         badgeFg: isDark ? '#cdd6f4' : '#4c4f69'
       }
     };
 
     const p = palettes[fam] || palettes.nord;
-    const linkColor = p.link;
-    const activeLinkColor = p.linkActive;
 
     for (const link of this.simLinks) {
       const isConnected = this.hoveredNode && (link.source === this.hoveredNode || link.target === this.hoveredNode);
       ctx.beginPath();
       ctx.moveTo(link.source.x, link.source.y);
       ctx.lineTo(link.target.x, link.target.y);
-      ctx.strokeStyle = isConnected ? activeLinkColor : linkColor;
+      ctx.strokeStyle = isConnected ? p.linkActive : p.link;
       ctx.lineWidth = isConnected ? 2 : 1;
       ctx.stroke();
     }
