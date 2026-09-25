@@ -791,6 +791,14 @@ class ObsidianVaultApp {
     return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="12" x2="12" y2="12.01"></line></svg>`;
   }
 
+  isNoteHome(note, stem, relInFolder) {
+    if (this.vaultLookup && (this.vaultLookup[stem]?.isHome || this.vaultLookup[relInFolder]?.isHome)) {
+      return true;
+    }
+    const fn = (note.fileName || stem || '').toLowerCase();
+    return fn === 'index.md' || fn.startsWith('overview') || fn.includes('overview');
+  }
+
   async loadVaultNotes() {
     let files = [];
     let nameMap = {};
@@ -811,22 +819,22 @@ class ObsidianVaultApp {
       }
     } catch (e) {}
 
-    if (files.length === 0) {
-      const pathsToTry = ['../../site-lib/vault-index.json', '../site-lib/vault-index.json', './site-lib/vault-index.json', 'site-lib/vault-index.json', '/site-lib/vault-index.json'];
-      for (const p of pathsToTry) {
-        try {
-          const res = await fetch(p);
-          if (res.ok) {
-            const data = await res.json();
-            if (data.files && data.files.length > 0) {
+    const pathsToTry = ['../../site-lib/vault-index.json', '../site-lib/vault-index.json', './site-lib/vault-index.json', 'site-lib/vault-index.json', '/site-lib/vault-index.json'];
+    for (const p of pathsToTry) {
+      try {
+        const res = await fetch(p);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.files && data.files.length > 0) {
+            if (files.length === 0) {
               files = data.files;
-              if (data.lookup) this.vaultLookup = data.lookup;
-              if (data.nameMap) nameMap = { ...data.nameMap, ...nameMap };
-              break;
             }
+            if (data.lookup) this.vaultLookup = data.lookup;
+            if (data.nameMap) nameMap = { ...data.nameMap, ...nameMap };
+            break;
           }
-        } catch (e) {}
-      }
+        }
+      } catch (e) {}
     }
 
     this.nameMap = nameMap;
@@ -861,18 +869,17 @@ class ObsidianVaultApp {
             if (t.toLowerCase() !== 'index') h1Title = t;
         }
 
-        const isHome = Boolean(this.vaultLookup[fileStem]?.isHome || this.vaultLookup[relInFolder]?.isHome);
-
-        notes.push({
+        const noteObj = {
           fullPath: f,
           path: relInFolder,
           fileName: fileName,
           fileNameWithoutExt: fileStem,
           originalName: realFileName, // For Sidebar & Graph
           title: h1Title,             // For Note Header
-          folder: parts.length > 1 ? parts[0] : 'root',
-          isHome: isHome
-        });
+          folder: parts.length > 1 ? parts[0] : 'root'
+        };
+        noteObj.isHome = this.isNoteHome(noteObj, fileStem, relInFolder);
+        notes.push(noteObj);
       }
     }
 
@@ -907,18 +914,17 @@ class ObsidianVaultApp {
                 if (t.toLowerCase() !== 'index') h1Title = t;
             }
 
-            const isHome = Boolean(this.vaultLookup[fileStem]?.isHome || this.vaultLookup[relInFolder]?.isHome);
-
-            notes.push({
+            const noteObj = {
               fullPath: f,
               path: relInFolder,
               fileName: fileName,
               fileNameWithoutExt: fileStem,
               originalName: realFileName, // For Sidebar & Graph
               title: h1Title,             // For Note Header
-              folder: parts.length > 1 ? parts[0] : 'root',
-              isHome: isHome
-            });
+              folder: parts.length > 1 ? parts[0] : 'root'
+            };
+            noteObj.isHome = this.isNoteHome(noteObj, fileStem, relInFolder);
+            notes.push(noteObj);
           }
         }
       }
@@ -965,11 +971,13 @@ class ObsidianVaultApp {
     const nodes = [];
     const links = [];
     const nodeMap = new Map();
-    const homeNote = this.allNotes.find(n => n.isHome);
-    const hubPath = homeNote ? homeNote.path : 'index.md';
+    const planetHome = this.allNotes.find(n => n.isHome && !n.path.includes('/'))
+                    || this.allNotes.find(n => !n.path.includes('/'))
+                    || this.allNotes[0];
+    const hubPath = planetHome ? planetHome.path : 'index.md';
 
     for (const note of this.allNotes) {
-      const isIndex = Boolean(note.isHome);
+      const isIndex = Boolean(note.isHome && !note.path.includes('/'));
       const nodeObj = {
         id: note.path,
         title: note.originalName || note.fileNameWithoutExt, 
@@ -1024,13 +1032,17 @@ class ObsidianVaultApp {
   renderTreeFolder(folderObj, parentPath) {
     let html = '';
     const entries = Object.keys(folderObj).sort((a, b) => {
-      const aIsHome = folderObj[a].note?.isHome;
-      const bIsHome = folderObj[b].note?.isHome;
+      const itemA = folderObj[a];
+      const itemB = folderObj[b];
+      
+      const aIsHome = itemA.note && itemA.note.isHome && !itemA.note.path.includes('/');
+      const bIsHome = itemB.note && itemB.note.isHome && !itemB.note.path.includes('/');
+      
       if (aIsHome && !bIsHome) return -1;
       if (!aIsHome && bIsHome) return 1;
 
-      const aIsFolder = folderObj[a]._isFolder;
-      const bIsFolder = folderObj[b]._isFolder;
+      const aIsFolder = itemA._isFolder;
+      const bIsFolder = itemB._isFolder;
       if (aIsFolder && !bIsFolder) return -1;
       if (!aIsFolder && bIsFolder) return 1;
       if (a === 'index.md') return -1;
@@ -1175,8 +1187,10 @@ class ObsidianVaultApp {
 
     let targetNote = decodedHash;
     if (!targetNote) {
-      const homeNote = this.allNotes.find(n => n.isHome);
-      targetNote = homeNote ? homeNote.path : (this.allNotes[0]?.path || '');
+      const planetHome = this.allNotes.find(n => n.isHome && !n.path.includes('/'))
+                      || this.allNotes.find(n => !n.path.includes('/'))
+                      || this.allNotes[0];
+      targetNote = planetHome ? planetHome.path : '';
     } else {
       if (!targetNote.endsWith('.md')) {
         const found = this.allNotes.find(n => n.path.toLowerCase() === `${targetNote.toLowerCase()}.md` || n.path.toLowerCase().endsWith(`/${targetNote.toLowerCase()}.md`));

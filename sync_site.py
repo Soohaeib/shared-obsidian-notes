@@ -298,6 +298,51 @@ def sanitize_workspace(target_dir: Path):
 
     print(f"✅ [Sanitizer] Completed. {renamed_count} items slugified/merged.")
 
+def has_publish_true(file_path: Path) -> bool:
+    """Returns True if it's not a markdown file or has publish: true in its YAML frontmatter."""
+    if file_path.suffix.lower() != '.md':
+        return True
+    try:
+        with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
+            first_line = f.readline()
+            if not first_line.startswith('---'):
+                return False
+            
+            frontmatter_lines = []
+            for line in f:
+                if line.startswith('---'):
+                    break
+                frontmatter_lines.append(line)
+            else:
+                return False
+            
+            for line in frontmatter_lines:
+                line = line.strip()
+                if not line or line.startswith('#'):
+                    continue
+                if ':' in line:
+                    key, val = line.split(':', 1)
+                    if key.strip().lower() == 'publish':
+                        val_cleaned = val.strip().strip("'\"").lower()
+                        if val_cleaned == 'true':
+                            return True
+    except Exception:
+        pass
+    return False
+
+def remove_empty_directories(path: Path):
+    """Recursively removes empty directories under path."""
+    if not path.exists():
+        return
+    for root, dirs, files in os.walk(path, topdown=False):
+        for d in dirs:
+            dir_path = Path(root) / d
+            try:
+                if not any(dir_path.iterdir()):
+                    dir_path.rmdir()
+            except Exception:
+                pass
+
 def sync_from_source_vault(src_path_str: str, dst_root: Path):
     """
     Automatically pulls notes from external Obsidian Vault and maps them
@@ -341,14 +386,17 @@ def sync_from_source_vault(src_path_str: str, dst_root: Path):
                 name_map[f"note-res/{s_subpath}"] = o_part
         else:
             target = container_target
-            
-        target.mkdir(parents=True, exist_ok=True)
 
         for f in files:
             full_f = os.path.join(root, f)
             if is_excluded(f, full_f) or f in PROTECTED_FILES or f in EXCLUDED_FILES:
                 continue
             src_file = Path(root) / f
+            
+            # STRICT OPT-IN: Parse YAML, only copy markdown files with publish: true
+            if not has_publish_true(src_file):
+                continue
+
             slug_file_name = slugify_name(f, is_directory=False)
             dst_file = target / slug_file_name
             
@@ -369,11 +417,16 @@ def sync_from_source_vault(src_path_str: str, dst_root: Path):
 
             try:
                 if not dst_file.exists() or src_file.stat().st_mtime > dst_file.stat().st_mtime:
+                    # Delay folder creation until a file is actually copied to prevent empty folders
+                    dst_file.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(src_file, dst_file)
                     copied += 1
             except Exception as e:
                 print(f"  ❌ Error copying {f}: {e}")
                 
+    # Clean up empty directories under note-res
+    remove_empty_directories(container_target)
+
     if name_map:
         try:
             name_map_path.parent.mkdir(parents=True, exist_ok=True)

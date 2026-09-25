@@ -3,9 +3,6 @@
   "sourceVaultPaths": [
     "~/Documents/Obsidian Vault/BBA Study"
   ],
-  "sourceExclusionPaths": [
-    "~/Documents/Obsidian Vault/BBA Study/Expansion of class notes"
-  ],
   "sourceExclusionFiles": [],
   "excludedFolders": [
     ".git",

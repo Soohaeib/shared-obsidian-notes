@@ -196,7 +196,7 @@
         const canvas = document.getElementById('graph-canvas');
         const ctx = canvas.getContext('2d');
         
-        const rawNodes = [{"id": "root", "label": "Shared Vault", "url": null, "isRoot": true, "moons": 0}, {"id": "4th-semester", "label": "4th Semester", "url": "./note-res/4th-semester/", "isRoot": false, "moons": 12}, {"id": "5th-semester", "label": "5th Semester", "url": "./note-res/5th-semester/", "isRoot": false, "moons": 7}, {"id": "ai-comprehension", "label": "AI Comprehension", "url": "./note-res/ai-comprehension/", "isRoot": false, "moons": 10, "isLocked": true, "expectedToken": "NOTES_CURATED"}];
+        const rawNodes = [{"id": "root", "label": "Shared Vault", "url": null, "isRoot": true, "moons": 0, "status": "normal"}, {"id": "4th-semester", "label": "4th Semester", "url": "./note-res/4th-semester/", "isRoot": false, "moons": 12, "status": "normal", "hasHome": true, "isLocked": false}, {"id": "5th-semester", "label": "5th Semester", "url": "./note-res/5th-semester/", "isRoot": false, "moons": 7, "status": "normal", "hasHome": true, "isLocked": false}, {"id": "ai-comprehension", "label": "AI Comprehension", "url": "./note-res/ai-comprehension/", "isRoot": false, "moons": 10, "status": "locked", "hasHome": true, "isLocked": true, "expectedToken": "NOTES_CURATED"}];
         
         let width, height;
         function resize() {
@@ -448,7 +448,15 @@
                 // Node Body
                 ctx.beginPath();
                 ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
-                ctx.fillStyle = isHovered ? cNodeHover : (n.isRoot ? cNodeHover : cNode);
+                let nodeColor = cNode;
+                if (n.status === 'locked') {
+                    nodeColor = '#b48ead';
+                } else if (n.status === 'fallback') {
+                    nodeColor = '#ebcb8b';
+                } else if (n.isRoot) {
+                    nodeColor = cNodeHover;
+                }
+                ctx.fillStyle = isHovered ? cNodeHover : nodeColor;
                 ctx.fill();
 
                 // Node Text

@@ -124,9 +124,9 @@ def extract_note_metadata(file_path):
                 if fm_end != -1:
                     frontmatter = content[3:fm_end]
                     # Detect permalink: /index.md or home: true
-                    if re.search(r'^\s*permalink\s*:\s*["\']?/(?:index\.md)?["\']?', frontmatter, re.IGNORECASE | re.MULTILINE):
+                    if re.search(r'^\s*permalink\s*:\s*["\']?/(?:index\.md)?["\']?\s*$', frontmatter, re.IGNORECASE | re.MULTILINE):
                         is_home = True
-                    if re.search(r'^\s*(?:home|entry|isHome)\s*:\s*true', frontmatter, re.IGNORECASE | re.MULTILINE):
+                    if re.search(r'^\s*(?:home|entry|isHome)\s*:\s*(?:true|"true")\s*$', frontmatter, re.IGNORECASE | re.MULTILINE):
                         is_home = True
 
                     title_match = re.search(r'^\s*title\s*:\s*["\']?([^"\n\r\']+)', frontmatter, re.IGNORECASE | re.MULTILINE)
@@ -140,6 +140,9 @@ def extract_note_metadata(file_path):
         pass
     return title, is_home
 
+planet_status_map = {}
+planet_hashome_map = {}
+
 for name in sorted(os.listdir(scan_base)):
     if is_ignored_folder(name) or (scan_base == source_dir and name == vault_container):
         continue
@@ -152,6 +155,7 @@ for name in sorted(os.listdir(scan_base)):
 
         sub_count = 0
         folder_md_files = []
+        planet_root_homes = []
         for root, dirs, fnames in os.walk(full_path):
             dirs[:] = [d for d in dirs if not is_ignored_folder(d)]
             sub_count += len(dirs)
@@ -174,6 +178,12 @@ for name in sorted(os.listdir(scan_base)):
                     stem = f[:-3] # remove .md
                     stem_clean = stem.replace('-', ' ').replace('_', ' ')
                     title, is_home = extract_note_metadata(full_md_path)
+                    
+                    # Track if root-level note has is_home == True
+                    is_at_planet_root = (os.path.dirname(full_md_path) == full_path)
+                    if is_at_planet_root and is_home:
+                        planet_root_homes.append(f)
+                        
                     rel_in_folder = os.path.relpath(full_md_path, full_path).replace('\\', '/')
 
                     display_title = title if title else stem_clean.title()
@@ -220,6 +230,17 @@ for name in sorted(os.listdir(scan_base)):
                                 "fileName": f,
                                 "isHome": is_home
                             }
+
+        has_home = len(planet_root_homes) > 0
+        if name in locked_sections:
+            status = "locked"
+        elif has_home:
+            status = "normal"
+        else:
+            status = "fallback"
+
+        planet_status_map[name] = status
+        planet_hashome_map[name] = has_home
 
         rel_url = f"./{vault_container}/{name}/" if scan_base == container_path else f"./{name}/"
         entries.append((name, rel_url, sub_count))
@@ -288,19 +309,23 @@ except Exception as e:
     print(f"Notice: Vault health check skipped ({e})")
 
 # Generate Node Data for the Graph Physics Engine
-nodes_data = [{"id": "root", "label": "Shared Vault", "url": None, "isRoot": True, "moons": 0}]
+nodes_data = [{"id": "root", "label": "Shared Vault", "url": None, "isRoot": True, "moons": 0, "status": "normal"}]
 for name, rel_url, sub_count in entries:
     label = name_map.get(name, name.replace('-', ' ').replace('_', ' ').title())
     is_locked = name in locked_sections
+    status = planet_status_map.get(name, "normal")
+    has_home = planet_hashome_map.get(name, False)
     node_obj = {
         "id": name, 
         "label": label, 
         "url": rel_url, 
         "isRoot": False,
-        "moons": sub_count
+        "moons": sub_count,
+        "status": status,
+        "hasHome": has_home,
+        "isLocked": is_locked
     }
     if is_locked:
-        node_obj["isLocked"] = True
         node_obj["expectedToken"] = locked_sections[name]
     nodes_data.append(node_obj)
 
@@ -756,7 +781,15 @@ html_template = r'''<!DOCTYPE html>
                 // Node Body
                 ctx.beginPath();
                 ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
-                ctx.fillStyle = isHovered ? cNodeHover : (n.isRoot ? cNodeHover : cNode);
+                let nodeColor = cNode;
+                if (n.status === 'locked') {
+                    nodeColor = '#b48ead';
+                } else if (n.status === 'fallback') {
+                    nodeColor = '#ebcb8b';
+                } else if (n.isRoot) {
+                    nodeColor = cNodeHover;
+                }
+                ctx.fillStyle = isHovered ? cNodeHover : nodeColor;
                 ctx.fill();
 
                 // Node Text

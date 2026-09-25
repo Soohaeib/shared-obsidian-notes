@@ -80,6 +80,36 @@ class VaultLinter:
             except Exception as e:
                 print(f"Notice: Could not load vault-index.json for linter: {e}")
 
+    def has_publish_true(self, abs_path):
+        """Returns True if the file has publish: true in its YAML frontmatter."""
+        try:
+            with open(abs_path, 'r', encoding='utf-8', errors='ignore') as f:
+                first_line = f.readline()
+                if not first_line.startswith('---'):
+                    return False
+                
+                frontmatter_lines = []
+                for line in f:
+                    if line.startswith('---'):
+                        break
+                    frontmatter_lines.append(line)
+                else:
+                    return False
+                
+                for line in frontmatter_lines:
+                    line = line.strip()
+                    if not line or line.startswith('#'):
+                        continue
+                    if ':' in line:
+                        key, val = line.split(':', 1)
+                        if key.strip().lower() == 'publish':
+                            val_cleaned = val.strip().strip("'\"").lower()
+                            if val_cleaned == 'true':
+                                return True
+        except Exception:
+            pass
+        return False
+
     def collect_vault_index(self):
         """Map all notes and assets for link and embed validation."""
         self.load_vault_index()
@@ -89,7 +119,8 @@ class VaultLinter:
 
         for root, _, files in os.walk(self.vault_dir):
             for f in files:
-                rel = os.path.relpath(os.path.join(root, f), self.root_dir).replace('\\', '/')
+                abs_f = os.path.join(root, f)
+                rel = os.path.relpath(abs_f, self.root_dir).replace('\\', '/')
                 f_lower = f.lower()
                 rel_lower = rel.lower()
                 clean_rel = re.sub(r'^(?:note-res|\[inside\][^/]+)/', '', rel_lower)
@@ -103,17 +134,19 @@ class VaultLinter:
                 self.all_assets.add(re.sub(r'[^a-z0-9]', '', clean_rel))
 
                 if f.endswith('.md'):
-                    self.all_notes.append(rel)
-                    clean_stem = f.replace('.md', '').lower().strip()
-                    self.note_stems[clean_stem] = rel
-                    self.note_stems[clean_stem.replace('-', ' ')] = rel
-                    self.note_stems[clean_stem.replace(' ', '-')] = rel
-                    self.note_stems[clean_stem.replace('_', '-')] = rel
-                    self.note_stems[clean_stem.replace('_', ' ')] = rel
-                    self.note_stems[clean_rel.replace('.md', '')] = rel
-                    self.note_stems[clean_rel.replace('.md', '').replace('-', ' ')] = rel
-                    self.note_stems[clean_rel.replace('.md', '').replace(' ', '-')] = rel
-                    self.note_stems[rel_lower.replace('.md', '')] = rel
+                    # STRICT OPT-IN: Only lints and resolves targets of notes with publish: true
+                    if self.has_publish_true(abs_f):
+                        self.all_notes.append(rel)
+                        clean_stem = f.replace('.md', '').lower().strip()
+                        self.note_stems[clean_stem] = rel
+                        self.note_stems[clean_stem.replace('-', ' ')] = rel
+                        self.note_stems[clean_stem.replace(' ', '-')] = rel
+                        self.note_stems[clean_stem.replace('_', '-')] = rel
+                        self.note_stems[clean_stem.replace('_', ' ')] = rel
+                        self.note_stems[clean_rel.replace('.md', '')] = rel
+                        self.note_stems[clean_rel.replace('.md', '').replace('-', ' ')] = rel
+                        self.note_stems[clean_rel.replace('.md', '').replace(' ', '-')] = rel
+                        self.note_stems[rel_lower.replace('.md', '')] = rel
 
     def is_wikilink_resolved(self, inner):
         """Check if internal wikilink target exists via lookup dictionary or stem mapping."""
