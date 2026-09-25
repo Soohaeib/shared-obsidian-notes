@@ -541,36 +541,36 @@ class ObsidianVaultApp {
     document.getElementById('btn-collapse-expand-all')?.addEventListener('click', () => {
       const folders = document.querySelectorAll('.nav-folder');
       if (!folders.length) return;
-      const anyOpen = Array.from(folders).some(f => {
+      const allOpen = Array.from(folders).every(f => {
         const ch = f.querySelector('.tree-item-children');
         return ch && !ch.classList.contains('is-hidden');
       });
 
       const icon = document.getElementById('icon-folders-toggle');
       if (icon) {
-        if (anyOpen) {
-          // Change to Expand icon
-          icon.innerHTML = '<path d="m15 15 6 6"></path><path d="m9 9-6-6"></path><path d="M21 15v6h-6"></path><path d="M9 3H3v6"></path>';
-        } else {
+        if (!allOpen) {
           // Change to Collapse icon
           icon.innerHTML = '<path d="M4 14h6v6"></path><path d="M20 10h-6V4"></path><path d="m14 10 7-7"></path><path d="m10 14-7 7"></path>';
+        } else {
+          // Change to Expand icon
+          icon.innerHTML = '<path d="m15 15 6 6"></path><path d="m9 9-6-6"></path><path d="M21 15v6h-6"></path><path d="M9 3H3v6"></path>';
         }
       }
 
       folders.forEach(f => {
         const ch = f.querySelector('.tree-item-children');
-        const icon = f.querySelector('.folder-item .tree-item-icon');
+        const iconEl = f.querySelector('.folder-item .tree-item-icon');
         if (ch) {
-          if (anyOpen) {
+          if (allOpen) {
             ch.classList.add('is-hidden');
-            icon?.classList.add('is-collapsed');
+            iconEl?.classList.add('is-collapsed');
           } else {
             ch.classList.remove('is-hidden');
-            icon?.classList.remove('is-collapsed');
+            iconEl?.classList.remove('is-collapsed');
           }
         }
       });
-      this.showToast(anyOpen ? 'Collapsed all folders' : 'Expanded all folders');
+      this.showToast(allOpen ? 'Collapsed all folders' : 'Expanded all folders');
     });
 
     const triggerSearch = () => this.openSearchModal();
@@ -1049,8 +1049,6 @@ class ObsidianVaultApp {
       const bIsFolder = itemB._isFolder;
       if (aIsFolder && !bIsFolder) return -1;
       if (!aIsFolder && bIsFolder) return 1;
-      if (a === 'index.md') return -1;
-      if (b === 'index.md') return 1;
       return a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' });
     });
 
@@ -1795,7 +1793,7 @@ class ObsidianVaultApp {
       }
     }
 
-    return { path: '', resolved: false, title: raw };
+    return { path: 'javascript:void(0)', resolved: false, title: raw };
   }
 
   processObsidianCallouts(text) {
@@ -2306,25 +2304,25 @@ class ObsidianVaultApp {
         const allTwists = document.querySelectorAll('#toc-container .toc-twisty-btn');
         if (!allChildren.length) return;
 
-        const anyOpen = Array.from(allChildren).some(el => !el.classList.contains('is-collapsed'));
+        const allOpen = Array.from(allChildren).every(el => !el.classList.contains('is-collapsed'));
         
         const icon = document.getElementById('icon-toc-toggle');
         if (icon) {
-          if (anyOpen) {
-            // Change to Expand icon
-            icon.innerHTML = '<path d="m15 15 6 6"></path><path d="m9 9-6-6"></path><path d="M21 15v6h-6"></path><path d="M9 3H3v6"></path>';
-          } else {
+          if (!allOpen) {
             // Change to Collapse icon
             icon.innerHTML = '<path d="M4 14h6v6"></path><path d="M20 10h-6V4"></path><path d="m14 10 7-7"></path><path d="m10 14-7 7"></path>';
+          } else {
+            // Change to Expand icon
+            icon.innerHTML = '<path d="m15 15 6 6"></path><path d="m9 9-6-6"></path><path d="M21 15v6h-6"></path><path d="M9 3H3v6"></path>';
           }
         }
 
         allChildren.forEach(el => {
-          if (anyOpen) el.classList.add('is-collapsed');
+          if (allOpen) el.classList.add('is-collapsed');
           else el.classList.remove('is-collapsed');
         });
         allTwists.forEach(btn => {
-          if (anyOpen) {
+          if (allOpen) {
             btn.classList.add('is-collapsed');
             btn.setAttribute('aria-expanded', 'false');
           } else {
@@ -2332,7 +2330,7 @@ class ObsidianVaultApp {
             btn.setAttribute('aria-expanded', 'true');
           }
         });
-        this.showToast(anyOpen ? 'Collapsed all subsections' : 'Expanded all subsections');
+        this.showToast(allOpen ? 'Collapsed all subsections' : 'Expanded all subsections');
       });
     }
 
@@ -3037,7 +3035,6 @@ class ObsidianVaultApp {
     const titleElement = document.getElementById('media-preview-title');
     const badgeElement = document.getElementById('media-preview-badge');
     const download = document.getElementById('media-btn-download');
-    const themeBtn = document.getElementById('media-btn-theme');
 
     if (!overlay || !viewport || !titleElement || !download) return;
 

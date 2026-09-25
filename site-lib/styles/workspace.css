@@ -688,7 +688,9 @@ header:nth-of-type(1) > div:nth-of-type(3) > div:nth-of-type(1) > div:nth-of-typ
 }
 
 /* Ensure no buttons are unthemed/black */
-button:not(.tool-btn):not(.seg-btn):not(.opt-action-tile):not(.close-btn):not(.media-icon-btn):not(.info-btn):not(.vault-pill-btn) {
+button, 
+.btn,
+.tool-btn-mini {
   background-color: var(--btn-glass-bg, rgba(255, 255, 255, 0.05));
   border: 1px solid var(--btn-glass-border, rgba(255, 255, 255, 0.10));
   color: var(--text-muted, #94a3b8);
@@ -696,11 +698,25 @@ button:not(.tool-btn):not(.seg-btn):not(.opt-action-tile):not(.close-btn):not(.m
   padding: 4px 8px;
   cursor: pointer;
   transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-button:not(.tool-btn):hover {
+button:hover,
+.btn:hover,
+.tool-btn-mini:hover {
   background-color: var(--btn-glass-hover, rgba(129, 140, 248, 0.16));
   color: var(--text-normal, #f8fafc);
+  border-color: var(--btn-glass-hover-border, rgba(129, 140, 248, 0.45));
+}
+
+button.active,
+.btn.active,
+.tool-btn-mini.active {
+  color: var(--interactive-accent, #818cf8);
+  background-color: var(--background-modifier-active, rgba(129, 140, 248, 0.22));
+  border-color: var(--interactive-accent, #818cf8);
 }
 
 .sidebar-scrollable {
@@ -4450,12 +4466,13 @@ div[id^="dmermaid-"] {
 .markdown-rendered .note-real-filename,
 .note-real-filename {
   font-family: var(--font-mono, monospace) !important;
-  color: var(--text-faint, #666) !important;
-  font-size: 0.8rem !important;
-  margin-bottom: 4px !important;
-  letter-spacing: 0.02em !important;
-  text-transform: lowercase !important;
+  color: var(--text-muted, #94a3b8) !important;
+  font-size: 0.85rem !important;
+  margin-bottom: 8px !important;
+  letter-spacing: 0.01em !important;
+  text-transform: none !important;
   display: block !important;
+  opacity: 0.8;
 }
 
 .markdown-rendered h1.inline-title,
