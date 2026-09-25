@@ -23,20 +23,6 @@
     "4th-semester/bcc-206/solutions/irm-2021-exam-q5.md",
     "4th-semester/bcc-206/solutions/irm-2021-exam-q6.md",
     "4th-semester/bcc-206/solutions/irm-2021-exam-q7.md",
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q1.md",
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q2.md",
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q3.md",
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q4.md",
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q5.md",
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q6.md",
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q7.md",
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q1.md",
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q2.md",
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q3.md",
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q4.md",
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q5.md",
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q6.md",
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q7.md",
     "4th-semester/bcc-206/solutions/irm-20224th-exam-q1.md",
     "4th-semester/bcc-206/solutions/irm-20224th-exam-q2.md",
     "4th-semester/bcc-206/solutions/irm-20224th-exam-q3.md",
@@ -447,22 +433,6 @@
       "originalName": "irm-2020-exam-q3",
       "isHome": false
     },
-    "irm-2022-4th-exam-q1": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q1.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q1.md",
-      "title": "irm-2022-4th-exam-q1",
-      "originalName": "irm-2022-4th-exam-q1",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q1.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q1.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q1.md",
-      "title": "irm-2022-4th-exam-q1",
-      "originalName": "irm-2022-4th-exam-q1",
-      "isHome": false
-    },
     "irm-2019-exam-q3": {
       "path": "4th-semester/bcc-206/solutions/irm-2019-exam-q3.md",
       "folder": "4th-semester",
@@ -525,22 +495,6 @@
       "relInFolder": "bcc-206/solutions/irm-2021-exam-q6.md",
       "title": "irm-2021-exam-q6",
       "originalName": "irm-2021-exam-q6",
-      "isHome": false
-    },
-    "irm-2022-5th-exam-q7": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q7.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q7.md",
-      "title": "irm-2022-5th-exam-q7",
-      "originalName": "irm-2022-5th-exam-q7",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q7.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q7.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q7.md",
-      "title": "irm-2022-5th-exam-q7",
-      "originalName": "irm-2022-5th-exam-q7",
       "isHome": false
     },
     "irm-2023-exam-q7": {
@@ -767,22 +721,6 @@
       "originalName": "irm-2023-exam-q4",
       "isHome": false
     },
-    "irm-2022-4th-exam-q3": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q3.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q3.md",
-      "title": "irm-2022-4th-exam-q3",
-      "originalName": "irm-2022-4th-exam-q3",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q3.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q3.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q3.md",
-      "title": "irm-2022-4th-exam-q3",
-      "originalName": "irm-2022-4th-exam-q3",
-      "isHome": false
-    },
     "irm-2023-exam-q1": {
       "path": "4th-semester/bcc-206/solutions/irm-2023-exam-q1.md",
       "folder": "4th-semester",
@@ -799,38 +737,6 @@
       "originalName": "irm-2023-exam-q1",
       "isHome": false
     },
-    "irm-2022-5th-exam-q4": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q4.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q4.md",
-      "title": "irm-2022-5th-exam-q4",
-      "originalName": "irm-2022-5th-exam-q4",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q4.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q4.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q4.md",
-      "title": "irm-2022-5th-exam-q4",
-      "originalName": "irm-2022-5th-exam-q4",
-      "isHome": false
-    },
-    "irm-2022-5th-exam-q1": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q1.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q1.md",
-      "title": "irm-2022-5th-exam-q1",
-      "originalName": "irm-2022-5th-exam-q1",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q1.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q1.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q1.md",
-      "title": "irm-2022-5th-exam-q1",
-      "originalName": "irm-2022-5th-exam-q1",
-      "isHome": false
-    },
     "irm-2024-exam-q1": {
       "path": "4th-semester/bcc-206/solutions/irm-2024-exam-q1.md",
       "folder": "4th-semester",
@@ -845,22 +751,6 @@
       "relInFolder": "bcc-206/solutions/irm-2024-exam-q1.md",
       "title": "irm-2024-exam-q1",
       "originalName": "irm-2024-exam-q1",
-      "isHome": false
-    },
-    "irm-2022-4th-exam-q5": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q5.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q5.md",
-      "title": "irm-2022-4th-exam-q5",
-      "originalName": "irm-2022-4th-exam-q5",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q5.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q5.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q5.md",
-      "title": "irm-2022-4th-exam-q5",
-      "originalName": "irm-2022-4th-exam-q5",
       "isHome": false
     },
     "irm-2020-exam-q6": {
@@ -895,22 +785,6 @@
       "originalName": "irm-2019-exam-q1",
       "isHome": false
     },
-    "irm-2022-5th-exam-q2": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q2.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q2.md",
-      "title": "irm-2022-5th-exam-q2",
-      "originalName": "irm-2022-5th-exam-q2",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q2.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q2.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q2.md",
-      "title": "irm-2022-5th-exam-q2",
-      "originalName": "irm-2022-5th-exam-q2",
-      "isHome": false
-    },
     "irm-2020-exam-q1": {
       "path": "4th-semester/bcc-206/solutions/irm-2020-exam-q1.md",
       "folder": "4th-semester",
@@ -925,38 +799,6 @@
       "relInFolder": "bcc-206/solutions/irm-2020-exam-q1.md",
       "title": "irm-2020-exam-q1",
       "originalName": "irm-2020-exam-q1",
-      "isHome": false
-    },
-    "irm-2022-4th-exam-q7": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q7.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q7.md",
-      "title": "irm-2022-4th-exam-q7",
-      "originalName": "irm-2022-4th-exam-q7",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q7.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q7.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q7.md",
-      "title": "irm-2022-4th-exam-q7",
-      "originalName": "irm-2022-4th-exam-q7",
-      "isHome": false
-    },
-    "irm-2022-5th-exam-q6": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q6.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q6.md",
-      "title": "irm-2022-5th-exam-q6",
-      "originalName": "irm-2022-5th-exam-q6",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q6.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q6.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q6.md",
-      "title": "irm-2022-5th-exam-q6",
-      "originalName": "irm-2022-5th-exam-q6",
       "isHome": false
     },
     "irm-2024-exam-q7": {
@@ -1007,38 +849,6 @@
       "originalName": "irm-2019-exam-q6",
       "isHome": false
     },
-    "irm-2022-4th-exam-q4": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q4.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q4.md",
-      "title": "irm-2022-4th-exam-q4",
-      "originalName": "irm-2022-4th-exam-q4",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q4.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q4.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q4.md",
-      "title": "irm-2022-4th-exam-q4",
-      "originalName": "irm-2022-4th-exam-q4",
-      "isHome": false
-    },
-    "irm-2022-5th-exam-q5": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q5.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q5.md",
-      "title": "irm-2022-5th-exam-q5",
-      "originalName": "irm-2022-5th-exam-q5",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q5.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q5.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q5.md",
-      "title": "irm-2022-5th-exam-q5",
-      "originalName": "irm-2022-5th-exam-q5",
-      "isHome": false
-    },
     "irm-2023-exam-q6": {
       "path": "4th-semester/bcc-206/solutions/irm-2023-exam-q6.md",
       "folder": "4th-semester",
@@ -1087,22 +897,6 @@
       "originalName": "irm-2021-exam-q1",
       "isHome": false
     },
-    "irm-2022-4th-exam-q6": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q6.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q6.md",
-      "title": "irm-2022-4th-exam-q6",
-      "originalName": "irm-2022-4th-exam-q6",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q6.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q6.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q6.md",
-      "title": "irm-2022-4th-exam-q6",
-      "originalName": "irm-2022-4th-exam-q6",
-      "isHome": false
-    },
     "irm-2024-exam-q3": {
       "path": "4th-semester/bcc-206/solutions/irm-2024-exam-q3.md",
       "folder": "4th-semester",
@@ -1133,38 +927,6 @@
       "relInFolder": "bcc-206/solutions/irm-2019-exam-q4.md",
       "title": "irm-2019-exam-q4",
       "originalName": "irm-2019-exam-q4",
-      "isHome": false
-    },
-    "irm-2022-5th-exam-q3": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q3.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q3.md",
-      "title": "irm-2022-5th-exam-q3",
-      "originalName": "irm-2022-5th-exam-q3",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q3.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q3.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-5th-exam-q3.md",
-      "title": "irm-2022-5th-exam-q3",
-      "originalName": "irm-2022-5th-exam-q3",
-      "isHome": false
-    },
-    "irm-2022-4th-exam-q2": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q2.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q2.md",
-      "title": "irm-2022-4th-exam-q2",
-      "originalName": "irm-2022-4th-exam-q2",
-      "isHome": false
-    },
-    "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q2.md": {
-      "path": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q2.md",
-      "folder": "4th-semester",
-      "relInFolder": "bcc-206/solutions/irm-2022-4th-exam-q2.md",
-      "title": "irm-2022-4th-exam-q2",
-      "originalName": "irm-2022-4th-exam-q2",
       "isHome": false
     },
     "irm-2023-exam-q2": {
@@ -6330,7 +6092,8 @@
     "5th-semester/acc-305": "acc-305",
     "5th-semester/acc-305/pyq-acc-305.md": "pyq-acc-305",
     "5th-semester/acc-303": "acc-303",
-    "5th-semester/acc-303/pyq-acc-303.md": "pyq-acc-303"
+    "5th-semester/acc-303/pyq-acc-303.md": "pyq-acc-303",
+    "expansion-of-class-notes": "Expansion of class notes"
   },
   "lockedSections": {
     "ai-comprehension": "NOTES_CURATED"

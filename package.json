@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
-    "setup": "python3 sync_site.py",
-    "sync": "python3 sync_site.py --once",
+    "setup": "python3 sync_site.py && python3 generate_index.py",
+    "sync": "python3 sync_site.py --once && python3 generate_index.py",
     "watch": "python3 sync_site.py --watch",
-    "build": "python3 sync_site.py --once",
+    "build": "python3 sync_site.py --once && python3 generate_index.py",
     "lint": "echo 'No lint errors'"
   },
   "dependencies": {

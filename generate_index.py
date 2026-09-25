@@ -43,10 +43,23 @@ if os.path.exists(loc_file):
 
 vault_container = config.get('targetVaultDirectory', 'note-res')
 locked_sections = config.get('lockedSections', {})
-vault_exclusion_paths = config.get('vaultExclusionPaths', [])
-source_exclusion_files = set(config.get('sourceExclusionFiles', []))
+raw_exclusion_paths = config.get('vaultExclusionPaths', config.get('sourceExclusionPaths', []))
+
+parsed_exclusions = []
+for excl in raw_exclusion_paths:
+    if not excl or not str(excl).strip():
+        continue
+    clean = str(excl).strip().replace('\\', '/')
+    rel_clean = clean.lstrip('/')
+    parsed_exclusions.append({
+        'raw': clean,
+        'rel': rel_clean.lower(),
+        'slug': re.sub(r'[\s_]+', '-', rel_clean.lower()),
+        'abs': os.path.abspath(os.path.expanduser(clean)) if (clean.startswith('~') or (os.path.isabs(clean) and not clean.startswith('/' + rel_clean))) else None
+    })
+
 ignored_folders = set(config.get('excludedFolders', []))
-ignored_files = set(config.get('excludedFiles', [])).union(source_exclusion_files)
+ignored_files = set(config.get('excludedFiles', []))
 ignored_patterns = [re.compile(p) for p in config.get('excludedPatterns', [])]
 
 def slugify(text: str) -> str:
@@ -54,13 +67,31 @@ def slugify(text: str) -> str:
     text = html.unescape(text)
     text = text.replace('&', ' and ')
     text = text.lower()
-    text = re.sub(r'[^a-z0-9\s_-]', '', text)
     text = re.sub(r'[\s_]+', '-', text)
+    text = re.sub(r'[^a-z0-9-]', '', text)
     text = re.sub(r'-+', '-', text)
     return text.strip('-') or 'vault-folder'
 
+def is_path_excluded(full_path):
+    """Checks if a path or string component matches any configured vaultExclusionPaths."""
+    if not full_path:
+        return False
+    norm_path = os.path.normpath(full_path).replace('\\', '/').rstrip('/')
+    norm_low = norm_path.lower()
+    
+    for ex in parsed_exclusions:
+        if ex['abs'] and norm_path.startswith(ex['abs']):
+            return True
+        ex_rel = ex['rel']
+        if norm_low == ex_rel or norm_low.startswith(ex_rel + '/') or norm_low.endswith('/' + ex_rel) or f"/{ex_rel}/" in f"/{norm_low}/":
+            return True
+        ex_slug = ex['slug']
+        if ex_slug and (norm_low == ex_slug or norm_low.startswith(ex_slug + '/') or norm_low.endswith('/' + ex_slug) or f"/{ex_slug}/" in f"/{norm_low}/"):
+            return True
+    return False
+
 def is_ignored_folder(name, full_path=""):
-    """Strictly ignores folders based on exact name matches in path components."""
+    """Strictly ignores folders based on exact name matches in path components or exclusion paths."""
     p = Path(full_path or name)
     parts = p.parts
     
@@ -72,14 +103,9 @@ def is_ignored_folder(name, full_path=""):
     if any(part.startswith('.') for part in parts if part not in ['.', '..']):
         return True
     
-    # 3. Check for absolute exclusion paths (prefix matching)
-    if full_path:
-        norm_path = os.path.normpath(full_path).replace('\\', '/')
-        for excl in vault_exclusion_paths:
-            excl_norm = os.path.normpath(excl).replace('\\', '/')
-            # Ensure it's a full component match by checking prefix + separator or exact
-            if norm_path == excl_norm or norm_path.startswith(excl_norm + '/'):
-                return True
+    # 3. Check for configured vault exclusion paths
+    if is_path_excluded(full_path or name):
+        return True
 
     # 4. Pattern and specific suffix matches
     low = name.lower().strip()
@@ -184,7 +210,17 @@ if not os.path.exists(manifest_path):
     sys.exit(1)
 
 with open(manifest_path, 'r', encoding='utf-8') as f:
-    manifest = json.load(f)
+    raw_manifest = json.load(f)
+
+# Filter out any manifest items matching vault exclusion paths
+manifest = []
+for item in raw_manifest:
+    orig = item.get('originalPath', '')
+    slug = item.get('slugPath', '')
+    planet = item.get('planetSlug', '')
+    if is_path_excluded(orig) or is_path_excluded(slug) or is_path_excluded(planet):
+        continue
+    manifest.append(item)
 
 # 2. Build Data Structures from Manifest
 all_md_files = []

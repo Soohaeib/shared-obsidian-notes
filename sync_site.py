@@ -15,20 +15,22 @@ import shutil
 from pathlib import Path
 
 def slugify(text: str, is_file=False) -> str:
-    """Bulletproof slugification that handles ampersands and preserves extensions."""
+    """Bulletproof slugification that handles ampersands, underscores, and preserves extensions."""
     text = html.unescape(text)
     text = text.replace('&', ' and ')
     
     if is_file and '.' in text:
         base, ext = text.rsplit('.', 1)
         base = base.lower().strip()
-        base = re.sub(r'[^a-z0-9\s-]', '', base)
-        base = re.sub(r'[\s_-]+', '-', base).strip('-')
+        base = re.sub(r'[\s_]+', '-', base)
+        base = re.sub(r'[^a-z0-9-]', '', base)
+        base = re.sub(r'-+', '-', base).strip('-')
         return f"{base}.{ext.lower()}"
     else:
         text = text.lower().strip()
-        text = re.sub(r'[^a-z0-9\s-]', '', text)
-        text = re.sub(r'[\s_-]+', '-', text)
+        text = re.sub(r'[\s_]+', '-', text)
+        text = re.sub(r'[^a-z0-9-]', '', text)
+        text = re.sub(r'-+', '-', text)
         return text.strip('-')
 
 def extract_metadata(file_path):
@@ -80,17 +82,63 @@ def sync_vault():
         print("[!] Dev Mode: Source vaults not found. Building manifest from existing note-res.")
         source_paths = [target_dir]
 
-    exclusion_paths = [os.path.abspath(os.path.expanduser(p)) for p in config.get('vaultExclusionPaths', config.get('sourceExclusionPaths', []))]
+    raw_exclusions = config.get('vaultExclusionPaths', config.get('sourceExclusionPaths', []))
+    parsed_exclusions = []
+    for excl in raw_exclusions:
+        if not excl or not str(excl).strip():
+            continue
+        clean = str(excl).strip().replace('\\', '/')
+        rel_clean = clean.lstrip('/')
+        parsed_exclusions.append({
+            'raw': clean,
+            'rel': rel_clean.lower(),
+            'slug': slugify(rel_clean, False) if '/' not in rel_clean else '/'.join([slugify(s, False) for s in rel_clean.split('/') if s]),
+            'abs': os.path.abspath(os.path.expanduser(clean)) if (clean.startswith('~') or (os.path.isabs(clean) and not clean.startswith('/' + rel_clean))) else None
+        })
+
     excluded_files = set(config.get('excludedFiles', []))
     excluded_folders = set(config.get('excludedFolders', ['.git', '.github', '.obsidian', '.trash', 'node_modules', 'guide']))
     
-    def is_excluded(full_path):
+    def is_excluded(full_path, src_vault=""):
         p = Path(full_path)
-        if any(part in excluded_folders for part in p.parts): return True
-        if any(part.startswith('.') for part in p.parts if part not in ['.', '..']): return True
-        full_norm = os.path.abspath(full_path)
-        for ex in exclusion_paths:
-            if full_norm.startswith(ex): return True
+        if any(part in excluded_folders for part in p.parts):
+            return True
+        if any(part.startswith('.') for part in p.parts if part not in ['.', '..']):
+            return True
+
+        norm_full = os.path.abspath(full_path).replace('\\', '/').rstrip('/')
+        norm_full_low = norm_full.lower()
+
+        rel_path_low = ""
+        rel_slug = ""
+        if src_vault:
+            try:
+                rel = os.path.relpath(full_path, src_vault).replace('\\', '/').strip('/')
+                if rel != '.':
+                    rel_path_low = rel.lower()
+                    rel_slug = '/'.join([slugify(s, False) for s in rel.split('/') if s])
+            except Exception:
+                pass
+
+        for ex in parsed_exclusions:
+            # Absolute path match
+            if ex['abs'] and norm_full.startswith(ex['abs']):
+                return True
+            # Relative path match from source vault
+            if rel_path_low:
+                if rel_path_low == ex['rel'] or rel_path_low.startswith(ex['rel'] + '/'):
+                    return True
+                if ex['slug'] and (rel_slug == ex['slug'] or rel_slug.startswith(ex['slug'] + '/')):
+                    return True
+            # Substring path component match (e.g. /expansion of class notes/ anywhere in path)
+            ex_rel = ex['rel']
+            if f"/{ex_rel}/" in f"/{norm_full_low}/" or norm_full_low.endswith(f"/{ex_rel}"):
+                return True
+            if ex['slug']:
+                ex_slug = ex['slug']
+                if f"/{ex_slug}/" in f"/{norm_full_low}/" or norm_full_low.endswith(f"/{ex_slug}"):
+                    return True
+
         return False
 
     manifest = []
@@ -101,9 +149,12 @@ def sync_vault():
         if not os.path.exists(src_vault): continue
             
         for root, dirs, files in os.walk(src_vault):
-            if is_excluded(root):
+            if is_excluded(root, src_vault):
                 dirs[:] = []
                 continue
+
+            # Prevent traversing into excluded directories
+            dirs[:] = [d for d in dirs if not is_excluded(os.path.join(root, d), src_vault)]
 
             # Process Folders for Manifest
             rel_folder = os.path.relpath(root, src_vault)
@@ -181,6 +232,18 @@ def sync_vault():
             if item['isMarkdown']: copied_md += 1
             else: copied_assets += 1
             
+    # Prune any excluded top-level directories or files from target_dir
+    if os.path.exists(target_dir):
+        for entry in os.listdir(target_dir):
+            entry_path = os.path.join(target_dir, entry)
+            if is_excluded(entry_path):
+                print(f"[*] Pruning excluded path from target: {entry}")
+                if os.path.isdir(entry_path):
+                    shutil.rmtree(entry_path, ignore_errors=True)
+                else:
+                    try: os.remove(entry_path)
+                    except Exception: pass
+
     # Save manifest
     lib_dir = os.path.join(source_dir, 'site-lib')
     os.makedirs(lib_dir, exist_ok=True)
@@ -195,5 +258,16 @@ def sync_vault():
         
     print(f"[v] Sync Complete: {copied_md} notes, {copied_assets} assets. Manifest saved to {manifest_out}")
 
+    # Pass 3: Automatically invoke generate_index.py to rebuild landing page and viewers
+    gen_script = os.path.join(source_dir, 'generate_index.py')
+    if os.path.exists(gen_script):
+        print("[*] Pass 3: Generating folder viewers and cosmic landing page...")
+        import subprocess
+        try:
+            subprocess.run([sys.executable, gen_script], check=True)
+        except Exception as e:
+            print(f"[!] Notice: generate_index.py execution error: {e}")
+
 if __name__ == '__main__':
+    import sys
     sync_vault()
