@@ -9,21 +9,18 @@
    -------------------------------------------------------------------------- */
 .mermaid-diagram-container,
 div[id^="dmermaid-diag"] {
+  position: relative;
+  width: 100%;
+  min-height: 80px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  padding: 26px 20px;
-  margin: 1.8em 0;
-  background: var(--background-primary-alt, #1e222a);
-  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.08));
-  border-radius: var(--radius-md, 10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-  max-width: 100% !important;
-  height: auto !important;
-  overflow: visible !important;
-  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  padding: 24px 16px;
+  margin: 1.5em 0;
+  background: var(--background-secondary, #181d28);
+  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.1));
+  border-radius: 8px;
+  overflow-x: auto;
 }
 
 .theme-light .mermaid-diagram-container,
@@ -63,9 +60,6 @@ svg[id^="mermaid-diag"] foreignObject {
    -------------------------------------------------------------------------- */
 
 /* Flowchart Typography - Dark Mode */
-.mermaid-diagram-container:not(:has(.mindmap-node)) svg text,
-svg[id^="mermaid-diag"]:not(:has(.mindmap-node)) text,
-.mermaid:not(:has(.mindmap-node)) svg text,
 .mermaid-diagram-container:not(:has(.mindmap-node)) .nodeLabel,
 .mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject div,
 .mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject span {
@@ -73,7 +67,6 @@ svg[id^="mermaid-diag"]:not(:has(.mindmap-node)) text,
   font-size: 13px !important;
   line-height: 1.45 !important;
   font-weight: 500 !important;
-  fill: #f8fafc !important;
   color: #f8fafc !important;
   overflow: visible !important;
 }
@@ -81,41 +74,22 @@ svg[id^="mermaid-diag"]:not(:has(.mindmap-node)) text,
 .mermaid-diagram-container:not(:has(.mindmap-node)) .node foreignObject div,
 .mermaid-diagram-container:not(:has(.mindmap-node)) .node foreignObject span,
 .mermaid-diagram-container:not(:has(.mindmap-node)) .nodeLabel {
-  text-align: left !important;
+  text-align: center !important;
   display: inline-block !important;
   box-sizing: border-box !important;
 }
 
+/* Ensure SVG text has proper font-family without overriding chart-specific font sizes */
+.mermaid-diagram-container svg text,
+svg[id^="mermaid-diag"] text {
+  font-family: var(--font-interface, 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+}
+
 /* Flowchart Typography - Light Mode */
-.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) svg text,
-.theme-light svg[id^="mermaid-diag"]:not(:has(.mindmap-node)) text,
 .theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .nodeLabel,
 .theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject div,
 .theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject span {
-  fill: #0f172a !important;
   color: #0f172a !important;
-}
-
-/* Flowchart Node Shapes - Dark Mode */
-.mermaid-diagram-container:not(:has(.mindmap-node)) .node rect,
-svg[id^="mermaid-diag"]:not(:has(.mindmap-node)) .node rect,
-.mermaid-diagram-container:not(:has(.mindmap-node)) .label-container {
-  fill: #242933 !important;
-  fill-opacity: 0.95 !important;
-  stroke: var(--frost1, #88c0d0) !important;
-  stroke-width: 1.5px !important;
-  rx: 8px !important;
-  ry: 8px !important;
-}
-
-/* Flowchart Node Shapes - Light Mode */
-.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .node rect,
-.theme-light svg[id^="mermaid-diag"]:not(:has(.mindmap-node)) .node rect,
-.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .label-container {
-  fill: #ffffff !important;
-  fill-opacity: 0.95 !important;
-  stroke: #5e81ac !important;
-  stroke-width: 1.5px !important;
 }
 
 /* Flowchart Edge Connectors & Paths */
@@ -612,43 +586,25 @@ svg[id^="mermaid-diag"] .section-edge-7 { stroke: #8fbcbb !important; stroke-wid
    -------------------------------------------------------------------------- */
 main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(6),
 main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) {
+  position: relative !important;
+  width: 100% !important;
+  min-height: 80px !important;
   display: flex !important;
-  flex-direction: column !important;
   justify-content: center !important;
   align-items: center !important;
-  position: relative !important;
-  max-width: 100% !important;
-  height: auto !important;
-  overflow: visible !important;
-  padding: 24px 20px !important;
-  margin: 1.8em 0 !important;
-  border-radius: var(--radius-md, 10px) !important;
+  padding: 24px 16px !important;
+  margin: 1.5em 0 !important;
+  background: var(--background-secondary, #181d28) !important;
+  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.1)) !important;
+  border-radius: 8px !important;
+  overflow-x: auto !important;
 }
 
 main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(6) svg,
-main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) > svg[id^="mermaid-diag"],
-main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) > svg#mermaid-diag-1790182376193-2:nth-of-type(1) {
-  display: block !important;
-  margin: 0 auto !important;
+main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) svg {
   max-width: 100% !important;
-  width: auto !important;
   height: auto !important;
-  overflow: visible !important;
-}
-
-main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(6) svg text,
-main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) > svg[id^="mermaid-diag"] .mindmap-node text,
-main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) > svg#mermaid-diag-1790182376193-2:nth-of-type(1) .mindmap-node text {
-  font-family: var(--font-interface, 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif) !important;
-  font-size: 13px !important;
-  font-weight: 500 !important;
-  fill: #f8fafc !important;
-}
-
-.theme-light main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(6) svg text,
-.theme-light main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) > svg[id^="mermaid-diag"] .mindmap-node text,
-.theme-light main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > div:nth-of-type(5) > svg#mermaid-diag-1790182376193-2:nth-of-type(1) .mindmap-node text {
-  fill: #0f172a !important;
+  display: block !important;
 }
 
 /* --------------------------------------------------------------------------

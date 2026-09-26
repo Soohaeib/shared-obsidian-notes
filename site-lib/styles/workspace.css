@@ -3405,9 +3405,23 @@ body.theme-light .graph-view-placeholder {
 
 .mermaid-diagram-container {
   position: relative;
-  max-width: 100% !important;
+  width: 100%;
+  min-height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 16px;
+  margin: 1.5em 0;
+  background: var(--background-secondary, #181d28);
+  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.1));
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.mermaid-diagram-container svg {
+  max-width: 100%;
   height: auto !important;
-  overflow: visible !important;
+  display: block;
 }
 
 .diagram-corner-action-btn {
