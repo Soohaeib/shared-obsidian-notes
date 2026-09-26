@@ -1,27 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="100%" style="font-family: system-ui, -apple-system, sans-serif;">
   <defs>
     <marker id="arrow6" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="grey"/>
     </marker>
     <marker id="arrow-down" viewBox="0 0 10 10" refX="5" refY="6" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 5 10 L 10 0 z" fill="currentColor"/>
+      <path d="M 0 0 L 5 10 L 10 0 z" fill="grey"/>
     </marker>
     <marker id="arrow-up" viewBox="0 0 10 10" refX="5" refY="4" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 10 L 5 0 L 10 10 z" fill="currentColor"/>
+      <path d="M 0 10 L 5 0 L 10 10 z" fill="grey"/>
     </marker>
   </defs>
 
   <!-- Title & Subtitle -->
-  <text x="400" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="currentColor">Security Market Line (SML) &amp; Asset Valuation</text>
-  <text x="400" y="58" text-anchor="middle" font-size="13" fill="currentColor" opacity="0.75">Capital Asset Pricing Model (CAPM) Equilibrium</text>
+  <text x="400" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="grey">Security Market Line (SML) &amp; Asset Valuation</text>
+  <text x="400" y="58" text-anchor="middle" font-size="13" fill="grey" opacity="0.75">Capital Asset Pricing Model (CAPM) Equilibrium</text>
 
   <!-- Axes -->
-  <line x1="120" y1="410" x2="120" y2="80" stroke="currentColor" stroke-width="2" marker-end="url(#arrow6)"/>
-  <line x1="120" y1="410" x2="720" y2="410" stroke="currentColor" stroke-width="2" marker-end="url(#arrow6)"/>
+  <line x1="120" y1="410" x2="120" y2="80" stroke="grey" stroke-width="2" marker-end="url(#arrow6)"/>
+  <line x1="120" y1="410" x2="720" y2="410" stroke="grey" stroke-width="2" marker-end="url(#arrow6)"/>
 
   <!-- Axis Labels -->
-  <text x="50" y="245" font-size="14" font-weight="600" fill="currentColor" transform="rotate(-90 50 245)" text-anchor="middle">Expected Return E(R) %</text>
-  <text x="420" y="448" font-size="14" font-weight="600" fill="currentColor" text-anchor="middle">Systematic Risk / Beta (β)</text>
+  <text x="50" y="245" font-size="14" font-weight="600" fill="grey" transform="rotate(-90 50 245)" text-anchor="middle">Expected Return E(R) %</text>
+  <text x="420" y="448" font-size="14" font-weight="600" fill="grey" text-anchor="middle">Systematic Risk / Beta (β)</text>
 
   <!-- SML Line -->
   <line x1="120" y1="340" x2="680" y2="120" stroke="#0ea5e9" stroke-width="3.5" stroke-linecap="round"/>
@@ -33,7 +33,7 @@
   <!-- Market Portfolio -->
   <line x1="400" y1="410" x2="400" y2="230" stroke="currentColor" stroke-opacity="0.3" stroke-width="1.5" stroke-dasharray="4 4"/>
   <circle cx="400" cy="230" r="6" fill="#f59e0b" stroke="currentColor" stroke-width="2"/>
-  <text x="400" y="428" font-size="12" fill="currentColor" opacity="0.75" text-anchor="middle">1.0 (Market β)</text>
+  <text x="400" y="428" font-size="12" fill="grey" opacity="0.75" text-anchor="middle">1.0 (Market β)</text>
   <text x="415" y="225" font-size="12" font-weight="700" fill="#f59e0b">Market (M)</text>
 
   <!-- Undervalued Stock Point -->
@@ -46,13 +46,13 @@
 
   <!-- Callout Boxes -->
   <g transform="translate(565, 100)">
-    <rect x="0" y="0" width="180" height="40" rx="6" fill="currentColor" fill-opacity="0.1" stroke="#10b981" stroke-width="1"/>
+    <rect x="0" y="0" width="180" height="40" rx="6" fill="grey" fill-opacity="0.1" stroke="#10b981" stroke-width="1"/>
     <text x="10" y="18" font-size="11" font-weight="700" fill="#10b981">Undervalued Stock</text>
     <text x="10" y="32" font-size="10" fill="#10b981">Price ↑, Expected Return ↓ to SML</text>
   </g>
 
   <g transform="translate(140, 310)">
-    <rect x="0" y="0" width="180" height="40" rx="6" fill="currentColor" fill-opacity="0.1" stroke="#f43f5e" stroke-width="1"/>
+    <rect x="0" y="0" width="180" height="40" rx="6" fill="grey" fill-opacity="0.1" stroke="#f43f5e" stroke-width="1"/>
     <text x="10" y="18" font-size="11" font-weight="700" fill="#f43f5e">Overvalued Stock</text>
     <text x="10" y="32" font-size="10" fill="#f43f5e">Price ↓, Expected Return ↑ to SML</text>
   </g>
