@@ -392,7 +392,7 @@ class ObsidianVaultApp {
     if (this.modalGraph) this.modalGraph.updateTheme(this.themeMode);
 
     if (window.ObsidianMermaidRenderer) {
-      window.ObsidianMermaidRenderer.rethemeAll(document.getElementById('note-container') || document, this.themeMode !== 'light');
+      window.ObsidianMermaidRenderer.rethemeAll(document.getElementById('note-article') || document, this.themeMode === 'dark');
     }
 
     const mobileBackdrop = document.getElementById('mobile-sidebar-backdrop');
@@ -1949,21 +1949,6 @@ class ObsidianVaultApp {
     return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`;
   }
 
-  async ensureMermaid() {
-    if (window.ObsidianMermaidRenderer) {
-      return window.ObsidianMermaidRenderer.ensureMermaid();
-    }
-    if (window.mermaid) return window.mermaid;
-    return null;
-  }
-
-  healMermaidCode(rawText) {
-    if (window.ObsidianMermaidRenderer) {
-      return window.ObsidianMermaidRenderer.healMermaidCode(rawText);
-    }
-    return rawText;
-  }
-
   async initInteractiveWidgets() {
     document.querySelectorAll('#note-container a.internal-link, #note-container a[href^="#"]').forEach(link => {
       const href = link.getAttribute('href');
@@ -1982,15 +1967,12 @@ class ObsidianVaultApp {
       });
     });
 
-    const isDark = this.themeMode !== 'light';
-    const rootContainer = document.getElementById('note-container') || document;
-
     if (window.ObsidianMermaidRenderer) {
-      await window.ObsidianMermaidRenderer.renderAll(rootContainer, isDark);
+      window.ObsidianMermaidRenderer.renderAll(document.getElementById('note-article') || document, this.themeMode === 'dark');
     }
     
     if (window.ObsidianMediaPreview) {
-      window.ObsidianMediaPreview.attachCornerButtons(rootContainer);
+      window.ObsidianMediaPreview.attachCornerButtons(document.getElementById('note-article') || document);
     }
   }
 
