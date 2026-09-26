@@ -5,7 +5,7 @@
 > - **Course:** ACC 304 Cost Accounting I
 > - **Step:** Step 3: Product Costing Systems (Job Costing)
 > - **Target Reading:** Datar & Rajan, *Horngren's Cost Accounting*, 17th/18th Edition — **Chapter 4: Job Costing**
-> - **Syllabus Focus:** Job costing vs. process costing vs. operation costing; five building blocks of costing; actual costing vs. normal costing; predetermined overhead rates (POHR); seven-step approach to normal costing; general ledger journal entries and T-account cost flows; and year-end disposal of under/overallocated overhead (proration, write-off, adjusted allocation rate).
+> - **Syllabus Focus:** Job costing vs. process costing vs. operation costing; five building blocks of costing; actual costing vs. normal costing; predetermined overhead rates $POHR$; seven-step approach to normal costing; general ledger journal entries and T-account cost flows; and year-end disposal of under/overallocated overhead (proration, write-off, adjusted allocation rate).
 
 ---
 
@@ -78,15 +78,15 @@ graph TD
 > * **Direct Materials Costs**: Acquisition costs of all raw materials that physically become part of the cost object and can be traced directly via source documents (e.g., metal brackets, specialized steel plates).
 > * **Direct Manufacturing Labor Costs**: Wages, salaries, and payroll fringe benefits paid to workers who directly convert raw materials into finished jobs, traceable via labor time sheets (e.g., machinists, assembly line operators).
 > #### 3. Indirect Costs of a Cost Object
-> **Indirect costs** are costs related to a particular cost object that cannot be traced to it in an economically feasible way. Instead, indirect costs must be **allocated** to the cost object using a systematic cost-allocation method. In manufacturing, indirect costs are collectively termed **Manufacturing Overhead (MOH)** or **Factory Overhead**. Examples include factory depreciation, plant supervisor salaries, indirect materials (lubricants, fasteners), plant utilities, and factory maintenance.
+> **Indirect costs** are costs related to a particular cost object that cannot be traced to it in an economically feasible way. Instead, indirect costs must be **allocated** to the cost object using a systematic cost-allocation method. In manufacturing, indirect costs are collectively termed **Manufacturing Overhead $MOH$** or **Factory Overhead**. Examples include factory depreciation, plant supervisor salaries, indirect materials (lubricants, fasteners), plant utilities, and factory maintenance.
 > #### 4. Cost Pool
 > A **cost pool** is a grouping of individual indirect cost items. Cost pools can range from broad, plant-wide aggregations (e.g., total factory overhead) to narrow, homogeneous activity-based or departmental pools (e.g., Machining Department Overhead, Assembly Department Overhead). Homogeneous cost pools group costs that share the same cost driver.
 > #### 5. Cost-Allocation Base
 > A **cost-allocation base** (also called a **cost-application base** when applied to products or jobs) is a systematic metric (financial or non-financial) used to link an indirect cost or group of indirect costs (a cost pool) to cost objects. The ideal cost-allocation base is a **cost driver**—an activity metric that maintains a clear cause-and-effect relationship with the incurrence of indirect costs. Common allocation bases include:
-> * Direct manufacturing labor-hours (DLH)
-> * Direct manufacturing labor costs (\$)
-> * Machine-hours (MH)
-> * Direct materials cost (\$)
+> * Direct manufacturing labor-hours $DLH$
+> * Direct manufacturing labor costs $\$$
+> * Machine-hours $MH$
+> * Direct materials cost $\$$
 
 ---
 ### Section 3: Costing Systems Frameworks — Actual Costing, Normal Costing, and Variations
@@ -292,7 +292,7 @@ The entire underallocated or overallocated manufacturing overhead balance is clo
 | Criterion / Scenario | Preferred Disposal Method | Rationale |
 | :--- | :--- | :--- |
 | **Immaterial Variance Amount** | Write-Off to COGS | Lowest administrative cost; negligible distortion of financial statements. |
-| **Material Variance + High Inventories** | Proration (Method A) | Ensures balance sheet assets (WIP/FG) and income statement expenses (COGS) conform to GAAP actual cost rules. |
+| **Material Variance + High Inventories** | Proration (Method A) | Ensures balance sheet assets (WIP/FG) and income statement expenses $COGS$ conform to GAAP actual cost rules. |
 | **Need for Accurate Individual Job Profitability** | Adjusted Allocation-Rate | Only method that adjusts individual job-cost sheets in subsidiary ledgers for future bidding analytics. |
 | **Operational Inefficiency / Idle Capacity** | Write-Off to COGS | Inefficiencies should be expensed immediately as period losses rather than capitalized into inventory assets. |
 
@@ -304,7 +304,7 @@ The entire underallocated or overallocated manufacturing overhead balance is clo
 > **Problem Statement:**
 > Endeavor Printing, Inc. uses a normal job-costing system with two direct cost categories (Direct Materials, Direct Manufacturing Labor) and one indirect cost pool (Manufacturing Overhead, allocated based on Direct Manufacturing Labor Costs).
 > The following T-account balances and operating data pertain to January 2020:
-> * **Initial T-Account Balances (Jan 1, 2020):**
+> * **Initial T-Account Balances $Jan 1, 2020$:**
 >   * Materials Control = $\$30,000$
 >   * Work-in-Process Control = $\$6,000$
 >   * Finished Goods Control = $\$40,000$
@@ -313,14 +313,14 @@ The entire underallocated or overallocated manufacturing overhead balance is clo
 >   * Budgeted Manufacturing Overhead = $\$1,200,000$
 >   * Budgeted Direct Manufacturing Labor Costs = $\$800,000$
 > * **January Operating Transactions & Conditions:**
->   a. Unfinished Job No. 419 on Jan 31 contains: Direct Materials = $\$16,000$; Direct Labor = $\$4,000$ ($250$ DLH).
->   b. Total Direct Materials issued to production during January = $\$180,000$.
->   c. Cost of Goods Manufactured (transferred to FG) in January = $\$360,000$.
->   d. Ending Materials Inventory on Jan 31 = $\$40,000$.
->   e. Ending Finished Goods Inventory on Jan 31 = $\$30,000$.
->   f. All workers earn a uniform hourly wage. Total direct labor-hours in January = $5,000$ hours. Other indirect labor = $\$20,000$.
->   g. Gross plant payroll paid in cash in January = $\$104,000$.
->   h. Actual Manufacturing Overhead incurred and posted in January = $\$114,000$.
+> 	  - a. Unfinished Job No. 419 on Jan 31 contains: Direct Materials = $\$16,000$; Direct Labor = $\$4,000$ ($250$ DLH).
+> 	  - b. Total Direct Materials issued to production during January = $\$180,000$.
+> 	  - c. Cost of Goods Manufactured (transferred to FG) in January = $\$360,000$.
+> 	  - d. Ending Materials Inventory on Jan 31 = $\$40,000$.
+> 	  - e. Ending Finished Goods Inventory on Jan 31 = $\$30,000$.
+> 	  - f. All workers earn a uniform hourly wage. Total direct labor-hours in January = $5,000$ hours. Other indirect labor = $\$20,000$.
+> 	  - g. Gross plant payroll paid in cash in January = $\$104,000$.
+> 	  - h. Actual Manufacturing Overhead incurred and posted in January = $\$114,000$.
 > **Required:**
 > 1. Compute the Predetermined Overhead Rate for 2020.
 > 2. Compute Total Direct Manufacturing Labor Costs incurred in January.
@@ -353,7 +353,7 @@ $$ \text{Purchases} = \$40,000 + \$180,000 - \$30,000 = \$190,000 $$
 Job No. 419 is the sole unfinished job in WIP on Jan 31. Its total cost comprises:
 * Direct Materials = $\$16,000$
 * Direct Labor = $\$4,000$
-* Allocated Overhead ($150\% \times \$4,000$) = $\$6,000$
+* Allocated Overhead $$150\% \times \$4,000$$ = $\$6,000$
 
 $$ \text{Ending WIP Inventory (Jan 31)} = \$16,000 + \$4,000 + \$6,000 = \$26,000 $$
 ##### Step 6: Cost of Goods Sold (Unadjusted)
@@ -378,9 +378,9 @@ $$ \text{Net Overhead Variance} = \text{Actual MOH} - \text{Allocated MOH} = \$1
   \end{array} $$
 * **Disposal Option B: Proration Based on Overhead Allocated in Ending Balances**
   Assume the $\$120,000$ allocated overhead is present in ending balances as follows:
-  * WIP Control Allocated MOH = $\$6,000$ ($5\%$)
-  * FG Control Allocated MOH = $\$12,000$ ($10\%$)
-  * COGS Allocated MOH = $\$102,000$ ($85\%$)
+  * WIP Control Allocated MOH = $\$6,000$ $$5\%$$
+  * FG Control Allocated MOH = $\$12,000$ $$10\%$$
+  * COGS Allocated MOH = $\$102,000$ $$85\%$$
 
   *Proration Calculations:*
   $$ \text{WIP Reduction} = 5\% \times \$6,000 = \$300 \implies \text{Adjusted WIP} = \$26,000 - \$300 = \$25,700 $$
@@ -403,6 +403,7 @@ $$ \text{Net Overhead Variance} = \text{Actual MOH} - \text{Allocated MOH} = \$1
 > **Problem Statement:**
 > Lynn Company operates two manufacturing departments—Machining (capital-intensive) and Assembly (labor-intensive)—at its Minneapolis plant.
 > The annual budget for 2020 specifies:
+> 
 > | Budget Item | Machining Department | Assembly Department | Total Plant |
 > | :--- | :--- | :--- | :--- |
 > | **Manufacturing Overhead Costs** | $\$1,800,000$ | $\$3,600,000$ | $\$5,400,000$ |
@@ -410,9 +411,10 @@ $$ \text{Net Overhead Variance} = \text{Actual MOH} - \text{Allocated MOH} = \$1
 > | **Direct Manufacturing Labor-Hours** | $100,000$ DLH | $200,000$ DLH | $300,000$ DLH |
 > | **Machine-Hours** | $50,000$ MH | $200,000$ MH | $250,000$ MH |
 > Departmental Allocation Bases:
-> * **Machining**: Allocated based on actual **Machine-Hours (MH)**.
-> * **Assembly**: Allocated based on actual **Direct Manufacturing Labor Costs (\$)**.
+> * **Machining**: Allocated based on actual **Machine-Hours $MH$**.
+> * **Assembly**: Allocated based on actual **Direct Manufacturing Labor Costs $\$$**.
 > During February, Job 494 incurred the following:
+> 
 > | Direct Cost / Activity | Machining Department | Assembly Department |
 > | :--- | :--- | :--- |
 > | **Direct Materials Used** | $\$45,000$ | $\$70,000$ |
@@ -425,18 +427,21 @@ $$ \text{Net Overhead Variance} = \text{Actual MOH} - \text{Allocated MOH} = \$1
 > 3. Compute the total manufacturing cost of Job 494.
 
 **Step-by-Step Solution:**
-##### Step 1: Predetermined Departmental Overhead Rates
+Step 1: Predetermined Departmental Overhead Rates
+-
 $$ \text{Machining Department Budgeted MOH Rate} = \frac{\$1,800,000 \text{ Budgeted MOH}}{50,000 \text{ Budgeted MH}} = \$36.00 \text{ per Machine-Hour} $$
 
 $$ \text{Assembly Department Budgeted MOH Rate} = \frac{\$3,600,000 \text{ Budgeted MOH}}{\$2,000,000 \text{ Budgeted DL Cost}} = 1.80 \text{ or } 180\% \text{ of Direct Labor Cost} $$
-##### Step 2: Manufacturing Overhead Allocated to Job 494
+Step 2: Manufacturing Overhead Allocated to Job 494
+-
 * **Machining Overhead Allocated**:
   $$ \text{Allocated MOH}_{\text{Machining}} = \$36.00/\text{MH} \times 2,000 \text{ Actual MH} = \$72,000 $$
 * **Assembly Overhead Allocated**:
   $$ \text{Allocated MOH}_{\text{Assembly}} = 180\% \times \$15,000 \text{ Actual Assembly DL Cost} = \$27,000 $$
 
 $$ \text{Total Overhead Allocated to Job 494} = \$72,000 + \$27,000 = \$99,000 $$
-##### Step 3: Total Manufacturing Cost of Job 494
+Step 3: Total Manufacturing Cost of Job 494
+-
 $$ \begin{array}{lrr}
 \text{Direct Materials (\$45,000 + \$70,000)} & \$115,000 \\
 \text{Direct Manufacturing Labor (\$14,000 + \$15,000)} & 29,000 \\
@@ -444,3 +449,7 @@ $$ \begin{array}{lrr}
 \hline
 \mathbf{\text{Total Manufacturing Cost of Job 494}} & \mathbf{\$243,000}
 \end{array} $$
+
+
+
+

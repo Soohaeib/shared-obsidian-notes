@@ -435,3 +435,5 @@ $$ \text{Underestimation Error} = \$22,000,000 - \$16,000,000 = \mathbf{\$6,000,
 >
 > **Core Takeaway**: Never unitize fixed costs for decision-making or cost forecasting. Always analyze variable costs in terms of unit rates and fixed costs in terms of total lump sums. Assuming total unit cost is purely variable leads to disastrous underestimation of costs when volumes drop!
 
+
+

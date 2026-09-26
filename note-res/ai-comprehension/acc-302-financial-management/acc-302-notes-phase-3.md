@@ -175,7 +175,7 @@ The SML is the graphical representation of the CAPM equation showing required re
 
 
 
-![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_security_market_line.svg]]
+![[ai-comprehension/acc-302-financial-management/assets/acc302-security-market-line.svg]]
 
 
 

@@ -185,7 +185,7 @@ flowchart LR
 Cost accounting synthesizes concepts from multiple quantitative and theoretical disciplines:
 * **Economics:** Marginal revenue/marginal cost ($MR = MC$), opportunity costs, relevant range.
 * **Mathematics:** Linear algebra, simultaneous linear equations, linear programming for bottlenecks.
-* **Statistics:** Regression analysis ($y = a + bX$), correlation coefficients $$r^2$$, time-series forecasting.
+* **Statistics:** Regression analysis ($y = a + bX$), correlation coefficients $r^2$, time-series forecasting.
 #### 6.4 Characteristics of an Ideal Cost Accounting System
 * **Simplicity & Clarity:** Easily understood by operational personnel.
 * **Flexibility & Adaptability:** Capable of adjusting to changing business models.
@@ -334,11 +334,13 @@ $$ \begin{array}{lrr}
 
 ---
 ### 8. Modern Trends and Future Directions in Cost Accounting
-1. **Activity-Based Costing $ABC$ & Time-Driven ABC $TDABC$:** Replaces broad averaging ("peanut-butter costing") with multi-level activity pools and capacity-based time rates $$\text{Capacity Cost Rate} = \frac{\text{Total Cost of Capacity Supplied}}{\text{Practical Capacity of Time}}$$ to prevent product cost cross-subsidization.
+1. **Activity-Based Costing $ABC$ & Time-Driven ABC $TDABC$:** Replaces broad averaging ("peanut-butter costing") with multi-level activity pools and capacity-based time rates to prevent product cost cross-subsidization. $$\text{Capacity Cost Rate} = \frac{\text{Total Cost of Capacity Supplied}}{\text{Practical Capacity of Time}}$$
 2. **Predictive Analytics & Machine Learning:** Modern accountants work alongside data scientists using regression models, decision trees, and algorithm-based forecasting to predict cost drivers, customer churn, and equipment failures before they occur.
-3. **Lean Accounting & Value Stream Mapping:** Replaces traditional departmental cost tracking with direct tracking of costs along entire Value Streams $$\text{Value Stream Profit} = \text{Value Stream Revenues} - \text{Actual Value Stream Costs}$$, eliminating accounting waste and non-value-added transaction logging.
+3. **Lean Accounting & Value Stream Mapping:** Replaces traditional departmental cost tracking with direct tracking of costs along entire Value Streams, eliminating accounting waste and non-value-added transaction logging.  $$\text{Value Stream Profit} = \text{Value Stream Revenues} - \text{Actual Value Stream Costs}$$
 4. **Sustainability, Environmental & Carbon Accounting:** Incorporating greenhouse gas $GHG$ emission imputations, carbon budgeting, and life-cycle environmental assessments into product pricing and capital budgeting decisions.
 5. **Strategic Cost Management & Value Chain Analysis:** Evaluating cost structures across all value-chain functions—from initial R&D and design to production, marketing, distribution, and post-sales service—to secure sustainable cost leadership or product differentiation.
+
+
 
 
 

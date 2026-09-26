@@ -178,7 +178,7 @@ The net cash flow realized upon project completion and windup.
 
 
 
-![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg]]
+![[ai-comprehension/acc-302-financial-management/assets/acc302-npv-profiles-crossover.svg]]
 
 
 
