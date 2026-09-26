@@ -233,28 +233,14 @@
           if (opt && /^\d+$/.test(opt)) style += ` width: ${opt}px;`;
           const alt = opt && !/^\d+$/.test(opt) ? opt : cleanFile;
 
-          return `
-            <figure class="obsidian-media-embed" data-media-type="${isSvg ? 'svg' : 'image'}">
-              <img src="${resolvedSrc}" alt="${this.escapeHtml(alt)}" style="${style}" loading="lazy" onerror="if(!this._retried){this._retried=true;this.src='../site-lib/media/placeholder.svg';}" />
-            </figure>
-          `;
+          return `<figure class="obsidian-media-embed" data-media-type="${isSvg ? 'svg' : 'image'}"><img src="${resolvedSrc}" alt="${this.escapeHtml(alt)}" style="${style}" loading="lazy" onerror="if(!this._retried){this._retried=true;this.src='../site-lib/media/placeholder.svg';}" /></figure>`;
         }
 
         const res = this.resolveWikiLink(cleanFile, currentFolder, allNotes, vaultLookup, nameMap);
         const isResolved = Boolean(res.resolved);
         let targetHref = res.path;
         if (!res.isCrossFolder) targetHref = `#${encodeURIComponent(res.path)}`;
-        return `
-          <div class="obsidian-embed-card">
-            <div class="embed-card-header">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-              </svg>
-              <a class="internal-link ${isResolved ? 'is-resolved' : 'is-unresolved'}" href="${targetHref}">${this.escapeHtml(res.title || cleanFile)}</a>
-            </div>
-          </div>
-        `;
+        return `<div class="obsidian-embed-card"><div class="embed-card-header"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg><a class="internal-link ${isResolved ? 'is-resolved' : 'is-unresolved'}" href="${targetHref}">${this.escapeHtml(res.title || cleanFile)}</a></div></div>`;
       });
 
       // WikiLinks: [[file|label]]
