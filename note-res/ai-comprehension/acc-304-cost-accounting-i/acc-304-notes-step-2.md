@@ -43,7 +43,7 @@ Organizations differ fundamentally in their operational processes, inventory str
 | Dimension | Manufacturing Concerns | Merchandising Concerns | Service Concerns |
 | :--- | :--- | :--- | :--- |
 | **Core Activity** | Purchase raw materials/components and transform them into finished products using labor and overhead. | Purchase tangible finished goods and resell them without altering their basic physical form. | Provide intangible services or tailored expertise; do not hold tangible goods for resale. |
-| **Inventory Classifications** | **Three Accounts**:<br>1. **Direct Materials Inventory**<br>2. **Work-in-Process (WIP) Inventory**<br>3. **Finished Goods Inventory** | **One Account**:<br>1. **Merchandise Inventory** | **No Tangible Inventory** (may track unbilled work-in-progress for labor hours). |
+| **Inventory Classifications** | **Three Accounts**:<br>1. **Direct Materials Inventory**<br>2. **Work-in-Process $WIP$ Inventory**<br>3. **Finished Goods Inventory** | **One Account**:<br>1. **Merchandise Inventory** | **No Tangible Inventory** (may track unbilled work-in-progress for labor hours). |
 | **Cost Allocation Complexity** | High: Tracing direct inputs and allocating indirect manufacturing overhead across WIP and Finished Goods. | Low: Cost of merchandise purchased plus freight-in, handling, and insurance. | N/A (All operating costs are period expenses as incurred). |
 
 ---
@@ -171,7 +171,7 @@ flowchart TD
 ```
 
 #### 1. Inventoriable Costs (Product Costs)
-* **Definition**: All costs of a product that are considered assets on the balance sheet when incurred, and become expensed as **Cost of Goods Sold (COGS)** only when the product is sold.
+* **Definition**: All costs of a product that are considered assets on the balance sheet when incurred, and become expensed as **Cost of Goods Sold $COGS$** only when the product is sold.
 * **Manufacturing Companies**: Include all manufacturing costs—Direct Materials, Direct Manufacturing Labor, and Manufacturing Overhead (variable and fixed).
 * **Merchandising Companies**: Include the purchase cost of merchandise plus freight-in, customs duties, and handling charges.
 * **Service Companies**: Have no inventory of tangible goods; thus, no inventoriable costs.
@@ -186,7 +186,7 @@ flowchart TD
 
 ---
 ## 3. Bangladesh Cost Accounting Standard 1 (BCAS 1): Cost Concepts and Classifications
-To govern cost determination, cost auditing, and financial reporting within Bangladesh, the **Institute of Cost and Management Accountants of Bangladesh (ICMAB)** promulgated **BCAS 1: Cost Concepts and Classifications**.
+To govern cost determination, cost auditing, and financial reporting within Bangladesh, the **Institute of Cost and Management Accountants of Bangladesh $ICMAB$** promulgated **BCAS 1: Cost Concepts and Classifications**.
 ### 3.1 Objective and Scope of BCAS 1
 * **Objective**: Standardize the principles and methodologies of cost classification, measurement, and assignment to ensure consistency, comparability, and transparency in cost statements prepared by manufacturing and service entities in Bangladesh.
 * **Scope**: Applies to all cost statements, cost audit reports, and financial filings prepared under mandatory statutory cost audit rules in Bangladesh.
@@ -234,9 +234,9 @@ flowchart LR
 4. **Direct Labor Incurred**: Debited to `Work-in-Process Control` and credited to `Wages Payable Control` or `Cash`.
 5. **Indirect Labor Incurred**: Debited to `Manufacturing Overhead Control` and credited to `Wages Payable Control`.
 6. **Manufacturing Overhead Incurred**: Actual factory overhead costs (depreciation, utilities, plant insurance) are debited to `Manufacturing Overhead Control`.
-7. **Manufacturing Overhead Allocated**: Allocated to WIP using predetermined rates ($\text{Rate} \times \text{Actual Base}$), debited to `Work-in-Process Control` and credited to `Manufacturing Overhead Allocated`.
-8. **Completion of Production**: Cost of Goods Manufactured (COGM) is transferred by debiting `Finished Goods Control` and crediting `Work-in-Process Control`.
-9. **Sale of Products**: Cost of Goods Sold (COGS) is debited and `Finished Goods Control` is credited.
+7. **Manufacturing Overhead Allocated**: Allocated to WIP using predetermined rates $$\text{Rate} \times \text{Actual Base}$$, debited to `Work-in-Process Control` and credited to `Manufacturing Overhead Allocated`.
+8. **Completion of Production**: Cost of Goods Manufactured $COGM$ is transferred by debiting `Finished Goods Control` and crediting `Work-in-Process Control`.
+9. **Sale of Products**: Cost of Goods Sold $COGS$ is debited and `Finished Goods Control` is credited.
 
 ---
 ### 4.2 Mathematical Formulas & Statements
@@ -247,10 +247,10 @@ flowchart LR
 > $$ \text{Direct Materials Available for Use} - \text{Ending Direct Materials Inventory} = \text{Direct Materials Used} $$
 > #### 2. Total Manufacturing Costs Incurred in Period
 > $$ \text{Total Manufacturing Costs Incurred} = \text{Direct Materials Used} + \text{Direct Manufacturing Labor} + \text{Manufacturing Overhead Costs} $$
-> #### 3. Cost of Goods Manufactured (COGM)
+> #### 3. Cost of Goods Manufactured $COGM$
 > $$ \text{Beginning Work-in-Process Inventory} + \text{Total Manufacturing Costs Incurred} = \text{Total Manufacturing Costs to Account For} $$
 > $$ \text{Total Manufacturing Costs to Account For} - \text{Ending Work-in-Process Inventory} = \text{Cost of Goods Manufactured (COGM)} $$
-> #### 4. Unadjusted Cost of Goods Sold (COGS)
+> #### 4. Unadjusted Cost of Goods Sold $COGS$
 > $$ \text{Beginning Finished Goods Inventory} + \text{Cost of Goods Manufactured (COGM)} = \text{Cost of Goods Available for Sale} $$
 > $$ \text{Cost of Goods Available for Sale} - \text{Ending Finished Goods Inventory} = \text{Cost of Goods Sold (Unadjusted)} $$
 
@@ -273,9 +273,9 @@ flowchart LR
 > * Indirect Materials & Lubricants Used: $\text{TK } 10,000$
 > * Work-in-Process Inventory, 3/1/2021: $\text{TK } 35,000$
 > * Finished Goods Inventory, 3/1/2021: $\text{TK } 160,000$
-> * Ending Direct Materials Inventory (3/31/2021): $\text{TK } 42,500$
-> * Ending Work-in-Process Inventory (3/31/2021): $\text{TK } 95,000$
-> * Ending Finished Goods Inventory (3/31/2021): $\text{TK } 105,000$
+> * Ending Direct Materials Inventory $3/31/2021$: $\text{TK } 42,500$
+> * Ending Work-in-Process Inventory $3/31/2021$: $\text{TK } 95,000$
+> * Ending Finished Goods Inventory $3/31/2021$: $\text{TK } 105,000$
 > * Sales Revenues: $\text{TK } 750,000$
 > * Marketing & Advertising Costs: $\text{TK } 60,000$
 > * Customer Service Costs: $\text{TK } 25,000$
@@ -304,7 +304,7 @@ $$
 $$
 
 ---
-##### Step 2: Schedule of Cost of Goods Manufactured (COGM)
+##### Step 2: Schedule of Cost of Goods Manufactured $COGM$
 
 $$ \begin{array}{lrr}
 \hline
@@ -337,7 +337,7 @@ $$ \begin{array}{lrr}
 \end{array} $$
 
 ---
-##### Step 3: Schedule of Cost of Goods Sold (COGS)
+##### Step 3: Schedule of Cost of Goods Sold $COGS$
 
 $$ \begin{array}{lr}
 \hline
@@ -434,3 +434,4 @@ $$ \text{Underestimation Error} = \$22,000,000 - \$16,000,000 = \mathbf{\$6,000,
 > [!warning] Exam Pitfall / Exception
 >
 > **Core Takeaway**: Never unitize fixed costs for decision-making or cost forecasting. Always analyze variable costs in terms of unit rates and fixed costs in terms of total lump sums. Assuming total unit cost is purely variable leads to disastrous underestimation of costs when volumes drop!
+

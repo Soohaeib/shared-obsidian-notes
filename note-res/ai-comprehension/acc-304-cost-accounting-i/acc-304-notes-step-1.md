@@ -20,7 +20,7 @@ Accounting systems process economic transactions—collecting, categorizing, sum
 > * **Operational Cycle:** Involves three distinct phases: Procurement $\rightarrow$ Conversion $\rightarrow$ Sales/Dispatch.
 > * **Inventory Structure:** Requires three distinct inventory accounts on the Balance Sheet:
 >   * *Direct Materials Inventory:* Raw stock awaiting introduction into production.
->   * *Work-in-Process (WIP) Inventory:* Partially completed goods undergoing conversion.
+>   * *Work-in-Process $WIP$ Inventory:* Partially completed goods undergoing conversion.
 >   * *Finished Goods Inventory:* Fully manufactured goods ready for sale.
 > * **Examples:** Automotive assembly plants (Tesla, Toyota), paper machinery manufacturers (Robinson Company), electronics producers.
 
@@ -80,7 +80,7 @@ graph TD
 > * **Cost Assignment:** A general term encompassing both **Cost Tracing** (assigning direct costs directly to a cost object) and **Cost Allocation** (assigning indirect costs using an allocation base).
 
 #### 3.2 Objectives of Cost Accounting
-1. **Product & Service Costing:** Accurately calculating unit costs for inventory valuation and Cost of Goods Sold (COGS) determination to fulfill financial reporting requirements under GAAP/IFRS.
+1. **Product & Service Costing:** Accurately calculating unit costs for inventory valuation and Cost of Goods Sold $COGS$ determination to fulfill financial reporting requirements under GAAP/IFRS.
 2. **Operational Planning & Control:** Establishing performance benchmarks through standard costing, budgeting, and variance analysis ($Variance = Actual - Budgeted$) to monitor efficiency and eliminate non-value-added activities.
 3. **Managerial Decision-Support:** Providing relevant quantitative and qualitative cost figures for strategic pricing, product-mix decisions, make-or-buy decisions, and capacity management.
 4. **Cost Control & Cost Reduction:** Continuously analyzing cost behavior, efficiency, and waste to achieve sustained cost leadership without sacrificing customer-perceived value.
@@ -92,7 +92,7 @@ graph TD
 > * **Aggregated View:** It aggregates revenues and expenses across the entire firm, concealing which individual products, departments, or customers are profitable versus loss-making.
 > * **Omission of Non-Financial Metrics:** It ignores operational, physical, and qualitative drivers (such as setup times, labor efficiency, machine hours, defect rates, and customer lead times).
 > * **Rigidity of GAAP/IFRS:** Strict compliance rules prevent management from using alternative cost concepts (e.g., opportunity costs, replacement costs, or variable costing) for internal evaluation.
-> * **Lack of Cost Behavior Insights:** Financial accounting fails to classify costs by behavior (fixed vs. variable), impeding Cost-Volume-Profit (CVP) analysis and flexible budgeting.
+> * **Lack of Cost Behavior Insights:** Financial accounting fails to classify costs by behavior (fixed vs. variable), impeding Cost-Volume-Profit $CVP$ analysis and flexible budgeting.
 
 ---
 ### 4. Organizational Structure and Ethics of the Management Accountant
@@ -107,11 +107,11 @@ The management accountant functions as a **strategic business partner** to line 
 #### 4.2 Executive Roles: CFO and Controller
 > [!info] Key Definition
 >
-> * **Chief Financial Officer (CFO):** The executive officer responsible for overseeing the entire financial operations of an organization. Key responsibilities include Treasury, Risk Management, Tax, Controllership, Investor Relations, and Strategic Planning.
+> * **Chief Financial Officer $CFO$:** The executive officer responsible for overseeing the entire financial operations of an organization. Key responsibilities include Treasury, Risk Management, Tax, Controllership, Investor Relations, and Strategic Planning.
 > * **Controller (Chief Accounting Officer):** The senior financial executive directly responsible for management accounting, cost accounting, and financial accounting. The controller manages the daily general ledger, cost accounting systems, internal reporting, budgeting, and financial statement preparation.
 
 #### 4.3 Professional Ethics: The IMA Statement
-Management accountants hold sensitive financial data and are routinely exposed to ethical dilemmas. The **Institute of Management Accountants (IMA)** provides the *Statement of Ethical Professional Practice*, detailing four fundamental ethical standards:
+Management accountants hold sensitive financial data and are routinely exposed to ethical dilemmas. The **Institute of Management Accountants $IMA$** provides the *Statement of Ethical Professional Practice*, detailing four fundamental ethical standards:
 1. **Competence:** Maintain professional expertise, perform duties within the law, and provide accurate, clear, and timely decision-support information.
 2. **Confidentiality:** Keep information confidential except when legally required, and refrain from using it for unethical advantage.
 3. **Integrity:** Mitigate conflicts of interest and abstain from activities that might discredit the profession.
@@ -129,8 +129,8 @@ Cost Accounting Standards are codified rules designed to achieve global or natio
 
 > [!info] Key Definition
 >
-> * **Cost Accounting Standards Board (CASB):** In the United States, the CASB issues standards to ensure uniform cost accounting practices for contractors bidding on government contracts.
-> * **Bangladesh Cost Accounting Standards (BCAS):** Issued by the **ICMAB**, these standards regulate cost determination across sectors in Bangladesh:
+> * **Cost Accounting Standards Board $CASB$:** In the United States, the CASB issues standards to ensure uniform cost accounting practices for contractors bidding on government contracts.
+> * **Bangladesh Cost Accounting Standards $BCAS$:** Issued by the **ICMAB**, these standards regulate cost determination across sectors in Bangladesh:
 >   * **BCAS 1:** Cost Concepts and Classifications.
 >   * **BCAS 4:** Indirect Costs.
 >   * **BCAS 5:** Indirect Cost Rate.
@@ -185,7 +185,7 @@ flowchart LR
 Cost accounting synthesizes concepts from multiple quantitative and theoretical disciplines:
 * **Economics:** Marginal revenue/marginal cost ($MR = MC$), opportunity costs, relevant range.
 * **Mathematics:** Linear algebra, simultaneous linear equations, linear programming for bottlenecks.
-* **Statistics:** Regression analysis ($y = a + bX$), correlation coefficients ($r^2$), time-series forecasting.
+* **Statistics:** Regression analysis ($y = a + bX$), correlation coefficients $$r^2$$, time-series forecasting.
 #### 6.4 Characteristics of an Ideal Cost Accounting System
 * **Simplicity & Clarity:** Easily understood by operational personnel.
 * **Flexibility & Adaptability:** Capable of adjusting to changing business models.
@@ -209,7 +209,7 @@ Cost accounting synthesizes concepts from multiple quantitative and theoretical 
 
 #### 7.1 Input Operational Data
 
-| Transaction / Account Title | Amount (TK) |
+| Transaction / Account Title | Amount $TK$ |
 | :--- | :--- |
 | Direct Materials Inventory, January 1, 2025 | 40,000 |
 | Work-in-Process Inventory, January 1, 2025 | 35,000 |
@@ -251,10 +251,10 @@ Cost accounting synthesizes concepts from multiple quantitative and theoretical 
 > **4. Prime Costs & Conversion Costs:**
 > $$\text{Prime Costs} = \text{Direct Materials Used} + \text{Direct Manufacturing Labor} = 453,000 + 300,000 = \text{TK } 753,000$$
 > $$\text{Conversion Costs} = \text{Direct Manufacturing Labor} + \text{Manufacturing Overhead} = 300,000 + 174,000 = \text{TK } 474,000$$
-> **5. Cost of Goods Manufactured (COGM):**
+> **5. Cost of Goods Manufactured $COGM$:**
 > $$\text{COGM} = \text{Beginning WIP Inventory} + \text{Total Mfg Costs Incurred} - \text{Ending WIP Inventory}$$
 > $$\text{COGM} = 35,000 + 927,000 - 42,000 = \text{TK } 920,000$$
-> **6. Cost of Goods Sold (COGS):**
+> **6. Cost of Goods Sold $COGS$:**
 > $$\text{COGS} = \text{Beginning Finished Goods Inventory} + \text{COGM} - \text{Ending Finished Goods Inventory}$$
 > $$\text{COGS} = 100,000 + 920,000 - 115,000 = \text{TK } 905,000$$
 
@@ -334,8 +334,12 @@ $$ \begin{array}{lrr}
 
 ---
 ### 8. Modern Trends and Future Directions in Cost Accounting
-1. **Activity-Based Costing (ABC) & Time-Driven ABC (TDABC):** Replaces broad averaging ("peanut-butter costing") with multi-level activity pools and capacity-based time rates ($\text{Capacity Cost Rate} = \frac{\text{Total Cost of Capacity Supplied}}{\text{Practical Capacity of Time}}$) to prevent product cost cross-subsidization.
+1. **Activity-Based Costing $ABC$ & Time-Driven ABC $TDABC$:** Replaces broad averaging ("peanut-butter costing") with multi-level activity pools and capacity-based time rates $$\text{Capacity Cost Rate} = \frac{\text{Total Cost of Capacity Supplied}}{\text{Practical Capacity of Time}}$$ to prevent product cost cross-subsidization.
 2. **Predictive Analytics & Machine Learning:** Modern accountants work alongside data scientists using regression models, decision trees, and algorithm-based forecasting to predict cost drivers, customer churn, and equipment failures before they occur.
-3. **Lean Accounting & Value Stream Mapping:** Replaces traditional departmental cost tracking with direct tracking of costs along entire Value Streams ($\text{Value Stream Profit} = \text{Value Stream Revenues} - \text{Actual Value Stream Costs}$), eliminating accounting waste and non-value-added transaction logging.
-4. **Sustainability, Environmental & Carbon Accounting:** Incorporating greenhouse gas (GHG) emission imputations, carbon budgeting, and life-cycle environmental assessments into product pricing and capital budgeting decisions.
+3. **Lean Accounting & Value Stream Mapping:** Replaces traditional departmental cost tracking with direct tracking of costs along entire Value Streams $$\text{Value Stream Profit} = \text{Value Stream Revenues} - \text{Actual Value Stream Costs}$$, eliminating accounting waste and non-value-added transaction logging.
+4. **Sustainability, Environmental & Carbon Accounting:** Incorporating greenhouse gas $GHG$ emission imputations, carbon budgeting, and life-cycle environmental assessments into product pricing and capital budgeting decisions.
 5. **Strategic Cost Management & Value Chain Analysis:** Evaluating cost structures across all value-chain functions—from initial R&D and design to production, marketing, distribution, and post-sales service—to secure sustainable cost leadership or product differentiation.
+
+
+
+
