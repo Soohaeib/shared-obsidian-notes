@@ -1,40 +1,62 @@
-<svg width="600" height="300" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    text {
-      font-family: Inter, sans-serif;
-      fill: var(--text-normal, #f0f0f0);
-    }
-    .axis, line[stroke="#888"], line[stroke="#ccc"] {
-      stroke: var(--text-muted, #999999);
-    }
-    @media (prefers-color-scheme: light) {
-      text {
-        fill: #222222 !important;
-      }
-      .axis, line[stroke="#888"], line[stroke="#ccc"] {
-        stroke: #666666 !important;
-      }
-    }
-  </style>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 480" width="100%" height="100%" style="font-family: system-ui, -apple-system, sans-serif;">
+  <defs>
+    <marker id="arrow1" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor"/>
+    </marker>
+  </defs>
 
-    <!-- Background -->
-    <rect width="100%" height="100%" fill="none" />
+  <!-- Title & Subtitle -->
+  <text x="400" y="36" text-anchor="middle" font-size="20" font-weight="700" fill="currentColor">Bond Price Path to Maturity</text>
+  <text x="400" y="58" text-anchor="middle" font-size="13" fill="currentColor" opacity="0.75">Price convergence to Par Value ($1,000) over time</text>
 
-    <!-- Grid and Axes -->
-    <line x1="50" y1="250" x2="550" y2="250" stroke="#888" stroke-width="2" />
-    <line x1="50" y1="50" x2="50" y2="250" stroke="#888" stroke-width="2" />
-    <text x="300" y="285" fill="#ccc" font-family="Inter, sans-serif" font-size="14" text-anchor="middle">Time to Maturity (Approaching Zero)</text>
-    <text x="20" y="150" fill="#ccc" font-family="Inter, sans-serif" font-size="14" text-anchor="middle" transform="rotate(-90 20,150)">Bond Price ($)</text>
+  <!-- Grid Lines -->
+  <line x1="120" y1="110" x2="680" y2="110" stroke="currentColor" stroke-opacity="0.1" stroke-width="1.5" />
+  <line x1="120" y1="190" x2="680" y2="190" stroke="currentColor" stroke-opacity="0.1" stroke-width="1.5" />
+  <line x1="120" y1="270" x2="680" y2="270" stroke="currentColor" stroke-opacity="0.25" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <line x1="120" y1="350" x2="680" y2="350" stroke="currentColor" stroke-opacity="0.1" stroke-width="1.5" />
 
-    <!-- Par Value Line -->
-    <line x1="50" y1="150" x2="550" y2="150" stroke="#00a3cc" stroke-width="2" stroke-dasharray="6,4" />
-    <text x="560" y="155" fill="#00a3cc" font-family="Inter, sans-serif" font-size="14" font-weight="bold">$1,000 Par Value</text>
+  <!-- Axes -->
+  <line x1="120" y1="410" x2="120" y2="80" stroke="currentColor" stroke-width="2" marker-end="url(#arrow1)"/>
+  <line x1="120" y1="410" x2="720" y2="410" stroke="currentColor" stroke-width="2" marker-end="url(#arrow1)"/>
 
-    <!-- Premium Bond Curve -->
-    <path d="M 50 70 Q 300 90 550 150" fill="none" stroke="#ffb347" stroke-width="3" />
-    <text x="80" y="60" fill="#ffb347" font-family="Inter, sans-serif" font-size="14" font-weight="bold">Premium Bond</text>
+  <!-- Axis Labels -->
+  <text x="60" y="245" font-size="14" font-weight="600" fill="currentColor" transform="rotate(-90 60 245)" text-anchor="middle">Bond Price ($)</text>
+  <text x="420" y="448" font-size="14" font-weight="600" fill="currentColor" text-anchor="middle">Time to Maturity (Years)</text>
 
-    <!-- Discount Bond Curve -->
-    <path d="M 50 230 Q 300 210 550 150" fill="none" stroke="#ff4d4d" stroke-width="3" />
-    <text x="80" y="245" fill="#ff4d4d" font-family="Inter, sans-serif" font-size="14" font-weight="bold">Discount Bond</text>
-  </svg>
+  <!-- Y-Axis Ticks & Values -->
+  <text x="110" y="115" font-size="12" fill="currentColor" opacity="0.75" text-anchor="end">$1,300</text>
+  <text x="110" y="195" font-size="12" fill="currentColor" opacity="0.75" text-anchor="end">$1,150</text>
+  <text x="110" y="275" font-size="12" font-weight="700" fill="#0ea5e9" text-anchor="end">$1,000</text>
+  <text x="110" y="355" font-size="12" fill="currentColor" opacity="0.75" text-anchor="end">$850</text>
+  <text x="110" y="415" font-size="12" fill="currentColor" opacity="0.75" text-anchor="end">$700</text>
+
+  <!-- X-Axis Ticks -->
+  <text x="120" y="428" font-size="12" fill="currentColor" opacity="0.75" text-anchor="middle">30</text>
+  <text x="306" y="428" font-size="12" fill="currentColor" opacity="0.75" text-anchor="middle">20</text>
+  <text x="493" y="428" font-size="12" fill="currentColor" opacity="0.75" text-anchor="middle">10</text>
+  <text x="680" y="428" font-size="12" font-weight="700" fill="currentColor" text-anchor="middle">0 (Maturity)</text>
+
+  <!-- Curves -->
+  <path d="M 120 110 Q 420 150 680 270" fill="none" stroke="#f59e0b" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="120" y1="270" x2="680" y2="270" stroke="#0ea5e9" stroke-width="3" stroke-dasharray="6 6"/>
+  <path d="M 120 410 Q 420 380 680 270" fill="none" stroke="#f43f5e" stroke-width="3.5" stroke-linecap="round"/>
+
+  <!-- Convergence Point -->
+  <circle cx="680" cy="270" r="6" fill="#0ea5e9" stroke="currentColor" stroke-width="2"/>
+
+  <!-- Callout Labels -->
+  <g transform="translate(150, 160)">
+    <rect x="0" y="0" width="220" height="28" rx="6" fill="currentColor" fill-opacity="0.08" stroke="#f59e0b" stroke-width="1"/>
+    <text x="11" y="18" font-size="12" font-weight="600" fill="#f59e0b">Premium Bond (Coupon &gt; YTM)</text>
+  </g>
+
+  <g transform="translate(320, 240)">
+    <rect x="0" y="0" width="220" height="24" rx="6" fill="currentColor" fill-opacity="0.08" stroke="#0ea5e9" stroke-width="1"/>
+    <text x="10" y="16" font-size="11" font-weight="600" fill="#0ea5e9">Par Bond (Coupon = YTM = $1,000)</text>
+  </g>
+
+  <g transform="translate(150, 340)">
+    <rect x="0" y="0" width="220" height="28" rx="6" fill="currentColor" fill-opacity="0.08" stroke="#f43f5e" stroke-width="1"/>
+    <text x="11" y="18" font-size="12" font-weight="600" fill="#f43f5e">Discount Bond (Coupon &lt; YTM)</text>
+  </g>
+</svg>
