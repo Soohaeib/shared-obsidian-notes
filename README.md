@@ -1,6 +1,6 @@
 # 🌌 Shared Obsidian Notes & Digital Garden Workspace
 
-A platform-independent, interactive digital garden and publishing workspace tailored for personal knowledge management (PKM), course notes, and study roadmaps. Built to work seamlessly with Obsidian vaults across Windows, macOS, and Linux.
+A high-performance, platform-independent interactive digital garden and publishing workspace tailored for personal knowledge management (PKM), course notes, mathematical study guides, and visual diagrams. Built to work seamlessly with Obsidian vaults across Windows, macOS, and Linux.
 
 ---
 
@@ -8,62 +8,161 @@ A platform-independent, interactive digital garden and publishing workspace tail
 
 - [Overview & Architecture](#-overview--architecture)
 - [Workspace Directory Structure](#-workspace-directory-structure)
+- [Media, SVGs & Asset Management](#-media-svgs--asset-management)
+  - [Folder Naming: Does it have to be `assets`?](#folder-naming-does-it-have-to-be-assets)
+  - [Supported Embedding Syntaxes](#supported-embedding-syntaxes)
+  - [Interactive Vector SVG Lightbox](#interactive-vector-svg-lightbox)
+- [Core Engines & Capabilities](#-core-engines--capabilities)
+  - [1. Authentic Obsidian Callouts](#1-authentic-obsidian-callouts)
+  - [2. Dedicated WikiLink & Reference Resolver](#2-dedicated-wikilink--reference-resolver)
+  - [3. KaTeX LaTeX Mathematics](#3-katex-latex-mathematics)
+  - [4. Mermaid Diagramming](#4-mermaid-diagramming)
+  - [5. Vault Health Linter & Auto-Fixer](#5-vault-health-linter--auto-fixer)
 - [Quick Start Guide](#-quick-start-guide)
 - [Obsidian Vault Sync Workflows](#-obsidian-vault-sync-workflows)
-  - [1. Automated Synchronization](#1-automated-synchronization)
+  - [1. Automated One-Time Sync](#1-automated-one-time-sync)
   - [2. Live Real-Time Watcher](#2-live-real-time-watcher)
-  - [3. Manual Management](#3-manual-management)
+  - [3. Manual Vault Management](#3-manual-vault-management)
 - [Configuration Reference (`locations.json`)](#-configuration-reference-locationsjson)
+  - [Configuration Schema & Properties](#configuration-schema--properties)
   - [Exclusion Strategy & Rules](#exclusion-strategy--rules)
-  - [Configuration Schema](#configuration-schema)
-- [Cross-Platform Sanitization Engine](#-cross-platform-sanitization-engine)
-- [Core Features & Capabilities](#-core-features--capabilities)
+- [Cross-Platform Sanitization & Slug Engine](#-cross-platform-sanitization--slug-engine)
 - [Scripts & Command Reference](#-scripts--command-reference)
+- [GitHub Authentication & Obsidian Sync](#-github-authentication--obsidian-sync)
 - [Deployment Guide](#-deployment-guide)
 
 ---
 
 ## 🌟 Overview & Architecture
 
-This repository acts as a published digital garden mirroring selected folders from your local Obsidian vault.
+This repository acts as a published digital garden mirroring selected folders from your local Obsidian vault without any proprietary vendor lock-in.
 
-- **`note-res/` Container:** Serves as the single source of truth for all synchronized markdown notes, syllabi, previous year questions (PYQs), and visual SVG diagrams.
-- **Dynamic & Static Dual Mode:** Works as both a static HTML export (ready for GitHub Pages with `.nojekyll`) and an interactive Node.js / Express web workspace with live discovery and single-page navigation.
-- **Mathematical & Diagrammatic Rendering:** Native support for KaTeX math notation (`$...$` and `$$...$$`) and inline SVG diagrams.
+- **`note-res/` Single Source of Truth:** Stores all synchronized markdown notes, syllabi, previous year questions (PYQs), study roadmaps, and visual SVG diagrams.
+- **Dynamic & Static Dual Mode:** Functions as both a static export (ready for GitHub Pages or static web hosts with `.nojekyll`) and an interactive Node.js / Express workspace server with live API discovery.
+- **Modular Client Architecture:** Clean separation of concerns with standalone runtime scripts for Callouts, WikiLinks, Math, Mermaid diagrams, and Media previewing in `site-lib/scripts/`.
 
 ---
 
 ## 📂 Workspace Directory Structure
 
 ```text
-├── locations.json          # Core path mapping and exclusion configuration
-├── note-res/               # Primary container for all active notes and study folders
-│   ├── 4th Semester/       # BCC course notes, PYQs, and solution guides
-│   ├── 5th Semester/       # ACC course notes, syllabi, and raw PYQ collections
-│   └── AI Curated Notes/   # Structured phase-by-phase notes, roadmaps, and SVG assets
-│       ├── ACC 301 Intermediate Accounting/
-│       ├── ACC 302 Financial Management/
-│       ├── ACC 303 Advanced Statistical Techniques/
-│       ├── ACC 304 Cost Accounting I/
-│       ├── ACC 305 Auditing & Assurance/
-│       └── Logical Learning/
-├── site-lib/               # Client runtime assets (search index, styles, scripts, fonts)
-│   ├── vault-index.json    # Complete index of all active notes and folders
-│   └── styles/ & scripts/  # Workspace styling and viewer scripts
-├── generate_index.py       # Rebuilds vault-index.json and folder viewer index pages
-├── sync_site.py            # Automated synchronization, sanitizer, and watcher tool
-├── server.js               # Node.js / Express workspace server
-├── metadata.json           # AI Studio applet metadata & configuration
-└── package.json            # Node.js project manifest and scripts
+├── locations.json              # Core path mapping, sync configuration & exclusion rules
+├── note-res/                   # Primary container for all active notes and study folders
+│   ├── 4th Semester/           # BCC course notes, PYQs, and solution guides
+│   ├── 5th Semester/           # ACC course notes, syllabi, and raw PYQ collections
+│   └── AI Curated Notes/       # Structured notes, phase roadmaps, and SVG assets
+├── site-lib/                   # Client runtime assets & engines
+│   ├── vault-manifest.json     # Complete manifest mapping original paths to slugs
+│   ├── vault-index.json        # Index of all active notes, folders, and lookup tables
+│   ├── name-map.json           # Human-readable title mapping
+│   ├── html/viewer.html        # Single-page folder viewer template
+│   ├── styles/                 # Workspace styling (workspace.css, theme.css, app-custom.css)
+│   └── scripts/                # Dedicated modular runtime engines
+│       ├── app-reader.js       # Main note reader application controller
+│       ├── callout-renderer.js # Obsidian callout engine with folding and icons
+│       ├── wikilink-resolver.js# WikiLinks, embeds, tags, footnotes & highlights
+│       ├── math-renderer.js    # KaTeX inline and display math processor
+│       ├── media-preview.js    # SVG vector & image interactive pan/zoom lightbox
+│       └── mermaid-renderer.js # Live Mermaid diagram generator
+├── generate_index.py           # Rebuilds search indexes, name maps & viewer pages
+├── sync_site.py                # Automated multi-pass sync & manifest builder
+├── vault_linter.py             # Vault diagnostic, syntax validator & auto-fixer
+├── server.js                   # Node.js / Express workspace server
+├── metadata.json               # AI Studio applet metadata & configuration
+└── package.json                # Node.js project manifest and scripts
 ```
+
+---
+
+## 🖼️ Media, SVGs & Asset Management
+
+### Folder Naming: Does it have to be `assets`?
+
+**No, the folder does NOT strictly have to be named `assets`.**
+
+The sync engine (`sync_site.py`) and the resolver engine (`wikilink-resolver.js`) are designed with maximum flexibility:
+
+1. **Any Folder Name Supported:** You can store your SVGs and media in `assets/`, `attachments/`, `images/`, `media/`, `diagrams/`, `figures/`, or directly in the same directory as your markdown notes.
+2. **Automatic Global Discovery:** When `sync_site.py` runs, it indexes all media assets (`.svg`, `.png`, `.jpg`, `.jpeg`, `.gif`, `.webp`, etc.) into `site-lib/vault-manifest.json` and copies them to `note-res/`.
+3. **Three-Tier Resolution:** When a note references an asset, `wikilink-resolver.js` resolves it using:
+   - Exact filename match in the manifest.
+   - Global vault lookup index.
+   - Relative normalized path fallback.
+
+> **Tip for Obsidian Configuration:** In Obsidian **Settings → Files and links → Default location for new attachments**, you can use whatever structure you prefer (e.g. *In subfolder under current folder* with subfolder name `assets` or `attachments`).
+
+### Supported Embedding Syntaxes
+
+You can embed SVGs and images using any standard Obsidian or Markdown notation:
+
+- **Obsidian WikiLink Embeds:**
+  ```markdown
+  ![[financial-curves.svg]]
+  ![[assets/financial-curves.svg]]
+  ![[npv-profile.svg|650]]          <!-- With custom width in pixels -->
+  ![[sml-plot.svg|Capital Asset Pricing Model]] <!-- With custom caption -->
+  ```
+- **Standard Markdown Embeds:**
+  ```markdown
+  ![Financial Curves](assets/financial-curves.svg)
+  ![NPV Profile](./diagrams/npv-profile.svg)
+  ```
+
+### Interactive Vector SVG Lightbox
+
+All rendered SVGs and images include an interactive corner expand button. Clicking the button opens the dedicated vector lightbox (`site-lib/scripts/media-preview.js`) featuring:
+- **Vector-Fidelity Rendering:** SVGs are rendered as pure vectors (not rasterized), ensuring crisp lines at any zoom level.
+- **Smooth Navigation:** Mouse drag-to-pan, cursor-anchored wheel zoom (0.2x to 6.0x), and touch gestures (single-finger pan, 2-finger pinch zoom, double-tap reset).
+- **Floating Controls:** Zoom In (`+`), Zoom Out (`-`), Reset to 100% (`0`), and instant SVG / Image Download.
+
+---
+
+## ⚡ Core Engines & Capabilities
+
+### 1. Authentic Obsidian Callouts
+Supported by `site-lib/scripts/callout-renderer.js`:
+- **Standard Types:** `[!note]`, `[!abstract]`, `[!info]`, `[!todo]`, `[!tip]`, `[!success]`, `[!question]`, `[!warning]`, `[!failure]`, `[!danger]`, `[!bug]`, `[!example]`, `[!quote]`.
+- **Foldable Callouts:** `[!type]+` (expanded by default) and `[!type]-` (collapsed by default) with smooth fold/expand animations and chevron toggles.
+- **Rich Content Support:** Nested KaTeX math (`$...$`), WikiLinks (`[[...]]`), code blocks, and lists inside callout bodies and titles.
+
+### 2. Dedicated WikiLink & Reference Resolver
+Supported by `site-lib/scripts/wikilink-resolver.js`:
+- **Internal Note Links:** `[[Note Title]]` and `[[Note Title|Custom Label]]` with local-first precedence and cross-folder navigation.
+- **Section/Heading Links:** `[[#Heading]]` or `[[Note#Heading]]`.
+- **Text Highlights:** `==highlighted text==` rendered as `<mark>`.
+- **Footnotes:** `[^1]` inline references linked to `[^1]: Footnote content` sections.
+- **Task Checkboxes:** Interactive disabled checkboxes for `- [ ]` and `- [x]`.
+- **Block Anchors & Tags:** Anchor tags `^custom-id` and tag badges `#tag-name`.
+
+### 3. KaTeX LaTeX Mathematics
+Supported by `site-lib/scripts/math-renderer.js`:
+- **Inline Math:** `$E(R_i) = R_f + \beta_i [E(R_m) - R_f]$`
+- **Display Math Blocks:**
+  ```latex
+  $$
+  NPV = \sum_{t=1}^{n} \frac{CF_t}{(1 + r)^t} - CF_0
+  $$
+  ```
+- Fast, client-side KaTeX rendering with automatic token protection to prevent Markdown parsers from mangling mathematical operators (`_`, `*`, `^`, `\`).
+
+### 4. Mermaid Diagramming
+Supported by `site-lib/scripts/mermaid-renderer.js`:
+- Renders flowchart, sequence, class, state, entity-relationship, and Gantt diagrams from standard ````mermaid```` code fences.
+- Automatically adjusts colors to match light and dark themes.
+
+### 5. Vault Health Linter & Auto-Fixer
+Supported by `vault_linter.py`:
+- Scans notes for unbalanced math delimiters, broken callout formatting, missing heading spaces, and unresolved asset paths.
+- Generates `site-lib/vault-health.json` with detailed diagnostics and health scores.
+- Run `python3 vault_linter.py --fix` to automatically repair common syntax issues.
 
 ---
 
 ## 🚀 Quick Start Guide
 
 ### Prerequisites
-- **Node.js** (v18 or higher recommended)
-- **Python** (3.8 or higher, standard library with zero external pip dependencies)
+- **Node.js** (v18 or higher)
+- **Python** (3.8 or higher, uses standard library only)
 
 ### Installation & Run
 
@@ -72,7 +171,7 @@ This repository acts as a published digital garden mirroring selected folders fr
    npm install
    ```
 
-2. **Build and index the workspace:**
+2. **Sync vault & build indexes:**
    ```bash
    npm run sync
    ```
@@ -87,32 +186,35 @@ This repository acts as a published digital garden mirroring selected folders fr
 
 ## 🔄 Obsidian Vault Sync Workflows
 
-### 1. Automated Synchronization
-Run a one-time sync to pull changes from your local Obsidian vault based on the paths configured in `locations.json`:
+### 1. Automated One-Time Sync
+Pulls modifications from your local Obsidian vault paths configured in `locations.json`, processes frontmatter, updates the manifest, and rebuilds all viewer indexes:
 ```bash
 npm run sync
 # or directly:
-python3 sync_site.py --once
+python3 sync_site.py && python3 generate_index.py
 ```
 
 ### 2. Live Real-Time Watcher
-Run continuous file watching that monitors your local Obsidian vault and automatically updates `note-res/` whenever notes are modified or added:
+Monitors your local Obsidian vault in the background and continuously updates `note-res/` when notes or assets change:
 ```bash
 npm run watch
 # or directly:
 python3 sync_site.py --watch
 ```
 
-### 3. Manual Management
-If you prefer to organize notes manually:
-- Move markdown files or folders directly into `note-res/`.
-- Run `npm run build` or `python3 generate_index.py` to regenerate `site-lib/vault-index.json` and viewer pages.
+### 3. Manual Vault Management
+If managing files manually without local vault sync:
+- Place or edit markdown notes and asset folders directly in `note-res/`.
+- Rebuild indexes and viewers:
+  ```bash
+  npm run build
+  ```
 
 ---
 
 ## ⚙️ Configuration Reference (`locations.json`)
 
-All vault synchronization and exclusion rules are configured declaratively in `locations.json`:
+All synchronization rules and exclusions are configured in `locations.json`:
 
 ```json
 {
@@ -120,10 +222,9 @@ All vault synchronization and exclusion rules are configured declaratively in `l
   "sourceVaultPaths": [
     "~/Documents/Obsidian Vault/BBA Study"
   ],
-  "sourceExclusionPaths": [
-    "~/Documents/Obsidian Vault/BBA Study/Expansion of class notes"
+  "vaultExclusionPaths": [
+    "/Expansion of Class Notes"
   ],
-  "sourceExclusionFiles": [],
   "excludedFolders": [
     ".git",
     ".github",
@@ -150,42 +251,35 @@ All vault synchronization and exclusion rules are configured declaratively in `l
     ".*\\.bak$",
     ".*\\.tmp$",
     ".*~$"
-  ]
+  ],
+  "lockedSections": {
+    "ai-comprehension": "NOTES_CURATED"
+  }
 }
 ```
 
-### Exclusion Strategy & Rules
+### Configuration Schema & Properties
 
 | Key | Description | Example |
 | :--- | :--- | :--- |
-| **`targetVaultDirectory`** | The root container inside the repo where notes live. | `"note-res"` |
-| **`sourceVaultPaths`** | Local paths to your Obsidian Vaults. Tilde (`~`) is expanded automatically. | `["~/Documents/Obsidian Vault/BBA Study"]` |
-| **`sourceExclusionPaths`** | Specific study directories or subfolders to strictly omit from syncing. | `["~/Documents/Obsidian Vault/BBA Study/Expansion of class notes"]` |
-| **`sourceExclusionFiles`** | Specific individual markdown/source files to omit from syncing. | `["Private Notes.md"]` |
+| **`targetVaultDirectory`** | The root container inside the repo where synchronized notes live. | `"note-res"` |
+| **`sourceVaultPaths`** | Array of local paths to your Obsidian Vaults. Tilde (`~`) is expanded automatically. | `["~/Documents/Obsidian Vault/BBA Study"]` |
+| **`vaultExclusionPaths`** | Subfolders or paths inside the vault to strictly omit from syncing. | `["/Expansion of Class Notes"]` |
 | **`excludedFolders`** | System, VCS, build, and temporary folders to ignore globally. | `[".git", "node_modules", ".obsidian", ".trash"]` |
 | **`excludedFiles`** | System and lockfiles to ignore globally. | `[".DS_Store", "desktop.ini", "Thumbs.db"]` |
-| **`excludedPatterns`** | Regular expressions for transient and backup file extensions. | `["^\\..*", ".*\\.bak$", ".*\\.tmp$"]` |
+| **`excludedPatterns`** | Regular expressions matching transient/backup file names. | `["^\\..*", ".*\\.bak$", ".*\\.tmp$"]` |
+| **`lockedSections`** | Optional section keys requiring passcode access. | `{"ai-comprehension": "NOTES_CURATED"}` |
 
 ---
 
-## 🛡️ Cross-Platform Sanitization Engine
+## 🛡️ Cross-Platform Sanitization & Slug Engine
 
-Obsidian allows characters in file titles that are illegal on Windows or problematic in Git URLs (such as `:`, `?`, `*`, `"`, `|`, `<`, `>`, `\`).
+Obsidian allows characters in file titles that are illegal on Windows or problematic in web URLs (such as `:`, `?`, `*`, `"`, `|`, `<`, `>`, `\`).
 
-The built-in sanitizer (`sync_site.py --sanitize`):
-- Converts colons (`:`) to clean hyphenated separators (` - `).
-- Strips trailing dots, illegal characters, and Windows reserved filenames (`CON`, `PRN`, `AUX`, `NUL`, `COM1-9`, `LPT1-9`).
-- Guarantees clean file paths across all Git environments without breaking markdown links.
-
----
-
-## ✨ Core Features & Capabilities
-
-- **Interactive Workspace Navigation:** Fast search across 290+ notes with hierarchical folder exploration and breadcrumb trails.
-- **LaTeX & KaTeX Mathematics:** Formulas and mathematical expressions render cleanly inline and in display mode.
-- **SVG Diagram Support:** Integrated high-fidelity visual diagrams (financial curves, NPV profiles, SML plots, MCC schedules).
-- **Responsive Layout:** Optimized reading experience on both desktop and mobile screens.
-- **Zero Lock-In:** Markdown files remain 100% standard and compatible with Obsidian and standard PKM tools.
+The built-in multi-pass slug engine:
+- Converts titles into URL-safe kebab-case slugs without broken `%20` encodings.
+- Handles ampersands cleanly (`&` becomes `and`).
+- Maintains a bidirectional lookup map (`name-map.json` and `vault-manifest.json`) so original note titles and display names remain intact in navigation, headers, and WikiLinks.
 
 ---
 
@@ -194,60 +288,46 @@ The built-in sanitizer (`sync_site.py --sanitize`):
 | Command | Purpose |
 | :--- | :--- |
 | `npm run dev` | Starts the local Express server on port 3000. |
-| `npm run sync` | Pulls updates from local Obsidian Vault and rebuilds indexes. |
-| `npm run watch` | Starts live continuous auto-sync watcher. |
-| `npm run build` | Rebuilds the search index and HTML viewer pages. |
-| `python3 sync_site.py --sanitize` | Runs filename audit and sanitizes illegal characters. |
+| `npm run start` | Production start command for container environments. |
+| `npm run sync` | Pulls updates from local Obsidian Vault and rebuilds all indexes. |
+| `npm run watch` | Starts the continuous live file watcher. |
+| `npm run build` | Rebuilds `site-lib/vault-index.json`, manifests, and HTML viewer pages. |
+| `npm run setup` | Initial workspace bootstrap and full index regeneration. |
+| `python3 vault_linter.py` | Runs vault health check and generates diagnostic reports. |
+| `python3 vault_linter.py --fix` | Automatically fixes unbalanced math and malformed callouts. |
 
 ---
 
-## 🔐 GitHub Authentication & Obsidian Sync Troubleshooting
+## 🔐 GitHub Authentication & Obsidian Sync
 
-If you encounter authentication errors when signing in to GitHub or pushing notes via Obsidian Git / command-line:
+If pushing notes via Obsidian Git or command line:
 
-### Why GitHub Sign-in Fails with Password
-GitHub retired password authentication for Git operations. Standard account passwords will return `Authentication failed` or `Invalid username or password`.
-
-### Method 1: Personal Access Token (PAT) — Recommended
-1. Log in to [GitHub.com](https://github.com) and go to **Settings** → **Developer Settings** → **Personal access tokens** → **Tokens (classic)**.
-2. Click **Generate new token (classic)**.
-3. Set Note to `Obsidian Vault Sync` and select the **`repo`** scope (full control of private repositories).
-4. Copy your generated token (format starts with `ghp_...`).
-5. **In Obsidian Git Plugin:**
-   - Open Obsidian **Settings** → **Community Plugins** → **Obsidian Git**.
-   - Under Authentication, paste your Personal Access Token in the **Token** field.
-6. **In Terminal / Git:**
-   - When prompted for Password, paste your `ghp_...` token.
-   - Or configure remote URL with your token:
-     ```bash
-     git remote set-url origin https://<YOUR_TOKEN>@github.com/<USERNAME>/<REPO_NAME>.git
-     ```
-
-### Method 2: SSH Key Authentication
-1. Generate an SSH key:
+### Recommended: Personal Access Token (PAT)
+1. Go to **GitHub.com** → **Settings** → **Developer Settings** → **Personal access tokens** → **Tokens (classic)**.
+2. Click **Generate new token (classic)** with the **`repo`** scope enabled.
+3. In Obsidian Git settings, paste the token under **Authentication → Token**.
+4. For terminal Git, set the remote URL:
    ```bash
-   ssh-keygen -t ed25519 -C "your_email@example.com"
+   git remote set-url origin https://<YOUR_TOKEN>@github.com/<USERNAME>/<REPO_NAME>.git
    ```
-2. Copy your public key:
-   ```bash
-   cat ~/.ssh/id_ed25519.pub
-   ```
-3. Add it on GitHub: **Settings** → **SSH and GPG Keys** → **New SSH Key**.
-4. Set your repository remote to SSH:
-   ```bash
-   git remote set-url origin git@github.com:<USERNAME>/<REPO_NAME>.git
-   ```
+
+### Alternative: SSH Key Authentication
+```bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+git remote set-url origin git@github.com:<USERNAME>/<REPO_NAME>.git
+```
 
 ---
 
 ## 🌐 Deployment Guide
 
 ### GitHub Pages / Static Hosting
-1. Run `npm run build` to generate `index.html` and `site-lib/vault-index.json`.
-2. Ensure `.nojekyll` is present in the repository root (prevents GitHub Pages from ignoring folders with special characters).
-3. Deploy the root directory to GitHub Pages, Cloudflare Pages, or Vercel.
+1. Run `npm run build` to generate all static HTML viewers and JSON indexes.
+2. Ensure `.nojekyll` is in the repository root (prevents GitHub Pages from ignoring directories).
+3. Deploy the repository to GitHub Pages, Cloudflare Pages, or Vercel.
 
 ### Node.js / Container Deployment
-1. Set `"start": "node server.js"` in `package.json`.
-2. Expose port `3000`.
-3. The server serves both API endpoints (`/api/vault-discovery`) and static files with correct caching headers.
+1. Set `"start": "node server.js"` in `package.json` (already configured).
+2. Server listens on port `3000` (or `process.env.PORT`).
+3. Provides both static file hosting and dynamic `/api/vault-discovery` endpoints.
+

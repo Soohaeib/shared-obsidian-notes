@@ -2,7 +2,7 @@
  * ============================================================================
  * Obsidian Dedicated Media & SVG Interactive Lightbox (media-preview.js)
  * Handles full-screen previewing, smooth pan/zoom, gestures, SVG downloads,
- * and corner expand triggers for figures and diagrams.
+ * vector SVG rendering, and corner expand triggers for figures and diagrams.
  * ============================================================================
  */
 
@@ -405,7 +405,7 @@
       if (this._resetAutoHideTimer) this._resetAutoHideTimer();
     }
 
-    open(source, type = 'img', title = 'Preview') {
+    async open(source, type = 'img', title = 'Preview') {
       this.setup();
       const overlay = document.getElementById('media-preview-overlay');
       const viewport = document.getElementById('media-preview-viewport');
@@ -420,32 +420,61 @@
 
       titleElement.textContent = title;
       titleElement.setAttribute('title', title);
-      if (badgeElement) badgeElement.textContent = type === 'svg' ? 'DIAGRAM' : 'IMAGE';
+
+      const isSvg = type === 'svg' || (typeof source === 'string' && (source.trim().startsWith('<svg') || source.toLowerCase().includes('.svg')));
+      if (badgeElement) badgeElement.textContent = isSvg ? 'DIAGRAM (SVG)' : 'IMAGE';
 
       viewport.replaceChildren();
 
       let downloadUrl = source;
 
-      if (type === 'svg') {
-        this.mediaPreviewObjectUrl = URL.createObjectURL(new Blob([source], { type: 'image/svg+xml;charset=utf-8' }));
-        downloadUrl = this.mediaPreviewObjectUrl;
+      if (isSvg) {
+        let svgMarkup = source;
 
-        const wrapper = document.createElement('div');
-        wrapper.className = 'media-preview-svg';
-        wrapper.innerHTML = source;
-
-        const innerSvg = wrapper.querySelector('svg');
-        if (innerSvg) {
-          innerSvg.style.setProperty('overflow', 'visible', 'important');
-          innerSvg.style.setProperty('pointer-events', 'none', 'important');
-          if (innerSvg.viewBox && innerSvg.viewBox.baseVal && innerSvg.viewBox.baseVal.width > 0) {
-            innerSvg.setAttribute('width', innerSvg.viewBox.baseVal.width);
-            innerSvg.setAttribute('height', innerSvg.viewBox.baseVal.height);
+        // If source is a URL to an SVG file, fetch it so it can be rendered as pure vector
+        if (typeof source === 'string' && !source.trim().startsWith('<svg')) {
+          try {
+            const res = await fetch(source);
+            if (res.ok) {
+              svgMarkup = await res.text();
+            }
+          } catch (e) {
+            console.warn('Could not fetch SVG source for vector preview, fallback to img tag:', e);
           }
         }
 
-        viewport.appendChild(wrapper);
-        download.download = `${title}.svg`;
+        if (typeof svgMarkup === 'string' && svgMarkup.includes('<svg')) {
+          this.mediaPreviewObjectUrl = URL.createObjectURL(new Blob([svgMarkup], { type: 'image/svg+xml;charset=utf-8' }));
+          downloadUrl = this.mediaPreviewObjectUrl;
+
+          const wrapper = document.createElement('div');
+          wrapper.className = 'media-preview-svg';
+          wrapper.innerHTML = svgMarkup;
+
+          const innerSvg = wrapper.querySelector('svg');
+          if (innerSvg) {
+            innerSvg.style.setProperty('overflow', 'visible', 'important');
+            innerSvg.style.setProperty('pointer-events', 'none', 'important');
+            innerSvg.style.setProperty('max-width', 'none', 'important');
+            innerSvg.style.setProperty('max-height', 'none', 'important');
+            if (innerSvg.viewBox && innerSvg.viewBox.baseVal && innerSvg.viewBox.baseVal.width > 0) {
+              innerSvg.setAttribute('width', innerSvg.viewBox.baseVal.width);
+              innerSvg.setAttribute('height', innerSvg.viewBox.baseVal.height);
+            }
+          }
+
+          viewport.appendChild(wrapper);
+          download.download = title.endsWith('.svg') ? title : `${title}.svg`;
+        } else {
+          // Fallback to image tag
+          const image = document.createElement('img');
+          image.src = source;
+          image.alt = title;
+          image.draggable = false;
+          image.style.pointerEvents = 'none';
+          viewport.appendChild(image);
+          download.download = title.includes('.') ? title : `${title}.svg`;
+        }
       } else {
         const image = document.createElement('img');
         image.src = source;
@@ -472,18 +501,19 @@
       const article = rootElement.querySelector ? rootElement.querySelector('#note-article') || rootElement : rootElement;
       if (!article) return;
 
-      // 1. Process Embedded Images / Figures
+      // 1. Process Embedded Images / Figures (including SVGs)
       const figures = article.querySelectorAll('figure.obsidian-media-embed, .image-embed');
       figures.forEach((fig) => {
         if (fig.querySelector('.media-corner-action-btn')) return;
         const img = fig.querySelector('img');
         if (!img) return;
 
-        const alt = img.getAttribute('alt') || 'Embedded Image';
+        const alt = img.getAttribute('alt') || 'Embedded Media';
+        const isSvg = fig.dataset.mediaType === 'svg' || (img.src && img.src.toLowerCase().includes('.svg'));
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'media-corner-action-btn';
-        btn.title = 'Open interactive preview';
+        btn.title = `Open interactive ${isSvg ? 'vector SVG' : 'image'} preview`;
         btn.setAttribute('aria-label', `Open full interactive preview for ${alt}`);
         btn.innerHTML = `
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
@@ -497,7 +527,7 @@
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
           e.preventDefault();
-          this.open(img.src, 'img', alt);
+          this.open(img.src, isSvg ? 'svg' : 'img', alt);
         });
 
         fig.appendChild(btn);

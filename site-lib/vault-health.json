@@ -19,16 +19,6 @@
       "autoFixed": false
     },
     {
-      "file": "note-res/4th-semester/bcc-210/solutions/graphs/kuznets-curve.svg",
-      "line": 1,
-      "category": "Diagram Font",
-      "severity": "info",
-      "message": "Normalized SVG font declarations to the bundled Inter font.",
-      "snippet": "font-family",
-      "suggestion": "Use Inter, sans-serif for diagram labels.",
-      "autoFixed": false
-    },
-    {
       "file": "note-res/4th-semester/bcc-210/solutions/graphs/solow-model.svg",
       "line": 1,
       "category": "Diagram Font",
@@ -39,17 +29,7 @@
       "autoFixed": false
     },
     {
-      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-bond-price-time-path.svg",
-      "line": 1,
-      "category": "Diagram Font",
-      "severity": "info",
-      "message": "Normalized SVG font declarations to the bundled Inter font.",
-      "snippet": "font-family",
-      "suggestion": "Use Inter, sans-serif for diagram labels.",
-      "autoFixed": false
-    },
-    {
-      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-current-asset-financing-curves.svg",
+      "file": "note-res/4th-semester/bcc-210/solutions/graphs/kuznets-curve.svg",
       "line": 1,
       "category": "Diagram Font",
       "severity": "info",
@@ -79,7 +59,7 @@
       "autoFixed": false
     },
     {
-      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-mcc-ios-schedule.svg",
+      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-bond-price-time-path.svg",
       "line": 1,
       "category": "Diagram Font",
       "severity": "info",
@@ -90,6 +70,26 @@
     },
     {
       "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-economic-order-quantity-curves.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-current-asset-financing-curves.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-mcc-ios-schedule.svg",
       "line": 1,
       "category": "Diagram Font",
       "severity": "info",

@@ -431,46 +431,7 @@ mark {
   box-shadow: 0 0 8px var(--interactive-accent-subtle);
 }
 
-/* Callout Blocks with Semantic Styling */
-.callout {
-  border-radius: var(--radius-s, 6px);
-  border: 1px solid var(--background-modifier-border);
-  margin: 1.2em 0;
-  padding: 14px 18px;
-  background-color: var(--background-secondary);
-}
-
-.callout[data-callout="note"] {
-  border-left: 4px solid var(--color-purple);
-}
-.callout[data-callout="info"],
-.callout[data-callout="todo"] {
-  border-left: 4px solid var(--color-cyan);
-}
-.callout[data-callout="tip"],
-.callout[data-callout="success"],
-.callout[data-callout="done"] {
-  border-left: 4px solid var(--color-green);
-}
-.callout[data-callout="warning"],
-.callout[data-callout="attention"],
-.callout[data-callout="caution"] {
-  border-left: 4px solid var(--color-yellow);
-}
-.callout[data-callout="danger"],
-.callout[data-callout="error"],
-.callout[data-callout="fail"] {
-  border-left: 4px solid var(--color-red);
-}
-
-.callout-title {
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 6px;
-  color: var(--text-normal);
-}
+/* Callout styling is fully managed with semantic palettes in workspace.css & callout-renderer.js */
 
 /* Accounting & Markdown Tables */
 table {
