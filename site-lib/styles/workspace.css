@@ -1639,6 +1639,8 @@ body.theme-light .callout[data-callout="snippet"] {
   height: 100%;
   display: block;
   cursor: grab;
+  touch-action: none;
+  user-select: none;
 }
 
 .graph-view-container canvas#graph-canvas:active {

@@ -2059,28 +2059,27 @@
     }
 
     initGraphSimulation() {
-      const width = this.canvas.width || 400;
-      const height = this.canvas.height || 400;
+      const parent = this.canvas.parentElement;
+      const rect = parent ? parent.getBoundingClientRect() : { width: 400, height: 400 };
+      const width = rect.width || this.canvas.width || 400;
+      const height = rect.height || this.canvas.height || 400;
+      this.width = width;
+      this.height = height;
 
       let activeNodes = this.data.nodes || [];
       let activeLinks = this.data.links || [];
 
       if (this.mode === 'local' && this.focusNodeId) {
         const visited = new Set([this.focusNodeId]);
-        const queue = [this.focusNodeId];
-        const maxNodes = 35;
+        const maxNodes = this.isMini ? 18 : 30;
 
-        while (queue.length > 0 && visited.size < maxNodes) {
-          const currId = queue.shift();
-          for (const link of activeLinks) {
-            const s = typeof link.source === 'object' ? link.source.id : link.source;
-            const t = typeof link.target === 'object' ? link.target.id : link.target;
-            if (s === currId && !visited.has(t) && visited.size < maxNodes) {
-              visited.add(t); queue.push(t);
-            } else if (t === currId && !visited.has(s) && visited.size < maxNodes) {
-              visited.add(s); queue.push(s);
-            }
-          }
+        // 1-hop primary neighbors first
+        for (const link of activeLinks) {
+          if (visited.size >= maxNodes) break;
+          const s = typeof link.source === 'object' ? link.source.id : link.source;
+          const t = typeof link.target === 'object' ? link.target.id : link.target;
+          if (s === this.focusNodeId) visited.add(t);
+          else if (t === this.focusNodeId) visited.add(s);
         }
 
         activeNodes = this.data.nodes.filter(n => visited.has(n.id));
@@ -2091,13 +2090,18 @@
         });
       }
 
+      const count = activeNodes.length || 1;
+      const baseRadius = this.isMini ? 48 : 110;
+
       this.simNodes = activeNodes.map((n, i) => {
-        const angle = (i / (activeNodes.length || 1)) * 2 * Math.PI;
-        const radius = 30 + Math.random() * (this.isMini ? 60 : 160);
+        const isFocus = n.id === this.focusNodeId;
+        const angle = (i / count) * 2 * Math.PI;
+        const radius = isFocus ? 0 : (baseRadius * (0.8 + 0.4 * Math.sin(i * 1.7)));
         return {
           ...n,
-          x: n.x || (Math.cos(angle) * radius),
-          y: n.y || (Math.sin(angle) * radius),
+          radius: isFocus ? (this.isMini ? 7 : 9) : (this.isMini ? 4 : 5.5),
+          x: isFocus ? 0 : (Math.cos(angle) * radius),
+          y: isFocus ? 0 : (Math.sin(angle) * radius),
           vx: 0,
           vy: 0
         };
@@ -2112,7 +2116,7 @@
         })
         .filter(l => l.source && l.target);
 
-      this.transform = { x: width / 2, y: height / 2, k: this.isMini ? 0.9 : 1 };
+      this.transform = { x: width / 2, y: height / 2, k: this.isMini ? 0.95 : 1.0 };
       this.stepCount = 0;
       this.start();
     }
@@ -2147,6 +2151,76 @@
       window.addEventListener('mousemove', (e) => this.onPointerMove(e));
       window.addEventListener('mouseup', (e) => this.onPointerUp(e));
       this.canvas.addEventListener('wheel', (e) => this.onWheel(e), { passive: false });
+      this.canvas.addEventListener('dblclick', () => this.resetView());
+
+      // Touch interaction support (single touch pan, pinch zoom)
+      let lastTouchDist = 0;
+      this.canvas.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          const t = e.touches[0];
+          this.onPointerDown({ clientX: t.clientX, clientY: t.clientY });
+        } else if (e.touches.length === 2) {
+          this.isPanning = false;
+          this.draggedNode = null;
+          lastTouchDist = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+        }
+      }, { passive: true });
+
+      this.canvas.addEventListener('touchmove', (e) => {
+        if (e.touches.length === 1 && (this.isPanning || this.draggedNode)) {
+          const t = e.touches[0];
+          this.onPointerMove({ clientX: t.clientX, clientY: t.clientY });
+        } else if (e.touches.length === 2) {
+          const dist = Math.hypot(
+            e.touches[0].clientX - e.touches[1].clientX,
+            e.touches[0].clientY - e.touches[1].clientY
+          );
+          if (lastTouchDist > 0) {
+            const factor = Math.max(0.9, Math.min(1.1, dist / lastTouchDist));
+            const midX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+            const midY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+            this.applyZoom(factor, midX, midY);
+          }
+          lastTouchDist = dist;
+        }
+      }, { passive: true });
+
+      this.canvas.addEventListener('touchend', (e) => {
+        if (e.touches.length === 0) {
+          this.onPointerUp(e);
+          lastTouchDist = 0;
+        }
+      }, { passive: true });
+    }
+
+    resetView() {
+      this.transform = {
+        x: (this.width || 400) / 2,
+        y: (this.height || 400) / 2,
+        k: this.isMini ? 0.9 : 1.0
+      };
+      this.render();
+    }
+
+    applyZoom(zoomFactor, clientX, clientY) {
+      const prevK = this.transform.k;
+      const minK = this.isMini ? 0.35 : 0.15;
+      const maxK = this.isMini ? 3.0 : 5.0;
+      const newK = Math.max(minK, Math.min(maxK, prevK * zoomFactor));
+
+      if (Math.abs(newK - prevK) < 0.0001) return;
+
+      const rect = this.canvas.getBoundingClientRect();
+      const mouseX = (clientX !== undefined ? clientX : rect.left + rect.width / 2) - rect.left;
+      const mouseY = (clientY !== undefined ? clientY : rect.top + rect.height / 2) - rect.top;
+
+      this.transform.x = mouseX - (mouseX - this.transform.x) * (newK / prevK);
+      this.transform.y = mouseY - (mouseY - this.transform.y) * (newK / prevK);
+      this.transform.k = newK;
+      this.render();
     }
 
     toWorld(clientX, clientY) {
@@ -2217,17 +2291,18 @@
 
     onWheel(e) {
       e.preventDefault();
-      const zoomFactor = e.deltaY < 0 ? 1.12 : 0.88;
-      const newK = Math.max(0.2, Math.min(4, this.transform.k * zoomFactor));
 
-      const rect = this.canvas.getBoundingClientRect();
-      const mouseX = e.clientX - rect.left;
-      const mouseY = e.clientY - rect.top;
+      // Normalize delta across input devices (pixels, lines, pages)
+      let delta = e.deltaY;
+      if (e.deltaMode === 1) delta *= 16;
+      else if (e.deltaMode === 2) delta *= 100;
 
-      this.transform.x = mouseX - (mouseX - this.transform.x) * (newK / this.transform.k);
-      this.transform.y = mouseY - (mouseY - this.transform.y) * (newK / this.transform.k);
-      this.transform.k = newK;
-      this.render();
+      // Continuous exponential scaling with clamp to prevent runaway acceleration on precision trackpads
+      const sensitivity = this.isMini ? 0.0018 : 0.0015;
+      const rawFactor = Math.exp(-delta * sensitivity);
+      const zoomFactor = Math.max(0.85, Math.min(1.18, rawFactor));
+
+      this.applyZoom(zoomFactor, e.clientX, e.clientY);
     }
 
     start() {
@@ -2255,25 +2330,33 @@
     tickPhysics() {
       const nodes = this.simNodes;
       const links = this.simLinks;
-      const repulsion = this.isMini ? 600 : 1800;
-      const springLength = this.isMini ? 45 : 75;
-      const springK = 0.04;
-      const damping = 0.84;
-      const centerPull = 0.005;
+      if (!nodes || nodes.length === 0) return true;
+
+      const repulsion = this.isMini ? 320 : 900;
+      const springLength = this.isMini ? 40 : 70;
+      const springK = 0.05;
+      const damping = 0.82;
+      const centerPull = this.isMini ? 0.02 : 0.008;
 
       let totalVelocity = 0;
       this.stepCount = (this.stepCount || 0) + 1;
 
+      // 1. Repulsion between node pairs
       for (let i = 0; i < nodes.length; i++) {
         const a = nodes[i];
         for (let j = i + 1; j < nodes.length; j++) {
           const b = nodes[j];
-          const dx = b.x - a.x;
-          const dy = b.y - a.y;
-          const distSq = dx * dx + dy * dy || 1;
+          let dx = b.x - a.x;
+          let dy = b.y - a.y;
+          let distSq = dx * dx + dy * dy;
+          if (distSq < 1) {
+            dx = (Math.random() - 0.5) * 2;
+            dy = (Math.random() - 0.5) * 2;
+            distSq = 1;
+          }
           const dist = Math.sqrt(distSq);
-          if (dist < 320) {
-            const force = repulsion / distSq;
+          if (dist < (this.isMini ? 120 : 250)) {
+            const force = Math.min(6, repulsion / Math.max(distSq, 64));
             const fx = (dx / dist) * force;
             const fy = (dy / dist) * force;
             a.vx -= fx; a.vy -= fy;
@@ -2282,32 +2365,55 @@
         }
       }
 
+      // 2. Spring force along links (Hooke's Law: opposite directions!)
       for (const link of links) {
         const a = link.source;
         const b = link.target;
-        const dx = b.x - a.x;
-        const dy = b.y - a.y;
-        const dist = Math.sqrt(dx * dx + dy * dy) || 1;
-        const force = (dist - springLength) * springK;
+        if (!a || !b) continue;
+        let dx = b.x - a.x;
+        let dy = b.y - a.y;
+        const dist = Math.hypot(dx, dy) || 1;
+        const displacement = dist - springLength;
+        const force = Math.max(-5, Math.min(5, displacement * springK));
         const fx = (dx / dist) * force;
         const fy = (dy / dist) * force;
         a.vx += fx; a.vy += fy;
-        b.vx += fx; b.vy += fy;
+        b.vx -= fx; b.vy -= fy;
       }
 
+      // 3. Central Anchor & Integration
+      const maxBound = this.isMini ? 90 : 260;
       for (const node of nodes) {
         if (node === this.draggedNode) continue;
-        node.vx -= node.x * centerPull;
-        node.vy -= node.y * centerPull;
-        node.vx = Math.max(-12, Math.min(12, node.vx * damping));
-        node.vy = Math.max(-12, Math.min(12, node.vy * damping));
+
+        if (node.id === this.focusNodeId) {
+          // Anchor the focused note near origin
+          node.vx -= node.x * 0.18;
+          node.vy -= node.y * 0.18;
+        } else {
+          node.vx -= node.x * centerPull;
+          node.vy -= node.y * centerPull;
+        }
+
+        node.vx = Math.max(-6, Math.min(6, node.vx * damping));
+        node.vy = Math.max(-6, Math.min(6, node.vy * damping));
         node.x += node.vx;
         node.y += node.vy;
+
+        // Hard bound constraint so nodes never drift off canvas
+        const d = Math.hypot(node.x, node.y);
+        if (d > maxBound) {
+          node.x = (node.x / d) * maxBound;
+          node.y = (node.y / d) * maxBound;
+          node.vx = 0;
+          node.vy = 0;
+        }
+
         totalVelocity += Math.abs(node.vx) + Math.abs(node.vy);
       }
 
-      if (this.stepCount > 35 && (totalVelocity / (nodes.length || 1)) < 0.05) return true;
-      if (this.stepCount > 150) return true;
+      if (this.stepCount > 25 && (totalVelocity / nodes.length) < 0.04) return true;
+      if (this.stepCount > 90) return true;
       return false;
     }
 

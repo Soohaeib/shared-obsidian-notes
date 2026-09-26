@@ -208,11 +208,14 @@
         const mouseX = e.clientX - rect.left;
         const mouseY = e.clientY - rect.top;
 
-        const delta = -e.deltaY;
-        const zoomFactor = delta > 0 ? 1.15 : (1 / 1.15);
+        let delta = e.deltaY;
+        if (e.deltaMode === 1) delta *= 16;
+        else if (e.deltaMode === 2) delta *= 100;
+
+        const zoomFactor = Math.max(0.85, Math.min(1.18, Math.exp(-delta * 0.0018)));
         const newZoom = Math.min(6.0, Math.max(0.2, this.mediaZoom * zoomFactor));
 
-        if (newZoom !== this.mediaZoom) {
+        if (Math.abs(newZoom - this.mediaZoom) > 0.0001) {
           this.mediaPanX = mouseX - (mouseX - this.mediaPanX) * (newZoom / this.mediaZoom);
           this.mediaPanY = mouseY - (mouseY - this.mediaPanY) * (newZoom / this.mediaZoom);
           this.mediaZoom = newZoom;
