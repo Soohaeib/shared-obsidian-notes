@@ -390,6 +390,7 @@ class ObsidianVaultApp {
 
     if (this.sidebarGraph) this.sidebarGraph.updateTheme(this.themeMode);
     if (this.modalGraph) this.modalGraph.updateTheme(this.themeMode);
+    this.rethemeAllMermaidDiagrams();
 
     const mobileBackdrop = document.getElementById('mobile-sidebar-backdrop');
     if (mobileBackdrop) {
@@ -1972,17 +1973,33 @@ class ObsidianVaultApp {
           securityLevel: 'loose',
           theme: 'base',
           fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-          flowchart: { useMaxWidth: false, htmlLabels: true, curve: 'basis', padding: 16 },
-          mindmap: { useMaxWidth: false, padding: 16 },
+          flowchart: { useMaxWidth: false, htmlLabels: true, curve: 'basis', padding: 18 },
+          mindmap: { useMaxWidth: false, padding: 18 },
           themeVariables: isDark ? {
-            darkMode: true, background: 'transparent',
-            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontSize: '13px',
-            mainBkg: '#242933', nodeBkg: '#242933', nodeTextColor: '#f8fafc', textColor: '#f8fafc',
-            primaryColor: '#242933', primaryTextColor: '#f8fafc', primaryBorderColor: '#88c0d0', lineColor: '#81a1c1',
-            secondaryColor: '#2e3440', secondaryTextColor: '#f8fafc', secondaryBorderColor: '#b48ead',
-            tertiaryColor: '#222630', tertiaryTextColor: '#d8dee9', tertiaryBorderColor: '#a3be8c',
-            edgeLabelBackground: '#1e222a', clusterBkg: 'rgba(36, 41, 51, 0.6)', clusterBorder: 'rgba(136, 192, 208, 0.4)',
-            nodeBorder: '#88c0d0', git0: '#2e3440', gitBranchLabel0: '#ffffff',
+            darkMode: true,
+            background: 'transparent',
+            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            fontSize: '13px',
+            mainBkg: '#242933',
+            nodeBkg: '#242933',
+            nodeTextColor: '#f8fafc',
+            textColor: '#f8fafc',
+            primaryColor: '#242933',
+            primaryTextColor: '#f8fafc',
+            primaryBorderColor: '#88c0d0',
+            lineColor: '#81a1c1',
+            secondaryColor: '#2e3440',
+            secondaryTextColor: '#f8fafc',
+            secondaryBorderColor: '#b48ead',
+            tertiaryColor: '#222630',
+            tertiaryTextColor: '#d8dee9',
+            tertiaryBorderColor: '#a3be8c',
+            edgeLabelBackground: '#1e222a',
+            clusterBkg: 'rgba(36, 41, 51, 0.6)',
+            clusterBorder: 'rgba(136, 192, 208, 0.4)',
+            nodeBorder: '#88c0d0',
+            git0: '#2e3440',
+            gitBranchLabel0: '#ffffff',
             cScale0: '#242933', cScaleLabel0: '#f8fafc', cScaleInv0: '#88c0d0',
             cScale1: '#242933', cScaleLabel1: '#f8fafc', cScaleInv1: '#b48ead',
             cScale2: '#242933', cScaleLabel2: '#f8fafc', cScaleInv2: '#ebcb8b',
@@ -1992,14 +2009,30 @@ class ObsidianVaultApp {
             cScale6: '#242933', cScaleLabel6: '#f8fafc', cScaleInv6: '#bf616a',
             cScale7: '#242933', cScaleLabel7: '#f8fafc', cScaleInv7: '#8fbcbb'
           } : {
-            darkMode: false, background: 'transparent',
-            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", fontSize: '13px',
-            mainBkg: '#ffffff', nodeBkg: '#ffffff', nodeTextColor: '#0f172a', textColor: '#0f172a',
-            primaryColor: '#ffffff', primaryTextColor: '#0f172a', primaryBorderColor: '#5e81ac', lineColor: '#64748b',
-            secondaryColor: '#f1f5f9', secondaryTextColor: '#0f172a', secondaryBorderColor: '#b48ead',
-            tertiaryColor: '#f8fafc', tertiaryTextColor: '#475569', tertiaryBorderColor: '#a3be8c',
-            edgeLabelBackground: '#ffffff', clusterBkg: 'rgba(241, 245, 249, 0.8)', clusterBorder: 'rgba(100, 116, 139, 0.3)',
-            nodeBorder: '#5e81ac', git0: '#ffffff', gitBranchLabel0: '#0f172a',
+            darkMode: false,
+            background: 'transparent',
+            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            fontSize: '13px',
+            mainBkg: '#ffffff',
+            nodeBkg: '#ffffff',
+            nodeTextColor: '#0f172a',
+            textColor: '#0f172a',
+            primaryColor: '#ffffff',
+            primaryTextColor: '#0f172a',
+            primaryBorderColor: '#5e81ac',
+            lineColor: '#64748b',
+            secondaryColor: '#f1f5f9',
+            secondaryTextColor: '#0f172a',
+            secondaryBorderColor: '#b48ead',
+            tertiaryColor: '#f8fafc',
+            tertiaryTextColor: '#475569',
+            tertiaryBorderColor: '#a3be8c',
+            edgeLabelBackground: '#ffffff',
+            clusterBkg: 'rgba(241, 245, 249, 0.8)',
+            clusterBorder: 'rgba(100, 116, 139, 0.3)',
+            nodeBorder: '#5e81ac',
+            git0: '#ffffff',
+            gitBranchLabel0: '#0f172a',
             cScale0: '#ffffff', cScaleLabel0: '#0f172a', cScaleInv0: '#0284c7',
             cScale1: '#ffffff', cScaleLabel1: '#0f172a', cScaleInv1: '#9333ea',
             cScale2: '#ffffff', cScaleLabel2: '#0f172a', cScaleInv2: '#d97706',
@@ -2020,6 +2053,11 @@ class ObsidianVaultApp {
 
         const container = document.createElement('div');
         container.className = 'mermaid-diagram-container mermaid';
+        container.dataset.mermaidCode = codeText;
+        container.dataset.mermaidIsMindmap = isMindmap ? 'true' : 'false';
+        container.style.setProperty('overflow', 'visible', 'important');
+        container.style.setProperty('max-width', '100%', 'important');
+        container.style.setProperty('height', 'auto', 'important');
         const id = `mermaid-diag-${Date.now()}-${index}`;
 
         try {
@@ -2028,123 +2066,19 @@ class ObsidianVaultApp {
             const svgEl = container.querySelector('svg');
             if (svgEl) {
               const isDark = this.theme !== 'light';
-              const isMindmapDiagram = isMindmap || !!svgEl.querySelector('.mindmap-node') || codeText.startsWith('mindmap');
 
-              svgEl.style.setProperty('overflow', 'visible', 'important');
-              svgEl.querySelectorAll('foreignObject').forEach(fo => fo.style.setProperty('overflow', 'visible', 'important'));
-
-              if (isMindmapDiagram) {
-                const branchColorsDark = [
-                  { fill: '#242933', stroke: '#88c0d0', text: '#f8fafc' }, { fill: '#242933', stroke: '#b48ead', text: '#f8fafc' },
-                  { fill: '#242933', stroke: '#ebcb8b', text: '#f8fafc' }, { fill: '#242933', stroke: '#a3be8c', text: '#f8fafc' },
-                  { fill: '#242933', stroke: '#81a1c1', text: '#f8fafc' }, { fill: '#242933', stroke: '#d08770', text: '#f8fafc' },
-                  { fill: '#242933', stroke: '#bf616a', text: '#f8fafc' }, { fill: '#242933', stroke: '#8fbcbb', text: '#f8fafc' },
-                ];
-                const branchColorsLight = [
-                  { fill: '#ffffff', stroke: '#0284c7', text: '#0f172a' }, { fill: '#ffffff', stroke: '#9333ea', text: '#0f172a' },
-                  { fill: '#ffffff', stroke: '#d97706', text: '#0f172a' }, { fill: '#ffffff', stroke: '#16a34a', text: '#0f172a' },
-                  { fill: '#ffffff', stroke: '#2563eb', text: '#0f172a' }, { fill: '#ffffff', stroke: '#ea580c', text: '#0f172a' },
-                  { fill: '#ffffff', stroke: '#dc2626', text: '#0f172a' }, { fill: '#ffffff', stroke: '#0d9488', text: '#0f172a' },
-                ];
-                const palette = isDark ? branchColorsDark : branchColorsLight;
-
-                svgEl.querySelectorAll('.section-root rect, .section-root circle, .section-root path').forEach(el => {
-                  el.style.setProperty('fill', isDark ? '#2e3440' : '#ffffff', 'important');
-                  el.style.setProperty('stroke', isDark ? '#b48ead' : '#7c3aed', 'important');
-                  el.style.setProperty('stroke-width', '2.5px', 'important');
-                });
-                svgEl.querySelectorAll('.section-root text').forEach(el => {
-                  el.style.setProperty('fill', isDark ? '#ffffff' : '#1e1b4b', 'important');
-                  el.style.setProperty('font-weight', '700', 'important');
-                });
-
-                palette.forEach((b, idx) => {
-                  svgEl.querySelectorAll(`.section-${idx} rect, .section-${idx} path, .section-${idx} circle`).forEach(el => {
-                    el.style.setProperty('fill', b.fill, 'important');
-                    el.style.setProperty('fill-opacity', isDark ? '0.95' : '0.98', 'important');
-                    el.style.setProperty('stroke', b.stroke, 'important');
-                    el.style.setProperty('stroke-width', '1.5px', 'important');
-                  });
-                  svgEl.querySelectorAll(`.section-${idx} text, .section-${idx} .nodeLabel`).forEach(el => {
-                    el.style.setProperty('fill', b.text, 'important');
-                    el.style.setProperty('color', b.text, 'important');
-                  });
-                  svgEl.querySelectorAll(`.section-edge-${idx}, path.section-${idx}`).forEach(el => {
-                    el.style.setProperty('stroke', b.stroke, 'important');
-                    el.style.setProperty('stroke-width', '2px', 'important');
-                  });
-                });
-
-                svgEl.querySelectorAll('.mindmap-node rect, .mindmap-node path, .mindmap-node circle').forEach(el => {
-                  if (!el.style.getPropertyValue('fill')) {
-                    el.style.setProperty('fill', isDark ? '#242933' : '#ffffff', 'important');
-                    el.style.setProperty('stroke', isDark ? '#88c0d0' : '#5e81ac', 'important');
-                    el.style.setProperty('stroke-width', '1.5px', 'important');
-                  }
-                });
-                svgEl.querySelectorAll('.mindmap-node text, .mindmap-node .nodeLabel').forEach(el => {
-                  el.style.setProperty('fill', isDark ? '#f8fafc' : '#0f172a', 'important');
-                  el.style.setProperty('color', isDark ? '#f8fafc' : '#0f172a', 'important');
-                });
-              } else {
-                svgEl.querySelectorAll('.node rect, rect.basic, rect.label-container').forEach(r => {
-                  if (!r.getAttribute('rx')) { r.setAttribute('rx', '8'); r.setAttribute('ry', '8'); }
-                });
-
-                if (isDark) {
-                  svgEl.querySelectorAll('.node rect, .node circle, .node ellipse, .node polygon, .node path, rect.basic, rect.label-container').forEach(el => {
-                    el.style.setProperty('fill', '#242933', 'important');
-                    el.style.setProperty('fill-opacity', '0.92', 'important');
-                    el.style.setProperty('stroke', '#88c0d0', 'important');
-                    el.style.setProperty('stroke-width', '1.5px', 'important');
-                  });
-                  svgEl.querySelectorAll('.node text, .nodeLabel, .node foreignObject div, .node foreignObject span').forEach(el => {
-                    el.style.setProperty('fill', '#f8fafc', 'important');
-                    el.style.setProperty('color', '#f8fafc', 'important');
-                    el.style.setProperty('line-height', '1.45', 'important');
-                    el.style.setProperty('overflow', 'visible', 'important');
-                  });
-                  svgEl.querySelectorAll('.edgeLabel, .edgeLabel div, .edgeLabel span, .edgeLabel rect').forEach(el => {
-                    el.style.setProperty('background-color', '#1e222a', 'important');
-                    el.style.setProperty('fill', '#1e222a', 'important');
-                    el.style.setProperty('color', '#eceff4', 'important');
-                  });
-                  svgEl.querySelectorAll('.edgePath path, .edgePath .path, .flowchart-link').forEach(el => {
-                    el.style.setProperty('stroke', '#81a1c1', 'important');
-                    el.style.setProperty('stroke-width', '1.5px', 'important');
-                  });
-                  svgEl.querySelectorAll('marker path, .arrowheadPath').forEach(el => {
-                    el.style.setProperty('fill', '#88c0d0', 'important');
-                    el.style.setProperty('stroke', '#88c0d0', 'important');
-                  });
-                } else {
-                  svgEl.querySelectorAll('.node rect, .node circle, .node ellipse, .node polygon, .node path, rect.basic, rect.label-container').forEach(el => {
-                    el.style.setProperty('fill', '#ffffff', 'important');
-                    el.style.setProperty('fill-opacity', '0.95', 'important');
-                    el.style.setProperty('stroke', '#5e81ac', 'important');
-                    el.style.setProperty('stroke-width', '1.5px', 'important');
-                  });
-                  svgEl.querySelectorAll('.node text, .nodeLabel, .node foreignObject div, .node foreignObject span').forEach(el => {
-                    el.style.setProperty('fill', '#0f172a', 'important');
-                    el.style.setProperty('color', '#0f172a', 'important');
-                    el.style.setProperty('line-height', '1.45', 'important');
-                    el.style.setProperty('overflow', 'visible', 'important');
-                  });
-                  svgEl.querySelectorAll('.edgeLabel, .edgeLabel div, .edgeLabel span, .edgeLabel rect').forEach(el => {
-                    el.style.setProperty('background-color', '#f1f5f9', 'important');
-                    el.style.setProperty('fill', '#f1f5f9', 'important');
-                    el.style.setProperty('color', '#0f172a', 'important');
-                  });
-                  svgEl.querySelectorAll('.edgePath path, .edgePath .path, .flowchart-link').forEach(el => {
-                    el.style.setProperty('stroke', '#64748b', 'important');
-                    el.style.setProperty('stroke-width', '1.5px', 'important');
-                  });
-                  svgEl.querySelectorAll('marker path, .arrowheadPath').forEach(el => {
-                    el.style.setProperty('fill', '#5e81ac', 'important');
-                    el.style.setProperty('stroke', '#5e81ac', 'important');
-                  });
+              // Expand SVG viewBox slightly so edge nodes and arrowheads are not clipped
+              const vb = svgEl.getAttribute('viewBox');
+              if (vb) {
+                const parts = vb.trim().split(/[\s,]+/).map(Number);
+                if (parts.length === 4 && parts.every(n => !isNaN(n))) {
+                  const [minX, minY, width, height] = parts;
+                  const pad = 16;
+                  svgEl.setAttribute('viewBox', `${minX - pad} ${minY - pad} ${width + pad * 2} ${height + pad * 2}`);
                 }
               }
+
+              this.styleMermaidSvg(svgEl, isDark);
             }
 
             if (parent && parent.parentNode) parent.replaceWith(container);
@@ -2164,7 +2098,7 @@ class ObsidianVaultApp {
 
                   const contentH = Math.ceil(labelDiv.scrollHeight || labelDiv.getBoundingClientRect().height);
                   const currentRectH = parseFloat(rect.getAttribute('height') || '0');
-                  const neededH = contentH + 20; 
+                  const neededH = contentH + 24; 
 
                   if (neededH > currentRectH) {
                     const diffH = neededH - currentRectH;
@@ -2187,6 +2121,150 @@ class ObsidianVaultApp {
       });
     }
     this.attachMediaCornerButtons();
+  }
+
+  styleMermaidSvg(svgEl, isDark) {
+    if (!svgEl) return;
+    const isMindmapDiagram = !!svgEl.querySelector('.mindmap-node') || svgEl.classList.contains('mindmap') || (svgEl.parentElement && svgEl.parentElement.dataset.mermaidIsMindmap === 'true');
+
+    svgEl.style.setProperty('overflow', 'visible', 'important');
+    svgEl.style.setProperty('max-width', '100%', 'important');
+    svgEl.style.setProperty('height', 'auto', 'important');
+    if (svgEl.parentElement) {
+      svgEl.parentElement.style.setProperty('overflow', 'visible', 'important');
+      svgEl.parentElement.style.setProperty('max-width', '100%', 'important');
+      svgEl.parentElement.style.setProperty('height', 'auto', 'important');
+    }
+
+    svgEl.querySelectorAll('foreignObject').forEach(fo => {
+      fo.style.setProperty('overflow', 'visible', 'important');
+      const inner = fo.querySelector('div, span, .nodeLabel');
+      if (inner) {
+        inner.style.setProperty('padding', '6px 12px', 'important');
+        inner.style.setProperty('overflow', 'visible', 'important');
+        inner.style.setProperty('box-sizing', 'border-box', 'important');
+      }
+    });
+
+    if (isMindmapDiagram) {
+      const branchColorsDark = [
+        { fill: '#242933', stroke: '#88c0d0', text: '#f8fafc' }, { fill: '#242933', stroke: '#b48ead', text: '#f8fafc' },
+        { fill: '#242933', stroke: '#ebcb8b', text: '#f8fafc' }, { fill: '#242933', stroke: '#a3be8c', text: '#f8fafc' },
+        { fill: '#242933', stroke: '#81a1c1', text: '#f8fafc' }, { fill: '#242933', stroke: '#d08770', text: '#f8fafc' },
+        { fill: '#242933', stroke: '#bf616a', text: '#f8fafc' }, { fill: '#242933', stroke: '#8fbcbb', text: '#f8fafc' },
+      ];
+      const branchColorsLight = [
+        { fill: '#ffffff', stroke: '#0284c7', text: '#0f172a' }, { fill: '#ffffff', stroke: '#9333ea', text: '#0f172a' },
+        { fill: '#ffffff', stroke: '#d97706', text: '#0f172a' }, { fill: '#ffffff', stroke: '#16a34a', text: '#0f172a' },
+        { fill: '#ffffff', stroke: '#2563eb', text: '#0f172a' }, { fill: '#ffffff', stroke: '#ea580c', text: '#0f172a' },
+        { fill: '#ffffff', stroke: '#dc2626', text: '#0f172a' }, { fill: '#ffffff', stroke: '#0d9488', text: '#0f172a' },
+      ];
+      const palette = isDark ? branchColorsDark : branchColorsLight;
+
+      svgEl.querySelectorAll('.section-root rect, .section-root circle, .section-root path').forEach(el => {
+        el.style.setProperty('fill', isDark ? '#2e3440' : '#ffffff', 'important');
+        el.style.setProperty('stroke', isDark ? '#b48ead' : '#7c3aed', 'important');
+        el.style.setProperty('stroke-width', '2.5px', 'important');
+      });
+      svgEl.querySelectorAll('.section-root text').forEach(el => {
+        el.style.setProperty('fill', isDark ? '#ffffff' : '#1e1b4b', 'important');
+        el.style.setProperty('font-weight', '700', 'important');
+      });
+
+      palette.forEach((b, idx) => {
+        svgEl.querySelectorAll(`.section-${idx} rect, .section-${idx} path, .section-${idx} circle`).forEach(el => {
+          el.style.setProperty('fill', b.fill, 'important');
+          el.style.setProperty('fill-opacity', isDark ? '0.95' : '0.98', 'important');
+          el.style.setProperty('stroke', b.stroke, 'important');
+          el.style.setProperty('stroke-width', '1.5px', 'important');
+        });
+        svgEl.querySelectorAll(`.section-${idx} text, .section-${idx} .nodeLabel`).forEach(el => {
+          el.style.setProperty('fill', b.text, 'important');
+          el.style.setProperty('color', b.text, 'important');
+        });
+        svgEl.querySelectorAll(`.section-edge-${idx}, path.section-${idx}`).forEach(el => {
+          el.style.setProperty('stroke', b.stroke, 'important');
+          el.style.setProperty('stroke-width', '2px', 'important');
+        });
+      });
+
+      svgEl.querySelectorAll('.mindmap-node rect, .mindmap-node path, .mindmap-node circle').forEach(el => {
+        if (!el.style.getPropertyValue('fill')) {
+          el.style.setProperty('fill', isDark ? '#242933' : '#ffffff', 'important');
+          el.style.setProperty('stroke', isDark ? '#88c0d0' : '#5e81ac', 'important');
+          el.style.setProperty('stroke-width', '1.5px', 'important');
+        }
+      });
+      svgEl.querySelectorAll('.mindmap-node text, .mindmap-node .nodeLabel').forEach(el => {
+        el.style.setProperty('fill', isDark ? '#f8fafc' : '#0f172a', 'important');
+        el.style.setProperty('color', isDark ? '#f8fafc' : '#0f172a', 'important');
+      });
+    } else {
+      svgEl.querySelectorAll('.node rect, rect.basic, rect.label-container').forEach(r => {
+        if (!r.getAttribute('rx')) { r.setAttribute('rx', '8'); r.setAttribute('ry', '8'); }
+      });
+
+      if (isDark) {
+        svgEl.querySelectorAll('.node rect, .node circle, .node ellipse, .node polygon, .node path, rect.basic, rect.label-container').forEach(el => {
+          el.style.setProperty('fill', '#242933', 'important');
+          el.style.setProperty('fill-opacity', '0.92', 'important');
+          el.style.setProperty('stroke', '#88c0d0', 'important');
+          el.style.setProperty('stroke-width', '1.5px', 'important');
+        });
+        svgEl.querySelectorAll('.node text, .nodeLabel, .node foreignObject div, .node foreignObject span').forEach(el => {
+          el.style.setProperty('fill', '#f8fafc', 'important');
+          el.style.setProperty('color', '#f8fafc', 'important');
+          el.style.setProperty('line-height', '1.45', 'important');
+          el.style.setProperty('overflow', 'visible', 'important');
+        });
+        svgEl.querySelectorAll('.edgeLabel, .edgeLabel div, .edgeLabel span, .edgeLabel rect').forEach(el => {
+          el.style.setProperty('background-color', '#1e222a', 'important');
+          el.style.setProperty('fill', '#1e222a', 'important');
+          el.style.setProperty('color', '#eceff4', 'important');
+        });
+        svgEl.querySelectorAll('.edgePath path, .edgePath .path, .flowchart-link').forEach(el => {
+          el.style.setProperty('stroke', '#81a1c1', 'important');
+          el.style.setProperty('stroke-width', '1.5px', 'important');
+        });
+        svgEl.querySelectorAll('marker path, .arrowheadPath').forEach(el => {
+          el.style.setProperty('fill', '#88c0d0', 'important');
+          el.style.setProperty('stroke', '#88c0d0', 'important');
+        });
+      } else {
+        svgEl.querySelectorAll('.node rect, .node circle, .node ellipse, .node polygon, .node path, rect.basic, rect.label-container').forEach(el => {
+          el.style.setProperty('fill', '#ffffff', 'important');
+          el.style.setProperty('fill-opacity', '0.95', 'important');
+          el.style.setProperty('stroke', '#5e81ac', 'important');
+          el.style.setProperty('stroke-width', '1.5px', 'important');
+        });
+        svgEl.querySelectorAll('.node text, .nodeLabel, .node foreignObject div, .node foreignObject span').forEach(el => {
+          el.style.setProperty('fill', '#0f172a', 'important');
+          el.style.setProperty('color', '#0f172a', 'important');
+          el.style.setProperty('line-height', '1.45', 'important');
+          el.style.setProperty('overflow', 'visible', 'important');
+        });
+        svgEl.querySelectorAll('.edgeLabel, .edgeLabel div, .edgeLabel span, .edgeLabel rect').forEach(el => {
+          el.style.setProperty('background-color', '#f1f5f9', 'important');
+          el.style.setProperty('fill', '#f1f5f9', 'important');
+          el.style.setProperty('color', '#0f172a', 'important');
+        });
+        svgEl.querySelectorAll('.edgePath path, .edgePath .path, .flowchart-link').forEach(el => {
+          el.style.setProperty('stroke', '#64748b', 'important');
+          el.style.setProperty('stroke-width', '1.5px', 'important');
+        });
+        svgEl.querySelectorAll('marker path, .arrowheadPath').forEach(el => {
+          el.style.setProperty('fill', '#5e81ac', 'important');
+          el.style.setProperty('stroke', '#5e81ac', 'important');
+        });
+      }
+    }
+  }
+
+  rethemeAllMermaidDiagrams() {
+    const isDark = this.themeMode !== 'light';
+    document.querySelectorAll('.mermaid-diagram-container svg, svg[id^="mermaid-diag"]').forEach(svg => {
+      this.styleMermaidSvg(svg, isDark);
+    });
   }
 
   setupTocGlobalControls() {
@@ -2834,71 +2912,94 @@ class ObsidianVaultApp {
     const overlay = document.createElement('div');
     overlay.id = 'media-preview-overlay';
     overlay.className = 'media-preview-overlay';
+    overlay.setAttribute('role', 'dialog');
+    overlay.setAttribute('aria-modal', 'true');
+    overlay.setAttribute('aria-label', 'Media Preview');
+
     overlay.innerHTML = `
-      <div class="media-preview-dialog" id="media-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="media-preview-title">
-        <div class="media-preview-toolbar">
-          <div class="media-preview-title-group">
-            <span id="media-preview-title" class="media-preview-title">Preview</span>
-            <span id="media-preview-badge" class="media-preview-badge">DIAGRAM</span>
-          </div>
-          <div class="media-preview-actions">
-            <button class="media-icon-btn" id="media-btn-zoom-in" type="button" aria-label="Zoom in" title="Zoom in (+)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                <line x1="11" y1="8" x2="11" y2="14"></line>
-                <line x1="8" y1="11" x2="14" y2="11"></line>
-              </svg>
-            </button>
-            <button class="media-icon-btn" id="media-btn-zoom-out" type="button" aria-label="Zoom out" title="Zoom out (-)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                <line x1="8" y1="11" x2="14" y2="11"></line>
-              </svg>
-            </button>
-            <button class="media-icon-btn" id="media-btn-zoom-reset" type="button" aria-label="Reset zoom" title="Reset zoom (100%)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
-                <path d="M21 3v5h-5"></path>
-                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
-                <path d="M3 21v-5h5"></path>
-              </svg>
-            </button>
-            <a class="media-icon-btn" id="media-btn-download" download aria-label="Download image or diagram" title="Download file">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                <polyline points="7 10 12 15 17 10"></polyline>
-                <line x1="12" y1="15" x2="12" y2="3"></line>
-              </svg>
-            </a>
-            <button class="media-icon-btn btn-close-danger" id="media-btn-close" type="button" aria-label="Close preview" title="Close preview (Esc)">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <line x1="18" y1="6" x2="6" y2="18"></line>
-                <line x1="6" y1="6" x2="18" y2="18"></line>
-              </svg>
-            </button>
-          </div>
+      <div class="media-preview-stage" id="media-preview-stage" aria-label="Interactive preview canvas">
+        <div class="media-preview-viewport" id="media-preview-viewport"></div>
+      </div>
+
+      <div class="media-preview-topbar" id="media-preview-topbar">
+        <div class="media-preview-meta">
+          <span id="media-preview-title" class="media-preview-title">Preview</span>
+          <span id="media-preview-badge" class="media-preview-badge">DIAGRAM</span>
         </div>
-        <div class="media-preview-content">
-          <div class="media-preview-viewport" id="media-preview-viewport"></div>
-        </div>
+        <button class="media-top-close-btn" id="media-btn-close" type="button" aria-label="Close preview" title="Close (Esc)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="media-floating-toolbar" id="media-preview-toolbar">
+        <button class="media-pill-btn" id="media-btn-zoom-out" type="button" aria-label="Zoom out" title="Zoom out (-)">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </button>
+
+        <span class="media-zoom-level" id="media-zoom-level">100%</span>
+
+        <button class="media-pill-btn" id="media-btn-zoom-in" type="button" aria-label="Zoom in" title="Zoom in (+)">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="11" y1="8" x2="11" y2="14"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </button>
+
+        <div class="media-pill-divider"></div>
+
+        <button class="media-pill-btn" id="media-btn-zoom-reset" type="button" aria-label="Reset zoom and center" title="Reset to 100% & Center (Double-click)">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+            <path d="M21 3v5h-5"></path>
+            <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+            <path d="M3 21v-5h5"></path>
+          </svg>
+        </button>
+
+        <div class="media-pill-divider"></div>
+
+        <a class="media-pill-btn" id="media-btn-download" download aria-label="Download media" title="Download">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </a>
       </div>
     `;
+
     document.body.appendChild(overlay);
 
-    this.mediaZoom = 1;
+    this.mediaZoom = 1.0;
+    this.mediaPanX = 0;
+    this.mediaPanY = 0;
+    this.mediaAutoHideTimer = null;
+    this.isMediaMouseOverControls = false;
+
+    const stage = document.getElementById('media-preview-stage');
+    const viewport = document.getElementById('media-preview-viewport');
+    const toolbar = document.getElementById('media-preview-toolbar');
+    const topbar = document.getElementById('media-preview-topbar');
 
     const close = () => {
       overlay.classList.remove('is-open');
-      const dialog = document.getElementById('media-preview-dialog');
-      if (dialog) dialog.classList.remove('preview-theme-light');
-      const viewport = document.getElementById('media-preview-viewport');
+      clearTimeout(this.mediaAutoHideTimer);
       if (viewport) {
         viewport.replaceChildren();
         viewport.style.transform = 'none';
       }
-      this.mediaZoom = 1;
+      this.mediaZoom = 1.0;
+      this.mediaPanX = 0;
+      this.mediaPanY = 0;
       if (this.mediaPreviewObjectUrl) {
         URL.revokeObjectURL(this.mediaPreviewObjectUrl);
         this.mediaPreviewObjectUrl = null;
@@ -2906,23 +3007,292 @@ class ObsidianVaultApp {
     };
 
     document.getElementById('media-btn-close')?.addEventListener('click', close);
-    overlay.addEventListener('click', event => { if (event.target === overlay) close(); });
-    document.addEventListener('keydown', event => { if (event.key === 'Escape' && overlay.classList.contains('is-open')) close(); });
-
-    const updateZoom = () => {
-      const viewport = document.getElementById('media-preview-viewport');
-      if (viewport) {
-          viewport.style.transformOrigin = 'top left';
-          viewport.style.transform = `scale(${this.mediaZoom})`;
-          viewport.parentElement.style.overflow = 'auto';
-          viewport.parentElement.style.width = '100%';
-          viewport.parentElement.style.height = '100%';
+    document.addEventListener('keydown', (e) => {
+      if (overlay.classList.contains('is-open')) {
+        if (e.key === 'Escape') {
+          e.preventDefault();
+          close();
+        } else if (e.key === '+' || e.key === '=') {
+          e.preventDefault();
+          this.zoomMediaAroundCenter(1.25);
+        } else if (e.key === '-' || e.key === '_') {
+          e.preventDefault();
+          this.zoomMediaAroundCenter(1 / 1.25);
+        } else if (e.key === '0') {
+          e.preventDefault();
+          this.resetMediaCanvas();
+        }
       }
+    });
+
+    // Auto-hide controls after 2.5s of inactivity
+    const resetAutoHideTimer = () => {
+      if (toolbar) toolbar.classList.remove('is-hidden');
+      if (topbar) topbar.classList.remove('is-hidden');
+
+      clearTimeout(this.mediaAutoHideTimer);
+      this.mediaAutoHideTimer = setTimeout(() => {
+        if (!this.isMediaMouseOverControls && overlay.classList.contains('is-open')) {
+          if (toolbar) toolbar.classList.add('is-hidden');
+          if (topbar) topbar.classList.add('is-hidden');
+        }
+      }, 2500);
     };
 
-    document.getElementById('media-btn-zoom-in')?.addEventListener('click', () => { this.mediaZoom = Math.min(3.5, this.mediaZoom + 0.25); updateZoom(); });
-    document.getElementById('media-btn-zoom-out')?.addEventListener('click', () => { this.mediaZoom = Math.max(0.4, this.mediaZoom - 0.25); updateZoom(); });
-    document.getElementById('media-btn-zoom-reset')?.addEventListener('click', () => { this.mediaZoom = 1; updateZoom(); });
+    this.resetMediaAutoHide = resetAutoHideTimer;
+
+    [toolbar, topbar].forEach(el => {
+      if (!el) return;
+      el.addEventListener('mouseenter', () => {
+        this.isMediaMouseOverControls = true;
+        clearTimeout(this.mediaAutoHideTimer);
+        el.classList.remove('is-hidden');
+      });
+      el.addEventListener('mouseleave', () => {
+        this.isMediaMouseOverControls = false;
+        resetAutoHideTimer();
+      });
+    });
+
+    // Interactive Drag-to-Pan & Gestures
+    let isDragging = false;
+    let startX = 0, startY = 0;
+    let startPanX = 0, startPanY = 0;
+    let lastTapTime = 0;
+    let lastTouchDist = 0;
+    let lastTouchMidX = 0, lastTouchMidY = 0;
+
+    // Desktop Mouse Drag
+    stage.addEventListener('mousedown', (e) => {
+      if (e.button !== 0) return;
+      isDragging = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      startPanX = this.mediaPanX;
+      startPanY = this.mediaPanY;
+      stage.classList.add('is-panning');
+      resetAutoHideTimer();
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!overlay.classList.contains('is-open')) return;
+      resetAutoHideTimer();
+      if (!isDragging) return;
+      this.mediaPanX = startPanX + (e.clientX - startX);
+      this.mediaPanY = startPanY + (e.clientY - startY);
+      this.applyMediaTransform();
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        stage.classList.remove('is-panning');
+      }
+    });
+
+    // Desktop Scroll-to-Zoom (anchored to cursor position, clamped between 0.2x and 6.0x)
+    stage.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      resetAutoHideTimer();
+      const rect = stage.getBoundingClientRect();
+      const mouseX = e.clientX - rect.left;
+      const mouseY = e.clientY - rect.top;
+
+      const delta = -e.deltaY;
+      const zoomFactor = delta > 0 ? 1.15 : (1 / 1.15);
+      const newZoom = Math.min(6.0, Math.max(0.2, this.mediaZoom * zoomFactor));
+
+      if (newZoom !== this.mediaZoom) {
+        this.mediaPanX = mouseX - (mouseX - this.mediaPanX) * (newZoom / this.mediaZoom);
+        this.mediaPanY = mouseY - (mouseY - this.mediaPanY) * (newZoom / this.mediaZoom);
+        this.mediaZoom = newZoom;
+        this.applyMediaTransform();
+        this.updateMediaZoomDisplay();
+      }
+    }, { passive: false });
+
+    // Touch Support (Single-Finger Pan, Multi-Touch Pinch-to-Zoom, Double-Tap to Reset)
+    stage.addEventListener('touchstart', (e) => {
+      resetAutoHideTimer();
+      if (e.touches.length === 1) {
+        const now = Date.now();
+        if (now - lastTapTime < 300) {
+          e.preventDefault();
+          this.resetMediaCanvas();
+          lastTapTime = 0;
+          return;
+        }
+        lastTapTime = now;
+
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        startPanX = this.mediaPanX;
+        startPanY = this.mediaPanY;
+        stage.classList.add('is-panning');
+      } else if (e.touches.length === 2) {
+        isDragging = false;
+        stage.classList.remove('is-panning');
+        const t1 = e.touches[0];
+        const t2 = e.touches[1];
+        lastTouchDist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+        const rect = stage.getBoundingClientRect();
+        lastTouchMidX = (t1.clientX + t2.clientX) / 2 - rect.left;
+        lastTouchMidY = (t1.clientY + t2.clientY) / 2 - rect.top;
+      }
+    }, { passive: false });
+
+    stage.addEventListener('touchmove', (e) => {
+      resetAutoHideTimer();
+      if (e.touches.length === 1 && isDragging) {
+        e.preventDefault();
+        this.mediaPanX = startPanX + (e.touches[0].clientX - startX);
+        this.mediaPanY = startPanY + (e.touches[0].clientY - startY);
+        this.applyMediaTransform();
+      } else if (e.touches.length === 2 && lastTouchDist > 0) {
+        e.preventDefault();
+        const t1 = e.touches[0];
+        const t2 = e.touches[1];
+        const dist = Math.hypot(t1.clientX - t2.clientX, t1.clientY - t2.clientY);
+        const rect = stage.getBoundingClientRect();
+        const midX = (t1.clientX + t2.clientX) / 2 - rect.left;
+        const midY = (t1.clientY + t2.clientY) / 2 - rect.top;
+
+        const ratio = dist / lastTouchDist;
+        const newZoom = Math.min(6.0, Math.max(0.2, this.mediaZoom * ratio));
+
+        if (newZoom !== this.mediaZoom) {
+          this.mediaPanX = midX - (midX - this.mediaPanX) * (newZoom / this.mediaZoom) + (midX - lastTouchMidX);
+          this.mediaPanY = midY - (midY - this.mediaPanY) * (newZoom / this.mediaZoom) + (midY - lastTouchMidY);
+          this.mediaZoom = newZoom;
+          this.applyMediaTransform();
+          this.updateMediaZoomDisplay();
+        }
+
+        lastTouchDist = dist;
+        lastTouchMidX = midX;
+        lastTouchMidY = midY;
+      }
+    }, { passive: false });
+
+    stage.addEventListener('touchend', (e) => {
+      if (e.touches.length === 0) {
+        isDragging = false;
+        stage.classList.remove('is-panning');
+        lastTouchDist = 0;
+      } else if (e.touches.length === 1) {
+        isDragging = true;
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        startPanX = this.mediaPanX;
+        startPanY = this.mediaPanY;
+        stage.classList.add('is-panning');
+      }
+    });
+
+    // Double-click to reset scale to 1.0 and recenter
+    stage.addEventListener('dblclick', (e) => {
+      e.preventDefault();
+      this.resetMediaCanvas();
+    });
+
+    // Toolbar actions
+    document.getElementById('media-btn-zoom-in')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.zoomMediaAroundCenter(1.25);
+    });
+
+    document.getElementById('media-btn-zoom-out')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.zoomMediaAroundCenter(1 / 1.25);
+    });
+
+    document.getElementById('media-btn-zoom-reset')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.resetMediaCanvas();
+    });
+  }
+
+  zoomMediaAroundCenter(factor) {
+    const stage = document.getElementById('media-preview-stage');
+    if (!stage) return;
+    const midX = stage.clientWidth / 2;
+    const midY = stage.clientHeight / 2;
+
+    const newZoom = Math.min(6.0, Math.max(0.2, this.mediaZoom * factor));
+    if (newZoom !== this.mediaZoom) {
+      this.mediaPanX = midX - (midX - this.mediaPanX) * (newZoom / this.mediaZoom);
+      this.mediaPanY = midY - (midY - this.mediaPanY) * (newZoom / this.mediaZoom);
+      this.mediaZoom = newZoom;
+      this.applyMediaTransform();
+      this.updateMediaZoomDisplay();
+      if (this.resetMediaAutoHide) this.resetMediaAutoHide();
+    }
+  }
+
+  applyMediaTransform() {
+    const viewport = document.getElementById('media-preview-viewport');
+    if (viewport) {
+      viewport.style.transform = `translate(${this.mediaPanX}px, ${this.mediaPanY}px) scale(${this.mediaZoom})`;
+    }
+  }
+
+  updateMediaZoomDisplay() {
+    const zoomLevelEl = document.getElementById('media-zoom-level');
+    if (zoomLevelEl) {
+      zoomLevelEl.textContent = `${Math.round(this.mediaZoom * 100)}%`;
+    }
+  }
+
+  resetMediaCanvas(fitToScreen = false) {
+    const stage = document.getElementById('media-preview-stage');
+    const viewport = document.getElementById('media-preview-viewport');
+    if (!stage || !viewport) return;
+
+    const stageW = stage.clientWidth || window.innerWidth;
+    const stageH = stage.clientHeight || window.innerHeight;
+
+    const contentEl = viewport.firstElementChild;
+    let contentW = 800;
+    let contentH = 600;
+
+    if (contentEl) {
+      if (contentEl.tagName && contentEl.tagName.toLowerCase() === 'img') {
+        contentW = contentEl.naturalWidth || contentEl.offsetWidth || 800;
+        contentH = contentEl.naturalHeight || contentEl.offsetHeight || 600;
+      } else {
+        const svg = contentEl.querySelector('svg') || contentEl;
+        if (svg && svg.viewBox && svg.viewBox.baseVal && svg.viewBox.baseVal.width > 0) {
+          contentW = svg.viewBox.baseVal.width;
+          contentH = svg.viewBox.baseVal.height;
+        } else {
+          const rect = contentEl.getBoundingClientRect();
+          contentW = rect.width || 800;
+          contentH = rect.height || 600;
+        }
+      }
+    }
+
+    viewport.style.width = `${contentW}px`;
+    viewport.style.height = `${contentH}px`;
+
+    if (fitToScreen) {
+      const padW = stageW * 0.85;
+      const padH = stageH * 0.80;
+      const scaleX = padW / contentW;
+      const scaleY = padH / contentH;
+      this.mediaZoom = Math.min(1.0, Math.min(scaleX, scaleY));
+      this.mediaZoom = Math.max(0.2, Math.min(6.0, this.mediaZoom));
+    } else {
+      this.mediaZoom = 1.0;
+    }
+
+    this.mediaPanX = (stageW - contentW * this.mediaZoom) / 2;
+    this.mediaPanY = (stageH - contentH * this.mediaZoom) / 2;
+
+    this.applyMediaTransform();
+    this.updateMediaZoomDisplay();
+    if (this.resetMediaAutoHide) this.resetMediaAutoHide();
   }
 
   openMediaPreview(source, type, title, isThemeAffectable = false) {
@@ -2942,8 +3312,6 @@ class ObsidianVaultApp {
     titleElement.setAttribute('title', title);
     if (badgeElement) badgeElement.textContent = type === 'svg' ? 'DIAGRAM' : 'IMAGE';
 
-    this.mediaZoom = 1;
-    viewport.style.transform = 'none';
     viewport.replaceChildren();
 
     let downloadUrl = source;
@@ -2951,21 +3319,41 @@ class ObsidianVaultApp {
     if (type === 'svg') {
       this.mediaPreviewObjectUrl = URL.createObjectURL(new Blob([source], { type: 'image/svg+xml;charset=utf-8' }));
       downloadUrl = this.mediaPreviewObjectUrl;
+
       const wrapper = document.createElement('div');
       wrapper.className = 'media-preview-svg';
       wrapper.innerHTML = source;
+
+      const innerSvg = wrapper.querySelector('svg');
+      if (innerSvg) {
+        innerSvg.style.setProperty('overflow', 'visible', 'important');
+        innerSvg.style.setProperty('pointer-events', 'none', 'important');
+        if (innerSvg.viewBox && innerSvg.viewBox.baseVal && innerSvg.viewBox.baseVal.width > 0) {
+          innerSvg.setAttribute('width', innerSvg.viewBox.baseVal.width);
+          innerSvg.setAttribute('height', innerSvg.viewBox.baseVal.height);
+        }
+      }
+
       viewport.appendChild(wrapper);
       download.download = `${title}.svg`;
     } else {
       const image = document.createElement('img');
       image.src = source;
       image.alt = title;
+      image.draggable = false;
+      image.style.pointerEvents = 'none';
+
       viewport.appendChild(image);
       download.download = title.includes('.') ? title : `${title}.png`;
     }
 
     download.href = downloadUrl;
     overlay.classList.add('is-open');
+
+    // Recenters and fits to comfortable view
+    requestAnimationFrame(() => {
+      this.resetMediaCanvas(true);
+    });
   }
 
   openPdfExportModal(noteTitle, relPath, rawMarkdown) {
