@@ -754,7 +754,8 @@
 
     preprocessObsidianMarkdown(text) {
       if (window.ObsidianCallouts) text = window.ObsidianCallouts.autoHealCallouts(text);
-      text = text.replace(/^(#{1,6})([^\s#\n\r].*)$/gm, '$1 $2');
+      // Require whitespace later in the heading line to avoid corrupting single-token Obsidian tags (e.g. #review)
+      text = text.replace(/^(#{1,6})([^ \s#\n\r].*?\s+.*)$/gm, '$1 $2');
 
       // Ensure any list items that directly follow paragraphs or other content start on their own block
       text = text.replace(/([^\n\r])\r?\n([ \t]*[-*+]\s+[^\n\r]+)/g, '$1\n\n$2');
@@ -789,7 +790,6 @@
       });
 
       text = text.replace(/%%[\s\S]*?%%/g, '');
-      text = text.replace(/(?<!\$)\$\\\$[ \t]*(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b))?)\$(?!\$)/gi, '&#36;$1');
 
       if (window.ObsidianCallouts) {
         text = window.ObsidianCallouts.processCallouts(text, codeBlocksMap);

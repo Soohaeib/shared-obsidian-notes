@@ -264,11 +264,8 @@
             return token;
           });
           // Single dollar math inside table cells -> render as inline math token
-          line = line.replace(/(?<![\$\w\\])\$(?!\$)((?:\\\$|[^\$\n\r])+?)(?<!\\)\$(?!\$)/g, (match, formula) => {
+          line = line.replace(/(?<![\$\w\\])\$(?!\s)((?:\\\$|[^\$\n\r])+?)(?<!\s|\\)\$(?!\d)/g, (match, formula) => {
             const trimmed = formula.trim();
-            if (/^(?:&#36;|\$|\\\$)?\s*[\d,.]+(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b|%))?$/i.test(trimmed)) {
-              return match;
-            }
             const token = `@@KATEX_INLINE_${this.mathTokenIdx++}@@`;
             const html = this.renderExpression(trimmed, false);
             this.currentInlinesMap.set(token, html);
@@ -291,11 +288,6 @@
             });
           }
         }
-
-        // 1c. Heal accidental nested $ after operators: e.g. \times $8% -> \times 8%
-        line = line.replace(/(\\times|\+|-|=)\s*\$([0-9\\])/g, '$1 $2');
-        // 1d. Heal stray trailing $ before punctuation: e.g. \$48,000$. -> \$48,000.
-        line = line.replace(/(\\\$[\d,.]+|\$\d[\d,.]*)\$([.,;:])/g, '$1$2');
 
         lines[i] = line;
       }
@@ -321,13 +313,9 @@
         return `\n\n${token}\n\n`;
       });
 
-      // 4. Inline math: $ ... $
-      text = text.replace(/(?<![\$\w\\])\$(?!\$)((?:\\\$|[^\$\n\r])+?)(?<!\\)\$(?!\$)/g, (match, formula) => {
+      // 4. Inline math: $ ... $ (Obsidian / CommonMark math spec)
+      text = text.replace(/(?<![\$\w\\])\$(?!\s)((?:\\\$|[^\$\n\r])+?)(?<!\s|\\)\$(?!\d)/g, (match, formula) => {
         const trimmed = formula.trim();
-        // Guard financial currency mentions ($100, $5.5 million, etc.)
-        if (/^(?:&#36;|\$|\\\$)?\s*[\d,.]+(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b|%))?$/i.test(trimmed)) {
-          return match;
-        }
         const token = `@@KATEX_INLINE_${this.mathTokenIdx++}@@`;
         const html = this.renderExpression(trimmed, false);
         this.currentInlinesMap.set(token, html);
