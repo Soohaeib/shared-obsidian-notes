@@ -3,13 +3,73 @@
     "totalFiles": 299,
     "cleanFiles": 289,
     "filesWithWarnings": 10,
-    "totalIssues": 21,
+    "totalIssues": 20,
     "autoFixedIssues": 0,
     "healthScore": 96
   },
   "issues": [
     {
+      "file": "note-res/4th-semester/bcc-210/solutions/graphs/rate-of-profit.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-210/solutions/graphs/kuznets-curve.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-210/solutions/graphs/solow-model.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-bond-price-time-path.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
       "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-current-asset-financing-curves.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-security-market-line.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-npv-profiles-crossover.svg",
       "line": 1,
       "category": "Diagram Font",
       "severity": "info",
@@ -30,66 +90,6 @@
     },
     {
       "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-economic-order-quantity-curves.svg",
-      "line": 1,
-      "category": "Diagram Font",
-      "severity": "info",
-      "message": "Normalized SVG font declarations to the bundled Inter font.",
-      "snippet": "font-family",
-      "suggestion": "Use Inter, sans-serif for diagram labels.",
-      "autoFixed": false
-    },
-    {
-      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-security-market-line.svg",
-      "line": 1,
-      "category": "Diagram Font",
-      "severity": "info",
-      "message": "Normalized SVG font declarations to the bundled Inter font.",
-      "snippet": "font-family",
-      "suggestion": "Use Inter, sans-serif for diagram labels.",
-      "autoFixed": false
-    },
-    {
-      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-bond-price-time-path.svg",
-      "line": 1,
-      "category": "Diagram Font",
-      "severity": "info",
-      "message": "Normalized SVG font declarations to the bundled Inter font.",
-      "snippet": "font-family",
-      "suggestion": "Use Inter, sans-serif for diagram labels.",
-      "autoFixed": false
-    },
-    {
-      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-npv-profiles-crossover.svg",
-      "line": 1,
-      "category": "Diagram Font",
-      "severity": "info",
-      "message": "Normalized SVG font declarations to the bundled Inter font.",
-      "snippet": "font-family",
-      "suggestion": "Use Inter, sans-serif for diagram labels.",
-      "autoFixed": false
-    },
-    {
-      "file": "note-res/4th-semester/bcc-210/solutions/graphs/rate-of-profit.svg",
-      "line": 1,
-      "category": "Diagram Font",
-      "severity": "info",
-      "message": "Normalized SVG font declarations to the bundled Inter font.",
-      "snippet": "font-family",
-      "suggestion": "Use Inter, sans-serif for diagram labels.",
-      "autoFixed": false
-    },
-    {
-      "file": "note-res/4th-semester/bcc-210/solutions/graphs/solow-model.svg",
-      "line": 1,
-      "category": "Diagram Font",
-      "severity": "info",
-      "message": "Normalized SVG font declarations to the bundled Inter font.",
-      "snippet": "font-family",
-      "suggestion": "Use Inter, sans-serif for diagram labels.",
-      "autoFixed": false
-    },
-    {
-      "file": "note-res/4th-semester/bcc-210/solutions/graphs/kuznets-curve.svg",
       "line": 1,
       "category": "Diagram Font",
       "severity": "info",
@@ -180,17 +180,7 @@
     },
     {
       "file": "note-res/ai-comprehension/acc-302-financial-management/acc-302-notes-phase-5.md",
-      "line": 336,
-      "category": "LaTeX / Math",
-      "severity": "error",
-      "message": "Unbalanced display math delimiters: odd number (97) of '$$' markers found.",
-      "snippet": "$$",
-      "suggestion": "Ensure all '$$' blocks are properly closed.",
-      "autoFixed": false
-    },
-    {
-      "file": "note-res/ai-comprehension/acc-302-financial-management/acc-302-notes-phase-5.md",
-      "line": 181,
+      "line": 176,
       "category": "Media Embed",
       "severity": "info",
       "message": "Normalized media path 'BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg' for the published reader.",
