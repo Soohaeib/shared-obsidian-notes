@@ -222,9 +222,9 @@ Under the Cost Method (GAAP preferred), the Treasury Stock account is debited fo
 - **Legal Requirements**: State corporate laws dictate that dividends can only be paid out of legal capital protections (typically requiring positive Retained Earnings / Earned Surplus).
 - **Cash Liquidity**: A positive Retained Earnings balance does not equal cash. A company must possess sufficient uncommitted cash to pay a cash dividend.
 - **Key Dividend Dates**:
-  1. **Date of Declaration**: Board passes resolution. Creates a **legal liability** on this date. $`Dr. Retained Earnings`, `Cr. Dividends Payable`$
+  1. **Date of Declaration**: Board passes resolution. Creates a **legal liability** on this date. `Dr. Retained Earnings`, `Cr. Dividends Payable`
   2. **Date of Record**: Determination of registered owners. **No journal entry**.
-  3. **Date of Payment**: Distribution of cash. $`Dr. Dividends Payable`, `Cr. Cash`$
+  3. **Date of Payment**: Distribution of cash. `Dr. Dividends Payable`, `Cr. Cash`
 
 ---
 #### Types of Dividends
@@ -304,3 +304,4 @@ $$ \begin{array}{lrrrrrr}
 > $$ \text{Common Equity} = \text{Total Equity} - \text{Preferred Claim} = \$1,160,000 - \$258,000 = \mathbf{\$902,000} $$
 > **Step 4: Calculate Book Value per Common Share**
 > $$ \text{Book Value per Share} = \frac{\$902,000}{45,000\text{ outstanding shares}} = \mathbf{\$20.04 \text{ per share}} $$
+
