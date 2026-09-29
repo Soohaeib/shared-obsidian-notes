@@ -238,7 +238,7 @@ Combining the target weights and component costs of debt, preferred stock, and c
 
 
 
-![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg]]
+![[ai-comprehension/acc-302-financial-management/assets/acc302-mcc-ios-schedule.svg]]
 
 
 
@@ -262,7 +262,7 @@ Combining the target weights and component costs of debt, preferred stock, and c
 > [!example] Problem 1: Calculating Cost of Equity via CAPM, DCF, and Bond-Yield-Plus-Risk-Premium
 >
 > 
-> **Data:** $P_0 = \$23.00$, $D_0 = \$2.00$, $D_1 = \$2.14$, $g = 7\%$, $b = 1.6$, $r_{RF} = 9\%$, $r_M = 13\%$, Bond Yield $r_d = 12\%$, Judgmental Risk Premium = 4%.
+> **Data:** $P_0 = \$23.00, $D_0 = \$2.00, $D_1 = \$2.14, $g = 7\%$, $b = 1.6$, $r_{RF} = 9\%$, $r_M = 13\%$, Bond Yield $r_d = 12\%$, Judgmental Risk Premium = 4%.
 > 
 > **Calculations:**
 > 1. **CAPM Approach:**
@@ -279,8 +279,8 @@ Combining the target weights and component costs of debt, preferred stock, and c
 > 
 > **Data:** Target structure: 40% Debt, 60% Common Equity.
 > * Before-tax cost of debt ($r_d$) = 12%, Tax rate ($T$) = 40% $\rightarrow$ After-tax $r_d(1-T) = 12\%(1 - 0.40) = 7.2\%$.
-> * Current stock price $P_0 = \$22.50$, $D_0 = \$2.00$, $g = 7\%$.
-> * Expected Addition to Retained Earnings = $\$66 \text{ Million}$.
+> * Current stock price $P_0 = \$22.50, $D_0 = \$2.00, $g = 7\%$.
+> * Expected Addition to Retained Earnings = \$66 \text{ Million}$.
 > 
 > **Calculations:**
 > 1. **Cost of Common Equity ($r_s$):**

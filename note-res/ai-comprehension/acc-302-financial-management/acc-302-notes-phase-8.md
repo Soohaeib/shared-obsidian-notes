@@ -51,7 +51,7 @@ Current assets consist of two temporal components:
 
 
 
-![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg]]
+![[ai-comprehension/acc-302-financial-management/assets/acc302-current-asset-financing-curves.svg]]
 
 
 
@@ -181,7 +181,7 @@ Determines the optimal order quantity ($Q^*$) that minimizes total annual invent
 
 
 
-![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg]]
+![[ai-comprehension/acc-302-financial-management/assets/acc302-economic-order-quantity-curves.svg]]
 
 
 
@@ -230,7 +230,7 @@ When a firm purchases goods under terms like $2/10, \text{net } 30$, it receives
 
 > [!example] Problem 1: Cash Conversion Cycle (CCC)
 >
-> **Scenario:** A company generates annual sales of $\$12,000,000$ with Cost of Goods Sold equal to $75\%$ of sales ($\$9,000,000$). Balance sheet accounts show: Inventory = $\$3,000,000$, Accounts Receivable = $\$3,250,000$, Accounts Payable = $\$1,250,000$.
+> **Scenario:** A company generates annual sales of $\$12,000,000$ with Cost of Goods Sold equal to $75\%$ of sales ($\$9,000,000$). Balance sheet accounts show: Inventory = \$3,000,000, Accounts Receivable = \$3,250,000, Accounts Payable = \$1,250,000.
 > 
 > **Solution:**
 > 1. $\text{AAI} = \frac{\$3,000,000}{\$9,000,000 / 365} = \frac{\$3,000,000}{\$24,657.53} = 121.67 \text{ days}$
@@ -250,7 +250,7 @@ When a firm purchases goods under terms like $2/10, \text{net } 30$, it receives
 
 > [!example] Problem 3: Economic Order Quantity (EOQ) & Reorder Point (ROP)
 >
-> **Scenario:** Annual demand ($S$) = 20,000 units. Order cost ($O$) = $\$40$/order. Carrying cost ($C$) = $\$1.20$/unit/year. Lead time = 5 days. Safety stock = 200 units. Assume 365 days/year.
+> **Scenario:** Annual demand ($S$) = 20,000 units. Order cost ($O$) = \$40$/order. Carrying cost ($C$) = \$1.20$/unit/year. Lead time = 5 days. Safety stock = 200 units. Assume 365 days/year.
 > 
 > **Solution:**
 > 1. **EOQ Calculation:**

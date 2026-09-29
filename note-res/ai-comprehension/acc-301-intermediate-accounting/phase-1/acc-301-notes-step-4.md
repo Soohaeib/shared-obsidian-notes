@@ -47,13 +47,13 @@ Interest is the payment or return for the use of money. Lenders express interest
 >
 > Assume Vasquez Company deposits $\$10,000$ at $9\%$ annual simple interest in Bank A, and $\$10,000$ at $9\%$ annual compound interest in Bank B, leaving both untouched for 3 years.
 > **Bank A (Simple Interest)**:
-> * Year 1 Interest: $\$10,000 \times 0.09 = \$900 \rightarrow$ Year 1 End Balance = $\$10,900$
-> * Year 2 Interest: $\$10,000 \times 0.09 = \$900 \rightarrow$ Year 2 End Balance = $\$11,800$
+> * Year 1 Interest: $\$10,000 \times 0.09 = \$900 \rightarrow$ Year 1 End Balance = \$10,900$
+> * Year 2 Interest: $\$10,000 \times 0.09 = \$900 \rightarrow$ Year 2 End Balance = \$11,800$
 > * Year 3 Interest: $\$10,000 \times 0.09 = \$900 \rightarrow$ Year 3 End Balance = **$\$12,700$**
 > * Total Interest Earned = **$\$2,700.00$**
 > **Bank B (Compound Interest)**:
-> * Year 1 Interest: $\$10,000.00 \times 0.09 = \$900.00 \rightarrow$ Year 1 End Balance = $\$10,900.00$
-> * Year 2 Interest: $\$10,900.00 \times 0.09 = \$981.00 \rightarrow$ Year 2 End Balance = $\$11,881.00$
+> * Year 1 Interest: $\$10,000.00 \times 0.09 = \$900.00 \rightarrow$ Year 1 End Balance = \$10,900.00$
+> * Year 2 Interest: $\$10,900.00 \times 0.09 = \$981.00 \rightarrow$ Year 2 End Balance = \$11,881.00$
 > * Year 3 Interest: $\$11,881.00 \times 0.09 = \$1,069.29 \rightarrow$ Year 3 End Balance = **$\$12,950.29$**
 > * Total Interest Earned = **$\$2,950.29$**
 > *Compounding Advantage*: Bank B pays **$\$250.29$** more interest due to earning "interest on interest".
@@ -140,7 +140,7 @@ When both $PV$ and $FV$ are known, either the number of compounding periods ($n$
 
 > [!example] Walkthrough 2.2: Present Value of Non-Interest-Bearing Note
 >
-> **Problem**: A company accepts a 3-year, zero-interest-bearing note with a maturity value of $\$100,000$. The prevailing market interest rate for a note of similar credit risk is $9\%$ per annum. Calculate the initial present value (carrying amount) and the total implied interest discount.
+> **Problem**: A company accepts a 3-year, zero-interest-bearing note with a maturity value of $\$100,000. The prevailing market interest rate for a note of similar credit risk is $9\%$ per annum. Calculate the initial present value (carrying amount) and the total implied interest discount.
 > * **Step 1: Identify variables**:
 >   * $FV = \$100,000$
 >   * $n = 3 \text{ annual periods}$
@@ -157,7 +157,7 @@ When both $PV$ and $FV$ are known, either the number of compounding periods ($n$
 >
 > **Problem**: Amazon needs $\$1,070,584$ in 5 years to purchase electric scooters. It currently has $\$800,000$ to invest today. At what annually compounded interest rate must the $\$800,000$ be invested to reach the target amount?
 > * **Step 1: Identify variables**:
->   * $PV = \$800,000$, $FV = \$1,070,584$, $n = 5$
+>   * $PV = \$800,000, $FV = \$1,070,584, $n = 5$
 > * **Step 2: Compute $FVF_{5, i}$**:
 >   $$ FVF_{5, i} = \frac{FV}{PV} = \frac{\$1,070,584}{\$800,000} = 1.338230 $$
 > * **Step 3: Solve algebraically**:
@@ -222,7 +222,7 @@ flowchart LR
 > (a) Deposits are made at the end of each year (Ordinary Annuity).
 > (b) Deposits are made at the beginning of each year (Annuity Due).
 > * **Case (a) Ordinary Annuity ($FV\text{-}OA$)**:
->   * $R = \$5,000$, $n = 5$, $i = 6\%$
+>   * $R = \$5,000, $n = 5$, $i = 6\%$
 >   * $FVF\text{-}OA_{5, 6\%} = \frac{(1.06)^5 - 1}{0.06} = \frac{1.3382256 - 1}{0.06} = 5.637093$
 >   * $FV\text{-}OA = \$5,000 \times 5.637093 = \mathbf{\$28,185.46}$
 > * **Case (b) Annuity Due ($FV\text{-}AD$)**:
@@ -230,11 +230,11 @@ flowchart LR
 
 > [!example] Walkthrough 3.2: Present Value of Ordinary Annuity vs. Annuity Due
 >
-> **Problem**: Space Odyssey Inc. leases a satellite for 4 years with annual payments of $\$4,800,000$. The discount rate is $5\%$ per annum. Calculate the present value of lease payments if:
+> **Problem**: Space Odyssey Inc. leases a satellite for 4 years with annual payments of $\$4,800,000. The discount rate is $5\%$ per annum. Calculate the present value of lease payments if:
 > (a) Payments are made at the end of each year ($PV\text{-}OA$).
 > (b) Payments are made at the beginning of each year ($PV\text{-}AD$).
 > * **Case (a) Ordinary Annuity ($PV\text{-}OA$)**:
->   * $R = \$4,800,000$, $n = 4$, $i = 5\%$
+>   * $R = \$4,800,000, $n = 4$, $i = 5\%$
 >   * $PVF\text{-}OA_{4, 5\%} = \frac{1 - (1.05)^{-4}}{0.05} = \frac{1 - 0.822702}{0.05} = 3.545951$
 >   * $PV\text{-}OA = \$4,800,000 \times 3.545951 = \mathbf{\$17,020,564.80}$
 > * **Case (b) Annuity Due ($PV\text{-}AD$)**:
@@ -281,7 +281,7 @@ To compute the present value of an ordinary annuity of $n$ rents deferred for $y
 >   * Total periods = $y + n = 4 + 6 = 10$ periods
 >   * $PVF\text{-}OA_{10, 8\%} = 6.710081$
 >   * $PVF\text{-}OA_{4, 8\%} = 3.312127$
->   * Net Factor = $6.710081 - 3.312127 = 3.397954$
+>   * Net Factor = 6.710081 - 3.312127 = 3.397954$
 >   * $PV_0 = \$5,000 \times 3.397954 = \mathbf{\$16,989.77}$
 > * **Option 2 Method**:
 >   * *Step 1*: $PV_4 = \$5,000 \times PVF\text{-}OA_{6, 8\%} = \$5,000 \times 4.622880 = \$23,114.40$
@@ -309,9 +309,9 @@ A corporate bond produces **two distinct cash flows** for the investor/issuer:
 >
 > **Problem**: Alltech Corporation issues $\$100,000$ of $5\%$ annual interest bonds on January 1, 2025, maturing in 5 years ($n = 5$). Interest is payable annually on December 31. The current market interest rate for bonds of similar risk is $6\%$. Calculate the issue price.
 > * **Step 1: Identify Cash Flows**:
->   * Principal Cash Flow ($FV$) = $\$100,000$ due at $t = 5$
->   * Annual Interest Cash Flow ($R$) = $\$100,000 \times 5\% = \$5,000$ per year ($n = 5$)
->   * Discount Rate ($i_{\text{market}}$) = $6\%$
+>   * Principal Cash Flow ($FV$) = \$100,000$ due at $t = 5$
+>   * Annual Interest Cash Flow ($R$) = \$100,000 \times 5\% = \$5,000$ per year ($n = 5$)
+>   * Discount Rate ($i_{\text{market}}$) = 6\%$
 > * **Step 2: Present Value of Principal**:
 >   $$ PV_{\text{Principal}} = \$100,000 \times (1.06)^{-5} = \$100,000 \times 0.747258 = \mathbf{\$74,725.80} $$
 > * **Step 3: Present Value of Interest Annuity**:

@@ -248,12 +248,15 @@
     extractAndTokenize(text) {
       if (!text) return text;
 
-      // 1. Math inside table rows (lines containing |): NEVER insert newlines!
+      // 1. Process line by line: Tables, inline $$ on continuous lines, and syntax heals
       const lines = text.split('\n');
       for (let i = 0; i < lines.length; i++) {
-        if (lines[i].includes('|')) {
+        let line = lines[i];
+
+        // 1a. Math inside table rows (lines containing |): NEVER insert newlines!
+        if (line.includes('|')) {
           // Double dollar math inside table cells -> render as inline math token
-          lines[i] = lines[i].replace(/\$\$([^\$\n\r]+?)\$\$/g, (match, formula) => {
+          line = line.replace(/\$\$([^\$\n\r]+?)\$\$/g, (match, formula) => {
             const cleanFormula = formula.trim();
             const token = `@@KATEX_INLINE_${this.mathTokenIdx++}@@`;
             const html = this.renderExpression(cleanFormula, false);
@@ -261,7 +264,7 @@
             return token;
           });
           // Single dollar math inside table cells -> render as inline math token
-          lines[i] = lines[i].replace(/(?<![\$\w\\])\$(?!\$)((?:\\\$|[^\$\n\r])+?)(?<!\\)\$(?!\$)/g, (match, formula) => {
+          line = line.replace(/(?<![\$\w\\])\$(?!\$)((?:\\\$|[^\$\n\r])+?)(?<!\\)\$(?!\$)/g, (match, formula) => {
             const trimmed = formula.trim();
             if (/^(?:&#36;|\$|\\\$)?\s*[\d,.]+(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b|%))?$/i.test(trimmed)) {
               return match;
@@ -271,7 +274,30 @@
             this.currentInlinesMap.set(token, html);
             return token;
           });
+          lines[i] = line;
+          continue;
         }
+
+        // 1b. Inline $$...$$ on continuous text lines (e.g. within list items or with punctuation)
+        if (line.includes('$$')) {
+          const isStandaloneBlock = /^[ \t]*(?:>+[ \t]*)?\$\$[\s\S]*?\$\$[ \t]*$/.test(line);
+          if (!isStandaloneBlock) {
+            line = line.replace(/\$\$((?:\\\$|[^\$\n\r])+?)\$\$/g, (match, formula) => {
+              const cleanFormula = formula.trim();
+              const token = `@@KATEX_INLINE_${this.mathTokenIdx++}@@`;
+              const html = this.renderExpression(cleanFormula, false);
+              this.currentInlinesMap.set(token, html);
+              return token;
+            });
+          }
+        }
+
+        // 1c. Heal accidental nested $ after operators: e.g. \times $8% -> \times 8%
+        line = line.replace(/(\\times|\+|-|=)\s*\$([0-9\\])/g, '$1 $2');
+        // 1d. Heal stray trailing $ before punctuation: e.g. \$48,000$. -> \$48,000.
+        line = line.replace(/(\\\$[\d,.]+|\$\d[\d,.]*)\$([.,;:])/g, '$1$2');
+
+        lines[i] = line;
       }
       text = lines.join('\n');
 

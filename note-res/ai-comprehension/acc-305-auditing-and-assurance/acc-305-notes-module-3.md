@@ -283,7 +283,7 @@ To demonstrate the application of client acceptance, fee modeling, and quality m
 > ##### Key Scenario Facts:
 > 1. **Predecessor Auditor Situation**: Titan was previously audited by Beta & Co. When Apex & Co. requested written permission from Titan's management to contact Beta & Co., Titan's CEO refused, stating that Beta & Co. was "over-charging and argumentative over minor revenue adjustments."
 > 2. **Fee & Resource Budget Model**:
->    - Apex & Co.'s standard hourly billing rates: Partner = $\$250$/hr, Manager = $\$150$/hr, Senior = $\$100$/hr, Assistant = $\$50$/hr.
+>    - Apex & Co.'s standard hourly billing rates: Partner = \$250$/hr, Manager = \$150$/hr, Senior = \$100$/hr, Assistant = \$50$/hr.
 >    - Initial risk assessment indicates Titan requires: Partner = 20 hrs, Manager = 60 hrs, Senior = 150 hrs, Assistant = 300 hrs.
 >    - Titan's CEO offers a fixed, non-negotiable fee of $\$20,000$ for the audit.
 > 3. **Non-Audit Service Request**: Titan asks Apex & Co. to design and implement its new automated inventory and revenue IT system concurrently with the audit.
@@ -296,19 +296,19 @@ To demonstrate the application of client acceptance, fee modeling, and quality m
 > ##### Step 2: Quantitative Fee & Resource Budget Analysis
 > Let us model the total cost of capital hours required to perform a quality audit under ISA 220 (Revised) and ISQM 1:
 > > [!quote] Formula & Derivation
-> > $$\text{Required Audit Budget} = \sum (\text{Hours}_i \times \text{Billing Rate}_i)$$
+> > $\text{Required Audit Budget} = \sum (\text{Hours}_i \times \text{Billing Rate}_i)$
 > >
-> > $$\text{Partner Cost} = 20 \text{ hrs} \times \$250/\text{hr} = \$5,000$$
-> > $$\text{Manager Cost} = 60 \text{ hrs} \times \$150/\text{hr} = \$9,000$$
-> > $$\text{Senior Cost} = 150 \text{ hrs} \times \$100/\text{hr} = \$15,000$$
-> > $$\text{Assistant Cost} = 300 \text{ hrs} \times \$50/\text{hr} = \$15,000$$
+> > $\text{Partner Cost} = 20 \text{ hrs} \times \$250/\text{hr} = \$5,000$
+> > $\text{Manager Cost} = 60 \text{ hrs} \times \$150/\text{hr} = \$9,000$
+> > $\text{Senior Cost} = 150 \text{ hrs} \times \$100/\text{hr} = \$15,000$
+> > $\text{Assistant Cost} = 300 \text{ hrs} \times \$50/\text{hr} = \$15,000$
 > >
-> > $$\text{Total Required Audit Fee} = \$5,000 + \$9,000 + \$15,000 + \$15,000 = \$44,000$$
+> > $\text{Total Required Audit Fee} = \$5,000 + \$9,000 + \$15,000 + \$15,000 = \$44,000$
 > Now, calculate the **Fee Deficit Margin (%)**:
 > > [!quote] Formula & Derivation
-> > $$\text{Fee Deficit Margin} = \frac{\text{Proposed Fee} - \text{Required Fee}}{\text{Required Fee}} \times 100\%$$
+> > $\text{Fee Deficit Margin} = \frac{\text{Proposed Fee} - \text{Required Fee}}{\text{Required Fee}} \times 100\%$
 > >
-> > $$\text{Fee Deficit Margin} = \frac{\$20,000 - \$44,000}{\$44,000} \times 100\% = \frac{-\$24,000}{\$44,000} \times 100\% = -54.55\%$$
+> > $\text{Fee Deficit Margin} = \frac{\$20,000 - \$44,000}{\$44,000} \times 100\% = \frac{-\$24,000}{\$44,000} \times 100\% = -54.55\%$
 > ##### Quality Risk Impact:
 > - Accepting a fee that is **$54.55\%$ below the standard resource requirement** creates a severe **Self-Interest Threat** and a quality failure risk under ISQM 1 / ISA 220.
 > - Accepting a "lowballed" fee of $\$20,000$ would force the engagement partner to cut audit hours, skip necessary substantive procedures, or under-staff the engagement, directly violating ISQM 1 Component 2 (Commercial considerations must not impair quality) and Component 6 (Sufficient human resources).

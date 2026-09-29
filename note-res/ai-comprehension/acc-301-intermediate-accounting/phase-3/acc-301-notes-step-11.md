@@ -262,10 +262,10 @@ Modifications may include: reducing the stated interest rate, extending maturity
 > **Scenario**: On January 1, 2025, Apex Corp. issued $\$1,000,000$ face value of 5-year, $8\%$ bonds. Interest is payable semiannually on June 30 and December 31. On the date of issuance, the market rate of interest for similar bonds was $10\%$. On July 1, 2027 (after 2.5 years / 5 semiannual interest payments), Apex calls and extinguishes the entire bond issue at 101.
 > ##### Step 1: Compute Initial Bond Proceeds & Discount
 > - $FV = \$1,000,000$
-> - Stated semiannual rate = $8\% / 2 = 4\%$
-> - Semiannual Cash Interest ($INT$) = $\$1,000,000 \times 4\% = \$40,000$
-> - Market semiannual rate ($i$) = $10\% / 2 = 5\%$
-> - Total semiannual periods ($n$) = $5 \times 2 = 10$
+> - Stated semiannual rate = 8\% / 2 = 4\%$
+> - Semiannual Cash Interest ($INT$) = \$1,000,000 \times 4\% = \$40,000$
+> - Market semiannual rate ($i$) = 10\% / 2 = 5\%$
+> - Total semiannual periods ($n$) = 5 \times 2 = 10$
 > $$ PV \text{ of Principal} = \$1,000,000 \times 0.613913 = \$613,913 $$
 > $$ PV \text{ of Interest} = \$40,000 \times 7.721735 = \$308,869 $$
 > $$ \textbf{Total Selling Price} = \$613,913 + \$308,869 = \mathbf{\$922,782} $$
@@ -292,9 +292,9 @@ Modifications may include: reducing the stated interest rate, extending maturity
 > \end{array} $$
 > *(Note: Interest Exp = Prev. Carrying Value $\times$ 5%. Discount Amort = Interest Exp - Cash Paid).*
 > ##### Step 3: Extinguishment Accounting on July 1, 2027
-> - Carrying Value on July 1, 2027 = $\$956,704$
-> - Unamortized Discount on July 1, 2027 = $\$1,000,000 - \$956,704 = \$43,296$
-> - Reacquisition Price = $\$1,000,000 \times 1.01 = \$1,010,000$
+> - Carrying Value on July 1, 2027 = \$956,704$
+> - Unamortized Discount on July 1, 2027 = \$1,000,000 - \$956,704 = \$43,296$
+> - Reacquisition Price = \$1,000,000 \times 1.01 = \$1,010,000$
 > - **Loss on Extinguishment**:
 >   $$ \text{Loss} = \$1,010,000 - \$956,704 = \mathbf{\$53,296} $$
 > $$ \begin{array}{llrr}
@@ -311,20 +311,20 @@ Modifications may include: reducing the stated interest rate, extending maturity
 > [!example] Numerical Problem 2: Troubled-Debt Restructuring (Non-Symmetric Debtor/Creditor Comparison)
 >
 > **Scenario**: On December 31, 2025, Metro Bank holds a $\$2,000,000, 10\%$ note receivable from Titan Corp., issued at par. Titan is in severe financial distress. Metro Bank agrees to a modification of terms on December 31, 2025:
-> 1. Reduce principal from $\$2,000,000$ to $\$1,600,000$.
+> 1. Reduce principal from $\$2,000,000$ to $\$1,600,000.
 > 2. Extend maturity date for 3 years (due December 31, 2028).
 > 3. Reduce interest rate from $10\%$ to $4\%$ per year, payable annually on December 31.
 > ##### Step 1: Debtor Analysis (Titan Corp.)
 > 4. **Total Undiscounted Future Cash Flows**:
->    - New Principal = $\$1,600,000$
->    - Annual Cash Interest = $\$1,600,000 \times 4\% = \$64,000$
->    - Total Undiscounted Cash Flows = $\$1,600,000 + (\$64,000 \times 3) = \mathbf{\$1,792,000}$
+>    - New Principal = \$1,600,000$
+>    - Annual Cash Interest = \$1,600,000 \times 4\% = \$64,000$
+>    - Total Undiscounted Cash Flows = \$1,600,000 + (\$64,000 \times 3) = \mathbf{\$1,792,000}$
 > 5. **Undiscounted Cash Flow Test**:
->    - Pre-restructure Carrying Value = $\$2,000,000$
+>    - Pre-restructure Carrying Value = \$2,000,000$
 >    - Since Undiscounted Cash Flows ($\$1,792,000$) < Carrying Value ($\$2,000,000$), Titan recognizes a **Gain on Restructuring**:
 >      $$ \text{Gain} = \$2,000,000 - \$1,792,000 = \mathbf{\$208,000} $$
 > 6. **Debtor Carrying Value & Future Interest**:
->    - New carrying value is adjusted to $\$1,792,000$. Effective interest rate is **0%**. Titan records **$\$0$ interest expense** over the next 3 years.
+>    - New carrying value is adjusted to $\$1,792,000. Effective interest rate is **0%**. Titan records **$\$0$ interest expense** over the next 3 years.
 > $$ \begin{array}{llrr}
 > \textbf{Account Titles (Titan Corp - Dec 31, 2025)} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
 > \hline
@@ -335,7 +335,7 @@ Modifications may include: reducing the stated interest rate, extending maturity
 > 7. **Discounted Expected Cash Flows at Original Effective Rate (10%)**:
 >    - $PV \text{ of New Principal} = \$1,600,000 \times 0.751315 = \$1,202,104$
 >    - $PV \text{ of New Cash Interest} = \$64,000 \times 2.486852 = \$159,159$
->    - Total PV of Restructured Cash Flows = $\$1,202,104 + \$159,159 = \mathbf{\$1,361,263}$
+>    - Total PV of Restructured Cash Flows = \$1,202,104 + \$159,159 = \mathbf{\$1,361,263}$
 > 8. **Creditor Impairment Loss**:
 >    $$ \text{Impairment Loss} = \$2,000,000 - \$1,361,263 = \mathbf{\$638,737} $$
 > $$ \begin{array}{llrr}
@@ -345,7 +345,7 @@ Modifications may include: reducing the stated interest rate, extending maturity
 > \quad \text{Allowance for Doubtful Accounts} & & & 638,737 \\
 > \end{array} $$
 > 9. **Creditor Schedule for Future Years (Original Rate 10%)**:
->    - *Year 2026*: Cash Received = $\$64,000$; Interest Revenue = $\$1,361,263 \times 10\% = \$136,126$; Increase in Allowance = $\$136,126 - \$64,000 = \$72,126$.
+>    - *Year 2026*: Cash Received = \$64,000; Interest Revenue = \$1,361,263 \times 10\% = \$136,126; Increase in Allowance = \$136,126 - \$64,000 = \$72,126.
 > $$ \begin{array}{llrr}
 > \textbf{Account Titles (Metro Bank - Dec 31, 2026)} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
 > \hline

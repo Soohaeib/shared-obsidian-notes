@@ -38,7 +38,7 @@ To determine the amount of additional life insurance Shelly needs to purchase, t
 - **Immediate Cash / Clean-up Fund:**
   - Funeral costs and uninsured medical bills: $\text{TK. } 10,000$
 - **Income Support for Son:**
-  - $\text{TK. } 2,000 \text{ per month} \times 12 \text{ months} \times 17 \text{ years} = \text{TK. } 408,000$
+  - \text{TK. } 2,000 \text{ per month} \times 12 \text{ months} \times 17 \text{ years} = \text{TK. } 408,000$
     _(Note: Since the rate of return on policy proceeds is assumed to equal the inflation rate, the real interest rate is $0\%$, meaning no discounting is required.)_
 - **Debt Clearance:**
   - Pay off mortgage on home: $\text{TK. } 150,000$

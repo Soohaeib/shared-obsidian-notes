@@ -49,7 +49,7 @@ flowchart TD
 ### Learning Objective 6.2: Operating Leverage & Break-Even Analysis
 
 #### 1. Operating Break-Even Analysis
-Operating break-even analysis identifies the output quantity ($Q_{BE}$) or sales dollar volume ($S_{BE}$) required to cover all fixed and variable operating costs, where $EBIT = \$0$.
+Operating break-even analysis identifies the output quantity ($Q_{BE}$) or sales dollar volume ($S_{BE}$) required to cover all fixed and variable operating costs, where $EBIT = \$0.
 
 * **Key Variables:**
   * $P$ = Selling price per unit
@@ -226,7 +226,7 @@ Robert Hamada combined the CAPM with M&M's tax framework to quantify the effect 
 
 > [!example] Problem 1: Operating Break-Even and DOL Calculation
 >
-> **Scenario:** A company sells a product for $P = \$25$ per unit, with variable costs $V = \$15$ per unit and annual fixed operating costs $FC = \$140,000$.
+> **Scenario:** A company sells a product for $P = \$25$ per unit, with variable costs $V = \$15$ per unit and annual fixed operating costs $FC = \$140,000.
 > 1. Calculate the operating break-even quantity ($Q_{BE}$).
 > 2. Calculate the EBIT at sales of $Q = 18,000$ units.
 > 3. Calculate the DOL at $Q = 18,000$ units.
@@ -242,8 +242,8 @@ Robert Hamada combined the CAPM with M&M's tax framework to quantify the effect 
 > [!example] Problem 2: EBIT-EPS Indifference Point
 >
 > **Scenario:** Firm $X$ has $\$20,000,000$ in total capital and requires $\$5,000,000$ in additional capital for expansion. Tax rate $T = 40\%$.
-> * **Plan 1 (Common Stock):** Issue $100,000$ new shares at $\$50$/share. Total shares $\text{NS}_1 = 300,000$. Interest $I_1 = \$0$.
-> * **Plan 2 (Debt):** Issue $\$5,000,000$ in debt at $12\%$ interest. Total shares $\text{NS}_2 = 200,000$. Interest $I_2 = \$600,000$.
+> * **Plan 1 (Common Stock):** Issue $100,000$ new shares at $\$50$/share. Total shares $\text{NS}_1 = 300,000$. Interest $I_1 = \$0.
+> * **Plan 2 (Debt):** Issue $\$5,000,000$ in debt at $12\%$ interest. Total shares $\text{NS}_2 = 200,000$. Interest $I_2 = \$600,000.
 > Calculate the EBIT indifference point ($\text{EBIT}^*$).
 > 
 > **Solution:**

@@ -177,7 +177,7 @@ When the overall $F$-test rejects $H_0$, it confirms that at least two treatment
    $$|\bar{X}_i - \bar{X}_j| > \text{LSD}$$
 3. **Confidence Interval for $(\mu_i - \mu_j)$**:
    $$\text{CI}_{1-\alpha} = (\bar{X}_i - \bar{X}_j) \pm t_{\alpha/2, N-k} \sqrt{MSE \left( \frac{1}{n_i} + \frac{1}{n_j} \right)}$$
-   If the confidence interval contains $0.0$, the difference between $\mu_i$ and $\mu_j$ is not statistically significant.
+   If the confidence interval contains $0.0, the difference between $\mu_i$ and $\mu_j$ is not statistically significant.
 
 ---
 ### 3. Two-Way Classification ANOVA (Without Interaction — Randomized Block Design)

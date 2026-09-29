@@ -169,10 +169,10 @@ flowchart TD
 2. **If Fair Value $<$ Amortized Cost (Decline Exists):**
    * Calculate Expected Credit Loss ($\text{ECL}$).
    * **If $\text{ECL} \ge (\text{Amortized Cost} - \text{Fair Value})$:**
-     * Credit Loss recognized in Net Income = $\text{Amortized Cost} - \text{Fair Value}$ (Full difference).
-     * OCI Loss = $\$0$.
+     * Credit Loss recognized in Net Income = \text{Amortized Cost} - \text{Fair Value}$ (Full difference).
+     * OCI Loss = \$0.
    * **If $\text{ECL} < (\text{Amortized Cost} - \text{Fair Value})$:**
-     * Credit Loss recognized in Net Income = $\text{ECL}$.
+     * Credit Loss recognized in Net Income = \text{ECL}$.
      * Non-Credit Loss recognized in OCI = $(\text{Amortized Cost} - \text{Fair Value}) - \text{ECL}$.
 
 ---
@@ -237,9 +237,9 @@ mindmap
 > 1. **Bond Alpha (Trading):** Purchased $\$200,000$ face value, $6\%$ bonds for $\$192,278$ (to yield $8\%$). Interest is payable semiannually on June 30 and December 31.
 > 2. **Bond Beta (Available-for-Sale):** Purchased $\$300,000$ face value, $8\%$ bonds for $\$312,289$ (to yield $7\%$). Interest is payable semiannually on June 30 and December 31.
 > **Additional Events:**
-> * **December 31, 2025:** Fair values: Bond Alpha = $\$195,000$; Bond Beta = $\$308,000$.
+> * **December 31, 2025:** Fair values: Bond Alpha = \$195,000; Bond Beta = \$308,000.
 > * **July 1, 2026:** Apex sold Bond Beta for $\$307,000$ plus cash interest.
-> * **December 31, 2026:** Fair value of Bond Alpha = $\$193,500$.
+> * **December 31, 2026:** Fair value of Bond Alpha = \$193,500.
 > ##### Step-by-Step Solution & Journal Entries:
 > **1. January 1, 2025 — Initial Purchases**
 > $$ \begin{array}{llrr}
@@ -250,8 +250,8 @@ mindmap
 > \quad \text{Cash} & & & 504,567 \\
 > \end{array} $$
 > **2. June 30, 2025 — First Semiannual Interest Receipt & Amortization**
-> * **Bond Alpha (Trading):** Cash = $\$200,000 \times 3\% = \$6,000$; Interest Rev = $\$192,278 \times 4\% = \$7,691.12$; Amortization = $\$1,691.12$.
-> * **Bond Beta (AFS):** Cash = $\$300,000 \times 4\% = \$12,000$; Interest Rev = $\$312,289 \times 3.5\% = \$10,930.12$; Amortization = $\$1,069.88$.
+> * **Bond Alpha (Trading):** Cash = \$200,000 \times 3\% = \$6,000; Interest Rev = \$192,278 \times 4\% = \$7,691.12; Amortization = \$1,691.12.
+> * **Bond Beta (AFS):** Cash = \$300,000 \times 4\% = \$12,000; Interest Rev = \$312,289 \times 3.5\% = \$10,930.12; Amortization = \$1,069.88.
 > $$ \begin{array}{llrr}
 > \text{Cash} & & 6,000.00 & \\
 > \text{Debt Investments (Trading)} & & 1,691.12 & \\
@@ -262,8 +262,8 @@ mindmap
 > \quad \text{Interest Revenue} & & & 10,930.12 \\
 > \end{array} $$
 > **3. December 31, 2025 — Second Semiannual Interest Receipt & Amortization**
-> * **Bond Alpha (Trading):** Rev = $\$193,969.12 \times 4\% = \$7,758.76$; Amort = $\$1,758.76$. Ending Cost = $\$195,727.88$.
-> * **Bond Beta (AFS):** Rev = $\$311,219.12 \times 3.5\% = \$10,892.67$; Amort = $\$1,107.33$. Ending Cost = $\$310,111.79$.
+> * **Bond Alpha (Trading):** Rev = \$193,969.12 \times 4\% = \$7,758.76; Amort = \$1,758.76. Ending Cost = \$195,727.88.
+> * **Bond Beta (AFS):** Rev = \$311,219.12 \times 3.5\% = \$10,892.67; Amort = \$1,107.33. Ending Cost = \$310,111.79.
 > $$ \begin{array}{llrr}
 > \text{Cash} & & 6,000.00 & \\
 > \text{Debt Investments (Trading)} & & 1,758.76 & \\
@@ -274,8 +274,8 @@ mindmap
 > \quad \text{Interest Revenue} & & & 10,892.67 \\
 > \end{array} $$
 > **4. December 31, 2025 — Year-End Fair Value Adjustments**
-> * **Bond Alpha (Trading):** FV = $\$195,000.00$; Cost = $\$195,727.88$ $\implies$ Loss = $-\$727.88$.
-> * **Bond Beta (AFS):** FV = $\$308,000.00$; Cost = $\$310,111.79$ $\implies$ Loss = $-\$2,111.79$.
+> * **Bond Alpha (Trading):** FV = \$195,000.00; Cost = \$195,727.88$ $\implies$ Loss = $-\$727.88.
+> * **Bond Beta (AFS):** FV = \$308,000.00; Cost = \$310,111.79$ $\implies$ Loss = $-\$2,111.79.
 > $$ \begin{array}{llrr}
 > \text{Unrealized Holding Gain or Loss—Income} & & 727.88 & \\
 > \quad \text{Fair Value Adjustment (Trading)} & & & 727.88 \\
@@ -284,8 +284,8 @@ mindmap
 > \quad \text{Fair Value Adjustment (AFS)} & & & 2,111.79 \\
 > \end{array} $$
 > **5. July 1, 2026 — Sale of Bond Beta (AFS)**
-> * Update Amortization (Jan 1 – Jun 30): Rev = $\$310,111.79 \times 3.5\% = \$10,853.91$; Amort = $\$1,146.09$. New Cost = $\$308,965.70$.
-> * Record Sale: Proceeds = $\$307,000.00$; Cost = $\$308,965.70$ $\implies$ Realized Loss = $\$1,965.70$.
+> * Update Amortization (Jan 1 – Jun 30): Rev = \$310,111.79 \times 3.5\% = \$10,853.91; Amort = \$1,146.09. New Cost = \$308,965.70.
+> * Record Sale: Proceeds = \$307,000.00; Cost = \$308,965.70$ $\implies$ Realized Loss = \$1,965.70.
 > $$ \begin{array}{llrr}
 > \text{Cash (Interest portion)} & & 12,000.00 & \\
 > \quad \text{Debt Investments (AFS)} & & & 1,146.09 \\
@@ -311,9 +311,9 @@ mindmap
 > * **Company Y:** $5,000$ shares at $\$30.00$ per share $+$ $\$2,000$ fee (Total Cost $= \$152,000$).
 > **Additional Events:**
 > * **June 1, 2025:** Company X paid a cash dividend of $\$0.50$ per share.
-> * **December 31, 2025:** Fair values: Co. X $= \$18.00$; Co. Y $= \$25.00$.
+> * **December 31, 2025:** Fair values: Co. X $= \$18.00; Co. Y $= \$25.00.
 > * **April 15, 2026:** Sold all $10,000$ shares of Co. X at $\$21.00$ less $\$2,000$ fee.
-> * **December 31, 2026:** Fair value of Co. Y $= \$32.00$.
+> * **December 31, 2026:** Fair value of Co. Y $= \$32.00.
 > ##### Step-by-Step Journal Entries:
 > **1. February 1, 2025 — Initial Acquisition**
 > $$ \begin{array}{llrr}
@@ -329,26 +329,26 @@ mindmap
 > \quad \text{Dividend Revenue (Income Statement)} & & & 5,000 \\
 > \end{array} $$
 > **3. December 31, 2025 — Fair Value Adjustment**
-> * Co. X FV = $\$180,000$; Cost = $\$151,500 \implies$ Gain = $+\$28,500$
-> * Co. Y FV = $\$125,000$; Cost = $\$152,000 \implies$ Loss = $-\$27,000$
-> * Net Unrealized Gain = $\$305,000 - \$303,500 = +\$1,500$
+> * Co. X FV = \$180,000; Cost = \$151,500 \implies$ Gain = $+\$28,500$
+> * Co. Y FV = \$125,000; Cost = \$152,000 \implies$ Loss = $-\$27,000$
+> * Net Unrealized Gain = \$305,000 - \$303,500 = +\$1,500$
 > $$ \begin{array}{llrr}
 > \text{Fair Value Adjustment (Equity)} & & 1,500 & \\
 > \quad \text{Unrealized Holding Gain or Loss—Income} & & & 1,500 \\
 > \end{array} $$
 > **4. April 15, 2026 — Sale of Company X Stock**
 > * Net Proceeds = $(10,000 \times \$21.00) - \$2,000 = \$208,000$
-> * Realized Gain = $\$208,000 - \$151,500 (\text{Cost}) = +\$56,500$
+> * Realized Gain = \$208,000 - \$151,500 (\text{Cost}) = +\$56,500$
 > $$ \begin{array}{llrr}
 > \text{Cash} & & 208,000 & \\
 > \quad \text{Equity Investments (Company X)} & & & 151,500 \\
 > \quad \text{Gain on Sale of Equity Investments (Net Income)} & & & 56,500 \\
 > \end{array} $$
 > **5. December 31, 2026 — Year-End Fair Value Adjustment**
-> * Remaining Portfolio (Company Y): Cost = $\$152,000$; FV = $\$160,000$.
+> * Remaining Portfolio (Company Y): Cost = \$152,000; FV = \$160,000.
 > * Target Allowance = $+\$8,000$ (Debit).
 > * Existing Allowance = $+\$1,500$ (Debit).
-> * Adjustment Required = $\$8,000 - \$1,500 = +\$6,500$ (Debit).
+> * Adjustment Required = \$8,000 - \$1,500 = +\$6,500$ (Debit).
 > $$ \begin{array}{llrr}
 > \text{Fair Value Adjustment (Equity)} & & 6,500 & \\
 > \quad \text{Unrealized Holding Gain or Loss—Income} & & & 6,500 \\
@@ -358,7 +358,7 @@ mindmap
 
 > [!example] Walkthrough 3: AFS Debt Security Impairment & Fair Value Floor
 >
-> On January 1, 2024, **Vanguard Holdings** purchased a corporate bond classified as Available-for-Sale for $\$1,000,000$ at par. At December 31, 2025, due to credit deterioration and interest rate increases, the bond's fair value dropped to $\$820,000$. Vanguard calculated an **Expected Credit Loss (ECL)** of $\$120,000$. Vanguard does not intend to sell the bond, and it is not more likely than not that Vanguard will be required to sell before recovery.
+> On January 1, 2024, **Vanguard Holdings** purchased a corporate bond classified as Available-for-Sale for $\$1,000,000$ at par. At December 31, 2025, due to credit deterioration and interest rate increases, the bond's fair value dropped to $\$820,000. Vanguard calculated an **Expected Credit Loss (ECL)** of $\$120,000. Vanguard does not intend to sell the bond, and it is not more likely than not that Vanguard will be required to sell before recovery.
 > **1. Calculate Fair Value Floor:**
 > $$ \text{Fair Value Floor} = \$1,000,000 - \$820,000 = \$180,000 $$
 > **2. Allocate Credit Loss vs. Non-Credit Loss:**

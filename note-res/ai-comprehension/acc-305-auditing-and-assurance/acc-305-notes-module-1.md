@@ -78,7 +78,7 @@ Where:
 - $R_b$ = **Business / Credit risk premium** (the risk that the borrower will default due to economic downturns, industry conditions, or poor management decisions).
 - $R_i$ = **Information risk premium** (the risk that the financial statements used to evaluate the borrower's creditworthiness contain material misstatements).
 
-When an independent audit is performed, information risk $$R_i$$ is significantly reduced toward zero $$R_i \to 0$$, thereby directly reducing the total required rate of return or cost of capital $R$:
+When an independent audit is performed, information risk $R_i$ is significantly reduced toward zero $R_i \to 0$, thereby directly reducing the total required rate of return or cost of capital $R$:
 
 > [!quote] Formula & Derivation
 >
@@ -210,9 +210,9 @@ The traditional 10 GAAS (General, Fieldwork, Reporting standards) have been mode
 > #### Scenario: Cost of Capital & Sample Risk Assessment
 > **Company XYZ** is seeking a $\$10,000,000$ bank loan. The bank evaluates the borrowing rate based on the risk breakdown formula:
 > $$R = R_f + R_b + R_i$$
-> - Risk-free rate $$R_f$$ = $4.0\%$
-> - Business risk premium $$R_b$$ = $3.5\%$
-> - Information risk premium without audit $$R_i$$ = $3.0\%$
+> - Risk-free rate $R_f$ = 4.0\%$
+> - Business risk premium $R_b$ = 3.5\%$
+> - Information risk premium without audit $R_i$ = 3.0\%$
 > **Calculations**:
 > 1. **Borrowing Rate Without Audit**:
 >    $$R_{\text{unaudited}} = 4.0\% + 3.5\% + 3.0\% = 10.5\%$$
@@ -223,4 +223,4 @@ The traditional 10 GAAS (General, Fieldwork, Reporting standards) have been mode
 >    $$\text{Annual Interest Expense} = \$10,000,000 \times 7.7\% = \$770,000$$
 > 3. **Net Annual Economic Savings**:
 >    $$\text{Savings} = \$1,050,000 - \$770,000 = \$280,000 \text{ per year}$$
->    If the audit fee is $\$50,000$, the company achieves a net savings of $\$280,000 - \$50,000 = \$230,000$, illustrating the direct economic demand for auditing services.
+>    If the audit fee is $\$50,000, the company achieves a net savings of $\$280,000 - \$50,000 = \$230,000, illustrating the direct economic demand for auditing services.

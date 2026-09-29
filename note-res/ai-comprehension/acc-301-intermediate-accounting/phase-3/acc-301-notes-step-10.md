@@ -56,7 +56,7 @@ When goods are bought under credit terms (e.g., $2/10, n/30$), companies can acc
 
 > [!example] Numerical Problem: Gross vs. Net Method Walkthrough
 >
-> **Scenario**: On October 1, 2025, Company X purchases merchandise for $\$10,000$, terms $2/10, n/30$.
+> **Scenario**: On October 1, 2025, Company X purchases merchandise for $\$10,000, terms $2/10, n/30$.
 > * **Case A**: Payment made on October 10 (within discount period).
 > * **Case B**: Payment made on October 31 (after discount period).
 > ##### Gross Method Journal Entries:
@@ -112,7 +112,7 @@ When goods are bought under credit terms (e.g., $2/10, n/30$), companies can acc
 
 > [!example] Numerical Problem: Zero-Interest-Bearing Notes
 >
-> **Scenario**: On November 1, 2025, Apex Corp. signs a $\$102,000$, 6-month zero-interest-bearing note to City Bank, receiving cash proceeds of $\$100,000$. Maturity date is May 1, 2026.
+> **Scenario**: On November 1, 2025, Apex Corp. signs a $\$102,000, 6-month zero-interest-bearing note to City Bank, receiving cash proceeds of $\$100,000. Maturity date is May 1, 2026.
 > $$ \begin{array}{llrr}
 > \textbf{Date} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
 > \hline
@@ -144,7 +144,7 @@ Retailers act as collection agents for state and local government sales taxes.
 
 > [!example] Numerical Problem: Sales Tax Walkthrough
 >
-> **Scenario**: Total cash receipts = $\$21,200$ including a $6\%$ sales tax.
+> **Scenario**: Total cash receipts = \$21,200$ including a $6\%$ sales tax.
 > $$ \text{Sales Revenue} = \frac{\$21,200}{1.06} = \mathbf{\$20,000} $$
 > $$ \text{Sales Tax Payable} = \$21,200 - \$20,000 = \mathbf{\$1,200} $$
 > $$ \begin{array}{llrr}
@@ -168,15 +168,15 @@ Payroll accounting distinguishes between **employee withholdings** (deductions f
 
 > [!example] Numerical Problem: Comprehensive Payroll Walkthrough
 >
-> **Scenario**: Total weekly employee gross salaries = $\$50,000$.
-> * Income Tax Withholding = $\$6,500$
-> * Union Dues Withholding = $\$500$
-> * FICA Tax Rate = $7.65\%$ (100% subject)
-> * FUTA Tax Rate = $0.8\%$ (100% subject)
-> * SUTA Tax Rate = $3.5\%$ (100% subject)
+> **Scenario**: Total weekly employee gross salaries = \$50,000.
+> * Income Tax Withholding = \$6,500$
+> * Union Dues Withholding = \$500$
+> * FICA Tax Rate = 7.65\%$ (100% subject)
+> * FUTA Tax Rate = 0.8\%$ (100% subject)
+> * SUTA Tax Rate = 3.5\%$ (100% subject)
 > **1. Entry to Record Gross Payroll & Employee Withholdings:**
-> * Employee FICA Withholding = $\$50,000 \times 7.65\% = \$3,825$
-> * Net Cash Take-Home Pay = $\$50,000 - \$6,500 - \$3,825 - \$500 = \mathbf{\$39,175}$
+> * Employee FICA Withholding = \$50,000 \times 7.65\% = \$3,825$
+> * Net Cash Take-Home Pay = \$50,000 - \$6,500 - \$3,825 - \$500 = \mathbf{\$39,175}$
 > $$ \begin{array}{llrr}
 > \textbf{Account Titles} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
 > \hline
@@ -187,10 +187,10 @@ Payroll accounting distinguishes between **employee withholdings** (deductions f
 > \quad \text{Cash / Salaries Payable} & & & 39,175 \\
 > \end{array} $$
 > **2. Entry to Record Employer Payroll Tax Expense:**
-> * Employer FICA Match = $\$50,000 \times 7.65\% = \$3,825$
-> * FUTA Tax = $\$50,000 \times 0.8\% = \$400$
-> * SUTA Tax = $\$50,000 \times 3.5\% = \$1,750$
-> * Total Employer Payroll Tax Expense = $\$3,825 + \$400 + \$1,750 = \mathbf{\$5,975}$
+> * Employer FICA Match = \$50,000 \times 7.65\% = \$3,825$
+> * FUTA Tax = \$50,000 \times 0.8\% = \$400$
+> * SUTA Tax = \$50,000 \times 3.5\% = \$1,750$
+> * Total Employer Payroll Tax Expense = \$3,825 + \$400 + \$1,750 = \mathbf{\$5,975}$
 > $$ \begin{array}{llrr}
 > \textbf{Account Titles} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
 > \hline
@@ -216,7 +216,7 @@ Payroll accounting distinguishes between **employee withholdings** (deductions f
 
 > [!example] Numerical Problem: Compensated Absences
 >
-> **Scenario**: In 2025, 10 employees earn 2 weeks of vacation time each (total 20 weeks). Current wage rate = $\$500$/week. By Dec 31, 2025, no vacation was taken. In 2026, employees take the 20 weeks of vacation when wage rates increased to $\$550$/week.
+> **Scenario**: In 2025, 10 employees earn 2 weeks of vacation time each (total 20 weeks). Current wage rate = \$500$/week. By Dec 31, 2025, no vacation was taken. In 2026, employees take the 20 weeks of vacation when wage rates increased to $\$550$/week.
 > $$ \begin{array}{llrr}
 > \textbf{Date / Event} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
 > \hline
@@ -234,7 +234,7 @@ Bonus arrangements are supplementary employee compensation tied to performance (
 
 > [!quote] Formula & Derivation: Income-Based Bonuses
 >
-> Let $B = \text{Bonus}$, $T = \text{Tax Rate} = 20\%$, $I = \text{Net Income before bonus and tax} = \$100,000$.
+> Let $B = \text{Bonus}$, $T = \text{Tax Rate} = 20\%$, $I = \text{Net Income before bonus and tax} = \$100,000.
 > **1. Bonus based on Income before Tax and before Bonus**:
 > $$ B = 0.10 \times \$100,000 = \mathbf{\$10,000} $$
 > **2. Bonus based on Income after Bonus, but before Tax**:
@@ -286,7 +286,7 @@ Gift cards represent unearned gift card revenue.
 
 > [!example] Numerical Problem: Gift Card Breakage Walkthrough
 >
-> **Scenario**: Retailer sells 1,000 gift cards at $\$50$ each ($\$50,000$ cash). Historical data indicates $10\%$ of cards ($\$5,000$) will never be redeemed (breakage). Total expected redemptions = $\$45,000$.
+> **Scenario**: Retailer sells 1,000 gift cards at $\$50$ each ($\$50,000$ cash). Historical data indicates $10\%$ of cards ($\$5,000$) will never be redeemed (breakage). Total expected redemptions = \$45,000.
 > In Year 1, customers redeem $\$22,500$ of gift cards (50% of total expected redemptions).
 > $$ \begin{array}{llrr}
 > \textbf{Date / Event} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
@@ -297,7 +297,7 @@ Gift cards represent unearned gift card revenue.
 > \text{Year 1 Redemptions} & \text{Unearned Gift Card Revenue} & 25,000 & \\
 > \text{(\$22,500 + \$2,500)} & \quad \text{Sales Revenue} & & 25,000 \\
 > \end{array} $$
-> *(Proportional Breakage Recognized = $50\% \times \$5,000 = \$2,500$)*
+> *(Proportional Breakage Recognized = 50\% \times \$5,000 = \$2,500$)*
 
 #### C. Customer Advances & Refundable Deposits
 * **Customer Advances**: Non-refundable prepayments for custom orders or long-term projects.
@@ -394,7 +394,7 @@ Factors evaluated:
 > [!example] Numerical Problem: Comprehensive Warranty Walkthrough
 >
 > **Scenario**: In 2025, Company Y sells 1,000 units for $\$2,000$ each ($\$2,000,000$ cash).
-> 1. Includes 1-year **Assurance Warranty**. Estimated repair cost = $\$100$/unit. Actual 2025 warranty repairs paid = $\$30,000$.
+> 1. Includes 1-year **Assurance Warranty**. Estimated repair cost = \$100$/unit. Actual 2025 warranty repairs paid = \$30,000.
 > 2. Sells 400 **Service-Type Extended Warranties** (Years 2–3) for $\$300$ each ($\$120,000$ cash).
 > $$ \begin{array}{llrr}
 > \textbf{Date / Event} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
@@ -417,8 +417,8 @@ Promotional offers (premiums, box tops, coupons) create a liability at the time 
 
 > [!example] Numerical Problem: Premiums Walkthrough
 >
-> **Scenario**: Fluffy Cake Mix Co. offers a mixing bowl in exchange for 10 box tops + $\$1$.
-> * Cost of mixing bowl = $\$2.00$ (Net cost to company = $\$2.00 - \$1.00 = \mathbf{\$1.00}$ per bowl).
+> **Scenario**: Fluffy Cake Mix Co. offers a mixing bowl in exchange for 10 box tops + \$1.
+> * Cost of mixing bowl = \$2.00$ (Net cost to company = \$2.00 - \$1.00 = \mathbf{\$1.00}$ per bowl).
 > * Boxes of cake mix sold in 2025 = 300,000 boxes at $\$3$ each.
 > * Estimated box top redemption rate = 60% of sales.
 > * Actual box tops redeemed in 2025 = 60,000 box tops (6,000 bowls).
@@ -438,7 +438,7 @@ Promotional offers (premiums, box tops, coupons) create a liability at the time 
 > \text{4. Year-End Accrual} & \text{Premium Expense} & 12,000 & \\
 > & \quad \text{Premium Liability} & & 12,000 \\
 > \end{array} $$
-> *(Calculation for Accrual: Total Expected Bowls = $300,000 \times 60\% / 10 = 18,000$. Future expected = $18,000 - 6,000 = 12,000$. Estimated Liability = $12,000 \times \$1.00 = \mathbf{\$12,000}$)*
+> *(Calculation for Accrual: Total Expected Bowls = 300,000 \times 60\% / 10 = 18,000$. Future expected = 18,000 - 6,000 = 12,000$. Estimated Liability = 12,000 \times \$1.00 = \mathbf{\$12,000}$)*
 
 ---
 ### 5.5 Gain Contingencies

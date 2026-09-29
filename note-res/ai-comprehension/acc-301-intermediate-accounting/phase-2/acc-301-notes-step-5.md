@@ -57,13 +57,13 @@ mindmap
 #### 1.3 Numerical Walkthrough 1: Bank Reconciliation & Adjusting Entries
 > [!example] Numerical Problem: Bank Reconciliation
 >
-> **Scenario**: On October 31, 2025, Apex Corp. shows a general ledger Cash balance of $\$24,150$. The bank statement on the same date indicates a balance of $\$29,480$. Audit analysis reveals:
-> 1. Deposit in transit on October 31: $\$4,200$.
-> 2. Outstanding checks as of October 31: $\$6,800$.
+> **Scenario**: On October 31, 2025, Apex Corp. shows a general ledger Cash balance of $\$24,150. The bank statement on the same date indicates a balance of $\$29,480. Audit analysis reveals:
+> 1. Deposit in transit on October 31: $\$4,200.
+> 2. Outstanding checks as of October 31: $\$6,800.
 > 3. Bank collected a $\$3,000$ non-interest-bearing note receivable for Apex, charging a $\$30$ collection fee.
-> 4. Bank service charge for October: $\$50$.
+> 4. Bank service charge for October: $\$50.
 > 5. Customer check from J. Doe for $\$480$ was returned marked NSF.
-> 6. Check No. 842 for office supplies was recorded in the book as $\$890$ but correctly drawn and paid by the bank as $\$980$ (overstated expense by bookkeeper $\implies$ check written for $\$980$, recorded as $\$890$, so cash disbursed was understated by $\$90$).
+> 6. Check No. 842 for office supplies was recorded in the book as $\$890$ but correctly drawn and paid by the bank as $\$980$ (overstated expense by bookkeeper $\implies$ check written for $\$980, recorded as $\$890, so cash disbursed was understated by $\$90$).
 > ##### Step-by-Step Solution & Schedule:
 > $$ \begin{array}{lrr}
 > \multicolumn{3}{c}{\textbf{Apex Corp. Bank Reconciliation}} \\
@@ -216,9 +216,9 @@ GAAP requires the **Current Expected Credit Loss (CECL)** model. Companies must 
 > \hline \hline
 > \end{array} $$
 > ##### Required Calculations:
-> 1. Target Allowance = $\$19,800$.
-> 2. Unadjusted Allowance Balance = $\$3,000$ Credit.
-> 3. Bad Debt Expense = $\$19,800 - \$3,000 = \$16,800$.
+> 1. Target Allowance = \$19,800.
+> 2. Unadjusted Allowance Balance = \$3,000$ Credit.
+> 3. Bad Debt Expense = \$19,800 - \$3,000 = \$16,800.
 > ##### Journal Entries:
 > $$ \begin{array}{llrr}
 > \text{Date} & \text{Account Titles and Explanation} & \text{Debit (\$)} & \text{Credit (\$)} \\
@@ -291,7 +291,7 @@ When a payee transfers an interest-bearing or non-interest-bearing note to a ban
 #### 4.4 Numerical Walkthrough 3: Zero-Interest Note Amortization & Bank Discounting
 > [!example] Part A: Zero-Interest-Bearing Note Amortization
 >
-> **Scenario**: On January 1, 2025, Horizon Corp. accepts a 3-year, $\$50,000$ zero-interest-bearing note in exchange for land with a fair value of $\$35,589$. The implicit market rate is $12\%$ ($12\%$ compounded annually: $\$50,000 \times 0.71178 = \$35,589$).
+> **Scenario**: On January 1, 2025, Horizon Corp. accepts a 3-year, $\$50,000$ zero-interest-bearing note in exchange for land with a fair value of $\$35,589. The implicit market rate is $12\%$ ($12\%$ compounded annually: $\$50,000 \times 0.71178 = \$35,589$).
 > **Amortization Schedule (Effective-Interest Method)**:
 > $$ \begin{array}{|c|r|r|r|r|}
 > \hline
@@ -325,7 +325,7 @@ When a payee transfers an interest-bearing or non-interest-bearing note to a ban
 
 > [!example] Part B: Discounting an Interest-Bearing Note at Bank
 >
-> **Scenario**: On April 1, 2025, Beacon Co. received a $\$60,000$, 6-month, $8\%$ interest-bearing note from a customer. On July 1, 2025 (after holding it for 3 months), Beacon discounts the note at City Bank at a bank discount rate of $10\%$.
+> **Scenario**: On April 1, 2025, Beacon Co. received a $\$60,000, 6-month, $8\%$ interest-bearing note from a customer. On July 1, 2025 (after holding it for 3 months), Beacon discounts the note at City Bank at a bank discount rate of $10\%$.
 > **Step-by-Step Discounting Calculations:**
 > 1. **Maturity Value (MV)**:
 >    $$ \text{Interest} = \$60,000 \times 0.08 \times \frac{6}{12} = \$2,400 \implies \text{MV} = \$60,000 + \$2,400 = \$62,400 $$
@@ -390,15 +390,15 @@ If any condition is not met, the transfer is accounted for as a **Secured Borrow
 >
 > **Scenario**: Crestview Corp. factors $\$300,000$ of accounts receivable to First Factors Inc. The factor assesses a $3\%$ finance fee and retains $5\%$ for customer sales returns and allowances.
 > * *Case A*: Factored **Without Recourse**.
-> * *Case B*: Factored **With Recourse**. Crestview estimates the fair value of the recourse liability to be $\$7,000$.
+> * *Case B*: Factored **With Recourse**. Crestview estimates the fair value of the recourse liability to be $\$7,000.
 > **Base Calculations:**
-> * Gross Accounts Receivable = $\$300,000$
-> * Finance Fee ($3\%$ of $\$300,000$) = $\$9,000$
-> * Factor Retention / Holdback ($5\%$ of $\$300,000$) = $\$15,000$
-> * Net Cash Proceeds = $\$300,000 - \$9,000 - \$15,000 = \$276,000$
+> * Gross Accounts Receivable = \$300,000$
+> * Finance Fee ($3\%$ of $\$300,000$) = \$9,000$
+> * Factor Retention / Holdback ($5\%$ of $\$300,000$) = \$15,000$
+> * Net Cash Proceeds = \$300,000 - \$9,000 - \$15,000 = \$276,000$
 > **Loss Computations:**
-> * *Case A (Without Recourse)*: Loss = $\$9,000$
-> * *Case B (With Recourse)*: Loss = $\$9,000 + \$7,000 (\text{Recourse Liability}) = \$16,000$
+> * *Case A (Without Recourse)*: Loss = \$9,000$
+> * *Case B (With Recourse)*: Loss = \$9,000 + \$7,000 (\text{Recourse Liability}) = \$16,000$
 > ##### Crestview Corp. (Seller) Journal Entries Comparison:
 > $$ \begin{array}{llrr}
 > \textbf{Case A: Without Recourse} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\

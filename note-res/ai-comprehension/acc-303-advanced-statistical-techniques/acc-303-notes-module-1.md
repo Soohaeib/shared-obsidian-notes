@@ -77,7 +77,7 @@ The mathematical level of measurement determines the appropriate statistical too
 
 | **Scale Level** | **Characteristics** | **Mathematical Operations** | **Permissible Statistics** | **Examples** |
 | :--- | :--- | :--- | :--- | :--- |
-| **1. Nominal** | Categories only; labels or names. No natural order or ranking. | Counting frequencies only. $=$ or $\neq$ | Mode, Chi-Square $$\chi^2$$, Contingency Coefficient. | Gender, Eye color, Jersey numbers, Religion. |
+| **1. Nominal** | Categories only; labels or names. No natural order or ranking. | Counting frequencies only. $=$ or $\neq$ | Mode, Chi-Square $\chi^2$, Contingency Coefficient. | Gender, Eye color, Jersey numbers, Religion. |
 | **2. Ordinal** | Relative ranking or rating. Distances between ranks unknown. | Order comparison. $>$ or $<$ | Median, Percentiles, Spearman Rank Correlation. | Class rank, Likert scale, Bond ratings (AAA, AA, A). |
 | **3. Interval** | Equal distances between values. No natural zero (zero is arbitrary). | Addition, Subtraction. $+$ or $-$ | Mean, Std Dev, Variance, $t$-test, $F$-test, Pearson $r$. | Fahrenheit/Celsius temp, SAT scores, Dress size. |
 | **4. Ratio** | Equal intervals PLUS absolute zero. Absence of attribute at zero. | All arithmetic operations. $\times$ and $\div$ | Geometric Mean, Coefficient of Variation, All advanced econometrics. | Monthly income, Distance, Weight, Production units. |
@@ -141,10 +141,10 @@ Every element in the population has a known, non-zero probability of being inclu
    > If the sampling frame possesses a hidden periodic structure or cycle that matches $k$, the sample will suffer from severe systematic bias.
 
 3. **Stratified Random Sampling**:
-   * Used when a population is non-homogeneous. The population $N$ is divided into non-overlapping, internally homogeneous subgroups called **strata** $$N_1, N_2, \dots, N_k$$. Independent simple random samples are drawn from each stratum.
+   * Used when a population is non-homogeneous. The population $N$ is divided into non-overlapping, internally homogeneous subgroups called **strata** $N_1, N_2, \dots, N_k$. Independent simple random samples are drawn from each stratum.
    * **Proportional Allocation**: Stratum sample size $n_i$ is directly proportional to stratum population size $N_i$:
      $$n_i = n \cdot \left(\frac{N_i}{N}\right)$$
-   * **Optimum (Neyman) Allocation**: Accounts for differences in both stratum size $$N_i$$ and stratum variability $$\sigma_i$$. Stratum sample size $n_i$ is computed as:
+   * **Optimum (Neyman) Allocation**: Accounts for differences in both stratum size $N_i$ and stratum variability $\sigma_i$. Stratum sample size $n_i$ is computed as:
      $$n_i = n \cdot \frac{N_i \sigma_i}{\sum_{j=1}^k N_j \sigma_j}$$
      *(Allocates larger sample sizes to larger and more variable strata, minimizing the variance of the sample estimator for a fixed total sample size).*
 
@@ -163,7 +163,7 @@ Every element in the population has a known, non-zero probability of being inclu
 ### 1.3 Sampling Errors, Standard Error, and Central Limit Theorem
 
 #### 1. Sampling Error vs. Non-Sampling Error
-* **Sampling Error**: The random variation or difference between a sample statistic $$\bar{X}$$ and the true population parameter $$\mu$$:
+* **Sampling Error**: The random variation or difference between a sample statistic $\bar{X}$ and the true population parameter $\mu$:
   $$\text{Sampling Error} = \bar{X} - \mu$$
   Sampling errors occur purely due to chance. The expected value of sampling error is zero. As sample size $n$ increases, sampling error decreases at the rate of $\frac{1}{\sqrt{n}}$.
 
@@ -172,19 +172,19 @@ Every element in the population has a known, non-zero probability of being inclu
 ---
 
 #### 2. The Sampling Distribution of the Sample Mean
-The **sampling distribution of the sample mean** is a probability distribution consisting of all possible sample means $$\bar{X}$$ calculated from all possible random samples of a specified size $n$ drawn from a given population $N$.
+The **sampling distribution of the sample mean** is a probability distribution consisting of all possible sample means $\bar{X}$ calculated from all possible random samples of a specified size $n$ drawn from a given population $N$.
 
 ##### Mathematical Properties of the Sampling Distribution:
-1. **Expected Value (Unbiasedness)**: The mean of the sampling distribution of sample means $$\mu_{\bar{x}}$$ is strictly equal to the true population mean $$\mu$$:
+1. **Expected Value (Unbiasedness)**: The mean of the sampling distribution of sample means $\mu_{\bar{x}}$ is strictly equal to the true population mean $\mu$:
    $$\mu_{\bar{x}} = E(\bar{X}) = \mu$$
 
-2. **Standard Error of the Mean $$\sigma_{\bar{x}}$$**: The standard deviation of the sampling distribution of sample means, measuring the dispersion of sample estimates around the population mean:
+2. **Standard Error of the Mean $\sigma_{\bar{x}}$**: The standard deviation of the sampling distribution of sample means, measuring the dispersion of sample estimates around the population mean:
    $$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} \quad \text{(for infinite populations or sampling with replacement)}$$
 
 ---
 
 #### 3. Finite Population Correction $FPC$ Factor
-When sampling is conducted **without replacement** from a finite population of size $N$, and the sample size $n$ constitutes more than $5\%$ of the population $$\frac{n}{N} > 0.05$$, the standard error formula must be multiplied by the Finite Population Correction $FPC$ factor:
+When sampling is conducted **without replacement** from a finite population of size $N$, and the sample size $n$ constitutes more than $5\%$ of the population $\frac{n}{N} > 0.05$, the standard error formula must be multiplied by the Finite Population Correction $FPC$ factor:
 
 > [!quote] Finite Population Correction $FPC$
 >
@@ -200,12 +200,12 @@ When sampling is conducted **without replacement** from a finite population of s
 >
 > The Central Limit Theorem is the foundational theorem of inferential statistics and classical econometrics.
 > 
-> **Statement**: If random samples of size $n$ are selected from **any** population possessing a finite mean $\mu$ and a finite variance $\sigma^2$, as the sample size $n$ increases $$n \ge 30$$, the sampling distribution of the sample mean $\bar{X}$ approaches a **normal distribution** with mean $\mu$ and variance $\frac{\sigma^2}{n}$, regardless of the structural shape of the underlying population probability distribution.
+> **Statement**: If random samples of size $n$ are selected from **any** population possessing a finite mean $\mu$ and a finite variance $\sigma^2$, as the sample size $n$ increases $n \ge 30$, the sampling distribution of the sample mean $\bar{X}$ approaches a **normal distribution** with mean $\mu$ and variance $\frac{\sigma^2}{n}$, regardless of the structural shape of the underlying population probability distribution.
 > 
 > $$\bar{X} \xrightarrow{d} N\left(\mu, \; \frac{\sigma^2}{n}\right) \quad \text{as } n \to \infty$$
 
 ##### Standard Normal Transformation ($Z$-score) for Sample Means:
-Using the CLT, any sample mean $\bar{X}$ from a large sample $$n \ge 30$$ can be standardized into a standard normal random variable $Z \sim N(0,1)$:
+Using the CLT, any sample mean $\bar{X}$ from a large sample $n \ge 30$ can be standardized into a standard normal random variable $Z \sim N(0,1)$:
 
 $$Z = \frac{\bar{X} - \mu}{\sigma_{\bar{x}}} = \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}}$$
 
@@ -373,12 +373,12 @@ $$\rho = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}, \qquad -1 \le \rho \le 1$$
 
 > [!example] Numerical Problem 2: Central Limit Theorem & Sampling Error Probability Analysis
 >
-> **Context**: An airline tracks the annual maintenance cost of commercial passenger jets. The population mean annual maintenance cost is $\mu = \$14,500$ with a population standard deviation of $\sigma = \$3,200$. The underlying distribution of maintenance costs across individual aircraft is strongly positively skewed. A simple random sample of $n = 64$ aircraft is selected.
+> **Context**: An airline tracks the annual maintenance cost of commercial passenger jets. The population mean annual maintenance cost is $\mu = \$14,500$ with a population standard deviation of $\sigma = \$3,200. The underlying distribution of maintenance costs across individual aircraft is strongly positively skewed. A simple random sample of $n = 64$ aircraft is selected.
 > 
 > **Required**:
 > 1. Describe the shape of the sampling distribution of the sample mean $\bar{X}$ and state the governing statistical theorem.
 > 2. Calculate the standard error of the sample mean $\sigma_{\bar{x}}$.
-> 3. Compute the probability that the sample mean maintenance cost $\bar{X}$ falls between $\$14,000$ and $\$15,300$.
+> 3. Compute the probability that the sample mean maintenance cost $\bar{X}$ falls between $\$14,000$ and $\$15,300.
 > 4. Compute the probability that the sampling error $(\bar{X} - \mu)$ exceeds $\$500$ in absolute magnitude.
 > 
 > ---
@@ -386,7 +386,7 @@ $$\rho = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}, \qquad -1 \le \rho \le 1$$
 > ##### Solution Walkthrough:
 > 
 > **Part 1: Shape of the Sampling Distribution**
-> Although the underlying population distribution is positively skewed, the sample size $n = 64$ exceeds 30 $$n \ge 30$$. By the **Central Limit Theorem $CLT$**, the sampling distribution of the sample mean $\bar{X}$ is approximately normal:
+> Although the underlying population distribution is positively skewed, the sample size $n = 64$ exceeds 30 $n \ge 30$. By the **Central Limit Theorem $CLT$**, the sampling distribution of the sample mean $\bar{X}$ is approximately normal:
 > $$\bar{X} \sim N\left(\mu = 14,500, \; \sigma_{\bar{x}}^2 = \frac{3,200^2}{64}\right)$$
 > 
 > ---

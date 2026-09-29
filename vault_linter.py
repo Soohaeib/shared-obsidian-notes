@@ -267,6 +267,73 @@ class VaultLinter:
                     lines[idx-1] = fixed_line
                     is_file_modified = True
 
+        # 3. Check & Repair LaTeX Math Errors (inline $$, currency collisions, and trailing punctuation)
+        in_code_block = False
+        for idx, line in enumerate(lines, start=1):
+            if line.strip().startswith('```'):
+                in_code_block = not in_code_block
+                continue
+            if in_code_block:
+                continue
+
+            # Check 3a: Inline $$...$$ on lines that contain text, bullet markers, or trailing punctuation
+            if '$$' in line:
+                is_standalone_block = bool(re.match(r'^[ \t]*(?:>+[ \t]*)?\$\$[\s\S]*?\$\$[ \t]*$', line))
+                if not is_standalone_block:
+                    fixed_line = re.sub(r'\$\$((?:\\\$|[^\$\n\r])+?)\$\$', r'$\1$', line)
+                    if fixed_line != line:
+                        file_issues.append({
+                            "file": file_path,
+                            "line": idx,
+                            "category": "LaTeX / Math",
+                            "severity": "info",
+                            "message": "Inline '$$...$$' block notation used within continuous text/list item. Auto-fixed to inline math '$...$'.",
+                            "snippet": line[:100],
+                            "suggestion": f"Change to: '{fixed_line[:100]}'",
+                            "autoFixed": self.auto_fix
+                        })
+                        if self.auto_fix:
+                            line = fixed_line
+                            lines[idx-1] = fixed_line
+                            is_file_modified = True
+
+            # Check 3b: Accidental double/stray $ right after operators (e.g. \times $8% -> \times 8%)
+            if re.search(r'(\\times|\+|-|=)\s*\$([0-9\\])', line):
+                fixed_line = re.sub(r'(\\times|\+|-|=)\s*\$([0-9\\])', r'\1 \2', line)
+                if fixed_line != line:
+                    file_issues.append({
+                        "file": file_path,
+                        "line": idx,
+                        "category": "LaTeX / Math",
+                        "severity": "warning",
+                        "message": "Accidental nested/stray '$' delimiter after mathematical operator.",
+                        "snippet": line[:100],
+                        "suggestion": f"Change to: '{fixed_line[:100]}'",
+                        "autoFixed": self.auto_fix
+                    })
+                    if self.auto_fix:
+                        line = fixed_line
+                        lines[idx-1] = fixed_line
+                        is_file_modified = True
+
+            # Check 3c: Stray trailing $ before full stop or comma (e.g. \$48,000$. -> \$48,000.)
+            if re.search(r'(\\\$[\d,.]+|\$\d[\d,.]*)\$([.,;:])', line):
+                fixed_line = re.sub(r'(\\\$[\d,.]+|\$\d[\d,.]*)\$([.,;:])', r'\1\2', line)
+                if fixed_line != line:
+                    file_issues.append({
+                        "file": file_path,
+                        "line": idx,
+                        "category": "LaTeX / Math",
+                        "severity": "info",
+                        "message": "Stray '$' delimiter adjacent to punctuation normalized.",
+                        "snippet": line[:100],
+                        "suggestion": f"Change to: '{fixed_line[:100]}'",
+                        "autoFixed": self.auto_fix
+                    })
+                    if self.auto_fix:
+                        lines[idx-1] = fixed_line
+                        is_file_modified = True
+
         # Re-join lines for block-level checks
         modified_content = '\n'.join(lines)
 

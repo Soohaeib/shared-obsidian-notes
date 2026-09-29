@@ -198,8 +198,8 @@ A **Bundled Product** consists of two or more distinct products/services sold to
 > * **Practical Capacity:** $4,000$ hours.
 > * **Budgeted Fixed Costs:** $\$144,000$ (in the relevant range of $3,000$ to $4,000$ hours).
 > * **Budgeted Variable Rate:** $\$30$ per materials-handling hour.
-> * **Budgeted Usage:** Machining = $800$ hours; Assembly = $2,800$ hours; Total Budgeted = $3,600$ hours.
-> * **Actual Usage:** Machining = $1,200$ hours; Assembly = $2,400$ hours; Total Actual = $3,600$ hours.
+> * **Budgeted Usage:** Machining = 800$ hours; Assembly = 2,800$ hours; Total Budgeted = 3,600$ hours.
+> * **Actual Usage:** Machining = 1,200$ hours; Assembly = 2,400$ hours; Total Actual = 3,600$ hours.
 > **Requirements:** Calculate allocations under Single-Rate (Budgeted Usage), Dual-Rate (Budgeted Usage), and Dual-Rate (Practical Capacity).
 
 ##### Part A: Single-Rate Method (Based on Budgeted Usage Demand Base)
@@ -209,43 +209,43 @@ A **Bundled Product** consists of two or more distinct products/services sold to
 2. **Allocate to Operating Departments (Based on Actual Hours):**
    * **Machining ($O_1$):** $1,200 \text{ actual hrs} \times \$70/\text{hr} = \$84,000$
    * **Assembly ($O_2$):** $2,400 \text{ actual hrs} \times \$70/\text{hr} = \$168,000$
-   * **Total Allocated:** $\$84,000 + \$168,000 = \$252,000$.
+   * **Total Allocated:** $\$84,000 + \$168,000 = \$252,000.
 
 ---
 ##### Part B: Dual-Rate Method (Budgeted Rate & Budgeted Fixed Usage)
 1. **Determine Rates:**
-   * Variable Rate = $\$30$ per actual hour.
-   * Fixed Rate = $\frac{\$144,000}{3,600 \text{ budgeted hrs}} = \$40$ per budgeted hour.
+   * Variable Rate = \$30$ per actual hour.
+   * Fixed Rate = \frac{\$144,000}{3,600 \text{ budgeted hrs}} = \$40$ per budgeted hour.
 2. **Calculate Allocation:**
    * **Machining ($O_1$):**
-     * Fixed Costs Allocated = $800 \text{ budgeted hrs} \times \$40/\text{hr} = \$32,000$
-     * Variable Costs Allocated = $1,200 \text{ actual hrs} \times \$30/\text{hr} = \$36,000$
+     * Fixed Costs Allocated = 800 \text{ budgeted hrs} \times \$40/\text{hr} = \$32,000$
+     * Variable Costs Allocated = 1,200 \text{ actual hrs} \times \$30/\text{hr} = \$36,000$
      * **Total Machining Allocation:** $\$32,000 + \$36,000 = \$68,000$
    * **Assembly ($O_2$):**
-     * Fixed Costs Allocated = $2,800 \text{ budgeted hrs} \times \$40/\text{hr} = \$112,000$
-     * Variable Costs Allocated = $2,400 \text{ actual hrs} \times \$30/\text{hr} = \$72,000$
+     * Fixed Costs Allocated = 2,800 \text{ budgeted hrs} \times \$40/\text{hr} = \$112,000$
+     * Variable Costs Allocated = 2,400 \text{ actual hrs} \times \$30/\text{hr} = \$72,000$
      * **Total Assembly Allocation:** $\$112,000 + \$72,000 = \$184,000$
-   * **Total Dual-Rate Allocated:** $\$68,000 + \$184,000 = \$252,000$.
+   * **Total Dual-Rate Allocated:** $\$68,000 + \$184,000 = \$252,000.
 
 ---
 ##### Part C: Practical Capacity Base Allocation ($4,000$ Hours)
 1. **Determine Capacity Rates:**
-   * Fixed Capacity Rate = $\frac{\$144,000}{4,000 \text{ hrs}} = \$36$ per hour.
-   * Variable Rate = $\$30$ per hour.
-   * Single Capacity Rate = $\$36 + \$30 = \$66$ per hour.
+   * Fixed Capacity Rate = \frac{\$144,000}{4,000 \text{ hrs}} = \$36$ per hour.
+   * Variable Rate = \$30$ per hour.
+   * Single Capacity Rate = \$36 + \$30 = \$66$ per hour.
 2. **Dual-Rate Allocation under Practical Capacity:**
    * **Machining ($O_1$):**
      * Fixed: $800 \text{ budgeted hrs} \times \$36 = \$28,800$
      * Variable: $1,200 \text{ actual hrs} \times \$30 = \$36,000$
-     * **Total Machining:** $\$28,800 + \$36,000 = \$64,800$.
+     * **Total Machining:** $\$28,800 + \$36,000 = \$64,800.
    * **Assembly ($O_2$):**
      * Fixed: $2,800 \text{ budgeted hrs} \times \$36 = \$100,800$
      * Variable: $2,400 \text{ actual hrs} \times \$30 = \$72,000$
-     * **Total Assembly:** $\$100,800 + \$72,000 = \$172,800$.
+     * **Total Assembly:** $\$100,800 + \$72,000 = \$172,800.
    * **Unallocated Cost of Unused Capacity:**
      $$ \text{Unused Hours} = 4,000 - (800 + 2,800) = 400 \text{ hours} $$
      $$ \text{Unused Capacity Cost} = 400 \text{ hrs} \times \$36/\text{hr} = \$14,400 \quad \text{(Expensed to Period Income Statement)} $$
-   * **Total Department Reconciliation:** $\$64,800 + \$172,800 + \$14,400 = \$252,000$.
+   * **Total Department Reconciliation:** $\$64,800 + \$172,800 + \$14,400 = \$252,000.
 
 ---
 
@@ -255,12 +255,12 @@ A **Bundled Product** consists of two or more distinct products/services sold to
 > **Scenario (Robinson Company Overview):**
 > Robinson Company has two support departments and two operating departments:
 > * **Support Departments:**
->   * $S_1$: Engineering & Production Control (Budgeted Overhead = $\$300,000$)
->   * $S_2$: Materials Management (Budgeted Overhead = $\$264,000$)
+>   * $S_1$: Engineering & Production Control (Budgeted Overhead = \$300,000$)
+>   * $S_2$: Materials Management (Budgeted Overhead = \$264,000$)
 > * **Operating Departments:**
->   * $O_1$: Machining Department (Direct Overhead = $\$329,000$; Budgeted Base = $10,000$ machine-hours)
->   * $O_2$: Assembly Department (Direct Overhead = $\$227,000$; Budgeted Base = $20,000$ direct labor-hours)
-> * **Total Plant Overhead:** $\$1,120,000$.
+>   * $O_1$: Machining Department (Direct Overhead = \$329,000; Budgeted Base = 10,000$ machine-hours)
+>   * $O_2$: Assembly Department (Direct Overhead = \$227,000; Budgeted Base = 20,000$ direct labor-hours)
+> * **Total Plant Overhead:** $\$1,120,000.
 > **Interdepartmental Service Matrix:**
 > | Supplying Department | $S_1$ (Engineering) | $S_2$ (Materials) | $O_1$ (Machining) | $O_2$ (Assembly) | Total |
 > | :--- | :---: | :---: | :---: | :---: | :---: |
@@ -270,20 +270,20 @@ A **Bundled Product** consists of two or more distinct products/services sold to
 ---
 ##### Part A: Direct Method Allocation
 Under the direct method, inter-support department services are ignored. Proportions are computed using operating department usage only:
-* **Engineering ($S_1$) Allocation Base:** Machining ($\$60,000$) + Assembly ($\$24,000$) = $\$84,000$.
-  * Machining Share = $\frac{60,000}{84,000} = \frac{5}{7}$
-  * Assembly Share = $\frac{24,000}{84,000} = \frac{2}{7}$.
-* **Materials ($S_2$) Allocation Base:** Machining ($800$ hrs) + Assembly ($2,800$ hrs) = $3,600$ hrs.
-  * Machining Share = $\frac{800}{3,600} = \frac{2}{9}$
-  * Assembly Share = $\frac{2,800}{3,600} = \frac{7}{9}$.
+* **Engineering ($S_1$) Allocation Base:** Machining ($\$60,000$) + Assembly ($\$24,000$) = \$84,000.
+  * Machining Share = \frac{60,000}{84,000} = \frac{5}{7}$
+  * Assembly Share = \frac{24,000}{84,000} = \frac{2}{7}$.
+* **Materials ($S_2$) Allocation Base:** Machining ($800$ hrs) + Assembly ($2,800$ hrs) = 3,600$ hrs.
+  * Machining Share = \frac{800}{3,600} = \frac{2}{9}$
+  * Assembly Share = \frac{2,800}{3,600} = \frac{7}{9}$.
 
 **Calculations:**
 1. **Allocate $S_1$ ($\$300,000$):**
    * To Machining ($O_1$): $\$300,000 \times \frac{5}{7} = \$214,286$
-   * To Assembly ($O_2$): $\$300,000 \times \frac{2}{7} = \$85,714$.
+   * To Assembly ($O_2$): $\$300,000 \times \frac{2}{7} = \$85,714.
 2. **Allocate $S_2$ ($\$264,000$):**
    * To Machining ($O_1$): $\$264,000 \times \frac{2}{9} = \$58,667$
-   * To Assembly ($O_2$): $\$264,000 \times \frac{7}{9} = \$205,333$.
+   * To Assembly ($O_2$): $\$264,000 \times \frac{7}{9} = \$205,333.
 
 **Summary Table (Direct Method):**
 
@@ -301,16 +301,16 @@ Under the direct method, inter-support department services are ignored. Proporti
 ---
 ##### Part B: Step-Down (Sequential) Method
 Sequence: Allocate $S_1$ (Engineering) first because it provides $30\%$ of its service to $S_2$, whereas $S_2$ provides only $10\%$ to $S_1$.
-1. **Step 1: Allocate $S_1$ ($\$300,000$) across $S_2, O_1, O_2$ (Base = $\$120,000$):**
+1. **Step 1: Allocate $S_1$ ($\$300,000$) across $S_2, O_1, O_2$ (Base = \$120,000$):**
    * Share to $S_2$ (Materials): $30\% \times \$300,000 = \$90,000$
    * Share to $O_1$ (Machining): $50\% \times \$300,000 = \$150,000$
-   * Share to $O_2$ (Assembly): $20\% \times \$300,000 = \$60,000$.
+   * Share to $O_2$ (Assembly): $20\% \times \$300,000 = \$60,000.
 2. **Step 2: Re-accumulate $S_2$ Total Costs:**
    $$ \text{New } S_2 \text{ Total} = \$264,000 + \$90,000 = \$354,000 $$
 3. **Step 3: Allocate New $S_2$ Total ($\$354,000$) to Operating Departments Only ($O_1, O_2$):**
-   * Allocation Base = Machining ($800$ hrs) + Assembly ($2,800$ hrs) = $3,600$ hrs.
+   * Allocation Base = Machining ($800$ hrs) + Assembly ($2,800$ hrs) = 3,600$ hrs.
    * Share to $O_1$ (Machining): $\$354,000 \times \frac{800}{3,600} = \$78,667$
-   * Share to $O_2$ (Assembly): $\$354,000 \times \frac{2,800}{3,600} = \$275,333$.
+   * Share to $O_2$ (Assembly): $\$354,000 \times \frac{2,800}{3,600} = \$275,333.
 
 **Summary Table (Step-Down Method):**
 
@@ -343,11 +343,11 @@ Sequence: Allocate $S_1$ (Engineering) first because it provides $30\%$ of its s
    * **Allocate $S_1$ ($\$336,495$):**
      * To $S_2$ (Materials): $30\% \times \$336,495 = \$100,949$
      * To $O_1$ (Machining): $50\% \times \$336,495 = \$168,247$
-     * To $O_2$ (Assembly): $20\% \times \$336,495 = \$67,299$.
+     * To $O_2$ (Assembly): $20\% \times \$336,495 = \$67,299.
    * **Allocate $S_2$ ($\$364,949$):**
      * To $S_1$ (Engineering): $10\% \times \$364,949 = \$36,495$
      * To $O_1$ (Machining): $20\% \times \$364,949 = \$72,990$
-     * To $O_2$ (Assembly): $70\% \times \$364,949 = \$255,464$.
+     * To $O_2$ (Assembly): $70\% \times \$364,949 = \$255,464.
 
 **Summary Table (Reciprocal Method):**
 
@@ -381,17 +381,17 @@ $$
 $$
 
 **Cumulative Allocated Totals:**
-* Total $S_1$ allocated across iterations $= \$300,000 + \$35,400 + \$1,062 + \$32 + \$1 = \$336,495$.
-* Total $S_2$ allocated across iterations $= \$354,000 + \$10,620 + \$319 + \$10 = \$364,949$.
-* **Final Machining ($O_1$) Total:** $\$329,000 + \$150,000 + \$70,800 + \$17,700 + \$2,124 + \$531 + \$63 + \$16 + \$2 + \$1 = \$549,763$.
-* **Final Assembly ($O_2$) Total:** $\$227,000 + \$60,000 + \$247,800 + \$7,080 + \$7,434 + \$212 + \$224 + \$10 + \$7 = \$570,237$.
+* Total $S_1$ allocated across iterations $= \$300,000 + \$35,400 + \$1,062 + \$32 + \$1 = \$336,495.
+* Total $S_2$ allocated across iterations $= \$354,000 + \$10,620 + \$319 + \$10 = \$364,949.
+* **Final Machining ($O_1$) Total:** $\$329,000 + \$150,000 + \$70,800 + \$17,700 + \$2,124 + \$531 + \$63 + \$16 + \$2 + \$1 = \$549,763.
+* **Final Assembly ($O_2$) Total:** $\$227,000 + \$60,000 + \$247,800 + \$7,080 + \$7,434 + \$212 + \$224 + \$10 + \$7 = \$570,237.
 
 ---
 ##### Part E: Job Cost Application for Job WPP 298
 Job WPP 298 requires:
-* Direct Materials = $\$4,606$
-* Direct Manufacturing Labor = $\$1,579$
-* Actual Activity Base Used: Machining = $40$ Machine-Hours; Assembly = $55$ Direct Labor-Hours.
+* Direct Materials = \$4,606$
+* Direct Manufacturing Labor = \$1,579$
+* Actual Activity Base Used: Machining = 40$ Machine-Hours; Assembly = 55$ Direct Labor-Hours.
 
 $$ \begin{array}{lr}
 \hline

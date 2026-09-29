@@ -51,7 +51,7 @@ Once the three individual dimension indices are derived, the final HDI score is 
 
 $\text{HDI} = \sqrt[3]{I_{\text{Health}} \times I_{\text{Education}} \times I_{\text{Income}}}$
 
-The resulting HDI value ranges strictly between $0$ and $1$, where values closer to $1$ indicate a higher level of human development. Countries are classified accordingly into four tiers: Low, Medium, High, or Very High Human Development.
+The resulting HDI value ranges strictly between $0$ and $1, where values closer to $1$ indicate a higher level of human development. Countries are classified accordingly into four tiers: Low, Medium, High, or Very High Human Development.
 
 ### (b)
 

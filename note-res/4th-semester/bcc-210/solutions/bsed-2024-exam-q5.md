@@ -77,7 +77,7 @@ $\dot{k} = sf(k) - (n + \delta)k$
 
 Where:
 
-- $\dot{k}$ is the change in capital per worker over time.
+- \dot{k}$ is the change in capital per worker over time.
 - $sf(k)$ is actual investment per worker.
 - $(n + \delta)k$ is break-even investment (the investment needed to keep $k$ constant despite depreciation and population growth).
 

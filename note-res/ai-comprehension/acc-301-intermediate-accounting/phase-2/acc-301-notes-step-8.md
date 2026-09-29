@@ -294,23 +294,23 @@ Under US GAAP, **all Research and Development costs must be expensed as incurred
 > **Scenario:**
 > On January 1, 2024, **Helios Tech Corp.** purchased a product patent from an inventor for $\$480,000$ cash. The patent had a remaining legal life of 16 years, but Helios estimated its economic useful life would be 10 years.
 > On July 1, 2025, Helios spent $\$70,000$ in legal fees to successfully defend the patent in an infringement lawsuit.
-> On December 31, 2026, competitive technological advances caused a sharp drop in demand. Helios performed an impairment test. Estimated undiscounted future net cash flows from the patent were $\$280,000$. The fair value of the patent was estimated at $\$210,000$. Remaining useful life as of December 31, 2026, was revised to 5 years.
+> On December 31, 2026, competitive technological advances caused a sharp drop in demand. Helios performed an impairment test. Estimated undiscounted future net cash flows from the patent were $\$280,000. The fair value of the patent was estimated at $\$210,000. Remaining useful life as of December 31, 2026, was revised to 5 years.
 > **Step 1: 2024 Transactions**
-> - Initial Cost (January 1, 2024) = $\$480,000$
+> - Initial Cost (January 1, 2024) = \$480,000$
 > - Useful life $n = \min(10, 16) = 10 \text{ years}$.
-> - 2024 Amortization = $\frac{\$480,000}{10} = \$48,000$.
-> - Carrying Value at Dec 31, 2024 = $\$480,000 - \$48,000 = \$432,000$.
+> - 2024 Amortization = \frac{\$480,000}{10} = \$48,000.
+> - Carrying Value at Dec 31, 2024 = \$480,000 - \$48,000 = \$432,000.
 > **Step 2: 2025 Transactions**
-> - Amortization for 1st half of 2025 (Jan 1 – June 30) = $\frac{\$48,000}{2} = \$24,000$.
-> - Carrying Value on June 30, 2025 (before legal cost) = $\$432,000 - \$24,000 = \$408,000$.
-> - Capitalize Successful Legal Defense (July 1, 2025) = $+\$70,000$.
-> - New Carrying Base on July 1, 2025 = $\$408,000 + \$70,000 = \$478,000$.
-> - Remaining useful life at July 1, 2025 = $10 - 1.5 = 8.5 \text{ years}$ ($102 \text{ months}$).
-> - Amortization for 2nd half of 2025 (July 1 – Dec 31) = $\frac{\$478,000}{8.5} \times 0.5 = \frac{\$478,000}{17} = \$56,235.29$.
-> - Carrying Value at Dec 31, 2025 = $\$478,000 - \$56,235.29 = \$421,764.71$.
+> - Amortization for 1st half of 2025 (Jan 1 – June 30) = \frac{\$48,000}{2} = \$24,000.
+> - Carrying Value on June 30, 2025 (before legal cost) = \$432,000 - \$24,000 = \$408,000.
+> - Capitalize Successful Legal Defense (July 1, 2025) = $+\$70,000.
+> - New Carrying Base on July 1, 2025 = \$408,000 + \$70,000 = \$478,000.
+> - Remaining useful life at July 1, 2025 = 10 - 1.5 = 8.5 \text{ years}$ ($102 \text{ months}$).
+> - Amortization for 2nd half of 2025 (July 1 – Dec 31) = \frac{\$478,000}{8.5} \times 0.5 = \frac{\$478,000}{17} = \$56,235.29.
+> - Carrying Value at Dec 31, 2025 = \$478,000 - \$56,235.29 = \$421,764.71.
 > **Step 3: 2026 Amortization (Full Year)**
-> - Annual Amortization Rate = $\frac{\$478,000}{8.5} = \$56,235.29$.
-> - Carrying Value at Dec 31, 2026 (before impairment) = $\$421,764.71 - \$56,235.29 = \$365,529.42$.
+> - Annual Amortization Rate = \frac{\$478,000}{8.5} = \$56,235.29.
+> - Carrying Value at Dec 31, 2026 (before impairment) = \$421,764.71 - \$56,235.29 = \$365,529.42.
 > **Step 4: Impairment Test at December 31, 2026**
 > - *Step 1: Recoverability Test*:
 >   $$ \text{Undiscounted Future Cash Flows } (\$280,000) < \text{Carrying Value } (\$365,529.42) \implies \mathbf{\text{Asset is Impaired!}} $$
@@ -327,15 +327,15 @@ Under US GAAP, **all Research and Development costs must be expensed as incurred
 > & \quad \text{Patents} & & 155,529.42 \\
 > \end{array} $$
 > **Step 6: 2027 Prospective Amortization**
-> - New Carrying Base = $\$210,000$. Revised remaining life = 5 years.
-> - 2027 Annual Amortization = $\frac{\$210,000}{5} = \mathbf{\$42,000}$.
+> - New Carrying Base = \$210,000. Revised remaining life = 5 years.
+> - 2027 Annual Amortization = \frac{\$210,000}{5} = \mathbf{\$42,000}$.
 
 ---
 
 > [!example] Walkthrough 2: Business Combination, Goodwill Computation, & Impairment
 >
 > **Scenario:**
-> On October 1, 2025, **Apex Conglomerate** acquired 100% of the net assets of **Vanguard Systems** for $\$3,800,000$ cash. Vanguard's balance sheet prior to acquisition showed total book value of assets of $\$3,100,000$ and total liabilities of $\$1,200,000$.
+> On October 1, 2025, **Apex Conglomerate** acquired 100% of the net assets of **Vanguard Systems** for $\$3,800,000$ cash. Vanguard's balance sheet prior to acquisition showed total book value of assets of $\$3,100,000$ and total liabilities of $\$1,200,000.
 > An independent appraisal revealed the following fair values for Vanguard's accounts:
 > - Accounts Receivable: Fair value $\$280,000$ (Book Value $\$300,000$)
 > - Inventory: Fair value $\$650,000$ (Book Value $\$500,000$)
@@ -343,7 +343,7 @@ Under US GAAP, **all Research and Development costs must be expensed as incurred
 > - Unrecorded Customer List: Fair value $\$350,000$ (Book Value $\$0$)
 > - Unrecorded In-Process R&D (IPR&D): Fair value $\$200,000$ (Book Value $\$0$)
 > - Total Liabilities Assumed: Fair value $\$1,200,000$ (Book Value $\$1,200,000$)
-> On December 31, 2026, Vanguard operates as a reporting unit of Apex. The carrying value of Vanguard's total net assets (including Goodwill) is $\$3,650,000$. Apex determines the Fair Value of the Vanguard Reporting Unit is $\$3,100,000$.
+> On December 31, 2026, Vanguard operates as a reporting unit of Apex. The carrying value of Vanguard's total net assets (including Goodwill) is $\$3,650,000. Apex determines the Fair Value of the Vanguard Reporting Unit is $\$3,100,000.
 > **Step 1: Calculate Fair Value of Net Identifiable Assets Acquired**
 > $$ \begin{array}{lrr}
 > \text{Accounts Receivable (Fair Value)} & \$280,000 & \\
@@ -386,7 +386,7 @@ Under US GAAP, **all Research and Development costs must be expensed as incurred
 > \text{Loss on Impairment of Goodwill} & & 550,000 & \\
 > \quad \text{Goodwill} & & & 550,000
 > \end{array} $$
-> - *Post-Impairment Goodwill Balance* = $\$1,420,000 - \$550,000 = \mathbf{\$870,000}$.
+> - *Post-Impairment Goodwill Balance* = \$1,420,000 - \$550,000 = \mathbf{\$870,000}$.
 
 ---
 
@@ -395,12 +395,12 @@ Under US GAAP, **all Research and Development costs must be expensed as incurred
 > **Scenario:**
 > During 2025, **Nexus Bio-Labs Inc.** incurred the following cash expenditures:
 > 1. Construction of a long-term research facility with alternative future uses: $\$1,500,000$ (10-year life, straight-line).
-> 2. Acquisition of specialized laboratory equipment solely for a single R&D project (no alternative future use): $\$320,000$.
-> 3. Salaries and wages for research scientists designing a new molecular compound: $\$450,000$.
+> 2. Acquisition of specialized laboratory equipment solely for a single R&D project (no alternative future use): $\$320,000.
+> 3. Salaries and wages for research scientists designing a new molecular compound: $\$450,000.
 > 4. Materials purchased for current and future R&D projects: $\$200,000$ (materials remaining in stock at year-end: $\$60,000$).
-> 5. Legal fees incurred to successfully register a patent for a completed formula: $\$40,000$.
-> 6. Start-up legal and state filing fees for a new subsidiary: $\$85,000$.
-> 7. Executive management salaries (general overhead): $\$300,000$.
+> 5. Legal fees incurred to successfully register a patent for a completed formula: $\$40,000.
+> 6. Start-up legal and state filing fees for a new subsidiary: $\$85,000.
+> 7. Executive management salaries (general overhead): $\$300,000.
 > **Classification & Income Statement Impact Analysis:**
 > | Item Description | Amount (\$) | Accounting Classification & Rationale |
 > | :--- | :--- | :--- |
