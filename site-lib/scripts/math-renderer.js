@@ -30,7 +30,8 @@
         "\\bm": "\\mathbf",
         "\\boldsymbol": "\\mathbf",
         "\\bold": "\\mathbf",
-        "\\c": "\\cline",
+        "\\cline": "\\hline",
+        "\\c": "\\hline",
         "\\mc": "\\multicolumn",
         "\\mr": "\\multirow",
         "\\E": "\\mathbb{E}",
@@ -78,128 +79,63 @@
         .replace(/'/g, '&#039;');
     }
 
-    parseLatexArrayToHtmlTable(latex) {
-      if (!latex || (!latex.includes('\\begin{array}') && !latex.includes('\\begin{tabular}'))) {
-        return null;
-      }
-
-      try {
-        const cleanLatex = latex.replace(/^[ \t]*>+[ \t]*/gm, '').trim();
-        const bodyMatch = cleanLatex.match(/\\begin\{(?:array|tabular)\}\{([lrc|p\{\}\d\w\.\s]+)\}([\s\S]*?)\\end\{(?:array|tabular)\}/);
-        if (!bodyMatch) return null;
-
-        const colAlignments = bodyMatch[1].replace(/\||p\{[^}]+\}/g, '').split('').map(c => c === 'r' ? 'right' : (c === 'c' ? 'center' : 'left'));
-        const rawBody = bodyMatch[2].trim();
-        const rawRows = rawBody.split(/\\\\/);
-        const processedRows = [];
-
-        for (let r = 0; r < rawRows.length; r++) {
-          let rowStr = rawRows[r].trim();
-          if (!rowStr) continue;
-
-          let borderTop = false, borderBottom = false, clineCols = null;
-
-          if (rowStr.includes('\\hline \\hline') || rowStr.includes('\\hline\\hline')) {
-            borderBottom = true;
-            rowStr = rowStr.replace(/\\hline\s*\\hline/g, '').trim();
-          }
-          if (rowStr.includes('\\hline')) {
-            borderTop = true;
-            rowStr = rowStr.replace(/\\hline/g, '').trim();
-          }
-
-          const clineMatch = rowStr.match(/(?:\\cline|\\c|\/c)\{(\d+)-(\d+)\}/);
-          if (clineMatch) {
-            clineCols = { start: parseInt(clineMatch[1], 10), end: parseInt(clineMatch[2], 10) };
-            rowStr = rowStr.replace(/(?:\\cline|\\c|\/c)\{\d+-\d+\}/g, '').trim();
-          }
-
-          if (!rowStr) {
-            if (borderBottom && processedRows.length > 0) processedRows[processedRows.length - 1].borderBottom = true;
-            if (borderTop && processedRows.length > 0) processedRows[processedRows.length - 1].borderTop = true;
-            continue;
-          }
-
-          processedRows.push({ text: rowStr, borderTop, borderBottom, clineCols });
+    extractBalanced(str, startIndex) {
+      if (str[startIndex] !== '{') return null;
+      let depth = 0;
+      for (let i = startIndex; i < str.length; i++) {
+        if (str[i] === '{') depth++;
+        else if (str[i] === '}') {
+          depth--;
+          if (depth === 0) return { content: str.slice(startIndex + 1, i), endIndex: i };
         }
+      }
+      return null;
+    }
 
-        const renderCellContent = (content) => {
-          let str = content;
-          str = str.replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>');
-          str = str.replace(/\\mathbf\{([^}]+)\}/g, '<strong>$1</strong>');
-          str = str.replace(/\\text\{([^}]+)\}/g, '$1');
-          str = str.replace(/\\quad/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
-          str = str.replace(/\\qquad/g, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-          str = str.replace(/\\(\$)/g, '$');
-          
-          if (str.includes('\\frac') || str.includes('\\sqrt') || str.includes('\\sigma') || str.includes('\\mu') || str.includes('\\alpha') || str.includes('\\beta') || str.includes('^') || str.includes('_') || str.includes('\\hat') || str.includes('\\bar')) {
-            if (window.katex && typeof window.katex.renderToString === 'function') {
-              try {
-                return window.katex.renderToString(content.trim(), { displayMode: false, throwOnError: false, macros: this.katexMacros });
-              } catch (e) { /* fallback below */ }
+    preprocessMulticolumn(latex) {
+      let result = '';
+      let i = 0;
+      while (i < latex.length) {
+        if (latex.startsWith('\\multicolumn', i) || latex.startsWith('\\mc', i)) {
+          const isMc = latex.startsWith('\\mc', i) && !latex.startsWith('\\multicolumn', i);
+          const cmdLen = isMc ? 3 : 12;
+          let pos = i + cmdLen;
+          while (pos < latex.length && /\s/.test(latex[pos])) pos++;
+          const g1 = this.extractBalanced(latex, pos);
+          if (g1) {
+            pos = g1.endIndex + 1;
+            while (pos < latex.length && /\s/.test(latex[pos])) pos++;
+            const g2 = this.extractBalanced(latex, pos);
+            if (g2) {
+              pos = g2.endIndex + 1;
+              while (pos < latex.length && /\s/.test(latex[pos])) pos++;
+              const g3 = this.extractBalanced(latex, pos);
+              if (g3) {
+                const span = parseInt(g1.content, 10) || 1;
+                const content = g3.content;
+                result += content;
+                if (span > 1) {
+                  result += ' &'.repeat(span - 1);
+                }
+                i = g3.endIndex + 1;
+                continue;
+              }
             }
           }
-          return str.replace(/[{}]/g, '');
-        };
-
-        let html = '<div class="accounting-table-wrapper"><table class="accounting-schedule-table"><tbody>';
-        for (const row of processedRows) {
-          const { text: rowStr, borderTop, borderBottom, clineCols } = row;
-          const borderClasses = [];
-          if (borderTop) borderClasses.push('border-single-top');
-          if (borderBottom) borderClasses.push('border-double-bottom');
-          const trClass = borderClasses.join(' ');
-
-          const multiMatch = rowStr.match(/^(?:\\multicolumn|\\mc)\{(\d+)\}\{([lrc])\}\{([\s\S]+?)\}$/);
-          if (multiMatch) {
-            const colspan = multiMatch[1];
-            const align = multiMatch[2] === 'r' ? 'right' : (multiMatch[2] === 'c' ? 'center' : 'left');
-            const content = renderCellContent(multiMatch[3]);
-            html += `<tr class="table-header-row ${trClass}"><td colspan="${colspan}" style="text-align: ${align};" class="multicolumn-cell">${content}</td></tr>`;
-            continue;
-          }
-
-          const cells = rowStr.split('&');
-          html += `<tr class="${trClass}">`;
-          for (let c = 0; c < cells.length; c++) {
-            let cell = cells[c].trim();
-            const align = colAlignments[c] || (c > 0 ? 'right' : 'left');
-
-            const cellMulti = cell.match(/^(?:\\multicolumn|\\mc)\{(\d+)\}\{([lrc])\}\{([\s\S]+?)\}$/);
-            if (cellMulti) {
-              const span = cellMulti[1];
-              const cellAlign = cellMulti[2] === 'r' ? 'right' : (cellMulti[2] === 'c' ? 'center' : 'left');
-              const content = renderCellContent(cellMulti[3]);
-              html += `<td colspan="${span}" style="text-align: ${cellAlign};" class="multicolumn-cell">${content}</td>`;
-              continue;
-            }
-
-            let isBold = /\\textbf\{([^}]+)\}/.test(cell) || /\\mathbf\{([^}]+)\}/.test(cell);
-            const renderedContent = renderCellContent(cell);
-
-            let style = `text-align: ${align};`;
-            if (isBold) style += ' font-weight: 600;';
-            const cellClasses = [];
-            if (/^[\$]?[\d,.-]+[\%]?$/.test(cell) || /^\(?[\$]?[\d,.-]+\)?$/.test(cell)) cellClasses.push('cell-numeric');
-            else cellClasses.push('cell-text');
-            if (clineCols && (c + 1) >= clineCols.start && (c + 1) <= clineCols.end) cellClasses.push('border-cline-top');
-
-            html += `<td class="${cellClasses.join(' ')}" style="${style}">${renderedContent}</td>`;
-          }
-          html += '</tr>';
         }
-        html += '</tbody></table></div>';
-        return html;
-      } catch (e) {
-        console.warn('Accounting array table conversion error:', e);
-        return null;
+        result += latex[i];
+        i++;
       }
+      return result;
     }
 
     renderExpression(formula, displayMode = false) {
       if (!formula) return '';
       let clean = formula.trim();
       if (!clean) return '';
+
+      // Clean leading blockquote markers if inside callout
+      clean = clean.replace(/^[ \t]*>+[ \t]*/gm, '');
 
       clean = clean.replace(/&#36;/g, '\\$');
       clean = clean.replace(/\\hat\{[ \t]*(?:eta|beta)\}/g, '\\hat{\\beta}');
@@ -209,14 +145,15 @@
       clean = clean.replace(/(^|[^\\a-zA-Z])(?:eta)\b/g, '$1\\beta');
       clean = clean.replace(/(^|[^\\a-zA-Z])(?:heta)\b/g, '$1\\theta');
 
-      const mathId = `math-${displayMode ? 'block' : 'inline'}-${this.mathIdCounter++}`;
+      // Preprocess \cline to \hline for KaTeX
+      clean = clean.replace(/\\cline\s*\{?\s*\d+\s*-\s*\d+\s*\}?/g, '\\hline');
 
-      if (displayMode && (clean.includes('\\multicolumn') || clean.includes('\\cline')) && clean.includes('\\begin{array}')) {
-        const htmlTable = this.parseLatexArrayToHtmlTable(clean);
-        if (htmlTable) {
-          return `<div class="math math-block accounting-table-container" id="${mathId}"><span class="katex-display">${htmlTable}</span></div>`;
-        }
+      // Preprocess \multicolumn to span columns in array
+      if (clean.includes('\\multicolumn') || clean.includes('\\mc')) {
+        clean = this.preprocessMulticolumn(clean);
       }
+
+      const mathId = `math-${displayMode ? 'block' : 'inline'}-${this.mathIdCounter++}`;
 
       let renderedKatex = '';
       try {
@@ -228,7 +165,10 @@
             output: 'htmlAndMathml',
             trust: true,
             strict: false,
-            macros: this.katexMacros
+            macros: {
+              ...this.katexMacros,
+              "\\cline": "\\hline"
+            }
           });
         } else {
           renderedKatex = displayMode ? `$$${clean}$$` : `$${clean}$`;
