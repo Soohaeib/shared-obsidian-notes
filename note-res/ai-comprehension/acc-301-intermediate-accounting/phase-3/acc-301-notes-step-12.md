@@ -137,12 +137,12 @@ Preferred stock is an equity security that confers specific preferences over com
 > [!example] Numerical Problem: Complex Preferred Dividend Allocation
 >
 > **Scenario**: Apex Corp. has the following capital structure:
-> - **Preferred Stock**: $5,000$ shares, $6\%$, $\$100$ par value $$\text{Total Par} = \$500,000$$.
-> - **Common Stock**: $20,000$ shares, $\$10$ par value $$\text{Total Par} = \$200,000$$.
+> - **Preferred Stock**: $5,000$ shares, $6\%$, $\$100$ par value $\text{Total Par} = \$500,000$.
+> - **Common Stock**: $20,000$ shares, $\$10$ par value $\text{Total Par} = \$200,000$.
 > - Total dividends declared in 2025 = $\$72,000$.
 > - Preferred dividends are $2$ years in arrears prior to 2025.
 > ##### Case 1: Cumulative, Nonparticipating
-> 1. **Dividends in Arrears (2 years)**: $2 \times $6\% \times \$500,000$ = \$60,000$.
+> 1. **Dividends in Arrears (2 years)**: $2 \times 6\% \times \$500,000 = \$60,000$.
 > 2. **Current Year Preferred Dividend $2025$**: $6\% \times \$500,000 = \$30,000$.
 >    - Total Preferred Requirement = $\$90,000$.
 > 3. **Allocation of $\$72,000$ Declared**:
@@ -151,8 +151,9 @@ Preferred stock is an equity security that confers specific preferences over com
 >    - Common receives $\mathbf{\$0}$.
 > ##### Case 2: Cumulative, Fully Participating (Assuming No Arrears)
 > Assume dividends declared = $\$72,000$ and no arrears exist.
-> 4. **Preferred Basic Dividend $$6\%$$**: $6\% \times \$500,000 = \$30,000$.
-> 5. **Common Matching Dividend $$6\%$$**: $6\% \times \$200,000 = \$12,000$.
+>
+> 4. **Preferred Basic Dividend $6\%$**: $$6\% \times \$500,000 = \$30,000$$
+> 5. **Common Matching Dividend $6\%$**: $$6\% \times \$200,000 = \$12,000$$
 >    - Total Basic Allocation = $\$30,000 + \$12,000 = \$42,000$.
 > 6. **Remaining Dividend Available for Participation**: $\$72,000 - \$42,000 = \$30,000$.
 > 7. **Participation Rate**:
@@ -241,13 +242,13 @@ Dividends that exceed cumulative retained earnings represent a return of the sha
 ##### 4. Stock Dividends & Stock Splits
 Distributions of a corporation's own stock to existing shareholders on a pro-rata basis without receiving consideration. Total stockholders' equity remains unchanged.
 
-| Characteristic | Small Stock Dividend $$<20-25\%$$ | Large Stock Dividend $$\ge 20-25\%$$ | Stock Split (e.g., 2-for-1) |
-| :--- | :--- | :--- | :--- |
-| **Valuation Basis** | **Fair Market Value** at Declaration | **Par / Stated Value** | No entry (Memo only) |
-| **Retained Earnings** | Debited for Fair Market Value | Debited for Par Value | Unchanged |
-| **Total Equity** | Zero (Reclassification only) | Zero (Reclassification only) | Zero |
-| **Par Value per Share** | Unchanged | Unchanged | Halved (reduced proportionally) |
-| **Shares Outstanding** | Increases | Increases | Doubled |
+| Characteristic          | Small Stock Dividend $<20-25\%$      | Large Stock Dividend $\ge 20-25\%$ | Stock Split (e.g., 2-for-1)     |
+| :---------------------- | :----------------------------------- | :--------------------------------- | :------------------------------ |
+| **Valuation Basis**     | **Fair Market Value** at Declaration | **Par / Stated Value**             | No entry (Memo only)            |
+| **Retained Earnings**   | Debited for Fair Market Value        | Debited for Par Value              | Unchanged                       |
+| **Total Equity**        | Zero (Reclassification only)         | Zero (Reclassification only)       | Zero                            |
+| **Par Value per Share** | Unchanged                            | Unchanged                          | Halved (reduced proportionally) |
+| **Shares Outstanding**  | Increases                            | Increases                          | Doubled                         |
 
 *(Note: A "Stock Split Effected in the Form of a Dividend" issues new shares without formally changing par value in the charter. Par value is capitalized from Retained Earnings to Common Stock).*
 
@@ -303,4 +304,3 @@ $$ \begin{array}{lrrrrrr}
 > $$ \text{Common Equity} = \text{Total Equity} - \text{Preferred Claim} = \$1,160,000 - \$258,000 = \mathbf{\$902,000} $$
 > **Step 4: Calculate Book Value per Common Share**
 > $$ \text{Book Value per Share} = \frac{\$902,000}{45,000\text{ outstanding shares}} = \mathbf{\$20.04 \text{ per share}} $$
-
