@@ -264,6 +264,7 @@
               svgEl.style.height = 'auto';
             }
           }
+          this.renderMathInDiagram(container);
         } else {
           container.innerHTML = `
             <div class="mermaid-fallback-card" style="padding: 16px; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px dashed var(--background-modifier-border);">
@@ -312,6 +313,7 @@
               svgEl.style.height = 'auto';
             }
           }
+          this.renderMathInDiagram(container);
         } catch (e) {
           console.warn('Error re-theming diagram:', e);
         }
@@ -322,6 +324,32 @@
       if (window.ObsidianMediaPreview && typeof window.ObsidianMediaPreview.attachCornerButtons === 'function') {
         window.ObsidianMediaPreview.attachCornerButtons(rootElement);
       }
+    }
+
+    renderMathInDiagram(container) {
+      if (!window.katex || !container) return;
+      const labelElements = container.querySelectorAll('.nodeLabel, .edgeLabel, .label, foreignObject, text, tspan');
+      labelElements.forEach(el => {
+        if (el.children.length === 0 || (el.tagName && el.tagName.toLowerCase() === 'span' && el.classList.contains('nodeLabel'))) {
+          const raw = el.innerHTML || el.textContent;
+          if (raw && (raw.includes('$') || raw.includes('\\('))) {
+            let processed = raw;
+            processed = processed.replace(/\$\$([^\$\n\r]+?)\$\$/g, (m, formula) => {
+              try {
+                return window.katex.renderToString(formula.trim(), { displayMode: true, throwOnError: false });
+              } catch (e) { return m; }
+            });
+            processed = processed.replace(/(?<![\$\w\\])\$(?!\$)((?:\\\$|[^\$\n\r])+?)(?<!\\)\$(?!\$)/g, (m, formula) => {
+              try {
+                return window.katex.renderToString(formula.trim(), { displayMode: false, throwOnError: false });
+              } catch (e) { return m; }
+            });
+            if (processed !== raw) {
+              el.innerHTML = processed;
+            }
+          }
+        }
+      });
     }
 
     cleanupStrayElements(safeId) {

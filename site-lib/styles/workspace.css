@@ -171,8 +171,8 @@ header:nth-of-type(1) > div:nth-of-type(1) > div#header-active-note-title:nth-of
   pointer-events: none;
   user-select: none;
   opacity: 0;
-  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
   visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
 }
 
 .floating-note-meta.is-visible,
@@ -180,8 +180,6 @@ header:nth-of-type(1) > div:nth-of-type(1) > div#header-active-note-title:nth-of
   opacity: 1;
   transform: translateX(-50%) translateY(0);
   visibility: visible;
-}
-  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .floating-meta-item {

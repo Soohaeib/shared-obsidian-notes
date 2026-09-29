@@ -249,7 +249,7 @@
 
         marked.setOptions({
           gfm: true,
-          breaks: false,
+          breaks: true,
           renderer: renderer
         });
       }
@@ -726,7 +726,10 @@
       const wcVal = document.getElementById('word-count-val');
       if (wcVal) wcVal.textContent = `${words.toLocaleString()} words`;
       const floatingMeta = document.getElementById('floating-note-meta');
-      if (floatingMeta) floatingMeta.style.display = 'inline-flex';
+      if (floatingMeta) {
+        floatingMeta.style.display = 'inline-flex';
+        floatingMeta.classList.add('is-visible');
+      }
 
       const realFileName = noteObj ? noteObj.originalName : contentTitle;
       this.activeNoteOriginalName = realFileName;
@@ -752,6 +755,13 @@
     preprocessObsidianMarkdown(text) {
       if (window.ObsidianCallouts) text = window.ObsidianCallouts.autoHealCallouts(text);
       text = text.replace(/^(#{1,6})([^\s#\n\r].*)$/gm, '$1 $2');
+
+      // Ensure list items that directly follow paragraphs start on their own block
+      text = text.replace(/([^\n\r])\r?\n([ \t]*[-*+]\s+[^\n\r]+)/g, '$1\n\n$2');
+      text = text.replace(/([^\n\r])\r?\n([ \t]*\d+\.\s+[^\n\r]+)/g, '$1\n\n$2');
+
+      // Ensure markdown tables have a preceding newline if attached to paragraphs
+      text = text.replace(/([^\n\r])\r?\n(\|[^\n\r]+\|\r?\n\|[\s\-:|]+\|)/g, '$1\n\n$2');
 
       if (window.ObsidianMathRenderer) window.ObsidianMathRenderer.reset();
       if (window.ObsidianCallouts) window.ObsidianCallouts.reset();

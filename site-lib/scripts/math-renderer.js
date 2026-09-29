@@ -29,7 +29,9 @@
         "\\CC": "\\mathbb{C}",
         "\\bm": "\\mathbf",
         "\\boldsymbol": "\\mathbf",
-        "\\bold": "\\mathbf"
+        "\\bold": "\\mathbf",
+        "\\c": "\\cline",
+        "\\mc": "\\multicolumn"
       };
     }
 
@@ -51,7 +53,7 @@
     }
 
     parseLatexArrayToHtmlTable(latex) {
-      if (!latex || (!latex.includes('\\multicolumn') && !latex.includes('\\cline')) || !latex.includes('\\begin{array}')) {
+      if (!latex || !latex.includes('\\begin{array}')) {
         return null;
       }
 
@@ -80,10 +82,10 @@
             rowStr = rowStr.replace(/\\hline/g, '').trim();
           }
 
-          const clineMatch = rowStr.match(/\\cline\{(\d+)-(\d+)\}/);
+          const clineMatch = rowStr.match(/\\(?:cline|c)\{(\d+)-(\d+)\}/);
           if (clineMatch) {
             clineCols = { start: parseInt(clineMatch[1], 10), end: parseInt(clineMatch[2], 10) };
-            rowStr = rowStr.replace(/\\cline\{\d+-\d+\}/g, '').trim();
+            rowStr = rowStr.replace(/\\(?:cline|c)\{\d+-\d+\}/g, '').trim();
           }
 
           if (!rowStr) {
@@ -103,7 +105,7 @@
           if (borderBottom) borderClasses.push('border-double-bottom');
           const trClass = borderClasses.join(' ');
 
-          const multiMatch = rowStr.match(/^\\multicolumn\{(\d+)\}\{([lrc])\}\{([\s\S]+?)\}$/);
+          const multiMatch = rowStr.match(/^\\(?:multicolumn|mc)\{(\d+)\}\{([lrc])\}\{([\s\S]+?)\}$/);
           if (multiMatch) {
             const colspan = multiMatch[1];
             const align = multiMatch[2] === 'r' ? 'right' : (multiMatch[2] === 'c' ? 'center' : 'left');
@@ -122,8 +124,22 @@
           for (let c = 0; c < cells.length; c++) {
             let cell = cells[c].trim();
             const align = colAlignments[c] || (c > 0 ? 'right' : 'left');
+
+            const cellMulti = cell.match(/^\\(?:multicolumn|mc)\{(\d+)\}\{([lrc])\}\{([\s\S]+?)\}$/);
+            if (cellMulti) {
+              const span = cellMulti[1];
+              const cellAlign = cellMulti[2] === 'r' ? 'right' : (cellMulti[2] === 'c' ? 'center' : 'left');
+              let content = cellMulti[3]
+                .replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>')
+                .replace(/\\mathbf\{([^}]+)\}/g, '<strong>$1</strong>')
+                .replace(/\\text\{([^}]+)\}/g, '$1')
+                .replace(/\\(\$)/g, '$')
+                .replace(/[{}]/g, '');
+              html += `<td colspan="${span}" style="text-align: ${cellAlign};" class="multicolumn-cell">${content}</td>`;
+              continue;
+            }
+
             let isBold = /\\textbf\{([^}]+)\}/.test(cell) || /\\mathbf\{([^}]+)\}/.test(cell);
-            
             cell = cell.replace(/\\textbf\{([^}]+)\}/g, '$1');
             cell = cell.replace(/\\mathbf\{([^}]+)\}/g, '$1');
             cell = cell.replace(/\\text\{([^}]+)\}/g, '$1');
@@ -135,7 +151,7 @@
             let style = `text-align: ${align};`;
             if (isBold) style += ' font-weight: 600;';
             const cellClasses = [];
-            if (/^[\$]?[\d,.-]+[\%]?$/.test(cell)) cellClasses.push('cell-numeric');
+            if (/^[\$]?[\d,.-]+[\%]?$/.test(cell) || /^\(?[\$]?[\d,.-]+\)?$/.test(cell)) cellClasses.push('cell-numeric');
             else cellClasses.push('cell-text');
             if (clineCols && (c + 1) >= clineCols.start && (c + 1) <= clineCols.end) cellClasses.push('border-cline-top');
 
@@ -203,7 +219,34 @@
     extractAndTokenize(text) {
       if (!text) return text;
 
-      // 1. Block math: $$ ... $$
+      // 1. Math inside table rows (lines containing |): NEVER insert newlines!
+      const lines = text.split('\n');
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].includes('|')) {
+          // Double dollar math inside table cells -> render as inline math token
+          lines[i] = lines[i].replace(/\$\$([^\$\n\r]+?)\$\$/g, (match, formula) => {
+            const cleanFormula = formula.trim();
+            const token = `@@KATEX_INLINE_${this.mathTokenIdx++}@@`;
+            const html = this.renderExpression(cleanFormula, false);
+            this.currentInlinesMap.set(token, html);
+            return token;
+          });
+          // Single dollar math inside table cells -> render as inline math token
+          lines[i] = lines[i].replace(/(?<![\$\w\\])\$(?!\$)((?:\\\$|[^\$\n\r])+?)(?<!\\)\$(?!\$)/g, (match, formula) => {
+            const trimmed = formula.trim();
+            if (/^(?:&#36;|\$|\\\$)?\s*[\d,.]+(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b|%))?$/i.test(trimmed)) {
+              return match;
+            }
+            const token = `@@KATEX_INLINE_${this.mathTokenIdx++}@@`;
+            const html = this.renderExpression(trimmed, false);
+            this.currentInlinesMap.set(token, html);
+            return token;
+          });
+        }
+      }
+      text = lines.join('\n');
+
+      // 2. Block math: $$ ... $$ (standalone multi-line or block math outside tables)
       text = text.replace(/(?<!\\)\$\$([\s\S]*?)(?<!\\)\$\$/g, (match, formula) => {
         if (/^\s*$/.test(formula) || /\n\s*#{1,6}\s+[^\n]+/.test(formula)) return match;
         const cleanFormula = formula.replace(/^[ \t]*>+[ \t]*/gm, '').trim();
@@ -213,7 +256,7 @@
         return `\n\n${token}\n\n`;
       });
 
-      // 2. LaTeX environments: \begin{...} ... \end{...}
+      // 3. LaTeX environments: \begin{...} ... \end{...}
       text = text.replace(/(?<!\\)\\begin\{([a-zA-Z0-9*]+)\}([\s\S]*?)\\end\{\1\}/g, (match, env, body) => {
         const full = `\\begin{${env}}${body}\\end{${env}}`;
         const cleanFormula = full.replace(/^[ \t]*>+[ \t]*/gm, '').trim();
@@ -223,8 +266,8 @@
         return `\n\n${token}\n\n`;
       });
 
-      // 3. Inline math: $ ... $
-      text = text.replace(/(?<![\\\$])\$(?!\s)((?:\\\$|[^\$\n\r])+?)(?<![\s\\\$])\$(?!\$)/g, (match, formula) => {
+      // 4. Inline math: $ ... $
+      text = text.replace(/(?<![\$\w\\])\$(?!\$)((?:\\\$|[^\$\n\r])+?)(?<!\\)\$(?!\$)/g, (match, formula) => {
         const trimmed = formula.trim();
         // Guard financial currency mentions ($100, $5.5 million, etc.)
         if (/^(?:&#36;|\$|\\\$)?\s*[\d,.]+(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b|%))?$/i.test(trimmed)) {
