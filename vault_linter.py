@@ -3,11 +3,12 @@
 Vault Health & Markdown Syntax Diagnostic Engine
 ------------------------------------------------
 Scans, lints, and auto-resolves Obsidian Markdown syntax errors:
-- Nested/unbalanced math delimiters ($...$$)
+- Unbalanced/mismatched LaTeX display math delimiters ($$)
 - Malformed Obsidian callouts (> [!type])
-- Broken WikiLinks and missing attachment embeds
-- Unformatted headings (missing space after #)
+- Broken WikiLinks, transclusions, and missing attachment embeds
+- Unformatted headings (missing space after #, while protecting tags)
 - Unbalanced code fences (```)
+- SVG font family normalization
 """
 
 import os
@@ -23,6 +24,7 @@ class VaultLinter:
         self.auto_fix = auto_fix
         self.all_notes = []
         self.all_assets = set()
+        self.asset_basename_cache = {}
         self.note_stems = {}
         self.vault_lookup = {}
         self.report = {
@@ -38,7 +40,7 @@ class VaultLinter:
         }
 
     def slugify(self, text: str, is_directory: bool = False) -> str:
-        """Standard URL-safe kebab-case slugification matching sync_site.py."""
+        """Standard URL-safe kebab-case slugification supporting full Unicode/i18n."""
         if not text:
             return ""
         if not is_directory:
@@ -46,14 +48,14 @@ class VaultLinter:
             if base.lower() == 'index':
                 return f"index{ext.lower()}"
             t = html.unescape(base).replace('&', ' and ').lower()
-            t = re.sub(r'[^a-z0-9\s_-]', '', t)
+            t = re.sub(r'[^\w\s_-]', '', t, flags=re.UNICODE)
             t = re.sub(r'[\s_]+', '-', t)
             t = re.sub(r'-+', '-', t)
             slug = t.strip('-') or 'untitled'
             return f"{slug}{ext.lower()}"
         else:
             t = html.unescape(text).replace('&', ' and ').lower()
-            t = re.sub(r'[^a-z0-9\s_-]', '', t)
+            t = re.sub(r'[^\w\s_-]', '', t, flags=re.UNICODE)
             t = re.sub(r'[\s_]+', '-', t)
             t = re.sub(r'-+', '-', t)
             slug = t.strip('-') or 'untitled-folder'
@@ -80,41 +82,17 @@ class VaultLinter:
             except Exception as e:
                 print(f"Notice: Could not load vault-index.json for linter: {e}")
 
-    def is_publishable(self, abs_path):
-        """Returns False ONLY if markdown file has publish: false in its YAML frontmatter."""
-        try:
-            with open(abs_path, 'r', encoding='utf-8', errors='ignore') as f:
-                first_line = f.readline()
-                if not first_line.startswith('---'):
-                    return True
-                
-                frontmatter_lines = []
-                for line in f:
-                    if line.startswith('---'):
-                        break
-                    frontmatter_lines.append(line)
-                
-                for line in frontmatter_lines:
-                    line = line.strip()
-                    if not line or line.startswith('#'):
-                        continue
-                    if ':' in line:
-                        key, val = line.split(':', 1)
-                        if key.strip().lower() == 'publish':
-                            val_cleaned = val.strip().strip("'\"").lower()
-                            if val_cleaned == 'false':
-                                return False
-        except Exception:
-            pass
-        return True
-
     def collect_vault_index(self):
-        """Map all notes and assets for link and embed validation."""
+        """Single-pass I/O map of all notes and assets for link and embed validation."""
         self.load_vault_index()
         self.all_notes = []
         self.all_assets = set()
+        self.asset_basename_cache = {}
         self.note_stems = {}
 
+        md_files = []
+
+        # 1. Walk filesystem to map raw assets and filenames
         for root, _, files in os.walk(self.vault_dir):
             for f in files:
                 abs_f = os.path.join(root, f)
@@ -128,65 +106,97 @@ class VaultLinter:
                 self.all_assets.add(clean_rel)
                 self.all_assets.add(self.slugify(f, is_directory=False))
                 self.all_assets.add(self.slugify_path(clean_rel))
-                self.all_assets.add(re.sub(r'[^a-z0-9]', '', f_lower))
-                self.all_assets.add(re.sub(r'[^a-z0-9]', '', clean_rel))
+                
+                # Cache alphanumeric base for O(1) asset resolution (Supports Unicode/i18n)
+                base_clean = re.sub(r'[^\w]', '', f_lower, flags=re.UNICODE)
+                self.all_assets.add(base_clean)
+                self.all_assets.add(re.sub(r'[^\w]', '', clean_rel, flags=re.UNICODE))
+
+                if base_clean not in self.asset_basename_cache:
+                    rel_to_vault = re.sub(r'^(?:note-res|\[inside\][^/]+)/', '', rel)
+                    self.asset_basename_cache[base_clean] = rel_to_vault
 
                 if f.endswith('.md'):
-                    # Only lints and resolves targets of publishable notes
-                    if self.is_publishable(abs_f):
-                        self.all_notes.append(rel)
-                        clean_stem = f.replace('.md', '').lower().strip()
-                        self.note_stems[clean_stem] = rel
-                        self.note_stems[clean_stem.replace('-', ' ')] = rel
-                        self.note_stems[clean_stem.replace(' ', '-')] = rel
-                        self.note_stems[clean_stem.replace('_', '-')] = rel
-                        self.note_stems[clean_stem.replace('_', ' ')] = rel
-                        self.note_stems[clean_rel.replace('.md', '')] = rel
-                        self.note_stems[clean_rel.replace('.md', '').replace('-', ' ')] = rel
-                        self.note_stems[clean_rel.replace('.md', '').replace(' ', '-')] = rel
-                        self.note_stems[rel_lower.replace('.md', '')] = rel
+                    md_files.append((abs_f, rel, clean_rel, f))
+
+        # 2. Single rapid-read pass for markdown frontmatter/metadata
+        for abs_f, rel, clean_rel, f in md_files:
+            try:
+                with open(abs_f, 'r', encoding='utf-8', errors='ignore') as fh:
+                    content = fh.read()
+            except Exception:
+                continue
+
+            # Respect publish: false 
+            m_pub = re.search(r'^publish:\s*(false|true)', content, flags=re.MULTILINE | re.IGNORECASE)
+            if m_pub and m_pub.group(1).lower() == 'false':
+                continue
+
+            self.all_notes.append(rel)
+            clean_stem = f.replace('.md', '').lower().strip()
+            stems_to_add = [clean_stem, clean_rel.replace('.md', '')]
+            
+            # Extract YAML Aliases
+            m_aliases = re.search(r'^aliases:\s*\[(.*?)\]', content, flags=re.MULTILINE | re.IGNORECASE)
+            if m_aliases:
+                for al in m_aliases.group(1).split(','):
+                    v = al.strip().strip("'\"")
+                    if v: stems_to_add.append(v.lower())
+            else:
+                m_aliases_multi = re.search(r'^aliases:\s*\n((?:[ \t]+-.*\n)+)', content, flags=re.MULTILINE | re.IGNORECASE)
+                if m_aliases_multi:
+                    for line in m_aliases_multi.group(1).split('\n'):
+                        v = line.replace('-', '').strip().strip("'\"")
+                        if v: stems_to_add.append(v.lower())
+
+            # Extract Primary H1 Heading
+            m_h1 = re.search(r'^#[ \t]+([^#\n\r]+)', content, flags=re.MULTILINE)
+            if m_h1:
+                stems_to_add.append(m_h1.group(1).strip().lower())
+
+            # Register lookup stems
+            for st in stems_to_add:
+                if not st: 
+                    continue
+                self.note_stems[st] = rel
+                self.note_stems[st.replace('-', ' ')] = rel
+                self.note_stems[st.replace(' ', '-')] = rel
+                self.note_stems[st.replace('_', '-')] = rel
+                self.note_stems[st.replace('_', ' ')] = rel
+                self.note_stems[re.sub(r'[^\w]', '', st, flags=re.UNICODE)] = rel
 
     def is_wikilink_resolved(self, inner):
         """Check if internal wikilink target exists via lookup dictionary or stem mapping."""
         if not inner:
             return True
-        clean_inner = re.sub(r'^(?:bba study|note-res|vault)/', '', inner, flags=re.IGNORECASE).strip()
         
-        # 1. Try vault_lookup dictionary from vault-index.json
+        clean_target = inner.split('#')[0].split('^')[0].strip()
+        if not clean_target:
+            return True # Same-file anchor link [[#Heading]]
+
+        clean_inner = re.sub(r'^(?:bba study|note-res|vault)/', '', clean_target, flags=re.IGNORECASE).strip()
+        
         if self.vault_lookup:
             keys_to_check = [
-                inner,
-                inner.lower(),
-                clean_inner,
-                clean_inner.lower(),
-                self.slugify(clean_inner),
-                clean_inner.replace('_', ' '),
-                clean_inner.replace('_', '-'),
-                clean_inner.replace('-', ' '),
-                re.sub(r'[^a-z0-9]', '', clean_inner.lower()),
-                os.path.basename(clean_inner),
-                os.path.basename(clean_inner).lower(),
-                self.slugify(os.path.basename(clean_inner)),
-                re.sub(r'[^a-z0-9]', '', os.path.basename(clean_inner).lower())
+                clean_target, clean_target.lower(), clean_inner, clean_inner.lower(),
+                self.slugify(clean_inner), clean_inner.replace('_', ' '),
+                clean_inner.replace('_', '-'), clean_inner.replace('-', ' '),
+                re.sub(r'[^\w]', '', clean_inner.lower(), flags=re.UNICODE),
+                os.path.basename(clean_inner).lower(), self.slugify(os.path.basename(clean_inner))
             ]
             for k in keys_to_check:
-                if k in self.vault_lookup:
-                    return True
+                if k in self.vault_lookup: return True
 
-        # 2. Fallback check against note_stems
         target_clean = clean_inner.replace('.md', '').lower().split('/')[-1]
         stems_to_check = [
-            target_clean,
-            clean_inner.lower(),
-            self.slugify(target_clean),
-            target_clean.replace('_', '-'),
-            target_clean.replace('_', ' '),
+            target_clean, clean_inner.lower(), self.slugify(target_clean),
+            target_clean.replace('_', '-'), target_clean.replace('_', ' '),
             target_clean.replace('-', ' '),
-            re.sub(r'[^a-z0-9]', '', target_clean)
+            re.sub(r'[^\w]', '', target_clean, flags=re.UNICODE),
+            re.sub(r'[^\w]', '', clean_inner.lower(), flags=re.UNICODE)
         ]
         for s in stems_to_check:
-            if s in self.note_stems:
-                return True
+            if s in self.note_stems: return True
 
         return False
 
@@ -196,14 +206,35 @@ class VaultLinter:
         base_fname = os.path.basename(clean_fname)
 
         candidates = [
-            clean_fname,
-            base_fname,
-            self.slugify_path(clean_fname),
+            clean_fname, base_fname, self.slugify_path(clean_fname),
             self.slugify(base_fname, is_directory=False),
-            re.sub(r'[^a-z0-9]', '', base_fname),
-            re.sub(r'[^a-z0-9]', '', clean_fname)
+            re.sub(r'[^\w]', '', base_fname, flags=re.UNICODE),
+            re.sub(r'[^\w]', '', clean_fname, flags=re.UNICODE)
         ]
         return any(c in self.all_assets for c in candidates)
+
+    def check_unbalanced_display_math(self, content, file_path):
+        """Global scanner for detecting unbalanced $$ display blocks."""
+        # Mask out code fences robustly
+        text = re.sub(r'(?m)^[ \t]*(`{3,}|~{3,}).*?^\1', '', content, flags=re.DOTALL)
+        # Mask out inline code
+        text = re.sub(r'`[^`\n]+`', '', text)
+        # Mask out escaped dollars
+        text = text.replace(r'\$', '')
+        
+        display_math_count = len(re.findall(r'\$\$', text))
+        if display_math_count % 2 != 0:
+            return [{
+                "file": file_path,
+                "line": content.count('\n') + 1,
+                "category": "LaTeX / Math",
+                "severity": "error",
+                "message": f"Unbalanced display math delimiters: odd number ({display_math_count}) of '$$' markers found.",
+                "snippet": "$$",
+                "suggestion": "Ensure all '$$' blocks are properly closed.",
+                "autoFixed": False
+            }]
+        return []
 
     def lint_file(self, file_path):
         """Lint an individual markdown file and optionally auto-fix safe typos."""
@@ -216,186 +247,77 @@ class VaultLinter:
                 content = fh.read()
         except Exception as e:
             return [{
-                "file": file_path,
-                "line": 1,
-                "category": "File Error",
-                "severity": "error",
-                "message": f"Could not read file: {e}",
-                "snippet": "",
-                "autoFixed": False
+                "file": file_path, "line": 1, "category": "File Error", "severity": "error",
+                "message": f"Could not read file: {e}", "snippet": "", "suggestion": "", "autoFixed": False
             }]
 
-        lines = content.split('\n')
         file_issues = []
         is_file_modified = False
 
-        # 1. Check & Repair Heading format (e.g., "###Heading" -> "### Heading")
-        for idx, line in enumerate(lines, start=1):
-            m = re.match(r'^(#{1,6})([^\s#\n\r].*)$', line)
-            if m and not line.startswith('#!'):
-                fixed_line = f"{m.group(1)} {m.group(2)}"
-                file_issues.append({
-                    "file": file_path,
-                    "line": idx,
-                    "category": "Callout",
-                    "severity": "warning",
-                    "message": "Heading missing space after '#' delimiter.",
-                    "snippet": line[:100],
-                    "suggestion": f"Change to: '{fixed_line[:100]}'",
-                    "autoFixed": self.auto_fix
-                })
-                if self.auto_fix:
-                    lines[idx-1] = fixed_line
-                    is_file_modified = True
+        # --- 1. Math Balance Check ---
+        file_issues.extend(self.check_unbalanced_display_math(content, file_path))
 
-        # 2. Check & Repair Malformed Callouts (e.g., ">[!note]Title" -> "> [!note] Title")
-        for idx, line in enumerate(lines, start=1):
-            m = re.match(r'^[ \t]*>\[!([a-zA-Z0-9_\-]+)\]([^\s\n<].*)$', line)
-            if m:
-                fixed_line = re.sub(r'^[ \t]*>\[!([a-zA-Z0-9_\-]+)\]([^\s\n<].*)$', r'> [!\1] \2', line)
-                file_issues.append({
-                    "file": file_path,
-                    "line": idx,
-                    "category": "Callout",
-                    "severity": "warning",
-                    "message": "Callout missing spacing after '[!type]'.",
-                    "snippet": line[:100],
-                    "suggestion": f"Change to: '{fixed_line[:100]}'",
-                    "autoFixed": self.auto_fix
-                })
-                if self.auto_fix:
-                    lines[idx-1] = fixed_line
-                    is_file_modified = True
+        # --- 2. Code Fence Check ---
+        code_fence_count = len(re.findall(r'(?m)^[ \t]*(`{3,}|~{3,})', content))
+        if code_fence_count % 2 != 0:
+            file_issues.append({
+                "file": file_path, "line": content.count('\n') + 1, "category": "Code Fence", "severity": "error",
+                "message": f"Unbalanced code fences detected ({code_fence_count} block markers).",
+                "snippet": "```", "suggestion": "Ensure all code blocks are properly closed.", "autoFixed": False
+            })
 
-        # 3. Check & Repair LaTeX Math Errors (inline $$, currency collisions, and trailing punctuation)
+        # --- Line-by-line processing for Headings & Callouts ---
+        lines = content.split('\n')
         in_code_block = False
+        fence_str = ""
+        
         for idx, line in enumerate(lines, start=1):
-            if line.strip().startswith('```'):
-                in_code_block = not in_code_block
+            # Strict logic for nested code blocks
+            m_fence = re.match(r'^[ \t]*(`{3,}|~{3,})', line)
+            if not in_code_block and m_fence:
+                in_code_block = True
+                fence_str = m_fence.group(1)
                 continue
+            elif in_code_block and m_fence and m_fence.group(1) == fence_str:
+                in_code_block = False
+                continue
+                
             if in_code_block:
                 continue
 
-            # Check 3a: Inline $$...$$ on lines that contain text, bullet markers, or trailing punctuation
-            if '$$' in line:
-                is_standalone_block = bool(re.match(r'^[ \t]*(?:>+[ \t]*)?\$\$[\s\S]*?\$\$[ \t]*$', line))
-                if not is_standalone_block:
-                    fixed_line = re.sub(r'\$\$((?:\\\$|[^\$\n\r])+?)\$\$', r'$\1$', line)
-                    if fixed_line != line:
-                        file_issues.append({
-                            "file": file_path,
-                            "line": idx,
-                            "category": "LaTeX / Math",
-                            "severity": "info",
-                            "message": "Inline '$$...$$' block notation used within continuous text/list item. Auto-fixed to inline math '$...$'.",
-                            "snippet": line[:100],
-                            "suggestion": f"Change to: '{fixed_line[:100]}'",
-                            "autoFixed": self.auto_fix
-                        })
-                        if self.auto_fix:
-                            line = fixed_line
-                            lines[idx-1] = fixed_line
-                            is_file_modified = True
+            # Heading Check (Must contain space elsewhere in the line to actively avoid stripping #tags)
+            m_head = re.match(r'^(#{1,6})([^ \s#\n\r].*?\s+.*)$', line)
+            if m_head and not line.startswith('#!'):
+                fixed_line = f"{m_head.group(1)} {m_head.group(2)}"
+                file_issues.append({
+                    "file": file_path, "line": idx, "category": "Heading", "severity": "warning",
+                    "message": "Heading missing space after '#' delimiter.", "snippet": line[:100],
+                    "suggestion": f"Change to: '{fixed_line[:100]}'", "autoFixed": self.auto_fix
+                })
+                if self.auto_fix:
+                    lines[idx-1] = fixed_line
+                    is_file_modified = True
 
-            # Check 3b: Accidental double/stray $ right after operators (e.g. \times $8% -> \times 8%)
-            if re.search(r'(\\times|\+|-|=)\s*\$([0-9\\])', line):
-                fixed_line = re.sub(r'(\\times|\+|-|=)\s*\$([0-9\\])', r'\1 \2', line)
-                if fixed_line != line:
+            # Callout Check
+            m_callout = re.match(r'^[ \t]*> ?\[!([a-zA-Z0-9_\-]+)\]([+-]?)(?:[ \t]*(.*))?$', line)
+            if m_callout:
+                ctype, fold, title = m_callout.group(1), m_callout.group(2) or "", m_callout.group(3) or ""
+                normalized = f"> [!{ctype}]{fold}" + (f" {title}" if title else "")
+                if normalized != line.rstrip('\r\n'):
                     file_issues.append({
-                        "file": file_path,
-                        "line": idx,
-                        "category": "LaTeX / Math",
-                        "severity": "warning",
-                        "message": "Accidental nested/stray '$' delimiter after mathematical operator.",
-                        "snippet": line[:100],
-                        "suggestion": f"Change to: '{fixed_line[:100]}'",
-                        "autoFixed": self.auto_fix
+                        "file": file_path, "line": idx, "category": "Callout", "severity": "warning",
+                        "message": "Callout missing standard spacing after '>' or '[!type]'.", "snippet": line[:100],
+                        "suggestion": f"Change to: '{normalized[:100]}'", "autoFixed": self.auto_fix
                     })
                     if self.auto_fix:
-                        line = fixed_line
-                        lines[idx-1] = fixed_line
+                        lines[idx-1] = normalized
                         is_file_modified = True
 
-            # Check 3c: Stray trailing $ before full stop or comma (e.g. \$48,000$. -> \$48,000.)
-            if re.search(r'(\\\$[\d,.]+|\$\d[\d,.]*)\$([.,;:])', line):
-                fixed_line = re.sub(r'(\\\$[\d,.]+|\$\d[\d,.]*)\$([.,;:])', r'\1\2', line)
-                if fixed_line != line:
-                    file_issues.append({
-                        "file": file_path,
-                        "line": idx,
-                        "category": "LaTeX / Math",
-                        "severity": "info",
-                        "message": "Stray '$' delimiter adjacent to punctuation normalized.",
-                        "snippet": line[:100],
-                        "suggestion": f"Change to: '{fixed_line[:100]}'",
-                        "autoFixed": self.auto_fix
-                    })
-                    if self.auto_fix:
-                        lines[idx-1] = fixed_line
-                        is_file_modified = True
-
-        # Re-join lines for block-level checks
         modified_content = '\n'.join(lines)
 
-        # 4. Check Code Fences (odd count of ```)
-        code_fence_count = len(re.findall(r'^[ \t]*```', modified_content, flags=re.MULTILINE))
-        if code_fence_count % 2 != 0:
-            file_issues.append({
-                "file": file_path,
-                "line": len(lines),
-                "category": "Callout",
-                "severity": "error",
-                "message": f"Unbalanced code fences detected ({code_fence_count} triple backtick markers).",
-                "snippet": "```",
-                "suggestion": "Ensure all code blocks are properly closed with ```.",
-                "autoFixed": False
-            })
-
-        # 5. Check WikiLinks: [[Target]]
-        wikilinks = re.findall(r'\[\[([^\]\n]+)\]\]', modified_content)
-        for link in wikilinks:
-            inner = link.split('|')[0].strip()
-            if inner.startswith('#'):
-                continue
-            if '#' in inner:
-                inner = inner.split('#')[0].strip()
-            if not inner:
-                continue
-
-            # Strip vault prefixes
-            clean_inner = re.sub(r'^(?:bba study|note-res|vault)/', '', inner, flags=re.IGNORECASE).strip()
-
-            # If link points to media/graphic
-            if clean_inner.lower().endswith(('.svg', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp', '.pdf')):
-                if not self.is_asset_resolved(clean_inner):
-                    file_issues.append({
-                        "file": file_path,
-                        "line": 1,
-                        "category": "Media Embed",
-                        "severity": "warning",
-                        "message": f"Asset '{inner}' not found in vault.",
-                        "snippet": f"[[{link}]]",
-                        "suggestion": f"Ensure '{inner}' exists in the attachments directory.",
-                        "autoFixed": False
-                    })
-                continue
-
-            if not self.is_wikilink_resolved(clean_inner):
-                file_issues.append({
-                    "file": file_path,
-                    "line": 1,
-                    "category": "WikiLink",
-                    "severity": "info",
-                    "message": f"Unresolved internal link to '[[{inner}]]'.",
-                    "snippet": f"[[{link}]]",
-                    "suggestion": f"Verify note '{inner}.md' exists or update the target name.",
-                    "autoFixed": False
-                })
-
-        # 6. Check Media Embeds: ![[image.png]]
+        # --- 3. Media Embed Normalization (with exact line numbers) ---
         def normalize_media_embed(match):
             nonlocal is_file_modified
-
             embed = match.group(1)
             reference, separator, options = embed.partition('|')
             reference = reference.strip()
@@ -403,44 +325,75 @@ class VaultLinter:
             if not normalized or normalized == reference:
                 return match.group(0)
 
+            line_no = modified_content.count('\n', 0, match.start()) + 1
             file_issues.append({
-                "file": file_path,
-                "line": 1,
-                "category": "Media Embed",
-                "severity": "info",
+                "file": file_path, "line": line_no, "category": "Media Embed", "severity": "info",
                 "message": f"Normalized media path '{reference}' for the published reader.",
-                "snippet": f"![[{embed}]]",
-                "suggestion": f"Use '![[{normalized}{separator}{options}]]'.",
-                "autoFixed": True
+                "snippet": f"![[{embed}]]", "suggestion": f"Use '![[{normalized}{separator}{options}]]'.",
+                "autoFixed": self.auto_fix
             })
-            is_file_modified = True
-            suffix = f"{separator}{options}" if separator else ''
-            return f"![[{normalized}{suffix}]]"
+            if self.auto_fix:
+                is_file_modified = True
+                suffix = f"{separator}{options}" if separator else ''
+                return f"![[{normalized}{suffix}]]"
+            return match.group(0)
 
-        modified_content = re.sub(
-            r'!\[\[([^\]\n]+)\]\]',
-            normalize_media_embed,
-            modified_content
-        )
+        modified_content = re.sub(r'!\[\[([^\]\n]+)\]\]', normalize_media_embed, modified_content)
 
-        media_embeds = re.findall(r'!\[\[([^\]\n]+)\]\]', modified_content)
-        for embed in media_embeds:
+        # --- 4. Validation of Links and Transclusions ---
+        def mask_code(m): return "\x00" * len(m.group(0))
+        masked_content = re.sub(r'(?m)^[ \t]*(`{3,}|~{3,}).*?^\1', mask_code, modified_content, flags=re.DOTALL)
+        masked_content = re.sub(r'`[^`\n]+`', mask_code, masked_content)
+
+        # Find WikiLinks [[Target]]
+        for match in re.finditer(r'(?<!!)\[\[([^\]\n]+)\]\]', masked_content):
+            line_no = masked_content.count('\n', 0, match.start()) + 1
+            inner = match.group(1).split('|')[0].strip()
+            if inner.startswith('#') or inner.startswith('^'): continue
+            
+            target_base = inner.split('#')[0].split('^')[0].strip()
+            if not target_base: continue
+            
+            clean_target = re.sub(r'^(?:bba study|note-res|vault)/', '', target_base, flags=re.IGNORECASE).strip()
+
+            if clean_target.lower().endswith(('.svg', '.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp', '.pdf')):
+                if not self.is_asset_resolved(clean_target):
+                    file_issues.append({
+                        "file": file_path, "line": line_no, "category": "Media Embed", "severity": "warning",
+                        "message": f"Asset '{inner}' not found in vault.", "snippet": f"[[{match.group(1)}]]",
+                        "suggestion": f"Ensure '{inner}' exists.", "autoFixed": False
+                    })
+                continue
+
+            if not self.is_wikilink_resolved(clean_target):
+                file_issues.append({
+                    "file": file_path, "line": line_no, "category": "WikiLink", "severity": "info",
+                    "message": f"Unresolved internal link to '[[{inner}]]'.", "snippet": f"[[{match.group(1)}]]",
+                    "suggestion": f"Verify note '{inner}.md' exists.", "autoFixed": False
+                })
+
+        # Find Media/Transclusions ![[Target]]
+        for match in re.finditer(r'!\[\[([^\]\n]+)\]\]', masked_content):
+            line_no = masked_content.count('\n', 0, match.start()) + 1
+            embed = match.group(1)
             fname = embed.split('|')[0].strip()
             clean_fname = re.sub(r'^(?:bba study|note-res|vault)/', '', fname, flags=re.IGNORECASE).strip()
+            
             if clean_fname.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.bmp', '.mp4', '.webm')):
                 if not self.is_asset_resolved(clean_fname):
                     file_issues.append({
-                        "file": file_path,
-                        "line": 1,
-                        "category": "Media Embed",
-                        "severity": "warning",
-                        "message": f"Missing image or attachment asset '{fname}'.",
-                        "snippet": f"![[{embed}]]",
-                        "suggestion": f"Ensure '{fname}' is copied into the vault or note-res asset directory.",
-                        "autoFixed": False
+                        "file": file_path, "line": line_no, "category": "Media Embed", "severity": "warning",
+                        "message": f"Missing image or attachment asset '{fname}'.", "snippet": f"![[{embed}]]",
+                        "suggestion": f"Ensure '{fname}' is in vault.", "autoFixed": False
+                    })
+            else:
+                if not self.is_wikilink_resolved(clean_fname):
+                    file_issues.append({
+                        "file": file_path, "line": line_no, "category": "Transclusion", "severity": "info",
+                        "message": f"Unresolved note transclusion '![[{fname}]]'.", "snippet": f"![[{embed}]]",
+                        "suggestion": f"Verify note '{clean_fname}.md' exists.", "autoFixed": False
                     })
 
-        # Save file if modified by auto-fix
         if self.auto_fix and is_file_modified:
             try:
                 with open(abs_path, 'w', encoding='utf-8') as out_f:
@@ -475,16 +428,9 @@ class VaultLinter:
             if candidate.is_file():
                 return published_reference.replace('\\', '/')
 
-        # Fuzzy search in vault_dir for file with matching alphanumeric basename
-        base_clean = re.sub(r'[^a-z0-9]', '', os.path.basename(clean_reference).lower())
-        for root, _, files in os.walk(self.vault_dir):
-            for f in files:
-                f_clean = re.sub(r'[^a-z0-9]', '', f.lower())
-                if f_clean == base_clean:
-                    found_abs = os.path.join(root, f)
-                    rel_to_root = os.path.relpath(found_abs, self.root_dir).replace('\\', '/')
-                    rel_to_vault = re.sub(r'^(?:note-res|\[inside\][^/]+)/', '', rel_to_root)
-                    return rel_to_vault
+        base_clean = re.sub(r'[^\w]', '', os.path.basename(clean_reference).lower(), flags=re.UNICODE)
+        if base_clean in self.asset_basename_cache:
+            return self.asset_basename_cache[base_clean]
 
         return reference
 
@@ -575,7 +521,6 @@ class VaultLinter:
             "issues": all_issues
         }
 
-        # Write site-lib/vault-health.json
         site_lib_dir = os.path.join(self.root_dir, 'site-lib')
         os.makedirs(site_lib_dir, exist_ok=True)
         health_json_path = os.path.join(site_lib_dir, 'vault-health.json')
