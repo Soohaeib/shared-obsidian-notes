@@ -159,12 +159,12 @@ header:nth-of-type(1) > div:nth-of-type(1) > div#header-active-note-title:nth-of
   align-items: center;
   gap: 8px;
   padding: 8px 16px;
-  background: rgba(25, 25, 25, 0.45);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(25, 25, 25, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
   color: var(--text-muted, #94a3b8);
   font-size: 0.78rem;
   font-weight: 500;
@@ -172,7 +172,8 @@ header:nth-of-type(1) > div:nth-of-type(1) > div#header-active-note-title:nth-of
   user-select: none;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  cursor: pointer;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .floating-note-meta.is-visible,
@@ -180,6 +181,60 @@ header:nth-of-type(1) > div:nth-of-type(1) > div#header-active-note-title:nth-of
   opacity: 1;
   transform: translateX(-50%) translateY(0);
   visibility: visible;
+  pointer-events: auto;
+}
+
+.floating-note-meta.is-visible:hover,
+#floating-note-meta.is-visible:hover {
+  background: rgba(30, 36, 48, 0.85);
+  border-color: rgba(129, 140, 248, 0.45);
+  color: var(--text-normal, #f8fafc);
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55), 0 0 20px rgba(129, 140, 248, 0.25);
+}
+
+.floating-note-meta.is-visible:active,
+#floating-note-meta.is-visible:active {
+  transform: translateX(-50%) translateY(0) scale(0.97);
+}
+
+.floating-meta-progress-ring {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  margin-right: 2px;
+}
+
+.circular-chart {
+  display: block;
+  width: 15px;
+  height: 15px;
+  transform: rotate(-90deg);
+}
+
+.circle-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.15);
+  stroke-width: 3.8;
+}
+
+.circle-fill {
+  fill: none;
+  stroke: var(--interactive-accent, #818cf8);
+  stroke-width: 3.8;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.25s ease;
+}
+
+.theme-light .circle-bg {
+  stroke: rgba(0, 0, 0, 0.12);
+}
+
+.theme-light .circle-fill {
+  stroke: var(--interactive-accent, #6366f1);
 }
 
 .floating-meta-item {

@@ -328,25 +328,98 @@
 
     renderMathInDiagram(container) {
       if (!window.katex || !container) return;
-      const labelElements = container.querySelectorAll('.nodeLabel, .edgeLabel, .label, foreignObject, text, tspan');
+      const selectors = [
+        '.nodeLabel', '.edgeLabel', '.label', 'foreignObject span', 'foreignObject div', 'foreignObject p',
+        'text', 'tspan', '.actor', '.messageText', '.noteText', '.loopText', '.statediagram-state',
+        '.statediagram-cluster', '.er', '.journey-section', '.task-text', '.pieTitleText', '.slice',
+        '.quadrant-point', '.label-container', 'g.nodes g.node'
+      ];
+      const labelElements = container.querySelectorAll(selectors.join(', '));
+      const processedElements = new Set();
+      const macros = (window.ObsidianMathRenderer && window.ObsidianMathRenderer.katexMacros) || {};
+
       labelElements.forEach(el => {
-        if (el.children.length === 0 || (el.tagName && el.tagName.toLowerCase() === 'span' && el.classList.contains('nodeLabel'))) {
-          const raw = el.innerHTML || el.textContent;
-          if (raw && (raw.includes('$') || raw.includes('\\('))) {
-            let processed = raw;
-            processed = processed.replace(/\$\$([^\$\n\r]+?)\$\$/g, (m, formula) => {
-              try {
-                return window.katex.renderToString(formula.trim(), { displayMode: true, throwOnError: false });
-              } catch (e) { return m; }
+        if (processedElements.has(el)) return;
+        
+        // Skip parent containers if they contain matching sub-elements that will be processed
+        if (el.tagName && el.tagName.toLowerCase() !== 'text' && el.querySelector && el.querySelector('.nodeLabel, .edgeLabel, text, tspan')) {
+          return;
+        }
+
+        const raw = el.innerHTML || el.textContent;
+        if (!raw || (!raw.includes('$') && !raw.includes('\\(') && !raw.includes('\\[') && !raw.includes('\\begin{'))) {
+          return;
+        }
+
+        processedElements.add(el);
+
+        let processed = raw
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .replace(/&#36;/g, '$');
+
+        // 1. Block environments: \begin{...}...\end{...}
+        processed = processed.replace(/\\begin\{([a-zA-Z0-9*]+)\}([\s\S]*?)\\end\{\1\}/g, (match) => {
+          try {
+            return window.katex.renderToString(match.trim(), {
+              displayMode: true,
+              throwOnError: false,
+              output: 'htmlAndMathml',
+              trust: true,
+              macros: macros
             });
-            processed = processed.replace(/(?<![\$\w\\])\$(?!\$)((?:\\\$|[^\$\n\r])+?)(?<!\\)\$(?!\$)/g, (m, formula) => {
-              try {
-                return window.katex.renderToString(formula.trim(), { displayMode: false, throwOnError: false });
-              } catch (e) { return m; }
+          } catch (e) { return match; }
+        });
+
+        // 2. Block math: $$ ... $$ or \[ ... \]
+        processed = processed.replace(/(?:\$\$([\s\S]*?)\$\$|\\\[([\s\S]*?)\\\])/g, (match, f1, f2) => {
+          const formula = (f1 || f2 || '').trim();
+          try {
+            return window.katex.renderToString(formula, {
+              displayMode: true,
+              throwOnError: false,
+              output: 'htmlAndMathml',
+              trust: true,
+              macros: macros
             });
-            if (processed !== raw) {
+          } catch (e) { return match; }
+        });
+
+        // 3. Inline math: $ ... $ or \( ... \)
+        processed = processed.replace(/(?:\$([^\$\n\r]+?)\$|\\\(([\s\S]*?)\\\))/g, (match, f1, f2) => {
+          const formula = (f1 || f2 || '').trim();
+          try {
+            return window.katex.renderToString(formula, {
+              displayMode: false,
+              throwOnError: false,
+              output: 'htmlAndMathml',
+              trust: true,
+              macros: macros
+            });
+          } catch (e) { return match; }
+        });
+
+        if (processed !== raw) {
+          if (el.tagName && el.tagName.toLowerCase() === 'text') {
+            try {
+              const bbox = el.getBBox ? el.getBBox() : null;
+              const x = el.getAttribute('x') || (bbox ? bbox.x : 0);
+              const y = el.getAttribute('y') || (bbox ? bbox.y : 0);
+              const fo = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+              fo.setAttribute('x', x);
+              fo.setAttribute('y', y);
+              fo.setAttribute('width', (bbox && bbox.width > 0) ? Math.max(bbox.width + 60, 120) : 140);
+              fo.setAttribute('height', (bbox && bbox.height > 0) ? Math.max(bbox.height + 30, 50) : 50);
+              fo.innerHTML = `<div xmlns="http://www.w3.org/1999/xhtml" style="display:inline-flex;align-items:center;color:currentColor;font-size:inherit;">${processed}</div>`;
+              el.replaceWith(fo);
+            } catch (err) {
               el.innerHTML = processed;
             }
+          } else {
+            el.innerHTML = processed;
           }
         }
       });

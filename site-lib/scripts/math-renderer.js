@@ -31,7 +31,33 @@
         "\\boldsymbol": "\\mathbf",
         "\\bold": "\\mathbf",
         "\\c": "\\cline",
-        "\\mc": "\\multicolumn"
+        "\\mc": "\\multicolumn",
+        "\\mr": "\\multirow",
+        "\\E": "\\mathbb{E}",
+        "\\P": "\\mathbb{P}",
+        "\\Var": "\\operatorname{Var}",
+        "\\Cov": "\\operatorname{Cov}",
+        "\\Corr": "\\operatorname{Corr}",
+        "\\MSE": "\\operatorname{MSE}",
+        "\\SSE": "\\operatorname{SSE}",
+        "\\SSR": "\\operatorname{SSR}",
+        "\\SST": "\\operatorname{SST}",
+        "\\sd": "\\operatorname{sd}",
+        "\\tr": "\\operatorname{tr}",
+        "\\diag": "\\operatorname{diag}",
+        "\\rank": "\\operatorname{rank}",
+        "\\nullity": "\\operatorname{nullity}",
+        "\\proj": "\\operatorname{proj}",
+        "\\span": "\\operatorname{span}",
+        "\\sgn": "\\operatorname{sgn}",
+        "\\argmax": "\\operatorname*{arg\\,max}",
+        "\\argmin": "\\operatorname*{arg\\,min}",
+        "\\coloneqq": ":=",
+        "\\eqqcolon": "=:",
+        "\\given": "\\,\\vert\\,",
+        "\\dd": "\\mathrm{d}",
+        "\\diff": "\\frac{\\mathrm{d}}{\\mathrm{d}x}",
+        "\\pd": "\\frac{\\partial}{\\partial x}"
       };
     }
 
@@ -53,16 +79,16 @@
     }
 
     parseLatexArrayToHtmlTable(latex) {
-      if (!latex || !latex.includes('\\begin{array}')) {
+      if (!latex || (!latex.includes('\\begin{array}') && !latex.includes('\\begin{tabular}'))) {
         return null;
       }
 
       try {
         const cleanLatex = latex.replace(/^[ \t]*>+[ \t]*/gm, '').trim();
-        const bodyMatch = cleanLatex.match(/\\begin\{array\}\{([lrc|]+)\}([\s\S]*?)\\end\{array\}/);
+        const bodyMatch = cleanLatex.match(/\\begin\{(?:array|tabular)\}\{([lrc|p\{\}\d\w\.\s]+)\}([\s\S]*?)\\end\{(?:array|tabular)\}/);
         if (!bodyMatch) return null;
 
-        const colAlignments = bodyMatch[1].replace(/\|/g, '').split('').map(c => c === 'r' ? 'right' : (c === 'c' ? 'center' : 'left'));
+        const colAlignments = bodyMatch[1].replace(/\||p\{[^}]+\}/g, '').split('').map(c => c === 'r' ? 'right' : (c === 'c' ? 'center' : 'left'));
         const rawBody = bodyMatch[2].trim();
         const rawRows = rawBody.split(/\\\\/);
         const processedRows = [];
@@ -82,10 +108,10 @@
             rowStr = rowStr.replace(/\\hline/g, '').trim();
           }
 
-          const clineMatch = rowStr.match(/\\(?:cline|c)\{(\d+)-(\d+)\}/);
+          const clineMatch = rowStr.match(/(?:\\cline|\\c|\/c)\{(\d+)-(\d+)\}/);
           if (clineMatch) {
             clineCols = { start: parseInt(clineMatch[1], 10), end: parseInt(clineMatch[2], 10) };
-            rowStr = rowStr.replace(/\\(?:cline|c)\{\d+-\d+\}/g, '').trim();
+            rowStr = rowStr.replace(/(?:\\cline|\\c|\/c)\{\d+-\d+\}/g, '').trim();
           }
 
           if (!rowStr) {
@@ -97,6 +123,25 @@
           processedRows.push({ text: rowStr, borderTop, borderBottom, clineCols });
         }
 
+        const renderCellContent = (content) => {
+          let str = content;
+          str = str.replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>');
+          str = str.replace(/\\mathbf\{([^}]+)\}/g, '<strong>$1</strong>');
+          str = str.replace(/\\text\{([^}]+)\}/g, '$1');
+          str = str.replace(/\\quad/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
+          str = str.replace(/\\qquad/g, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
+          str = str.replace(/\\(\$)/g, '$');
+          
+          if (str.includes('\\frac') || str.includes('\\sqrt') || str.includes('\\sigma') || str.includes('\\mu') || str.includes('\\alpha') || str.includes('\\beta') || str.includes('^') || str.includes('_') || str.includes('\\hat') || str.includes('\\bar')) {
+            if (window.katex && typeof window.katex.renderToString === 'function') {
+              try {
+                return window.katex.renderToString(content.trim(), { displayMode: false, throwOnError: false, macros: this.katexMacros });
+              } catch (e) { /* fallback below */ }
+            }
+          }
+          return str.replace(/[{}]/g, '');
+        };
+
         let html = '<div class="accounting-table-wrapper"><table class="accounting-schedule-table"><tbody>';
         for (const row of processedRows) {
           const { text: rowStr, borderTop, borderBottom, clineCols } = row;
@@ -105,16 +150,11 @@
           if (borderBottom) borderClasses.push('border-double-bottom');
           const trClass = borderClasses.join(' ');
 
-          const multiMatch = rowStr.match(/^\\(?:multicolumn|mc)\{(\d+)\}\{([lrc])\}\{([\s\S]+?)\}$/);
+          const multiMatch = rowStr.match(/^(?:\\multicolumn|\\mc)\{(\d+)\}\{([lrc])\}\{([\s\S]+?)\}$/);
           if (multiMatch) {
             const colspan = multiMatch[1];
             const align = multiMatch[2] === 'r' ? 'right' : (multiMatch[2] === 'c' ? 'center' : 'left');
-            let content = multiMatch[3];
-            content = content.replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>');
-            content = content.replace(/\\mathbf\{([^}]+)\}/g, '<strong>$1</strong>');
-            content = content.replace(/\\text\{([^}]+)\}/g, '$1');
-            content = content.replace(/\\(\$)/g, '$');
-            content = content.replace(/[{}]/g, '');
+            const content = renderCellContent(multiMatch[3]);
             html += `<tr class="table-header-row ${trClass}"><td colspan="${colspan}" style="text-align: ${align};" class="multicolumn-cell">${content}</td></tr>`;
             continue;
           }
@@ -125,28 +165,17 @@
             let cell = cells[c].trim();
             const align = colAlignments[c] || (c > 0 ? 'right' : 'left');
 
-            const cellMulti = cell.match(/^\\(?:multicolumn|mc)\{(\d+)\}\{([lrc])\}\{([\s\S]+?)\}$/);
+            const cellMulti = cell.match(/^(?:\\multicolumn|\\mc)\{(\d+)\}\{([lrc])\}\{([\s\S]+?)\}$/);
             if (cellMulti) {
               const span = cellMulti[1];
               const cellAlign = cellMulti[2] === 'r' ? 'right' : (cellMulti[2] === 'c' ? 'center' : 'left');
-              let content = cellMulti[3]
-                .replace(/\\textbf\{([^}]+)\}/g, '<strong>$1</strong>')
-                .replace(/\\mathbf\{([^}]+)\}/g, '<strong>$1</strong>')
-                .replace(/\\text\{([^}]+)\}/g, '$1')
-                .replace(/\\(\$)/g, '$')
-                .replace(/[{}]/g, '');
+              const content = renderCellContent(cellMulti[3]);
               html += `<td colspan="${span}" style="text-align: ${cellAlign};" class="multicolumn-cell">${content}</td>`;
               continue;
             }
 
             let isBold = /\\textbf\{([^}]+)\}/.test(cell) || /\\mathbf\{([^}]+)\}/.test(cell);
-            cell = cell.replace(/\\textbf\{([^}]+)\}/g, '$1');
-            cell = cell.replace(/\\mathbf\{([^}]+)\}/g, '$1');
-            cell = cell.replace(/\\text\{([^}]+)\}/g, '$1');
-            cell = cell.replace(/\\quad/g, '&nbsp;&nbsp;&nbsp;&nbsp;');
-            cell = cell.replace(/\\qquad/g, '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;');
-            cell = cell.replace(/\\(\$)/g, '$');
-            cell = cell.replace(/[{}]/g, '');
+            const renderedContent = renderCellContent(cell);
 
             let style = `text-align: ${align};`;
             if (isBold) style += ' font-weight: 600;';
@@ -155,7 +184,7 @@
             else cellClasses.push('cell-text');
             if (clineCols && (c + 1) >= clineCols.start && (c + 1) <= clineCols.end) cellClasses.push('border-cline-top');
 
-            html += `<td class="${cellClasses.join(' ')}" style="${style}">${cell}</td>`;
+            html += `<td class="${cellClasses.join(' ')}" style="${style}">${renderedContent}</td>`;
           }
           html += '</tr>';
         }

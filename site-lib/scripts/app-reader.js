@@ -743,7 +743,7 @@
         </article>
       `;
 
-      this.setupReadingTimeTracking(readingTime);
+      this.setupReadingTimeTracking(readingTime, words);
       this.initInteractiveWidgets();
       this.buildTableOfContents();
       this.buildBacklinks(relPath);
@@ -756,9 +756,16 @@
       if (window.ObsidianCallouts) text = window.ObsidianCallouts.autoHealCallouts(text);
       text = text.replace(/^(#{1,6})([^\s#\n\r].*)$/gm, '$1 $2');
 
-      // Ensure list items that directly follow paragraphs start on their own block
+      // Ensure any list items that directly follow paragraphs or other content start on their own block
       text = text.replace(/([^\n\r])\r?\n([ \t]*[-*+]\s+[^\n\r]+)/g, '$1\n\n$2');
-      text = text.replace(/([^\n\r])\r?\n([ \t]*\d+\.\s+[^\n\r]+)/g, '$1\n\n$2');
+      text = text.replace(/([^\n\r])\r?\n([ \t]*\d+[\.\)]\s+[^\n\r]+)/g, '$1\n\n$2');
+      text = text.replace(/([^\n\r])\r?\n([ \t]*[a-zA-Z][\.\)]\s+[^\n\r]+)/g, '$1\n\n$2');
+
+      // Ensure text directly following a list item starts on its own paragraph block
+      text = text.replace(/([ \t]*(?:[-*+]|\d+[\.\)]|[a-zA-Z][\.\)])\s+[^\n\r]+)\r?\n([^\s\-*+\d>#`~|][^\n\r]*)/g, '$1\n\n$2');
+
+      // Ensure blockquotes and callouts following paragraphs start on their own block
+      text = text.replace(/([^\n\r])\r?\n(>[ \t]*[^\n\r]+)/g, '$1\n\n$2');
 
       // Ensure markdown tables have a preceding newline if attached to paragraphs
       text = text.replace(/([^\n\r])\r?\n(\|[^\n\r]+\|\r?\n\|[\s\-:|]+\|)/g, '$1\n\n$2');
@@ -1845,8 +1852,149 @@
       });
     }
 
-    setupReadingTimeTracking(totalMinutes) {
-      this.readingStats = { totalMinutes };
+    setupReadingTimeTracking(totalMinutes, totalWords = 0) {
+      this.readingStats = {
+        totalMinutes: Math.max(1, totalMinutes || 1),
+        totalWords: totalWords || 0,
+        displayMode: this.readingStats?.displayMode || 'remaining'
+      };
+
+      const floatingMeta = document.getElementById('floating-note-meta');
+      const rtVal = document.getElementById('reading-time-val');
+      const wcVal = document.getElementById('word-count-val');
+      const progressBar = document.getElementById('floating-progress-bar');
+      const viewport = document.getElementById('note-viewport') || document.documentElement;
+      if (!floatingMeta || !rtVal) return;
+
+      if (this._readingScrollHandler && this._readingScrollTarget) {
+        this._readingScrollTarget.removeEventListener('scroll', this._readingScrollHandler);
+        this._readingScrollTarget.removeEventListener('mousemove', this._readingMouseMoveHandler);
+        this._readingScrollTarget.removeEventListener('touchstart', this._readingMouseMoveHandler);
+        window.removeEventListener('scroll', this._readingScrollHandler);
+        document.removeEventListener('scroll', this._readingScrollHandler);
+      }
+
+      let hideTimeout = null;
+      let isHovered = false;
+
+      const scheduleAutoHide = (delay = 3200) => {
+        clearTimeout(hideTimeout);
+        hideTimeout = setTimeout(() => {
+          if (!isHovered && floatingMeta) {
+            floatingMeta.classList.remove('is-visible');
+          }
+        }, delay);
+      };
+
+      const showPill = (delay = 3200) => {
+        if (!floatingMeta) return;
+        floatingMeta.style.display = 'inline-flex';
+        floatingMeta.classList.add('is-visible');
+        scheduleAutoHide(delay);
+      };
+
+      const updateStats = () => {
+        if (!floatingMeta) return;
+        const vEl = document.getElementById('note-viewport');
+        const scrollTop = vEl ? vEl.scrollTop : (window.scrollY || document.documentElement.scrollTop || 0);
+        const scrollHeight = vEl ? vEl.scrollHeight : (document.documentElement.scrollHeight || 1);
+        const clientHeight = vEl ? vEl.clientHeight : (window.innerHeight || 1);
+        const maxScroll = Math.max(1, scrollHeight - clientHeight);
+        const progress = Math.min(1, Math.max(0, scrollTop / maxScroll));
+
+        const totalW = this.readingStats.totalWords || 0;
+        const totalM = this.readingStats.totalMinutes || Math.max(1, Math.ceil(totalW / 200));
+
+        const readWords = Math.min(totalW, Math.round(totalW * progress));
+        const remWords = Math.max(0, totalW - readWords);
+
+        // Approximate reading speed: 200 words / min = 3.33 words / sec
+        const remainingSeconds = Math.round((remWords / 200) * 60);
+        const remMin = Math.floor(remainingSeconds / 60);
+        const remSec = remainingSeconds % 60;
+        const progressPct = Math.round(progress * 100);
+
+        if (progressBar) {
+          progressBar.setAttribute('stroke-dasharray', `${progressPct}, 100`);
+        }
+
+        if (this.readingStats.displayMode === 'total') {
+          rtVal.textContent = `${totalM} min read`;
+          if (wcVal) wcVal.textContent = `${totalW.toLocaleString()} words`;
+        } else if (this.readingStats.displayMode === 'progress') {
+          rtVal.textContent = `${progressPct}% read`;
+          if (wcVal) wcVal.textContent = `${readWords.toLocaleString()} / ${totalW.toLocaleString()} words`;
+        } else {
+          // Dynamic remaining mode
+          if (progress >= 0.98 || remWords <= 5) {
+            rtVal.textContent = 'Finished ✓';
+            if (wcVal) wcVal.textContent = `${totalW.toLocaleString()} read`;
+          } else if (remMin >= 1) {
+            if (remSec > 15) {
+              rtVal.textContent = `${remMin}m ${remSec}s left`;
+            } else {
+              rtVal.textContent = `${remMin} min left`;
+            }
+            if (wcVal) wcVal.textContent = `${remWords.toLocaleString()} words left`;
+          } else if (remainingSeconds > 0) {
+            rtVal.textContent = `${remainingSeconds}s left`;
+            if (wcVal) wcVal.textContent = `${remWords.toLocaleString()} words left`;
+          } else {
+            rtVal.textContent = '< 1 min left';
+            if (wcVal) wcVal.textContent = `${remWords.toLocaleString()} words left`;
+          }
+        }
+
+        floatingMeta.setAttribute('title', `Reading Stats: ${progressPct}% read • ${readWords.toLocaleString()} of ${totalW.toLocaleString()} words • ${remMin}m ${remSec}s remaining of ${totalM} min total • Click to toggle display`);
+      };
+
+      updateStats();
+      showPill(3500);
+
+      const onScroll = () => {
+        updateStats();
+        showPill(2500);
+      };
+
+      const onActivity = () => {
+        showPill(2800);
+      };
+
+      this._readingScrollHandler = onScroll;
+      this._readingMouseMoveHandler = onActivity;
+      this._readingScrollTarget = viewport;
+
+      if (viewport) {
+        viewport.addEventListener('scroll', onScroll, { passive: true });
+        viewport.addEventListener('mousemove', onActivity, { passive: true });
+        viewport.addEventListener('touchstart', onActivity, { passive: true });
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      document.addEventListener('scroll', onScroll, { passive: true });
+
+      if (!floatingMeta._boundMetaHover) {
+        floatingMeta._boundMetaHover = true;
+
+        floatingMeta.addEventListener('mouseenter', () => {
+          isHovered = true;
+          clearTimeout(hideTimeout);
+          floatingMeta.classList.add('is-visible');
+        });
+
+        floatingMeta.addEventListener('mouseleave', () => {
+          isHovered = false;
+          scheduleAutoHide(1800);
+        });
+
+        floatingMeta.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const modes = ['remaining', 'progress', 'total'];
+          const currentIdx = modes.indexOf(this.readingStats.displayMode || 'remaining');
+          this.readingStats.displayMode = modes[(currentIdx + 1) % modes.length];
+          updateStats();
+          showPill(3500);
+        });
+      }
     }
 
     downloadMarkdownFile(title, path, rawMarkdown) {
