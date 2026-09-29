@@ -219,25 +219,25 @@ In a perfect capital market, distributing cash via share repurchases versus cash
 > [!example] Problem 1: Residual Dividend Model under Varying Capital Budgets
 >
 > **Scenario:** Chittagong Apparel Ltd. has a target capital structure of 40% debt and 60% common equity. The firm expects net income of $\$5,000,000$ for the upcoming year. Calculate the total cash dividend, per-share dividend (DPS, assuming 1,000,000 shares), and dividend payout ratio under three alternative capital budgets:
-> 1. *Poor Opportunities:* Capital Budget = \$3,000,000$
-> 2. *Average Opportunities:* Capital Budget = \$7,000,000$
-> 3. *Good Opportunities:* Capital Budget = \$10,000,000$
+> 1. *Poor Opportunities:* Capital Budget = $\$3,000,000$
+> 2. *Average Opportunities:* Capital Budget = $\$7,000,000$
+> 3. *Good Opportunities:* Capital Budget = $\$10,000,000$
 > 
 > **Solution Steps:**
 > 
-> **1. Capital Budget = \$3,000,000$**
+> **1. Capital Budget = $\$3,000,000$**
 > $$\text{Equity Required} = 0.60 \times \$3,000,000 = \$1,800,000$$
 > $$\text{Dividends} = \text{Net Income} - \text{Equity Required} = \$5,000,000 - \$1,800,000 = \$3,200,000$$
 > $$\text{DPS} = \frac{\$3,200,000}{1,000,000 \text{ shares}} = \$3.20 \text{ per share}$$
 > $$\text{Payout Ratio} = \frac{\$3,200,000}{\$5,000,000} = 64.0\%$$
 > 
-> **2. Capital Budget = \$7,000,000$**
+> **2. Capital Budget = $\$7,000,000$**
 > $$\text{Equity Required} = 0.60 \times \$7,000,000 = \$4,200,000$$
 > $$\text{Dividends} = \$5,000,000 - \$4,200,000 = \$800,000$$
 > $$\text{DPS} = \frac{\$800,000}{1,000,000 \text{ shares}} = \$0.80 \text{ per share}$$
 > $$\text{Payout Ratio} = \frac{\$800,000}{\$5,000,000} = 16.0\%$$
 > 
-> **3. Capital Budget = \$10,000,000$**
+> **3. Capital Budget = $\$10,000,000$**
 > $$\text{Equity Required} = 0.60 \times \$10,000,000 = \$6,000,000$$
 > $$\text{Residual} = \$5,000,000 - \$6,000,000 = -\$1,000,000$$
 > *Since the residual is negative, no dividends are paid ($0$), and the firm must issue $\$1,000,000$ of new external common stock.*
@@ -245,7 +245,7 @@ In a perfect capital market, distributing cash via share repurchases versus cash
 
 > [!example] Problem 2: Stock Split and Stock Dividend Adjustments
 >
-> **Scenario:** Karnaphuli Steel Mills currently has 500,000 common shares outstanding selling at $\$60$ per share. Net income is $\$2,500,000$ ($\text{EPS} = \$5.00$) and current $\text{DPS} = \$2.00.
+> **Scenario:** Karnaphuli Steel Mills currently has 500,000 common shares outstanding selling at $\$60$ per share. Net income is $\$2,500,000$ ($\text{EPS} = \$5.00$) and current $\text{DPS} = \$2.00$.
 > 4. Calculate the new share count, EPS, DPS, and market price per share if the firm executes a **5-for-2 stock split**.
 > 5. Calculate the new share count, EPS, and market price per share if the firm pays a **25% stock dividend**.
 > 
@@ -267,7 +267,7 @@ In a perfect capital market, distributing cash via share repurchases versus cash
 >
 > **Scenario:** Apex Technology has net income of $\$4,000,000$ and 1,000,000 shares outstanding trading at $\$40.00$ per share ($\text{P/E} = 10.0\times$). The firm has $\$1,000,000$ of excess cash to distribute.
 > 6. If paid as a cash dividend, calculate DPS, the post-dividend stock price, and total wealth per share.
-> 7. If used to repurchase shares at $\$40.00, calculate the number of shares repurchased, new EPS, and post-repurchase stock price (assuming P/E remains $10.0\times$).
+> 7. If used to repurchase shares at $\$40.00$, calculate the number of shares repurchased, new EPS, and post-repurchase stock price (assuming P/E remains $10.0\times$).
 > 
 > **Solution Steps:**
 > 

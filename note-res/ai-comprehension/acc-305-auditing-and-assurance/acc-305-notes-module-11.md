@@ -376,26 +376,26 @@ In modern corporate reporting, audited financial statements are published within
 > ##### Scenario Context:
 > An audit team is concluding the statutory audit of **Apex Apparel Ltd** for the year ended December 31, 2025. The engagement partner is evaluating three unadjusted audit findings prior to issuing the audit report:
 > Financial Metrics of Apex Apparel Ltd:
-> - Total Revenue = \$25,000,000$
-> - Profit Before Tax (PBT) = \$2,000,000$
-> - Total Assets = \$40,000,000$
-> - Overall Materiality ($OM$) = \$100,000$ (set at $5\%$ of PBT)
-> - Performance Materiality ($PM$) = \$60,000$ ($60\%$ of $OM$)
+> - Total Revenue = $\$25,000,000$
+> - Profit Before Tax (PBT) = $\$2,000,000$
+> - Total Assets = $\$40,000,000$
+> - Overall Materiality ($OM$) = $\$100,000$ (set at $5\%$ of PBT)
+> - Performance Materiality ($PM$) = $\$60,000$ ($60\%$ of $OM$)
 > Audit Findings Uncovered During Fieldwork:
-> 1. **Finding 1 (Inventory Valuation Misstatement)**: Finished goods inventory includes obsolete stock valued at $\$250,000. Net Realizable Value (NRV) testing under IAS 2 indicates the true value is $\$50,000. Management refuses to write down inventory by $\$200,000.
+> 1. **Finding 1 (Inventory Valuation Misstatement)**: Finished goods inventory includes obsolete stock valued at $\$250,000$. Net Realizable Value (NRV) testing under IAS 2 indicates the true value is $\$50,000$. Management refuses to write down inventory by $\$200,000$.
 > 2. **Finding 2 (Scope Limitation on Overseas Receivables)**: Trade receivables include $\$3,500,000$ owed by a major overseas distributor in a country subject to severe foreign exchange controls. The audit team was unable to send direct circularization requests or perform alternative post-year-end cash collection testing. Management refused permission to contact the foreign bank.
 > 3. **Finding 3 (Litigation Contingency)**: Apex Apparel Ltd is defendant in a patent infringement lawsuit claiming $\$1,500,000$ in damages. Legal counsel assesses the likelihood of loss as "Reasonably Possible". Management has fully disclosed the lawsuit and legal opinions in Note 28 to the financial statements.
 > ---
 > ##### Step-by-Step Evaluation & Calculations:
 > ###### Analysis of Finding 1 (Inventory Valuation):
-> - **Uncorrected Misstatement**: $\$250,000 - \$50,000 = \$200,000.
+> - **Uncorrected Misstatement**: $\$250,000 - \$50,000 = \$200,000$.
 > - **Materiality Threshold Comparison**:
 >   $$\text{Misstatement } (\$200,000) > OM\ (\$100,000)$$
 >   $$\text{Impact on Profit Before Tax} = \frac{\$200,000}{\$2,000,000} = 10.0\% \text{ of PBT}$$
 > - **Pervasiveness Evaluation**: The misstatement is **material** ($10.0\%$ of PBT) but **confined** to a single account balance (Inventory) representing $0.5\%$ of Total Assets. It is **not pervasive**.
 > - **Indicated Opinion if Isolated**: **Qualified Opinion ("Except for")** under ISA 705.
 > ###### Analysis of Finding 2 (Scope Limitation on Receivables):
-> - **Unexamined Account Balance**: $\$3,500,000.
+> - **Unexamined Account Balance**: $\$3,500,000$.
 > - **Materiality Threshold Comparison**:
 >   $$\text{Unverified Scope Amount } (\$3,500,000) \gg OM\ (\$100,000)$$
 >   $$\text{Impact on Profit Before Tax} = \frac{\$3,500,000}{\$2,000,000} = 175.0\% \text{ of PBT}$$
@@ -426,7 +426,7 @@ In modern corporate reporting, audited financial statements are published within
 > > **BASIS FOR DISCLAIMER OF OPINION**
 > > 1. *Inability to Verify Overseas Trade Receivables (Scope Limitation)*: Included in trade receivables on the Statement of Financial Position is an amount of $\$3,500,000$ due from an overseas distributor. Due to foreign exchange restrictions and management's refusal to permit external confirmations or direct inquiries, we were unable to send direct circularization requests or perform alternative audit procedures regarding the existence, valuation, and collectibility of this balance. Consequently, we were unable to determine whether any adjustments were necessary in respect of trade receivables, net profit, or retained earnings.
 > >
-> > 2. *Overstatement of Inventory (Material Misstatement)*: The Company's inventory is carried on the Statement of Financial Position at $\$2,500,000. Management has not written down obsolete finished goods inventory to its Net Realizable Value as required by IAS 2 (*Inventories*). Audit testing indicates that inventory is overstated by $\$200,000. Had management recorded the required allowance, inventory and retained earnings would be reduced by $\$200,000, income taxes payable would be reduced by $\$50,000, and net profit for the year would be reduced by $\$150,000.
+> > 2. *Overstatement of Inventory (Material Misstatement)*: The Company's inventory is carried on the Statement of Financial Position at $\$2,500,000$. Management has not written down obsolete finished goods inventory to its Net Realizable Value as required by IAS 2 (*Inventories*). Audit testing indicates that inventory is overstated by $\$200,000$. Had management recorded the required allowance, inventory and retained earnings would be reduced by $\$200,000$, income taxes payable would be reduced by $\$50,000$, and net profit for the year would be reduced by $\$150,000$.
 
 ---
 
@@ -456,5 +456,5 @@ In modern corporate reporting, audited financial statements are published within
 > >
 > > **2. Provision for Disputed Regulatory Spectrum Fees ($12,000,000)**
 > > *Refer to Note 31 (Provisions and Contingencies) to the Financial Statements.*
-> > - *Why considered a KAM*: The company is in active litigation with regulatory authorities regarding spectrum license fee adjustments totaling $\$12,000,000. Evaluating whether an obligation meets the recognition criteria of a provision or footnote disclosure under IAS 37 requires significant management judgment and legal interpretation.
+> > - *Why considered a KAM*: The company is in active litigation with regulatory authorities regarding spectrum license fee adjustments totaling $\$12,000,000$. Evaluating whether an obligation meets the recognition criteria of a provision or footnote disclosure under IAS 37 requires significant management judgment and legal interpretation.
 > > - *How addressed in audit*: We evaluated management's legal assessment by obtaining direct independent legal confirmations from external legal counsel handling the dispute. We inspected court filings and regulatory correspondence. We engaged an auditor's legal specialist to evaluate the strength of regulatory precedents and assessed the adequacy of disclosures in Note 31.

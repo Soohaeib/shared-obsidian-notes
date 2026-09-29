@@ -305,22 +305,22 @@ The entire underallocated or overallocated manufacturing overhead balance is clo
 > Endeavor Printing, Inc. uses a normal job-costing system with two direct cost categories (Direct Materials, Direct Manufacturing Labor) and one indirect cost pool (Manufacturing Overhead, allocated based on Direct Manufacturing Labor Costs).
 > The following T-account balances and operating data pertain to January 2020:
 > * **Initial T-Account Balances $Jan 1, 2020$:**
->   * Materials Control = \$30,000$
->   * Work-in-Process Control = \$6,000$
->   * Finished Goods Control = \$40,000$
->   * Wages Payable Control (Beginning Credit) = \$10,000$
+>   * Materials Control = $\$30,000$
+>   * Work-in-Process Control = $\$6,000$
+>   * Finished Goods Control = $\$40,000$
+>   * Wages Payable Control (Beginning Credit) = $\$10,000$
 > * **Annual Budgeted Figures for 2020:**
->   * Budgeted Manufacturing Overhead = \$1,200,000$
->   * Budgeted Direct Manufacturing Labor Costs = \$800,000$
+>   * Budgeted Manufacturing Overhead = $\$1,200,000$
+>   * Budgeted Direct Manufacturing Labor Costs = $\$800,000$
 > * **January Operating Transactions & Conditions:**
-> 	  - a. Unfinished Job No. 419 on Jan 31 contains: Direct Materials = \$16,000; Direct Labor = \$4,000$ ($250$ DLH).
-> 	  - b. Total Direct Materials issued to production during January = \$180,000.
-> 	  - c. Cost of Goods Manufactured (transferred to FG) in January = \$360,000.
-> 	  - d. Ending Materials Inventory on Jan 31 = \$40,000.
-> 	  - e. Ending Finished Goods Inventory on Jan 31 = \$30,000.
-> 	  - f. All workers earn a uniform hourly wage. Total direct labor-hours in January = 5,000$ hours. Other indirect labor = \$20,000.
-> 	  - g. Gross plant payroll paid in cash in January = \$104,000.
-> 	  - h. Actual Manufacturing Overhead incurred and posted in January = \$114,000.
+> 	  - a. Unfinished Job No. 419 on Jan 31 contains: Direct Materials = $\$16,000$; Direct Labor = $\$4,000$ ($250$ DLH).
+> 	  - b. Total Direct Materials issued to production during January = $\$180,000$.
+> 	  - c. Cost of Goods Manufactured (transferred to FG) in January = $\$360,000$.
+> 	  - d. Ending Materials Inventory on Jan 31 = $\$40,000$.
+> 	  - e. Ending Finished Goods Inventory on Jan 31 = $\$30,000$.
+> 	  - f. All workers earn a uniform hourly wage. Total direct labor-hours in January = $5,000$ hours. Other indirect labor = $\$20,000$.
+> 	  - g. Gross plant payroll paid in cash in January = $\$104,000$.
+> 	  - h. Actual Manufacturing Overhead incurred and posted in January = $\$114,000$.
 > **Required:**
 > 1. Compute the Predetermined Overhead Rate for 2020.
 > 2. Compute Total Direct Manufacturing Labor Costs incurred in January.
@@ -351,9 +351,9 @@ $$ \$30,000 + \text{Purchases} - \$180,000 = \$40,000 $$
 $$ \text{Purchases} = \$40,000 + \$180,000 - \$30,000 = \$190,000 $$
 ##### Step 5: Ending Work-in-Process Inventory (Jan 31)
 Job No. 419 is the sole unfinished job in WIP on Jan 31. Its total cost comprises:
-* Direct Materials = \$16,000$
-* Direct Labor = \$4,000$
-* Allocated Overhead $150\% \times \$4,000$ = \$6,000$
+* Direct Materials = $\$16,000$
+* Direct Labor = $\$4,000$
+* Allocated Overhead $$150\% \times \$4,000$$ = $\$6,000$
 
 $$ \text{Ending WIP Inventory (Jan 31)} = \$16,000 + \$4,000 + \$6,000 = \$26,000 $$
 ##### Step 6: Cost of Goods Sold (Unadjusted)
@@ -367,7 +367,7 @@ $$ \text{COGS (Unadjusted)} = \$400,000 - \$30,000 = \$370,000 $$
 ##### Step 7: Net Overhead Variance and Disposal Analysis
 $$ \text{Net Overhead Variance} = \text{Actual MOH} - \text{Allocated MOH} = \$114,000 - \$120,000 = -\$6,000 \quad (\mathbf{\$6,000 \text{ Overallocated}}) $$
 * **Disposal Option A: Write-Off to Cost of Goods Sold**
-  Since overhead is overallocated by $\$6,000, actual costs were lower than allocated. Writing off to COGS reduces COGS expense.
+  Since overhead is overallocated by $\$6,000$, actual costs were lower than allocated. Writing off to COGS reduces COGS expense.
 
   $$ \text{Adjusted COGS} = \$370,000 - \$6,000 = \$364,000 $$
 
@@ -378,9 +378,9 @@ $$ \text{Net Overhead Variance} = \text{Actual MOH} - \text{Allocated MOH} = \$1
   \end{array} $$
 * **Disposal Option B: Proration Based on Overhead Allocated in Ending Balances**
   Assume the $\$120,000$ allocated overhead is present in ending balances as follows:
-  * WIP Control Allocated MOH = \$6,000$ $5\%$
-  * FG Control Allocated MOH = \$12,000$ $10\%$
-  * COGS Allocated MOH = \$102,000$ $85\%$
+  * WIP Control Allocated MOH = $\$6,000$ $$5\%$$
+  * FG Control Allocated MOH = $\$12,000$ $$10\%$$
+  * COGS Allocated MOH = $\$102,000$ $$85\%$$
 
   *Proration Calculations:*
   $$ \text{WIP Reduction} = 5\% \times \$6,000 = \$300 \implies \text{Adjusted WIP} = \$26,000 - \$300 = \$25,700 $$

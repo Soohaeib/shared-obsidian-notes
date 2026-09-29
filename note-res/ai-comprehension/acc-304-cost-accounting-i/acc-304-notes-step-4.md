@@ -291,7 +291,7 @@ graph TD
 >    - *Material Scrap Common to All Jobs:* Credited to Manufacturing Overhead Control (reducing the predetermined overhead rate).
 > 3. **Spoilage:**
 >    Units damaged or defective that do not meet quality specifications and cannot be economically repaired; sold as "seconds" or discarded.
->    - *Normal Spoilage (Job-Specific):* Net cost $\text{Original Cost} - \text{Disposal Value}$ charged directly to the specific job.
+>    - *Normal Spoilage (Job-Specific):* Net cost $$\text{Original Cost} - \text{Disposal Value}$$ charged directly to the specific job.
 >    - *Normal Spoilage (Common to All Jobs):* Net cost charged to Manufacturing Overhead Control.
 >    - *Abnormal Spoilage:* Net loss credited out of WIP and debited to **Loss from Abnormal Spoilage** (expensed in period).
 > 4. **Defectives / Rework:**
@@ -459,14 +459,14 @@ The following costs must be **expensed in the period incurred** and never capita
 
 ##### Step-by-Step Solution
 **Step 1: Identify Given Parameters**
-- Annual Demand ($D$) = 12,000$ units.
+- Annual Demand ($D$) = $12,000$ units.
 - Order Processing Cost ($O$) = $TK\ 120$ per order.
 - Unit Purchase Price ($P_{unit}$) = $TK\ 50$ per unit.
-- Lead Time ($L$) = 0.5$ months.
+- Lead Time ($L$) = $0.5$ months.
 
 **Step 2: Calculate Unit Carrying Cost ($C$)**
 Carrying cost per unit per year consists of:
-- Opportunity cost of investment = 12\% \times TK\ 50 = TK\ 6.00$.
+- Opportunity cost of investment = $12\% \times TK\ 50 = TK\ 6.00$.
 - Direct storage, rent, insurance, tax = $TK\ 2.00$.
 $$ C = 2.00 + (50 \times 12\%) = 2.00 + 6.00 = TK\ 8.00 \text{ per unit/year} $$
 
@@ -475,14 +475,14 @@ $$ C = 2.00 + (50 \times 12\%) = 2.00 + 6.00 = TK\ 8.00 \text{ per unit/year} $$
 $$ EOQ = \sqrt{\frac{2 \cdot D \cdot O}{C}} = \sqrt{\frac{2 \times 12,000 \times 120}{8}} = \sqrt{\frac{2,880,000}{8}} = \sqrt{360,000} = 600 \text{ units} $$
 
 **Step 4: Calculate Total Ordering and Carrying Costs (Requirement ii)**
-- Number of orders per year = \frac{D}{EOQ} = \frac{12,000}{600} = 20 \text{ orders}$.
-- Annual Ordering Cost = 20 \times 120 = TK\ 2,400$.
-- Annual Carrying Cost = \frac{EOQ}{2} \times C = \frac{600}{2} \times 8 = 300 \times 8 = TK\ 2,400$.
+- Number of orders per year = $\frac{D}{EOQ} = \frac{12,000}{600} = 20 \text{ orders}$.
+- Annual Ordering Cost = $20 \times 120 = TK\ 2,400$.
+- Annual Carrying Cost = $\frac{EOQ}{2} \times C = \frac{600}{2} \times 8 = 300 \times 8 = TK\ 2,400$.
 $$ \text{Total Annual Relevant Cost} = TK\ 2,400 + TK\ 2,400 = TK\ 4,800 $$
 
 **Step 5: Calculate Reorder Point (Requirement iii)**
-- Average Monthly Usage = \frac{12,000 \text{ units}}{12 \text{ months}} = 1,000 \text{ units/month}$.
-- Safety Stock = 0$ (since lead time and demand are known with certainty).
+- Average Monthly Usage = $\frac{12,000 \text{ units}}{12 \text{ months}} = 1,000 \text{ units/month}$.
+- Safety Stock = $0$ (since lead time and demand are known with certainty).
 $$ \text{Reorder Point} = \text{Safety Stock} + (\text{Average Monthly Usage} \times \text{Lead Time}) $$
 $$ \text{Reorder Point} = 0 + (1,000 \times 0.5) = 500 \text{ units} $$
 
@@ -493,13 +493,13 @@ $$ \text{Reorder Point} = 0 + (1,000 \times 0.5) = 500 \text{ units} $$
 > #### Detailed Walkthrough 2: Comprehensive Multi-Level Inventory Control Problem
 > ##### Problem Statement
 > A company provided the following operational data:
-> - Average daily usage = 100$ units.
-> - Maximum daily usage = 140$ units.
-> - Minimum daily usage = 70$ units.
-> - Reorder period (lead time) = 5$ days.
+> - Average daily usage = $100$ units.
+> - Maximum daily usage = $140$ units.
+> - Minimum daily usage = $70$ units.
+> - Reorder period (lead time) = $5$ days.
 > - Order processing cost ($O$) = $TK\ 180$ per order.
 > - Carrying cost ($C$) = $TK\ 4.50$ per unit/year.
-> - Working days per year = 45$ days so Annual Demand $D = 100 \text{ units/day} \times 45 \text{ days} = 4,500 \text{ units}$.
+> - Working days per year = $45$ days so Annual Demand $D = 100 \text{ units/day} \times 45 \text{ days} = 4,500 \text{ units}$.
 > ##### Required
 > Calculate: 
 > - **a** EOQ,
@@ -545,7 +545,7 @@ $$ \text{Average Inventory} = \text{Safety Stock} + \frac{EOQ}{2} = 200 + \frac{
 >
 > #### Detailed Walkthrough 3: Quantity Discount Decision Analysis
 > ##### Problem Statement
-> Annual requirement ($D$) = 10,000$ units. Inventory carrying cost per unit per year = 20\%$ of price. Order processing cost ($O$) = $Rs.\ 40$ per order. Base price quoted = $Rs.\ 4$ per unit.
+> Annual requirement ($D$) = $10,000$ units. Inventory carrying cost per unit per year = $20\%$ of price. Order processing cost ($O$) = $Rs.\ 40$ per order. Base price quoted = $Rs.\ 4$ per unit.
 > The supplier offers a **5% quantity discount** if order size is **1,500 units or more**. Evaluate whether to accept the discount offer.
 
 Step-by-Step Solution
@@ -555,18 +555,18 @@ Step-by-Step Solution
 $$ EOQ = \sqrt{\frac{2 \times 10,000 \times 40}{0.80}} = \sqrt{1,000,000} = 1,000 \text{ units} $$
 
 Total annual relevant cost at $Q = 1,000$ units:
-- Purchase Cost = 10,000 \times Rs.\ 4.00 = Rs.\ 40,000$
-- Ordering Cost = \left(\frac{10,000}{1,000}\right) \times Rs.\ 40 = 10 \times 40 = Rs.\ 400$
-- Carrying Cost = \left(\frac{1,000}{2}\right) \times Rs.\ 0.80 = 500 \times 0.80 = Rs.\ 400$
+- Purchase Cost = $10,000 \times Rs.\ 4.00 = Rs.\ 40,000$
+- Ordering Cost = $\left(\frac{10,000}{1,000}\right) \times Rs.\ 40 = 10 \times 40 = Rs.\ 400$
+- Carrying Cost = $\left(\frac{1,000}{2}\right) \times Rs.\ 0.80 = 500 \times 0.80 = Rs.\ 400$
 $$ \text{Total Cost at EOQ} = 40,000 + 400 + 400 = Rs.\ 40,800 $$
 
 **Step 2: Calculate Total Cost at Discount Lot Size ($Q = 1,500$ units)**
-- Discounted Purchase Price = $Rs.\ 4.00 \times 1 - 0.05$ = Rs.\ 3.80$ per unit.
-- Total Purchase Cost = 10,000 \times Rs.\ 3.80 = Rs.\ 38,000$.
+- Discounted Purchase Price = $Rs.\ 4.00 \times $1 - 0.05$ = Rs.\ 3.80$ per unit.
+- Total Purchase Cost = $10,000 \times Rs.\ 3.80 = Rs.\ 38,000$.
 - Discounted Carrying Cost per unit $C_{disc} = 20\% \times Rs.\ 3.80 = Rs.\ 0.76$ per unit/year.
-- Number of Orders = \frac{10,000}{1,500} = 6.67$ orders per year.
-- Annual Ordering Cost = 6.67 \times Rs.\ 40 = Rs.\ 266.67$ (or $Rs.\ 240$ for 6 full orders).
-- Annual Carrying Cost = \left(\frac{1,500}{2}\right) \times Rs.\ 0.76 = 750 \times 0.76 = Rs.\ 570$.
+- Number of Orders = $\frac{10,000}{1,500} = 6.67$ orders per year.
+- Annual Ordering Cost = $6.67 \times Rs.\ 40 = Rs.\ 266.67$ (or $Rs.\ 240$ for 6 full orders).
+- Annual Carrying Cost = $\left(\frac{1,500}{2}\right) \times Rs.\ 0.76 = 750 \times 0.76 = Rs.\ 570$.
 $$ \text{Total Cost at Discount} = 38,000 + 240 + 570 = Rs.\ 38,810 $$
 
 **Step 3: Comparative Decision Analysis**
@@ -581,10 +581,10 @@ $$ \text{Net Benefit} = Rs.\ 40,800 - Rs.\ 38,810 = Rs.\ 1,990 \quad \text{or } 
 >
 > #### Detailed Walkthrough 4: Backflush Costing Accounting Entries
 > ##### Problem Statement
-> Silicon Valley Computer $SVC$ operates a JIT cell for manufacturing PC keyboards. Standard costs per unit: Direct Materials = \$19.00, Conversion Costs = \$12.00$ (Total Standard Cost = \$31.00$ per unit).
+> Silicon Valley Computer $SVC$ operates a JIT cell for manufacturing PC keyboards. Standard costs per unit: Direct Materials = $\$19.00$, Conversion Costs = $\$12.00$ (Total Standard Cost = $\$31.00$ per unit).
 > Transactions for April:
-> 1. Direct materials purchased on credit: $\$1,950,000.
-> 2. Actual conversion costs incurred: $\$1,260,000.
+> 1. Direct materials purchased on credit: $\$1,950,000$.
+> 2. Actual conversion costs incurred: $\$1,260,000$.
 > 3. Good finished units completed: $100,000$ units.
 > 4. Finished units sold: $99,000$ units at $\$50$ selling price.
 

@@ -159,7 +159,7 @@ The payroll process involves employee hiring, timekeeping, payroll calculations,
 | :--- | :--- | :--- |
 | **Occurrence** | Payments made to ghost or terminated employees. | Vouch a sample of payroll entries from the payroll register to authorized personnel files, approved timesheets, and bank payment confirmations. |
 | **Completeness** | Accrued payroll / tax liabilities omitted at year-end. | Recompute year-end payroll accruals (e.g., unpaid days between last pay date and year-end) and verify payment of post-year-end tax returns (withholdings, provident fund). |
-| **Accuracy** | Gross pay, tax withholdings, or net pay calculated incorrectly. | Recompute gross-to-net calculations for a sample of employees; perform **Substantive Analytical Procedure**: <br>$\text{Expected Payroll} = \text{Prior Year Base} \times (1 + \Delta \text{Headcount}) \times (1 + \Delta \text{Pay Rate})$ |
+| **Accuracy** | Gross pay, tax withholdings, or net pay calculated incorrectly. | Recompute gross-to-net calculations for a sample of employees; perform **Substantive Analytical Procedure**: <br>$$\text{Expected Payroll} = \text{Prior Year Base} \times (1 + \Delta \text{Headcount}) \times (1 + \Delta \text{Pay Rate})$$ |
 | **Classification** | Direct labor misclassified as indirect overhead or operating expense. | Test payroll coding against cost accounting job cost sheets and departmental budget classifications. |
 
 ---
@@ -248,7 +248,7 @@ The auditor obtains the client's year-end Bank Reconciliation and performs the f
 > [!example] Numerical Problem & Case Study
 >
 > #### Walkthrough 1: Search for Unrecorded Liabilities & Purchase Cut-Off
-> An auditor is conducting the search for unrecorded liabilities at Zenith Trading Ltd for the year ended December 31, 2025. Overall Materiality = \$100,000; Performance Materiality ($TM$) = \$50,000.
+> An auditor is conducting the search for unrecorded liabilities at Zenith Trading Ltd for the year ended December 31, 2025. Overall Materiality = $\$100,000$; Performance Materiality ($TM$) = $\$50,000$.
 > The auditor examines cash disbursements recorded in January 2026 and unmatched invoice files:
 > | Item # | Payment / Invoice Date | Vendor | Invoice Amount | Receiving Report Date (GRN) | Description / Period Covered |
 > | :---: | :---: | :--- | :---: | :---: | :--- |
@@ -257,10 +257,10 @@ The auditor obtains the client's year-end Bank Reconciliation and performs the f
 > | **3** | Jan 15, 2026 | Delta Freight | $\$12,000$ | Jan 4, 2026 | Freight for goods shipped Jan 3, 2026. |
 > | **4** | Jan 20, 2026 | Titan Machinery | $\$45,000$ | Dec 30, 2025 | Equipment spare parts received Dec 30, 2025. |
 > ##### Audit Evaluation & Calculations:
-> - **Item 1**: Goods received Dec 28, 2025 (before year-end). Unrecorded liability at Dec 31, 2025. Amount = \$35,000.
-> - **Item 2**: Electricity consumed in Dec 2025 (before year-end). Unrecorded accrual at Dec 31, 2025. Amount = \$18,000.
-> - **Item 3**: Freight for Jan 2026 shipment (after year-end). Properly excluded from 2025 liabilities. Amount = \$0.
-> - **Item 4**: Goods received Dec 30, 2025 (before year-end). Unrecorded liability at Dec 31, 2025. Amount = \$45,000.
+> - **Item 1**: Goods received Dec 28, 2025 (before year-end). Unrecorded liability at Dec 31, 2025. Amount = $\$35,000$.
+> - **Item 2**: Electricity consumed in Dec 2025 (before year-end). Unrecorded accrual at Dec 31, 2025. Amount = $\$18,000$.
+> - **Item 3**: Freight for Jan 2026 shipment (after year-end). Properly excluded from 2025 liabilities. Amount = $\$0$.
+> - **Item 4**: Goods received Dec 30, 2025 (before year-end). Unrecorded liability at Dec 31, 2025. Amount = $\$45,000$.
 > ##### Cumulative Misstatement Summary:
 > $$\text{Total Unrecorded Liabilities} = \$35,000 + \$18,000 + \$45,000 = \$98,000$$
 > ##### Audit Synthesis & Action:
@@ -271,7 +271,7 @@ The auditor obtains the client's year-end Bank Reconciliation and performs the f
 >   \text{Dr. Utilities Expense} & \$18,000 & \\
 >   \quad \text{Cr. Accounts Payable / Accrued Expenses} & & \$98,000
 >   \end{array}$$
-> - If management accepts and posts the adjustment, unrecorded misstatement drops to $\$0, bringing the balance within acceptable risk limits.
+> - If management accepts and posts the adjustment, unrecorded misstatement drops to $\$0$, bringing the balance within acceptable risk limits.
 
 ---
 
@@ -279,25 +279,25 @@ The auditor obtains the client's year-end Bank Reconciliation and performs the f
 >
 > #### Walkthrough 2: Bank Reconciliation Audit & Kiting Analysis
 > Auditing the bank reconciliation of Orient Express Ltd as of December 31, 2025:
-> - Balance per Bank Statement (Confirmed) = \$450,000.
-> - Balance per General Ledger = \$385,000.
+> - Balance per Bank Statement (Confirmed) = $\$450,000$.
+> - Balance per General Ledger = $\$385,000$.
 > - Reconciling Items identified by client:
->   1. Deposits in transit = \$65,000.
->   2. Outstanding checks = \$140,000.
->   3. Bank service charges not recorded in GL = \$2,000.
->   4. Direct customer bank collection not recorded in GL = \$8,000.
+>   1. Deposits in transit = $\$65,000$.
+>   2. Outstanding checks = $\$140,000$.
+>   3. Bank service charges not recorded in GL = $\$2,000$.
+>   4. Direct customer bank collection not recorded in GL = $\$8,000$.
 > ##### Step 1: Mathematical Verification of Bank Reconciliation
 > $$\text{Adjusted Bank Balance} = \text{Bank Confirmed Balance} + \text{Deposits in Transit} - \text{Outstanding Checks}$$
 > $$\text{Adjusted Bank Balance} = \$450,000 + \$65,000 - \$140,000 = \$375,000$$
 > $$\text{Adjusted Book Balance} = \text{GL Balance} + \text{Direct Collections} - \text{Bank Charges}$$
 > $$\text{Adjusted Book Balance} = \$385,000 + \$8,000 - \$2,000 = \$391,000$$
 > ##### Step 2: Investigation of Variance & Audit Adjustments
-> - Discrepancy between Adjusted Bank ($\$375,000$) and Adjusted Book ($\$391,000$) = \$16,000.
+> - Discrepancy between Adjusted Bank ($\$375,000$) and Adjusted Book ($\$391,000$) = $\$16,000$.
 > - Upon inspecting the cutoff bank statement, the auditor discovers that Check #4092 for $\$16,000$ issued on Dec 29, 2025, was **omitted** from the client's outstanding check list.
 > - **Revised Adjusted Bank Balance**:
 >   $$\text{Corrected Adjusted Bank} = \$375,000 - \$16,000 = \$359,000$$
 > - *Note*: Wait, let's re-verify the book adjustment:
->   Adjusted Book was $\$391,000. If Check #4092 was already recorded in GL disbursements, corrected adjusted bank is $\$375,000 - \$16,000 = \$359,000. If GL balance was $\$385,000 - \$16,000 = \$369,000, adjusting for collections ($\$8,000$) and charges ($\$2,000$) yields $\$375,000.
+>   Adjusted Book was $\$391,000$. If Check #4092 was already recorded in GL disbursements, corrected adjusted bank is $\$375,000 - \$16,000 = \$359,000$. If GL balance was $\$385,000 - \$16,000 = \$369,000$, adjusting for collections ($\$8,000$) and charges ($\$2,000$) yields $\$375,000$.
 > - **Required GL Adjusting Entries**:
 >   $$ \begin{array}{llrr}
 >   \text{Dr. Bank Service Charges Expense} & \$2,000 & \\

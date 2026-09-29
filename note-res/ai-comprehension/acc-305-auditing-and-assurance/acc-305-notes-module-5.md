@@ -255,11 +255,11 @@ ISA 240 mandates specific procedures that the auditor **must** perform on every 
 > - **Clearly Trivial Threshold (CTT)**: $4\%$ of Overall Materiality ($OM$).
 > - **Target Audit Risk (AR)**: $5\%$ ($0.05$).
 > During risk assessment of the **Inventory Valuation** assertion, the audit team assessed:
-> - **Inherent Risk (IR)** = 80\%$ ($0.80$) due to complex standard costing and potential product obsolescence.
-> - **Control Risk (CR)** = 50\%$ ($0.50$) based on initial evaluation of inventory internal controls.
+> - **Inherent Risk (IR)** = $80\%$ ($0.80$) due to complex standard costing and potential product obsolescence.
+> - **Control Risk (CR)** = $50\%$ ($0.50$) based on initial evaluation of inventory internal controls.
 > During testing, the audit team identified two uncorrected misstatements:
 > 1. **Misstatement 1**: Overstatement of trade receivables by $\$110,000$ due to cutoff errors.
-> 2. **Misstatement 2**: Understatement of accrued expenses by $\$45,000.
+> 2. **Misstatement 2**: Understatement of accrued expenses by $\$45,000$.
 > ---
 > #### Step-by-Step Mathematical Solutions
 > ##### Step 1: Compute Quantitative Materiality Thresholds
@@ -285,7 +285,7 @@ ISA 240 mandates specific procedures that the auditor **must** perform on every 
 > 9. **Individual Assessment against PM ($96,000$)**:
 >    - Misstatement 1 ($\$110,000$) exceeds Performance Materiality ($PM = \$96,000$). This indicates an unacceptably high risk that it could individually distort the accounts or contribute to an overall material misstatement.
 > 10. **Aggregate Assessment against OM ($160,000$)**:
->    - Aggregate uncorrected misstatement = \$155,000. While quantitatively just below Overall Materiality ($OM = \$160,000$), it consumes $96.875\%$ of $OM$.
+>    - Aggregate uncorrected misstatement = $\$155,000$. While quantitatively just below Overall Materiality ($OM = \$160,000$), it consumes $96.875\%$ of $OM$.
 >    - Adding an allowance for undetected errors ($OM - \text{Known Errors} = \$160,000 - \$155,000 = \$5,000$), the margin for undetected misstatement is far too small.
 > 11. **Auditor's Action**:
 >    - The auditor must request management to adjust Misstatement 1 ($\$110,000$).

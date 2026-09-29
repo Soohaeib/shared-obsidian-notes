@@ -84,8 +84,8 @@ Equipment encompasses operational machinery, vehicles, office furniture, store f
 > - Demolition of old warehouse: $\$40,000$
 > - Salvaged timber/steel sales from old warehouse: $\$8,000$
 > - Paving new employee parking lot (Land Improvement): $\$85,000$
-> - Purchased mining machinery for $\$500,000$ cash subject to terms $2/10, n/30$ (paid within 10 days); sales tax $6\%$; freight-in $\$12,000; installation platform $\$18,000.
-> - Apex is legally required to dismantle the machinery and decontaminate the site in 4 years. Estimated future restoration cost is $\$100,000. The credit-adjusted risk-free rate is $8\%$.
+> - Purchased mining machinery for $\$500,000$ cash subject to terms $2/10, n/30$ (paid within 10 days); sales tax $6\%$; freight-in $\$12,000$; installation platform $\$18,000$.
+> - Apex is legally required to dismantle the machinery and decontaminate the site in 4 years. Estimated future restoration cost is $\$100,000$. The credit-adjusted risk-free rate is $8\%$.
 > **Step 1: Calculate Cost of Land:**
 > $$ \text{Total Land Cost} = \$1,500,000 + \$60,000 + \$15,000 + (\$40,000 - \$8,000) = \mathbf{\$1,607,000} $$
 > **Step 2: Cost of Land Improvements:**
@@ -128,7 +128,7 @@ Equipment encompasses operational machinery, vehicles, office furniture, store f
 > 2028 & 92,593 & 7,407 & 100,000 \\
 > \hline \hline
 > \end{array} $$
-> **Step 8: Settlement Entry (December 31, 2028 - Actual Remediation Paid = \$96,000$):**
+> **Step 8: Settlement Entry (December 31, 2028 - Actual Remediation Paid = $\$96,000$):**
 > $$ \begin{array}{llrr}
 > \textbf{Date} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
 > \hline
@@ -184,9 +184,9 @@ US GAAP dictates that the amount of interest capitalized in an accounting period
 > - July 1: $\$800,000$
 > - November 1: $\$600,000$
 > Horizon had the following debt outstanding throughout 2025:
-> 1. **Specific Construction Loan:** 3-year, $10\%$ note specifically issued for the building on January 1, 2025: $\$1,000,000.
-> 2. **General Debt 1:** 5-year, $8\%$ bond payable: $\$2,000,000.
-> 3. **General Debt 2:** 10-year, $12\%$ note payable: $\$1,000,000.
+> 1. **Specific Construction Loan:** 3-year, $10\%$ note specifically issued for the building on January 1, 2025: $\$1,000,000$.
+> 2. **General Debt 1:** 5-year, $8\%$ bond payable: $\$2,000,000$.
+> 3. **General Debt 2:** 10-year, $12\%$ note payable: $\$1,000,000$.
 > **Step 1: Calculate Weighted-Average Accumulated Expenditures (WAE):**
 > $$ \begin{array}{lrrr}
 > \textbf{Date} & \textbf{Expenditure (\$)} & \textbf{Weight (Months/12)} & \textbf{WAE (\$)} \\
@@ -267,8 +267,8 @@ Nonmonetary exchanges occur when an enterprise trades fixed assets for other non
 >
 > **Scenario:**
 > Vanguard Corp. exchanges a heavy crane for a specialized excavator.
-> - **Old Crane Data:** Original cost = \$200,000; Accumulated depreciation = \$120,000$ (Book Value = \$80,000$); Fair Value = \$110,000$ (Unrealized Gain = \$30,000$).
-> **Case 1: Commercial Substance present. Vanguard pays $\$15,000$ cash boot. Fair Value of excavator = \$125,000.**
+> - **Old Crane Data:** Original cost = $\$200,000$; Accumulated depreciation = $\$120,000$ (Book Value = $\$80,000$); Fair Value = $\$110,000$ (Unrealized Gain = $\$30,000$).
+> **Case 1: Commercial Substance present. Vanguard pays $\$15,000$ cash boot. Fair Value of excavator = $\$125,000$.**
 > $$ \text{Gain} = \$110,000 - \$80,000 = \mathbf{\$30,000} \text{ (Fully Recognized)} $$
 > $$ \begin{array}{llrr}
 > \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
@@ -279,7 +279,7 @@ Nonmonetary exchanges occur when an enterprise trades fixed assets for other non
 > \quad \text{Cash} & & 15,000 \\
 > \quad \text{Gain on Disposal of Equipment} & & 30,000 \\
 > \end{array} $$
-> **Case 2: Commercial Substance present. Fair Value of Crane = \$60,000$ (Unrealized Loss = \$20,000$). Vanguard pays $\$15,000$ cash boot.**
+> **Case 2: Commercial Substance present. Fair Value of Crane = $\$60,000$ (Unrealized Loss = $\$20,000$). Vanguard pays $\$15,000$ cash boot.**
 > $$ \text{Loss} = \$80,000 - \$60,000 = \mathbf{\$20,000} \text{ (Fully Recognized)} $$
 > $$ \begin{array}{llrr}
 > \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
@@ -301,7 +301,7 @@ Nonmonetary exchanges occur when an enterprise trades fixed assets for other non
 > \quad \text{Equipment--Crane} & & 200,000 \\
 > \quad \text{Cash} & & 15,000 \\
 > \end{array} $$
-> **Case 4: Lacks Commercial Substance. Fair Value of Crane = \$110,000. Vanguard receives $\$22,000$ cash boot and the excavator (Fair Value = \$88,000$).**
+> **Case 4: Lacks Commercial Substance. Fair Value of Crane = $\$110,000$. Vanguard receives $\$22,000$ cash boot and the excavator (Fair Value = $\$88,000$).**
 > $$ \text{Boot Ratio} = \frac{\$22,000}{\$110,000} = 20\% \quad (< 25\% \rightarrow \text{Recognize Partial Gain}) $$
 > $$ \text{Recognized Gain} = \$30,000 \times 20\% = \mathbf{\$6,000} $$
 > $$ \text{Deferred Gain} = \$30,000 - \$6,000 = \$24,000 $$
@@ -406,7 +406,7 @@ Changes in estimated useful life or salvage value are accounted for **prospectiv
 >    $$ \text{2025 Expense} = \$260,000 \times 40\% = \mathbf{\$104,000} \quad (\text{End Book Value} = \$156,000) $$
 >    $$ \text{2026 Expense} = \$156,000 \times 40\% = \mathbf{\$62,400} \quad (\text{End Book Value} = \$93,600) $$
 > **Part B: Prospective Revision in 2027 (using Straight-Line):**
-> On January 1, 2027, after 2 years of straight-line depreciation (Accumulated Depreciation = \$96,000; Book Value = \$164,000$), Titan revises estimates: remaining useful life is extended to 5 more years (total life = 7 years), and new salvage value is $\$14,000.
+> On January 1, 2027, after 2 years of straight-line depreciation (Accumulated Depreciation = $\$96,000$; Book Value = $\$164,000$), Titan revises estimates: remaining useful life is extended to 5 more years (total life = 7 years), and new salvage value is $\$14,000$.
 > $$ \text{Revised Annual Depreciation (2027–2031)} = \frac{\$164,000 - \$14,000}{5 \text{ years}} = \mathbf{\$30,000 / year} $$
 > $$ \begin{array}{llrr}
 > \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
@@ -455,9 +455,9 @@ flowchart TD
 >
 > **Scenario:**
 > At December 31, 2025, Apex Corp. evaluates a manufacturing plant.
-> - Historical Cost = \$1,200,000; Accumulated Depreciation = \$400,000$ (Carrying Amount = \$800,000$).
-> - Expected undiscounted future net cash flows = \$750,000.
-> - Fair Value (based on discounted cash flows) = \$610,000. Remaining useful life = 5 years ($\$0$ salvage).
+> - Historical Cost = $\$1,200,000$; Accumulated Depreciation = $\$400,000$ (Carrying Amount = $\$800,000$).
+> - Expected undiscounted future net cash flows = $\$750,000$.
+> - Fair Value (based on discounted cash flows) = $\$610,000$. Remaining useful life = 5 years ($\$0$ salvage).
 > **Step 1: Recoverability Test:**
 > $$ \sum \text{Undiscounted Cash Flows } (\$750,000) < \text{Carrying Amount } (\$800,000) $$
 > $$ \mathbf{\text{Asset is Impaired!}} $$
@@ -520,7 +520,7 @@ $$ \begin{array}{llrr}
 > [!example] Numerical Problem: Depletion & Natural Resources (Walkthrough 7.6)
 >
 > **Scenario:**
-> Sierra Mining Co. acquired ore rights for $\$3,000,000. Exploration costs totaled $\$400,000. Intangible development costs were $\$800,000. Present value of site restoration ARO is $\$200,000. Land residual salvage value is $\$400,000. Total estimated extractable ore = 2,000,000 tons.
+> Sierra Mining Co. acquired ore rights for $\$3,000,000$. Exploration costs totaled $\$400,000$. Intangible development costs were $\$800,000$. Present value of site restoration ARO is $\$200,000$. Land residual salvage value is $\$400,000$. Total estimated extractable ore = 2,000,000 tons.
 > - In Year 1: Extracted 500,000 tons; Sold 400,000 tons at $\$8$/ton.
 > **Step 1: Calculate Total Depletion Base:**
 > $$ \text{Gross Base} = \$3,000,000 + \$400,000 + \$800,000 + \$200,000 = \$4,400,000 $$

@@ -283,7 +283,7 @@ mindmap
 > * Unrealized Holding Gain on Available-for-Sale Debt Securities (Pre-tax): $\$60,000$
 > **Additional Data**:
 > * Effective Income Tax Rate: $25\%$ across all items.
-> * Preferred Stock Dividends Declared and Paid: $\$30,000.
+> * Preferred Stock Dividends Declared and Paid: $\$30,000$.
 > * Common Shares Outstanding: $200,000$ shares outstanding throughout 2025.
 > ---
 > ##### Step-by-Step Solution & Calculations
@@ -383,7 +383,7 @@ mindmap
 > * Treasury Stock (Common): $\$0$
 > **Transactions during 2025**:
 > 1. Issued $20,000$ additional shares of common stock for $\$18$ per share.
-> 2. Earned Net Income of $\$450,000.
+> 2. Earned Net Income of $\$450,000$.
 > 3. Recorded Other Comprehensive Loss of $\$25,000$ (net of tax) from foreign currency translation.
 > 4. Declared and paid Preferred Dividends of $\$16,000$ ($8\% \times \$200,000$).
 > 5. Declared and paid Common Cash Dividends of $\$0.50$ per share on all outstanding shares.
@@ -396,7 +396,7 @@ mindmap
 >    * Total Common Shares Outstanding for Dividends $= 100,000 + 20,000 = 120,000$ shares.
 > 8. **Common Dividends Declared**:
 >    * $\text{Common Dividend} = 120,000 \text{ shares} \times \$0.50 = \$60,000$
->    * Total Retained Earnings Deductions $= \text{Preferred } (\$16,000) + \text{Common } (\$60,000) = \$76,000.
+>    * Total Retained Earnings Deductions $= \text{Preferred } (\$16,000) + \text{Common } (\$60,000) = \$76,000$.
 > 9. **Treasury Stock Purchase**:
 >    * $\text{Cost} = 5,000 \text{ shares} \times \$15 = \$75,000 \implies$ Subtracted from Equity.
 > ##### Vanguard Technologies Corp. — Statement of Stockholders' Equity

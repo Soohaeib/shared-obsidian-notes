@@ -68,7 +68,7 @@ The final Human Development Index (HDI) is computed by taking the **geometric me
 
 $\text{HDI} = \sqrt[3]{I_{\text{Health}} \times I_{\text{Education}} \times I_{\text{Income}}}$
 
-The resulting score ranges between $0$ and $1, where values closer to $1$ indicate a higher level of human development.
+The resulting score ranges between $0$ and $1$, where values closer to $1$ indicate a higher level of human development.
 
 ### (b)
 

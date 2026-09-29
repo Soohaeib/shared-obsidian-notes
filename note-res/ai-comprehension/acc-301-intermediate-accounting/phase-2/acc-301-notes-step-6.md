@@ -66,7 +66,7 @@ flowchart LR
 > [!example] Numerical Problem: Perpetual vs. Periodic Journal Entries
 >
 > **Scenario**:
-> - **Beginning Inventory**: 100 units @ $\$10.00 = \$1,000.
+> - **Beginning Inventory**: 100 units @ $\$10.00 = \$1,000$.
 > - **Transaction 1**: Purchased 900 units @ $\$10.00 = \$9,000$ on account, terms $2/10, n/30$.
 > - **Transaction 2**: Paid freight charges of $\$200$ in cash.
 > - **Transaction 3**: Returned 50 defective units to supplier for full credit ($\$500$).
@@ -223,47 +223,47 @@ Prices inventory items on the basis of the average cost of all similar goods ava
 > - **March 15 Purchase**: 6,000 units @ $\$4.40 = \$26,400$
 > - **March 19 Sale**: 4,000 units @ $\$7.00$
 > - **March 30 Purchase**: 2,000 units @ $\$4.75 = \$9,500$
-> - **Total Goods Available for Sale**: 10,000 units = \$43,900$
+> - **Total Goods Available for Sale**: 10,000 units = $\$43,900$
 > - **Ending Inventory Units**: $10,000 - 4,000 = 6,000$ units.
 > ##### 1. FIFO Method (Periodic and Perpetual - Identical)
 > - **Ending Inventory (6,000 units)**: Comes from the most recent purchases.
 >   - From March 30 Purchase: $2,000 \text{ units} \times \$4.75 = \$9,500$
 >   - From March 15 Purchase: $4,000 \text{ units} \times \$4.40 = \$17,600$
->   - **Ending Inventory** = \$9,500 + \$17,600 = \mathbf{\$27,100}$
+>   - **Ending Inventory** = $\$9,500 + \$17,600 = \mathbf{\$27,100}$
 > - **Cost of Goods Sold**:
->   - \text{COGS} = \$43,900 - \$27,100 = \mathbf{\$16,800}$
+>   - $\text{COGS} = \$43,900 - \$27,100 = \mathbf{\$16,800}$
 > ##### 2. Periodic LIFO Method
 > - **Ending Inventory (6,000 units)**: Comes from the earliest purchases.
 >   - From March 2 Purchase: $2,000 \text{ units} \times \$4.00 = \$8,000$
 >   - From March 15 Purchase: $4,000 \text{ units} \times \$4.40 = \$17,600$
->   - **Ending Inventory** = \$8,000 + \$17,600 = \mathbf{\$25,600}$
+>   - **Ending Inventory** = $\$8,000 + \$17,600 = \mathbf{\$25,600}$
 > - **Cost of Goods Sold**:
->   - \text{COGS} = \$43,900 - \$25,600 = \mathbf{\$18,300}$
+>   - $\text{COGS} = \$43,900 - \$25,600 = \mathbf{\$18,300}$
 > ##### 3. Perpetual LIFO Method
-> - **March 2**: Balance = 2,000 units @ $\$4.00 = \$8,000.
-> - **March 15**: Balance = 2,000 units @ $\$4.00$ ($\$8,000$) + 6,000 units @ $\$4.40$ ($\$26,400$) = \$34,400.
+> - **March 2**: Balance = 2,000 units @ $\$4.00 = \$8,000$.
+> - **March 15**: Balance = 2,000 units @ $\$4.00$ ($\$8,000$) + 6,000 units @ $\$4.40$ ($\$26,400$) = $\$34,400$.
 > - **March 19 Sale (4,000 units)**: Taken from most recent purchase available on March 19 (March 15 batch @ $\$4.40$).
->   - \text{COGS for Sale} = 4,000 \text{ units} \times \$4.40 = \mathbf{\$17,600}$
->   - Remaining Balance = 2,000 units @ $\$4.00$ ($\$8,000$) + 2,000 units @ $\$4.40$ ($\$8,800$) = \$16,800.
-> - **March 30 Purchase**: Add 2,000 units @ $\$4.75 = \$9,500.
->   - **Ending Inventory** = 2,000 @ $\$4.00$ ($\$8,000$) + 2,000 @ $\$4.40$ ($\$8,800$) + 2,000 @ $\$4.75$ ($\$9,500$) = \mathbf{\$26,300}$
-> - **Total COGS** = \mathbf{\$17,600}$.
+>   - $\text{COGS for Sale} = 4,000 \text{ units} \times \$4.40 = \mathbf{\$17,600}$
+>   - Remaining Balance = 2,000 units @ $\$4.00$ ($\$8,000$) + 2,000 units @ $\$4.40$ ($\$8,800$) = $\$16,800$.
+> - **March 30 Purchase**: Add 2,000 units @ $\$4.75 = \$9,500$.
+>   - **Ending Inventory** = 2,000 @ $\$4.00$ ($\$8,000$) + 2,000 @ $\$4.40$ ($\$8,800$) + 2,000 @ $\$4.75$ ($\$9,500$) = $\mathbf{\$26,300}$
+> - **Total COGS** = $\mathbf{\$17,600}$.
 > ##### 4. Weighted-Average Method (Periodic)
-> - \text{Weighted-Average Unit Cost} = \frac{\$43,900}{10,000 \text{ units}} = \mathbf{\$4.39 \text{ per unit}}$
-> - **Ending Inventory** = 6,000 \text{ units} \times \$4.39 = \mathbf{\$26,340}$
-> - **Cost of Goods Sold** = 4,000 \text{ units} \times \$4.39 = \mathbf{\$17,560}$
+> - $\text{Weighted-Average Unit Cost} = \frac{\$43,900}{10,000 \text{ units}} = \mathbf{\$4.39 \text{ per unit}}$
+> - **Ending Inventory** = $6,000 \text{ units} \times \$4.39 = \mathbf{\$26,340}$
+> - **Cost of Goods Sold** = $4,000 \text{ units} \times \$4.39 = \mathbf{\$17,560}$
 > ##### 5. Moving-Average Method (Perpetual)
-> - **March 2**: Balance = 2,000 units @ $\$4.00 = \$8,000.
+> - **March 2**: Balance = 2,000 units @ $\$4.00 = \$8,000$.
 > - **March 15**: Added 6,000 units @ $\$4.40$ ($\$26,400$).
->   - Total Units = 8,000; Total Cost = \$34,400.
->   - New Moving-Average Unit Cost = \frac{\$34,400}{8,000 \text{ units}} = \mathbf{\$4.30 \text{ per unit}}$
+>   - Total Units = 8,000; Total Cost = $\$34,400$.
+>   - New Moving-Average Unit Cost = $\frac{\$34,400}{8,000 \text{ units}} = \mathbf{\$4.30 \text{ per unit}}$
 > - **March 19 Sale (4,000 units)**:
->   - \text{COGS} = 4,000 \text{ units} \times \$4.30 = \mathbf{\$17,200}$
->   - Remaining Balance = 4,000 units @ $\$4.30 = \$17,200.
+>   - $\text{COGS} = 4,000 \text{ units} \times \$4.30 = \mathbf{\$17,200}$
+>   - Remaining Balance = 4,000 units @ $\$4.30 = \$17,200$.
 > - **March 30 Purchase**: Added 2,000 units @ $\$4.75$ ($\$9,500$).
->   - Total Units = 6,000; Total Cost = \$17,200 + \$9,500 = \$26,700.
->   - New Moving-Average Unit Cost = \frac{\$26,700}{6,000 \text{ units}} = \mathbf{\$4.45 \text{ per unit}}$
->   - **Ending Inventory** = \mathbf{\$26,700}$.
+>   - Total Units = 6,000; Total Cost = $\$17,200 + \$9,500 = \$26,700$.
+>   - New Moving-Average Unit Cost = $\frac{\$26,700}{6,000 \text{ units}} = \mathbf{\$4.45 \text{ per unit}}$
+>   - **Ending Inventory** = $\mathbf{\$26,700}$.
 
 ---
 #### 3.6 Financial Statement Summary Comparison (Rising Prices / Inflation)
@@ -338,30 +338,30 @@ $$ \text{Price Index} = \frac{\text{Ending Inventory for the Period at Current-Y
 >
 > **Data:**
 > Monarch Company adopted Dollar-Value LIFO on Dec 31, 2022 (Base Year).
-> - **Dec 31, 2022**: Current Cost = \$200,000; Price Index = 1.00$; Base-Year Cost = \$200,000.
-> - **Dec 31, 2023**: Current Cost = \$299,000; Price Index = 1.15$; Base-Year Cost = \$299,000 / 1.15 = \$260,000.
-> - **Dec 31, 2024**: Current Cost = \$300,000; Price Index = 1.20$; Base-Year Cost = \$300,000 / 1.20 = \$250,000.
-> - **Dec 31, 2025**: Current Cost = \$351,000; Price Index = 1.30$; Base-Year Cost = \$351,000 / 1.30 = \$270,000.
+> - **Dec 31, 2022**: Current Cost = $\$200,000$; Price Index = $1.00$; Base-Year Cost = $\$200,000$.
+> - **Dec 31, 2023**: Current Cost = $\$299,000$; Price Index = $1.15$; Base-Year Cost = $\$299,000 / 1.15 = \$260,000$.
+> - **Dec 31, 2024**: Current Cost = $\$300,000$; Price Index = $1.20$; Base-Year Cost = $\$300,000 / 1.20 = \$250,000$.
+> - **Dec 31, 2025**: Current Cost = $\$351,000$; Price Index = $1.30$; Base-Year Cost = $\$351,000 / 1.30 = \$270,000$.
 > **Calculations:**
 > 1. **Dec 31, 2022**:
 >    - Base Layer: $\$200,000 \times 1.00 = \mathbf{\$200,000}$
 > 2. **Dec 31, 2023**:
->    - Base-year cost = \$260,000. Increase over 2022 base ($\$200,000$) = \$60,000$ base-year addition.
+>    - Base-year cost = $\$260,000$. Increase over 2022 base ($\$200,000$) = $\$60,000$ base-year addition.
 >    - 2022 Base Layer: $\$200,000 \times 1.00 = \$200,000$
 >    - 2023 Layer: $\$60,000 \times 1.15 = \$69,000$
->    - **Dollar-Value LIFO Inventory (2023)** = \$200,000 + \$69,000 = \mathbf{\$269,000}$
+>    - **Dollar-Value LIFO Inventory (2023)** = $\$200,000 + \$69,000 = \mathbf{\$269,000}$
 > 3. **Dec 31, 2024**:
->    - Base-year cost = \$250,000. Decrease from 2023 base ($\$260,000$) = \$10,000$ base-year liquidation.
+>    - Base-year cost = $\$250,000$. Decrease from 2023 base ($\$260,000$) = $\$10,000$ base-year liquidation.
 >    - Liquidate $\$10,000$ from the 2023 layer ($\$60,000 - \$10,000 = \$50,000$ remaining 2023 base layer).
 >    - 2022 Base Layer: $\$200,000 \times 1.00 = \$200,000$
 >    - 2023 Layer (Remaining): $\$50,000 \times 1.15 = \$57,500$
->    - **Dollar-Value LIFO Inventory (2024)** = \$200,000 + \$57,500 = \mathbf{\$257,500}$
+>    - **Dollar-Value LIFO Inventory (2024)** = $\$200,000 + \$57,500 = \mathbf{\$257,500}$
 > 4. **Dec 31, 2025**:
->    - Base-year cost = \$270,000. Increase over 2024 base ($\$250,000$) = \$20,000$ base-year addition.
+>    - Base-year cost = $\$270,000$. Increase over 2024 base ($\$250,000$) = $\$20,000$ base-year addition.
 >    - 2022 Base Layer: $\$200,000 \times 1.00 = \$200,000$
 >    - 2023 Layer (Remaining): $\$50,000 \times 1.15 = \$57,500$
 >    - 2025 Layer: $\$20,000 \times 1.30 = \$26,000$
->    - **Dollar-Value LIFO Inventory (2025)** = \$200,000 + \$57,500 + \$26,000 = \mathbf{\$283,500}$
+>    - **Dollar-Value LIFO Inventory (2025)** = $\$200,000 + \$57,500 + \$26,000 = \mathbf{\$283,500}$
 
 ---
 ### Section 5: Inventory Misstatements and Error Analysis
@@ -439,33 +439,33 @@ Under U.S. GAAP, companies using **LIFO or Retail Inventory Methods** are exempt
 > \end{array} $$
 > ##### Step 1: Compute Ceiling and Floor for Each Item
 > - **Golf Bags**:
->   - Ceiling ($NRV$) = \$212.00 - \$19.00 = \mathbf{\$193.00}$
->   - Floor ($NRV - \text{Margin}$) = \$193.00 - \$32.00 = \mathbf{\$161.00}$
+>   - Ceiling ($NRV$) = $\$212.00 - \$19.00 = \mathbf{\$193.00}$
+>   - Floor ($NRV - \text{Margin}$) = $\$193.00 - \$32.00 = \mathbf{\$161.00}$
 > - **Shoes**:
->   - Ceiling ($NRV$) = \$145.00 - \$8.00 = \mathbf{\$137.00}$
->   - Floor ($NRV - \text{Margin}$) = \$137.00 - \$29.00 = \mathbf{\$108.00}$
+>   - Ceiling ($NRV$) = $\$145.00 - \$8.00 = \mathbf{\$137.00}$
+>   - Floor ($NRV - \text{Margin}$) = $\$137.00 - \$29.00 = \mathbf{\$108.00}$
 > - **Rain Suits**:
->   - Ceiling ($NRV$) = \$73.75 - \$2.50 = \mathbf{\$71.25}$
->   - Floor ($NRV - \text{Margin}$) = \$71.25 - \$21.25 = \mathbf{\$50.00}$
+>   - Ceiling ($NRV$) = $\$73.75 - \$2.50 = \mathbf{\$71.25}$
+>   - Floor ($NRV - \text{Margin}$) = $\$71.25 - \$21.25 = \mathbf{\$50.00}$
 > ##### Step 2: Determine Designated Market Value (Middle of RC, Ceiling, Floor)
 > - **Golf Bags**:
->   - Candidates: $RC = \$203.00, Ceiling = \$193.00, Floor = \$161.00.
+>   - Candidates: $RC = \$203.00$, Ceiling = $\$193.00$, Floor = $\$161.00$.
 >   - Middle Value = **$\$193.00$** (Designated Market Value).
 > - **Shoes**:
->   - Candidates: $RC = \$105.00, Ceiling = \$137.00, Floor = \$108.00.
+>   - Candidates: $RC = \$105.00$, Ceiling = $\$137.00$, Floor = $\$108.00$.
 >   - Middle Value = **$\$108.00$** (Designated Market Value).
 > - **Rain Suits**:
->   - Candidates: $RC = \$51.00, Ceiling = \$71.25, Floor = \$50.00.
+>   - Candidates: $RC = \$51.00$, Ceiling = $\$71.25$, Floor = $\$50.00$.
 >   - Middle Value = **$\$51.00$** (Designated Market Value).
 > ##### Step 3: Compare Historical Cost to Designated Market Value (LCM Rule)
 > - **Golf Bags**:
->   - Historical Cost = \$190.00$ vs. Designated Market = \$193.00.
+>   - Historical Cost = $\$190.00$ vs. Designated Market = $\$193.00$.
 >   - Final LCM Value = **$\$190.00$** (Cost is lower).
 > - **Shoes**:
->   - Historical Cost = \$106.00$ vs. Designated Market = \$108.00.
+>   - Historical Cost = $\$106.00$ vs. Designated Market = $\$108.00$.
 >   - Final LCM Value = **$\$106.00$** (Cost is lower).
 > - **Rain Suits**:
->   - Historical Cost = \$53.00$ vs. Designated Market = \$51.00.
+>   - Historical Cost = $\$53.00$ vs. Designated Market = $\$51.00$.
 >   - Final LCM Value = **$\$51.00$** (Market is lower $\rightarrow$ $\$2.00$ per unit write-down).
 > ##### LCNRV Comparison (if FIFO/IAS 2 applied):
 > - **Golf Bags**: $\min(\text{Cost } \$190, NRV \text{ } \$193) = \mathbf{\$190.00}$
@@ -490,12 +490,12 @@ When a group of varying inventory units is acquired in a single lump-sum purchas
 
 > [!example] Numerical Problem: Relative Sales Value Allocation
 >
-> Woodland Developers purchases land for $\$1,000,000, subdividing it into 400 lots across 3 grades:
-> - **Grade A**: 100 lots @ $\$10,000$ retail = \$1,000,000$
-> - **Grade B**: 100 lots @ $\$6,000$ retail = \$600,000$
-> - **Grade C**: 200 lots @ $\$4,500$ retail = \$900,000$
-> - **Total Retail Value** = \$1,000,000 + \$600,000 + \$900,000 = \mathbf{\$2,500,000}$
-> - **Cost-to-Sales Ratio** = \frac{\$1,000,000}{\$2,500,000} = \mathbf{40\%}$
+> Woodland Developers purchases land for $\$1,000,000$, subdividing it into 400 lots across 3 grades:
+> - **Grade A**: 100 lots @ $\$10,000$ retail = $\$1,000,000$
+> - **Grade B**: 100 lots @ $\$6,000$ retail = $\$600,000$
+> - **Grade C**: 200 lots @ $\$4,500$ retail = $\$900,000$
+> - **Total Retail Value** = $\$1,000,000 + \$600,000 + \$900,000 = \mathbf{\$2,500,000}$
+> - **Cost-to-Sales Ratio** = $\frac{\$1,000,000}{\$2,500,000} = \mathbf{40\%}$
 > **Allocations**:
 > - **Grade A Cost**: $40\% \times \$1,000,000 = \$400,000 \rightarrow \mathbf{\$4,000 \text{ per lot}}$
 > - **Grade B Cost**: $40\% \times \$600,000 = \$240,000 \rightarrow \mathbf{\$2,400 \text{ per lot}}$
@@ -566,14 +566,14 @@ Converts ending inventory compiled at retail selling prices to estimated cost us
 >
 > **Data:**
 > **Boylen Inc.** reports the following for 2025:
-> - **Beginning Inventory**: Cost = \$24,000; Retail = \$40,000$
-> - **Net Purchases**: Cost = \$240,000; Retail = \$350,000$
-> - **Freight-In**: Cost = \$10,000; Retail = \$0$
-> - **Net Markups**: Retail = \$10,000$
-> - **Net Markdowns**: Retail = \$7,000$
-> - **Sales Revenue (Net)**: Retail = \$301,000$
-> - **Employee Discounts**: Retail = \$3,000$
-> - **Normal Shrinkage**: Retail = \$2,000$
+> - **Beginning Inventory**: Cost = $\$24,000$; Retail = $\$40,000$
+> - **Net Purchases**: Cost = $\$240,000$; Retail = $\$350,000$
+> - **Freight-In**: Cost = $\$10,000$; Retail = $\$0$
+> - **Net Markups**: Retail = $\$10,000$
+> - **Net Markdowns**: Retail = $\$7,000$
+> - **Sales Revenue (Net)**: Retail = $\$301,000$
+> - **Employee Discounts**: Retail = $\$3,000$
+> - **Normal Shrinkage**: Retail = $\$2,000$
 > ##### Conventional Retail Method Solution:
 > $$ \begin{array}{lrr}
 > \textbf{Account Item} & \textbf{Cost (\$)} & \textbf{Retail (\$)} \\

@@ -270,8 +270,8 @@ flowchart LR
 > #### Comprehensive Scenario 1: Review vs. Audit Decision & Report Wording (ISRE 2400)
 > ##### Scenario Context:
 > Apex Logistics Ltd, an unlisted logistics provider, seeks a $\$5,000,000$ credit facility from a commercial bank. The bank agrees to accept either an audited financial statement or a reviewed financial statement under **ISRE 2400 (Revised)**. Management chooses a review to minimize cost and time.
-> - Financial Statement Revenue ($N$) = \$30,000,000.
-> - Overall Materiality ($OM$) = \$300,000$ ($1\%$ of revenue).
+> - Financial Statement Revenue ($N$) = $\$30,000,000$.
+> - Overall Materiality ($OM$) = $\$300,000$ ($1\%$ of revenue).
 > - During the review, analytical procedures reveal that Gross Profit Margin dropped from $25\%$ in 2024 to $18\%$ in 2025, while Freight Costs increased by $45\%$ without a corresponding increase in fuel prices.
 > ##### Step 1: Practitioner's Initial Operational Response under ISRE 2400
 > 1. A standard review relies primarily on inquiry and analytical procedures.
@@ -279,9 +279,9 @@ flowchart LR
 > 3. **Mandatory Action**: The practitioner must design and perform **additional procedures** (e.g., examining a sample of post-year-end freight invoices, reconciling carrier contracts) to determine whether a material misstatement exists.
 > ##### Step 2: Evaluating Review Findings
 > The additional procedures reveal an unrecorded freight expense liability of $\$450,000$ incurred in December 2025 but recorded in January 2026.
-> - Misstatement Amount = \$450,000.
+> - Misstatement Amount = $\$450,000$.
 > - Comparison: Misstatement ($\$450,000$) > Materiality ($\$300,000$).
-> - Management agrees to adjust the books for $\$350,000, leaving an uncorrected misstatement of $\$100,000.
+> - Management agrees to adjust the books for $\$350,000$, leaving an uncorrected misstatement of $\$100,000$.
 > - Revised Uncorrected Misstatement ($\$100,000$) < Materiality ($\$300,000$).
 > ##### Step 3: Drafting the Unmodified ISRE 2400 Conclusion Report
 > Because the remaining uncorrected misstatement is immaterial, the practitioner issues an unmodified review report.

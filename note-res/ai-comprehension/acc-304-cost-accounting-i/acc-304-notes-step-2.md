@@ -234,7 +234,7 @@ flowchart LR
 4. **Direct Labor Incurred**: Debited to `Work-in-Process Control` and credited to `Wages Payable Control` or `Cash`.
 5. **Indirect Labor Incurred**: Debited to `Manufacturing Overhead Control` and credited to `Wages Payable Control`.
 6. **Manufacturing Overhead Incurred**: Actual factory overhead costs (depreciation, utilities, plant insurance) are debited to `Manufacturing Overhead Control`.
-7. **Manufacturing Overhead Allocated**: Allocated to WIP using predetermined rates $\text{Rate} \times \text{Actual Base}$, debited to `Work-in-Process Control` and credited to `Manufacturing Overhead Allocated`.
+7. **Manufacturing Overhead Allocated**: Allocated to WIP using predetermined rates $$\text{Rate} \times \text{Actual Base}$$, debited to `Work-in-Process Control` and credited to `Manufacturing Overhead Allocated`.
 8. **Completion of Production**: Cost of Goods Manufactured $COGM$ is transferred by debiting `Finished Goods Control` and crediting `Work-in-Process Control`.
 9. **Sale of Products**: Cost of Goods Sold $COGS$ is debited and `Finished Goods Control` is credited.
 
@@ -417,9 +417,9 @@ $$ \text{Total Unit Cost at 500,000 units} = \$60.00 + \$20.00 = \mathbf{\$80.00
 
 ---
 ##### Requirement 2: Correct Cost Prediction at 200,000 Units
-* Total Variable Costs = 200,000 \text{ units} \times \$60.00 = \$12,000,000$
-* Total Fixed Costs = \$10,000,000$ (remains constant in total within relevant range)
-* **Correct Total Manufacturing Cost** = \$12,000,000 + \$10,000,000 = \mathbf{\$22,000,000}$
+* Total Variable Costs = $200,000 \text{ units} \times \$60.00 = \$12,000,000$
+* Total Fixed Costs = $\$10,000,000$ (remains constant in total within relevant range)
+* **Correct Total Manufacturing Cost** = $\$12,000,000 + \$10,000,000 = \mathbf{\$22,000,000}$
 
 $$ \text{Correct Total Unit Cost at 200,000 units} = \frac{\$22,000,000}{200,000 \text{ units}} = \mathbf{\$110.00 \text{ per unit}} $$
 

@@ -402,10 +402,10 @@ Where:
 >   - **Prohibition**: Rahman & Associates MUST decline both the valuation and IT design engagements. Under IESBA Code, SEC rules, and FRC rules, providing valuation services for material items to a PIE audit client is strictly prohibited as no safeguards can reduce self-review threats to an acceptable level.
 > ---
 > #### Requirement 2: Hand Rule Negligence Evaluation
-> Let's evaluate whether skipping the NRV inventory audit procedure constitutes legal negligence under the Learned Hand Formula $B < P \times L$:
+> Let's evaluate whether skipping the NRV inventory audit procedure constitutes legal negligence under the Learned Hand Formula $$B < P \times L$$:
 > ##### Given Parameters:
 > * Cost of precaution / additional audit procedure ($B$) = BDT $200,000$
-> * Probability of undetected material misstatement ($P$) = 15\% = 0.15$
+> * Probability of undetected material misstatement ($P$) = $15\% = 0.15$
 > * Magnitude of loss/damage ($L$) = BDT $25,000,000$
 > ##### Calculation:
 > $$\text{Expected Loss } (P \times L) = 0.15 \times 25,000,000 = \text{BDT } 3,750,000$$

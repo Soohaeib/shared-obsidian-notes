@@ -144,11 +144,11 @@ flowchart TD
   Beta is the slope of the linear regression line fitting excess returns of stock $j$ against excess returns of the market portfolio:
   $$\beta_j = \frac{\text{Cov}(R_j, R_m)}{\sigma_m^2} = \rho_{j,m} \frac{\sigma_j}{\sigma_m}$$
 * **Interpretation of Beta Values:**
-  - \beta = 1.0$: Asset has average systematic risk; moves in tandem with the market.
-  - \beta > 1.0$: Asset is **aggressive** / more volatile than the market (e.g., tech, luxury goods).
-  - 0 < \beta < 1.0$: Asset is **defensive** / less volatile than the market (e.g., utilities, consumer staples).
-  - \beta = 0.0$: Risk-free asset (e.g., U.S. Treasury bills).
-  - \beta < 0.0$: Asset moves inversely to the market (e.g., gold).
+  - $\beta = 1.0$: Asset has average systematic risk; moves in tandem with the market.
+  - $\beta > 1.0$: Asset is **aggressive** / more volatile than the market (e.g., tech, luxury goods).
+  - $0 < \beta < 1.0$: Asset is **defensive** / less volatile than the market (e.g., utilities, consumer staples).
+  - $\beta = 0.0$: Risk-free asset (e.g., U.S. Treasury bills).
+  - $\beta < 0.0$: Asset moves inversely to the market (e.g., gold).
 
 #### 2. Portfolio Beta ($\beta_p$)
 The beta of a portfolio is strictly the weighted average of the betas of its constituent assets:
@@ -175,7 +175,7 @@ The SML is the graphical representation of the CAPM equation showing required re
 
 
 
-![[ai-comprehension/acc-302-financial-management/assets/acc302-security-market-line.svg]]
+![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_security_market_line.svg]]
 
 
 

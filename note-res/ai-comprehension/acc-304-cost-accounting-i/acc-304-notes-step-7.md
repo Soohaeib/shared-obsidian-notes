@@ -318,8 +318,8 @@ This approach **allocates 100% of corporate and division costs** down to individ
 >    - **Testing & Quality Inspection:** $200,000 \text{ testing-hours}$ @ $\$3 \text{ per testing-hour} = \$600,000 \text{ total}$
 >    - **Rework Costs:** Defect rate is $5\%$ of output ($5,000 \text{ defective units}$). Each defective unit requires $3 \text{ rework-hours}$ @ $\$30 \text{ per rework-hour} = \$90 \text{ per defective unit} \times 5,000 = \$450,000 \text{ total}$
 > 3. **Non-Manufacturing Value-Chain Cost Pools:**
->    - **Research & Development (R&D):** Fixed cost = \$1,200,000$
->    - **Design of Products & Processes:** Fixed cost = \$800,000$
+>    - **Research & Development (R&D):** Fixed cost = $\$1,200,000$
+>    - **Design of Products & Processes:** Fixed cost = $\$800,000$
 >    - **Marketing & Advertising:** Variable commission of $\$10 \text{ per unit sold} + \text{Fixed advertising} \text{ of } \$1,500,000 = \$2,500,000 \text{ total}$
 >    - **Distribution Logistics:** $20,000 \text{ cubic feet shipped}$ @ $\$45 \text{ per cubic foot} = \$900,000 \text{ total}$
 >    - **Customer Service:** $100,000 \text{ units supported}$ @ $\$6 \text{ per unit} = \$600,000 \text{ total}$
@@ -519,11 +519,11 @@ $$
 ##### Requirement 4: Whale Curve & Managerial Recommendations
 1. **Whale Curve Analysis:**
    - **Beta Corp** is the most profitable customer ($\$329,000$), followed closely by **Alpha Corp** ($\$283,000$).
-   - Combined customer-level profit of Alpha and Beta = \$283,000 + \$329,000 = \mathbf{\$612,000}$ ($138.8\%$ of total customer-level income).
-   - **Gamma Corp** destroys $\mathbf{\$171,000}$ of value, dropping customer-level income from $\$612,000$ down to $\$441,000.
+   - Combined customer-level profit of Alpha and Beta = $\$283,000 + \$329,000 = \mathbf{\$612,000}$ ($138.8\%$ of total customer-level income).
+   - **Gamma Corp** destroys $\mathbf{\$171,000}$ of value, dropping customer-level income from $\$612,000$ down to $\$441,000$.
 2. **Strategic Action Plan for Gamma Corp:**
    - **Restrict Price Discounting:** Gamma receives a massive $25\%$ off-list discount despite making small, erratic purchases. Discipline discount rules (e.g., maximum $5\%$ discount unless batch order size exceeds $2,000$ units).
-   - **Enforce Minimum Order Sizes:** Gamma places $100$ small purchase orders ($50$ units per order). Imposing a minimum order size of $500$ units will reduce order processing costs from $\$50,000$ to $\$5,000.
+   - **Enforce Minimum Order Sizes:** Gamma places $100$ small purchase orders ($50$ units per order). Imposing a minimum order size of $500$ units will reduce order processing costs from $\$50,000$ to $\$5,000$.
    - **Charge for Rush Deliveries & Tech Support:** Gamma requested $12$ rush deliveries and $200$ tech support hours. Surcharge Gamma directly for rush shipping ($\$3,000/\text{shipment}$) and bill tech support at $\$150/\text{hr}$.
    - **Do NOT Drop Automatically:** Dropping Gamma immediately will lose $\$50,000$ in gross margin. First, attempt to restructure Gamma's purchasing behavior using fee surcharges and discount discipline.
 

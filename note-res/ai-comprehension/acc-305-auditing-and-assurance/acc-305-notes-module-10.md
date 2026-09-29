@@ -351,8 +351,8 @@ An uncorrected misstatement that is quantitatively below $OM$ may still be deeme
 > **Scenario Context**:
 > You are completing the audit of Zenith Electronics Ltd for the year ended December 31, 2025. Audit fieldwork was completed on **February 20, 2026**, and the financial statements are scheduled for issuance on **March 5, 2026**. During the completion review between January 1 and February 20, 2026, the following three independent post-balance-sheet events were identified:
 > 1. **Event A (Litigation Settlement)**: On January 18, 2026, a court ruled against Zenith in a patent infringement lawsuit brought by a competitor in 2024. Zenith was ordered to pay $\$800,000$ in damages immediately. As of December 31, 2025, Zenith had recognized a legal provision of $\$300,000$ based on legal advice at that time.
-> 2. **Event B (Warehouse Fire)**: On February 5, 2026, a fire completely destroyed Zenith's central distribution warehouse. Inventory valued at $\$1,500,000$ was destroyed. Insurance coverage is expected to reimburse only $\$600,000.
-> 3. **Event C (Customer Bankruptcy)**: On February 12, 2026, Apex Retailers PLC, a major customer carrying a December 31, 2025 trade receivable balance of $\$450,000, declared bankruptcy due to sudden fraud uncovered at Apex. Zenith's total Allowance for Doubtful Accounts at December 31, 2025, was $\$100,000$ for all customers combined.
+> 2. **Event B (Warehouse Fire)**: On February 5, 2026, a fire completely destroyed Zenith's central distribution warehouse. Inventory valued at $\$1,500,000$ was destroyed. Insurance coverage is expected to reimburse only $\$600,000$.
+> 3. **Event C (Customer Bankruptcy)**: On February 12, 2026, Apex Retailers PLC, a major customer carrying a December 31, 2025 trade receivable balance of $\$450,000$, declared bankruptcy due to sudden fraud uncovered at Apex. Zenith's total Allowance for Doubtful Accounts at December 31, 2025, was $\$100,000$ for all customers combined.
 > ##### Step 1: Classify Each Event (Type I vs. Type II)
 > - **Event A (Lawsuit)**: **Type I Event (Recognized)**. The patent infringement lawsuit existed prior to December 31, 2025. The court ruling provides concrete evidence of the true liability existing at the balance sheet date.
 > - **Event B (Warehouse Fire)**: **Type II Event (Unrecognized)**. The fire occurred on February 5, 2026. The condition (fire destruction) arose entirely after the balance sheet date.
@@ -361,7 +361,7 @@ An uncorrected misstatement that is quantitatively below $OM$ may still be deeme
 > - **Event A Adjustment**: Adjust legal provision upward by $\$500,000$ ($\$800,000 - \$300,000$).
 >   $$\text{Dr. Legal Claim Expense (P\&L)} \quad \$500,000$$
 >   $$\text{Cr. Provision for Litigation (Liabilities)} \quad \$500,000$$
-> - **Event B Disclosure**: No numerical adjustment to December 31, 2025 balance sheet figures. Disclose in the 2025 footnote notes: "On February 5, 2026, a warehouse fire destroyed inventory valued at $\$1.5\text{M}$, resulting in an estimated uninsured net loss of $\$900,000."
+> - **Event B Disclosure**: No numerical adjustment to December 31, 2025 balance sheet figures. Disclose in the 2025 footnote notes: "On February 5, 2026, a warehouse fire destroyed inventory valued at $\$1.5\text{M}$, resulting in an estimated uninsured net loss of $\$900,000$."
 > - **Event C Adjustment**: Record specific bad debt write-off/allowance for Apex Retailers:
 >   $$\text{Dr. Bad Debt Expense (P\&L)} \quad \$450,000$$
 >   $$\text{Cr. Allowance for Doubtful Accounts} \quad \$450,000$$
@@ -373,16 +373,16 @@ An uncorrected misstatement that is quantitatively below $OM$ may still be deeme
 > #### Comprehensive Problem 2: Quantitative Going Concern & Misstatement Analysis
 > **Scenario Context**:
 > You are auditing Apex Manufacturing Ltd for the year ended December 31, 2025.
-> - Overall Materiality ($OM$) = \$200,000.
-> - Performance Materiality ($PM$) = \$100,000$ ($50\%$ of $OM$).
-> - Clearly Trivial Threshold ($CTT$) = \$10,000.
+> - Overall Materiality ($OM$) = $\$200,000$.
+> - Performance Materiality ($PM$) = $\$100,000$ ($50\%$ of $OM$).
+> - Clearly Trivial Threshold ($CTT$) = $\$10,000$.
 > During fieldwork, the audit team accumulated the following uncorrected misstatements:
 > 1. Unrecorded trade payables invoice for raw materials received Dec 28, 2025: $\$60,000$ (Factual).
 > 2. Overstatement of inventory valuation due to incorrect overhead allocation: $\$50,000$ (Judgmental).
 > 3. Projected overstatement of trade receivables based on MUS sample: $\$40,000$ (Projected).
 > ##### Additional Financial Context:
-> - Pre-adjustment Net Profit Before Tax = \$300,000.
-> - Pre-adjustment Current Assets = \$1,200,000; Current Liabilities = \$1,150,000.
+> - Pre-adjustment Net Profit Before Tax = $\$300,000$.
+> - Pre-adjustment Current Assets = $\$1,200,000$; Current Liabilities = $\$1,150,000$.
 > - Apex has a strict bank loan covenant requiring a **Current Ratio $\ge 1.00$**.
 > - Management refuses to adjust any of the three misstatements, arguing that each individual item is below $PM$ ($\$100,000$).
 > ---
@@ -396,13 +396,13 @@ An uncorrected misstatement that is quantitatively below $OM$ may still be deeme
 > 1. **Pre-Adjustment Current Ratio**:
 >    $$\text{Current Ratio}_{\text{reported}} = \frac{\$1,200,000}{\$1,150,000} = 1.043 \quad (\text{Complies with } \ge 1.00 \text{ covenant})$$
 > 2. **Adjusted Figures (reflecting uncorrected misstatements)**:
->    - Adjusted Current Assets = \$1,200,000 - \$50,000 \text{ (Inventory)} - \$40,000 \text{ (Receivables)} = \$1,110,000$
->    - Adjusted Current Liabilities = \$1,150,000 + \$60,000 \text{ (Unrecorded Payables)} = \$1,210,000$
+>    - Adjusted Current Assets = $\$1,200,000 - \$50,000 \text{ (Inventory)} - \$40,000 \text{ (Receivables)} = \$1,110,000$
+>    - Adjusted Current Liabilities = $\$1,150,000 + \$60,000 \text{ (Unrecorded Payables)} = \$1,210,000$
 > 3. **Adjusted Current Ratio**:
 >    $$\text{Current Ratio}_{\text{adjusted}} = \frac{\$1,110,000}{\$1,210,000} = 0.917$$
 > ---
 > ##### Step 3: Synthesis of Audit Impact & Going Concern Evaluation
-> 4. **Loan Covenant Breach**: The adjusted Current Ratio ($0.917$) **violates** the bank's minimum loan covenant of $1.00.
+> 4. **Loan Covenant Breach**: The adjusted Current Ratio ($0.917$) **violates** the bank's minimum loan covenant of $1.00$.
 > 5. **Qualitative Materiality Trigger**: Although $\$150,000$ is quantitatively below $OM$ ($\$200,000$), the misstatement is **qualitatively material** because it masks a debt covenant default.
 > 6. **Going Concern Trigger**: The covenant default allows the bank to demand immediate loan recall ($\$2,000,000$ debt due in 2028). Because Apex lacks liquid cash to repay $\$2,000,000$ immediately, this creates a **Material Uncertainty Related to Going Concern**.
 > ---

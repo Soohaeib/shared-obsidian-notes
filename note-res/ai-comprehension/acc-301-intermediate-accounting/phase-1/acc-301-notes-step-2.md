@@ -95,13 +95,13 @@ flowchart TD
 2. **The General Ledger:** The entire collection of asset, liability, stockholders' equity, revenue, and expense accounts maintained by a firm. Accounts are structured in T-account or 3-column running-balance formats.
 3. **Posting:** The systematic transfer of debit and credit amounts from the General Journal to the corresponding individual ledger accounts. Posting references ($\text{Ref.}$) link journal page numbers (e.g., $\text{J1}$) with ledger account numbers.
 4. **Chart of Accounts:** A master list of all account titles and assigned numerical identifiers:
-   - 101–199$: Asset accounts
-   - 200–299$: Liability accounts
-   - 300–399$: Stockholders' equity accounts
-   - 400–499$: Revenue accounts
-   - 500–799$: Operating expense accounts
-   - 800–899$: Other revenues & gains
-   - 900–999$: Other expenses & losses
+   - $101–199$: Asset accounts
+   - $200–299$: Liability accounts
+   - $300–399$: Stockholders' equity accounts
+   - $400–499$: Revenue accounts
+   - $500–799$: Operating expense accounts
+   - $800–899$: Other revenues & gains
+   - $900–999$: Other expenses & losses
 #### 2.4 The Unadjusted Trial Balance
 An **unadjusted trial balance** is a schedule listing all open ledger accounts and their debit or credit balances at a specific date.
 - **Primary Purpose:** Proves the mathematical equality of total debits and total credits after posting.
@@ -352,8 +352,8 @@ An informal tool used by accountants to aggregate adjusting data, compute adjust
 > ##### Problem Fact Pattern
 > Kleene Window Washing Inc. was incorporated on July 1, 2025. During July 2025, the following transaction events occurred:
 > - **July 1:** Stockholders invested $\$12,000$ cash in exchange for 12,000 shares of $\$1$ par common stock.
-> - **July 1:** Purchased truck/equipment for $\$8,000, paying $\$2,000$ cash and signing a $\$6,000$ accounts payable/note.
-> - **July 3:** Purchased cleaning supplies on account for $\$900.
+> - **July 1:** Purchased truck/equipment for $\$8,000$, paying $\$2,000$ cash and signing a $\$6,000$ accounts payable/note.
+> - **July 3:** Purchased cleaning supplies on account for $\$900$.
 > - **July 5:** Paid $\$1,800$ cash for a 1-year insurance policy effective July 1.
 > - **July 12:** Billed customers $\$3,700$ for window washing services performed.
 > - **July 18:** Paid $\$1,500$ cash on account to creditors.
@@ -363,11 +363,11 @@ An informal tool used by accountants to aggregate adjusting data, compute adjust
 > - **July 31:** Paid $\$290$ cash for truck maintenance and repairs.
 > - **July 31:** Declared and paid a $\$600$ cash dividend.
 > ##### Adjustment Data at July 31, 2025:
-> 1. Unbilled and uncollected service revenue at July 31: $\$1,700.
-> 2. Monthly depreciation on equipment: $\$180.
-> 3. Insurance expired during July: $\$1,800 \times \frac{1}{12} = \$150.
+> 1. Unbilled and uncollected service revenue at July 31: $\$1,700$.
+> 2. Monthly depreciation on equipment: $\$180$.
+> 3. Insurance expired during July: $\$1,800 \times \frac{1}{12} = \$150$.
 > 4. Physical count shows $\$320$ of cleaning supplies on hand at July 31.
-> 5. Accrued employee salaries unpaid at July 31: $\$400.
+> 5. Accrued employee salaries unpaid at July 31: $\$400$.
 > ---
 > ##### Step 1: General Journal Entries for July Transactions
 > $$ \begin{array}{llrr}
@@ -617,29 +617,29 @@ An informal tool used by accountants to aggregate adjusting data, compute adjust
 > [!example] Comprehensive Walkthrough 2: Cash-to-Accrual Conversion Problem (Dr. Diane Windsor Dental Practice)
 >
 > ##### Problem Fact Pattern
-> Dr. Diane Windsor keeps accounting records on a cash basis. In 2025, she collected $\$300,000$ from patients and paid $\$170,000$ for operating expenses, yielding a cash-basis excess of receipts over disbursements of $\$130,000.
+> Dr. Diane Windsor keeps accounting records on a cash basis. In 2025, she collected $\$300,000$ from patients and paid $\$170,000$ for operating expenses, yielding a cash-basis excess of receipts over disbursements of $\$130,000$.
 > The opening and closing balance sheet balances are as follows:
-> - **Accounts Receivable:** Jan 1, 2025 = \$12,000; Dec 31, 2025 = \$9,000$
-> - **Unearned Service Revenue:** Jan 1, 2025 = \$0; Dec 31, 2025 = \$4,000$
-> - **Accrued Operating Liabilities:** Jan 1, 2025 = \$2,000; Dec 31, 2025 = \$5,500$
-> - **Prepaid Operating Expenses:** Jan 1, 2025 = \$1,800; Dec 31, 2025 = \$2,700$
+> - **Accounts Receivable:** Jan 1, 2025 = $\$12,000$; Dec 31, 2025 = $\$9,000$
+> - **Unearned Service Revenue:** Jan 1, 2025 = $\$0$; Dec 31, 2025 = $\$4,000$
+> - **Accrued Operating Liabilities:** Jan 1, 2025 = $\$2,000$; Dec 31, 2025 = $\$5,500$
+> - **Prepaid Operating Expenses:** Jan 1, 2025 = $\$1,800$; Dec 31, 2025 = $\$2,700$
 > ---
 > ##### Step 1: Conversion of Cash Collections to Accrual Service Revenue
 > $$ \text{Service Revenue}_{\text{Accrual}} = \text{Cash Receipts} - \text{A/R}_{\text{Beg}} + \text{A/R}_{\text{End}} + \text{Unearned}_{\text{Beg}} - \text{Unearned}_{\text{End}} $$
 > $$ \text{Service Revenue}_{\text{Accrual}} = \$300,000 - \$12,000 + \$9,000 + \$0 - \$4,000 = \mathbf{\$293,000} $$
 > ##### Proof of Logic:
-> - \$12,000$ collected this year was earned last year ($\text{A/R}_{\text{Beg}}$) $\rightarrow$ **Deduct**.
-> - \$9,000$ earned this year is not yet collected ($\text{A/R}_{\text{End}}$) $\rightarrow$ **Add**.
-> - \$4,000$ collected this year is for work to be performed next year ($\text{Unearned}_{\text{End}}$) $\rightarrow$ **Deduct**.
+> - $\$12,000$ collected this year was earned last year ($\text{A/R}_{\text{Beg}}$) $\rightarrow$ **Deduct**.
+> - $\$9,000$ earned this year is not yet collected ($\text{A/R}_{\text{End}}$) $\rightarrow$ **Add**.
+> - $\$4,000$ collected this year is for work to be performed next year ($\text{Unearned}_{\text{End}}$) $\rightarrow$ **Deduct**.
 > ---
 > ##### Step 2: Conversion of Cash Payments to Accrual Operating Expenses
 > $$ \text{Expenses}_{\text{Accrual}} = \text{Cash Paid} + \text{Prepaid}_{\text{Beg}} - \text{Prepaid}_{\text{End}} - \text{Accrued Liab}_{\text{Beg}} + \text{Accrued Liab}_{\text{End}} $$
 > $$ \text{Expenses}_{\text{Accrual}} = \$170,000 + \$1,800 - \$2,700 - \$2,000 + \$5,500 = \mathbf{\$172,600} $$
 > ##### Proof of Logic:
-> - \$1,800$ paid last year expired and benefited this year ($\text{Prepaid}_{\text{Beg}}$) $\rightarrow$ **Add**.
-> - \$2,700$ paid this year benefits next year ($\text{Prepaid}_{\text{End}}$) $\rightarrow$ **Deduct**.
-> - \$2,000$ paid this year settled liabilities incurred last year ($\text{Accrued Liab}_{\text{Beg}}$) $\rightarrow$ **Deduct**.
-> - \$5,500$ incurred this year remains unpaid at year-end ($\text{Accrued Liab}_{\text{End}}$) $\rightarrow$ **Add**.
+> - $\$1,800$ paid last year expired and benefited this year ($\text{Prepaid}_{\text{Beg}}$) $\rightarrow$ **Add**.
+> - $\$2,700$ paid this year benefits next year ($\text{Prepaid}_{\text{End}}$) $\rightarrow$ **Deduct**.
+> - $\$2,000$ paid this year settled liabilities incurred last year ($\text{Accrued Liab}_{\text{Beg}}$) $\rightarrow$ **Deduct**.
+> - $\$5,500$ incurred this year remains unpaid at year-end ($\text{Accrued Liab}_{\text{End}}$) $\rightarrow$ **Add**.
 > ---
 > ##### Step 3: Comparative Net Income Summary
 > $$ \begin{array}{lrr}

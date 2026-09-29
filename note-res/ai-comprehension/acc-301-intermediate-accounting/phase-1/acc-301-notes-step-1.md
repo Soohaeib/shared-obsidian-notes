@@ -27,7 +27,7 @@
 #### 1.2 The Need for Accounting Standards $GAAP$
 Without standardized rules, every corporation would adopt custom financial reporting conventions, rendering cross-company comparisons impossible.
 * **Generally Accepted Accounting Principles $GAAP$**: A common set of accounting standards, protocols, and industry practices established by authoritative rulemaking bodies or universally adopted over time.
-* **Comparability & Economic Impact**: Standardized reporting reduces information asymmetry. Empirical financial studies indicate that when accounting comparability is high, capital markets value $\$1.00$ of higher reported earnings per share $EPS$ at $\$6.76, compared to only $\$4.04$ when comparability is low.
+* **Comparability & Economic Impact**: Standardized reporting reduces information asymmetry. Empirical financial studies indicate that when accounting comparability is high, capital markets value $\$1.00$ of higher reported earnings per share $EPS$ at $\$6.76$, compared to only $\$4.04$ when comparability is low.
 
 ---
 #### 1.3 Major Standard-Setting Organizations
@@ -154,7 +154,7 @@ SFAC No. 6 defines 10 interrelated elements categorized by timing:
 ##### Group A: Amounts of Resources & Claims to Resources at a Moment in Time (Balance Sheet / Articulation)
 1. **Assets**: Probable future economic benefits obtained or controlled by a particular entity as a result of past transactions or events.
 2. **Liabilities**: Probable future sacrifices of economic benefits arising from present obligations of a particular entity to transfer assets or provide services to other entities in the future as a result of past transactions or events.
-3. **Equity (Net Assets)**: The residual interest in the assets of an entity that remains after deducting its liabilities $\text{Equity} = \text{Assets} - \text{Liabilities}$.
+3. **Equity (Net Assets)**: The residual interest in the assets of an entity that remains after deducting its liabilities $$\text{Equity} = \text{Assets} - \text{Liabilities}$$.
 ##### Group B: Transactions, Events, & Circumstances Affecting an Entity During a Period of Time (Income Statement / Equity Statement)
 4. **Investments by Owners**: Increases in net assets resulting from transfers to the entity from other entities of something of value to obtain or increase ownership interests (equity).
 5. **Distributions to Owners**: Decreases in net assets resulting from transferring assets, rendering services, or incurring liabilities by the enterprise to owners.

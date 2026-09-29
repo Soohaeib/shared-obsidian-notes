@@ -72,11 +72,11 @@ When two or more classes of securities (e.g., common stock and preferred stock) 
 
 > [!example] Numerical Problem: Lump-Sum Issuances
 >
-> **Scenario**: Corporate Titan Inc. issues $1,000$ shares of $\$10$ par value Preferred Stock and $2,000$ shares of $\$5$ par value Common Stock for a single lump-sum payment of $\$100,000.
+> **Scenario**: Corporate Titan Inc. issues $1,000$ shares of $\$10$ par value Preferred Stock and $2,000$ shares of $\$5$ par value Common Stock for a single lump-sum payment of $\$100,000$.
 > ##### Case A: Both Fair Values Known (Proportional Method)
-> - Preferred market value = \$60$/share $\rightarrow \text{Aggregate FV} = 1,000 \times \$60 = \$60,000.
-> - Common market value = \$25$/share $\rightarrow \text{Aggregate FV} = 2,000 \times \$25 = \$50,000.
-> - Total Aggregate Fair Value = \$60,000 + \$50,000 = \$110,000.
+> - Preferred market value = $\$60$/share $\rightarrow \text{Aggregate FV} = 1,000 \times \$60 = \$60,000$.
+> - Common market value = $\$25$/share $\rightarrow \text{Aggregate FV} = 2,000 \times \$25 = \$50,000$.
+> - Total Aggregate Fair Value = $\$60,000 + \$50,000 = \$110,000$.
 > **Allocations**:
 > $$ \text{Preferred} = \$100,000 \times \left( \frac{\$60,000}{\$110,000} \right) = \mathbf{\$54,545.45} $$
 > $$ \text{Common} = \$100,000 \times \left( \frac{\$50,000}{\$110,000} \right) = \mathbf{\$45,454.55} $$
@@ -91,8 +91,8 @@ When two or more classes of securities (e.g., common stock and preferred stock) 
 > \quad \text{Paid-in Capital in Excess of Par - Common} & & & 35,454.55 \\
 > \end{array} $$
 > ##### Case B: Only Common Stock Fair Value Known (Incremental Method)
-> - Common market value = \$25$/share $\rightarrow \text{Allocated to Common} = 2,000 \times \$25 = \$50,000.
-> - Preferred market value is unknown. Incremental allocation = \$100,000 - \$50,000 = \mathbf{\$50,000}$.
+> - Common market value = $\$25$/share $\rightarrow \text{Allocated to Common} = 2,000 \times \$25 = \$50,000$.
+> - Preferred market value is unknown. Incremental allocation = $\$100,000 - \$50,000 = \mathbf{\$50,000}$.
 > **Journal Entry**:
 > $$ \begin{array}{llrr}
 > \textbf{Account Titles} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
@@ -137,33 +137,33 @@ Preferred stock is an equity security that confers specific preferences over com
 > [!example] Numerical Problem: Complex Preferred Dividend Allocation
 >
 > **Scenario**: Apex Corp. has the following capital structure:
-> - **Preferred Stock**: $5,000$ shares, $6\%$, $\$100$ par value $\text{Total Par} = \$500,000.
-> - **Common Stock**: $20,000$ shares, $\$10$ par value $\text{Total Par} = \$200,000.
-> - Total dividends declared in 2025 = \$72,000.
+> - **Preferred Stock**: $5,000$ shares, $6\%$, $\$100$ par value $\text{Total Par} = \$500,000$.
+> - **Common Stock**: $20,000$ shares, $\$10$ par value $\text{Total Par} = \$200,000$.
+> - Total dividends declared in 2025 = $\$72,000$.
 > - Preferred dividends are $2$ years in arrears prior to 2025.
 > ##### Case 1: Cumulative, Nonparticipating
-> 1. **Dividends in Arrears (2 years)**: $2 \times 6\% \times \$500,000 = \$60,000.
-> 2. **Current Year Preferred Dividend $2025$**: $6\% \times \$500,000 = \$30,000.
->    - Total Preferred Requirement = \$90,000.
+> 1. **Dividends in Arrears (2 years)**: $2 \times 6\% \times \$500,000 = \$60,000$.
+> 2. **Current Year Preferred Dividend $2025$**: $6\% \times \$500,000 = \$30,000$.
+>    - Total Preferred Requirement = $\$90,000$.
 > 3. **Allocation of $\$72,000$ Declared**:
 >    - Preferred receives all $\mathbf{\$72,000}$ ($\$60,000$ for arrears $+ \$12,000$ partial current).
->    - Remaining Dividends in Arrears carried forward = \$30,000 - \$12,000 = \$18,000.
+>    - Remaining Dividends in Arrears carried forward = $\$30,000 - \$12,000 = \$18,000$.
 >    - Common receives $\mathbf{\$0}$.
 > ##### Case 2: Cumulative, Fully Participating (Assuming No Arrears)
-> Assume dividends declared = \$72,000$ and no arrears exist.
+> Assume dividends declared = $\$72,000$ and no arrears exist.
 >
-> 4. **Preferred Basic Dividend $6\%$**: $6\% \times \$500,000 = \$30,000$
-> 5. **Common Matching Dividend $6\%$**: $6\% \times \$200,000 = \$12,000$
->    - Total Basic Allocation = \$30,000 + \$12,000 = \$42,000.
-> 6. **Remaining Dividend Available for Participation**: $\$72,000 - \$42,000 = \$30,000.
+> 4. **Preferred Basic Dividend $6\%$**: $$6\% \times \$500,000 = \$30,000$$
+> 5. **Common Matching Dividend $6\%$**: $$6\% \times \$200,000 = \$12,000$$
+>    - Total Basic Allocation = $\$30,000 + \$12,000 = \$42,000$.
+> 6. **Remaining Dividend Available for Participation**: $\$72,000 - \$42,000 = \$30,000$.
 > 7. **Participation Rate**:
 >    $$ \frac{\text{Remaining Dividend}}{\text{Total Par Value of Both Classes}} = \frac{\$30,000}{\$700,000} \approx 4.285714\% $$
 > 8. **Participation Distribution**:
->    - Preferred Participation = 4.285714\% \times \$500,000 = \$21,428.57$
->    - Common Participation = 4.285714\% \times \$200,000 = \$8,571.43$
+>    - Preferred Participation = $4.285714\% \times \$500,000 = \$21,428.57$
+>    - Common Participation = $4.285714\% \times \$200,000 = \$8,571.43$
 > 9. **Total Distribution Summary**:
->    - **Preferred Total**: $\$30,000 + \$21,428.57 = \mathbf{\$51,428.57}$ $\$10.29\text{/share}$
->    - **Common Total**: $\$12,000 + \$8,571.43 = \mathbf{\$20,571.43}$ $\$1.03\text{/share}$
+>    - **Preferred Total**: $\$30,000 + \$21,428.57 = \mathbf{\$51,428.57}$ $$\$10.29\text{/share}$$
+>    - **Common Total**: $\$12,000 + \$8,571.43 = \mathbf{\$20,571.43}$ $$\$1.03\text{/share}$$
 
 ---
 ### 4. Reacquisition of Shares: Treasury Stock
@@ -193,7 +193,7 @@ Under the Cost Method (GAAP preferred), the Treasury Stock account is debited fo
 
 > [!example] Comprehensive Walkthrough: Treasury Stock Transactions
 >
-> **Initial Equity Context**: Zenith Corp. has $100,000$ shares of $\$5$ par common stock issued at $\$15$ per share $\text{APIC} = \$10/\text{share}$. Retained Earnings = \$500,000.
+> **Initial Equity Context**: Zenith Corp. has $100,000$ shares of $\$5$ par common stock issued at $\$15$ per share $$\text{APIC} = \$10/\text{share}$$. Retained Earnings = $\$500,000$.
 > $$ \begin{array}{llrr}
 > \textbf{Date} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
 > \hline
@@ -289,12 +289,12 @@ $$ \begin{array}{lrrrrrr}
 > [!example] Numerical Problem: Book Value per Share with Preferred Arrears
 >
 > **Scenario Data**:
-> - Preferred Stock, $8\%$ cumulative, $\$100$ par, $2,000$ shares outstanding = \$200,000.
-> - Preferred Liquidation Value = \$105$ per share = \$210,000.
-> - Preferred Dividends in Arrears = 3$ years (including current year) = 3 \times 8\% \times \$200,000$ = \$48,000.
-> - Common Stock, $\$5$ par, $50,000$ shares issued, $5,000$ shares in treasury ($45,000$ shares outstanding) = \$250,000.
-> - Paid-in Capital in Excess of Par - Common = \$350,000.
-> - Retained Earnings = \$400,000.
+> - Preferred Stock, $8\%$ cumulative, $\$100$ par, $2,000$ shares outstanding = $\$200,000$.
+> - Preferred Liquidation Value = $\$105$ per share = $\$210,000$.
+> - Preferred Dividends in Arrears = $3$ years (including current year) = $3 \times $8\% \times \$200,000$ = \$48,000$.
+> - Common Stock, $\$5$ par, $50,000$ shares issued, $5,000$ shares in treasury ($45,000$ shares outstanding) = $\$250,000$.
+> - Paid-in Capital in Excess of Par - Common = $\$350,000$.
+> - Retained Earnings = $\$400,000$.
 > - Treasury Stock (Cost) = $(\$40,000)$.
 > **Step 1: Calculate Total Stockholders' Equity**
 > $$ \text{Total Equity} = \$200,000 + \$250,000 + \$350,000 + \$400,000 - \$40,000 = \mathbf{\$1,160,000} $$

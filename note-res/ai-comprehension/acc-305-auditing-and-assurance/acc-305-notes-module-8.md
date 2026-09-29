@@ -33,7 +33,7 @@ flowchart TD
 | Testing Strategy | Operational Definition & Scope | Applicability & Criteria |
 | :--- | :--- | :--- |
 | **1. 100% Examination (100% Testing)** | Subjecting every single item in a population to audit procedures. Removes sampling risk entirely. | Appropriate when population consists of a small number of high-value items, when inherent/control risk is extremely high, or when automated tools (Audit Data Analytics - ADA) perform 100% processing checks. |
-| **2. Selecting Specific Items** | Selecting items based on specific risk or monetary characteristics (e.g., all items $> \$50,000, all manual journal entries at year-end, or all zero-balance accounts). | Results **cannot** be projected mathematically to the remaining unexamined population. Used to cover a high percentage of dollar value quickly. |
+| **2. Selecting Specific Items** | Selecting items based on specific risk or monetary characteristics (e.g., all items $> \$50,000$, all manual journal entries at year-end, or all zero-balance accounts). | Results **cannot** be projected mathematically to the remaining unexamined population. Used to cover a high percentage of dollar value quickly. |
 | **3. Audit Sampling (ISA 530)** | Applying procedures to $< 100\%$ of a population where every sampling unit has a non-zero probability of selection. | Required when drawing mathematical inferences about an entire homogeneous population is necessary for both controls and substantive testing. |
 
 ---
@@ -265,7 +265,7 @@ When conducting substantive tests of details to determine if an account balance 
 Monetary Unit Sampling (MUS) is an attribute-sampling-based technique modified to reach monetary conclusions. In MUS, the individual **single monetary unit ($\$1$)** is defined as the sampling unit.
 ##### B. Logical Unit vs. Sampling Unit:
 - **Sampling Unit**: Each individual $\$1$ in the population book value.
-- **Logical Unit**: The physical document or account balance (e.g., customer invoice, trade receivable balance) that contains the specific selected $\$1.
+- **Logical Unit**: The physical document or account balance (e.g., customer invoice, trade receivable balance) that contains the specific selected $\$1$.
 ##### C. Advantages & Disadvantages of MUS:
 
 ```mermaid
@@ -365,10 +365,10 @@ If the confidence interval $[PM - Precision, PM + Precision]$ falls within $[-TM
 > #### Comprehensive Problem 1: Attribute Sampling for Tests of Controls
 > ##### Scenario Context:
 > An auditor is conducting tests of controls over the sales invoice authorization process at Apex Pharmaceuticals Ltd.
-> - Population Size ($N$) = 10,000$ sales invoice packages.
-> - Desired Confidence Level = 95\%$ ($\beta = 0.05$).
-> - Tolerable Deviation Rate ($TDR$) = 6.0\%$.
-> - Expected Population Deviation Rate ($EDR$) = 1.5\%$.
+> - Population Size ($N$) = $10,000$ sales invoice packages.
+> - Desired Confidence Level = $95\%$ ($\beta = 0.05$).
+> - Tolerable Deviation Rate ($TDR$) = $6.0\%$.
+> - Expected Population Deviation Rate ($EDR$) = $1.5\%$.
 > ##### Step 1: Sample Size Determination
 > Using standard Attribute Sampling Tables for a $95\%$ Confidence Level (ISA 530 / Messier 11e Ch 8 Table 8-5):
 > - At $TDR = 6.0\%$ and $EDR = 1.5\%$, the required initial sample size is **$n = 103$ items**.
@@ -398,22 +398,22 @@ If the confidence interval $[PM - Precision, PM + Precision]$ falls within $[-TM
 > #### Comprehensive Problem 2: Monetary Unit Sampling (MUS) for Accounts Receivable
 > ##### Scenario Context:
 > An auditor is performing substantive tests of details on the trade receivables balance of Bengal Distribution Ltd as of December 31, 2025.
-> - Population Book Value ($N$) = \$2,500,000.
-> - Population Physical Units = 1,250$ customer accounts.
-> - Overall Materiality = \$100,000.
-> - Performance Materiality / Tolerable Misstatement ($TM$) = \$50,000.
-> - Expected Misstatement ($EM$) = \$10,000.
-> - Desired Confidence Level = 95\%$ (Risk of Incorrect Acceptance $\beta = 0.05$).
+> - Population Book Value ($N$) = $\$2,500,000$.
+> - Population Physical Units = $1,250$ customer accounts.
+> - Overall Materiality = $\$100,000$.
+> - Performance Materiality / Tolerable Misstatement ($TM$) = $\$50,000$.
+> - Expected Misstatement ($EM$) = $\$10,000$.
+> - Desired Confidence Level = $95\%$ (Risk of Incorrect Acceptance $\beta = 0.05$).
 > ---
 > ##### Step 1: Compute Sampling Interval ($k$) & Sample Size ($n$)
 > From Statistical MUS Tables for 95% Confidence:
-> - Confidence Factor for 0 Errors ($CF_0$) = 3.00$.
-> - Expansion Factor for Expected Misstatement = 1.60$.
+> - Confidence Factor for 0 Errors ($CF_0$) = $3.00$.
+> - Expansion Factor for Expected Misstatement = $1.60$.
 > $$\text{Sampling Interval } (k) = \frac{TM}{CF_0} = \frac{\$50,000}{3.00} = \$16,666.67 \approx \$16,667$$
 > $$\text{Sample Size } (n) = \frac{N}{k} = \frac{\$2,500,000}{\$16,667} = 150 \text{ sampling units}$$
 > ---
 > ##### Step 2: Sample Testing & Misstatement Identification
-> The auditor selects 150 monetary units using systematic probability-proportional-to-size (PPS) selection with $k = \$16,667. Audit testing reveals the following **3 misstatements**:
+> The auditor selects 150 monetary units using systematic probability-proportional-to-size (PPS) selection with $k = \$16,667$. Audit testing reveals the following **3 misstatements**:
 > | Customer Account | Book Value ($BV_i$) | Audit Value ($AV_i$) | Dollar Misstatement | Tainting Factor ($t_i$) |
 > | :--- | :---: | :---: | :---: | :---: |
 > | **Account 1: Delta Corp** | $\$5,000$ | $\$3,750$ | $\$1,250$ | $t_1 = \frac{5,000 - 3,750}{5,000} = 0.25$ |
@@ -425,7 +425,7 @@ If the confidence interval $[PM - Precision, PM + Precision]$ falls within $[-TM
 >    - Account 1 (Delta Corp): $PM_1 = t_1 \times k = 0.25 \times \$16,667 = \$4,166.75$
 >    - Account 2 (Omega Ltd): $PM_2 = t_2 \times k = 0.50 \times \$16,667 = \$8,333.50$
 > 2. **Items with $BV_i \ge k$**:
->    - Account 3 (Titan PLC): Factual Misstatement = \$5,000.00$ (No expansion/tainting).
+>    - Account 3 (Titan PLC): Factual Misstatement = $\$5,000.00$ (No expansion/tainting).
 > $$\text{Total Projected Misstatement } (PM) = \$4,166.75 + \$8,333.50 + \$5,000.00 = \$17,500.25$$
 > ---
 > ##### Step 4: Calculation of Allowance for Sampling Risk & Upper Misstatement Limit ($UML$)
@@ -449,13 +449,13 @@ If the confidence interval $[PM - Precision, PM + Precision]$ falls within $[-TM
 > ---
 > ##### Step 5: Audit Evaluation & Final Decision Rule
 > - **Comparison**:
->   - Total Projected Misstatement ($PM$) = \$17,500.25$
->   - Upper Misstatement Limit ($UML$) = \$72,813.86$
->   - Tolerable Misstatement ($TM$) = \$50,000.00$
+>   - Total Projected Misstatement ($PM$) = $\$17,500.25$
+>   - Upper Misstatement Limit ($UML$) = $\$72,813.86$
+>   - Tolerable Misstatement ($TM$) = $\$50,000.00$
 > - **Evaluation**: $UML (\$72,813.86) > TM (\$50,000.00)$.
 > - **Audit Conclusion**: At the $95\%$ confidence level, the auditor **cannot** accept the trade receivables balance as fairly stated. There is an unacceptably high risk that the true population misstatement exceeds Tolerable Misstatement.
 > ##### Required Auditor Action Options:
-> 1. **Request Management Adjustment**: Request management to correct the known factual misstatements totaling $\$11,250$ ($\$1,250 + \$5,000 + \$5,000$). If management adjusts the books by at least $\$22,813.86, the revised $UML$ will drop below $TM$ ($\$50,000$).
+> 1. **Request Management Adjustment**: Request management to correct the known factual misstatements totaling $\$11,250$ ($\$1,250 + \$5,000 + \$5,000$). If management adjusts the books by at least $\$22,813.86$, the revised $UML$ will drop below $TM$ ($\$50,000$).
 > 2. **Expand Sample Testing**: Increase sample size in specific strata to reduce the allowance for sampling risk.
 > 3. **Perform Alternative Substantive Procedures**: Expand substantive tests of details on specific high-risk sub-populations (e.g., specific product lines or customer categories).
 > 4. **Modify Audit Opinion**: If management refuses to adjust the accounts and alternative procedures do not reduce $UML \le TM$, issue a **Qualified ("Except for")** or **Adverse Audit Opinion** under **ISA 705 (Revised)**.

@@ -24,7 +24,7 @@ Overhead costs are categorized according to their cost behavior relative to chan
 > **2. Fixed Manufacturing Overhead ($\text{FOH}$):**
 > * **Definition:** Indirect manufacturing costs that remain constant in total amount over a given time period despite wide fluctuations in the production volume within the relevant range. On a per-unit basis, FOH varies inversely with output volume.
 > * **Examples:** Factory building depreciation (straight-line), plant supervisor salaries, factory lease/rent, property taxes on plant assets, and plant fire insurance.
-> * **Mathematical Behavior:** Total FOH = $F$ (constant), while FOH per unit = \frac{F}{X}$.
+> * **Mathematical Behavior:** Total FOH = $F$ (constant), while FOH per unit = $\frac{F}{X}$.
 > **3. Semi-Variable / Mixed Manufacturing Overhead:**
 > * **Definition:** Costs containing both a fixed baseline component (incurred regardless of activity) and a variable component that fluctuates with activity volume.
 > * **Examples:** Factory maintenance costs (base retainer fee plus hourly rate per machine hour) or utility bills with a fixed demand charge plus a usage rate.
@@ -321,7 +321,7 @@ mindmap
 
 ---
 ### 5.2 Comparative Impact on Unit Costs and Production-Volume Variances
-Assuming total budgeted annual fixed manufacturing overhead = \$1,080,000:
+Assuming total budgeted annual fixed manufacturing overhead = $\$1,080,000$:
 
 | Capacity Concept | Budgeted Output Volume ($Y_d$) | Budgeted FOH per Unit ($F_{\text{unit}} = \frac{\$1,080,000}{Y_d}$) | Variable Cost per Unit | Total Unit Cost | PVV if Actual Output ($Y_a$) = 8,000 units |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -524,7 +524,7 @@ $$ \text{SQ}_{\text{allowed}} = 10,000\text{ units} \times 2.5\text{ MH/unit} = 
 
 ---
 ##### Step 4: Total Under/Overallocated Overhead Summary
-* Total Actual Manufacturing Overhead Incurred = \$135,200 (\text{VOH}) + \$372,000 (\text{FOH}) = \$507,200$
+* Total Actual Manufacturing Overhead Incurred = $\$135,200 (\text{VOH}) + \$372,000 (\text{FOH}) = \$507,200$
 * Total Allocated Manufacturing Overhead = $(25,000\text{ MH} \times \$5.00) + (25,000\text{ MH} \times \$12.00) = \$125,000 + \$300,000 = \$425,000$
 * **Total Underallocated Manufacturing Overhead:**
   $$ \text{Underallocated MOH} = \text{Actual MOH} - \text{Allocated MOH} = \$507,200 - \$425,000 = \mathbf{\$82,200\text{ Unfavorable}} $$
@@ -564,8 +564,8 @@ $$ \begin{array}{llrr}
 > * Denominator Capacity Level ($Y_d$): $10,000\text{ units per year}$
 > * Budgeted FOH Rate per Unit ($F_{\text{unit}}$): $\frac{\$200,000}{10,000\text{ units}} = \$20.00\text{ per unit}$
 > **Operational Volumes:**
-> * **Year 1:** Beginning Inventory = 0\text{ units}$; Production = 10,000\text{ units}$; Sales = 8,000\text{ units}$; Ending Inventory = 2,000\text{ units}$.
-> * **Year 2:** Beginning Inventory = 2,000\text{ units}$; Production = 7,000\text{ units}$; Sales = 9,000\text{ units}$; Ending Inventory = 0\text{ units}$.
+> * **Year 1:** Beginning Inventory = $0\text{ units}$; Production = $10,000\text{ units}$; Sales = $8,000\text{ units}$; Ending Inventory = $2,000\text{ units}$.
+> * **Year 2:** Beginning Inventory = $2,000\text{ units}$; Production = $7,000\text{ units}$; Sales = $9,000\text{ units}$; Ending Inventory = $0\text{ units}$.
 > #### Required:
 > 1. Prepare Income Statements for Year 1 and Year 2 under Variable Costing and Absorption Costing.
 > 2. Mathematically reconcile the operating income differences for both years.
@@ -581,10 +581,10 @@ $$ \begin{array}{llrr}
    * Less Fixed Operating Costs: $(\$80,000)$
    * **Variable Costing Operating Income:** $\$480,000 - \$200,000 - \$80,000 = \mathbf{\$200,000}$
 2. **Absorption Costing (Year 1):**
-   * Unit Product Cost = \$30\text{ (Var)} + \$20\text{ (Fixed FOH)} = \$50\text{ per unit}$
+   * Unit Product Cost = $\$30\text{ (Var)} + \$20\text{ (Fixed FOH)} = \$50\text{ per unit}$
    * Revenues ($8,000 \times \$100$): $\$800,000$
    * Cost of Goods Sold before Variances ($8,000 \times \$50$): $(\$400,000)$
-   * Production Volume Variance: Actual Production ($10,000$) = Denominator ($10,000$), so $\text{PVV} = \$0.
+   * Production Volume Variance: Actual Production ($10,000$) = Denominator ($10,000$), so $\text{PVV} = \$0$.
    * Adjusted Cost of Goods Sold: $(\$400,000)$
    * **Gross Margin:** $\$800,000 - \$400,000 = \mathbf{\$400,000}$
    * Less Variable Operating Costs ($8,000 \times \$10$): $(\$80,000)$
@@ -605,7 +605,7 @@ $$ \begin{array}{llrr}
    * Less Fixed Operating Costs: $(\$80,000)$
    * **Variable Costing Operating Income:** $\$540,000 - \$200,000 - \$80,000 = \mathbf{\$260,000}$
 2. **Absorption Costing (Year 2):**
-   * Unit Product Cost = \$50\text{ per unit}$
+   * Unit Product Cost = $\$50\text{ per unit}$
    * Cost of Goods Sold before Variances ($9,000 \times \$50$): $(\$450,000)$
    * Production-Volume Variance:
      $$ \text{PVV} = (Y_d - Y_a) \times F_{\text{unit}} = (10,000 - 7,000) \times \$20.00 = \mathbf{\$60,000\text{ Unfavorable (U)}} $$
@@ -627,12 +627,12 @@ $$ \begin{array}{llrr}
 > Precision Craft Ltd. manufactures custom architectural doors under Job Order Costing. During the month, Job \#501 (comprising 100 doors) incurred total manufacturing costs of $\$100,000$ ($\$1,000\text{ per door}$, consisting of $\$500\text{ DM}$, $\$300\text{ DL}$, and $\$200\text{ Allocated MOH}$).
 > During quality inspection, the following events occurred:
 > 1. **Event A (Spoilage):** 5 doors were found severely warped and spoiled.
->    * Disposal value of spoiled doors = \$200\text{ per door}$.
+>    * Disposal value of spoiled doors = $\$200\text{ per door}$.
 >    * *Case A1:* Spoilage is considered **Normal and Specific** to Job \#501.
 >    * *Case A2:* Spoilage is considered **Normal and Common to All Jobs**.
 >    * *Case A3:* Spoilage is considered **Abnormal**.
 > 2. **Event B (Rework):** 4 doors had minor surface scratches and required rework.
->    * Rework costs incurred: $\$400\text{ DM}$, $\$600\text{ DL}$, and $\$400\text{ Allocated MOH}$ (Total Rework = \$1,400$).
+>    * Rework costs incurred: $\$400\text{ DM}$, $\$600\text{ DL}$, and $\$400\text{ Allocated MOH}$ (Total Rework = $\$1,400$).
 >    * *Case B1:* Rework is **Normal and Specific** to Job \#501.
 >    * *Case B2:* Rework is **Normal and Common to All Jobs**.
 >    * *Case B3:* Rework is **Abnormal**.
@@ -641,7 +641,7 @@ $$ \begin{array}{llrr}
 
 #### Step-by-Step Solution:
 ##### Part A: Spoilage Journal Entries & Unit Cost Determination
-* Total cost of 5 spoiled doors = 5 \times \$1,000 = \$5,000. Total salvage value = 5 \times \$200 = \$1,000. Net cost of spoilage = \$4,000.
+* Total cost of 5 spoiled doors = $5 \times \$1,000 = \$5,000$. Total salvage value = $5 \times \$200 = \$1,000$. Net cost of spoilage = $\$4,000$.
 1. **Case A1: Normal Spoilage Specific to Job \#501**
 
 $$ \begin{array}{llrr}
@@ -653,7 +653,7 @@ $$ \begin{array}{llrr}
 \hline \hline
 \end{array} $$
 
-* **Job \#501 Cost Impact:** Remaining Work-in-Process balance = \$100,000 - \$1,000 = \$99,000.
+* **Job \#501 Cost Impact:** Remaining Work-in-Process balance = $\$100,000 - \$1,000 = \$99,000$.
    * **Good Units Produced:** $100 - 5 = 95\text{ doors}$.
    * **Unit Cost of Good Doors:** $\frac{\$99,000}{95\text{ doors}} = \mathbf{\$1,042.11\text{ per door}}$.
 2. **Case A2: Normal Spoilage Common to All Jobs**
@@ -668,7 +668,7 @@ $$ \begin{array}{llrr}
 \hline \hline
 \end{array} $$
 
-* **Job \#501 Cost Impact:** Remaining Work-in-Process balance = \$100,000 - \$5,000 = \$95,000.
+* **Job \#501 Cost Impact:** Remaining Work-in-Process balance = $\$100,000 - \$5,000 = \$95,000$.
    * **Unit Cost of Good Doors:** $\frac{\$95,000}{95\text{ doors}} = \mathbf{\$1,000.00\text{ per door}}$ (The $\$4,000$ net cost is spread across all plant jobs via POHR).
 3. **Case A3: Abnormal Spoilage**
 
@@ -682,7 +682,7 @@ $$ \begin{array}{llrr}
 \hline \hline
 \end{array} $$
 
-* **Job \#501 Cost Impact:** Remaining Work-in-Process balance = \$100,000 - \$5,000 = \$95,000.
+* **Job \#501 Cost Impact:** Remaining Work-in-Process balance = $\$100,000 - \$5,000 = \$95,000$.
    * **Unit Cost of Good Doors:** $\frac{\$95,000}{95\text{ doors}} = \mathbf{\$1,000.00\text{ per door}}$ (The $\$4,000$ loss is expensed immediately on the Income Statement).
 
 ---
@@ -700,7 +700,7 @@ $$ \begin{array}{llrr}
 \hline \hline
 \end{array} $$
 
-* **Job \#501 Cost Impact:** Updated Work-in-Process balance = \$100,000 + \$1,400 = \$101,400.
+* **Job \#501 Cost Impact:** Updated Work-in-Process balance = $\$100,000 + \$1,400 = \$101,400$.
    * **Unit Cost of 100 Good Doors:** $\frac{\$101,400}{100\text{ doors}} = \mathbf{\$1,014.00\text{ per door}}$.
 2. **Case B2: Normal Rework Common to All Jobs**
 
@@ -715,7 +715,7 @@ $$ \begin{array}{llrr}
 \hline \hline
 \end{array} $$
 
-* **Job \#501 Cost Impact:** Work-in-Process balance remains $\$100,000.
+* **Job \#501 Cost Impact:** Work-in-Process balance remains $\$100,000$.
    * **Unit Cost of 100 Good Doors:** $\frac{\$100,000}{100\text{ doors}} = \mathbf{\$1,000.00\text{ per door}}$.
 3. **Case B3: Abnormal Rework**
 
@@ -730,5 +730,5 @@ $$ \begin{array}{llrr}
 \hline \hline
 \end{array} $$
 
-* **Job \#501 Cost Impact:** Work-in-Process balance remains $\$100,000.
+* **Job \#501 Cost Impact:** Work-in-Process balance remains $\$100,000$.
    * **Unit Cost of 100 Good Doors:** $\frac{\$100,000}{100\text{ doors}} = \mathbf{\$1,000.00\text{ per door}}$ (The $\$1,400$ is written off as an avoidable period loss).

@@ -35,7 +35,7 @@
 >
 > **Medium Term Budget Framework (MTBF)** is a multi-year expenditure planning system that links the allocation of public resources directly to long-term national strategic priorities (e.g., 8th Five Year Plan, Perspective Plan 2041).
 
-* **Structure:** Extends budgeting beyond a single fiscal year ($1$-year horizon) by establishing a $3$-to- 5$ year rolling macroeconomic framework for line ministries.
+* **Structure:** Extends budgeting beyond a single fiscal year ($1$-year horizon) by establishing a $3$-to-$5$ year rolling macroeconomic framework for line ministries.
 * **Financial Control Mechanism:** Forces line ministries to estimate resource ceilings, operational costs, and capital expenditure spending plans within binding top-down budget limits.
 
 #### 2. iBAS++ (Integrated Budget and Accounting System)
@@ -129,7 +129,7 @@ Promulgated to ensure transparency, minority shareholder protection, and board a
 > [!warning] Key Exam Pitfall: Structural Market Issues
 >
 > 1. **High Non-Performing Loans (NPLs):** High levels of defaulted loans and weak credit risk management in commercial banks.
-> 2. **Absence of a Deep Long-Term Corporate Bond Market:** Severe structural mismatch where Bangladeshi firms rely almost exclusively on short-term bank loans ($1$-to- 5$ years) to finance long-term capital budgeting projects ($10$-to- 20$ years).
+> 2. **Absence of a Deep Long-Term Corporate Bond Market:** Severe structural mismatch where Bangladeshi firms rely almost exclusively on short-term bank loans ($1$-to-$5$ years) to finance long-term capital budgeting projects ($10$-to-$20$ years).
 > 3. **SOE Inefficiencies:** Operational overstaffing and administered pricing mechanisms leading to continuous operating deficits funded by fiscal transfers.
 > 4. **Market Imperfections:** Concentrated family ownership leading to agency conflicts, dominance of speculative retail investors, and administrative price floors (e.g., BSEC "Floor Price" restrictions).
 

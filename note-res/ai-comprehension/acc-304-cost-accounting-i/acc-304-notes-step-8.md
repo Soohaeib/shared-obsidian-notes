@@ -221,7 +221,7 @@ Combines a guaranteed time rate with a differential piece-rate bonus, ensuring s
 > *   **Structure:**
 >     *   Efficiency **$< 66 \frac{2}{3}\%$**: Guaranteed time wages ($T \times R$), zero bonus.
 >     *   Efficiency **$66 \frac{2}{3}\%$ to $100\%$**: Guaranteed time wages plus a small bonus on a sliding scale (rising from $0.01\%$ up to $20\%$ at $100\%$ efficiency).
->     *   Efficiency **$> 100\%$**: Guaranteed time wages + 20\%$ bonus + an additional $1\%$ bonus for every $1\%$ increase in efficiency above $100\%$.
+>     *   Efficiency **$> 100\%$**: Guaranteed time wages + $20\%$ bonus + an additional $1\%$ bonus for every $1\%$ increase in efficiency above $100\%$.
 >     *   *Total Earnings Formula at $E\% > 100\%$:*
 >         $$ E = T \times R \times \left[ 1.00 + 0.20 + (E\% - 1.00) \right] = T \times R \times \left( 0.20 + E\% \right) $$
 > ##### C. Bedaux Point Plan
@@ -593,22 +593,22 @@ $$ \text{Bonus} = \left( \frac{S - T}{S} \right) \times T \times R \quad (\text{
     *   Falls between $66 \frac{2}{3}\%$ and $100\%$. Bonus at $83.33\%$ efficiency is approximately $5\%$ of time wages.
     *   $\text{Base Wage} = 48 \times 50 = \text{Tk } 2,400$.
     *   $\text{Bonus} \approx 5\% \times 2,400 = \text{Tk } 120$.
-    *   $ \text{Total Earnings} = \mathbf{\text{Tk } 2,520} \quad \left( R_{\text{eff}} = \text{Tk } 52.50/\text{hr} \right) $
+    *   $$ \text{Total Earnings} = \mathbf{\text{Tk } 2,520} \quad \left( R_{\text{eff}} = \text{Tk } 52.50/\text{hr} \right) $$
 *   **Worker B ($\text{Efficiency} = 100.00\%$):**
     *   At $100\%$ efficiency, bonus is $20\%$ of time wages.
     *   $\text{Base Wage} = 40 \times 50 = \text{Tk } 2,000$.
     *   $\text{Bonus} = 20\% \times 2,000 = \text{Tk } 400$.
-    *   $ \text{Total Earnings} = \mathbf{\text{Tk } 2,400} \quad \left( R_{\text{eff}} = \text{Tk } 60.00/\text{hr} \right) $
+    *   $$ \text{Total Earnings} = \mathbf{\text{Tk } 2,400} \quad \left( R_{\text{eff}} = \text{Tk } 60.00/\text{hr} \right) $$
 *   **Worker C ($\text{Efficiency} = 125.00\%$):**
     *   Efficiency is $25\%$ above $100\%$. Bonus percentage $= 20\% + 25\% = 45\%$.
     *   $\text{Base Wage} = 32 \times 50 = \text{Tk } 1,600$.
     *   $\text{Bonus} = 45\% \times 1,600 = \text{Tk } 720$.
-    *   $ \text{Total Earnings} = \mathbf{\text{Tk } 2,320} \quad \left( R_{\text{eff}} = \text{Tk } 72.50/\text{hr} \right) $
+    *   $$ \text{Total Earnings} = \mathbf{\text{Tk } 2,320} \quad \left( R_{\text{eff}} = \text{Tk } 72.50/\text{hr} \right) $$
 *   **Worker D ($\text{Efficiency} = 166.67\%$):**
     *   Efficiency is $66.67\%$ above $100\%$. Bonus percentage $= 20\% + 66.67\% = 86.67\%$.
     *   $\text{Base Wage} = 24 \times 50 = \text{Tk } 1,200$.
     *   $\text{Bonus} = 86.67\% \times 1,200 = \text{Tk } 1,040$.
-    *   $ \text{Total Earnings} = \mathbf{\text{Tk } 2,240} \quad \left( R_{\text{eff}} = \text{Tk } 93.33/\text{hr} \right) $
+    *   $$ \text{Total Earnings} = \mathbf{\text{Tk } 2,240} \quad \left( R_{\text{eff}} = \text{Tk } 93.33/\text{hr} \right) $$
 
 ---
 ##### Summary Comparison Matrix for Problem 1:
