@@ -1,11 +1,222 @@
 {
   "summary": {
     "totalFiles": 299,
-    "cleanFiles": 299,
-    "filesWithWarnings": 0,
-    "totalIssues": 0,
+    "cleanFiles": 289,
+    "filesWithWarnings": 10,
+    "totalIssues": 21,
     "autoFixedIssues": 0,
-    "healthScore": 100
+    "healthScore": 96
   },
-  "issues": []
+  "issues": [
+    {
+      "file": "note-res/4th-semester/bcc-210/solutions/graphs/rate-of-profit.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-210/solutions/graphs/kuznets-curve.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-210/solutions/graphs/solow-model.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-bond-price-time-path.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-current-asset-financing-curves.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-security-market-line.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-npv-profiles-crossover.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-mcc-ios-schedule.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/assets/acc302-economic-order-quantity-curves.svg",
+      "line": 1,
+      "category": "Diagram Font",
+      "severity": "info",
+      "message": "Normalized SVG font declarations to the bundled Inter font.",
+      "snippet": "font-family",
+      "suggestion": "Use Inter, sans-serif for diagram labels.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-210/solutions/bsed-2021-exam-q1.md",
+      "line": 33,
+      "category": "Media Embed",
+      "severity": "info",
+      "message": "Normalized media path 'BBA Study/4th Semester/BCC 210/Solutions/Graphs/kuznets-curve.svg' for the published reader.",
+      "snippet": "![[BBA Study/4th Semester/BCC 210/Solutions/Graphs/kuznets-curve.svg]]",
+      "suggestion": "Use '![[4th-semester/bcc-210/solutions/graphs/kuznets-curve.svg]]'.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q5.md",
+      "line": 100,
+      "category": "Media Embed",
+      "severity": "info",
+      "message": "Normalized media path 'BBA Study/4th Semester/BCC 210/Solutions/Graphs/rate-of-profit.svg' for the published reader.",
+      "snippet": "![[BBA Study/4th Semester/BCC 210/Solutions/Graphs/rate-of-profit.svg]]",
+      "suggestion": "Use '![[4th-semester/bcc-210/solutions/graphs/rate-of-profit.svg]]'.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q6.md",
+      "line": 88,
+      "category": "Media Embed",
+      "severity": "info",
+      "message": "Normalized media path 'BBA Study/4th Semester/BCC 210/Solutions/Graphs/solow-model.svg' for the published reader.",
+      "snippet": "![[BBA Study/4th Semester/BCC 210/Solutions/Graphs/solow-model.svg]]",
+      "suggestion": "Use '![[4th-semester/bcc-210/solutions/graphs/solow-model.svg]]'.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/4th-semester/bcc-210/solutions/bsed-2023-exam-q3.md",
+      "line": 116,
+      "category": "Media Embed",
+      "severity": "info",
+      "message": "Normalized media path 'BBA Study/4th Semester/BCC 210/Solutions/Graphs/kuznets-curve.svg' for the published reader.",
+      "snippet": "![[BBA Study/4th Semester/BCC 210/Solutions/Graphs/kuznets-curve.svg]]",
+      "suggestion": "Use '![[4th-semester/bcc-210/solutions/graphs/kuznets-curve.svg]]'.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-1.md",
+      "line": 290,
+      "category": "LaTeX / Math",
+      "severity": "error",
+      "message": "Unbalanced display math delimiters: odd number (15) of '$$' markers found.",
+      "snippet": "$$",
+      "suggestion": "Ensure all '$$' blocks are properly closed.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/acc-302-notes-phase-2.md",
+      "line": 129,
+      "category": "Media Embed",
+      "severity": "info",
+      "message": "Normalized media path 'BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg' for the published reader.",
+      "snippet": "![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg]]",
+      "suggestion": "Use '![[ai-comprehension/acc-302-financial-management/assets/acc302-bond-price-time-path.svg]]'.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/acc-302-notes-phase-3.md",
+      "line": 178,
+      "category": "Media Embed",
+      "severity": "info",
+      "message": "Normalized media path 'BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_security_market_line.svg' for the published reader.",
+      "snippet": "![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_security_market_line.svg]]",
+      "suggestion": "Use '![[ai-comprehension/acc-302-financial-management/assets/acc302-security-market-line.svg]]'.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/acc-302-notes-phase-4.md",
+      "line": 241,
+      "category": "Media Embed",
+      "severity": "info",
+      "message": "Normalized media path 'BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg' for the published reader.",
+      "snippet": "![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg]]",
+      "suggestion": "Use '![[ai-comprehension/acc-302-financial-management/assets/acc302-mcc-ios-schedule.svg]]'.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/acc-302-notes-phase-5.md",
+      "line": 336,
+      "category": "LaTeX / Math",
+      "severity": "error",
+      "message": "Unbalanced display math delimiters: odd number (97) of '$$' markers found.",
+      "snippet": "$$",
+      "suggestion": "Ensure all '$$' blocks are properly closed.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/acc-302-notes-phase-5.md",
+      "line": 181,
+      "category": "Media Embed",
+      "severity": "info",
+      "message": "Normalized media path 'BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg' for the published reader.",
+      "snippet": "![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg]]",
+      "suggestion": "Use '![[ai-comprehension/acc-302-financial-management/assets/acc302-npv-profiles-crossover.svg]]'.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/acc-302-notes-phase-8.md",
+      "line": 54,
+      "category": "Media Embed",
+      "severity": "info",
+      "message": "Normalized media path 'BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg' for the published reader.",
+      "snippet": "![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg]]",
+      "suggestion": "Use '![[ai-comprehension/acc-302-financial-management/assets/acc302-current-asset-financing-curves.svg]]'.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-302-financial-management/acc-302-notes-phase-8.md",
+      "line": 184,
+      "category": "Media Embed",
+      "severity": "info",
+      "message": "Normalized media path 'BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg' for the published reader.",
+      "snippet": "![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg]]",
+      "suggestion": "Use '![[ai-comprehension/acc-302-financial-management/assets/acc302-economic-order-quantity-curves.svg]]'.",
+      "autoFixed": false
+    }
+  ]
 }

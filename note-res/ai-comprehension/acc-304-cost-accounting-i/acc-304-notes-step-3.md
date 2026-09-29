@@ -83,10 +83,10 @@ graph TD
 > A **cost pool** is a grouping of individual indirect cost items. Cost pools can range from broad, plant-wide aggregations (e.g., total factory overhead) to narrow, homogeneous activity-based or departmental pools (e.g., Machining Department Overhead, Assembly Department Overhead). Homogeneous cost pools group costs that share the same cost driver.
 > #### 5. Cost-Allocation Base
 > A **cost-allocation base** (also called a **cost-application base** when applied to products or jobs) is a systematic metric (financial or non-financial) used to link an indirect cost or group of indirect costs (a cost pool) to cost objects. The ideal cost-allocation base is a **cost driver**—an activity metric that maintains a clear cause-and-effect relationship with the incurrence of indirect costs. Common allocation bases include:
-> * Direct manufacturing labor-hours ($DLH$)
-> * Direct manufacturing labor costs ($)
-> * Machine-hours ($MH$)
-> * Direct materials cost ($)
+> * Direct manufacturing labor-hours $DLH$
+> * Direct manufacturing labor costs $\$$
+> * Machine-hours $MH$
+> * Direct materials cost $\$$
 
 ---
 ### Section 3: Costing Systems Frameworks — Actual Costing, Normal Costing, and Variations
@@ -411,8 +411,8 @@ $$ \text{Net Overhead Variance} = \text{Actual MOH} - \text{Allocated MOH} = \$1
 > | **Direct Manufacturing Labor-Hours** | $100,000$ DLH | $200,000$ DLH | $300,000$ DLH |
 > | **Machine-Hours** | $50,000$ MH | $200,000$ MH | $250,000$ MH |
 > Departmental Allocation Bases:
-> * **Machining**: Allocated based on actual **Machine-Hours ($MH$)**.
-> * **Assembly**: Allocated based on actual **Direct Manufacturing Labor Costs ($)**.
+> * **Machining**: Allocated based on actual **Machine-Hours $MH$**.
+> * **Assembly**: Allocated based on actual **Direct Manufacturing Labor Costs $\$$**.
 > During February, Job 494 incurred the following:
 > 
 > | Direct Cost / Activity | Machining Department | Assembly Department |

@@ -174,11 +174,11 @@ The net cash flow realized upon project completion and windup.
 
 #### 2. NPV Profiles & Crossover Rates
 * **NPV Profile:** A plot of a project's NPV against a range of discount rates. The vertical axis intercept reflects total undiscounted net cash flows $$r = 0\%$$, and the horizontal axis intercept equals the project's IRR.
-* **Crossover Rate:** The discount rate at which the NPV profiles of two mutually exclusive projects intersect (where $\text{NPV}_A = \text{NPV}_B$). Calculated by finding the IRR of the incremental cash flows $$\Delta CF = CF_{A,t} - CF_{B,t}$$.
+* **Crossover Rate:** The discount rate at which the NPV profiles of two mutually exclusive projects intersect $where $\text{NPV}_A = \text{NPV}_B$$. Calculated by finding the IRR of the incremental cash flows $$\Delta CF = CF_{A,t} - CF_{B,t}$$.
 
 
 
-![[ai-comprehension/acc-302-financial-management/assets/acc302-npv-profiles-crossover.svg]]
+![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg]]
 
 
 
