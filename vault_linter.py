@@ -219,8 +219,8 @@ class VaultLinter:
         text = re.sub(r'(?m)^[ \t]*(`{3,}|~{3,}).*?^\1', '', content, flags=re.DOTALL)
         # Mask out inline code
         text = re.sub(r'`[^`\n]+`', '', text)
-        # Mask out escaped dollars
-        text = text.replace(r'\$', '')
+        # Mask out escaped dollars without concatenating adjacent dollars
+        text = re.sub(r'\\\$', '\x00', text)
         
         display_math_count = len(re.findall(r'\$\$', text))
         if display_math_count % 2 != 0:
@@ -299,10 +299,10 @@ class VaultLinter:
                     is_file_modified = True
 
             # Callout Check
-            m_callout = re.match(r'^[ \t]*> ?\[!([a-zA-Z0-9_\-]+)\]([+-]?)(?:[ \t]*(.*))?$', line)
+            m_callout = re.match(r'^([ \t]*)> ?\[!([a-zA-Z0-9_\-]+)\]([+-]?)(?:[ \t]*(.*))?$', line)
             if m_callout:
-                ctype, fold, title = m_callout.group(1), m_callout.group(2) or "", m_callout.group(3) or ""
-                normalized = f"> [!{ctype}]{fold}" + (f" {title}" if title else "")
+                indent, ctype, fold, title = m_callout.group(1), m_callout.group(2), m_callout.group(3) or "", m_callout.group(4) or ""
+                normalized = f"{indent}> [!{ctype}]{fold}" + (f" {title}" if title else "")
                 if normalized != line.rstrip('\r\n'):
                     file_issues.append({
                         "file": file_path, "line": idx, "category": "Callout", "severity": "warning",

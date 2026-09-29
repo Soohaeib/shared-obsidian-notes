@@ -113,7 +113,7 @@ Economic growth is determined by a combination of economic inputs and non-econom
 
 The **Kuznets Hypothesis**, proposed by Simon Kuznets in 1955, postulates an "Inverted-U" relationship between economic growth and income distribution. It states that in the early stages of economic development, income inequality tends to worsen; however, as the country achieves higher levels of per capita income, inequality stabilizes and eventually decreases.
 
-![[BBA Study/4th Semester/BCC 210/Solutions/Graphs/kuznets-curve.svg]]
+![[4th-semester/bcc-210/solutions/graphs/kuznets-curve.svg]]
 
 - **The Early Phase (Rising Inequality):** When a country transitions from a low-income, agrarian economy to a modern industrial economy, capital and labor move to urban centers. Initially, only a small elite class of capital owners and highly skilled workers capture the high returns of the modern sector, while the vast majority of rural laborers remain in low-wage agriculture. This widening gap between sectors causes income inequality to increase.
 - **The Turning Point and Mature Phase (Declining Inequality):** As the modern sector expands to encompass the entire economy, the surplus pool of rural labor is fully absorbed, forcing real wages to rise across all sectors. Simultaneously, widespread access to education democratizes skills, democratic institutions grow, and the state implements progressive taxation, welfare programs, and social safety nets, which systematically reduces income inequality.

@@ -119,30 +119,45 @@
 
     prefetchNote(path) {
       if (!path) return Promise.resolve(null);
-      const cached = this.getNoteFromCache(path);
-      if (cached) return Promise.resolve(cached);
-
-      if (this.activePrefetches.has(path)) {
-        return this.activePrefetches.get(path);
+      let cleanPath = String(path).replaceAll('\\', '/').replace(/^\.?\/+/, '');
+      cleanPath = cleanPath.replace(/^note-res\//i, '');
+      if (this.currentFolder && cleanPath.toLowerCase().startsWith(this.currentFolder.toLowerCase() + '/')) {
+        cleanPath = cleanPath.slice(this.currentFolder.length + 1);
       }
 
-      const fetchUrl = `./${path}`;
-      const p = fetch(fetchUrl)
-        .then(res => {
-          if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          return res.text();
-        })
-        .then(text => {
-          this.setNoteToCache(path, text);
-          this.activePrefetches.delete(path);
-          return text;
-        })
-        .catch(err => {
-          this.activePrefetches.delete(path);
-          return null;
-        });
+      const cached = this.getNoteFromCache(cleanPath) || this.getNoteFromCache(path);
+      if (cached) return Promise.resolve(cached);
 
-      this.activePrefetches.set(path, p);
+      if (this.activePrefetches.has(cleanPath)) {
+        return this.activePrefetches.get(cleanPath);
+      }
+
+      const urlsToTry = [
+        `./${cleanPath}`,
+        `../../note-res/${this.currentFolder}/${cleanPath}`,
+        `../../${this.currentFolder}/${cleanPath}`,
+        `/${cleanPath}`
+      ];
+
+      const tryFetch = async () => {
+        for (const fetchUrl of urlsToTry) {
+          try {
+            const res = await fetch(fetchUrl);
+            if (res.ok) {
+              const text = await res.text();
+              this.setNoteToCache(cleanPath, text);
+              this.setNoteToCache(path, text);
+              this.activePrefetches.delete(cleanPath);
+              return text;
+            }
+          } catch (e) {}
+        }
+        this.activePrefetches.delete(cleanPath);
+        return null;
+      };
+
+      const p = tryFetch();
+      this.activePrefetches.set(cleanPath, p);
       return p;
     }
 
@@ -618,9 +633,50 @@
                         || this.allNotes[0];
         targetNote = planetHome ? planetHome.path : '';
       } else {
-        if (!targetNote.endsWith('.md')) {
-          const found = this.allNotes.find(n => n.path.toLowerCase() === `${targetNote.toLowerCase()}.md` || n.path.toLowerCase().endsWith(`/${targetNote.toLowerCase()}.md`));
-          if (found) targetNote = found.path;
+        // Strip leading slashes and redundant path prefixes
+        targetNote = targetNote.replaceAll('\\', '/').replace(/^\.?\/+/, '');
+        targetNote = targetNote.replace(/^note-res\//i, '');
+
+        // Check if hash targets another workspace folder
+        const allKnownFolders = ['ai-comprehension', '5th-semester', '4th-semester'];
+        if (Array.isArray(this.manifest)) {
+          this.manifest.forEach(i => { if (i.planetSlug && !allKnownFolders.includes(i.planetSlug)) allKnownFolders.push(i.planetSlug); });
+        }
+        const targetParts = targetNote.split('/');
+        if (targetParts.length > 1 && allKnownFolders.includes(targetParts[0]) && targetParts[0] !== this.currentFolder) {
+          const destFolder = targetParts[0];
+          const destRel = targetParts.slice(1).join('/');
+          window.location.href = `../${destFolder}/#${encodeURIComponent(destRel)}${headingAnchor ? '#' + headingAnchor : ''}`;
+          return;
+        }
+
+        if (this.currentFolder && targetNote.toLowerCase().startsWith(this.currentFolder.toLowerCase() + '/')) {
+          targetNote = targetNote.slice(this.currentFolder.length + 1);
+        }
+
+        // Resilient lookup across all available notes
+        const targetClean = targetNote.toLowerCase();
+        const targetWithMd = targetClean.endsWith('.md') ? targetClean : `${targetClean}.md`;
+        const targetStem = targetClean.replace(/\.md$/i, '').split('/').pop();
+
+        const found = this.allNotes.find(n => {
+          const np = (n.path || '').toLowerCase();
+          const nStem = (n.fileNameWithoutExt || '').toLowerCase();
+          const nOrig = (n.originalName || '').toLowerCase();
+          const nTitle = (n.title || '').toLowerCase();
+          const nSlug = (n.slugPath || '').toLowerCase();
+          return np === targetClean ||
+                 np === targetWithMd ||
+                 np.endsWith('/' + targetClean) ||
+                 np.endsWith('/' + targetWithMd) ||
+                 nStem === targetStem ||
+                 nOrig === targetStem ||
+                 nTitle === targetStem ||
+                 nSlug.endsWith('/' + targetClean);
+        });
+
+        if (found) {
+          targetNote = found.path;
         }
       }
 
@@ -659,11 +715,13 @@
           }, 100);
         }
       } catch (err) {
+        const homeNote = this.allNotes.find(n => n.isHome) || this.allNotes[0];
+        const homeHash = homeNote ? `#${encodeURIComponent(homeNote.path)}` : '#';
         container.innerHTML = `
           <div style="padding: 40px; text-align: center; color: var(--red);">
             <h2>Note Not Found</h2>
             <p style="color: var(--text-muted); margin: 12px 0 24px 0;">Could not locate document: <code>${relPath}</code></p>
-            <a href="#index.md" class="tool-btn active">Return to Overview</a>
+            <a href="${homeHash}" class="tool-btn active">Return to Overview</a>
           </div>
         `;
       }
@@ -1818,10 +1876,18 @@
       this.vaultHealthData = data;
       this.healthIssuesByFile = new Map();
       for (const issue of data.issues || []) {
-        const key = String(issue.file || '').replaceAll('\\', '/').replace(/^\.\//, '');
-        const issues = this.healthIssuesByFile.get(key) || [];
-        issues.push(issue);
-        this.healthIssuesByFile.set(key, issues);
+        const rawKey = String(issue.file || '').replaceAll('\\', '/').replace(/^\.?\/+/, '');
+        const cleanKey = rawKey.replace(/^note-res\//i, '');
+        const relParts = cleanKey.split('/');
+        const inFolder = relParts.length > 1 ? relParts.slice(1).join('/') : cleanKey;
+        const baseName = relParts[relParts.length - 1];
+
+        [rawKey, cleanKey, inFolder, baseName].forEach(k => {
+          if (!k) return;
+          const issues = this.healthIssuesByFile.get(k) || [];
+          if (!issues.includes(issue)) issues.push(issue);
+          this.healthIssuesByFile.set(k, issues);
+        });
       }
       this.updateNoteHealthBadges();
 
@@ -1830,6 +1896,35 @@
         badge.innerText = `${data.summary.healthScore}%`;
         badge.classList.toggle('has-warnings', data.summary.totalIssues > 0 && data.summary.cleanFiles < data.summary.totalFiles);
       }
+    }
+
+    navigateToIssue(filePath, line = 1) {
+      if (!filePath) return;
+      this.closeHealthModal();
+
+      let decoded = decodeURIComponent(filePath).replaceAll('\\', '/').replace(/^\.?\/+/, '');
+      decoded = decoded.replace(/^note-res\//i, '');
+
+      const parts = decoded.split('/');
+      const allKnownFolders = ['ai-comprehension', '5th-semester', '4th-semester'];
+      if (Array.isArray(this.manifest)) {
+        this.manifest.forEach(i => { if (i.planetSlug && !allKnownFolders.includes(i.planetSlug)) allKnownFolders.push(i.planetSlug); });
+      }
+
+      let targetFolder = this.currentFolder;
+      let relInFolder = decoded;
+
+      if (parts.length > 1 && allKnownFolders.includes(parts[0])) {
+        targetFolder = parts[0];
+        relInFolder = parts.slice(1).join('/');
+      }
+
+      if (targetFolder && targetFolder !== this.currentFolder) {
+        window.location.href = `../${targetFolder}/#${encodeURIComponent(relInFolder)}`;
+        return;
+      }
+
+      window.location.hash = `#${encodeURIComponent(relInFolder)}`;
     }
 
     updateNoteHealthBadges() {
@@ -2093,7 +2188,7 @@
           <div class="issue-card">
             <div class="issue-header">
               <div class="issue-title-group">
-                <a class="issue-file-link" onclick="window.ObsidianApp.closeHealthModal(); window.location.hash='#${encodeURIComponent(iss.file)}'; return false;">
+                <a class="issue-file-link" onclick="window.ObsidianApp.navigateToIssue('${encodeURIComponent(iss.file)}', ${iss.line || 1}); return false;">
                   ${this.escapeHtml(fileName)}
                 </a>
                 <span class="issue-line-badge">Line ${iss.line || 1}</span>

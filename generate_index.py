@@ -247,7 +247,13 @@ for item in manifest:
     if item['type'] == 'folder':
         if '/' in item['originalPath']:
             planet_stats[p_slug]['sub_folders'] += 1
-        name_map[item['slugPath']] = item['originalName']
+        if item['slugPath'] not in name_map:
+            clean_display = item['originalName']
+            if clean_display == item['slugPath']:
+                clean_display = clean_display.replace('-', ' ').replace('_', ' ').title()
+                clean_display = re.sub(r'\bAi\b', 'AI', clean_display)
+                clean_display = re.sub(r'(\d+)[Tt]h\b', r'\1th', clean_display)
+            name_map[item['slugPath']] = clean_display
     else:
         if item['isMarkdown']:
             all_md_files.append(item['slugPath'])
@@ -264,7 +270,7 @@ for item in manifest:
                 "path": slug_path,
                 "folder": p_slug,
                 "relInFolder": slug_path[len(p_slug)+1:],
-                "title": item.get('title') or orig_name,
+                "title": name_map.get(slug_path) or item.get('title') or orig_name,
                 "originalName": orig_name,
                 "isHome": item.get('isHome', False)
             }
@@ -277,7 +283,8 @@ for item in manifest:
                 vault_lookup[item['title']] = lookup_entry
                 vault_lookup[item['title'].lower()] = lookup_entry
             
-            name_map[slug_path] = item.get('title') or orig_name
+            if slug_path not in name_map:
+                name_map[slug_path] = item.get('title') or orig_name
 
 # 3. Provision Folder Viewers
 for p_slug, stats in planet_stats.items():
@@ -286,7 +293,15 @@ for p_slug, stats in planet_stats.items():
     
     if t_content_raw:
         folder_index = os.path.join(planet_path, 'index.html')
-        folder_title = stats['originalName']
+        folder_title = name_map.get(p_slug)
+        if not folder_title or folder_title == p_slug:
+            orig = stats.get('originalName', '')
+            if orig and orig != p_slug:
+                folder_title = orig
+            else:
+                folder_title = p_slug.replace('-', ' ').replace('_', ' ').title()
+        folder_title = re.sub(r'\bAi\b', 'AI', folder_title)
+        folder_title = re.sub(r'(\d+)[Tt]h\b', r'\1th', folder_title)
         
         rel_to_root = "../../"
         
@@ -348,10 +363,14 @@ except Exception as e:
     print(f"Notice: Vault health check skipped ({e})")
 
 # Generate Node Data for the Graph Physics Engine
+# Preferred display order: ai-comprehension, 5th-semester, 4th-semester
+preferred_order = {'ai-comprehension': 1, '5th-semester': 2, '4th-semester': 3}
+entries.sort(key=lambda e: preferred_order.get(e[0], 99))
+
 nodes_data = [{"id": "root", "label": "Shared Vault", "url": None, "isRoot": True, "moons": 0, "status": "normal"}]
 for name, rel_url, sub_count in entries:
     stats = planet_stats.get(name, {})
-    raw_label = stats.get('originalName') or name_map.get(name, name)
+    raw_label = name_map.get(name) or stats.get('originalName') or name
     if '-' in raw_label or '_' in raw_label:
         label = raw_label.replace('-', ' ').replace('_', ' ').title()
     else:
