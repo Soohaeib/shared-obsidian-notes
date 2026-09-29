@@ -116,7 +116,7 @@ To ensure consistency, professional standards (ICAB, IESBA, FRC, SEC, SOX) estab
 When the total fees generated from an audit client represent a large proportion of the total fees of the firm, the financial dependency creates a severe self-interest and intimidation threat.
 * **ICAB / IESBA Code Threshold**:
   - For **Non-Public Interest Entities (non-PIEs)**: If recurring fees from an audit client exceed **15%** of the firm's total fee income for **two consecutive years**, the firm must:
-    1. Disclose the fact to Those Charged with Governance (TCWG).
+    1. Disclose the fact to Those Charged with Governance $TCWG$.
     2. Conduct a **pre-issuance review** (Engagement Quality Review - EQR) by an independent professional accountant before issuing the second year's audit opinion, OR a **post-issuance review** of the second year's audit.
   - For **Public Interest Entities (PIEs / Listed Companies)**: If recurring fees exceed **15%** for two consecutive years, a pre-issuance review by an independent external reviewer is mandatory. If fees continue to exceed 15% for 5 consecutive years, the firm must determine whether to decline or cease acting as auditor.
 * **FRC Ethical Standard (Stricter UK/Regional Benchmark)**:
@@ -133,8 +133,8 @@ Long association creates severe familiarity and self-interest threats.
 
 | Jurisdiction / Standard | Entity Type | Lead Audit Partner / EQR Rotation | Cooling-Off Period (Time-Out) |
 | :--- | :--- | :--- | :--- |
-| **ICAB / IESBA Code** | Public Interest Entity (PIE) | Maximum **7 years** continuous service | **5 years** (Lead Partner / EQR) |
-| **FRC Ethical Standard** | Public Interest Entity (PIE) | Maximum **5 years** continuous service (extensible to 7 with audit committee approval) | **5 years** |
+| **ICAB / IESBA Code** | Public Interest Entity $PIE$ | Maximum **7 years** continuous service | **5 years** (Lead Partner / EQR) |
+| **FRC Ethical Standard** | Public Interest Entity $PIE$ | Maximum **5 years** continuous service (extensible to 7 with audit committee approval) | **5 years** |
 | **US SOX / SEC Rules** | Public Companies | Maximum **5 years** continuous service | **5 years** (Lead and Concurring/EQR Partners) |
 | **Non-PIE Entities** | Private Companies | Review after **10 years** of continuous service | Alternative safeguards / EQR required if not rotated |
 
@@ -165,7 +165,7 @@ Independence underpins objectivity and is defined in two mandatory dimensions:
 
 ```mermaid
 flowchart TD
-  A[AUDITOR INDEPENDENCE] --> B[Independence of Mind<br>(In Fact)]
+  A[AUDITOR INDEPENDENCE] --> B[Independence of Mind]
   A --> C[Independence in Appearance]
   
   B --- B1[State of mind that permits expressing a conclusion without being affected by influences that compromise professional judgment.]
@@ -203,7 +203,7 @@ A professional accountant must respect the confidentiality of information acquir
 Confidentiality is not absolute. Information may or must be disclosed under specific statutory or professional circumstances:
 
 ```mermaid
-flowchart TD
+flowchart LR
   A[DISCLOSURE FRAMEWORK] --> B[Mandatory Disclosures<br>Required by Law]
   A --> C[Voluntary Disclosures<br>Permissible Rights]
   
@@ -221,9 +221,9 @@ flowchart TD
 1. **Mandatory Disclosures (Required by Law or Statute)**:
    - **Court Orders & Valid Subpoenas**: Disclosure mandated by judicial authority.
    - **Statutory Reporting Obligations**:
-     - *Money Laundering Regulations*: Duty to report suspected proceeds of crime to the nominated officer / Money Laundering Reporting Officer (MLRO). Note: The auditor must avoid **"Tipping Off"** the client, which is a severe criminal offense.
+     - *Money Laundering Regulations*: Duty to report suspected proceeds of crime to the nominated officer / Money Laundering Reporting Officer $MLRO$. Note: The auditor must avoid **"Tipping Off"** the client, which is a severe criminal offense.
      - *Treason & Terrorist Offenses*: Absolute statutory obligation to inform enforcement authorities.
-     - *Non-Compliance with Laws and Regulations (NOCLAR)*: Under ISA 250 and IESBA NOCLAR provisions, duty to report instances of illegal acts to regulatory/enforcement bodies if management or TCWG fail to act.
+     - *Non-Compliance with Laws and Regulations $NOCLAR$*: Under ISA 250 and IESBA NOCLAR provisions, duty to report instances of illegal acts to regulatory/enforcement bodies if management or TCWG fail to act.
 2. **Voluntary / Permissible Disclosures (Without Client Consent)**:
    - **Defense of Legal Interests**: Disclosing relevant documents to defend the audit firm in litigation or disciplinary proceedings brought by the client or third parties.
    - **Quality Assurance & Peer Reviews**: Disclosing files to ICAB, FRC, or PCAOB practice assurance inspectors.
@@ -231,13 +231,13 @@ flowchart TD
 
 ---
 ### Section 5: Statutory Responsibilities & Rights under Companies Act 1994 & FRA 2015 (Bangladesh)
-The legal and regulatory framework governing statutory financial statement audits in Bangladesh is established primarily by the **Companies Act, 1994** and the **Financial Reporting Act (FRA), 2015**.
+The legal and regulatory framework governing statutory financial statement audits in Bangladesh is established primarily by the **Companies Act, 1994** and the **Financial Reporting Act $FRA$, 2015**.
 #### 1. Framework under Companies Act, 1994 (Bangladesh)
 ##### A. Appointment of Auditors
 1. **First Auditors (Section 210(10))**:
    - Appointed by the Board of Directors within **3 months** of the date of incorporation of the company.
    - If directors fail, the company in a general meeting may appoint the first auditor.
-   - Holds office until the conclusion of the first Annual General Meeting (AGM).
+   - Holds office until the conclusion of the first Annual General Meeting $AGM$.
 2. **Subsequent Auditors (Section 210(1))**:
    - Appointed by shareholders at each AGM by an **ordinary resolution**.
    - Holds office from the conclusion of that AGM until the conclusion of the next AGM.
@@ -267,11 +267,11 @@ The primary statutory duty is to make a report to the members (shareholders) on 
 4. Whether the company's Balance Sheet and Profit & Loss Account are in agreement with the books of account and returns.
 ##### E. Removal & Resignation of Auditors
 * **Removal (Section 210(9))**: An auditor may be removed before the expiration of their term only by shareholders in a general meeting after obtaining prior special notice.
-* **Resignation**: On resignation, the auditor must submit written notice and a formal **Statement of Circumstances** to the company and Registrar of Joint Stock Companies and Firms (RJSC), detailing whether there are any circumstances connected with the resignation that should be brought to the notice of members/creditors.
+* **Resignation**: On resignation, the auditor must submit written notice and a formal **Statement of Circumstances** to the company and Registrar of Joint Stock Companies and Firms $RJSC$, detailing whether there are any circumstances connected with the resignation that should be brought to the notice of members/creditors.
 
 ---
-#### 2. Framework under Financial Reporting Act (FRA), 2015 (Bangladesh)
-The **Financial Reporting Act 2015** created an independent statutory oversight body—the **Financial Reporting Council (FRC)** Bangladesh—to regulate financial reporting and auditing of **Public Interest Entities (PIEs)**.
+#### 2. Framework under Financial Reporting Act $FRA$, 2015 (Bangladesh)
+The **Financial Reporting Act 2015** created an independent statutory oversight body—the **Financial Reporting Council $FRC$** Bangladesh—to regulate financial reporting and auditing of **Public Interest Entities (PIEs)**.
 
 ```mermaid
 flowchart TD
@@ -392,7 +392,7 @@ Where:
 > * **Threat**: Severe **Self-Interest** and **Intimidation** threats.
 > * **Mandatory Safeguard / Action**:
 >   - The firm must disclose the fee dependency to TCWG at Apex Synthetics.
->   - Prior to issuing the audit opinion for the second year, the firm MUST undergo an **Engagement Quality Review (EQR)** (pre-issuance review) performed by an independent Chartered Accountant (outside the engagement team).
+>   - Prior to issuing the audit opinion for the second year, the firm MUST undergo an **Engagement Quality Review $EQR$** (pre-issuance review) performed by an independent Chartered Accountant (outside the engagement team).
 >   - Under FRC Bangladesh regulations for PIEs, if fee dependency continues to exceed 15%, the firm must reduce non-audit work or resign as auditor.
 > ##### 2. Valuation & IT Nonaudit Services:
 > * **Identification**: Valuation of plant (30% of assets) and IT system design for inventory.
@@ -402,7 +402,7 @@ Where:
 >   - **Prohibition**: Rahman & Associates MUST decline both the valuation and IT design engagements. Under IESBA Code, SEC rules, and FRC rules, providing valuation services for material items to a PIE audit client is strictly prohibited as no safeguards can reduce self-review threats to an acceptable level.
 > ---
 > #### Requirement 2: Hand Rule Negligence Evaluation
-> Let's evaluate whether skipping the NRV inventory audit procedure constitutes legal negligence under the Learned Hand Formula ($B < P \times L$):
+> Let's evaluate whether skipping the NRV inventory audit procedure constitutes legal negligence under the Learned Hand Formula $$B < P \times L$$:
 > ##### Given Parameters:
 > * Cost of precaution / additional audit procedure ($B$) = BDT $200,000$
 > * Probability of undetected material misstatement ($P$) = $15\% = 0.15$
@@ -412,10 +412,11 @@ Where:
 > $$\text{Burden of Precaution } (B) = \text{BDT } 200,000$$
 > ##### Evaluation:
 > $$B \text{ (BDT 200,000)} < P \times L \text{ (BDT 3,750,000)}$$
-> Since $B < P \times L$, the cost of taking precautions (BDT 200,000) is drastically lower than the expected loss (BDT 3,750,000).
+> Since $B < P \times L$, the cost of taking precautions $BDT 200,000$ is drastically lower than the expected loss $BDT 3,750,000$.
 > * **Conclusion**: If Rahman & Associates yields to CFO pressure and skips the NRV procedure, the firm fails to exercise due professional care. In the event of litigation following a financial collapse, courts will find the firm **grossly negligent** under both Common Law and statutory duties under the Financial Reporting Act 2015 / Companies Act 1994.
 > ---
 > #### Requirement 3: Statutory Compliance under Companies Act 1994 & FRA 2015
 > 1. **Duty to Report True & Fair View**: Rahman & Associates cannot issue an unqualified opinion if management refuses the BDT 25 Million inventory adjustment. The firm must issue a **Qualified Opinion** (or **Adverse Opinion** if material and pervasive).
 > 2. **Right to Information**: Under Section 213 of Companies Act 1994, the auditor has the statutory right to demand full documentation regarding inventory NRV.
 > 3. **Reporting to FRC Bangladesh**: Under FRA 2015, if management attempts to coerce or intimidate the auditor into issuing a false report, the auditor must report the NOCLAR / governance failure to the Financial Reporting Council.
+

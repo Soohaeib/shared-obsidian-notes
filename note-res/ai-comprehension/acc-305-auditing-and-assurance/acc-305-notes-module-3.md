@@ -5,7 +5,7 @@
 > - **Course:** ACC 305 Auditing and Assurance
 > - **Module:** Module 3: Client Acceptance, Quality Management, & Preconditions
 > - **Target Reading:** ISA 210; ISQM 1 & 2; ISA 220 (Revised); Messier (11e) Ch. 3 & 19; ICAB Certificate Ch. 2; ICAB Professional Ch. 5 & 6
-> - **Syllabus Focus:** Acceptance and continuance evaluation framework; predecessor auditor communication protocol under ISA 210/IESBA; client due diligence (CDD) and AML rules; mandatory preconditions for an audit (financial reporting framework and management premise); scope limitations prior to acceptance; audit engagement letter mandatory contents; recurring audits; changes in terms of engagement; firm-level quality management under ISQM 1 (8 components of SOQM); annual SOQM evaluation; engagement quality reviews under ISQM 2 (eligibility, cooling-off, timing); and engagement partner responsibilities under ISA 220 (Revised).
+> - **Syllabus Focus:** Acceptance and continuance evaluation framework; predecessor auditor communication protocol under ISA 210/IESBA; client due diligence $CDD$ and AML rules; mandatory preconditions for an audit (financial reporting framework and management premise); scope limitations prior to acceptance; audit engagement letter mandatory contents; recurring audits; changes in terms of engagement; firm-level quality management under ISQM 1 (8 components of SOQM); annual SOQM evaluation; engagement quality reviews under ISQM 2 (eligibility, cooling-off, timing); and engagement partner responsibilities under ISA 220 (Revised).
 
 ---
 
@@ -63,10 +63,10 @@ flowchart TD
 ```
 
 ---
-#### 3. Client Due Diligence (CDD) & Anti-Money Laundering (AML) Compliance
-Under national Anti-Money Laundering (AML) regulations and professional rules, audit firms must establish the true identity of all clients and their beneficial owners before accepting an engagement.
-- **Customer Due Diligence (CDD) Requirements**:
-  - **Corporate Entities**: Inspect official public records, including the **Certificate of Incorporation**, Memorandum and Articles of Association, official register of shareholders and directors, and latest Annual Returns filed with the Registrar of Joint Stock Companies (RJSC) / Registrar of Companies.
+#### 3. Client Due Diligence $CDD$ & Anti-Money Laundering $AML$ Compliance
+Under national Anti-Money Laundering $AML$ regulations and professional rules, audit firms must establish the true identity of all clients and their beneficial owners before accepting an engagement.
+- **Customer Due Diligence $CDD$ Requirements**:
+  - **Corporate Entities**: Inspect official public records, including the **Certificate of Incorporation**, Memorandum and Articles of Association, official register of shareholders and directors, and latest Annual Returns filed with the Registrar of Joint Stock Companies $RJSC$ / Registrar of Companies.
   - **Key Controllers & Individual Owners**: Verify identity using government-issued photo identification (passports, national ID cards) and proof of residential address (utility bills).
   - **Beneficial Ownership Threshold**: Identify any individual who ultimate controls or owns **more than 25%** of voting rights or capital.
 - **Document Retention Rule**: Client identification records, CDD documentation, and a complete audit trail of transactions must be retained for a **minimum of 5 years after the cessation** of the client relationship.
@@ -80,7 +80,7 @@ When evaluating a prospective client, the firm categorizes the client into a ris
 | Risk Category | Key Client Characteristics | Audit Firm Acceptance Action / Safeguards |
 | :--- | :--- | :--- |
 | **Low Risk** | • Long-term profitability & strong liquidity<br>• Competent, honest, and stable management<br>• Strong internal control environment<br>• Conservative, prudent accounting policies<br>• Few unusual or related-party transactions | • Standard engagement acceptance.<br>• Routine staffing allocation and standard review procedures. |
-| **High Risk** | • Poor financial performance / going concern doubts<br>• Highly dominant chief executive or lack of CFO<br>• Material weaknesses in internal controls<br>• Aggressive or questionable accounting treatments<br>• Complex, unexplained related-party transactions | • Require approval by Firm Risk Management Partner.<br>• Assign experienced industry specialists.<br>• Mandate pre-issuance Engagement Quality Review (EQR).<br>• Set higher audit fees reflecting increased audit risk. |
+| **High Risk** | • Poor financial performance / going concern doubts<br>• Highly dominant chief executive or lack of CFO<br>• Material weaknesses in internal controls<br>• Aggressive or questionable accounting treatments<br>• Complex, unexplained related-party transactions | • Require approval by Firm Risk Management Partner.<br>• Assign experienced industry specialists.<br>• Mandate pre-issuance Engagement Quality Review $EQR$.<br>• Set higher audit fees reflecting increased audit risk. |
 
 ---
 ### Section 2: Preconditions for an Audit & Terms of Engagement (ISA 210)
@@ -94,7 +94,7 @@ ISA 210 (*Agreeing the Terms of Audit Engagements*) establishes the statutory an
 1. **Acceptability of the Financial Reporting Framework**:
    - The auditor must determine whether the financial reporting framework adopted by management (e.g., IFRS, BFRS, or local GAAP) is acceptable considering the nature of the entity (commercial, non-profit, public sector), the purpose of the financial statements, and relevant statutory requirements.
 2. **Obtaining Management's Explicit Agreement (The Premise of an Audit)**:
-   - The auditor must obtain the agreement of management and, where appropriate, those charged with governance (TCWG) that they acknowledge and understand their fundamental responsibilities for:
+   - The auditor must obtain the agreement of management and, where appropriate, those charged with governance $TCWG$ that they acknowledge and understand their fundamental responsibilities for:
      - **a. Preparation of Financial Statements**: Preparing and fairly presenting the financial statements in accordance with the applicable financial reporting framework.
      - **b. Internal Control**: Designing, implementing, and maintaining such internal control as management determines is necessary to enable the preparation of financial statements free from material misstatement, whether due to fraud or error.
      - **c. Provision of Access & Information**: Providing the auditor with:
@@ -158,17 +158,17 @@ On recurring audits, the auditor does not need to issue a new engagement letter 
 
 ---
 ### Section 3: Firm-Level Quality Management (ISQM 1 & ISQM 2)
-The International Auditing and Assurance Standards Board (IAASB) transitioned from the legacy quality control framework (**ISQC 1**) to a modern, risk-based quality management framework comprising **ISQM 1** (*Quality Management for Firms*) and **ISQM 2** (*Engagement Quality Reviews*).
+The International Auditing and Assurance Standards Board $IAASB$ transitioned from the legacy quality control framework **ISQC 1** to a modern, risk-based quality management framework comprising **ISQM 1** (*Quality Management for Firms*) and **ISQM 2** (*Engagement Quality Reviews*).
 
 ```mermaid
-flowchart LR
-    subgraph Legacy: ISQC 1
+flowchart TD
+    subgraph Legacy
         A1[Reactive, standardized checklists]
         A2[One-size-fits-all policies]
         A3[Focus on static compliance]
         A4[Siloed quality controls]
     end
-    subgraph Modern: ISQM 1
+    subgraph Modern
         B1[Proactive, risk-based approach]
         B2[Tailored to firm's specific risks]
         B3[Focus on continuous improvement]
@@ -177,10 +177,10 @@ flowchart LR
     Legacy --> Modern
 ```
 
-#### 1. System of Quality Management (SOQM)
+#### 1. System of Quality Management $SOQM$
 > [!info] Key Definition
 >
-> Under ISQM 1, every firm that performs audits, reviews, or other assurance engagements must design, implement, and operate a **System of Quality Management (SOQM)**.
+> Under ISQM 1, every firm that performs audits, reviews, or other assurance engagements must design, implement, and operate a **System of Quality Management $SOQM$**.
 
 ##### Dual Objectives of the SOQM (ISQM 1.14):
 1. The firm and its personnel fulfill their responsibilities in accordance with professional standards and applicable legal and regulatory requirements, and conduct engagements in accordance with such standards.
@@ -209,7 +209,7 @@ mindmap
 | **2. Governance and Leadership** | Establishes the "tone at the top." Requires leadership (managing partner/board) to accept ultimate accountability for quality. Commercial and financial priorities (profit targets, fee volume) must **never override audit quality**. Partner remuneration must reward audit quality, not just commercial sales. |
 | **3. Relevant Ethical Requirements** | Ensures the firm and its personnel understand and fulfill ethical obligations under IESBA/local codes. Includes annual written independence declarations from all partners and staff. |
 | **4. Acceptance & Continuance** | Establishes policies that engagements are accepted only when the client exhibits integrity, and the firm has the technical capability, resources, and time to perform the audit. |
-| **5. Engagement Performance** | Governs how engagements are conducted: promotes consistent quality through proper Direction, Supervision, and Review (DSR); formal consultation policies on complex/contentious matters; resolution of internal differences of opinion; assembly of final audit files within **60 days** of the report date; and document retention for at least **5 to 7 years**. |
+| **5. Engagement Performance** | Governs how engagements are conducted: promotes consistent quality through proper Direction, Supervision, and Review $DSR$; formal consultation policies on complex/contentious matters; resolution of internal differences of opinion; assembly of final audit files within **60 days** of the report date; and document retention for at least **5 to 7 years**. |
 | **6. Resources** | Mandates timely provision of four categories of resources:<br>• **Human**: Qualified, competent staff given sufficient time.<br>• **Technological**: IT audit tools, software, data analytics routines.<br>• **Intellectual**: Audit methodologies, checklists, technical manuals.<br>• **Service Providers**: Vetted external IT/expert providers. |
 | **7. Information & Communication** | Establishes reliable information systems and an open culture that encourages personnel to communicate quality concerns without fear of reprisal. |
 | **8. Monitoring & Remediation** | Performs ongoing and periodic evaluations of the SOQM, including **cold reviews** (post-issuance file reviews) selecting at least one completed engagement per partner on a cyclical basis. Requires **root cause analysis** of identified deficiencies to implement timely remedial action. |
@@ -225,7 +225,7 @@ The individual with ultimate responsibility for the SOQM (Managing Partner/CEO) 
 #### 4. Engagement Quality Reviews (ISQM 2)
 > [!info] Key Definition
 >
-> An **Engagement Quality Review (EQR)** is an objective evaluation of the significant judgments made by the engagement team and the conclusions reached thereon, performed by an independent **Engagement Quality Reviewer** *before* the audit report is issued (commonly known as a **Hot Review**).
+> An **Engagement Quality Review $EQR$** is an objective evaluation of the significant judgments made by the engagement team and the conclusions reached thereon, performed by an independent **Engagement Quality Reviewer** *before* the audit report is issued (commonly known as a **Hot Review**).
 
 ##### Mandate for EQR (ISQM 2):
 - **Mandatory Engagements**:
@@ -264,7 +264,7 @@ mindmap
 
 #### 2. Key Operational Requirements under ISA 220 (Revised)
 - **Continuous Partner Involvement**: Partners cannot delegate ultimate oversight; they must be actively involved in risk assessment, planning, direction, supervision, and review.
-- **Direction, Supervision, and Review (DSR)**:
+- **Direction, Supervision, and Review $DSR$**:
   - Direction involves instructing team members on their objectives, ethical duties, and risk areas.
   - Supervision involves tracking audit progress, coaching junior staff, and addressing emerging issues.
   - Review involves examining working papers at appropriate times, focusing on critical audit areas, significant judgments, accounting estimates, uncorrected misstatements, and draft reports.
@@ -314,7 +314,8 @@ To demonstrate the application of client acceptance, fee modeling, and quality m
 > - Accepting a "lowballed" fee of $\$20,000$ would force the engagement partner to cut audit hours, skip necessary substantive procedures, or under-staff the engagement, directly violating ISQM 1 Component 2 (Commercial considerations must not impair quality) and Component 6 (Sufficient human resources).
 > ---
 > ##### Step 3: Evaluation of IT System Implementation Request
-> - **Analysis**: Designing and implementing a financial information technology system (FITS) that generates data for the financial statements creates an unmanageable **Self-Review Threat** and **Management Responsibility Threat** under the IESBA Code and FRC Ethical Standard.
+> - **Analysis**: Designing and implementing a financial information technology system $FITS$ that generates data for the financial statements creates an unmanageable **Self-Review Threat** and **Management Responsibility Threat** under the IESBA Code and FRC Ethical Standard.
 > - **Mandatory Action**: Apex & Co. cannot provide FITS implementation services to an audit client where the IT system generates significant accounting entries.
 > ##### Final Acceptance Decision:
 > Apex & Co. **must decline the audit engagement** due to management's restriction on predecessor communication, an unviable audit fee that impairs audit quality, and prohibited non-audit service conflicts.
+

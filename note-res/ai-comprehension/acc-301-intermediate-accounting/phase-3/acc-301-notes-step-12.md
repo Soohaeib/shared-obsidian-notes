@@ -28,7 +28,7 @@ Stockholders' equity represents the residual interest in the assets of a corpora
 ```mermaid
 mindmap
   root((Total Stockholders' Equity))
-    Contributed (Paid-in) Capital
+    Contributed /Paid-in Capital
       Capital Stock
         Preferred Stock (Par/Stated)
         Common Stock (Par/Stated)
@@ -47,9 +47,9 @@ mindmap
 
 1. **Contributed (Paid-in) Capital**: The total amount invested by stockholders in return for shares of stock.
    - **Capital Stock**: Represents the par or stated value of issued shares (Preferred Stock and Common Stock).
-   - **Additional Paid-in Capital (APIC)**: Represents the excess of issue price over the par or stated value of shares issued, as well as capital from treasury stock transactions, stock options, and conversions.
+   - **Additional Paid-in Capital $APIC$**: Represents the excess of issue price over the par or stated value of shares issued, as well as capital from treasury stock transactions, stock options, and conversions.
 2. **Earned Capital (Retained Earnings)**: The cumulative net income earned by the corporation since inception, reduced by net losses, cash/property/stock dividends declared, and transfers to capital stock.
-3. **Accumulated Other Comprehensive Income (AOCI)**: The aggregate balance of cumulative non-owner changes in equity, including unrealized holding gains/losses on Available-for-Sale debt securities, pension plan actuarial gains/losses and prior service costs, and foreign currency translation adjustments.
+3. **Accumulated Other Comprehensive Income $AOCI$**: The aggregate balance of cumulative non-owner changes in equity, including unrealized holding gains/losses on Available-for-Sale debt securities, pension plan actuarial gains/losses and prior service costs, and foreign currency translation adjustments.
 
 ---
 ### 2. Accounting for Capital Stock Issuances
@@ -137,13 +137,13 @@ Preferred stock is an equity security that confers specific preferences over com
 > [!example] Numerical Problem: Complex Preferred Dividend Allocation
 >
 > **Scenario**: Apex Corp. has the following capital structure:
-> - **Preferred Stock**: $5,000$ shares, $6\%$, $\$100$ par value ($\text{Total Par} = \$500,000$).
-> - **Common Stock**: $20,000$ shares, $\$10$ par value ($\text{Total Par} = \$200,000$).
+> - **Preferred Stock**: $5,000$ shares, $6\%$, $\$100$ par value $$\text{Total Par} = \$500,000$$.
+> - **Common Stock**: $20,000$ shares, $\$10$ par value $$\text{Total Par} = \$200,000$$.
 > - Total dividends declared in 2025 = $\$72,000$.
 > - Preferred dividends are $2$ years in arrears prior to 2025.
 > ##### Case 1: Cumulative, Nonparticipating
-> 1. **Dividends in Arrears (2 years)**: $2 \times (6\% \times \$500,000) = \$60,000$.
-> 2. **Current Year Preferred Dividend (2025)**: $6\% \times \$500,000 = \$30,000$.
+> 1. **Dividends in Arrears (2 years)**: $2 \times $6\% \times \$500,000$ = \$60,000$.
+> 2. **Current Year Preferred Dividend $2025$**: $6\% \times \$500,000 = \$30,000$.
 >    - Total Preferred Requirement = $\$90,000$.
 > 3. **Allocation of $\$72,000$ Declared**:
 >    - Preferred receives all $\mathbf{\$72,000}$ ($\$60,000$ for arrears $+ \$12,000$ partial current).
@@ -151,8 +151,8 @@ Preferred stock is an equity security that confers specific preferences over com
 >    - Common receives $\mathbf{\$0}$.
 > ##### Case 2: Cumulative, Fully Participating (Assuming No Arrears)
 > Assume dividends declared = $\$72,000$ and no arrears exist.
-> 4. **Preferred Basic Dividend ($6\%$)**: $6\% \times \$500,000 = \$30,000$.
-> 5. **Common Matching Dividend ($6\%$)**: $6\% \times \$200,000 = \$12,000$.
+> 4. **Preferred Basic Dividend $$6\%$$**: $6\% \times \$500,000 = \$30,000$.
+> 5. **Common Matching Dividend $$6\%$$**: $6\% \times \$200,000 = \$12,000$.
 >    - Total Basic Allocation = $\$30,000 + \$12,000 = \$42,000$.
 > 6. **Remaining Dividend Available for Participation**: $\$72,000 - \$42,000 = \$30,000$.
 > 7. **Participation Rate**:
@@ -161,15 +161,15 @@ Preferred stock is an equity security that confers specific preferences over com
 >    - Preferred Participation = $4.285714\% \times \$500,000 = \$21,428.57$
 >    - Common Participation = $4.285714\% \times \$200,000 = \$8,571.43$
 > 9. **Total Distribution Summary**:
->    - **Preferred Total**: $\$30,000 + \$21,428.57 = \mathbf{\$51,428.57}$ ($\$10.29\text{/share}$)
->    - **Common Total**: $\$12,000 + \$8,571.43 = \mathbf{\$20,571.43}$ ($\$1.03\text{/share}$)
+>    - **Preferred Total**: $\$30,000 + \$21,428.57 = \mathbf{\$51,428.57}$ $$\$10.29\text{/share}$$
+>    - **Common Total**: $\$12,000 + \$8,571.43 = \mathbf{\$20,571.43}$ $$\$1.03\text{/share}$$
 
 ---
 ### 4. Reacquisition of Shares: Treasury Stock
 #### Rationale for Stock Buybacks
 Corporations reacquire their own outstanding shares for several strategic reasons:
 1. To provide shares for employee stock option and compensation plans.
-2. To enhance earnings per share (EPS) by reducing the denominator.
+2. To enhance earnings per share $EPS$ by reducing the denominator.
 3. To return excess cash to shareholders efficiently.
 4. To create a market for the stock or signal that shares are undervalued.
 5. To thwart hostile takeover attempts by shrinking public float.
@@ -192,7 +192,7 @@ Under the Cost Method (GAAP preferred), the Treasury Stock account is debited fo
 
 > [!example] Comprehensive Walkthrough: Treasury Stock Transactions
 >
-> **Initial Equity Context**: Zenith Corp. has $100,000$ shares of $\$5$ par common stock issued at $\$15$ per share ($\text{APIC} = \$10/\text{share}$). Retained Earnings = $\$500,000$.
+> **Initial Equity Context**: Zenith Corp. has $100,000$ shares of $\$5$ par common stock issued at $\$15$ per share $$\text{APIC} = \$10/\text{share}$$. Retained Earnings = $\$500,000$.
 > $$ \begin{array}{llrr}
 > \textbf{Date} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
 > \hline
@@ -221,9 +221,9 @@ Under the Cost Method (GAAP preferred), the Treasury Stock account is debited fo
 - **Legal Requirements**: State corporate laws dictate that dividends can only be paid out of legal capital protections (typically requiring positive Retained Earnings / Earned Surplus).
 - **Cash Liquidity**: A positive Retained Earnings balance does not equal cash. A company must possess sufficient uncommitted cash to pay a cash dividend.
 - **Key Dividend Dates**:
-  1. **Date of Declaration**: Board passes resolution. Creates a **legal liability** on this date. (`Dr. Retained Earnings`, `Cr. Dividends Payable`)
+  1. **Date of Declaration**: Board passes resolution. Creates a **legal liability** on this date. $`Dr. Retained Earnings`, `Cr. Dividends Payable`$
   2. **Date of Record**: Determination of registered owners. **No journal entry**.
-  3. **Date of Payment**: Distribution of cash. (`Dr. Dividends Payable`, `Cr. Cash`)
+  3. **Date of Payment**: Distribution of cash. $`Dr. Dividends Payable`, `Cr. Cash`$
 
 ---
 #### Types of Dividends
@@ -241,7 +241,7 @@ Dividends that exceed cumulative retained earnings represent a return of the sha
 ##### 4. Stock Dividends & Stock Splits
 Distributions of a corporation's own stock to existing shareholders on a pro-rata basis without receiving consideration. Total stockholders' equity remains unchanged.
 
-| Characteristic | Small Stock Dividend ($<20-25\%$) | Large Stock Dividend ($\ge 20-25\%$) | Stock Split (e.g., 2-for-1) |
+| Characteristic | Small Stock Dividend $$<20-25\%$$ | Large Stock Dividend $$\ge 20-25\%$$ | Stock Split (e.g., 2-for-1) |
 | :--- | :--- | :--- | :--- |
 | **Valuation Basis** | **Fair Market Value** at Declaration | **Par / Stated Value** | No entry (Memo only) |
 | **Retained Earnings** | Debited for Fair Market Value | Debited for Par Value | Unchanged |
@@ -272,7 +272,7 @@ $$ \begin{array}{lrrrrrr}
 #### Key Equity Ratios & Formulas
 > [!quote] Formula & Derivation: Equity Analysis Ratios
 >
-> **1. Return on Common Stockholders' Equity (ROE)**
+> **1. Return on Common Stockholders' Equity $ROE$**
 > Measures corporate profitability generated per dollar of common equity invested:
 > $$ \text{ROE} = \frac{\text{Net Income} - \text{Preferred Dividends}}{\text{Average Common Stockholders' Equity}} $$
 > *(Common Equity = Total Equity - Preferred Stock Liquidation Value - Preferred Dividends in Arrears).*
@@ -290,7 +290,7 @@ $$ \begin{array}{lrrrrrr}
 > **Scenario Data**:
 > - Preferred Stock, $8\%$ cumulative, $\$100$ par, $2,000$ shares outstanding = $\$200,000$.
 > - Preferred Liquidation Value = $\$105$ per share = $\$210,000$.
-> - Preferred Dividends in Arrears = $3$ years (including current year) = $3 \times (8\% \times \$200,000) = \$48,000$.
+> - Preferred Dividends in Arrears = $3$ years (including current year) = $3 \times $8\% \times \$200,000$ = \$48,000$.
 > - Common Stock, $\$5$ par, $50,000$ shares issued, $5,000$ shares in treasury ($45,000$ shares outstanding) = $\$250,000$.
 > - Paid-in Capital in Excess of Par - Common = $\$350,000$.
 > - Retained Earnings = $\$400,000$.
@@ -303,3 +303,4 @@ $$ \begin{array}{lrrrrrr}
 > $$ \text{Common Equity} = \text{Total Equity} - \text{Preferred Claim} = \$1,160,000 - \$258,000 = \mathbf{\$902,000} $$
 > **Step 4: Calculate Book Value per Common Share**
 > $$ \text{Book Value per Share} = \frac{\$902,000}{45,000\text{ outstanding shares}} = \mathbf{\$20.04 \text{ per share}} $$
+

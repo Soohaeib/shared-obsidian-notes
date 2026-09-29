@@ -100,7 +100,7 @@ This systematic learning path is designed to transition you seamlessly from foun
 ---
 ### Module 11: Audit Reporting (The Ultimate Deliverable)
 - **Prerequisite Rationale**: You write the audit report _only_ after evaluating all gathered evidence during the completion phase.
-- **Syllabus Topic Alignment**: Topic 7 — Audit Reporting: Meaning and concept of audit report; Elements of the auditor's report; Opinions; Key Audit Matters (KAM); Modifications.
+- **Syllabus Topic Alignment**: Topic 7 — Audit Reporting: Meaning and concept of audit report; Elements of the auditor's report; Opinions; Key Audit Matters $KAM$; Modifications.
 - **Reading & Chapter Mapping**:
     - **ICAB Certificate Manual**: **Chapter 4** (Evidence and reporting - Section 2).
     - **ICAB Professional Level Manual**: **Chapter 13** (Reporting).
@@ -119,10 +119,10 @@ This systematic learning path is designed to transition you seamlessly from foun
 ---
 ### Gap Detection & Supplementary Search Strategies
 While your textbooks and manuals provide an exhaustive foundation of auditing theory, there are critical **regional regulatory requirements and practical frameworks** that you must supplement to fully align with the ACC 305 syllabus:
-1. **The Financial Reporting Act (FRA), 2015 (Bangladesh)**
-    - **The Gap**: This local statutory framework created the **Financial Reporting Council (FRC)** of Bangladesh. Standard US textbooks (like Messier) focus heavily on the US SEC and PCAOB.
+1. **The Financial Reporting Act $FRA$, 2015 (Bangladesh)**
+    - **The Gap**: This local statutory framework created the **Financial Reporting Council $FRC$** of Bangladesh. Standard US textbooks (like Messier) focus heavily on the US SEC and PCAOB.
     - **Search Strategy**: Search online or in library databases for: `"Financial Reporting Act 2015 Bangladesh audit regulation"` or `"Bangladesh FRC auditing standards and oversight rules"`.
-2. **Bangladesh Securities and Exchange Commission (BSEC) Corporate Governance Code**
+2. **Bangladesh Securities and Exchange Commission $BSEC$ Corporate Governance Code**
     - **The Gap**: The syllabus requires corporate governance reporting as per BSEC rules. Messier primarily addresses US SOX Section 404 and SEC rules.
     - **Search Strategy**: Search the BSEC official portal or Google for: `"BSEC Corporate Governance Code notification"` or `"Bangladesh SEC audit committee and compliance requirements"`.
 3. **Bangladesh-Specific Case Laws on Auditor Negligence**

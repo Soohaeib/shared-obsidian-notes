@@ -29,7 +29,7 @@ Every assurance engagement must exhibit the following five fundamental elements:
      - *Behavior or compliance* (e.g., corporate governance compliance, legal and regulatory adherence).
 3. **Suitable Criteria**:
    - The benchmarks, standards, or rules used to evaluate or measure the subject matter.
-   - Examples include International Financial Reporting Standards (IFRS), US GAAP, the Companies Act 1994, or specific environmental reporting frameworks.
+   - Examples include International Financial Reporting Standards $IFRS$, US GAAP, the Companies Act 1994, or specific environmental reporting frameworks.
    - Suitable criteria must exhibit relevance, completeness, reliability, neutrality, and understandability.
 4. **Sufficient Appropriate Evidence**:
    - > [!info] Key Definition
@@ -41,7 +41,7 @@ Every assurance engagement must exhibit the following five fundamental elements:
 #### 1.3 Formal Definition and Overall Objectives of a Financial Statement Audit
 > [!info] Key Definition
 >
-> As defined by the American Accounting Association (AAA) and codified in ISA 200 / AU-C 200, **financial statement auditing** is a systematic process of objectively obtaining and evaluating evidence regarding assertions about economic actions and events to ascertain the degree of correspondence between those assertions and established criteria, and communicating the results to interested users.
+> As defined by the American Accounting Association $AAA$ and codified in ISA 200 / AU-C 200, **financial statement auditing** is a systematic process of objectively obtaining and evaluating evidence regarding assertions about economic actions and events to ascertain the degree of correspondence between those assertions and established criteria, and communicating the results to interested users.
 
 Under **ISA 200 (Overall Objectives of the Independent Auditor)**, the overall objectives of the auditor are:
 1. To obtain **reasonable assurance** about whether the financial statements as a whole are free from material misstatement, whether due to fraud or error, thereby enabling the auditor to express an opinion on whether the financial statements are prepared, in all material respects, in accordance with an applicable financial reporting framework (e.g., IFRS or GAAP).
@@ -78,7 +78,7 @@ Where:
 - $R_b$ = **Business / Credit risk premium** (the risk that the borrower will default due to economic downturns, industry conditions, or poor management decisions).
 - $R_i$ = **Information risk premium** (the risk that the financial statements used to evaluate the borrower's creditworthiness contain material misstatements).
 
-When an independent audit is performed, information risk ($R_i$) is significantly reduced toward zero ($R_i \to 0$), thereby directly reducing the total required rate of return or cost of capital $R$:
+When an independent audit is performed, information risk $$R_i$$ is significantly reduced toward zero $$R_i \to 0$$, thereby directly reducing the total required rate of return or cost of capital $R$:
 
 > [!quote] Formula & Derivation
 >
@@ -115,7 +115,7 @@ mindmap
 | **Primary Scope** | Historical Financial Statements | Specific written assertions or subject matter | Broad financial and non-financial data/systems |
 | **Established Criteria** | Applicable Financial Reporting Framework (IFRS / US GAAP) | Suitable criteria (e.g., contract terms, regulatory standards) | Broad criteria or user-defined benchmarks |
 | **Nature of Output** | Formal Audit Report expressing an opinion on fair presentation | Attestation Report (Examination, Review, or AUP) | Written or oral advisory report on information quality |
-| **Level of Assurance** | Reasonable Assurance (High) | Reasonable, Limited, or None (AUP) | Varies (often customized per user needs) |
+| **Level of Assurance** | Reasonable Assurance (High) | Reasonable, Limited, or None $AUP$ | Varies (often customized per user needs) |
 
 #### 3.3 Levels of Assurance Comparison
 1. **Reasonable Assurance (High, Positive Form of Conclusion)**:
@@ -123,7 +123,7 @@ mindmap
    - **Form of Wording**: *"In our opinion, the financial statements present fairly, in all material respects..."*
    - Requires extensive testing (understanding entity, risk assessment, tests of controls, substantive procedures).
 2. **Limited Assurance (Moderate/Meaningful, Negative Form of Conclusion)**:
-   - Obtained in review engagements (e.g., ISRE 2400 / ISRE 2410).
+   - Obtained in review engagements $e.g., ISRE 2400 / ISRE 2410$.
    - **Form of Wording**: *"Based on our review, nothing has come to our attention that causes us to believe that these financial statements do not present fairly..."*
    - Procedures are primarily restricted to inquiry and analytical procedures.
 3. **No Assurance (Agreed-Upon Procedures / Compilations)**:
@@ -159,10 +159,10 @@ mindmap
 
 **Mechanisms to Bridge the Gap**:
 - Clear, standardized wording in **Audit Engagement Letters** (ISA 210) defining management vs. auditor responsibilities.
-- Expanded **Auditor's Reports** (ISA 700 / PCAOB AS 3101) detailing the scope of the audit, management's and auditor's responsibilities, and Key Audit Matters (KAMs) / Critical Audit Matters (CAMs).
+- Expanded **Auditor's Reports** $ISA 700 / PCAOB AS 3101$ detailing the scope of the audit, management's and auditor's responsibilities, and Key Audit Matters (KAMs) / Critical Audit Matters (CAMs).
 
 ---
-### 5. Generally Accepted Auditing Standards (GAAS) & Professional Framework
+### 5. Generally Accepted Auditing Standards $GAAS$ & Professional Framework
 #### 5.1 The Principles Underlying an Audit (AICPA / IAASB Alignment)
 The traditional 10 GAAS (General, Fieldwork, Reporting standards) have been modernized into the **Principles Underlying an Audit Conducted in Accordance with GAAS** (aligned with ISA 200):
 1. **Purpose and Premise of an Audit**:
@@ -176,7 +176,7 @@ The traditional 10 GAAS (General, Fieldwork, Reporting standards) have been mode
    - Obtain **reasonable assurance** about whether financial statements are free of material misstatement.
    - Plan work and properly supervise assistants.
    - Determine and apply appropriate **materiality levels**.
-   - Identify and assess **risks of material misstatement (RMM)** based on an understanding of the entity, its environment, and internal control.
+   - Identify and assess **risks of material misstatement $RMM$** based on an understanding of the entity, its environment, and internal control.
    - Obtain **sufficient appropriate audit evidence** in response to assessed risks.
 4. **Reporting**:
    - Express a written opinion based on evaluation of audit evidence obtained, or state that an opinion cannot be expressed.
@@ -189,16 +189,16 @@ The traditional 10 GAAS (General, Fieldwork, Reporting standards) have been mode
   - Essential in establishing materiality, evaluating risk, determining sample sizes, assessing management estimates, and forming audit conclusions.
 
 ---
-### 6. Emerging Horizons: Sustainability Assurance & Audit Data Analytics (ADA)
+### 6. Emerging Horizons: Sustainability Assurance & Audit Data Analytics $ADA$
 #### 6.1 Sustainability and ESG Assurance
-1. **Growing Global Demand**: Stakeholders demand independent verification of corporate Environmental, Social, and Governance (ESG) disclosures, carbon emissions, and climate-related financial risks.
+1. **Growing Global Demand**: Stakeholders demand independent verification of corporate Environmental, Social, and Governance $ESG$ disclosures, carbon emissions, and climate-related financial risks.
 2. **Regulatory & Framework Developments**:
-   - **International Sustainability Standards Board (ISSB)**: Issued **IFRS S1** (General Requirements for Disclosure of Sustainability-related Financial Information) and **IFRS S2** (Climate-related Disclosures).
-   - **Task Force on Climate-related Financial Disclosures (TCFD)**: Organizes disclosures around 4 pillars: Governance, Strategy, Risk Management, and Metrics & Targets.
+   - **International Sustainability Standards Board $ISSB$**: Issued **IFRS S1** (General Requirements for Disclosure of Sustainability-related Financial Information) and **IFRS S2** (Climate-related Disclosures).
+   - **Task Force on Climate-related Financial Disclosures $TCFD$**: Organizes disclosures around 4 pillars: Governance, Strategy, Risk Management, and Metrics & Targets.
    - **ISSA 5000 (General Requirements for Sustainability Assurance Engagements)**: The IAASB's overarching standard designed for both limited and reasonable sustainability assurance engagements.
-#### 6.2 Audit Data Analytics (ADA) and Financial Technology
+#### 6.2 Audit Data Analytics $ADA$ and Financial Technology
 1. > [!info] Key Definition
-   > **Audit Data Analytics (ADA)** is the science and art of discovering and analyzing patterns, deviations, inconsistencies, and extracting other useful information in data underlying or related to the subject matter of an audit through analysis, modeling, and visualization.
+   > **Audit Data Analytics $ADA$** is the science and art of discovering and analyzing patterns, deviations, inconsistencies, and extracting other useful information in data underlying or related to the subject matter of an audit through analysis, modeling, and visualization.
 2. **Impact on Audit Methodology**:
    - Enables 100% population testing rather than relying solely on traditional sampling.
    - Enhances risk identification through automated anomaly detection, trend visualizations, and 3-way matching of transactions (Orders, Goods Receipts, Invoices).
@@ -210,9 +210,9 @@ The traditional 10 GAAS (General, Fieldwork, Reporting standards) have been mode
 > #### Scenario: Cost of Capital & Sample Risk Assessment
 > **Company XYZ** is seeking a $\$10,000,000$ bank loan. The bank evaluates the borrowing rate based on the risk breakdown formula:
 > $$R = R_f + R_b + R_i$$
-> - Risk-free rate ($R_f$) = $4.0\%$
-> - Business risk premium ($R_b$) = $3.5\%$
-> - Information risk premium without audit ($R_i$) = $3.0\%$
+> - Risk-free rate $$R_f$$ = $4.0\%$
+> - Business risk premium $$R_b$$ = $3.5\%$
+> - Information risk premium without audit $$R_i$$ = $3.0\%$
 > **Calculations**:
 > 1. **Borrowing Rate Without Audit**:
 >    $$R_{\text{unaudited}} = 4.0\% + 3.5\% + 3.0\% = 10.5\%$$

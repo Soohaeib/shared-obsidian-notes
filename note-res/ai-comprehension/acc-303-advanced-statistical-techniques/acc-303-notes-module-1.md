@@ -5,7 +5,7 @@
 > - **Course:** ACC 303 Advanced Statistical Techniques
 > - **Module:** Module 1: Probability Foundations & Sampling Theory
 > - **Target Reading:** Lind, Marchal & Wathen (18e) Ch. 1 & 8; Kothari (2e) Ch. 1 & 4; Gujarati & Porter (5e) App. A (A.1–A.6)
-> - **Syllabus Focus:** Population vs. sample, census vs. sample survey, qualitative vs. quantitative variables, 4 levels of measurement, probability & non-probability sampling designs (SRS, Systematic, Stratified Neyman allocation, Cluster), sampling vs. non-sampling errors, standard error of the mean, Finite Population Correction (FPC), and Central Limit Theorem (CLT).
+> - **Syllabus Focus:** Population vs. sample, census vs. sample survey, qualitative vs. quantitative variables, 4 levels of measurement, probability & non-probability sampling designs (SRS, Systematic, Stratified Neyman allocation, Cluster), sampling vs. non-sampling errors, standard error of the mean, Finite Population Correction $FPC$, and Central Limit Theorem $CLT$.
 
 ---
 
@@ -28,7 +28,7 @@ Statistical methods are formally bifurcated into two primary branches based on r
   * *Scope*: Confined strictly to the observed dataset; no probabilistic conclusions are extended to unobserved entities.
 
 * **Inferential Statistics**: The body of statistical methods used to draw inferences, conclusions, or estimates about unknown population parameters based strictly on sample statistics.
-  * *Primary Tools*: Probability distributions, point and interval estimation, parametric and non-parametric hypothesis testing, Analysis of Variance (ANOVA), and regression analysis.
+  * *Primary Tools*: Probability distributions, point and interval estimation, parametric and non-parametric hypothesis testing, Analysis of Variance $ANOVA$, and regression analysis.
   * *Scope*: Evaluates risks and uncertainty by applying probability theory to quantify the margin of error (sampling error) inherent in generalizing from a sample to an entire population.
 
 ---
@@ -40,7 +40,7 @@ To conduct empirical research, the domain of inquiry must be clearly conceptuali
 | :--- | :--- | :--- |
 | **Definition** | The complete set of all individuals, objects, or items possessing common characteristics under study. | A subset or portion of the population selected for empirical analysis. |
 | **Size Symbol** | $N$ (Population size) | $n$ (Sample size) |
-| **Numerical Measure** | **Parameter**: Fixed, unknown summary value (e.g., Mean $\mu$, Standard Deviation $\sigma$, Proportion $\pi$). | **Statistic**: Random variable computed from sample data (e.g., Mean $\bar{X}$, Std Dev $s$, Proportion $p$). |
+| **Numerical Measure** | **Parameter**: Fixed, unknown summary value $e.g., Mean $\mu$, Standard Deviation $\sigma$, Proportion $\pi$$. | **Statistic**: Random variable computed from sample data $e.g., Mean $\bar{X}$, Std Dev $s$, Proportion $p$$. |
 | **Data Collection** | **Census**: Complete enumeration of every element. | **Sample Survey**: Investigation of the selected sample units. |
 
 * **Methodological Trade-offs**:
@@ -77,7 +77,7 @@ The mathematical level of measurement determines the appropriate statistical too
 
 | **Scale Level** | **Characteristics** | **Mathematical Operations** | **Permissible Statistics** | **Examples** |
 | :--- | :--- | :--- | :--- | :--- |
-| **1. Nominal** | Categories only; labels or names. No natural order or ranking. | Counting frequencies only. $=$ or $\neq$ | Mode, Chi-Square ($\chi^2$), Contingency Coefficient. | Gender, Eye color, Jersey numbers, Religion. |
+| **1. Nominal** | Categories only; labels or names. No natural order or ranking. | Counting frequencies only. $=$ or $\neq$ | Mode, Chi-Square $$\chi^2$$, Contingency Coefficient. | Gender, Eye color, Jersey numbers, Religion. |
 | **2. Ordinal** | Relative ranking or rating. Distances between ranks unknown. | Order comparison. $>$ or $<$ | Median, Percentiles, Spearman Rank Correlation. | Class rank, Likert scale, Bond ratings (AAA, AA, A). |
 | **3. Interval** | Equal distances between values. No natural zero (zero is arbitrary). | Addition, Subtraction. $+$ or $-$ | Mean, Std Dev, Variance, $t$-test, $F$-test, Pearson $r$. | Fahrenheit/Celsius temp, SAT scores, Dress size. |
 | **4. Ratio** | Equal intervals PLUS absolute zero. Absence of attribute at zero. | All arithmetic operations. $\times$ and $\div$ | Geometric Mean, Coefficient of Variation, All advanced econometrics. | Monthly income, Distance, Weight, Production units. |
@@ -128,7 +128,7 @@ Under non-probability sampling, elements do not have a known or equal probabilit
 ##### B. Probability Sampling Designs
 Every element in the population has a known, non-zero probability of being included in the sample, ensuring unbiased estimation and allowing formal mathematical calculation of sampling error.
 
-1. **Simple Random Sampling (SRS)**:
+1. **Simple Random Sampling $SRS$**:
    * Each possible sample combination of size $n$ from a finite population $N$ has an equal probability of selection:
      $$P(\text{Sample}) = \frac{1}{\binom{N}{n}} = \frac{1}{\frac{N!}{n!(N-n)!}}$$
    * Implemented using lottery draws or computerized random number generators (e.g., Tippett's random number tables).
@@ -141,10 +141,10 @@ Every element in the population has a known, non-zero probability of being inclu
    > If the sampling frame possesses a hidden periodic structure or cycle that matches $k$, the sample will suffer from severe systematic bias.
 
 3. **Stratified Random Sampling**:
-   * Used when a population is non-homogeneous. The population $N$ is divided into non-overlapping, internally homogeneous subgroups called **strata** ($N_1, N_2, \dots, N_k$). Independent simple random samples are drawn from each stratum.
+   * Used when a population is non-homogeneous. The population $N$ is divided into non-overlapping, internally homogeneous subgroups called **strata** $$N_1, N_2, \dots, N_k$$. Independent simple random samples are drawn from each stratum.
    * **Proportional Allocation**: Stratum sample size $n_i$ is directly proportional to stratum population size $N_i$:
      $$n_i = n \cdot \left(\frac{N_i}{N}\right)$$
-   * **Optimum (Neyman) Allocation**: Accounts for differences in both stratum size ($N_i$) and stratum variability ($\sigma_i$). Stratum sample size $n_i$ is computed as:
+   * **Optimum (Neyman) Allocation**: Accounts for differences in both stratum size $$N_i$$ and stratum variability $$\sigma_i$$. Stratum sample size $n_i$ is computed as:
      $$n_i = n \cdot \frac{N_i \sigma_i}{\sum_{j=1}^k N_j \sigma_j}$$
      *(Allocates larger sample sizes to larger and more variable strata, minimizing the variance of the sample estimator for a fixed total sample size).*
 
@@ -154,7 +154,7 @@ Every element in the population has a known, non-zero probability of being inclu
 
 5. **Area Sampling**: A primary form of cluster sampling where clusters are defined by geographical subdivisions (e.g., counties, census tracts).
 
-6. **Multi-Stage Sampling**: Sequential random sampling across hierarchical levels in large-scale national surveys (e.g., Primary Stage: States $\rightarrow$ Secondary Stage: Districts $\rightarrow$ Tertiary Stage: Towns $\rightarrow$ Final Stage: Households).
+6. **Multi-Stage Sampling**: Sequential random sampling across hierarchical levels in large-scale national surveys $e.g., Primary Stage: States $\rightarrow$ Secondary Stage: Districts $\rightarrow$ Tertiary Stage: Towns $\rightarrow$ Final Stage: Households$.
 
 7. **Sequential Sampling**: Sample size $n$ is not fixed prior to the survey; items are drawn sequentially until cumulative evidence satisfies a statistical decision rule under statistical quality control.
 
@@ -163,7 +163,7 @@ Every element in the population has a known, non-zero probability of being inclu
 ### 1.3 Sampling Errors, Standard Error, and Central Limit Theorem
 
 #### 1. Sampling Error vs. Non-Sampling Error
-* **Sampling Error**: The random variation or difference between a sample statistic ($\bar{X}$) and the true population parameter ($\mu$):
+* **Sampling Error**: The random variation or difference between a sample statistic $$\bar{X}$$ and the true population parameter $$\mu$$:
   $$\text{Sampling Error} = \bar{X} - \mu$$
   Sampling errors occur purely due to chance. The expected value of sampling error is zero. As sample size $n$ increases, sampling error decreases at the rate of $\frac{1}{\sqrt{n}}$.
 
@@ -172,21 +172,21 @@ Every element in the population has a known, non-zero probability of being inclu
 ---
 
 #### 2. The Sampling Distribution of the Sample Mean
-The **sampling distribution of the sample mean** is a probability distribution consisting of all possible sample means ($\bar{X}$) calculated from all possible random samples of a specified size $n$ drawn from a given population $N$.
+The **sampling distribution of the sample mean** is a probability distribution consisting of all possible sample means $$\bar{X}$$ calculated from all possible random samples of a specified size $n$ drawn from a given population $N$.
 
 ##### Mathematical Properties of the Sampling Distribution:
-1. **Expected Value (Unbiasedness)**: The mean of the sampling distribution of sample means ($\mu_{\bar{x}}$) is strictly equal to the true population mean ($\mu$):
+1. **Expected Value (Unbiasedness)**: The mean of the sampling distribution of sample means $$\mu_{\bar{x}}$$ is strictly equal to the true population mean $$\mu$$:
    $$\mu_{\bar{x}} = E(\bar{X}) = \mu$$
 
-2. **Standard Error of the Mean ($\sigma_{\bar{x}}$)**: The standard deviation of the sampling distribution of sample means, measuring the dispersion of sample estimates around the population mean:
+2. **Standard Error of the Mean $$\sigma_{\bar{x}}$$**: The standard deviation of the sampling distribution of sample means, measuring the dispersion of sample estimates around the population mean:
    $$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} \quad \text{(for infinite populations or sampling with replacement)}$$
 
 ---
 
-#### 3. Finite Population Correction (FPC) Factor
-When sampling is conducted **without replacement** from a finite population of size $N$, and the sample size $n$ constitutes more than $5\%$ of the population ($\frac{n}{N} > 0.05$), the standard error formula must be multiplied by the Finite Population Correction (FPC) factor:
+#### 3. Finite Population Correction $FPC$ Factor
+When sampling is conducted **without replacement** from a finite population of size $N$, and the sample size $n$ constitutes more than $5\%$ of the population $$\frac{n}{N} > 0.05$$, the standard error formula must be multiplied by the Finite Population Correction $FPC$ factor:
 
-> [!quote] Finite Population Correction (FPC)
+> [!quote] Finite Population Correction $FPC$
 >
 > $$\text{FPC} = \sqrt{\frac{N - n}{N - 1}}$$
 > $$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} \cdot \sqrt{\frac{N - n}{N - 1}}$$
@@ -195,17 +195,17 @@ When sampling is conducted **without replacement** from a finite population of s
 
 ---
 
-#### 4. The Central Limit Theorem (CLT)
+#### 4. The Central Limit Theorem $CLT$
 > [!info] Fundamental Theorem: The Central Limit Theorem
 >
 > The Central Limit Theorem is the foundational theorem of inferential statistics and classical econometrics.
 > 
-> **Statement**: If random samples of size $n$ are selected from **any** population possessing a finite mean $\mu$ and a finite variance $\sigma^2$, as the sample size $n$ increases ($n \ge 30$), the sampling distribution of the sample mean $\bar{X}$ approaches a **normal distribution** with mean $\mu$ and variance $\frac{\sigma^2}{n}$, regardless of the structural shape of the underlying population probability distribution.
+> **Statement**: If random samples of size $n$ are selected from **any** population possessing a finite mean $\mu$ and a finite variance $\sigma^2$, as the sample size $n$ increases $$n \ge 30$$, the sampling distribution of the sample mean $\bar{X}$ approaches a **normal distribution** with mean $\mu$ and variance $\frac{\sigma^2}{n}$, regardless of the structural shape of the underlying population probability distribution.
 > 
 > $$\bar{X} \xrightarrow{d} N\left(\mu, \; \frac{\sigma^2}{n}\right) \quad \text{as } n \to \infty$$
 
 ##### Standard Normal Transformation ($Z$-score) for Sample Means:
-Using the CLT, any sample mean $\bar{X}$ from a large sample ($n \ge 30$) can be standardized into a standard normal random variable $Z \sim N(0,1)$:
+Using the CLT, any sample mean $\bar{X}$ from a large sample $$n \ge 30$$ can be standardized into a standard normal random variable $Z \sim N(0,1)$:
 
 $$Z = \frac{\bar{X} - \mu}{\sigma_{\bar{x}}} = \frac{\bar{X} - \mu}{\frac{\sigma}{\sqrt{n}}}$$
 
@@ -223,7 +223,7 @@ $$Z = \frac{\bar{X} - \mu}{\sigma_{\bar{x}}} = \frac{\bar{X} - \mu}{\frac{\sigma
 
 ---
 
-#### 2. Probability Density Functions (PDF)
+#### 2. Probability Density Functions $PDF$
 
 ##### A. Discrete Random Variable
 A random variable $X$ taking distinct values $x_1, x_2, \dots$ with discrete PDF $f(x) = P(X = x)$:
@@ -323,8 +323,8 @@ $$\rho = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}, \qquad -1 \le \rho \le 1$$
 > * Stratum 3 (Small-cap): $N_3 = 5,000$, $\sigma_3 = 10$
 > 
 > **Required**:
-> 1. Compute the stratum sample sizes ($n_1, n_2, n_3$) under **Proportional Allocation**.
-> 2. Compute the stratum sample sizes ($n_1, n_2, n_3$) under **Optimum (Neyman) Allocation**.
+> 1. Compute the stratum sample sizes $n_1, n_2, n_3$ under **Proportional Allocation**.
+> 2. Compute the stratum sample sizes $n_1, n_2, n_3$ under **Optimum (Neyman) Allocation**.
 > 3. Provide the theoretical justification for why Neyman allocation differs from Proportional allocation.
 > 
 > ---
@@ -346,7 +346,7 @@ $$\rho = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}, \qquad -1 \le \rho \le 1$$
 > ---
 > 
 > **Part 2: Optimum (Neyman) Allocation**
-> Under Neyman allocation, the sample size allocated to stratum $i$ is proportional to the product of stratum population size ($N_i$) and stratum standard deviation ($\sigma_i$):
+> Under Neyman allocation, the sample size allocated to stratum $i$ is proportional to the product of stratum population size $N_i$ and stratum standard deviation $\sigma_i$:
 > $$n_i = n \cdot \frac{N_i \sigma_i}{\sum_{j=1}^3 N_j \sigma_j}$$
 > 
 > * **Step 1: Compute $N_i \sigma_i$ for each stratum**:
@@ -367,7 +367,7 @@ $$\rho = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}, \qquad -1 \le \rho \le 1$$
 > ---
 > 
 > **Part 3: Theoretical Justification**
-> Proportional allocation assigns sample size purely based on stratum size, ignoring internal variation. Neyman optimum allocation assigns a significantly larger sample size to Stratum 1 ($n_1 = 41$ vs $24$) because Stratum 1 exhibits much higher internal variability ($\sigma_1 = 25$ vs $\sigma_3 = 10$). By taking larger samples from more variable strata, Neyman allocation minimizes the overall variance of the stratified sample mean estimator $V(\bar{X}_{\text{st}})$ for a fixed total sample size $n$.
+> Proportional allocation assigns sample size purely based on stratum size, ignoring internal variation. Neyman optimum allocation assigns a significantly larger sample size to Stratum 1 $n_1 = 41$ vs $24$ because Stratum 1 exhibits much higher internal variability $\sigma_1 = 25$ vs $\sigma_3 = 10$. By taking larger samples from more variable strata, Neyman allocation minimizes the overall variance of the stratified sample mean estimator $V(\bar{X}_{\text{st}})$ for a fixed total sample size $n$.
 
 ---
 
@@ -377,7 +377,7 @@ $$\rho = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}, \qquad -1 \le \rho \le 1$$
 > 
 > **Required**:
 > 1. Describe the shape of the sampling distribution of the sample mean $\bar{X}$ and state the governing statistical theorem.
-> 2. Calculate the standard error of the sample mean ($\sigma_{\bar{x}}$).
+> 2. Calculate the standard error of the sample mean $\sigma_{\bar{x}}$.
 > 3. Compute the probability that the sample mean maintenance cost $\bar{X}$ falls between $\$14,000$ and $\$15,300$.
 > 4. Compute the probability that the sampling error $(\bar{X} - \mu)$ exceeds $\$500$ in absolute magnitude.
 > 
@@ -386,7 +386,7 @@ $$\rho = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}, \qquad -1 \le \rho \le 1$$
 > ##### Solution Walkthrough:
 > 
 > **Part 1: Shape of the Sampling Distribution**
-> Although the underlying population distribution is positively skewed, the sample size $n = 64$ exceeds 30 ($n \ge 30$). By the **Central Limit Theorem (CLT)**, the sampling distribution of the sample mean $\bar{X}$ is approximately normal:
+> Although the underlying population distribution is positively skewed, the sample size $n = 64$ exceeds 30 $$n \ge 30$$. By the **Central Limit Theorem $CLT$**, the sampling distribution of the sample mean $\bar{X}$ is approximately normal:
 > $$\bar{X} \sim N\left(\mu = 14,500, \; \sigma_{\bar{x}}^2 = \frac{3,200^2}{64}\right)$$
 > 
 > ---
@@ -424,3 +424,6 @@ $$\rho = \frac{\text{Cov}(X,Y)}{\sigma_X \sigma_Y}, \qquad -1 \le \rho \le 1$$
 >   * $P(Z > +1.25) = 0.5000 - 0.3944 = 0.1056$
 >   * Combined tail probability:
 >     $$P(|\bar{X} - \mu| > 500) = 0.1056 + 0.1056 = 0.2112 \quad (21.12\%)$$
+
+
+
