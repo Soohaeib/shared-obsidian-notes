@@ -27,7 +27,6 @@ flowchart TD
     S2 -->|Financial & Risk Appraisal| S3[3. Decision Making]
     S3 -->|Authorization| S4[4. Implementation]
     S4 -->|Execution & Operation| S5[5. Follow-up & Post-Audit]
-    
     classDef steps stroke:#00a3cc,stroke-width:2px;
     class S1,S2,S3,S4,S5 steps;
 ```
@@ -77,36 +76,35 @@ Projects are categorized into distinct administrative classes to dictate the lev
 flowchart LR
     t0["Time 0\nInitial Cash Outflow (CF_0)"] --> t1["Time 1 to N-1\nOperating Cash Flows (OCF_t)"]
     t1 --> tN["Time N\nTerminal Cash Flow (CF_N)"]
-
     classDef timeline stroke:#ffb347,stroke-width:2px;
     class t0,t1,tN timeline;
 ```
 
-#### 1. Initial Cash Outflow $$CF_0$ or $ICO$$ at $t=0$
+#### 1. Initial Cash Outflow $CF_0$ or $ICO$ at $t=0$
 The net upfront cash investment required to place a capital project into service.
 
 > [!quote] Formula & Derivation: Initial Cash Outflow
 >
 > **For Expansion Projects:**
 > $$CF_0 = - \left[ \text{Asset Purchase Price} + \text{Installation \& Freight Costs} + \Delta\text{NOWC} \right]$$
-> 
+>
 > **For Replacement Projects:**
 > $$CF_0 = - \left[ \text{Cost of New Asset} + \text{Installation} \right] + \text{After-Tax Proceeds from Old Asset} - \Delta\text{NOWC}$$
 > *Where:*
 > $$\text{After-Tax Proceeds} = \text{Gross Sale Price} - \left[ (\text{Gross Sale Price} - \text{Book Value}) \times T \right]$$
 
-#### 2. Interim Incremental Operating Cash Flows $$OCF_t$$ for $t = 1 \dots N$
+#### 2. Interim Incremental Operating Cash Flows $OCF_t$ for $t = 1 \dots N$
 The periodic after-tax cash flows generated during project operation.
 
 > [!quote] Formula & Derivation: Operating Cash Flows
 >
 > **Standard Income Statement Method:**
 > $$OCF_t = \text{EBIT}_t \times (1 - T) + \text{Depreciation}_t$$
-> 
+>
 > **Direct Cash Formula:**
 > $$OCF_t = (\Delta\text{Revenues}_t - \Delta\text{Operating Costs}_t)(1 - T) + (\Delta\text{Depreciation}_t \times T)$$
 
-#### 3. Terminal Year Cash Flow $$CF_N$$ at $t = N$
+#### 3. Terminal Year Cash Flow $CF_N$ at $t = N$
 The net cash flow realized upon project completion and windup.
 
 > [!quote] Formula & Derivation: Terminal Cash Flow
@@ -120,7 +118,7 @@ The net cash flow realized upon project completion and windup.
 ### LO 5.4: Capital Budgeting Evaluation Techniques
 
 #### 1. Payback Period $PBP$ and Discounted Payback Period $DPBP$
-* **Payback Period $PBP$:** The exact number of years required for cumulative undiscounted cash inflows to recover the initial investment cost $$CF_0$$.
+* **Payback Period $PBP$:** The exact number of years required for cumulative undiscounted cash inflows to recover the initial investment cost $CF_0$.
   > [!quote] Formula & Derivation: Payback Period
   > $$\text{PBP} = A + \frac{B}{C}$$
   > *Where $A$ is the last period with a negative cumulative cash flow, $B$ is the unrecovered cost at the start of period $A+1$, and $C$ is the total cash flow in period $A+1$.*
@@ -134,7 +132,7 @@ The net cash flow realized upon project completion and windup.
 > [!quote] Formula & Derivation: Net Present Value $NPV$
 >
 > $$\text{NPV} = \sum_{t=0}^{N} \frac{CF_t}{(1 + r)^t} = \sum_{t=1}^{N} \frac{CF_t}{(1 + r)^t} - CF_0$$
-> 
+>
 > **Decision Criteria:**
 > * *Independent Projects:* Accept if $\text{NPV} > \$0$; reject if $\text{NPV} < \$0$.
 > * *Mutually Exclusive Projects:* Accept the project with the highest positive NPV.
@@ -161,8 +159,7 @@ The net cash flow realized upon project completion and windup.
 #### 6. Economic Value Added $EVA$ Approach
 * **Formula:**
   $$\text{EVA}_t = \text{NOPAT}_t - \text{Capital Charge}_t = [\text{EBIT}_t (1 - T)] - [\text{Invested Capital}_t \times \text{WACC}]$$
-* **Project EVA:** Discounting annual EVAs at WACC yields a total value exactly equal to project NPV $$\sum \frac{\text{EVA}_t}{(1+\text{WACC})^t} = \text{NPV}$$.
-
+* **Project EVA:** Discounting annual EVAs at WACC yields a total value exactly equal to project NPV $$\sum \frac{\text{EVA}_t}{(1+\text{WACC})^t} = \text{NPV}$$
 ---
 
 ### LO 5.5: Comparing NPV and IRR Techniques
@@ -173,44 +170,32 @@ The net cash flow realized upon project completion and windup.
 * **Theoretical Superiority:** WACC is a realistic market opportunity cost rate at which capital can be raised or reinvested. Reinvestment at high IRRs is generally unrealistic in competitive markets.
 
 #### 2. NPV Profiles & Crossover Rates
-* **NPV Profile:** A plot of a project's NPV against a range of discount rates. The vertical axis intercept reflects total undiscounted net cash flows $$r = 0\%$$, and the horizontal axis intercept equals the project's IRR.
-* **Crossover Rate:** The discount rate at which the NPV profiles of two mutually exclusive projects intersect $where $\text{NPV}_A = \text{NPV}_B$$. Calculated by finding the IRR of the incremental cash flows $$\Delta CF = CF_{A,t} - CF_{B,t}$$.
-
-
+* **NPV Profile:** A plot of a project's NPV against a range of discount rates. The vertical axis intercept reflects total undiscounted net cash flows $r = 0\%$, and the horizontal axis intercept equals the project's IRR.
+* **Crossover Rate:** The discount rate at which the NPV profiles of two mutually exclusive projects intersect where $\text{NPV}_A = \text{NPV}_B$. Calculated by finding the IRR of the incremental cash flows $\Delta CF = CF_{A,t} - CF_{B,t}$.
 
 ![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg]]
 
-
-
-3. Causes of Ranking Conflicts
--
+#### 3. Causes of Ranking Conflicts
 Ranking conflicts between NPV and IRR occur for mutually exclusive projects whenever the WACC is to the left of the crossover rate. This is caused by:
 1. **Timing Differences:** Cash inflows for one project arrive early, while cash flows for the other arrive late.
 2. **Scale / Size Differences:** The upfront capital outlays of the projects differ significantly in magnitude.
+3. Non-Normal Cash Flows & Multiple IRRs
 
-4. Non-Normal Cash Flows & Multiple IRRs
--
 > [!warning] Key Exam Pitfall: Multiple IRRs
 >
 > **Normal Cash Flows:** A single cash outflow $$t=0$$ followed by a series of cash inflows (sign changes once). Yields a single unique IRR.
 > **Non-Normal Cash Flows:** Cash sign changes more than once (e.g., strip mines requiring massive environmental restoration outlays at $t=N$). According to Descartes' Rule of Signs, this yields multiple positive real roots (multiple IRRs). In such cases, standard IRR is invalid and **NPV or MIRR must be used**.
 
--
-
-LO 5.6: Evaluating Mutually Exclusive Projects with Unequal Lives
--
-
+### LO 5.6: Evaluating Mutually Exclusive Projects with Unequal Lives
 When comparing mutually exclusive, repeatable projects with significantly different operational lives, standard single-cycle NPV can give misleading results.
 
-1. Replacement Chain (Common Life) Approach
--
-* Projects are replicated over the lowest common multiple of their lives $$N_{\text{common}}$$.
+#### 1. Replacement Chain (Common Life) Approach
+* Projects are replicated over the lowest common multiple of their lives $$N_{\text{common}}$$
 * *Method:* Calculate the net present value of all cash flows across the common life horizon:
   $$\text{NPV}_{\text{chain}} = \sum_{t=1}^{R} \frac{\text{NPV}_n}{(1 + r)^{n(t-1)}}$$
   Where $n$ is project life and $R$ is the number of replications required.
 
-2. Equivalent Annual Annuity $EAA$ / Annualized NPV $ANPV$ Method
--
+#### 2. Equivalent Annual Annuity $EAA$ / Annualized NPV $ANPV$ Method
 * Converts a project's single-cycle NPV into an equivalent annual constant payment stream over its individual life $n$.
 
 > [!quote] Formula & Derivation: Equivalent Annual Annuity $EAA$
@@ -220,13 +205,9 @@ When comparing mutually exclusive, repeatable projects with significantly differ
 >    $$\text{EAA} = \frac{\text{NPV}}{\text{PVIFA}_{r, n}} = \frac{\text{NPV} \times r}{1 - (1 + r)^{-n}}$$
 > *Decision Criteria:* Select the project with the highest positive EAA.
 
--
+### LO 5.7: Risk, Uncertainty, Real Options, and Capital Rationing
+#### 1. Project Risk Analysis Tools
 
-LO 5.7: Risk, Uncertainty, Real Options, and Capital Rationing
--
-
-1. Project Risk Analysis Tools
--
 > [!quote] Formula & Derivation: Break-Even & Risk Tools
 >
 > * **Operating Break-Even Analysis:**
@@ -239,14 +220,12 @@ LO 5.7: Risk, Uncertainty, Real Options, and Capital Rationing
   $$E(\text{NPV}) = \sum P_i \times \text{NPV}_i, \quad \sigma_{\text{NPV}} = \sqrt{\sum P_i [\text{NPV}_i - E(\text{NPV})]^2}$$
 * **Monte Carlo Simulation:** Computerized statistical procedure that generates thousands of random outcomes by drawing inputs from specified probability distributions to construct a full probability distribution of project NPVs.
 
-2. Risk-Adjusted Discount Rates (RADRs)
--
+#### 2. Risk-Adjusted Discount Rates (RADRs)
 * **Concept:** Adjusts the project hurdle rate upward for projects with above-average risk and downward for projects with below-average risk:
-  $$\text{RADR}_j = R_f + \beta_j $\text{WACC} - R_f$ \quad \text{or} \quad \text{RADR}_j = R_f + \beta_j $r_m - R_f$$$
-* **Pure-Play Beta Approach:** Finding publicly traded single-product proxy firms to estimate beta $$\beta$$ for an unlisted corporate division or specialized capital project.
+  $$\text{RADR}_j = R_f + \beta_j (\text{WACC} - R_f) \quad \text{or} \quad \text{RADR}_j = R_f + \beta_j (r_m - R_f)$$
+* **Pure-Play Beta Approach:** Finding publicly traded single-product proxy firms to estimate beta $\beta$ for an unlisted corporate division or specialized capital project.
 
-3. Real Options (Managerial / Strategic Options)
--
+#### 3. Real Options (Managerial / Strategic Options)
 Opportunities embedded in real asset investments that allow managers to modify decisions in response to changing market conditions:
 $$\text{Strategic / Total Project Value} = \text{Traditional Static NPV} + \text{Value of Real Options}$$
 * **Types of Real Options:**
@@ -255,16 +234,11 @@ $$\text{Strategic / Total Project Value} = \text{Traditional Static NPV} + \text
   3. *Investment Timing Option:* The option to delay project execution until more market information is revealed.
   4. *Flexibility Option:* The ability to alter production inputs or outputs in response to price shifts.
 
-4. Capital Rationing
--
+#### 4. Capital Rationing
 * **Definition:** A corporate constraint where a fixed, limited capital budget is imposed, preventing the firm from accepting all positive NPV projects.
-* **PI Ranking Method (Single-Period Constraints):** Projects are ranked in descending order of Profitability Index $$\text{PI}$$ to select the combination that maximizes total NPV within the budget limit.
+* **PI Ranking Method (Single-Period Constraints):** Projects are ranked in descending order of Profitability Index $\text{PI}$ to select the combination that maximizes total NPV within the budget limit.
 * **NPV Combination Optimization:** Evaluates all feasible project combinations fitting within the dollar budget to select the bundle yielding the absolute maximum combined NPV.
-
--
-
-LO 5.8: High-Yield Numerical Problem Walkthroughs
--
+### LO 5.8: High-Yield Numerical Problem Walkthroughs
 
 > [!example] Problem 1: Replacement Project Cash Flows & NPV
 >
@@ -274,16 +248,16 @@ LO 5.8: High-Yield Numerical Problem Walkthroughs
 > * **Working Capital:** Requires an immediate $\$15,000$ increase in NOWC.
 > * **Operating Savings:** Pre-tax operating costs decrease by $\$50,000$/year for 3 years.
 > * **Terminal Value (Year 3):** New machine salvage value at $t=3$ is $\$20,000$. Old machine salvage value at $t=3$ would have been $\$0$. NOWC is fully recovered. Tax rate = 25%, WACC = 10%.
-> 
+>
 > **Solution Steps:**
-> 1. **Initial Outlay $$CF_0$$ at $t=0$:**
+> 1. **Initial Outlay $CF_0$ at $t=0$:**
 >    * Installed Cost = $\$150,000 + \$10,000 = \$160,000$.
 >    * Gain on Sale of Old Machine = $\$30,000 - \$22,400 = \$7,600$.
 >    * Tax on Sale = $\$7,600 \times 0.25 = \$1,900$.
 >    * After-Tax Proceeds from Old Machine = $\$30,000 - \$1,900 = \$28,100$.
 >    * $CF_0 = - \$160,000 + \$28,100 - \$15,000 = -\$146,900$.
-> 
-> 2. **Incremental Operating Cash Flows $$OCF_{1-3}$$:**
+>
+> 2. **Incremental Operating Cash Flows $OCF_{1-3}$:**
 >    * After-tax cost savings = $\$50,000 \times $1 - 0.25$ = \$37,500$.
 >    * *Year 1:*
 >      * New Depr = $\$160,000 \times 0.33 = \$52,800$.
@@ -300,15 +274,15 @@ LO 5.8: High-Yield Numerical Problem Walkthroughs
 >      * Old Depr Remaining = $\$0$.
 >      * $\Delta\text{Depreciation}_3 = \$24,000 - \$0 = \$24,000 \implies \text{Tax Shield}_3 = \$6,000$.
 >      * $OCF_3 = \$37,500 + \$6,000 = \$43,500$.
-> 
-> 3. **Terminal Cash Flow $$CF_3$$ at $t=3$:**
+>
+> 3. **Terminal Cash Flow $CF_3$ at $t=3$:**
 >    * New Machine Book Value at $t=3$ = $\$160,000 \times 0.07 = \$11,200$.
 >    * Gain on Sale = $\$20,000 - \$11,200 = \$8,800 \implies \text{Tax} = \$8,800 \times 0.25 = \$2,200$.
 >    * After-Tax Salvage Value = $\$20,000 - \$2,200 = \$17,800$.
 >    * Recovery of NOWC = $\$15,000$.
 >    * Total Non-Operating Terminal Flow = $\$17,800 + \$15,000 = \$32,800$.
 >    * Total $CF_3 = \$43,500 + \$32,800 = \$76,300$.
-> 
+>
 > 4. **NPV Calculation:**
 >    $$\text{NPV} = -146,900 + \frac{47,700}{(1.10)^1} + \frac{54,100}{(1.10)^2} + \frac{76,300}{(1.10)^3}$$
 >    $$\text{NPV} = -146,900 + 43,363.64 + 44,710.74 + 57,325.32 = \$1,499.70$$
@@ -316,20 +290,15 @@ LO 5.8: High-Yield Numerical Problem Walkthroughs
 
 > [!example] Problem 2: Unequal Lives Evaluation (EAA Approach)
 >
-> **Scenario:** Compare Project X $3-year life, $\text{NPV}_X = \$15,000$$ and Project Y $5-year life, $\text{NPV}_Y = \$22,000$$ at a WACC of 8%. Both projects are repeatable.
-> 
+> **Scenario:** Compare Project X: 3-year life, $\text{NPV}_X = \$15,000$ and Project Y: 5-year life, $\text{NPV}_Y = \$22,000$ at a WACC of 8%. Both projects are repeatable.
+>
 > **Solution Steps:**
 > 1. **Project X EAA:**
 >    $$\text{PVIFA}_{8\%, 3} = \frac{1 - (1.08)^{-3}}{0.08} = 2.5771$$
 >    $$\text{EAA}_X = \frac{\$15,000}{2.5771} = \$5,820.50$$
-> 
+>
 > 2. **Project Y EAA:**
 >    $$\text{PVIFA}_{8\%, 5} = \frac{1 - (1.08)^{-5}}{0.08} = 3.9927$$
 >    $$\text{EAA}_Y = \frac{\$22,000}{3.9927} = \$5,510.06$$
-> 
+>
 > 3. **Decision:** Choose **Project X** because its Equivalent Annual Annuity $$\text{EAA}_X = \$5,820.50$$ exceeds Project Y's $$\text{EAA}_Y = \$5,510.06$$, despite Project Y having a higher unadjusted single-cycle NPV.
-
-
-
-
-
