@@ -810,10 +810,66 @@
       if (this.sidebarGraph) this.sidebarGraph.updateFocus(relPath, this.graphMode);
     }
 
+    healListBlockquotes(text) {
+      if (!text || typeof text !== 'string') return text;
+      const lines = text.split('\n');
+      const result = [];
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        // Matches list items that are part markers alone on a line: e.g. - (c), - (a), - 1., - i.
+        const parentListMatch = line.match(/^([ \t]*[-*+]\s+(?:\([a-zA-Z0-9]+\)|[a-zA-Z0-9]+[\.\)])\s*)$/);
+
+        if (parentListMatch) {
+          result.push(line);
+          let j = i + 1;
+          // If followed immediately by an unindented blockquote line (> ...)
+          if (j < lines.length && /^[ \t]*>/.test(lines[j])) {
+            while (j < lines.length) {
+              const nextLine = lines[j];
+              // If next line is a sibling root list item with content, stop
+              if (/^[ \t]*[-*+]\s+(?:\([a-zA-Z0-9]+\)|[a-zA-Z0-9]+[\.\)])\s+[^\n]/.test(nextLine) && !nextLine.startsWith('    ')) {
+                break;
+              }
+              if (/^#{1,6}\s+/.test(nextLine) || /^---/.test(nextLine)) {
+                break;
+              }
+
+              if (/^[ \t]*>/.test(nextLine)) {
+                result.push('  ' + nextLine.trimStart());
+                j++;
+              } else if (/^[ \t]{2,}[-*+]/.test(nextLine) || /^[ \t]*[-*+]\s+[ivxlcdmIVXLCDM0-9]+[\.\)]/.test(nextLine)) {
+                result.push('  ' + nextLine.trimStart());
+                j++;
+              } else if (nextLine.trim() === '') {
+                result.push('');
+                j++;
+              } else {
+                break;
+              }
+            }
+            i = j - 1;
+          }
+          continue;
+        }
+        result.push(line);
+      }
+
+      return result.join('\n');
+    }
+
     preprocessObsidianMarkdown(text) {
       if (window.ObsidianCallouts) text = window.ObsidianCallouts.autoHealCallouts(text);
+
+      // Heal list items that have attached unindented blockquotes and sub-items (e.g. - (c) followed by > quote and - i. sublist)
+      text = this.healListBlockquotes(text);
+
       // Require whitespace later in the heading line to avoid corrupting single-token Obsidian tags (e.g. #review)
       text = text.replace(/^(#{1,6})([^ \s#\n\r].*?\s+.*)$/gm, '$1 $2');
+
+      // Un-nest 4-space or tab indented lists that follow paragraphs/headings so they do not become accidental <pre><code> blocks
+      text = text.replace(/([^\n\r])\r?\n[ \t]{4,}([-*+]|\d+[\.\)]|[a-zA-Z][\.\)])\s+/g, '$1\n\n  $2 ');
+      text = text.replace(/^([ \t]{4,})([-*+]|\d+[\.\)]|[a-zA-Z][\.\)])\s+/gm, '  $2 ');
 
       // Ensure any list items that directly follow paragraphs or other content start on their own block
       text = text.replace(/([^\n\r])\r?\n([ \t]*[-*+]\s+[^\n\r]+)/g, '$1\n\n$2');
@@ -891,6 +947,13 @@
       if (window.ObsidianWikiLinks) {
         html += window.ObsidianWikiLinks.renderFootnotesHtml();
       }
+
+      // Convert list items starting with (a), a., i., I., 1), etc. to styled sublist items without redundant bullets/hyphens
+      const sublistMarkerRegex = /<li>(\s*(?:<p>\s*)?)((?:\([a-zA-Z0-9ivxlcdmIVXLCDM]+\)|(?:[a-zA-Z]|\d+|[ivxlcdmIVXLCDM]+)[\.\)])(?:\s*[-–—]\s*)?)\s*/g;
+      html = html.replace(sublistMarkerRegex, (match, pTag, marker) => {
+        const cleanMarker = marker.trim().replace(/[-–—]$/, '').trim();
+        return `<li class="sublist-item">${pTag || ''}<span class="sublist-marker">${cleanMarker}</span> `;
+      });
 
       html = html.replace(/<h([1-6])([^>]*)id="([^"]*)"([^>]*)>/gi, (match, level, before, id, after) => {
         let cleanId = id.replace(/-?katex_(inline|block)_\d+/gi, '').replace(/-+$/, '').replace(/^-+/, '');

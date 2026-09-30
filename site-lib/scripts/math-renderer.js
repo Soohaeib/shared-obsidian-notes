@@ -148,6 +148,9 @@
       // Preprocess \cline to \hline for KaTeX
       clean = clean.replace(/\\cline\s*\{?\s*\d+\s*-\s*\d+\s*\}?/g, '\\hline');
 
+      // Strip or neutralize \renewcommand macros
+      clean = clean.replace(/\\renewcommand\{[^}]+\}\{[^}]+\}/g, '');
+
       // Preprocess \multicolumn to span columns in array
       if (clean.includes('\\multicolumn') || clean.includes('\\mc')) {
         clean = this.preprocessMulticolumn(clean);
