@@ -191,6 +191,10 @@
     extractAndTokenize(text) {
       if (!text) return text;
 
+      // 0. Protect escaped dollar signs and currency amounts before any math parsing
+      text = text.replace(/\\(\$)/g, '&#36;');
+      text = text.replace(/(?<![\$\w\\])\$(?=\s*\d)(?:\s*)(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|thousand|USD|EUR|GBP|k|m|b))?(?:\/(?:share|unit|hour|day|month|year|item|kg|lb))?)(?!\$|[a-zA-Z0-9_\^])/gi, '&#36;$1');
+
       // 1. Process line by line: Tables, inline $$ on continuous lines, and syntax heals
       const lines = text.split('\n');
       for (let i = 0; i < lines.length; i++) {
@@ -209,6 +213,9 @@
           // Single dollar math inside table cells -> render as inline math token
           line = line.replace(/(?<![\$\w\\])\$(?!\s)((?:\\\$|[^\$\n\r])+?)(?<!\s|\\)\$(?!\d)/g, (match, formula) => {
             const trimmed = formula.trim();
+            if (!trimmed || /\b(?:shares?|company|corporation|issued|authorized|dividend|par|value|cost|price|exchange|traded|sold|purchased|received|interest|note|statement|balance|total|equity|cash|allowance|receivable|payable|income|expense|revenue|amortization|method|ordinary|preference|transaction|discount|terms|gross|net|bankrupt|account|carrying|asset|liability|the|and|for|with|from|after|before|during|approximately|totaling|merchandise|recorded|prepare)\b/i.test(trimmed)) {
+              return match;
+            }
             const token = `@@KATEX_INLINE_${this.mathTokenIdx++}@@`;
             const html = this.renderExpression(trimmed, false);
             this.currentInlinesMap.set(token, html);
@@ -237,28 +244,31 @@
       text = lines.join('\n');
 
       // 2. Block math: $$ ... $$ (standalone multi-line or block math outside tables)
-      text = text.replace(/(?<!\\)\$\$([\s\S]*?)(?<!\\)\$\$/g, (match, formula) => {
+      text = text.replace(/(^|\n)([ \t]*)(?<!\\)\$\$([\s\S]*?)(?<!\\)\$\$/g, (match, prefix, indent, formula) => {
         if (/^\s*$/.test(formula) || /\n\s*#{1,6}\s+[^\n]+/.test(formula)) return match;
         const cleanFormula = formula.replace(/^[ \t]*>+[ \t]*/gm, '').trim();
         const token = `@@KATEX_BLOCK_${this.mathTokenIdx++}@@`;
         const html = this.renderExpression(cleanFormula, true);
         this.currentBlocksMap.set(token, html);
-        return `\n\n${token}\n\n`;
+        return `${prefix}\n${indent}${token}\n\n`;
       });
 
       // 3. LaTeX environments: \begin{...} ... \end{...}
-      text = text.replace(/(?<!\\)\\begin\{([a-zA-Z0-9*]+)\}([\s\S]*?)\\end\{\1\}/g, (match, env, body) => {
+      text = text.replace(/(^|\n)([ \t]*)(?<!\\)\\begin\{([a-zA-Z0-9*]+)\}([\s\S]*?)\\end\{\3\}/g, (match, prefix, indent, env, body) => {
         const full = `\\begin{${env}}${body}\\end{${env}}`;
         const cleanFormula = full.replace(/^[ \t]*>+[ \t]*/gm, '').trim();
         const token = `@@KATEX_BLOCK_${this.mathTokenIdx++}@@`;
         const html = this.renderExpression(cleanFormula, true);
         this.currentBlocksMap.set(token, html);
-        return `\n\n${token}\n\n`;
+        return `${prefix}\n${indent}${token}\n\n`;
       });
 
       // 4. Inline math: $ ... $ (Obsidian / CommonMark math spec)
       text = text.replace(/(?<![\$\w\\])\$(?!\s)((?:\\\$|[^\$\n\r])+?)(?<!\s|\\)\$(?!\d)/g, (match, formula) => {
         const trimmed = formula.trim();
+        if (!trimmed || /\b(?:shares?|company|corporation|issued|authorized|dividend|par|value|cost|price|exchange|traded|sold|purchased|received|interest|note|statement|balance|total|equity|cash|allowance|receivable|payable|income|expense|revenue|amortization|method|ordinary|preference|transaction|discount|terms|gross|net|bankrupt|account|carrying|asset|liability|the|and|for|with|from|after|before|during|approximately|totaling|merchandise|recorded|prepare)\b/i.test(trimmed)) {
+          return match;
+        }
         const token = `@@KATEX_INLINE_${this.mathTokenIdx++}@@`;
         const html = this.renderExpression(trimmed, false);
         this.currentInlinesMap.set(token, html);

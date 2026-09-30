@@ -864,20 +864,13 @@
       // Heal list items that have attached unindented blockquotes and sub-items (e.g. - (c) followed by > quote and - i. sublist)
       text = this.healListBlockquotes(text);
 
+      // Apply extended markdown preprocessor (Required/Instructions spacing, outline lists, etc.)
+      if (window.ObsidianExtendedMarkdown) {
+        text = window.ObsidianExtendedMarkdown.preprocess(text);
+      }
+
       // Require whitespace later in the heading line to avoid corrupting single-token Obsidian tags (e.g. #review)
       text = text.replace(/^(#{1,6})([^ \s#\n\r].*?\s+.*)$/gm, '$1 $2');
-
-      // Un-nest 4-space or tab indented lists that follow paragraphs/headings so they do not become accidental <pre><code> blocks
-      text = text.replace(/([^\n\r])\r?\n[ \t]{4,}([-*+]|\d+[\.\)]|[a-zA-Z][\.\)])\s+/g, '$1\n\n  $2 ');
-      text = text.replace(/^([ \t]{4,})([-*+]|\d+[\.\)]|[a-zA-Z][\.\)])\s+/gm, '  $2 ');
-
-      // Ensure any list items that directly follow paragraphs or other content start on their own block
-      text = text.replace(/([^\n\r])\r?\n([ \t]*[-*+]\s+[^\n\r]+)/g, '$1\n\n$2');
-      text = text.replace(/([^\n\r])\r?\n([ \t]*\d+[\.\)]\s+[^\n\r]+)/g, '$1\n\n$2');
-      text = text.replace(/([^\n\r])\r?\n([ \t]*[a-zA-Z][\.\)]\s+[^\n\r]+)/g, '$1\n\n$2');
-
-      // Ensure text directly following a list item starts on its own paragraph block
-      text = text.replace(/([ \t]*(?:[-*+]|\d+[\.\)]|[a-zA-Z][\.\)])\s+[^\n\r]+)\r?\n([^\s\-*+\d>#`~|][^\n\r]*)/g, '$1\n\n$2');
 
       // Ensure blockquotes and callouts following paragraphs start on their own block
       text = text.replace(/([^\n\r])\r?\n(>[ \t]*[^\n\r]+)/g, '$1\n\n$2');
@@ -909,12 +902,13 @@
         text = window.ObsidianCallouts.processCallouts(text, codeBlocksMap);
       }
 
+      // Protect currency values before math tokenization
+      text = text.replace(/\\(\$)/g, '&#36;');
+      text = text.replace(/(?<![\$\w\\])\$(?=\s*\d)(?:\s*)(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|thousand|USD|EUR|GBP|k|m|b))?(?:\/(?:share|unit|hour|day|month|year|item|kg|lb))?)(?!\$|[a-zA-Z0-9_\^])/gi, '&#36;$1');
+
       if (window.ObsidianMathRenderer) {
         text = window.ObsidianMathRenderer.extractAndTokenize(text);
       }
-
-      text = text.replace(/(?<![\$\w\\])(?:\\\$|\$)[ \t]*(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|USD|EUR|GBP|k|m|b))?)(?!\$|\w)/gi, '&#36;$1');
-      text = text.replace(/\\(\$)/g, '&#36;');
 
       if (window.ObsidianWikiLinks) {
         text = window.ObsidianWikiLinks.extractFootnotes(text);
@@ -948,12 +942,9 @@
         html += window.ObsidianWikiLinks.renderFootnotesHtml();
       }
 
-      // Convert list items starting with (a), a., i., I., 1), etc. to styled sublist items without redundant bullets/hyphens
-      const sublistMarkerRegex = /<li>(\s*(?:<p>\s*)?)((?:\([a-zA-Z0-9ivxlcdmIVXLCDM]+\)|(?:[a-zA-Z]|\d+|[ivxlcdmIVXLCDM]+)[\.\)])(?:\s*[-–—]\s*)?)\s*/g;
-      html = html.replace(sublistMarkerRegex, (match, pTag, marker) => {
-        const cleanMarker = marker.trim().replace(/[-–—]$/, '').trim();
-        return `<li class="sublist-item">${pTag || ''}<span class="sublist-marker">${cleanMarker}</span> `;
-      });
+      if (window.ObsidianExtendedMarkdown) {
+        html = window.ObsidianExtendedMarkdown.postprocess(html);
+      }
 
       html = html.replace(/<h([1-6])([^>]*)id="([^"]*)"([^>]*)>/gi, (match, level, before, id, after) => {
         let cleanId = id.replace(/-?katex_(inline|block)_\d+/gi, '').replace(/-+$/, '').replace(/^-+/, '');

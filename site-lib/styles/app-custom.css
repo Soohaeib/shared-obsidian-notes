@@ -56,7 +56,7 @@ article#note-article > h4:nth-of-type(19) {
 }
 
 /* ==========================================================================
-   Refined Sublist Markers & Alphanumeric Outlines
+   Refined Sublist Markers & Alphanumeric Outlines (Beyond-Obsidian Engine)
    Transforms - i., - ii., - (a), - 1) into clean, elegant sub-lists
    ========================================================================== */
 .markdown-rendered ul > li.sublist-item,
@@ -65,8 +65,8 @@ li.sublist-item {
   list-style-type: none !important;
   list-style: none !important;
   position: relative;
-  margin-top: 0.3em;
-  margin-bottom: 0.3em;
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
   padding-left: 0.2rem;
 }
 
@@ -86,17 +86,24 @@ li.sublist-item::marker {
   letter-spacing: -0.01em;
 }
 
-.markdown-rendered li.sublist-item > p {
+.markdown-rendered li.sublist-item > p:first-of-type {
   display: inline;
   margin: 0;
+}
+
+.markdown-rendered li.sublist-item > p + p,
+.markdown-rendered li.sublist-item > p:not(:first-of-type) {
+  display: block;
+  margin-top: 0.55em;
+  margin-bottom: 0.35em;
 }
 
 /* Proper indentation and hierarchy for sub-lists inside questions */
 .markdown-rendered li > ul,
 .markdown-rendered li > ol {
-  margin-top: 0.35em !important;
-  margin-bottom: 0.35em !important;
-  padding-left: 1.5rem !important;
+  margin-top: 0.4em !important;
+  margin-bottom: 0.4em !important;
+  padding-left: 1.6rem !important;
 }
 
 .markdown-rendered li > blockquote {
@@ -104,3 +111,114 @@ li.sublist-item::marker {
   margin-bottom: 0.45em !important;
 }
 
+/* ==========================================================================
+   Exam Question Directives & Section Headers
+   ========================================================================== */
+.markdown-rendered strong.question-label,
+strong.question-label {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.95em;
+  letter-spacing: 0.02em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  margin-right: 4px;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  vertical-align: middle;
+}
+
+/* Required directive */
+.markdown-rendered strong.question-label.label-required,
+strong.question-label.label-required {
+  color: #88c0d0;
+  background: rgba(136, 192, 208, 0.12);
+  border: 1px solid rgba(136, 192, 208, 0.3);
+}
+
+/* Instructions directive */
+.markdown-rendered strong.question-label.label-instructions,
+strong.question-label.label-instructions {
+  color: #81a1c1;
+  background: rgba(129, 161, 193, 0.12);
+  border: 1px solid rgba(129, 161, 193, 0.3);
+}
+
+/* Data directive */
+.markdown-rendered strong.question-label.label-data,
+strong.question-label.label-data {
+  color: #ebcb8b;
+  background: rgba(235, 203, 139, 0.12);
+  border: 1px solid rgba(235, 203, 139, 0.3);
+}
+
+/* Requirements directive */
+.markdown-rendered strong.question-label.label-requirements,
+strong.question-label.label-requirements {
+  color: #a3be8c;
+  background: rgba(163, 190, 140, 0.12);
+  border: 1px solid rgba(163, 190, 140, 0.3);
+}
+
+/* Scenario / Note / Case directive */
+.markdown-rendered strong.question-label.label-scenario,
+.markdown-rendered strong.question-label.label-note,
+.markdown-rendered strong.question-label.label-case {
+  color: #b48ead;
+  background: rgba(180, 142, 173, 0.12);
+  border: 1px solid rgba(180, 142, 173, 0.3);
+}
+
+/* Selected Element Direct Specificity Override */
+main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > ul:nth-of-type(10) > li:nth-of-type(4),
+main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > ul:nth-of-type(1) > li:nth-of-type(3) > p:nth-of-type(2) > strong:nth-of-type(1),
+article#note-article ul > li > p > strong.question-label {
+  margin-top: 0.35em;
+  margin-bottom: 0.35em;
+}
+
+main:nth-of-type(1) > section:nth-of-type(1) > div#note-viewport:nth-of-type(1) > div#note-container:nth-of-type(1) > article#note-article:nth-of-type(1) > ul:nth-of-type(10) > li:nth-of-type(4) > p:not(:first-of-type) {
+  display: block;
+  margin-top: 0.55em;
+  margin-bottom: 0.35em;
+}
+
+/* ==========================================================================
+   Exam Mark Badges ([03], [05], [10 Marks])
+   ========================================================================== */
+.markdown-rendered .exam-mark-badge,
+span.exam-mark-badge {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 700;
+  font-size: 0.8em;
+  line-height: 1;
+  padding: 3px 6px;
+  border-radius: 4px;
+  background: rgba(163, 190, 140, 0.15);
+  color: #a3be8c;
+  border: 1px solid rgba(163, 190, 140, 0.35);
+  margin-left: 6px;
+  letter-spacing: 0.02em;
+  user-select: none;
+  vertical-align: middle;
+}
+
+/* Light mode adjustments */
+.theme-light .markdown-rendered strong.question-label.label-required {
+  color: #2e6f85;
+  background: rgba(46, 111, 133, 0.1);
+  border-color: rgba(46, 111, 133, 0.3);
+}
+
+.theme-light .markdown-rendered strong.question-label.label-data {
+  color: #946000;
+  background: rgba(148, 96, 0, 0.1);
+  border-color: rgba(148, 96, 0, 0.3);
+}
+
+.theme-light .markdown-rendered .exam-mark-badge {
+  background: rgba(76, 122, 48, 0.12);
+  color: #3b7021;
+  border-color: rgba(76, 122, 48, 0.3);
+}
