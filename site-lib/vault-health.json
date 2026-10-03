@@ -140,7 +140,7 @@
     },
     {
       "file": "note-res/ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-1.md",
-      "line": 290,
+      "line": 291,
       "category": "LaTeX / Math",
       "severity": "error",
       "message": "Unbalanced display math delimiters: odd number (15) of '$$' markers found.",
@@ -160,7 +160,7 @@
     },
     {
       "file": "note-res/ai-comprehension/acc-302-financial-management/acc-302-notes-phase-3.md",
-      "line": 178,
+      "line": 179,
       "category": "Media Embed",
       "severity": "info",
       "message": "Normalized media path 'BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_security_market_line.svg' for the published reader.",

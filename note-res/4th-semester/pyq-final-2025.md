@@ -1,6 +1,3 @@
----
-pass: locked
----
 # Insurance and Risk Management (BCC-206)
 
 ### Question 1

@@ -10895,9 +10895,9 @@
     "5th-semester/acc-303": "ACC 303",
     "5th-semester/acc-303/pyq-acc-303.md": "PYQ ACC 303",
     "expansion-of-class-notes": "Expansion of class notes",
-    "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting.md": "Accounting Terminology in US GAAP vs. IFRS vs. Bangladesh Statutory Reporting"
+    "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting.md": "Accounting Terminology in US GAAP vs. IFRS vs. Bangladesh Statutory Reporting",
+    "materiality-analyses": "Materiality analyses",
+    "materiality-analyses/acc-302-analysis.md": "ACC 302 Analysis"
   },
-  "lockedSections": {
-    "ai-comprehension": "NOTES_CURATED"
-  }
+  "lockedSections": {}
 }

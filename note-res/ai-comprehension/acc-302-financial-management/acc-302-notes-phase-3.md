@@ -34,6 +34,7 @@ Investors are generally classified into three risk attitude profiles:
 1. **Risk Averse:** Investors who require an increase in expected return as compensation for accepting an increase in risk. Given two assets with equal expected returns, a risk-averse investor will choose the less risky one. (Financial management theory assumes investors are risk-averse on average).
 2. **Risk Neutral:** Investors who choose investments strictly based on expected returns, completely disregarding risk.
 3. **Risk Seeking:** Investors who prefer investments with greater risk, even if they offer lower expected returns (gambling behavior).
+4. **Certainty Equivalent ($CE$):** The guaranteed cash an investor accepts to be indifferent to a risky payoff. If $CE < E(V) \implies$ Risk Averse; if $CE = E(V) \implies$ Risk Neutral; if $CE > E(V) \implies$ Risk Seeking.
 
 #### 3. Probability Distributions & Stand-Alone Risk
 * **Probability ($P_i$ or $Pr_i$):** The quantitative chance that a given outcome will occur ($\sum_{i=1}^n P_i = 1.0$).

@@ -287,3 +287,4 @@ In providing decision-useful information, the **costs of providing financial inf
 | **Accrual Assumption** | Operating assumption across framework. | Explicit overarching assumption in the framework. |
 | **Reporting Entity** | Aligned primarily with legal entity definitions. | Defined as circumscribed area of business activity (does not require legal entity status). |
 
+
