@@ -244,6 +244,7 @@ In Planning, ADA enhances risk assessment by:
 > ---
 > #### Step 2: Risk Assessment & Audit Strategy Formulation
 > Based on the quantitative analytical indicators and ISA 315 understanding, the auditor identifies the following key risk areas:
+> 
 > | Identified Risk Area | Underlying Audit Risk & Assertion Impact | Overall Audit Strategy & Audit Programme Response |
 > | :--- | :--- | :--- |
 > | **1. Inventory Valuation & Obsolescence** | **High Inherent Risk**: Inventory days jumped from 72.9 to 91.3 days. Holding BDT 155m in inventory amidst declining margins suggests overstocked or slow-moving garment lines.<br>*Assertion*: **Valuation and Allocation**. | • **Strategy**: Substantive Strategy on valuation.<br>• **Programme**: Attend physical year-end count; perform test counts; inspect aged inventory schedules; test Net Realizable Value (NRV) by comparing cost to post-year-end selling prices less completion/selling costs under IAS 2. |
