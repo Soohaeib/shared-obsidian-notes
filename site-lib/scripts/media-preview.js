@@ -539,7 +539,7 @@
       // 2. Process Mermaid Diagrams
       const diagrams = article.querySelectorAll('.mermaid-diagram-container');
       diagrams.forEach((container, idx) => {
-        if (container.querySelector('.media-corner-action-btn')) return;
+        if (container.querySelector('.media-corner-action-btn') || container.querySelector('.mermaid-card-header') || container.querySelector('.mermaid-btn-expand')) return;
         const svg = container.querySelector('svg');
         if (!svg) return;
 

@@ -2,8 +2,9 @@
  * ============================================================================
  * Obsidian Dedicated Mermaid Diagram Renderer (mermaid-renderer.js)
  * ============================================================================
- * Full-featured resilient Mermaid & Mindmap parsing, multi-pass healing,
- * theme switching, and responsive vector rendering.
+ * Production-grade resilient Mermaid & Mindmap parsing, multi-pass healing,
+ * theme switching, orthogonal arrow routing, and responsive vector rendering
+ * with integrated zoom/pan controls and lightbox integration.
  */
 
 (function() {
@@ -13,6 +14,7 @@
     constructor() {
       this._loadingPromise = null;
       this._idCounter = 0;
+      this._zoomStates = new Map();
     }
 
     async ensureMermaid() {
@@ -129,6 +131,23 @@
       return res;
     }
 
+    detectDiagramType(code) {
+      if (!code) return 'FLOWCHART';
+      const clean = code.trim().toLowerCase();
+      if (/^flowchart\b|^graph\b/.test(clean)) return 'FLOWCHART';
+      if (/^mindmap\b/.test(clean)) return 'MINDMAP';
+      if (/^sequencediagram\b/.test(clean)) return 'SEQUENCE';
+      if (/^classdiagram\b/.test(clean)) return 'CLASS';
+      if (/^statediagram\b/.test(clean)) return 'STATE';
+      if (/^erdiagram\b/.test(clean)) return 'ENTITY-RELATION';
+      if (/^gantt\b/.test(clean)) return 'GANTT';
+      if (/^pie\b/.test(clean)) return 'PIE CHART';
+      if (/^gitgraph\b/.test(clean)) return 'GIT GRAPH';
+      if (/^timeline\b/.test(clean)) return 'TIMELINE';
+      if (/^architecture\b/.test(clean)) return 'ARCHITECTURE';
+      return 'DIAGRAM';
+    }
+
     escapeHtml(str) {
       return String(str || '')
         .replace(/&/g, '&amp;')
@@ -138,16 +157,73 @@
         .replace(/'/g, '&#039;');
     }
 
+    /**
+     * Initialize Mermaid with orthogonal, basis-free routing and generous padding.
+     */
     initializeMermaid(mermaid, isDark = true) {
       try {
         mermaid.initialize({
           startOnLoad: false,
           securityLevel: 'loose',
           theme: isDark ? 'dark' : 'default',
+          themeVariables: isDark ? {
+            primaryColor: '#2e3440',
+            primaryTextColor: '#eceff4',
+            primaryBorderColor: '#88c0d0',
+            lineColor: '#81a1c1',
+            secondaryColor: '#3b4252',
+            tertiaryColor: '#434c5e',
+            edgeLabelBackground: '#1e222a',
+            clusterBkg: 'rgba(46, 52, 64, 0.65)',
+            clusterBorder: '#4c566a',
+            nodeBorder: '#88c0d0',
+            mainBkg: '#2e3440'
+          } : {
+            primaryColor: '#e5e9f0',
+            primaryTextColor: '#2e3440',
+            primaryBorderColor: '#5e81ac',
+            lineColor: '#4c566a',
+            secondaryColor: '#eceff4',
+            tertiaryColor: '#d8dee9',
+            edgeLabelBackground: '#ffffff',
+            clusterBkg: 'rgba(236, 239, 244, 0.75)',
+            clusterBorder: '#d8dee9',
+            nodeBorder: '#5e81ac',
+            mainBkg: '#f8fafc'
+          },
           flowchart: {
             htmlLabels: true,
-            useMaxWidth: true,
-            curve: 'basis'
+            useMaxWidth: false,
+            curve: 'linear', // Orthogonal / basis-free routing prevents messy overlapping curves!
+            padding: 24,
+            nodeSpacing: 55,
+            rankSpacing: 65,
+            diagramPadding: 24
+          },
+          sequence: {
+            diagramMarginX: 30,
+            diagramMarginY: 25,
+            actorMargin: 50,
+            width: 150,
+            height: 50,
+            boxMargin: 15,
+            boxTextMargin: 6,
+            noteMargin: 12,
+            messageMargin: 40,
+            mirrorActors: false
+          },
+          state: {
+            padding: 24
+          },
+          er: {
+            diagramPadding: 24,
+            layoutDirection: 'TB',
+            minEntityWidth: 100,
+            minEntityHeight: 75,
+            entityPadding: 16
+          },
+          mindmap: {
+            padding: 24
           },
           fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
         });
@@ -179,6 +255,168 @@
       return false;
     }
 
+    /**
+     * Creates an interactive, responsive diagram card structure.
+     */
+    buildCardContainer(diagramId, rawCode, healedCode, typeName) {
+      const card = document.createElement('div');
+      card.className = 'mermaid-diagram-container mermaid-diagram-card';
+      card.id = `card_${diagramId}`;
+      card.dataset.mermaidCode = healedCode;
+      card.dataset.mermaidRaw = rawCode;
+      card.dataset.diagramType = typeName;
+
+      card.innerHTML = `
+        <div class="mermaid-card-header">
+          <div class="mermaid-card-meta">
+            <span class="mermaid-type-badge">${this.escapeHtml(typeName)}</span>
+          </div>
+          <div class="mermaid-card-actions">
+            <button type="button" class="mermaid-action-btn mermaid-btn-zoom-out" title="Zoom out (-)" aria-label="Zoom out">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </button>
+            <span class="mermaid-zoom-indicator">100%</span>
+            <button type="button" class="mermaid-action-btn mermaid-btn-zoom-in" title="Zoom in (+)" aria-label="Zoom in">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                <line x1="11" y1="8" x2="11" y2="14"></line>
+                <line x1="8" y1="11" x2="14" y2="11"></line>
+              </svg>
+            </button>
+            <button type="button" class="mermaid-action-btn mermaid-btn-reset" title="Reset zoom (100%)" aria-label="Reset zoom">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                <path d="M21 3v5h-5"></path>
+                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                <path d="M3 21v-5h5"></path>
+              </svg>
+            </button>
+            <div class="mermaid-action-divider"></div>
+            <button type="button" class="mermaid-action-btn mermaid-btn-copy" title="Copy Mermaid code" aria-label="Copy Mermaid code">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+            <button type="button" class="mermaid-action-btn mermaid-btn-expand" title="Open interactive zoom & pan modal" aria-label="Open interactive zoom & pan modal">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 3 21 3 21 9"></polyline>
+                <polyline points="9 21 3 21 3 15"></polyline>
+                <line x1="21" y1="3" x2="14" y2="10"></line>
+                <line x1="3" y1="21" x2="10" y2="14"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="mermaid-card-body" role="region" aria-label="Diagram canvas">
+          <div class="mermaid-viewport-container">
+            <div class="mermaid-loading-skeleton">
+              <span>Rendering vector diagram...</span>
+            </div>
+          </div>
+        </div>
+        <div class="mermaid-card-footer">
+          <span class="mermaid-hint">
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Click diagram or expand button for interactive pan & zoom modal
+          </span>
+        </div>
+      `;
+
+      return card;
+    }
+
+    /**
+     * Attaches interactive controls (Zoom, Reset, Copy, Modal trigger) to a card.
+     */
+    attachCardInteractions(card, rawCode) {
+      const zoomIndicator = card.querySelector('.mermaid-zoom-indicator');
+      const btnZoomIn = card.querySelector('.mermaid-btn-zoom-in');
+      const btnZoomOut = card.querySelector('.mermaid-btn-zoom-out');
+      const btnReset = card.querySelector('.mermaid-btn-reset');
+      const btnCopy = card.querySelector('.mermaid-btn-copy');
+      const btnExpand = card.querySelector('.mermaid-btn-expand');
+      const cardBody = card.querySelector('.mermaid-card-body');
+      const viewport = card.querySelector('.mermaid-viewport-container');
+
+      let currentZoom = 1.0;
+
+      const updateZoom = (newZoom) => {
+        currentZoom = Math.max(0.5, Math.min(3.0, newZoom));
+        if (zoomIndicator) zoomIndicator.textContent = `${Math.round(currentZoom * 100)}%`;
+        if (viewport) {
+          viewport.style.transform = `scale(${currentZoom})`;
+          viewport.style.transformOrigin = 'center top';
+        }
+      };
+
+      btnZoomIn?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateZoom(currentZoom * 1.25);
+      });
+
+      btnZoomOut?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateZoom(currentZoom / 1.25);
+      });
+
+      btnReset?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        updateZoom(1.0);
+      });
+
+      btnCopy?.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        try {
+          await navigator.clipboard.writeText(rawCode);
+          const origSvg = btnCopy.innerHTML;
+          btnCopy.innerHTML = `<span style="font-size: 10px; font-weight: bold; color: var(--green, #a3be8c);">✓</span>`;
+          btnCopy.title = 'Copied!';
+          setTimeout(() => {
+            btnCopy.innerHTML = origSvg;
+            btnCopy.title = 'Copy Mermaid code';
+          }, 2000);
+        } catch (err) {
+          console.warn('Clipboard write failed:', err);
+        }
+      });
+
+      const openModal = (e) => {
+        if (e) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+        const svgEl = card.querySelector('.mermaid-viewport-container svg');
+        if (!svgEl) return;
+        const typeName = card.dataset.diagramType || 'Diagram';
+        if (window.ObsidianMediaPreview && typeof window.ObsidianMediaPreview.open === 'function') {
+          window.ObsidianMediaPreview.open(svgEl.outerHTML, 'svg', typeName);
+        }
+      };
+
+      btnExpand?.addEventListener('click', openModal);
+
+      // Clicking on the diagram card body triggers full-screen zoom & pan modal
+      cardBody?.addEventListener('click', (e) => {
+        // Only open modal if user wasn't dragging/selecting text
+        if (window.getSelection && window.getSelection().toString()) return;
+        openModal(e);
+      });
+
+      // Cursor indicator
+      if (cardBody) {
+        cardBody.style.cursor = 'zoom-in';
+      }
+    }
+
     async renderAll(rootElement = document, isDark = true) {
       const candidates = Array.from(rootElement.querySelectorAll('pre code'));
       const diagramCodes = candidates.filter(el => this.isMermaidCodeElement(el));
@@ -200,20 +438,13 @@
 
         let rawCode = (codeEl.textContent || codeEl.innerText || '').trim();
         const healedCode = this.healMermaidCode(rawCode);
+        const typeName = this.detectDiagramType(rawCode);
 
-        const container = document.createElement('div');
-        container.className = 'mermaid-diagram-container';
-        container.dataset.mermaidCode = healedCode;
-        container.dataset.mermaidRaw = rawCode;
-        container.innerHTML = `
-          <div class="mermaid-loading-skeleton" style="padding: 20px; text-align: center; color: var(--text-muted); font-size: 0.85rem;">
-            <span>Rendering diagram...</span>
-          </div>
-        `;
+        const safeId = `mermaid_diag_${Date.now()}_${index}_${++this._idCounter}`;
+        const container = this.buildCardContainer(safeId, rawCode, healedCode, typeName);
 
         parent.replaceWith(container);
 
-        const safeId = `mermaid_diag_${Date.now()}_${index}_${++this._idCounter}`;
         let renderSuccess = false;
         let renderedSvg = '';
 
@@ -250,40 +481,56 @@
           }
         }
 
-        if (renderSuccess && renderedSvg) {
-          container.innerHTML = renderedSvg;
-          const svgEl = container.querySelector('svg');
+        const viewportContainer = container.querySelector('.mermaid-viewport-container');
+
+        if (renderSuccess && renderedSvg && viewportContainer) {
+          viewportContainer.innerHTML = renderedSvg;
+          const svgEl = viewportContainer.querySelector('svg');
           if (svgEl) {
             svgEl.style.display = 'block';
-            svgEl.style.width = '100%';
-            svgEl.style.maxWidth = '100%';
+            svgEl.style.margin = '0 auto';
+            svgEl.removeAttribute('height');
 
             if (svgEl.viewBox && svgEl.viewBox.baseVal && svgEl.viewBox.baseVal.height > 0) {
               const vb = svgEl.viewBox.baseVal;
               svgEl.style.aspectRatio = `${vb.width} / ${vb.height}`;
-              svgEl.style.height = 'auto';
+
+              // If diagram is small, center naturally without over-stretching
+              if (vb.width < 650) {
+                svgEl.style.width = '100%';
+                svgEl.style.maxWidth = `${Math.round(vb.width * 1.05)}px`;
+              } else {
+                svgEl.style.width = '100%';
+                svgEl.style.maxWidth = '100%';
+              }
+
+              // On smaller screens, prevent microscopic scaling by establishing readable minimum
+              if (vb.width > 550) {
+                viewportContainer.style.minWidth = `${Math.min(vb.width, 680)}px`;
+              }
             }
           }
+
           this.renderMathInDiagram(container);
+          this.attachCardInteractions(container, rawCode);
         } else {
-          container.innerHTML = `
-            <div class="mermaid-fallback-card" style="padding: 16px; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px dashed var(--background-modifier-border);">
-              <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--orange, #d08770); margin-bottom: 8px;">Diagram Syntax Notice</div>
-              <pre class="mermaid-raw-code" style="margin: 0; padding: 8px; font-size: 0.85rem; overflow-x: auto;"><code>${this.escapeHtml(rawCode)}</code></pre>
-            </div>
-          `;
+          const body = container.querySelector('.mermaid-card-body');
+          if (body) {
+            body.innerHTML = `
+              <div class="mermaid-fallback-card" style="padding: 16px; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px dashed var(--background-modifier-border);">
+                <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--orange, #d08770); margin-bottom: 8px;">Diagram Syntax Notice</div>
+                <pre class="mermaid-raw-code" style="margin: 0; padding: 8px; font-size: 0.85rem; overflow-x: auto;"><code>${this.escapeHtml(rawCode)}</code></pre>
+              </div>
+            `;
+          }
         }
 
         this.cleanupStrayElements(safeId);
       }
-
-      if (window.ObsidianMediaPreview && typeof window.ObsidianMediaPreview.attachCornerButtons === 'function') {
-        window.ObsidianMediaPreview.attachCornerButtons(rootElement);
-      }
     }
 
     async rethemeAll(rootElement = document, isDark = true) {
-      const containers = Array.from(rootElement.querySelectorAll('.mermaid-diagram-container'));
+      const containers = Array.from(rootElement.querySelectorAll('.mermaid-diagram-card, .mermaid-diagram-container'));
       if (containers.length === 0) return;
 
       const mermaid = await this.ensureMermaid();
@@ -296,21 +543,33 @@
         const code = container.dataset.mermaidCode || container.dataset.mermaidRaw;
         if (!code) continue;
 
+        const viewportContainer = container.querySelector('.mermaid-viewport-container');
+        if (!viewportContainer) continue;
+
         const safeId = `mermaid_retheme_${Date.now()}_${i}_${++this._idCounter}`;
         try {
           const res = await mermaid.render(safeId, code);
           const svg = typeof res === 'string' ? res : res.svg;
-          container.innerHTML = svg;
+          viewportContainer.innerHTML = svg;
 
-          const svgEl = container.querySelector('svg');
+          const svgEl = viewportContainer.querySelector('svg');
           if (svgEl) {
             svgEl.style.display = 'block';
-            svgEl.style.width = '100%';
-            svgEl.style.maxWidth = '100%';
+            svgEl.style.margin = '0 auto';
+            svgEl.removeAttribute('height');
             if (svgEl.viewBox && svgEl.viewBox.baseVal && svgEl.viewBox.baseVal.height > 0) {
               const vb = svgEl.viewBox.baseVal;
               svgEl.style.aspectRatio = `${vb.width} / ${vb.height}`;
-              svgEl.style.height = 'auto';
+              if (vb.width < 650) {
+                svgEl.style.width = '100%';
+                svgEl.style.maxWidth = `${Math.round(vb.width * 1.05)}px`;
+              } else {
+                svgEl.style.width = '100%';
+                svgEl.style.maxWidth = '100%';
+              }
+              if (vb.width > 550) {
+                viewportContainer.style.minWidth = `${Math.min(vb.width, 680)}px`;
+              }
             }
           }
           this.renderMathInDiagram(container);
@@ -319,10 +578,6 @@
         }
 
         this.cleanupStrayElements(safeId);
-      }
-
-      if (window.ObsidianMediaPreview && typeof window.ObsidianMediaPreview.attachCornerButtons === 'function') {
-        window.ObsidianMediaPreview.attachCornerButtons(rootElement);
       }
     }
 
@@ -341,7 +596,6 @@
       labelElements.forEach(el => {
         if (processedElements.has(el)) return;
         
-        // Skip parent containers if they contain matching sub-elements that will be processed
         if (el.tagName && el.tagName.toLowerCase() !== 'text' && el.querySelector && el.querySelector('.nodeLabel, .edgeLabel, text, tspan')) {
           return;
         }
@@ -361,7 +615,7 @@
           .replace(/&#39;/g, "'")
           .replace(/&#36;/g, '$');
 
-        // 1. Block environments: \begin{...}...\end{...}
+        // Block environments
         processed = processed.replace(/\\begin\{([a-zA-Z0-9*]+)\}([\s\S]*?)\\end\{\1\}/g, (match) => {
           try {
             return window.katex.renderToString(match.trim(), {
@@ -374,7 +628,7 @@
           } catch (e) { return match; }
         });
 
-        // 2. Block math: $$ ... $$ or \[ ... \]
+        // Block math
         processed = processed.replace(/(?:\$\$([\s\S]*?)\$\$|\\\[([\s\S]*?)\\\])/g, (match, f1, f2) => {
           const formula = (f1 || f2 || '').trim();
           try {
@@ -388,7 +642,7 @@
           } catch (e) { return match; }
         });
 
-        // 3. Inline math: $ ... $ or \( ... \)
+        // Inline math
         processed = processed.replace(/(?:\$([^\$\n\r]+?)\$|\\\(([\s\S]*?)\\\))/g, (match, f1, f2) => {
           const formula = (f1 || f2 || '').trim();
           try {
