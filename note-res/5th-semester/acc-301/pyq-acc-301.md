@@ -17,21 +17,22 @@
     - **[[ACC 301 2025 Exam Q1#c_iii| (iii) ]]** What is the cash realizable value of Sorter Company's accounts receivable after the write-off of the Ordonez receivable? **[04]**
 - **[[ACC 301 2025 Exam Q1#d| (d) ]]** Milner Family Importers sold goods to Tung Decorators for taka 30,000 on November 1, 2015, accepting Tung's taka 30,000, 6-month, 6% note. Prepare Milner's November 1 entry, December 31 annual adjusting entry, and May 1 entry for the collection of the note and interest. **[03]**
 - **[[ACC 301 2025 Exam Q1#e| (e) ]]** Presented below is information from Lopez Computers Incorporated.
-
     $$
-    \renewcommand{\arraystretch}{1.2}
-    \begin{array}{|l|p{10cm}|}
-    \hline
-    \text{July 1} & \text{Sold taka 30,000 of computers to Smallwood Company with terms 3/15, n/60. Lopez uses the gross method to record cash discounts.} \\
-    \hline
-    \text{July 10} & \text{Lopez received payment from Smallwood for the full amount owed from the July transactions.} \\
-    \hline
-    \text{July 17} & \text{Sold taka 250,000 in computers and peripherals to The Hernandez Store with terms of 2/10, n/30.} \\
-    \hline
-    \text{July 30} & \text{The Hernandez Store paid Lopez for its purchase of July 17.} \\
-    \hline
-    \end{array}
-    $$
+	\begin{array}{|l|l|}
+	\hline
+	\text{July 1} & \text{Sold taka 30,000 of computers to Smallwood Company with terms 3/15, n/60.} \\
+	& \text{Lopez uses the gross method to record cash discounts.} \\
+	\hline
+	\text{July 10} & \text{Lopez received payment from Smallwood for the full amount owed from} \\
+	& \text{the July transactions.} \\
+	\hline
+	\text{July 17} & \text{Sold taka 250,000 in computers and peripherals to The Hernandez Store} \\
+	& \text{with terms of 2/10, n/30.} \\
+	\hline
+	\text{July 30} & \text{The Hernandez Store paid Lopez for its purchase of July 17.} \\
+	\hline
+	\end{array}
+	$$
 
     **Required:** Prepare the necessary journal entries for Lopez Computers. **[03]**
 
@@ -44,23 +45,33 @@
     Assuming Restin plc uses the net method to account for cash discounts. Prepare the required journal entries for Restin plc. **[03]**
 - **[[ACC 301 2024 Exam Q1#d| (d) ]]** Milner Family Importers sold goods to Tung Decorators for $30,000 on November 1, 2019, accepting Tung's $30,000, 6-month, 6% note. Prepare Milner's November 1 entry, December 31 annual adjusting entry, and May 1, 2020, entry for the collection of the note and interest. **[03]**
 - **[[ACC 301 2024 Exam Q1#e| (e) ]]** Presented below is information related to Sanford SA.
-
     $$
-    \renewcommand{\arraystretch}{1.2}
-    \begin{array}{|l|p{10cm}|}
-    \hline
-    \text{July 1} & \text{Sanford SA sold to Legler Co. merchandise having a sales price of \$10,000 with terms 2/10, net/60. Sanford records its sales and receivables net.} \\
-    \hline
-    \text{July 5} & \text{Accounts receivable of \$12,000 (gross) are factored with Rothchild Credit Corp. without guarantee at a financing charge of 9\%. Cash is received for the proceeds; collections are handled by the finance company. (These accounts were all past the discount period.)} \\
-    \hline
-    \text{July 9} & \text{Specific accounts receivable of \$9,000 (gross) are pledged to Rather Credit Corp. as security for a loan of \$6,000 at a finance charge of 6\% of the amount of the loan. The finance company will make the collections. (All the accounts receivable are past the discount period.)} \\
-    \hline
-    \text{Dec 29} & \text{Legler Co. notifies Sanford that it is bankrupt and will pay only 10\% of its account. Give the entry to write off the uncollectible balance using the allowance method. (Note: First record the increase in the receivable on July 11 when the discount period passed.)} \\
-    \hline
-    \text{Dec 31} & \text{Sanford conducts an individual assessment of a note receivable with a carrying value of \$350,000. Sanford determines the present value of the note is \$275,000.} \\
-    \hline
-    \end{array}
-    $$
+\begin{array}{|l|l|}
+\hline
+\text{July 1} & \text{Sanford SA sold to Legler Co. merchandise having a sales price of } \\
+& \text{\$10,000 with terms 2/10, net/60. Sanford records its sales and receivables net.} \\
+\hline
+\text{July 5} & \text{Accounts receivable of \$12,000 (gross) are factored with Rothchild Credit} \\
+& \text{Corp. without guarantee at a financing charge of 9\%. Cash is received for} \\
+& \text{the proceeds; collections are handled by the finance company.} \\
+& \text{(These accounts were all past the discount period.)} \\
+\hline
+\text{July 9} & \text{Specific accounts receivable of \$9,000 (gross) are pledged to Rather Credit} \\
+& \text{Corp. as security for a loan of \$6,000 at a finance charge of 6\% of the amount} \\
+& \text{of the loan. The finance company will make the collections.} \\
+& \text{(All the accounts receivable are past the discount period.)} \\
+\hline
+\text{Dec 29} & \text{Legler Co. notifies Sanford that it is bankrupt and will pay only 10\% of its} \\
+& \text{account. Give the entry to write off the uncollectible balance using the} \\
+& \text{allowance method. (Note: First record the increase in the receivable on} \\
+& \text{July 11 when the discount period passed.)} \\
+\hline
+\text{Dec 31} & \text{Sanford conducts an individual assessment of a note receivable with a} \\
+& \text{carrying value of \$350,000. Sanford determines the present value of the} \\
+& \text{note is \$275,000.} \\
+\hline
+\end{array}
+$$
 
     **Instructions:** Prepare all necessary entries in general journal form for Sanford SA. **[05]**
 
@@ -869,6 +880,6 @@
     \end{array}
     $$
     **[05]**
-    
+
 > [!warning] OCR NOTE
 > Source image cuts off here. Requirements/Instructions for this question are missing from the physical scan.
