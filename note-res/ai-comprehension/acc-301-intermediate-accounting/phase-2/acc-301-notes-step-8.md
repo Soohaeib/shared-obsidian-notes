@@ -1,451 +1,397 @@
-# Intangible Assets & Goodwill
-
-> [!abstract] Curriculum & Syllabus Context
->
+# Intangible Assets (IAS 38, IFRS 3, IAS 36)
+> [!abstract] Curriculum & Course Context
 > - **Course:** ACC 301 Intermediate Accounting
-> - **Phase:** Phase 2: Asset Valuation & Cost Allocation
-> - **Target Reading:** Weygandt, Kieso, and Warfield, *Intermediate Accounting*, 18th Edition — **Chapter 11: Intangible Assets** (including IAS 38 & IAS 36)
-> - **Syllabus Focus:** Characteristics of intangibles, valuation of purchased vs. internally created intangibles, amortization of finite-life intangibles, two-step impairment vs. annual fair value test, major classes (patents, copyrights, trademarks, franchises), purchased goodwill calculation, goodwill impairment (ASC 350), bargain purchases, and R&D accounting (ASC 730).
+> - **Phase:** Phase 2: Asset Valuation & Accounting Measurement
+> - **Target Reading:** Kieso, Weygandt, and Warfield, *Intermediate Accounting: IFRS Edition* (3rd Edition) — Chapter 12: Intangible Assets
+> - **Applicable International Standards:**
+>   - **IAS 38:** Intangible Assets
+>   - **IFRS 3:** Business Combinations
+>   - **IAS 36:** Impairment of Assets
+> - **Syllabus Focus:** Definition and essential criteria of intangible assets, initial measurement of purchased vs internally generated intangibles, IAS 38 rules for Research and Development (R&D) costs (PIRATE criteria), contrast with US GAAP, finite vs indefinite useful lives, amortisation mechanics, IFRS 3 accounting for purchased goodwill and bargain purchases, CGU-level goodwill testing, and IAS 36 impairment testing and impairment reversals.
 
 ---
-
-### 1. Fundamental Characteristics & Initial Valuation of Intangibles
-#### 1.1 Definition & Core Characteristics
+### 1. Definition, Key Characteristics, and Initial Recognition (IAS 38)
+#### 1.1 Definition and Core Characteristics
 > [!info] Key Definition
->
-> In financial accounting under US GAAP (ASC 350), **Intangible Assets** are defined as non-monetary assets that lack physical substance and are not financial instruments.
+> Under **IAS 38 (Intangible Assets)**, an intangible asset is defined as an **identifiable non-monetary asset without physical substance**.
 
-An intangible asset possesses two primary distinguishing characteristics:
-1. **Lack of Physical Existence**: Unlike Property, Plant, and Equipment (PP&E), which can be seen, touched, and physically measured, intangible assets derive their economic value from the legal, contractual, or competitive rights and privileges granted to the holding entity.
-2. **Non-Financial Instrument Nature**: Assets such as cash, bank deposits, accounts receivable, and debt or equity investments also lack physical substance. However, financial instruments derive their value from a contractual claim to receive cash or cash equivalents in the future. Intangibles do not represent a claim to a fixed or determinable sum of money.
-
-Intangibles are expected to generate future economic benefits (cash inflows or cost savings) over multiple accounting periods and are therefore classified as **Noncurrent Assets** on the Classified Balance Sheet.
-
----
-#### 1.2 Initial Valuation: Purchased vs. Internally Created Intangibles
+To be recognised as an intangible asset on the Statement of Financial Position, an item must satisfy four fundamental criteria:
 
 ```mermaid
 flowchart TD
-    A[INITIAL VALUATION OF INTANGIBLES] --> B[PURCHASED INTANGIBLES]
-    A --> C[INTERNALLY CREATED INTANGIBLES]
-    
-    B --> B1["• Capitalize at Historical Cost<br>• Purchase Price + Transaction Costs + Direct Legal Fees<br>• Basket Purchases allocated via Relative Fair Value"]
-    
-    C --> C1["• General Rule: Expense as Incurred (ASC 730 / 350)<br>• Capitalize ONLY Direct Costs<br>  (e.g., Legal Defense, Registration/Filing Fees)"]
+    IA[Intangible Asset Definition - IAS 38] --> ID[1. Identifiability]
+    IA --> NPS[2. Lack of Physical Substance]
+    IA --> NM[3. Non-Monetary Nature]
+    IA --> CTRL[4. Control over Future Economic Benefits]
+
+    ID --> ID1[Separable: Capable of being separated/divided and sold, transferred, licensed, or rented]
+    ID --> ID2[Contractual/Legal Rights: Arises from contractual or other legal rights]
+    CTRL --> CTRL1[Power to obtain future economic benefits and restrict access of others]
 ```
 
-The valuation of an intangible asset depends fundamentally on whether it was acquired externally from a third party or developed internally by the enterprise:
-##### A. Purchased Intangible Assets
-Intangible assets acquired from external parties are capitalized at **historical cost**. Cost is measured by the cash paid or the fair value of non-cash consideration given.
+1. **Identifiability:** The asset must be clearly distinguishable from goodwill. An asset meets the identifiability criterion if it either:
+   * Is **separable**: It can be separated or divided from the entity and sold, transferred, licensed, rented, or exchanged, either individually or together with a related contract, identifiable asset, or liability; or
+   * **Arises from contractual or other legal rights**: Regardless of whether those rights are transferable or separable from the entity or from other rights and obligations.
+2. **Lack of Physical Substance:** The asset derives its value from the legal, contractual, or economic rights it confers upon the holder, rather than from any tangible physical property (unlike Property, Plant, and Equipment under IAS 16).
+3. **Non-Monetary Nature:** The asset is not held in the form of cash or assets to be received in fixed or determinable amounts of cash (unlike bank deposits or accounts receivable).
+4. **Control over Future Economic Benefits:** The entity possesses the power to obtain the future economic benefits flowing from the underlying resource (such as revenues from product sales or cost savings from operational efficiencies) and can restrict or regulate the access of third parties to those benefits.
+#### 1.2 Initial Recognition and Measurement Principles
+An intangible asset is recognised if, and only if:
+* It is **probable** that the expected future economic benefits attributable to the asset will flow to the entity; and
+* The cost of the asset can be measured **reliably**.
 
-> [!quote] Formula & Derivation: Capitalized Cost & Basket Allocations
->
-> $$ \text{Capitalized Cost} = \text{Purchase Price} + \text{Legal Fees} + \text{Filing/Registration Fees} + \text{Transaction Costs} $$
-> When a group of intangibles (or a combination of tangible and intangible assets) is purchased in a **basket purchase**, the total lump-sum acquisition cost is allocated across the individual identifiable assets based on their **relative fair values**:
-> $$ \text{Cost Allocated to Asset } i = \text{Total Lump-Sum Cost} \times \left( \frac{\text{Fair Value of Asset } i}{\sum \text{Fair Values of All Acquired Assets}} \right) $$
+The initial accounting treatment depends entirely on how the intangible asset was acquired:
 
-If an intangible is acquired in exchange for equity securities or other assets, its historical cost is measured by the **fair value of the consideration given** or the **fair value of the intangible received**, whichever is more clearly evident.
-##### B. Internally Created Intangible Assets
-Under US GAAP, costs incurred internally to create, develop, or maintain intangible assets are generally **expensed as incurred**.
-- **Theoretical Rationale**: Internal costs incurred in generating intangibles (such as brand development, internal research, customer relationships, or advertising) bear no reliable or direct relationship to the ultimate fair value or future economic benefits generated by the asset. Capitalizing internal development costs creates severe subjectivity and risks overstating balance sheet assets.
-- **Capitalizable Exceptions**: Only direct legal and administrative costs incurred in securing and perfecting the legal title of the internally created asset (such as registration fees, patent application costs, and attorney fees for successful patent defense) are capitalized as the initial cost basis of the intangible asset.
+```mermaid
+flowchart LR
+    Acq[Intangible Asset Acquisition] --> Pur[Purchased Intangibles]
+    Acq --> Int[Internally Generated Intangibles]
+
+    Pur --> PurAcct[Capitalize at Purchase Price + Directly Attributable Costs]
+    Int --> IntPhase1[Research Phase: Expense in Profit or Loss]
+    Int --> IntPhase2[Development Phase: Capitalize if ALL 6 PIRATE criteria are met]
+```
+
+**1. Purchased Intangibles**
+Intangible assets acquired separately from third parties are initially recorded at cost. Cost comprises:
+* The purchase price, including import duties and non-refundable purchase taxes, after deducting trade discounts and rebates.
+* Any directly attributable costs of preparing the asset for its intended use (for example, professional fees arising directly from bringing the asset to its working condition, and costs of testing whether the asset is functioning properly).
+
+*Exclusions from Initial Cost:* Costs of introducing a new product or service (including advertising and promotional activities), costs of conducting business in a new location or with a new class of customer, and general administrative and overhead expenditures must be expensed immediately in Profit or Loss.
+
+**2. Internally Generated Intangibles**
+> [!warning] Exam Pitfall / Exception
+> Internally generated brands, mastheads, publishing titles, customer lists, and items similar in substance must **never** be recognised as intangible assets. These items cannot be distinguished from the cost of developing the business as a whole; hence, all associated costs are expensed in Profit or Loss as incurred.
+
+For all other internally generated intangible assets, IAS 38 mandates that the entity split the generation process into two distinct operational phases: the **Research Phase** and the **Development Phase**.
+
+---
+### 2. Research and Development (R&D) Costs (IAS 38 Rules)
+#### 2.1 The Two-Phase Framework under IAS 38
+
+```mermaid
+stateDiagram-v2
+    [*] --> ResearchPhase
+    ResearchPhase --> ProfitOrLoss: Mandatory Immediate Expensing
+    ResearchPhase --> DevelopmentPhase: Transition upon meeting definition
+    DevelopmentPhase --> CheckPIRATE: Test 6 Criteria
+    CheckPIRATE --> ProfitOrLoss: Expense if ANY criterion fails
+    CheckPIRATE --> StatementOfFinancialPosition: Capitalize as Intangible Asset if ALL 6 criteria are proven
+```
+
+**1. Research Phase**
+* **Definition:** Research is original and planned investigation undertaken with the prospect of gaining new scientific or technical knowledge and understanding.
+* **Examples:** Activities aimed at obtaining new knowledge; the search for, evaluation, and final selection of applications of research findings or other knowledge; the search for alternatives for materials, devices, products, systems, or services.
+* **Mandatory Accounting Treatment:** **EXPENSE ALL** research costs immediately in Profit or Loss in the period incurred. No intangible asset arising from research (or from the research phase of an internal project) can be recognised.
+
+**2. Development Phase**
+* **Definition:** Development is the application of research findings or other knowledge to a plan or design for the production of new or substantially improved materials, devices, products, processes, systems, or services before the start of commercial production or use.
+* **Examples:** The design, construction, and testing of pre-production or pre-use prototypes and models; the design of tools, jigs, moulds, and dies involving new technology; the design, construction, and operation of a pilot plant that is not of a scale economically feasible for commercial production.
+#### 2.2 Capitalisation Criteria: The "PIRATE" Framework
+Under IAS 38, an entity must capitalise development costs as an intangible asset if, and only if, it can demonstrate ALL SIX of the following criteria (commonly remembered by the mnemonic **PIRATE**):
+
+| Mnemonic | Criteria Description | Operational Evidence Required |
+| :---: | :--- | :--- |
+| **P** | **P**robable future economic benefits | Demonstrate how the intangible asset will generate probable future economic benefits (e.g., existence of a market for the output or the usefulness of the asset internally). |
+| **I** | **I**ntention to complete | Demonstrate the firm's formal intention to complete the intangible asset and use or sell it. |
+| **R** | **R**esources available | Demonstrate the availability of adequate technical, financial, and other resources to complete the development and to use or sell the asset. |
+| **A** | **A**bility to use or sell | Demonstrate the operational ability to use or sell the completed intangible asset. |
+| **T** | **T**echnical feasibility | Demonstrate the technical feasibility of completing the intangible asset so that it will be available for use or sale. |
+| **E** | **E**xpenditure reliably measurable | Demonstrate that the expenditure attributable to the intangible asset during its development phase can be reliably measured. |
 
 > [!warning] Exam Pitfall / Exception
->
-> **Theoretical Trade-off: Relevance vs. Faithful Representation**
-> The divergent treatment of purchased versus internally created intangibles highlights the fundamental trade-off between **Relevance** and **Faithful Representation**. While internally generated brands (e.g., Coca-Cola, Apple) carry immense economic value (relevance), accounting standard-setters mandate expensing internal development because estimating the timing and magnitude of future cash flows lacks verifiability and neutrality (faithful representation).
+> **Reinstatement Prohibition:** Expenditure on an intangible item that was initially recognised as an expense in prior annual or interim financial reports **cannot be retrospectively capitalised** at a later date even if the PIRATE criteria are subsequently met.
 
----
-### 2. Amortization & Impairment Framework
-Intangible assets are categorized into two structural classes for post-acquisition accounting: **Limited-Life (Finite) Intangibles** and **Indefinite-Life Intangibles**.
+#### 2.3 Strategic Contrast: IFRS (IAS 38) vs. US GAAP
+The standardisation of R&D accounting presents a major structural point of divergence between global reporting frameworks:
 
 ```mermaid
-flowchart TD
-    A[POST-ACQUISITION ACCOUNTING MODEL] --> B[LIMITED-LIFE INTANGIBLES]
-    A --> C[INDEFINITE-LIFE INTANGIBLES]
-    
-    B --> B1["• Amortized over Useful Life<br>• Useful Life = Min(Useful, Legal)<br>• Impairment Test: 2-Step Test<br>  1. Recoverability Test<br>  2. Fair Value Loss Measure"]
-    
-    C --> C1["• NO Amortization<br>• Impairment Test: Annual or Triggering Event<br>• 1-Step Fair Value Test<br>• Optional Qualitative Assessment"]
+flowchart LR
+    RD[R&D Expenditures] --> IFRS[IAS 38 - IFRS]
+    RD --> USGAAP[ASC 730 - US GAAP]
+
+    IFRS --> IFRS_R[Research: Expense]
+    IFRS --> IFRS_D[Development: MANDATORY Capitalisation if PIRATE met]
+
+    USGAAP --> US_EXP[Expense ALMOST ALL R&D costs immediately]
 ```
 
----
-#### 2.1 Limited-Life (Finite) Intangible Assets
-##### A. Amortization Mechanics
-A limited-life intangible asset is systematically allocated to expense over its estimated **useful life**.
-
-> [!quote] Formula & Derivation: Amortization Parameters
->
-> **Useful Life Determination**:
-> $$ n = \min(\text{Estimated Useful Economic Life}, \text{Legal/Contractual Life}) $$
-> **Amortization Base**:
-> $$ \text{Amortizable Base} = \text{Historical Cost} - \text{Residual Value} $$
-> *(Residual value is presumed to be **zero**, unless there is a commitment from a third party to purchase it or a determinable active market.)*
-> **Annual Amortization Expense (Straight-Line)**:
-> $$ \text{Annual Amortization Expense} = \frac{\text{Cost} - \text{Residual Value}}{\min(\text{Useful Life}, \text{Legal Life})} $$
-
-- **Journal Entry**: Amortization expense is debited, and the intangible asset account is credited directly (a contra-asset account such as *Accumulated Amortization* is permitted but rarely used in practice).
-  $$ \begin{array}{llrr}
-  \textbf{Account Titles} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-  \hline
-  \text{Amortization Expense} & & \text{XXX} & \\
-  \quad \text{Intangible Asset (e.g., Patents, Licenses)} & & & \text{XXX}
-  \end{array} $$
-
----
-##### B. Impairment Test for Limited-Life Intangibles (ASC 360 / ASC 350)
-Limited-life intangibles are tested for impairment whenever events or changes in circumstances indicate that their carrying value may not be recoverable (triggering events).
-
-```mermaid
-flowchart TD
-    A[STEP 1: RECOVERABILITY TEST\nCompare Undiscounted Future Net Cash Flows vs. Carrying Value] --> B{Undiscounted CFs vs. Carrying Value}
-    B -->|CFs >= Carrying| C[NO IMPAIRMENT\nStop testing]
-    B -->|CFs < Carrying| D[ASSET IS IMPAIRED\nProceed to Step 2]
-    D --> E[STEP 2: FAIR VALUE LOSS TEST\nImpairment Loss = Carrying Value - Fair Value]
-```
-
-1. **Step 1: Recoverability Test**:
-   Compare the gross, undiscounted estimated future net cash flows expected from the use and ultimate disposition of the asset to its carrying amount:
-   - If $\sum \text{Undiscounted Future Cash Flows} \ge \text{Carrying Value} \implies \text{No Impairment}$
-   - If $\sum \text{Undiscounted Future Cash Flows} < \text{Carrying Value} \implies \text{Asset is Impaired} \implies \text{Proceed to Step 2}$
-2. **Step 2: Measurement of Impairment Loss**:
-   If impaired under Step 1, the impairment loss is calculated as the excess of the asset's carrying value over its **fair value**:
-   $$ \text{Impairment Loss} = \text{Carrying Value} - \text{Fair Value} $$
-3. **Accounting Entry & Post-Impairment Amortization**:
-   $$ \begin{array}{llrr}
-   \textbf{Account Titles} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-   \hline
-   \text{Loss on Impairment} & & \text{XXX} & \\
-   \quad \text{Intangible Asset} & & & \text{XXX}
-   \end{array} $$
-   After an impairment loss is recognized, the reduced carrying amount becomes the new cost basis of the asset. The asset's new cost basis is amortized prospectively over its remaining useful life. **Reversal of previously recognized impairment losses is strictly prohibited under US GAAP** for assets held and used.
-
----
-#### 2.2 Indefinite-Life Intangible Assets (Excluding Goodwill)
-##### A. Definition & Non-Amortization
-An intangible asset is classified as having an **indefinite life** if analysis of all relevant legal, regulatory, contractual, competitive, and economic factors indicates there is no foreseeable limit on the period over which the asset is expected to generate net cash inflows for the entity.
-- **Accounting Rule**: Indefinite-life intangibles are **NOT amortized**.
-##### B. Impairment Test for Indefinite-Life Intangibles (ASC 350)
-Indefinite-life intangibles are tested for impairment at least **annually**, or more frequently if triggering events indicate that the asset might be impaired.
-- **One-Step Fair Value Test**: Because indefinite-life assets generate cash flows extending indefinitely into the future, the Step 1 recoverability test (undiscounted cash flows) is bypassed. The impairment test consists solely of a direct Fair Value Test:
-  $$ \text{If } \text{Carrying Value} > \text{Fair Value} \implies \text{Impairment Loss} = \text{Carrying Value} - \text{Fair Value} $$
-- **Optional Qualitative Assessment**: Under ASC 350, entities may perform an optional qualitative assessment to evaluate whether it is "more likely than not" (a likelihood $> 50\%$) that an indefinite-life intangible asset is impaired.
-  - Qualitative factors include macroeconomic conditions, industry/market considerations, cost factor increases, and overall financial performance.
-  - If the qualitative assessment concludes it is not more likely than not that the fair value is less than carrying value, the quantitative fair value test is bypassed.
-
----
-### 3. Major Categories of Intangible Assets
-
-```mermaid
-mindmap
-  root((Intangible Asset Categories))
-    Marketing-Related
-      Trademarks
-      Trade Names
-      Domain Names
-    Customer-Related
-      Customer Lists
-      Order Backlogs
-      Client Relationships
-    Artistic-Related
-      Copyrights
-      Literary Works
-      Musical Compositions
-    Contract-Related
-      Franchises
-      Licenses
-      Broadcast Permits
-    Technology-Related
-      Patented Technology
-      Trade Secrets
-      Computer Software
-```
-
----
-#### 3.1 Marketing-Related Intangible Assets
-- **Examples**: Trademarks, trade names, brand names, Internet domain names, and non-competition agreements.
-- **Legal Protection**: Trademarks are registered with the U.S. Patent and Trademark Office for 10-year renewable periods. Because renewals are virtually unlimited at nominal cost, trademarks generally have **indefinite lives**.
-- **Valuation**:
-  - *Purchased*: Capitalize purchase price plus acquisition expenses.
-  - *Internally Developed*: Capitalize attorney fees, registration costs, design fees, and successful legal defense costs. R&D costs incurred in developing the brand are expensed.
-- **Accounting**: Unamortized if indefinite-life. Subject to annual one-step fair value impairment testing.
-#### 3.2 Customer-Related Intangible Assets
-- **Examples**: Customer lists, order or production backlogs, contractual and noncontractual customer relationships.
-- **Accounting**: Classified as **limited-life intangibles**. Capitalized at acquisition cost and amortized using straight-line or an accelerated pattern of economic consumption over their estimated useful lives.
-- **Impairment**: Tested under the ASC 360 two-step impairment model.
-#### 3.3 Artistic-Related Intangible Assets
-- **Examples**: Ownership rights to plays, literary works, musical compositions, paintings, photographs, motion pictures, and videos.
-- **Copyright Protection**: Granted by federal statute for the **life of the creator plus 70 years**.
-- **Accounting**: Classified as **limited-life intangibles**. Capitalized cost includes acquisition fees and successful legal defense costs. Amortized over their useful life if shorter than legal life ($n = \min(\text{Useful Life}, \text{Life of Author} + 70 \text{ years})$). Internal costs leading to copyrighted materials (R&D) are expensed as incurred.
-#### 3.4 Contract-Related Intangible Assets
-- **Examples**: Franchises, operating licenses, construction permits, broadcast rights, service contracts.
-- **Franchise Mechanics**: Contractual agreement between franchisor and franchisee.
-  - *Initial Franchise Fee*: Capitalized by the franchisee if it gives rise to long-term rights.
-  - *Continuing Franchise Fees*: Expensed as incurred as operational expenses.
-- **Accounting Treatment**:
-  - *Definite-Term Franchise/License*: Amortized over the contractual term.
-  - *Indefinite-Term / Perpetual Franchise*: Not amortized; evaluated annually for impairment via the one-step fair value test.
-#### 3.5 Technology-Related Intangible Assets
-- **Examples**: Patented technology, trade secrets, computer software.
-- **Patent Rights**: A patent gives the holder exclusive right to use, manufacture, and sell a product or process for **20 years** from the date of application.
-- **Valuation & Amortization**:
-  - Capitalized cost includes purchase price, legal application fees, and costs of **successful legal defense**.
-  - Unsuccessful legal defense costs and the unamortized carrying value of the patent are written off as an immediate loss.
-  - Amortized over the shorter of legal life (20 years) or estimated economic useful life:
-    $$ n = \min(\text{Useful Life}, 20 \text{ Years}) $$
-
----
-### 4. Accounting for Goodwill & Business Combinations
-#### 4.1 Conceptual Nature of Goodwill
-> [!info] Key Definition
->
-> **Goodwill** represents the future economic benefits arising from other assets acquired in a **business combination** that are not individually identified and separately recognized. It is a master valuation account ("plug" or residual). It cannot be purchased or sold independently; it can only be acquired as part of an entire business combination.
-
-#### 4.2 Valuation Formula for Purchased Goodwill
-Goodwill is recorded **only** when an entire business enterprise is acquired. Internally generated goodwill is **never capitalized**.
-
-> [!quote] Formula & Derivation: Goodwill Calculation Matrix
->
-> $$ \begin{array}{l}
-> \textbf{Purchase Price Paid (Cash + Debt + Equity Transferred)} \\
-> \text{Less: Fair Value of Identifiable Assets Acquired:} \\
-> \quad \text{• Cash \& Receivables} \\
-> \quad \text{• Inventory (Adjusted to Fair Value)} \\
-> \quad \text{• Property, Plant \& Equipment (Adjusted to Fair Value)} \\
-> \quad \text{• Unrecorded Identifiable Intangibles (Patents, Brands, Lists)} \\
-> \text{Plus: Fair Value of Liabilities Assumed} \\
-> \hline
-> = \textbf{GOODWILL (If Positive)} \quad | \quad \textbf{BARGAIN PURCHASE GAIN (If Negative)} \\
-> \hline \hline
-> \end{array} $$
-
----
-#### 4.3 Goodwill Impairment Testing (ASC 350)
-Public entities do **not amortize goodwill**. Goodwill is tested for impairment at the **reporting unit** level at least annually.
-##### Quantitative Goodwill Impairment Test
-Under current US GAAP (ASC 350), goodwill impairment is measured using a single-step quantitative test:
-1. **Compare Fair Value vs. Carrying Value of Reporting Unit**: Determine the fair value of the reporting unit (including goodwill) and compare it to the reporting unit's carrying amount (including goodwill).
-2. **Loss Calculation**:
-   $$ \text{If } \text{Fair Value of Reporting Unit} < \text{Carrying Value of Reporting Unit} \implies \text{Impairment Loss} $$
-   $$ \text{Impairment Loss} = \text{Carrying Value of Reporting Unit} - \text{Fair Value of Reporting Unit} $$
-   *Cap Constraint*: The recognized impairment loss **cannot exceed the total recorded carrying amount of goodwill** allocated to that reporting unit.
-3. **Journal Entry**:
-   $$ \begin{array}{llrr}
-   \textbf{Account Titles} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-   \hline
-   \text{Loss on Impairment of Goodwill} & & \text{XXX} & \\
-   \quad \text{Goodwill} & & & \text{XXX}
-   \end{array} $$
-   *(Note: Goodwill impairment losses cannot be reversed in subsequent periods).*
-##### Private Company Alternative (PCC / ASC 350-20)
-Private companies may elect an accounting alternative developed by the Private Company Council (PCC):
-- **Amortization**: Amortize goodwill on a straight-line basis over **10 years** (or less if a shorter useful life is justified).
-- **Trigger-Based Impairment**: Test goodwill for impairment only when a triggering event occurs, rather than annually.
-
----
-#### 4.4 Bargain Purchase Accounting
-A **Bargain Purchase** occurs when the consideration transferred (purchase price) is *less* than the net fair value of the identifiable assets acquired and liabilities assumed (due to market imperfections, distressed sales, or forced liquidations).
-- **Accounting Treatment**:
-  1. The acquirer must reassess and verify the identification and fair value measurement of all acquired assets and assumed liabilities to ensure no omissions exist.
-  2. Any remaining excess fair value over purchase price is recognized **immediately in earnings as a Gain on Acquisition (Bargain Purchase Gain)**:
-     $$ \text{Bargain Purchase Gain} = \text{Fair Value of Net Identifiable Assets} - \text{Purchase Price} $$
-
-  $$ \begin{array}{llrr}
-  \textbf{Account Titles} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-  \hline
-  \text{Identifiable Assets (at Fair Value)} & & \text{XXX} & \\
-  \quad \text{Liabilities Assumed (at Fair Value)} & & & \text{XXX} \\
-  \quad \text{Cash / Consideration Transferred} & & & \text{XXX} \\
-  \quad \text{Gain on Acquisition (Income Statement)} & & & \text{XXX}
-  \end{array} $$
-
----
-### 5. Research & Development (R&D) Costs
-#### 5.1 Defining R&D Activities (ASC 730 / SFAS No. 2)
-> [!info] Key Definition
->
-> - **Research**: Planned search or critical investigation aimed at discovery of new knowledge with the hope that such knowledge will be useful in developing a new product or process.
-> - **Development**: Translation of research findings or other knowledge into a plan or design for a new product or process or for a significant improvement to an existing product or process.
-
----
-#### 5.2 Accounting Rule for R&D Costs
-Under US GAAP, **all Research and Development costs must be expensed as incurred**.
-
-| R&D Cost Category | Accounting Treatment | Rule & Conditions |
+| Dimension | IFRS (IAS 38) | US GAAP (FASB ASC 730) |
 | :--- | :--- | :--- |
-| **Materials, Equipment, & Facilities** | **Expense Immediately** | If the item has **NO alternative future use** in other R&D projects or otherwise. |
-| **Materials, Equipment, & Facilities** | **Capitalize & Depreciate** | If the item has **alternative future uses**. Capitalize as an asset; depreciate/allocate to R&D expense as consumed. |
-| **Personnel Costs** | **Expense Immediately** | Salaries, wages, and benefits of research staff engaged in R&D. |
-| **Purchased Intangibles (IPR&D)** | **Capitalize at Fair Value** | In-process R&D acquired in a business combination is capitalized as an indefinite-life intangible until completed or abandoned. |
-| **Contracted Services** | **Expense Immediately** | Costs of R&D services performed by third parties on behalf of the company. |
-| **Indirect Costs** | **Expense Immediately** | Reasonable allocation of indirect costs directly related to R&D. General & administrative costs are excluded unless directly billable. |
+| **Research Costs** | Expense immediately in Profit or Loss as incurred. | Expense immediately as incurred. |
+| **Development Costs** | **Mandatory Capitalisation** once all six PIRATE criteria are established. | Expense immediately as incurred for almost all internal R&D activities. |
+| **Exceptions under US GAAP** | N/A — Standard applies across all industries. | Capitalisation is permitted only under narrow specific standards (e.g., computer software developed for sale after technological feasibility is reached under ASC 985-20, or internal-use software costs incurred during the application development stage under ASC 350-40). |
+| **Financial Statement Impact** | Higher initial asset base, higher current net profit during major development phases; subsequent systematic amortisation. | Lower asset base, higher current expense volatility during development periods; lower future amortisation charges. |
 
 ---
-#### 5.3 Costs Similar to R&D
+### 3. Amortisation and Subsequent Valuation Models
+#### 3.1 Life Classification and Amortisation Rules
+Subsequent accounting for intangible assets depends fundamentally on the assessment of their useful life:
 
-| Start-Up Costs | Operating Losses | Advertising | Software Costs |
+```mermaid
+flowchart TD
+    Life[Useful Life Assessment] --> Finite[Finite / Limited Useful Life]
+    Life --> Indefinite[Indefinite Useful Life]
+
+    Finite --> FinAcct[1. Amortise over useful life<br>2. Test for impairment when indicators exist<br>3. Review life/method annually]
+    Indefinite --> IndefAcct[1. DO NOT amortise<br>2. Mandatory annual impairment test under IAS 36<br>3. Review life status annually]
+```
+
+**1. Limited (Finite) Useful Life Intangibles**
+* **Assessment:** An asset has a finite useful life if there is a limited duration or limit to the number of production units expected to be obtained from it.
+* **Amortisation Period & Method:** Amortised systematically over its useful life. The amortisation method must reflect the pattern in which the asset's economic benefits are expected to be consumed by the entity. If that pattern cannot be determined reliably, the straight-line method must be used.
+* **Accounting Entry:**
+  $$ \begin{array}{llrr}
+  \textbf{Account Titles} & & \textbf{Debit} & \textbf{Credit} \\
+  \hline
+  \text{Amortisation Expense (Profit or Loss)} & & \text{XXX} & \\
+  \quad \text{Intangible Asset (or Allowance for Amortisation)} & & & \text{XXX} \\
+  \end{array} $$
+* **Residual Value Assumption:** The residual value of an intangible asset with a finite useful life is assumed to be **zero**, unless:
+  * There is a commitment by a third party to purchase the asset at the end of its useful life; or
+  * There is an active market for the asset, residual value can be determined by reference to that market, and it is probable that such a market will exist at the end of the asset's useful life.
+* **Annual Review:** Useful life, residual value, and amortisation methods must be reviewed at least at each financial year-end. Any changes are accounted for prospectively as changes in accounting estimates under IAS 8.
+
+**2. Indefinite Useful Life Intangibles**
+* **Assessment:** An intangible asset is regarded as having an indefinite useful life when, based on an analysis of all relevant factors, there is no foreseeable limit to the period over which the asset is expected to generate net cash inflows for the entity. *(Note: Indefinite does not mean infinite).*
+* **Amortisation Treatment:** **NEVER AMORTISED**.
+* **Impairment Testing:** Tested for impairment under IAS 36 at least annually, and whenever there is an indication that the intangible asset may be impaired.
+* **Annual Review:** The assessment of indefinite life must be reviewed each period. If circumstances change to indicate a finite life, the change is accounted for prospectively as a change in accounting estimate.
+#### 3.2 Subsequent Valuation Models: Cost Model vs Revaluation Model
+IAS 38 allows entities an accounting policy choice for subsequent measurement:
+
+```mermaid
+flowchart LR
+    Model[Subsequent Measurement Models] --> CostM[Cost Model - Default]
+    Model --> RevalM[Revaluation Model - Permitted ONLY if Active Market Exists]
+
+    CostM --> CostForm[Carrying Amount = Cost - Accum. Amortisation - Accum. Impairment]
+    RevalM --> RevalForm[Carrying Amount = Fair Value at Revaluation Date - Subsequent Amortisation - Subsequent Impairment]
+```
+
+**1. Cost Model (Default Treatment)**
+After initial recognition, an intangible asset is carried at its historical cost less any accumulated amortisation and any accumulated impairment losses:
+$$ \text{Carrying Amount} = \text{Historical Cost} - \text{Accumulated Amortisation} - \text{Accumulated Impairment Losses} $$
+
+**2. Revaluation Model**
+After initial recognition, an intangible asset may be carried at a revalued amount, being its fair value at the date of the revaluation less any subsequent accumulated amortisation and subsequent accumulated impairment losses.
+
+> [!warning] Exam Pitfall / Exception: Strict Active Market Requirement
+> Under IAS 38, the revaluation model may be applied **IF AND ONLY IF** fair value can be determined by reference to an **active market** for that specific class of intangible asset.
+> **Active Market Definition:** A market in which all the following conditions exist:
+> 1. The items traded within the market are homogeneous;
+> 2. Willing buyers and sellers can normally be found at any time; and
+> 3. Prices are available to the public.
+
+* **Practical Implication:** Active markets are extremely rare for intangible assets (e.g., patents, trademarks, brands, and custom software are unique, non-homogeneous items). Revaluation is usually restricted to transferable items like taxi licences, fishing quotas, or milk quotas.
+* **Revaluation Surplus:** Increases in carrying amount resulting from revaluation are credited to Other Comprehensive Income (OCI) and accumulated in equity under Revaluation Reserve. Decreases are charged first against any existing revaluation reserve for the same asset, with any excess recognized immediately in Profit or Loss.
+
+---
+### 4. Specific Intangible Asset Categories
+**Summary Classification Matrix**
+The table below details the characteristics, amortisation rules, and capitalisation boundaries for primary categories of intangibles under IAS 38:
+
+| Category | Primary Characteristics | Useful Life Assessment | Amortisation & Capitalisation Rules |
 | :--- | :--- | :--- | :--- |
-| Expense as incurred (ASC 720-15). Includes activities related to opening a new facility or organizing a new corporate entity. | Expense as incurred (ASC 915). Losses incurred during the launch phase cannot be capitalized. | Expense when incurred or the first time the advertising takes place. | Expense until technological feasibility is established. |
+| **Patents** | Exclusive legal right granted by a government to use, manufacture, and sell an invention. | **Finite** (Legal life, typically 20 years, or economic life, whichever is shorter). | Capitalise purchase price plus legal defense costs. Amortise over useful life. Unsuccessful legal defense costs are expensed immediately and the remaining patent carrying amount is written off to Profit or Loss. |
+| **Copyrights** | Granted by law to authors/artists for literary, musical, or artistic works. | **Finite** (Life of the creator plus a statutory period, or economic life, whichever is shorter). | Capitalise acquisition costs or qualifying development costs. Amortise over expected economic life using straight-line or unit-of-production methods. |
+| **Trademarks & Trade Names** | Distinctive word, phrase, symbol, or logo identifying a firm or product line. | **Indefinite** (Usually renewable indefinitely in 10-year increments at nominal cost). | Capitalise purchase price. Internally generated trademarks cannot be capitalised. Do not amortise; test annually for impairment under IAS 36. |
+| **Franchises & Licences** | Contractual right to operate a business, sell products, or render services in a designated area. | **Finite or Indefinite** (Based on contract terms and renewal rights). | Capitalise initial franchise fee and direct legal fees. Amortise finite-life franchises over contract term. Periodic operating fees paid to franchisor are expensed as incurred in Profit or Loss. |
+| **Computer Software (External Sale)** | Software developed for licensing or selling to third parties. | **Finite** | Research costs expensed. Development costs capitalised once PIRATE criteria are met. Amortise over expected useful life. |
+| **Computer Software (Internal Use)** | Software developed or acquired for internal operational use. | **Finite** | Capitalise acquisition or qualifying development phase costs. Amortise straight-line over estimated useful operational life. |
 
 ---
-### 6. Comprehensive Multi-Step Numerical Walkthroughs
-> [!example] Walkthrough 1: Patent Acquisition, Legal Defense, Amortization, and Impairment
->
-> **Scenario:**
-> On January 1, 2024, **Helios Tech Corp.** purchased a product patent from an inventor for $\$480,000$ cash. The patent had a remaining legal life of 16 years, but Helios estimated its economic useful life would be 10 years.
-> On July 1, 2025, Helios spent $\$70,000$ in legal fees to successfully defend the patent in an infringement lawsuit.
-> On December 31, 2026, competitive technological advances caused a sharp drop in demand. Helios performed an impairment test. Estimated undiscounted future net cash flows from the patent were $\$280,000$. The fair value of the patent was estimated at $\$210,000$. Remaining useful life as of December 31, 2026, was revised to 5 years.
-> **Step 1: 2024 Transactions**
-> - Initial Cost (January 1, 2024) = $\$480,000$
-> - Useful life $n = \min(10, 16) = 10 \text{ years}$.
-> - 2024 Amortization = $\frac{\$480,000}{10} = \$48,000$.
-> - Carrying Value at Dec 31, 2024 = $\$480,000 - \$48,000 = \$432,000$.
-> **Step 2: 2025 Transactions**
-> - Amortization for 1st half of 2025 (Jan 1 – June 30) = $\frac{\$48,000}{2} = \$24,000$.
-> - Carrying Value on June 30, 2025 (before legal cost) = $\$432,000 - \$24,000 = \$408,000$.
-> - Capitalize Successful Legal Defense (July 1, 2025) = $+\$70,000$.
-> - New Carrying Base on July 1, 2025 = $\$408,000 + \$70,000 = \$478,000$.
-> - Remaining useful life at July 1, 2025 = $10 - 1.5 = 8.5 \text{ years}$ ($102 \text{ months}$).
-> - Amortization for 2nd half of 2025 (July 1 – Dec 31) = $\frac{\$478,000}{8.5} \times 0.5 = \frac{\$478,000}{17} = \$56,235.29$.
-> - Carrying Value at Dec 31, 2025 = $\$478,000 - \$56,235.29 = \$421,764.71$.
-> **Step 3: 2026 Amortization (Full Year)**
-> - Annual Amortization Rate = $\frac{\$478,000}{8.5} = \$56,235.29$.
-> - Carrying Value at Dec 31, 2026 (before impairment) = $\$421,764.71 - \$56,235.29 = \$365,529.42$.
-> **Step 4: Impairment Test at December 31, 2026**
-> - *Step 1: Recoverability Test*:
->   $$ \text{Undiscounted Future Cash Flows } (\$280,000) < \text{Carrying Value } (\$365,529.42) \implies \mathbf{\text{Asset is Impaired!}} $$
-> - *Step 2: Fair Value Impairment Loss Measurement*:
->   $$ \text{Impairment Loss} = \$365,529.42 - \$210,000 (\text{Fair Value}) = \mathbf{\$155,529.42} $$
-> **Step 5: Journal Entries**
+### 5. Goodwill & Business Combinations (IFRS 3)
+#### 5.1 Nature and Initial Recognition
+> [!info] Key Definition: Goodwill
+> **Goodwill** represents future economic benefits arising from other assets acquired in a business combination that are not individually identified and separately recognised.
+
+**Purchased Goodwill vs. Internally Generated Goodwill**
+* **Purchased Goodwill:** Arises only in a business combination accounted for under IFRS 3 (Business Combinations). It is recognised as an asset on the Statement of Financial Position.
+* **Internally Generated Goodwill:** MUST NEVER BE RECOGNISED. It does not satisfy the identifiability and cost measurement criteria of IAS 38 because it is not separable nor does it arise from contractual/legal rights.
+#### 5.2 Mathematical Calculation of Purchased Goodwill
+Under IFRS 3, purchased goodwill is measured at the acquisition date as the excess of the consideration transferred over the net fair value of the identifiable assets acquired and liabilities assumed:
+
+> [!formula] Formula & Derivation: Purchased Goodwill
+> $$ \text{Purchased Goodwill} = \text{Fair Value of Consideration Transferred} - \text{Net Identifiable Assets Acquired} $$
+> Where:
+> $$ \text{Net Identifiable Assets Acquired} = \text{Fair Value of Identifiable Assets Acquired} - \text{Fair Value of Liabilities Assumed} $$
+
+```mermaid
+flowchart TD
+    Consideration[Fair Value of Consideration Transferred] --> Compare{Compare Amounts}
+    NetAssets["Net Identifiable Assets Acquired<br>(Fair Value of Assets - Fair Value of Liabilities)"] --> Compare
+
+    Compare -->|Consideration > Net Assets| GW[Purchased Goodwill: Asset on Statement of Financial Position]
+    Compare -->|Consideration < Net Assets| BP[Bargain Purchase: Immediate Gain in Profit or Loss]
+```
+
+#### 5.3 Bargain Purchase (Negative Goodwill)
+When the fair value of net identifiable assets acquired exceeds the consideration transferred, a **bargain purchase** occurs.
+Before recognising a gain on a bargain purchase, IFRS 3 requires the acquirer to:
+1. Re-assess whether all assets acquired and liabilities assumed have been correctly identified; and
+2. Re-assess the measurement of all identified fair values.
+
+*Accounting Treatment:* Any remaining excess after re-assessment is recognised immediately as a **gain in Profit or Loss** on the acquisition date.
+#### 5.4 Subsequent Accounting for Goodwill
+* **Amortisation:** Goodwill is **NEVER AMORTISED** under IFRS.
+* **Impairment Testing:** Goodwill must be tested for impairment at least annually, or more frequently if events or changes in circumstances indicate that it might be impaired, in accordance with IAS 36.
+* **Cash-Generating Units (CGUs):** Because goodwill does not generate cash flows independently of other assets, it is allocated to each of the acquirer's Cash-Generating Units (CGUs) (or groups of CGUs) expected to benefit from the synergies of the combination.
+
+---
+### 6. Impairments and Reversals under IAS 36
+#### 6.1 The Impairment Test Mechanics
+Under IAS 36 (Impairment of Assets), an asset or CGU is impaired when its Carrying Amount exceeds its Recoverable Amount.
+
+> [!formula] Formula & Derivation: Impairment Loss
+> $$ \text{Impairment Loss} = \text{Carrying Amount} - \text{Recoverable Amount} \quad (\text{if Carrying Amount} > \text{Recoverable Amount}) $$
+
+```mermaid
+flowchart TD
+    CA[Carrying Amount of Intangible Asset] --> Compare{Compare}
+    RA["Recoverable Amount<br>(HIGHER of FVLCD and VIU)"] --> Compare
+
+    subgraph Recoverable Amount Components
+        FVLCD[Fair Value Less Costs to Sell]
+        VIU[Value-in-Use: Discounted Future Cash Flows]
+    end
+
+    Compare -->|Carrying Amount > Recoverable Amount| Impairment[Impairment Loss Recognized in Profit or Loss]
+    Compare -->|Carrying Amount <= Recoverable Amount| NoImpairment[No Impairment Loss Recognized]
+```
+
+> [!info] Key Definition: Recoverable Amount
+> The **Recoverable Amount** is defined as the **HIGHER** of:
+> 1. **Fair Value Less Costs of Disposal (FVLCD):** The price that would be received to sell the asset in an orderly transaction between market participants, less direct incremental costs of disposal.
+> 2. **Value-in-Use (VIU):** The present value of estimated future cash flows expected to be derived from the asset or Cash-Generating Unit in its present condition.
+
+#### 6.2 Accounting Entry for Impairment Loss
+When an impairment loss arises for an intangible asset measured under the cost model:
+
+$$ \begin{array}{llrr}
+\textbf{Account Titles} & & \textbf{Debit} & \textbf{Credit} \\
+\hline
+\text{Impairment Loss (Profit or Loss)} & & \text{XXX} & \\
+\quad \text{Intangible Asset (or Accumulated Impairment Losses)} & & & \text{XXX} \\
+\end{array} $$
+
+For assets evaluated under the revaluation model, the loss is debited to OCI to the extent of any existing revaluation surplus for that asset, and any excess is debited to Profit or Loss.
+#### 6.3 Reversal of Impairment Loss
+IAS 36 outlines distinct rules for reversing impairment losses depending on the nature of the intangible asset:
+
+```mermaid
+flowchart LR
+    RevCheck[Reversal of Impairment Loss] --> Intangibles[Finite/Indefinite Intangibles]
+    RevCheck --> GW[Goodwill]
+
+    Intangibles --> RevPermitted[PERMITTED in Profit or Loss<br>Capped at original depreciated carrying amount]
+    GW --> RevForbidden[STRICTLY FORBIDDEN<br>Never reversed under IFRS]
+```
+
+**1. Reversal for Intangible Assets (Other than Goodwill)**
+* At each reporting date, an entity must assess whether there is any indication that an impairment loss recognised in prior periods may no longer exist or may have decreased.
+* If such indication exists, the recoverable amount is re-calculated. An impairment loss is reversed in Profit or Loss if there has been a change in the estimates used to determine the recoverable amount.
+* **Cap on Reversal:** The carrying amount of the asset after reversal cannot exceed the carrying amount that would have been determined (net of amortisation) had no impairment loss been recognised for the asset in prior years.
+
+**2. Reversal for Goodwill**
+> [!warning] Exam Pitfall / Exception: Goodwill Reversal
+> **IMPAIRMENT LOSSES ON GOODWILL CAN NEVER BE REVERSED UNDER IFRS.**
+> *Rationale:* Any subsequent increase in recoverable amount after a goodwill impairment loss is treated as internally generated goodwill, which is explicitly banned from recognition under IAS 38.
+
+---
+### 7. Synthesis: Practical Numerical Walkthroughs
+> [!example] Numerical Problem: Walkthrough 1 — R&D Cost Classification and Capitalisation (IAS 38)
+> **Scenario Data**
+> During 2025, BioTech Development Ltd. incurred total laboratory and engineering expenditures of £1,200,000 on Project X. The expenditures occurred evenly across the year as follows:
+> * **January 1 – April 30 (£400,000):** Original scientific research seeking new compound applications.
+> * **May 1 – August 31 (£400,000):** Prototype development. The 6 PIRATE criteria were formally met and documented on 1 September 2025.
+> * **September 1 – December 31 (£400,000):** Final development and pre-production testing incurred after meeting PIRATE criteria.
+> **Accounting Solution & Journal Entries**
+> 1. **Research Costs (Jan 1 – Apr 30 = £400,000):** Must be expensed immediately as research.
+> 2. **Pre-PIRATE Development Costs (May 1 – Aug 31 = £400,000):** PIRATE criteria were not yet proven; must be expensed in Profit or Loss as incurred.
+> 3. **Post-PIRATE Development Costs (Sep 1 – Dec 31 = £400,000):** All 6 PIRATE criteria met; MUST BE CAPITALISED as an intangible asset.
 > $$ \begin{array}{llrr}
-> \textbf{Date} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
+> \textbf{Date / Period} & \textbf{Account Titles and Explanation} & \textbf{Debit (£)} & \textbf{Credit (£)} \\
 > \hline
-> \text{Dec 31, 2026} & \text{Amortization Expense} & 56,235.29 & \\
-> & \quad \text{Patents} & & 56,235.29 \\
+> \text{Jan 1 – Aug 31} & \text{Research and Development Expense (Profit or Loss)} & 800,000 & \\
+> & \quad \text{Cash / Payables} & & 800,000 \\
+> & \text{\small (Expense research and non-qualifying development costs)} & & \\
 > \hline
-> \text{Dec 31, 2026} & \text{Loss on Impairment of Patent} & 155,529.42 & \\
-> & \quad \text{Patents} & & 155,529.42 \\
+> \text{Sep 1 – Dec 31} & \text{Intangible Asset — Development Costs (SFP)} & 400,000 & \\
+> & \quad \text{Cash / Payables} & & 400,000 \\
+> & \text{\small (Capitalise development expenditure meeting PIRATE criteria)} & & \\
+> \hline
 > \end{array} $$
-> **Step 6: 2027 Prospective Amortization**
-> - New Carrying Base = $\$210,000$. Revised remaining life = 5 years.
-> - 2027 Annual Amortization = $\frac{\$210,000}{5} = \mathbf{\$42,000}$.
+> *Note: The £800,000 expensed prior to September 1 cannot be retrospectively capitalised at year-end.*
 
----
-
-> [!example] Walkthrough 2: Business Combination, Goodwill Computation, & Impairment
->
-> **Scenario:**
-> On October 1, 2025, **Apex Conglomerate** acquired 100% of the net assets of **Vanguard Systems** for $\$3,800,000$ cash. Vanguard's balance sheet prior to acquisition showed total book value of assets of $\$3,100,000$ and total liabilities of $\$1,200,000$.
-> An independent appraisal revealed the following fair values for Vanguard's accounts:
-> - Accounts Receivable: Fair value $\$280,000$ (Book Value $\$300,000$)
-> - Inventory: Fair value $\$650,000$ (Book Value $\$500,000$)
-> - Property, Plant, and Equipment: Fair value $\$2,100,000$ (Book Value $\$1,600,000$)
-> - Unrecorded Customer List: Fair value $\$350,000$ (Book Value $\$0$)
-> - Unrecorded In-Process R&D (IPR&D): Fair value $\$200,000$ (Book Value $\$0$)
-> - Total Liabilities Assumed: Fair value $\$1,200,000$ (Book Value $\$1,200,000$)
-> On December 31, 2026, Vanguard operates as a reporting unit of Apex. The carrying value of Vanguard's total net assets (including Goodwill) is $\$3,650,000$. Apex determines the Fair Value of the Vanguard Reporting Unit is $\$3,100,000$.
-> **Step 1: Calculate Fair Value of Net Identifiable Assets Acquired**
-> $$ \begin{array}{lrr}
-> \text{Accounts Receivable (Fair Value)} & \$280,000 & \\
-> \text{Inventory (Fair Value)} & 650,000 & \\
-> \text{Property, Plant, and Equipment (Fair Value)} & 2,100,000 & \\
-> \text{Identifiable Intangible: Customer List} & 350,000 & \\
-> \text{Identifiable Intangible: In-Process R\&D} & 200,000 & \\
-> \hline
-> \mathbf{\text{Total Fair Value of Identifiable Assets}} & \mathbf{\$3,580,000} & \\
-> \text{Less: Fair Value of Liabilities Assumed} & (1,200,000) & \\
-> \hline
-> \mathbf{\text{Fair Value of Net Identifiable Assets}} & & \mathbf{\$2,380,000} \\
-> \hline \hline
-> \end{array} $$
-> **Step 2: Compute Purchased Goodwill**
-> $$ \text{Purchase Price (Consideration Transferred)} = \$3,800,000 $$
-> $$ \text{Goodwill} = \$3,800,000 - \$2,380,000 = \mathbf{\$1,420,000} $$
-> **Step 3: Acquisition Journal Entry (October 1, 2025)**
+> [!example] Numerical Problem: Walkthrough 2 — Business Combination Goodwill & Impairment (IFRS 3 & IAS 36)
+> **Scenario Data**
+> On 1 January 2025, Global Conglomerate plc acquired 100% of the net assets of Target Corp for £5,000,000 cash. On acquisition date, Target Corp's Statement of Financial Position fair values were:
+> * Property, Plant, and Equipment: £3,200,000
+> * Patents (Identifiable Intangible): £1,000,000
+> * Accounts Receivable: £800,000
+> * Liabilities Assumed: (£1,500,000)
+> Target Corp is designated as a Cash-Generating Unit (CGU). At 31 December 2025, after one year of operations, the carrying amount of Target Corp CGU's net assets (excluding goodwill) is £3,800,000. An impairment assessment performed on 31 December 2025 reveals:
+> * Fair Value Less Costs of Disposal (FVLCD) of CGU: £4,500,000
+> * Value-in-Use (VIU) of CGU: £4,200,000
+> **Step 1: Calculate Acquisition-Date Goodwill (IFRS 3)**
+> $$ \text{Fair Value of Consideration Transferred} = £5,000,000 $$
+> $$ \begin{aligned}
+> \text{Net Identifiable Assets Acquired} &= \text{PPE} + \text{Patents} + \text{Receivables} - \text{Liabilities} \\
+> &= £3,200,000 + £1,000,000 + £800,000 - £1,500,000 \\
+> &= \mathbf{£3,500,000}
+> \end{aligned} $$
+> $$ \begin{aligned}
+> \text{Purchased Goodwill} &= \text{Consideration Transferred} - \text{Net Identifiable Assets} \\
+> &= £5,000,000 - £3,500,000 = \mathbf{£1,500,000}
+> \end{aligned} $$
+> **Step 2: Impairment Testing of CGU at Year-End (IAS 36)**
+> $$ \begin{aligned}
+> \text{Total Carrying Amount of CGU} &= \text{Net Assets (excl. Goodwill)} + \text{Goodwill} \\
+> &= £3,800,000 + £1,500,000 = \mathbf{£5,300,000}
+> \end{aligned} $$
+> $$ \begin{aligned}
+> \text{Recoverable Amount} &= \text{HIGHER of FVLCD (£4,500,000) and VIU (£4,200,000)} \\
+> &= \mathbf{£4,500,000}
+> \end{aligned} $$
+> $$ \begin{aligned}
+> \text{CGU Impairment Loss} &= \text{Carrying Amount (£5,300,000)} - \text{Recoverable Amount (£4,500,000)} \\
+> &= \mathbf{£800,000}
+> \end{aligned} $$
+> **Step 3: Allocation of Impairment Loss & Journal Entry**
+> Under IAS 36, an impairment loss for a CGU is allocated first to reduce the carrying amount of goodwill to zero. Any residual loss is then allocated pro-rata to other non-current assets. Since the £800,000 impairment loss is less than the £1,500,000 goodwill carrying amount, the entire £800,000 is written off against Goodwill.
 > $$ \begin{array}{llrr}
-> \textbf{Account Titles} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
+> \textbf{Date} & \textbf{Account Titles and Explanation} & \textbf{Debit (£)} & \textbf{Credit (£)} \\
 > \hline
-> \text{Accounts Receivable} & & 280,000 & \\
-> \text{Inventory} & & 650,000 & \\
-> \text{Property, Plant, and Equipment} & & 2,100,000 & \\
-> \text{Customer List (Intangible Asset)} & & 350,000 & \\
-> \text{In-Process Research \& Development (Intangible)} & & 200,000 & \\
-> \text{Goodwill} & & 1,420,000 & \\
-> \quad \text{Liabilities Assumed} & & & 1,200,000 \\
-> \quad \text{Cash} & & & 3,800,000
-> \end{array} $$
-> **Step 4: Goodwill Impairment Test (December 31, 2026)**
-> - *Quantitative Impairment Assessment*:
->   $$ \text{Fair Value of Unit } (\$3,100,000) < \text{Carrying Value of Unit } (\$3,650,000) \implies \mathbf{\text{Goodwill is Impaired!}} $$
-> - *Calculate Impairment Loss*:
->   $$ \text{Impairment Loss} = \$3,650,000 - \$3,100,000 = \mathbf{\$550,000} $$
->   *(Note: \$550,000 does not exceed the total Goodwill carrying value of \$1,420,000)*
-> $$ \begin{array}{llrr}
-> \textbf{Account Titles} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
+> \text{31 Dec 2025} & \text{Impairment Loss on Goodwill (Profit or Loss)} & 800,000 & \\
+> & \quad \text{Goodwill (Statement of Financial Position)} & & 800,000 \\
+> & \text{\small (To record IAS 36 impairment loss on goodwill allocated to Target CGU)} & & \\
 > \hline
-> \text{Loss on Impairment of Goodwill} & & 550,000 & \\
-> \quad \text{Goodwill} & & & 550,000
 > \end{array} $$
-> - *Post-Impairment Goodwill Balance* = $\$1,420,000 - \$550,000 = \mathbf{\$870,000}$.
+> *Note: If in 2026 the recoverable amount of Target CGU rises to £6,000,000, this £800,000 impairment loss CAN NEVER BE REVERSED.*
 
 ---
+### 8. Summary Comparison & IFRS Terminology Guide
+**Key IFRS vs. US GAAP Distinctions**
 
-> [!example] Walkthrough 3: R&D Cost Classification & Financial Statement Impact
->
-> **Scenario:**
-> During 2025, **Nexus Bio-Labs Inc.** incurred the following cash expenditures:
-> 1. Construction of a long-term research facility with alternative future uses: $\$1,500,000$ (10-year life, straight-line).
-> 2. Acquisition of specialized laboratory equipment solely for a single R&D project (no alternative future use): $\$320,000$.
-> 3. Salaries and wages for research scientists designing a new molecular compound: $\$450,000$.
-> 4. Materials purchased for current and future R&D projects: $\$200,000$ (materials remaining in stock at year-end: $\$60,000$).
-> 5. Legal fees incurred to successfully register a patent for a completed formula: $\$40,000$.
-> 6. Start-up legal and state filing fees for a new subsidiary: $\$85,000$.
-> 7. Executive management salaries (general overhead): $\$300,000$.
-> **Classification & Income Statement Impact Analysis:**
-> | Item Description | Amount (\$) | Accounting Classification & Rationale |
-> | :--- | :--- | :--- |
-> | **1. Research Facility** | $\$1,500,000$ | Capitalize as PP&E (Alternative Future Use). |
-> | *(2025 Depreciation on Facility)* | $\$150,000$ | **Include in R&D Expense** ($\$1,500,000 / 10$). |
-> | **2. Single-Project Equipment** | $\$320,000$ | **R&D Expense** (No Alternative Use). |
-> | **3. Scientists Salaries** | $\$450,000$ | **R&D Expense** (Personnel Cost). |
-> | **4. R&D Materials Consumed** | $\$140,000$ | **R&D Expense** ($\$200,000 - \$60,000$ ending stock). |
-> | *(Ending Inventory - Asset)* | $\$60,000$ | Current Asset (Inventory on Balance Sheet). |
-> | **5. Patent Registration Fees** | $\$40,000$ | Capitalize as Patent (Intangible Asset). |
-> | **6. Start-up Filing Fees** | $\$85,000$ | **Operating Expense (Start-Up Cost)** (ASC 720-15). |
-> | **7. Executive Salaries** | $\$300,000$ | **Operating Expense (G&A Expense)**. |
-> **Total R&D Expense Reported on 2025 Income Statement:**
-> $$ \text{Total 2025 R\&D Expense} = \$150,000 \text{ (Depr)} + \$320,000 + \$450,000 + \$140,000 = \mathbf{\$1,060,000} $$
-
----
-### 7. Financial Statement Presentation & IFRS Alignment
-#### 7.1 Financial Statement Presentation & Disclosures
-##### A. Balance Sheet
-- Intangible assets (excluding goodwill) are presented as a separate line item under **Noncurrent Assets**.
-- **Goodwill** must be reported as a separate, distinct line item on the Balance Sheet.
-- Gross carrying amount and accumulated amortization must be disclosed by major intangible class.
-##### B. Income Statement
-- Amortization expense and impairment losses for intangibles are included in **Income from Continuing Operations** (typically under *Operating Expenses* or *Other Expenses/Losses*).
-- Total **R&D expenses** charged to operations must be disclosed in the financial statements or footnote notes for each reported period.
-
----
-#### 7.2 Key Differences Between US GAAP and IFRS (IAS 38 & IAS 36)
-
-| Accounting Issue | US GAAP | IFRS (IAS 38 / IAS 36) |
+| Accounting Issue | IFRS Standard (IAS 38 / IFRS 3 / IAS 36) | US GAAP Standard (FASB ASC) |
 | :--- | :--- | :--- |
-| **Internally Generated R&D** | Expense ALL R&D as incurred. | Expense Research; **Capitalize Development** once technical/economic feasibility is proven. |
-| **Revaluation Model** | Prohibited (Cost Model only). | Permitted for finite intangibles if an active market exists. |
-| **Impairment Test Model (Finite Intangibles)** | 2-Step Test:<br>1. Undiscounted Cash Flows<br>2. Fair Value Loss | 1-Step Recoverable Amount Test (Higher of Fair Value less Costs to Sell & Value-in-Use). |
-| **Reversal of Impairment Losses** | Strictly Prohibited. | Permitted for finite intangibles (Prohibited for Goodwill). |
+| **Development Costs** | Mandatory capitalisation if PIRATE criteria are met. | Expensed as incurred under ASC 730 (with limited software exceptions). |
+| **Subsequent Revaluation** | Revaluation model permitted if an active market exists. | Revaluation forbidden; Cost model is mandatory. |
+| **Impairment Test Mechanism** | Single-step model: Carrying Amount vs. Recoverable Amount (Higher of FVLCD and VIU). | Two-step model (historically) / Single-step carrying amount vs fair value test. |
+| **Impairment Loss Reversal** | Permitted for intangibles (non-goodwill) up to depreciated cost. | Strictly prohibited for all long-lived assets held for use. |
+| **Goodwill Reversal** | Strictly prohibited. | Strictly prohibited. |
 
-1. **Development Cost Capitalization**:
-   - *US GAAP*: All research and development costs are expensed as incurred.
-   - *IFRS (IAS 38)*: Costs in the *Research phase* are expensed. Costs in the *Development phase* **must be capitalized** as intangible assets once technical and economic feasibility, intent to complete, and ability to generate future economic benefits are established.
-2. **Revaluation Model**:
-   - *US GAAP*: Revaluation is strictly prohibited; all intangibles are measured at historical cost less amortization/impairments.
-   - *IFRS (IAS 38)*: Permits the *Revaluation Model* (revaluation to fair value) for limited-life intangibles if an active market exists.
-3. **Impairment Testing & Recoverable Amount**:
-   - *US GAAP*: Uses a two-step impairment test (undiscounted cash flows recoverability test, then fair value loss).
-   - *IFRS (IAS 36)*: Bypasses the undiscounted cash flow test and uses a one-step test. An impairment loss is recognized if carrying value exceeds the **Recoverable Amount** (defined as the higher of *Fair Value Less Costs to Sell* and *Value-in-Use* / discounted cash flows).
-4. **Reversal of Impairment Losses**:
-   - *US GAAP*: Prohibits reversal of impairment losses for all intangibles held and used.
-   - *IFRS (IAS 36)*: **Permits reversal of impairment losses** for limited-life intangible assets if economic conditions or expected usage improves (goodwill impairment reversals remain prohibited).
+**Strict IFRS Terminology Reference**
+
+To ensure strict compliance with IFRS standards in written examinations and financial reports, use the standard terms below:
+
+| Traditional / US GAAP Term            | Strict IFRS Terminology (IAS 38 / IAS 1)            |
+| :------------------------------------ | :-------------------------------------------------- |
+| Balance Sheet                         | **Statement of Financial Position**                 |
+| Income Statement                      | **Profit or Loss** (or Statement of Profit or Loss) |
+| Book Value                            | **Carrying Amount**                                 |
+| Net Realizable Value (Asset Disposal) | **Fair Value Less Costs of Disposal (FVLCD)**       |
+| Allowance for Amortisation            | **Accumulated Amortisation**                        |
+| Reporting Unit                        | **Cash-Generating Unit (CGU)**                      |
+| Write-down                            | **Impairment Loss**                                 |

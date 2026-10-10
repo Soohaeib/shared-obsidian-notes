@@ -1,558 +1,348 @@
-# Tangible Long-Lived Assets (PP&E)
-
+# Property, Plant, and Equipment (Acquisition, Valuation, Depreciation, and Impairments)
 > [!abstract] Curriculum & Syllabus Context
->
 > - **Course:** ACC 301 Intermediate Accounting
-> - **Phase:** Phase 2: Asset Valuation & Cost Allocation
-> - **Target Reading:** Weygandt, Kieso, and Warfield, *Intermediate Accounting*, 18th Edition — **Chapter 9 & Chapter 10: Property, Plant, and Equipment** (including IAS 16 & IAS 36)
-> - **Syllabus Focus:** Capitalization of acquisition costs, asset retirement obligations (ASC 410), interest capitalization during construction (ASC 835-20), nonmonetary asset exchanges (ASC 845), subsequent expenditures, depreciation methods (straight-line, activity, SYD, DDB), prospective revisions, impairment testing (US GAAP vs. IFRS), and depletion of natural resources.
+> - **Phase:** Phase 2: Asset Valuation & Measurement
+> - **Target Reading:** Weygandt, Kieso, and Warfield, *Intermediate Accounting (IFRS Edition)* — Chapters 10 & 11: Property, Plant, and Equipment & Impairments
+> - **Primary Standards:** IAS 16 (Property, Plant and Equipment), IAS 23 (Borrowing Costs), IAS 36 (Impairment of Assets), IAS 37 (Provisions, Contingent Liabilities and Contingent Assets), IFRS 5 (Non-current Assets Held for Sale and Discontinued Operations), and Companies Act 1994 (Schedule XI).
+> - **Core Focus:** Initial cost measurement, component depreciation, borrowing cost capitalisation, cost model vs. revaluation model, non-monetary asset exchanges, subsequent expenditures, depreciation reviews, single-step impairment testing, reversal of impairment losses, assets held for sale, and statutory presentation under the Order of Permanence.
 
 ---
+### 1. IAS 16 Framework, Definition, and Initial Recognition
+#### 1.1 Definition and Recognition Criteria
+Under IAS 16 (Property, Plant and Equipment), property, plant, and equipment (PP&E) are tangible non-current assets that are:
+1. Held for use in the production or supply of goods or services, for rental to others, or for administrative purposes; and
+2. Expected to be used during more than one accounting period.
 
-### Section 1: Nature and Initial Measurement of Property, Plant, and Equipment (PP&E)
-#### 1.1 Definition & Fundamental Characteristics
-> [!info] Key Definition
->
-> **Property, plant, and equipment (PP&E)**—also termed fixed assets, plant assets, or capital assets—are tangible long-lived resources held by an enterprise for use in central operations rather than for investment or resale to customers.
+> [!info] Key Definition: Recognition Test (IAS 16.7)
+> An item of PP&E shall be recognised as an asset if, and only if:
+> * It is probable that future economic benefits associated with the item will flow to the entity; and
+> * The cost of the item can be measured reliably.
 
-The three defining characteristics of PP&E are:
-1. **Acquired for Use in Operations:** Assets must be actively employed in operational activities (e.g., factory buildings, machinery, delivery trucks). Idle buildings are reclassified as long-term investments; land held by real estate developers for subdivision and sale is classified as inventory.
-2. **Long-Term in Nature and Usually Subject to Depreciation:** They yield economic service potential over multiple accounting periods. Their costs are systematically allocated to future periods via depreciation, with the exception of land, which has an indefinite life and is not depreciated.
-3. **Physical Substance:** They are tangible assets characterized by physical existence, distinguishing them from intangible assets like patents or goodwill.
+#### 1.2 Mandate for Component Depreciation
+IAS 16 mandates **component depreciation**. Each part of an item of PP&E with a cost that is significant in relation to the total cost of the item must be depreciated separately over its individual useful life.
 
----
-#### 1.2 Historical Cost Principle & Measurement Foundations
-In accordance with US GAAP (ASC 360) and IAS 16, PP&E is initially measured and recorded at **historical cost**. Historical cost represents the cash or cash-equivalent price of obtaining the asset and executing all necessary expenditures to bring it to the location and condition required for its intended operational use.
+> [!formula] Formula & Derivation: Component Depreciation
+> $$ \text{Total Depreciation Expense} = \sum_{k=1}^{m} \left( \frac{\text{Cost}_k - \text{Residual Value}_k}{\text{Useful Life}_k} \right) $$
 
-**Rationale for Historical Cost:**
-- **Verifiability:** Historical cost represents an arm's-length transaction backed by objective supporting documentation (invoices, deeds, contracts).
-- **Reliability over Subjectivity:** Subsequent write-ups to fair value prior to sale are prohibited under US GAAP due to the subjective nature of estimating current market values for specialized capital assets.
-
----
-#### 1.3 Cost Components by Asset Category
-##### A. Cost of Land
-Land is an asset with an indefinite economic life. All expenditures incurred to acquire land and ready it for its intended purpose are capitalized permanently into the `Land` account.
-
-**Included Expenditures:**
-- Cash purchase price and real estate broker commissions.
-- Legal fees, title search fees, title insurance, and attorney fees.
-- Accrued/unpaid property taxes or mortgages assumed by the buyer up to the purchase date.
-- Site preparation costs: clearing, grading, filling, draining, and leveling the land.
-- Demolition/razing of existing old structures on the land necessary for site preparation.
-- *Less:* Proceeds received from the sale of salvaged materials recovered from demolished structures.
-- Local government special assessments for permanent improvements (e.g., public pavements, sidewalks, sewers, and drainage mains).
-##### B. Cost of Land Improvements
-Land improvements are structural additions and enhancements made to land that possess **limited economic useful lives**.
-- **Examples:** Driveways, parking lots, fences, outdoor security lighting, retaining walls, and sprinkler systems.
-- **Accounting Treatment:** Recorded in a distinct account, `Land Improvements`, and depreciated over their estimated useful lives.
-##### C. Cost of Buildings
-The cost of buildings includes all direct expenditures related to acquisition or construction.
-- **Purchased Buildings:** Purchase price, legal fees, title insurance, real estate agent fees, assumption of unpaid mortgages/taxes, and initial repair/remodeling costs required to prepare the building for occupancy.
-- **Constructed Buildings:** Contractor contract price, architect fees, engineering fees, building permits, excavation costs, legal costs, direct construction supervision, and qualifying capitalized interest during the construction period.
-##### D. Cost of Equipment
-Equipment encompasses operational machinery, vehicles, office furniture, store fixtures, and computers.
-- **Included Expenditures:** Cash purchase price (net of cash discounts), sales taxes, freight-in and shipping insurance, unloading/unpacking, special concrete foundations or wired platforms, assembly, installation, and trial run/testing costs.
-- **Excluded Expenditures:** Fines for improper installation, damages incurred during unloading, and ongoing annual maintenance/insurance (expensed immediately).
-
----
-#### 1.4 Asset Retirement Obligations (ARO) & Asset Retirement Costs (ARC) [ASC 410-20]
-> [!info] Key Definition
->
-> An **Asset Retirement Obligation (ARO)** is a legal obligation associated with the retirement, dismantling, or environmental remediation of a tangible long-lived asset resulting from its acquisition, construction, or normal operation.
-
-##### Accounting Recognition Rules:
-1. **Initial Recognition:** An ARO liability is recognized at its **fair value** in the period incurred if a reasonable estimate of fair value can be made. Fair value is measured as the present value of the expected future remediation cash flows discounted at a credit-adjusted risk-free rate.
-2. **Capitalization into Asset (ARC):** The initial fair value of the ARO is capitalized as part of the carrying amount of the related long-lived asset, termed **Asset Retirement Cost (ARC)**.
-3. **Subsequent Expense Allocation:**
-   - **Depreciation:** The capitalized ARC is depreciated over the asset's useful life using a systematic depreciation method.
-   - **Accretion Expense:** The ARO liability is accreted upward over time to reflect the passage of time.
-4. **Settlement:** Upon final remediation, if actual settlement cost exceeds ARO liability balance $\rightarrow$ Loss on Settlement; if less $\rightarrow$ Gain on Settlement.
-
-> [!quote] Formula & Derivation: ARO Present Value and Accretion
->
-> $$ PV = \frac{CF_{\text{future}}}{(1 + r)^n} $$
-> $$ \text{Accretion Expense}_t = \text{ARO Carrying Value}_{t-1} \times r $$
-
----
-
-> [!example] Numerical Problem: Comprehensive PP&E Acquisition & ARO (Walkthrough 7.1)
->
-> **Scenario:**
-> On January 1, 2025, Apex Mining Co. purchased a tract of land containing an old warehouse for $\$1,500,000$ cash. Additional acquisition costs included:
-> - Broker commissions: $\$60,000$
-> - Legal and title search fees: $\$15,000$
-> - Demolition of old warehouse: $\$40,000$
-> - Salvaged timber/steel sales from old warehouse: $\$8,000$
-> - Paving new employee parking lot (Land Improvement): $\$85,000$
-> - Purchased mining machinery for $\$500,000$ cash subject to terms $2/10, n/30$ (paid within 10 days); sales tax $6\%$; freight-in $\$12,000$; installation platform $\$18,000$.
-> - Apex is legally required to dismantle the machinery and decontaminate the site in 4 years. Estimated future restoration cost is $\$100,000$. The credit-adjusted risk-free rate is $8\%$.
-> **Step 1: Calculate Cost of Land:**
-> $$ \text{Total Land Cost} = \$1,500,000 + \$60,000 + \$15,000 + (\$40,000 - \$8,000) = \mathbf{\$1,607,000} $$
-> **Step 2: Cost of Land Improvements:**
-> $$ \text{Parking Lot Paving} = \mathbf{\$85,000} \quad (\text{Depreciated separately}) $$
-> **Step 3: Calculate Cost of Machinery (excluding ARO):**
-> $$ \text{Invoice Price (Net of 2\% Discount)} = \$500,000 \times 0.98 = \$490,000 $$
-> $$ \text{Base Machinery Cost} = \$490,000 + (\$500,000 \times 0.06) + \$12,000 + \$18,000 = \mathbf{\$550,000} $$
-> **Step 4: Calculate Present Value of ARO (ARC):**
-> $$ PV = \$100,000 \times (1.08)^{-4} = \$100,000 \times 0.735030 = \mathbf{\$73,503} $$
-> $$ \text{Total Initial Machinery Carrying Value (including ARC)} = \$550,000 + \$73,503 = \mathbf{\$623,503} $$
-> **Step 5: Journal Entry on January 1, 2025:**
-> $$ \begin{array}{llrr}
-> \textbf{Date} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-> \hline
-> \text{Jan 1, 2025} & \text{Land} & 1,607,000 & \\
-> & \text{Land Improvements} & 85,000 & \\
-> & \text{Machinery (Base + ARC)} & 623,503 & \\
-> & \quad \text{Cash} & & 2,242,000 \\
-> & \quad \text{Asset Retirement Obligation} & & 73,503 \\
-> \end{array} $$
-> **Step 6: Year 1 Accretion & Depreciation Entries (December 31, 2025):**
-> - Accretion Expense: $\$73,503 \times 8\% = \mathbf{\$5,880}$
-> - Straight-Line Depreciation of Machinery (4-year life, $\$0$ salvage): $\frac{\$623,503}{4} = \mathbf{\$155,876}$
-> $$ \begin{array}{llrr}
-> \textbf{Date} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-> \hline
-> \text{Dec 31, 2025} & \text{Accretion Expense} & 5,880 & \\
-> & \quad \text{Asset Retirement Obligation} & & 5,880 \\
-> \hline
-> \text{Dec 31, 2025} & \text{Depreciation Expense--Machinery} & 155,876 & \\
-> & \quad \text{Accumulated Depreciation--Machinery} & & 155,876 \\
-> \end{array} $$
-> **Step 7: ARO Accretion Schedule Across 4 Years:**
-> $$ \begin{array}{lrrr}
-> \textbf{Year} & \textbf{Beginning ARO (\$)} & \textbf{Accretion Exp (8\%) (\$)} & \textbf{Ending ARO (\$)} \\
-> \hline
-> 2025 & 73,503 & 5,880 & 79,383 \\
-> 2026 & 79,383 & 6,351 & 85,734 \\
-> 2027 & 85,734 & 6,859 & 92,593 \\
-> 2028 & 92,593 & 7,407 & 100,000 \\
-> \hline \hline
-> \end{array} $$
-> **Step 8: Settlement Entry (December 31, 2028 - Actual Remediation Paid = $\$96,000$):**
-> $$ \begin{array}{llrr}
-> \textbf{Date} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-> \hline
-> \text{Dec 31, 2028} & \text{Asset Retirement Obligation} & 100,000 & \\
-> & \quad \text{Cash} & & 96,000 \\
-> & \quad \text{Gain on Settlement of ARO} & & 4,000 \\
-> \end{array} $$
-
----
-### Section 2: Capitalization of Interest During Construction [ASC 835-20]
-#### 2.1 Theoretical Rationale & GAAP Criteria
-Interest incurred during the construction of qualifying assets is considered a necessary cost of acquiring the asset and preparing it for its intended service.
-
-**Capitalization Conditions:**
-Interest capitalization begins when all three of the following conditions are met:
-1. Expenditures for the asset have been made.
-2. Activities necessary to ready the asset for its intended use are in progress.
-3. Interest cost is being incurred.
-
-Interest capitalization ends when the asset is substantially complete and ready for its intended use.
-
-**Qualifying Assets:**
-- Assets constructed for an entity's own use (e.g., self-constructed buildings, structures, machinery).
-- Assets intended for sale or lease that are constructed as discrete projects (e.g., real estate developments, ships).
-- *Non-Qualifying Assets:* Assets currently in use, idle assets, and routinely manufactured inventory.
-
----
-#### 2.2 Mathematical Mechanics: Avoidable Interest vs. Actual Interest
-US GAAP dictates that the amount of interest capitalized in an accounting period is the **lesser of Avoidable Interest and Actual Interest** incurred.
-
-> [!quote] Formula & Derivation: Interest Capitalization
->
-> $$ \text{Capitalized Interest} = \min(\text{Avoidable Interest}, \text{Actual Interest}) $$
-> **Step 1: Compute Weighted-Average Accumulated Expenditures (WAE)**
-> $$ \text{WAE} = \sum \left( \text{Expenditure}_i \times \frac{\text{Months Outstanding}_i}{12} \right) $$
-> **Step 2: Determine Applicable Interest Rates**
-> $$ \text{Weighted-Average General Rate} = \frac{\text{Total Actual Interest on General Debt}}{\text{Total Principal of General Debt}} $$
-> **Step 3: Calculate Avoidable Interest**
-> $$ \text{Avoidable Interest} = (\text{WAE}_{\text{specific}} \times r_{\text{specific}}) + [(\text{WAE} - \text{Specific Debt}) \times r_{\text{general}}] $$
-
-> [!warning] Exam Pitfall / Exception
->
-> **Prohibition on Netting Interest Income:** Under US GAAP, interest earned on temporary investments of unused loan proceeds CANNOT be netted against capitalized interest (must expense/capitalize gross interest and record interest income separately).
-
----
-
-> [!example] Numerical Problem: Capitalization of Interest (Walkthrough 7.2)
->
-> **Scenario:**
-> On January 1, 2025, Horizon Corp. began construction of a new manufacturing plant for its own use. Total construction was completed on December 31, 2025. Expenditures during 2025 were:
-> - January 1: $\$400,000$
-> - April 1: $\$600,000$
-> - July 1: $\$800,000$
-> - November 1: $\$600,000$
-> Horizon had the following debt outstanding throughout 2025:
-> 1. **Specific Construction Loan:** 3-year, $10\%$ note specifically issued for the building on January 1, 2025: $\$1,000,000$.
-> 2. **General Debt 1:** 5-year, $8\%$ bond payable: $\$2,000,000$.
-> 3. **General Debt 2:** 10-year, $12\%$ note payable: $\$1,000,000$.
-> **Step 1: Calculate Weighted-Average Accumulated Expenditures (WAE):**
-> $$ \begin{array}{lrrr}
-> \textbf{Date} & \textbf{Expenditure (\$)} & \textbf{Weight (Months/12)} & \textbf{WAE (\$)} \\
-> \hline
-> \text{Jan 1} & 400,000 & 12/12 & 400,000 \\
-> \text{Apr 1} & 600,000 & 9/12 & 450,000 \\
-> \text{Jul 1} & 800,000 & 6/12 & 400,000 \\
-> \text{Nov 1} & 600,000 & 2/12 & 100,000 \\
-> \hline
-> \textbf{Total} & \mathbf{2,400,000} & & \mathbf{1,350,000} \\
-> \hline \hline
-> \end{array} $$
-> **Step 2: Calculate Weighted-Average Rate on General Debt:**
-> $$ \text{Total General Debt Interest} = (\$2,000,000 \times 8\%) + (\$1,000,000 \times 12\%) = \$160,000 + \$120,000 = \$280,000 $$
-> $$ \text{Total General Debt Principal} = \$2,000,000 + \$1,000,000 = \$3,000,000 $$
-> $$ r_{\text{general}} = \frac{\$280,000}{\$3,000,000} = \mathbf{9.3333\%} $$
-> **Step 3: Calculate Avoidable Interest:**
-> - Portion of WAE covered by Specific Construction Loan: $\$1,000,000 \times 10\% = \$100,000$
-> - Excess WAE over Specific Debt: $(\$1,350,000 - \$1,000,000) \times 9.3333\% = \$32,667$
-> $$ \text{Total Avoidable Interest} = \$100,000 + \$32,667 = \mathbf{\$132,667} $$
-> **Step 4: Calculate Total Actual Interest:**
-> $$ \text{Total Actual Interest} = \$100,000 \text{ (Specific)} + \$280,000 \text{ (General)} = \mathbf{\$380,000} $$
-> **Step 5: Determine Capitalized Interest & Interest Expense:**
-> $$ \text{Capitalized Interest} = \min(\$132,667, \$380,000) = \mathbf{\$132,667} $$
-> $$ \text{Interest Expense to Income Statement} = \$380,000 - \$132,667 = \mathbf{\$247,333} $$
-> **Step 6: Total Capitalized Cost of Building:**
-> $$ \text{Total Cost} = \$2,400,000 + \$132,667 = \mathbf{\$2,532,667} $$
-> **Step 7: Year-End Adjusting Journal Entry (December 31, 2025):**
-> $$ \begin{array}{llrr}
-> \textbf{Date} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-> \hline
-> \text{Dec 31, 2025} & \text{Building (Capitalized Interest)} & 132,667 & \\
-> & \text{Interest Expense} & 247,333 & \\
-> & \quad \text{Cash / Interest Payable} & & 380,000 \\
-> \end{array} $$
-
----
-### Section 3: Special Asset Valuation & Nonmonetary Exchange Scenarios
-#### 3.1 Deferred-Payment Contracts
-When PP&E is acquired under long-term credit terms, notes payable, or mortgages, the asset is recorded at the **present value of the consideration exchanged**.
-- If no interest rate is stated, or if the stated rate is unreasonable, an interest rate must be **imputed** based on the buyer's incremental borrowing rate.
-- **Discount Amortization:** The difference between the face value of the note and its present value is credited to `Discount on Notes Payable` and amortized over the note's term to `Interest Expense` using the **effective-interest method**.
-
----
-#### 3.2 Lump-Sum (Basket) Purchases
-When multiple distinct assets are acquired for a single lump-sum purchase price, the total acquisition cost is allocated among the individual assets based on their **relative fair values**:
-
-> [!quote] Formula & Derivation: Lump-Sum Allocation
->
-> $$ \text{Allocated Cost}_i = \text{Lump-Sum Purchase Price} \times \left( \frac{\text{Fair Value}_i}{\sum \text{Fair Values}} \right) $$
-
----
-#### 3.3 Issuance of Corporate Stock
-When PP&E is acquired via the issuance of stock, the transaction is measured at the **fair value of the stock issued** if actively traded; if the stock's fair value is not determinable, the fair value of the asset acquired is used.
-
----
-#### 3.4 Nonmonetary Asset Exchanges [ASC 845]
-Nonmonetary exchanges occur when an enterprise trades fixed assets for other nonmonetary assets.
-##### A. Commercial Substance
-> [!info] Key Definition
->
-> An exchange possesses **commercial substance** if the entity's future cash flows change significantly as a result of the transaction (i.e., the economic positions of the parties alter).
-
-##### B. Accounting Rules Matrix [ASC 845]
-1. **Losses:** ALWAYS recognized immediately in full, regardless of commercial substance.
-2. **Gains with Commercial Substance:** ALWAYS recognized immediately in full.
-3. **Gains Lacking Commercial Substance (No Boot Received / Boot Paid):** Defer entire gain.
-   $$ \text{Recorded Cost of New Asset} = \text{Book Value of Old Asset} + \text{Boot Paid} $$
-4. **Gains Lacking Commercial Substance (Boot Received):**
-   - **If Boot Received $< 25\%$ of Total Consideration:** Recognize a partial gain:
-     $$ \text{Recognized Gain} = \text{Total Gain} \times \left( \frac{\text{Boot Received}}{\text{Boot Received} + \text{Fair Value of Asset Received}} \right) $$
-     $$ \text{Recorded Cost of New Asset} = \text{Fair Value of New Asset} - \text{Deferred Gain} $$
-   - **If Boot Received $\ge 25\%$ of Total Consideration:** Entire transaction is treated as a monetary exchange; 100% of the gain is recognized.
-
----
-
-> [!example] Numerical Problem: Nonmonetary Asset Exchanges (Walkthrough 7.3)
->
-> **Scenario:**
-> Vanguard Corp. exchanges a heavy crane for a specialized excavator.
-> - **Old Crane Data:** Original cost = $\$200,000$; Accumulated depreciation = $\$120,000$ (Book Value = $\$80,000$); Fair Value = $\$110,000$ (Unrealized Gain = $\$30,000$).
-> **Case 1: Commercial Substance present. Vanguard pays $\$15,000$ cash boot. Fair Value of excavator = $\$125,000$.**
-> $$ \text{Gain} = \$110,000 - \$80,000 = \mathbf{\$30,000} \text{ (Fully Recognized)} $$
-> $$ \begin{array}{llrr}
-> \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-> \hline
-> \text{Equipment--Excavator} & 125,000 & \\
-> \text{Accumulated Depreciation--Crane} & 120,000 & \\
-> \quad \text{Equipment--Crane} & & 200,000 \\
-> \quad \text{Cash} & & 15,000 \\
-> \quad \text{Gain on Disposal of Equipment} & & 30,000 \\
-> \end{array} $$
-> **Case 2: Commercial Substance present. Fair Value of Crane = $\$60,000$ (Unrealized Loss = $\$20,000$). Vanguard pays $\$15,000$ cash boot.**
-> $$ \text{Loss} = \$80,000 - \$60,000 = \mathbf{\$20,000} \text{ (Fully Recognized)} $$
-> $$ \begin{array}{llrr}
-> \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-> \hline
-> \text{Equipment--Excavator} & 75,000 & \\
-> \text{Accumulated Depreciation--Crane} & 120,000 & \\
-> \text{Loss on Disposal of Equipment} & 20,000 & \\
-> \quad \text{Equipment--Crane} & & 200,000 \\
-> \quad \text{Cash} & & 15,000 \\
-> \end{array} $$
-> **Case 3: Lacks Commercial Substance. Vanguard pays $\$15,000$ cash boot.**
-> $$ \text{Total Gain} = \$30,000 \quad \rightarrow \quad \text{Recognized Gain} = \mathbf{\$0} \text{ (Deferred)} $$
-> $$ \text{Recorded Cost of Excavator} = \$80,000 + \$15,000 = \mathbf{\$95,000} $$
-> $$ \begin{array}{llrr}
-> \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-> \hline
-> \text{Equipment--Excavator} & 95,000 & \\
-> \text{Accumulated Depreciation--Crane} & 120,000 & \\
-> \quad \text{Equipment--Crane} & & 200,000 \\
-> \quad \text{Cash} & & 15,000 \\
-> \end{array} $$
-> **Case 4: Lacks Commercial Substance. Fair Value of Crane = $\$110,000$. Vanguard receives $\$22,000$ cash boot and the excavator (Fair Value = $\$88,000$).**
-> $$ \text{Boot Ratio} = \frac{\$22,000}{\$110,000} = 20\% \quad (< 25\% \rightarrow \text{Recognize Partial Gain}) $$
-> $$ \text{Recognized Gain} = \$30,000 \times 20\% = \mathbf{\$6,000} $$
-> $$ \text{Deferred Gain} = \$30,000 - \$6,000 = \$24,000 $$
-> $$ \text{Recorded Cost of Excavator} = \$88,000 - \$24,000 = \mathbf{\$64,000} $$
-> $$ \begin{array}{llrr}
-> \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-> \hline
-> \text{Cash} & 22,000 & \\
-> \text{Equipment--Excavator} & 64,000 & \\
-> \text{Accumulated Depreciation--Crane} & 120,000 & \\
-> \quad \text{Equipment--Crane} & & 200,000 \\
-> \quad \text{Gain on Disposal of Equipment} & & 6,000 \\
-> \end{array} $$
-
----
-### Section 4: Costs Subsequent to Acquisition & Dispositions
-#### 4.1 Capital vs. Revenue Expenditures
-- **Capital Expenditures:** Costs that enhance the future economic benefits of an asset (extending useful life, increasing capacity/efficiency, or improving quality). Capitalized to asset accounts or debited to accumulated depreciation.
-- **Revenue Expenditures:** Costs that maintain normal operating efficiency and performance. Expensed in the period incurred as `Maintenance and Repairs Expense`.
-##### Categories of Subsequent Expenditures:
-1. **Additions:** Extensions or enlargements of existing facilities. Capitalized as asset additions.
-2. **Improvements & Replacements:**
-   - *Substitution Approach:* If old asset cost/accumulated depreciation is known, remove old book value, record gain/loss, and capitalize new asset.
-   - *Capitalize New Cost:* If old book value is unknown, capitalize new cost to asset if productivity/efficiency improves.
-   - *Debit Accumulated Depreciation:* If expenditure extends useful life without increasing productivity.
-3. **Rearrangement & Reinstallation:** Capitalized if material and benefits future periods.
-4. **Repairs:** Ordinary repairs expensed; major overhauls capitalized.
-
----
-#### 4.2 Dispositions of PP&E
-When PP&E is retired, sold, or disposed of:
-1. Update depreciation up to the exact date of disposal.
-2. Remove Asset historical cost and Accumulated Depreciation balances.
-3. Record cash/consideration received.
-4. Recognize Gain or Loss on Disposal in operating income:
-   $$ \text{Gain / Loss on Disposal} = \text{Net Disposal Proceeds} - \text{Book Value at Disposal Date} $$
-
-**Involuntary Conversions:** Losses/gains from condemnation, fire, flood, or theft are recognized in full as operating gains/losses, even if proceeds are immediately reinvested in replacement assets.
-
----
-### Section 5: Depreciation Concepts, Methods, & Rate Revisions
-#### 5.1 Depreciation Fundamentals
-Depreciation is a process of **cost allocation**, NOT asset valuation. It is the systematic allocation of an asset's depreciable base over its estimated useful life.
-
-> [!quote] Formula & Derivation: Depreciable Base
->
-> $$ \text{Depreciable Base} = \text{Historical Cost} - \text{Estimated Salvage Value} $$
-
----
-#### 5.2 Depreciation Allocation Methods
-> [!quote] Formula & Derivation: Depreciation Methods
->
-> **A. Activity Method (Units of Output or Working Hours)**
-> Assumes depreciation is a function of usage rather than time:
-> $$ \text{Rate per Unit/Hour} = \frac{\text{Cost} - \text{Salvage Value}}{\text{Total Estimated Output Units/Hours}} $$
-> $$ \text{Depreciation Expense}_t = \text{Units/Hours in Period } t \times \text{Rate per Unit/Hour} $$
-> **B. Straight-Line Method**
-> Assumes constant economic service potential per period:
-> $$ \text{Annual Depreciation Expense} = \frac{\text{Cost} - \text{Salvage Value}}{\text{Estimated Useful Life } (n)} $$
-> **C. Sum-of-the-Years'-Digits (SYD) Method (Accelerated)**
-> Calculates decreasing depreciation using a declining fraction applied to a constant depreciable base:
-> $$ S = \frac{n(n + 1)}{2} $$
-> $$ \text{Depreciation Expense}_t = (\text{Cost} - \text{Salvage Value}) \times \left( \frac{\text{Remaining Useful Life at Start of Period}}{S} \right) $$
-> **D. Double-Declining-Balance (DDB) Method (Accelerated)**
-> Applies a constant declining rate (double the straight-line rate) to the **declining book value** of the asset:
-> $$ \text{DDB Rate} = \frac{2}{n} $$
-> $$ \text{Depreciation Expense}_t = \text{Book Value}_{t-1} \times \text{DDB Rate} \quad (\text{where } \text{Book Value}_0 = \text{Cost}) $$
-> *(Constraint: Asset CANNOT be depreciated below salvage value. Final year expense is plugged).*
-> **E. Composite & Group Depreciation Methods**
-> Used for collection of assets. The composite/group rate is applied to total cost:
-> $$ \text{Composite Rate} = \frac{\text{Total Annual Straight-Line Depreciation}}{\text{Total Historical Cost}} $$
-
----
-#### 5.3 Revision of Depreciation Rates (Prospective Approach)
-Changes in estimated useful life or salvage value are accounted for **prospectively** in current and future periods.
-
-> [!quote] Formula & Derivation: Prospective Revision
->
-> $$ \text{New Annual Depreciation} = \frac{\text{Book Value at Date of Revision} - \text{New Salvage Value}}{\text{New Remaining Useful Life}} $$
-
----
-
-> [!example] Numerical Problem: Multi-Method Depreciation & Revision (Walkthrough 7.4)
->
-> **Scenario:**
-> On January 1, 2025, Titan Corp. purchased heavy machinery for $\$260,000$ with an estimated salvage value of $\$20,000$ and a 5-year useful life (total estimated working hours = 20,000 hours).
-> - Hours worked: 2025 = 5,000 hours; 2026 = 6,000 hours.
-> **Part A: Calculate 2025 and 2026 Depreciation under 4 Methods:**
-> 1. **Straight-Line Method:**
->    $$ \text{Depreciable Base} = \$260,000 - \$20,000 = \$240,000 $$
->    $$ \text{Annual Expense} = \frac{\$240,000}{5} = \mathbf{\$48,000 \quad \text{per year}} $$
-> 2. **Activity Method (Working Hours):**
->    $$ \text{Rate per Hour} = \frac{\$240,000}{20,000} = \mathbf{\$12.00 / hr} $$
->    $$ \text{2025 Expense} = 5,000 \times \$12 = \mathbf{\$60,000} $$
->    $$ \text{2026 Expense} = 6,000 \times \$12 = \mathbf{\$72,000} $$
-> 3. **Sum-of-the-Years'-Digits (SYD) Method:**
->    $$ S = \frac{5(6)}{2} = 15 $$
->    $$ \text{2025 Expense} = \$240,000 \times \frac{5}{15} = \mathbf{\$80,000} $$
->    $$ \text{2026 Expense} = \$240,000 \times \frac{4}{15} = \mathbf{\$64,000} $$
-> 4. **Double-Declining-Balance (DDB) Method:**
->    $$ \text{DDB Rate} = \frac{2}{5} = 40\% $$
->    $$ \text{2025 Expense} = \$260,000 \times 40\% = \mathbf{\$104,000} \quad (\text{End Book Value} = \$156,000) $$
->    $$ \text{2026 Expense} = \$156,000 \times 40\% = \mathbf{\$62,400} \quad (\text{End Book Value} = \$93,600) $$
-> **Part B: Prospective Revision in 2027 (using Straight-Line):**
-> On January 1, 2027, after 2 years of straight-line depreciation (Accumulated Depreciation = $\$96,000$; Book Value = $\$164,000$), Titan revises estimates: remaining useful life is extended to 5 more years (total life = 7 years), and new salvage value is $\$14,000$.
-> $$ \text{Revised Annual Depreciation (2027–2031)} = \frac{\$164,000 - \$14,000}{5 \text{ years}} = \mathbf{\$30,000 / year} $$
-> $$ \begin{array}{llrr}
-> \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-> \hline
-> \text{Depreciation Expense} & 30,000 & \\
-> \quad \text{Accumulated Depreciation--Machinery} & & 30,000 \\
-> \end{array} $$
-
----
-### Section 6: Asset Impairments (US GAAP vs. IFRS / IAS 36)
-#### 6.1 US GAAP Two-Step Impairment Model [ASC 360]
-Impairment occurs when the carrying amount of an asset is not recoverable.
+* **Example:** An aircraft fuselage, jet engines, and cabin interior must be disaggregated into distinct asset components and depreciated over their respective useful lives rather than as a single composite asset.
+#### 1.3 Initial Cost Basis & Elements of Cost
 
 ```mermaid
 flowchart TD
-    A[Event / Indicator of Impairment] --> B[Step 1: Recoverability Test\nIs Undiscounted Future Net Cash Flows < Carrying Amount?]
-    B -->|NO| C[NO IMPAIRMENT\nStop Testing]
-    B -->|YES| D[Step 2: Impairment Loss Calculation\nImpairment Loss = Carrying Amount - Fair Value]
+    Cost["Initial Cost Basis (IAS 16)"]
+    Cost --> PP["1. Purchase Price\n• List price\n• Import duties\n• Non-refundable taxes\n• Less: Discounts/Rebates"]
+    Cost --> DAC["2. Directly Attributable Costs\n• Site preparation\n• Initial delivery & handling\n• Installation & assembly\n• Professional fees\n• Testing costs (net of samples)"]
+    Cost --> ARO["3. Decommissioning / ARO (IAS 37)\n• Present value of dismantling\n• Site restoration obligations"]
 ```
 
-> [!quote] Formula & Derivation: US GAAP Impairment Test
->
-> **Step 1: Recoverability Test**
-> Compare expected undiscounted future net cash flows from the asset's use and ultimate disposal to its carrying amount:
-> - If $\sum \text{Undiscounted Cash Flows} \ge \text{Carrying Amount} \rightarrow$ NO impairment.
-> - If $\sum \text{Undiscounted Cash Flows} < \text{Carrying Amount} \rightarrow$ Asset is IMPAIRED. Proceed to Step 2.
-> **Step 2: Impairment Loss Calculation**
-> $$ \text{Impairment Loss} = \text{Carrying Amount} - \text{Fair Value} $$
+PP&E is initially measured at its cost on the acquisition date. Cost comprises:
+1. **Purchase Price:** Gross purchase price including import duties and non-refundable purchase taxes, less trade discounts and rebates.
+2. **Directly Attributable Costs:** Costs directly incurred in bringing the asset to the location and condition necessary for it to be capable of operating in the manner intended by management.
+3. **Decommissioning / Asset Retirement Obligations (IAS 37):** The initial estimate of the costs of dismantling, removing the item, and restoring the site on which it is located.
 
-##### Subsequent Rules under US GAAP:
-- **Assets Held for Use:** Impaired carrying value becomes new cost basis. **Restoration/reversal of impairment losses is strictly PROHIBITED**.
-- **Assets Held for Disposal (Sale):** Measured at **Lower of Cost or Net Realizable Value** (Fair Value - Costs to Sell). Depreciation is suspended. Reversals of impairment losses ARE permitted up to carrying value prior to impairment.
+**Breakdown of Asset Cost Categories**
+* **Land:** Purchase price, legal fees, title search and registration fees, assumed mortgages or encumbrances, clearing/demolishing existing structures (net of salvage proceeds), and site grading. Land has an indefinite useful life and is not depreciated.
+* **Land Improvements:** Structural enhancements with limited useful lives (e.g., driveways, parking lots, fences, outdoor lighting, landscaping). Capitalised separately from land and depreciated over their useful lives.
+* **Buildings:** Purchase price or construction costs, architectural/engineering fees, building permits, excavation costs, and direct contractor expenses.
+* **Machinery & Equipment:** Purchase price, freight/transportation-in, transit insurance, special foundations/installation platforms, assembly, and testing costs to ensure functional readiness.
+#### 1.4 Decommissioning Obligations & Asset Retirement Obligations (IAS 37)
+When an entity incurs a legal or constructive obligation to dismantle an asset or restore a site at the end of its useful life, IAS 37 mandates that the present value of the expected future restoration costs be capitalised as part of the initial carrying amount of the PP&E, with a corresponding credit to a Provision for Decommissioning / Restoration.
 
----
-#### 6.2 IFRS Comparison (IAS 16 & IAS 36)
-> [!quote] Formula & Derivation: IFRS Impairment Test
->
-> - **Single-Step Test:** Impairment loss is recognized whenever carrying amount exceeds **Recoverable Amount**.
->   $$ \text{Recoverable Amount} = \max(\text{Fair Value Less Costs to Sell}, \text{Value in Use}) $$
->   *(Value in Use = discounted present value of expected future cash flows)*.
-> - **Reversal of Impairment:** IFRS PERMITS reversal of impairment losses for assets held for use if economic indicators improve.
+> [!formula] Formula & Derivation: Present Value of Decommissioning Obligation
+> $$ \text{PV of Provision} = \frac{\text{Expected Future Cash Outflow}_n}{(1 + r)^n} $$
+> where $r$ is the pre-tax discount rate reflecting current market assessments of the time value of money, and $n$ is the useful life of the asset in years.
 
----
-
-> [!example] Numerical Problem: Asset Impairment (Walkthrough 7.5)
->
-> **Scenario:**
-> At December 31, 2025, Apex Corp. evaluates a manufacturing plant.
-> - Historical Cost = $\$1,200,000$; Accumulated Depreciation = $\$400,000$ (Carrying Amount = $\$800,000$).
-> - Expected undiscounted future net cash flows = $\$750,000$.
-> - Fair Value (based on discounted cash flows) = $\$610,000$. Remaining useful life = 5 years ($\$0$ salvage).
-> **Step 1: Recoverability Test:**
-> $$ \sum \text{Undiscounted Cash Flows } (\$750,000) < \text{Carrying Amount } (\$800,000) $$
-> $$ \mathbf{\text{Asset is Impaired!}} $$
-> **Step 2: Calculate Impairment Loss:**
-> $$ \text{Impairment Loss} = \$800,000 - \$610,000 = \mathbf{\$190,000} $$
-> **Journal Entry (December 31, 2025):**
+> [!example] Numerical Problem: Decommissioning Obligation
+> An entity constructs an offshore oil platform at a cost of $\text{BDT } 50,000,000$. The entity is contractually obligated to dismantle the platform in 10 years at an estimated cost of $\text{BDT } 10,000,000$. The applicable pre-tax discount rate is $8\%$.
+> $$ \text{PV of Decommissioning Provision} = \frac{\text{BDT } 10,000,000}{(1 + 0.08)^{10}} = \text{BDT } 10,000,000 \times 0.463193 = \mathbf{\text{BDT } 4,631,930} $$
+> **Journal Entry for Initial Capitalisation:**
 > $$ \begin{array}{llrr}
-> \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
+> \textbf{Account Titles} & & \textbf{Debit (BDT)} & \textbf{Credit (BDT)} \\
 > \hline
-> \text{Loss on Impairment} & 190,000 & \\
-> \quad \text{Accumulated Depreciation--Plant} & & 190,000 \\
+> \text{Property, Plant, and Equipment (Oil Platform)} & & 54,631,930 & \\
+> \quad \text{Cash} & & & 50,000,000 \\
+> \quad \text{Provision for Decommissioning (IAS 37)} & & & 4,631,930 \\
 > \end{array} $$
-> **Post-Impairment Balance Sheet Presentation:**
-> $$ \text{New Carrying Value} = \$1,200,000 - (\$400,000 + \$190,000) = \mathbf{\$610,000} $$
-> **Revised Annual Depreciation (2026–2030):**
-> $$ \text{New Annual Depreciation} = \frac{\$610,000}{5 \text{ years}} = \mathbf{\$122,000 / year} $$
+> **Subsequent Unwinding of Discount:** In each subsequent period, the discount unwinds through Profit or Loss as Finance Cost, gradually increasing the provision carrying amount to its maturity value:
+> $$ \text{Finance Cost}_t = \text{Carrying Amount of Provision}_{t-1} \times r $$
+
+#### 1.5 Self-Constructed Assets & Borrowing Costs (IAS 23)
+When an entity constructs its own asset, cost includes direct materials, direct labour, variable overhead, and allocated fixed manufacturing overhead.
+
+**Capitalisation of Borrowing Costs under IAS 23**
+Under IAS 23 (Borrowing Costs), borrowing costs directly attributable to the acquisition, construction, or production of a qualifying asset must be capitalised as part of the cost of that asset.
+* **Qualifying Asset:** An asset that necessarily takes a substantial period of time to get ready for its intended use or sale (e.g., self-constructed buildings, heavy industrial plants, large machinery).
+
+**Capitalisation Period Constraints**
+Capitalisation commences when all three conditions are satisfied:
+1. Expenditures for the asset are being incurred;
+2. Borrowing costs are being incurred; and
+3. Activities necessary to prepare the asset for its intended use or sale are in progress.
+
+Capitalisation must be suspended during extended periods in which active development is interrupted, and ceased when substantially all activities necessary to prepare the qualifying asset for its intended use or sale are complete.
+
+**Avoidable Interest Mechanics**
+The capitalisable borrowing costs are limited to the lower of Actual Borrowing Costs incurred during the period and Avoidable Borrowing Costs.
+
+> [!formula] Formula & Derivation: Avoidable Borrowing Costs
+> $$ \text{Weighted-Average Accumulated Expenditures (WAED)} = \sum \left( \text{Expenditure Amount} \times \frac{\text{Construction Months Outstanding}}{12} \right) $$
+> $$ \text{Avoidable Interest} = \left( \text{Specific Borrowing Amount} \times r_{\text{specific}} \right) + \left[ (\text{WAED} - \text{Specific Borrowing}) \times r_{\text{weighted average}} \right] $$
+> $$ \text{Capitalisable Borrowing Costs} = \min\left( \text{Actual Borrowing Costs}, \text{Avoidable Borrowing Costs} \right) $$
+> $$ \text{Capitalisation Rate (Weighted Average)} = \frac{\text{Total Interest on General Borrowings}}{\text{Total Principal Amount of General Borrowings}} $$
 
 ---
-### Section 7: Depletion of Natural Resources
-#### 7.1 Depletion Base Categories
-Natural resources (wasting assets) are physically consumed through extraction. Depletion base comprises four cost categories:
-1. **Acquisition Costs:** Price paid to acquire property/lease rights.
-2. **Exploration Costs:** Costs to locate resources. Capitalized if substantial or if using full-cost method.
-3. **Development Costs:**
-   - *Intangible Development Costs:* Drilling, shafts, wells, tunnels (capitalized to depletion base).
-   - *Tangible Equipment Costs:* Heavy machinery/rigs capitalized SEPARATELY if reusable elsewhere.
-4. **Restoration Costs (ARO):** Present value of required environmental restoration costs.
+### 2. Valuation Models and Subsequent Expenditures
+#### 2.1 Accounting Valuation Models Permitted under IAS 16
+Subsequent to initial recognition, an entity must choose either the **Cost Model** or the **Revaluation Model** as its accounting policy for an entire class of PP&E.
 
----
-#### 7.2 Depletion Mechanics (Units-of-Production Method)
-> [!quote] Formula & Derivation: Depletion
->
-> $$ \text{Depletion Rate per Unit} = \frac{\text{Total Depletion Base} - \text{Salvage Value}}{\text{Total Estimated Extractable Units}} $$
-> $$ \text{Depletion Incurred} = \text{Units Extracted} \times \text{Depletion Rate per Unit} $$
-
-**Accounting Entries:**
-$$ \begin{array}{llrr}
-\textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-\hline
-\text{Inventory (Extracted Resource)} & \text{XX,XXX} & \\
-\quad \text{Resource Asset (or Accumulated Depletion)} & & \text{XX,XXX} \\
-\\
-\text{Cost of Goods Sold} & \text{YY,YYY} & \\
-\quad \text{Inventory} & & \text{YY,YYY} \\
-\end{array} $$
-
----
-#### 7.3 Liquidating Dividends
-Dividends paid to shareholders exceeding accumulated retained earnings represent a **return of capital** rather than a distribution of earnings:
-$$ \begin{array}{llrr}
-\textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-\hline
-\text{Retained Earnings (Earned Portion)} & \text{XX,XXX} & \\
-\text{Additional Paid-in Capital (Liquidating)} & \text{YY,YYY} & \\
-\quad \text{Cash} & & \text{ZZ,ZZZ} \\
-\end{array} $$
-
----
-
-> [!example] Numerical Problem: Depletion & Natural Resources (Walkthrough 7.6)
->
-> **Scenario:**
-> Sierra Mining Co. acquired ore rights for $\$3,000,000$. Exploration costs totaled $\$400,000$. Intangible development costs were $\$800,000$. Present value of site restoration ARO is $\$200,000$. Land residual salvage value is $\$400,000$. Total estimated extractable ore = 2,000,000 tons.
-> - In Year 1: Extracted 500,000 tons; Sold 400,000 tons at $\$8$/ton.
-> **Step 1: Calculate Total Depletion Base:**
-> $$ \text{Gross Base} = \$3,000,000 + \$400,000 + \$800,000 + \$200,000 = \$4,400,000 $$
-> $$ \text{Net Depletion Base} = \$4,400,000 - \$400,000 = \mathbf{\$4,000,000} $$
-> **Step 2: Calculate Depletion Rate per Ton:**
-> $$ \text{Depletion Rate} = \frac{\$4,000,000}{2,000,000 \text{ tons}} = \mathbf{\$2.00 / ton} $$
-> **Step 3: Year 1 Depletion & Cost Allocation:**
-> $$ \text{Total Depletion Incurred (500k tons)} = 500,000 \times \$2.00 = \mathbf{\$1,000,000} $$
-> $$ \text{Cost of Goods Sold (400k tons)} = 400,000 \times \$2.00 = \mathbf{\$800,000} $$
-> $$ \text{Ending Inventory (100k tons)} = 100,000 \times \$2.00 = \mathbf{\$200,000} $$
-> **Step 4: Journal Entries:**
-> $$ \begin{array}{llrr}
-> \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-> \hline
-> \text{Inventory--Ore} & 1,000,000 & \\
-> \quad \text{Ore Mine (or Accumulated Depletion)} & & 1,000,000 \\
-> \hline
-> \text{Cash } (400,000 \times \$8) & 3,200,000 & \\
-> \quad \text{Sales Revenue} & & 3,200,000 \\
-> \hline
-> \text{Cost of Goods Sold} & 800,000 & \\
-> \quad \text{Inventory--Ore} & & 800,000 \\
-> \end{array} $$
-
----
-### Section 8: Summary Comparison of Standards (US GAAP vs. IFRS / IAS 16)
-
-| Concept / Issue | US GAAP (ASC 360 / ASC 835) | IFRS (IAS 16 / IAS 36) |
+| Valuation Attribute | Cost Model | Revaluation Model (IAS 16) |
 | :--- | :--- | :--- |
-| **Initial Measurement** | Historical cost. | Historical cost. |
-| **Revaluation Option** | Prohibited. PP&E carried at historical cost less accumulated depreciation. | Permitted under Revaluation Model (Fair value gains to OCI Revaluation Surplus). |
-| **Component Depreciation** | Permitted but rarely used in practice. | **Mandatory:** Each part of PP&E with a cost significant to total cost MUST be depreciated separately. |
-| **Capitalization of Interest** | Required for qualifying assets. Netting interest income against capitalized interest is prohibited. | Required. Netting of interest income earned on temporary investment of specific loans IS required. |
-| **Impairment Test Model** | **Two-Step Test:** <br>1. Undiscounted Cash Flows < Carrying Amount<br>2. Loss = Carrying Amount - Fair Value. | **Single-Step Test:** <br>Impairment Loss = Carrying Amount - Recoverable Amount ($\max(\text{FV less costs to sell}, \text{Value in Use})$). |
-| **Impairment Reversals (Held for Use)** | **Strictly Prohibited**. | **Permitted** if economic conditions recover. |
+| **Measurement Basis** | Carrying Amount = Historical Cost less Accumulated Depreciation and Accumulated Impairment Losses. | Carrying Amount = Fair Value at revaluation date less Subsequent Accumulated Depreciation and Subsequent Impairment Losses. |
+| **Frequency of Revaluation** | None. | Performed regularly (every 3 to 5 years for stable assets; annually for volatile assets) so carrying amount does not differ materially from fair value. |
+| **Treatment of Valuation Gains** | Not recognised. | Recognised in Other Comprehensive Income (OCI) and accumulated in equity as Revaluation Surplus, unless reversing a previous revaluation loss recognised in Profit or Loss. |
+| **Treatment of Valuation Losses** | Recognised immediately in Profit or Loss as an Impairment Loss. | Recognised in Profit or Loss, unless reversing a previous gain stored in Revaluation Surplus for that same asset (debited to OCI). |
+
+```mermaid
+flowchart TD
+    REV["Asset Revaluation (IAS 16)"]
+    REV --> GAIN{"Fair Value > Carrying Amount\n(Revaluation Gain)"}
+    REV --> LOSS{"Fair Value < Carrying Amount\n(Revaluation Loss)"}
+    
+    GAIN --> G1["1. Credit OCI / Revaluation Surplus\n(Standard Case)"]
+    GAIN --> G2["2. Credit Profit or Loss\n(To the extent it reverses prior loss in P&L)"]
+    
+    LOSS --> L1["1. Debit Profit or Loss\n(Standard Case)"]
+    LOSS --> L2["2. Debit OCI / Revaluation Surplus\n(To the extent of existing surplus for asset)"]
+```
+
+**Revaluation Accounting Entries**
+* **Initial Revaluation Gain:**
+  $$ \begin{array}{llrr}
+  \textbf{Account Titles} & & \textbf{Debit} & \textbf{Credit} \\
+  \hline
+  \text{Accumulated Depreciation (Elimination)} & & \text{XXX} & \\
+  \quad \text{Property, Plant, and Equipment} & & & \text{XXX} \\
+  \text{Property, Plant, and Equipment (Adjustment to Fair Value)} & & \text{XXX} & \\
+  \quad \text{Other Comprehensive Income (Revaluation Surplus)} & & & \text{XXX} \\
+  \end{array} $$
+* **Derecognition / Depletion of Revaluation Surplus:** As the revalued asset is used, the extra depreciation based on the revalued amount can be transferred directly from Revaluation Surplus to Retained Earnings within equity (bypassing Profit or Loss):
+  $$ \text{Surplus Transfer} = \text{Depreciation}_{\text{revalued}} - \text{Depreciation}_{\text{historical cost}} $$
+#### 2.2 Non-Monetary Asset Exchanges
+When PP&E is acquired in exchange for a non-monetary asset (or a combination of monetary and non-monetary assets), the accounting treatment depends on whether the transaction has commercial substance.
+
+> [!info] Key Definition: Commercial Substance
+> A non-monetary exchange has **commercial substance** if the entity's future cash flows are expected to change significantly as a result of the exchange (i.e., the risk, timing, and amount of future cash flows differ, or the entity-specific value of the portion of operations changes).
+
+**Exchange Decision Rules under IFRS**
+1. **Exchange Has Commercial Substance:**
+   * Measure the acquired asset at the **Fair Value** of the asset given up (adjusted for any cash paid/received), unless the fair value of the asset received is more clearly evident.
+   * Recognise any resulting Gain or Loss immediately in Profit or Loss:
+     $$ \text{Gain/Loss on Exchange} = \text{Fair Value of Asset Given Up} - \text{Carrying Amount of Asset Given Up} $$
+2. **Exchange Lacks Commercial Substance:**
+   * Measure the acquired asset at the **Carrying Amount** of the asset given up (adjusted for cash paid/received).
+   * No Gain is recognised in Profit or Loss. (Losses are recognised immediately if carrying amount exceeds fair value).
+#### 2.3 Accounting for Subsequent Expenditures
+Subsequent costs incurred on an item of PP&E after initial acquisition are evaluated against the general recognition criteria of IAS 16.
+
+```mermaid
+flowchart LR
+    Exp["Subsequent Expenditure"] --> Check{"Does it increase future economic benefits?\n• Extends useful life?\n• Increases capacity/output?\n• Improves quality/lowers costs?"}
+    Check -->|YES| Cap["CAPITALISE\nAdd to Carrying Amount of Asset"]
+    Check -->|NO| Expense["EXPENSE IMMEDIATELY\nCharge to Profit or Loss as Day-to-Day Repairs & Maintenance"]
+```
+
+**Classification of Subsequent Expenditures**
+* **Day-to-Day Maintenance & Repairs:** Costs of servicing, routine repairs, and maintenance. Charged to Profit or Loss as incurred.
+* **Additions & Major Improvements:** Distinct additions or modifications that increase the operational capacity or useful life. Capitalised to the asset account.
+* **Major Inspections & Overhauls:** Under IAS 16, the cost of a major inspection or overhaul (e.g., aircraft heavy maintenance) is capitalised as a replacement component if recognition criteria are met, and any remaining carrying amount of the prior inspection component is derecognised.
+
+---
+### 3. Depreciation Methods and Changes in Estimates
+#### 3.1 Depreciation Principles under IAS 16
+Depreciation is the systematic allocation of the depreciable amount of an asset over its useful life.
+* **Depreciable Amount:** Historical Cost (or Revalued Amount) less Estimated Residual Value.
+* **Useful Life:** The period over which an asset is expected to be available for use by an entity.
+#### 3.2 Standard Depreciation Methods
+1. **Straight-Line Method:** Allocates an equal portion of depreciable cost to each period.
+   $$ \text{Depreciation Expense} = \frac{\text{Cost} - \text{Residual Value}}{\text{Useful Life (Years)}} $$
+2. **Diminishing / Declining Balance Method:** Applies a fixed percentage rate to the declining carrying amount of the asset at the beginning of each period.
+   $$ \text{Depreciation Expense}_t = \text{Carrying Amount}_{t-1} \times \left( 1 - \sqrt[n]{\frac{\text{Residual Value}}{\text{Cost}}} \right) \quad \text{or} \quad \text{Carrying Amount}_{t-1} \times \text{Declining Rate} $$
+3. **Units-of-Production Method:** Allocates cost based on expected operational usage or physical output.
+   $$ \text{Rate per Unit} = \frac{\text{Cost} - \text{Residual Value}}{\text{Estimated Total Units of Production}} $$
+   $$ \text{Depreciation Expense} = \text{Units Produced in Current Period} \times \text{Rate per Unit} $$
+#### 3.3 Re-evaluation of Estimates & Accounting Treatment (IAS 16 / IAS 8)
+Under IAS 16, the residual value, useful life, and depreciation method of an asset must be reviewed at least at each financial year-end.
+
+> [!warning] Exam Pitfall / Exception: Accounting Treatment for Estimate Changes (IAS 8)
+> * Any change in useful life, residual value, or depreciation method is treated as a **Change in Accounting Estimate** under IAS 8.
+> * It is accounted for **prospectively** in current and future periods. Prior periods are never restated, and no cumulative adjustment is recorded in Profit or Loss.
+
+> [!formula] Formula & Derivation: Prospective Depreciation Adjustment
+> $$ \text{New Annual Depreciation} = \frac{\text{Carrying Amount at Date of Change} - \text{Revised Residual Value}}{\text{Revised Remaining Useful Life (Years)}} $$
+
+> [!example] Numerical Problem: Change in Depreciation Estimate
+> An asset was purchased on January 1, 2023, for $\text{BDT } 100,000$ with an estimated life of 10 years and zero residual value (straight-line depreciation = $\text{BDT } 10,000$/year). On January 1, 2025 (after 2 years), the entity reviews the asset and determines its remaining useful life is 4 years (total life = 6 years) and its revised residual value is $\text{BDT } 4,000$.
+> 1. **Calculate Carrying Amount at January 1, 2025:**
+>    $$ \text{Carrying Amount} = \text{BDT } 100,000 - (\text{BDT } 10,000 \times 2) = \mathbf{\text{BDT } 80,000} $$
+> 2. **Calculate Revised Depreciation for 2025 onwards:**
+>    $$ \text{Revised Depreciation} = \frac{\text{BDT } 80,000 - \text{BDT } 4,000}{4\text{ years}} = \frac{\text{BDT } 76,000}{4} = \mathbf{\text{BDT } 19,000\text{ per year}} $$
+
+---
+### 4. Impairment of Long-Lived Assets (IAS 36)
+#### 4.1 Single-Step Impairment Test Framework
+Unlike US GAAP (which uses a two-step impairment test based on undiscounted cash flows), IAS 36 (Impairment of Assets) prescribes a **Single-Step Impairment Test**.
+
+> [!info] Key Definition: Impairment Criterion (IAS 36)
+> An asset is impaired when its **Carrying Amount** exceeds its **Recoverable Amount**.
+
+```mermaid
+flowchart TD
+    Start["Carrying Amount > Recoverable Amount?"] -->|YES| Impairment["Recognise Impairment Loss\nLoss = Carrying Amount - Recoverable Amount"]
+    Start -->|NO| NoLoss["No Impairment Recognised"]
+    
+    subgraph Recoverable Amount Definition
+        RA["Recoverable Amount\n= HIGHER of:"]
+        RA --> FVLCS["Fair Value Less Costs to Sell\n(Net Realisable Market Price)"]
+        RA --> VIU["Value-in-Use\n(PV of Discounted Future Cash Flows)"]
+    end
+```
+
+**Key Definitions under IAS 36**
+1. **Carrying Amount:** The amount at which an asset is recognised after deducting accumulated depreciation and accumulated impairment losses.
+2. **Recoverable Amount:** The higher of an asset's:
+   * **Fair Value Less Costs to Sell:** The price that would be received to sell an asset in an orderly transaction between market participants, less direct disposal costs.
+   * **Value-in-Use:** The present value of the estimated future cash flows expected to be derived from the asset's continuous use and ultimate disposal.
+
+> [!formula] Formula & Derivation: Recoverable Amount & Impairment Loss
+> $$ \text{Recoverable Amount} = \max\left( \text{Fair Value Less Costs to Sell}, \text{Value-in-Use} \right) $$
+> $$ \text{Value-in-Use} = \sum_{t=1}^{N} \frac{\text{CF}_t}{(1 + r)^t} + \frac{\text{Terminal Value}_N}{(1 + r)^N} $$
+> $$ \text{Impairment Loss} = \text{Carrying Amount} - \text{Recoverable Amount} \quad (\text{if Carrying Amount} > \text{Recoverable Amount}) $$
+
+#### 4.2 Reversal of Impairment Loss under IAS 36
+> [!warning] Exam Pitfall / Exception: IFRS vs. US GAAP Divergence
+> * **IFRS (IAS 36): PERMITS** the reversal of impairment losses recognised in prior periods for PP&E if there has been a change in the estimates used to determine the asset's recoverable amount.
+> * **US GAAP:** Strictly **prohibits** the reversal of impairment losses for assets held for use.
+
+**Reversal Cap Constraint under IAS 36**
+The increased carrying amount of an asset attributable to a reversal of an impairment loss **cannot exceed** the carrying amount that would have been determined (net of depreciation) had no impairment loss been recognised for the asset in prior years.
+
+> [!formula] Formula & Derivation: Maximum Permitted Reversal
+> $$ \text{Reversal Ceiling} = \text{Historical Cost} - \text{Cumulative Depreciation that would have been recorded without impairment} $$
+> $$ \text{Permitted Reversal} = \min\left( \text{Recoverable Amount} - \text{Current Carrying Amount}, \text{Reversal Ceiling} - \text{Current Carrying Amount} \right) $$
+
+#### 4.3 Comprehensive Numerical Impairment & Reversal Walkthrough
+> [!example] Numerical Problem: IAS 36 Impairment and Subsequent Reversal
+> On January 1, 2021, Apex Ltd. acquired industrial equipment for $\text{BDT } 1,000,000$ with an estimated useful life of 10 years and zero residual value (straight-line depreciation = $\text{BDT } 100,000$/year).
+> * **Event A (Dec 31, 2023):** Indicators of impairment exist. On December 31, 2023 (after 3 years), Carrying Amount = $\text{BDT } 700,000$. Fair value less costs to sell = $\text{BDT } 450,000$; Value-in-use = $\text{BDT } 480,000$.
+> * **Event B (Dec 31, 2025):** Favourable economic recovery occurs. On December 31, 2025 (after 2 more years), Recoverable Amount increases to $\text{BDT } 580,000$.
+> **Step 1: Impairment Testing on December 31, 2023**
+> 1. Determine Recoverable Amount:
+>    $$ \text{Recoverable Amount} = \max(\text{BDT } 450,000, \text{BDT } 480,000) = \mathbf{\text{BDT } 480,000} $$
+> 2. Calculate Impairment Loss:
+>    $$ \text{Impairment Loss} = \text{BDT } 700,000 - \text{BDT } 480,000 = \mathbf{\text{BDT } 220,000} $$
+> $$ \begin{array}{llrr}
+> \textbf{Date} & \textbf{Account Titles} & \textbf{Debit (BDT)} & \textbf{Credit (BDT)} \\
+> \hline
+> \text{Dec 31, 2023} & \text{Impairment Loss (Profit or Loss)} & 220,000 & \\
+> & \quad \text{Accumulated Impairment Losses — Equipment} & & 220,000 \\
+> \end{array} $$
+> **Step 2: Revised Depreciation for 2024 and 2025**
+> * New Carrying Amount = $\text{BDT } 480,000$; Remaining useful life = $10 - 3 = 7\text{ years}$.
+>   $$ \text{New Annual Depreciation} = \frac{\text{BDT } 480,000}{7\text{ years}} = \mathbf{\text{BDT } 68,571\text{ per year}} $$
+> * Carrying Amount at December 31, 2025 (before reversal):
+>   $$ \text{Carrying Amount}_{2025} = \text{BDT } 480,000 - (\text{BDT } 68,571 \times 2) = \mathbf{\text{BDT } 342,858} $$
+> **Step 3: Impairment Reversal Assessment on December 31, 2025**
+> 1. Calculate Reversal Ceiling (Carrying amount without any impairment):
+>    $$ \text{Historical Cost} = \text{BDT } 1,000,000 $$
+>    $$ \text{Depreciation without impairment (5 years)} = \text{BDT } 100,000 \times 5 = \text{BDT } 500,000 $$
+>    $$ \text{Reversal Ceiling} = \text{BDT } 1,000,000 - \text{BDT } 500,000 = \mathbf{\text{BDT } 500,000} $$
+> 2. Compare Recoverable Amount with Ceiling:
+>    * Recoverable Amount at Dec 31, 2025 = $\text{BDT } 580,000$.
+>    * Maximum allowable carrying amount after reversal = $\text{BDT } 500,000$ (capped at ceiling).
+> 3. Calculate Reversal Amount:
+>    $$ \text{Reversal Amount} = \text{Reversal Ceiling} - \text{Current Carrying Amount} = \text{BDT } 500,000 - \text{BDT } 342,858 = \mathbf{\text{BDT } 157,142} $$
+> $$ \begin{array}{llrr}
+> \textbf{Date} & \textbf{Account Titles} & \textbf{Debit (BDT)} & \textbf{Credit (BDT)} \\
+> \hline
+> \text{Dec 31, 2025} & \text{Accumulated Impairment Losses — Equipment} & 157,142 & \\
+> & \quad \text{Reversal of Impairment Loss (Profit or Loss)} & & 157,142 \\
+> \end{array} $$
+
+---
+### 5. Non-Current Assets Held for Sale and Disposals (IFRS 5)
+#### 5.1 Criteria for Classification under IFRS 5
+Under IFRS 5, a non-current asset is classified as Held for Sale if its carrying amount will be recovered principally through a sale transaction rather than through continuing use.
+
+> [!info] Key Definition: Mandatory Criteria for Held for Sale
+> 1. The asset must be available for immediate sale in its present condition.
+> 2. The sale must be **highly probable**:
+>    * Management is committed to a plan to sell the asset;
+>    * An active program to locate a buyer has been initiated;
+>    * The asset is being actively marketed at a reasonable price relative to fair value;
+>    * The sale is expected to qualify for recognition as a completed sale within one year from the date of classification.
+
+#### 5.2 Valuation and Accounting Treatment
+1. **Measurement Basis:** Classified and measured at the **Lower of Carrying Amount and Fair Value Less Costs to Sell**.
+   $$ \text{Carrying Value under IFRS 5} = \min\left( \text{Carrying Amount}, \text{Fair Value Less Costs to Sell} \right) $$
+2. **Cessation of Depreciation:** As soon as an asset is classified as Held for Sale, depreciation immediately ceases.
+3. **Presentation:** Presented separately on the face of the Statement of Financial Position under Current Assets.
+
+> [!example] Numerical Problem: IFRS 5 Asset Held for Sale
+> An item of equipment with a carrying amount of $\text{BDT } 200,000$ is classified as Held for Sale on October 1, 2025. Its fair value is estimated at $\text{BDT } 170,000$ with disposal costs of $\text{BDT } 10,000$.
+> $$ \text{Fair Value Less Costs to Sell} = \text{BDT } 170,000 - \text{BDT } 10,000 = \mathbf{\text{BDT } 160,000} $$
+> $$ \text{Write-down (Impairment Loss)} = \text{BDT } 200,000 - \text{BDT } 160,000 = \mathbf{\text{BDT } 40,000} $$
+> $$ \begin{array}{llrr}
+> \textbf{Account Titles} & & \textbf{Debit (BDT)} & \textbf{Credit (BDT)} \\
+> \hline
+> \text{Non-Current Asset Held for Sale (Equipment)} & & 160,000 & \\
+> \text{Loss on Revaluation to Fair Value Less Costs to Sell (P\&L)} & & 40,000 & \\
+> \quad \text{Property, Plant, and Equipment (Equipment)} & & & 200,000 \\
+> \end{array} $$
+
+---
+### 6. Bangladesh Legal Context: Companies Act 1994 (Schedule XI)
+#### 6.1 Order of Permanence Presentation Rules
+In Bangladesh, corporate financial statements must comply with statutory reporting regulations under Schedule XI of the Companies Act, 1994.
+
+> [!warning] Exam Pitfall / Exception: Statutory Order vs. International Practice
+> Unlike standard international guidelines that frequently list assets in order of liquidity (Current Assets first), Schedule XI, Part I strictly mandates the **Order of Permanence**:
+> * **Capital and Liabilities** are presented starting with permanent Share Capital down to short-term Current Liabilities.
+> * **Property and Assets** are presented starting with long-term Fixed Assets (PP&E) down to liquid Current Assets.
+
+#### 6.2 Schedule XI Statutory PP&E Disclosure Layout
+Under Schedule XI, Part I, corporate entities must disclose a complete reconciliation of PP&E, distinguishing between distinct asset classes (Land, Buildings, Plant & Machinery, Vehicles) showing gross cost, additions, disposals, and cumulative depreciation.
+
+**Statutory Presentation Format (Schedule XI, Part I)**
+$$ \begin{array}{lrr}
+\hline
+\multicolumn{3}{c}{\textbf{[Company Name, Limited]}} \\
+\multicolumn{3}{c}{\textbf{Statement of Financial Position (Balance Sheet) as at [Date]}} \\
+\hline
+\textbf{Property and Assets} & & \textbf{Amount (BDT)} \\
+\hline
+\textbf{1. Fixed Assets (PP\&E):} & & \\
+\quad \text{Distinguishing Land, Buildings, Plant \& Machinery, Vehicles} & & \\
+\quad \text{Gross Historical Cost / Revalued Amount} & \text{XXX} & \\
+\quad \text{Add: Additions during the year} & \text{XXX} & \\
+\quad \text{Less: Disposals/Deductions during the year} & (\text{XXX}) & \\
+\quad \text{Less: Cumulative Depreciation to date} & (\text{XXX}) & \text{XXX} \\
+\textbf{2. Investments} & & \text{XXX} \\
+\textbf{3. Current Assets, Loans, and Advances} & & \text{XXX} \\
+\hline
+\textbf{Total Property and Assets} & & \mathbf{\text{XXXXX}} \\
+\hline \hline
+\end{array} $$
+
+---
+### 7. Standard IFRS Terminology Summary
+To maintain strict alignment with International Financial Reporting Standards, standard technical terms must be used consistently across all financial statements and disclosures:
+
+| Traditional / US Terminology | Mandated IFRS Terminology |
+| :--- | :--- |
+| Balance Sheet | **Statement of Financial Position** |
+| Income Statement / Net Income | **Statement of Profit or Loss / Profit or Loss** |
+| Book Value | **Carrying Amount** |
+| Impairment Test (Two-Step) | **Single-Step Impairment Test (Recoverable Amount)** |
+| Revaluation Reserve | **Revaluation Surplus** |
+| Deferred Revenue | **Unearned Revenue / Contract Liability** |
+| Accumulated Depreciation | **Accumulated Depreciation and Impairment Losses** |

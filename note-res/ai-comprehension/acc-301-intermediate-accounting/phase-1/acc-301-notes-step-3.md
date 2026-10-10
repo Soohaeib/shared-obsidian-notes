@@ -1,522 +1,462 @@
-# Basic Financial Statement Structures
-
+# Financial Statement Formats (IAS 1, IAS 8, IFRS 5, IAS 7)
 > [!abstract] Curriculum & Syllabus Context
->
 > - **Course:** ACC 301 Intermediate Accounting
-> - **Phase:** Phase 1: Conceptual & Procedural Foundations
-> - **Target Reading:** Weygandt, Kieso, and Warfield, *Intermediate Accounting*, 18th Edition — **Chapter 3 (Sections 3.1–3.3) & Chapter 4 (Section 4.1)**
-> - **Syllabus Focus:** Income statement uses and limitations, multiple-step and single-step formats, comprehensive income and OCI, discontinued operations, intraperiod tax allocation, statement of stockholders' equity, and classified balance sheet liquidity/solvency structure.
+> - **Phase:** Phase 4: Financial Statement Synthesis & Global Standards
+> - **Target Reading:** Weygandt, Kieso, and Warfield, *Intermediate Accounting: IFRS Edition* (3rd Edition) — **Financial Statement Formats**
+> - **Syllabus Focus:** Statement of Financial Position, Statement of Profit or Loss (function vs. nature of expense), Comprehensive Income (one vs. two-statement approach), accounting changes and errors (IAS 8), discontinued operations (IFRS 5), and cash flow reconciliation mechanics (IAS 7). Incorporates Bangladesh statutory reporting mandates under the Companies Act, 1994 (Schedule XI).
 
 ---
-
-### Section 3.1: Income Statement Uses, Limitations, and Formats
+### 1. Conceptual Framework & IFRS Presentation Overview (IAS 1)
+#### 1.1 Objective and Scope of Financial Statements under IAS 1
 > [!info] Key Definition
->
-> The **Income Statement** (also termed the *Statement of Income* or *Statement of Earnings*) measures the financial results of an entity's operations over a specific period of time. It reflects the profitability and operating efficiency of the enterprise by matching revenues and gains against expenses and losses.
+> Under **IAS 1: Presentation of Financial Statements**, the primary objective of general-purpose financial reporting is to provide information about the financial position, financial performance, and cash flows of an entity that is useful to a wide range of users (present and potential equity investors, lenders, and other creditors) in making financial decisions.
 
-#### 1. Usefulness of the Income Statement
-Financial statement users (investors, creditors, and management) utilize the income statement for three primary analytical purposes:
-* **Evaluating Past Performance**: Historical operating results allow users to evaluate how management allocated capital and controlled operating costs relative to competitors.
-* **Predicting Future Performance**: Recurring revenue and expense patterns provide a baseline for forecasting future net cash flows and earnings potential.
-* **Assessing Risk and Uncertainty of Achieving Cash Flows**: Disaggregating performance into core operating components versus peripheral or non-recurring transactions highlights the stability and sustainability of earnings.
-#### 2. Limitations of the Income Statement
-> [!warning] Exam Pitfall / Exception
->
-> Net income is not an absolute cash measure and is highly susceptible to manipulation and interpretation differences due to the following limitations:
-> * **Omission of Unmeasurable Items**: High-value intangible attributes—such as brand equity, customer loyalty, human capital, and quality of customer service—are omitted because they cannot be measured with sufficient reliability under GAAP.
-> * **Accounting Method Flexibility**: Income numbers are significantly impacted by the choice of accounting principles (e.g., FIFO vs. LIFO inventory costing, or straight-line vs. accelerated depreciation methods).
-> * **Subjectivity and Estimation**: Relies heavily on estimates and managerial judgment (e.g., useful lives, residual values, bad debt percentages, and warranty obligations).
+A complete set of financial statements prepared in accordance with International Financial Reporting Standards (IFRS) comprises:
+1. A **Statement of Financial Position** at the end of the period.
+2. A **Statement of Profit or Loss and Other Comprehensive Income** for the period (presented either as a single combined statement or as two separate statements: a Statement of Profit or Loss followed immediately by a Statement of Comprehensive Income).
+3. A **Statement of Changes in Equity** for the period.
+4. A **Statement of Cash Flows** for the period (governed by IAS 7).
+5. **Notes**, comprising a summary of significant accounting policies and other explanatory notes.
+#### 1.2 Strict IFRS Terminology Mapping
+To ensure complete alignment with IFRS, traditional US GAAP terms are replaced with standard IFRS terminology throughout financial statement presentation:
 
-#### 3. Theoretical Approaches to Income Measurement
-Accounting theory distinguishes between two primary conceptual frameworks for measuring income:
-* **Transaction Approach**: Focuses on recording direct income-related activities (transactions and events) as they occur during the period. It classifies revenues, expenses, gains, and losses by function, product, or operational recurring nature.
-* **Capital Maintenance Approach**: Determines net income based on the change in net assets (equity) over a period, adjusted for owner transactions.
-
-> [!quote] Formula & Derivation: Capital Maintenance Approach
->
-> $$ \text{Net Income} = \text{Ending Equity} - \text{Beginning Equity} - \text{Investments by Owners} + \text{Distributions to Owners} $$
-> *Trade-off*: While simple, the capital maintenance approach fails to disclose the functional sources or operational drivers of performance.
-
-#### 4. Elements of the Income Statement
-Under SFAC No. 6, the four primary income statement elements are defined as:
-* **Revenues**: Inflows or other enhancements of assets of an entity or settlements of its liabilities during a period from delivering or producing goods, rendering services, or other activities that constitute the entity's ongoing major or central operations.
-* **Expenses**: Outflows or other using up of assets or incurrences of liabilities during a period from delivering or producing goods, rendering services, or carrying out other activities that constitute the entity's ongoing major or central operations.
-* **Gains**: Increases in net assets (equity) from peripheral or incidental transactions of an entity, except those resulting from revenues or investments by owners.
-* **Losses**: Decreases in net assets (equity) from peripheral or incidental transactions of an entity, except those resulting from expenses or distributions to owners.
+| US GAAP Terminology | IFRS / IAS 1 Standard Terminology |
+| :--- | :--- |
+| Balance Sheet | **Statement of Financial Position** |
+| Income Statement | **Statement of Profit or Loss** |
+| Stockholders' Equity | **Equity** |
+| Common Stock | **Share Capital—Ordinary** |
+| Preferred Stock | **Share Capital—Preference** |
+| Additional Paid-in Capital (APIC) | **Share Premium** |
+| Net Income | **Profit or Loss** (or Net Income) |
+| Retained Earnings | **Retained Earnings** |
+| Accumulated Other Comprehensive Income (AOCI) | **Accumulated Other Comprehensive Income (AOCI)** |
 
 ---
-#### 5. Multiple-Step Income Statement
-The **Multiple-Step Income Statement** highlights intermediate components of profitability by segregating core operating activities from non-operating revenues, expenses, gains, and losses.
+### 2. Statement of Profit or Loss (Income Statement) under IAS 1
+#### 2.1 Structure and Core Components
+The Statement of Profit or Loss measures the financial performance of an entity over a specified period. Under IAS 1, entities may present expenses using a multi-step format that segregates key operational thresholds.
 
 ```mermaid
 flowchart TD
-    A[Gross Sales Revenue] -->|Minus Discounts & Returns| B(Net Sales)
-    B -->|Minus COGS| C(Gross Profit)
-    C -->|Minus Operating Expenses| D(Income from Operations)
-    D -->|Plus/Minus Other Rev/Exp/Gains/Losses| E(Income Before Income Tax)
-    E -->|Minus Income Tax Expense| F(Income from Continuing Operations)
-    F -->|Plus/Minus Discontinued Operations| G(((Net Income)))
+    A[Gross Revenue / Sales] -->|Deduct Sales Discounts & Returns| B(Net Revenue)
+    B -->|Deduct Cost of Goods Sold / Cost of Sales| C(Gross Profit)
+    C -->|Deduct Operating Expenses| D(Income from Operations / Operating Profit)
+    D -->|Add/Deduct Financing Costs & Other Non-Operating Items| E(Profit / Loss Before Tax)
+    E -->|Deduct Income Tax Expense| F(Profit / Loss from Continuing Operations)
+    F -->|Add/Deduct Discontinued Operations Net of Tax| G(((Profit or Loss / Net Income)))
 ```
 
-##### Standard Structure & Section Classifications
-> [!quote] Formula & Derivation: Multiple-Step Components
->
-> $$ \text{Net Sales} = \text{Gross Sales Revenue} - \text{Sales Discounts} - \text{Sales Returns and Allowances} $$
-> $$ \text{Gross Profit} = \text{Net Sales Revenue} - \text{Cost of Goods Sold} $$
-> $$ \text{Income from Operations} = \text{Gross Profit} - \text{Total Operating Expenses} $$
-> $$ \text{Income Before Tax} = \text{Income from Operations} + \text{Total Other Rev/Gains} - \text{Total Other Exp/Losses} $$
+The standard multi-step line items include:
+1. **Revenue** (Gross Sales less Discounts and Returns): Inflows arising from ongoing central operations.
+2. **Cost of Sales**: Direct manufacturing or procurement costs associated with goods sold.
+3. **Gross Profit**: The intermediate difference between Net Revenue and Cost of Sales ($\text{Gross Profit} = \text{Net Revenue} - \text{Cost of Sales}$).
+4. **Operating Expenses**: Disaggregated operational costs (Selling, Distribution, Administrative expenses).
+5. **Financing Costs**: Interest expense and borrowing costs incurred on debt financing.
+6. **Tax Expense**: Income tax expense determined via intraperiod tax allocation.
+7. **Discontinued Operations**: Post-tax profit or loss from discontinued operations (IFRS 5).
+8. **Profit or Loss (Net Income)**: The final residual earnings attributable to the period.
+#### 2.2 Classification of Expenses: By Function vs. By Nature
+IAS 1 mandates that an entity must present an analysis of expenses recognized in profit or loss using a classification based on either their **function** or their **nature**, whichever provides information that is reliable and more relevant.
 
-* **Operating Expenses Section**: Costs incurred to support central operations disaggregated by function:
-  * *Selling Expenses*: Sales commissions, advertising, delivery expense/freight-out, sales salaries, store depreciation.
-  * *General and Administrative (G&A) Expenses*: Officers' salaries, office rent, legal and accounting fees, administrative depreciation, utilities.
-* **Other Revenues and Gains**: Non-operating or peripheral inflows (e.g., interest revenue, dividend revenue, gain on disposal of equipment).
-* **Other Expenses and Losses**: Non-operating or peripheral outflows (e.g., interest expense, casualty losses, inventory impairment).
+**1. Expenses Classified by Function (Cost of Sales Method)**
+Expenses are grouped according to their operational function within the entity (e.g., Cost of Sales, Selling/Distribution Costs, Administrative Activities). Entities choosing this method must disclose additional information on the nature of expenses (including depreciation, amortisation, and employee benefit costs).
+
+$$ \begin{array}{lrr}
+\hline
+\multicolumn{3}{c}{\textbf{Expense Classification by Function Format}} \\
+\hline
+\text{Revenue} & & \text{XXX} \\
+\text{Cost of Sales} & & (\text{XXX}) \\
+\hline
+\textbf{Gross Profit} & & \mathbf{\text{XXX}} \\
+\text{Other Income} & & \text{XXX} \\
+\text{Distribution / Selling Costs} & & (\text{XXX}) \\
+\text{Administrative Expenses} & & (\text{XXX}) \\
+\text{Financing Costs} & & (\text{XXX}) \\
+\hline
+\textbf{Profit Before Tax} & & \mathbf{\text{XXX}} \\
+\hline \hline
+\end{array} $$
+
+**2. Expenses Classified by Nature**
+Expenses are aggregated in the Statement of Profit or Loss according to their nature (e.g., raw materials and consumables used, employee benefits expense, depreciation and amortisation expense, transport costs) without reallocating them among functional units.
+
+$$ \begin{array}{lrr}
+\hline
+\multicolumn{3}{c}{\textbf{Expense Classification by Nature Format}} \\
+\hline
+\text{Revenue} & & \text{XXX} \\
+\text{Other Income} & & \text{XXX} \\
+\text{Changes in Inventories of Finished Goods and WIP} & & \text{XXX} \text{ or } (\text{XXX}) \\
+\text{Raw Materials and Consumables Used} & & (\text{XXX}) \\
+\text{Employee Benefits Expense} & & (\text{XXX}) \\
+\text{Depreciation and Amortisation Expense} & & (\text{XXX}) \\
+\text{Other Expenses} & & (\text{XXX}) \\
+\hline
+\textbf{Total Operating Expenses} & & (\text{XXX}) \\
+\hline
+\textbf{Profit Before Tax} & & \mathbf{\text{XXX}} \\
+\hline \hline
+\end{array} $$
+#### 2.3 Prohibition of 'Extraordinary Items'
+> [!warning] Exam Pitfall / Exception
+> **Prohibition of Extraordinary Items:** Under IAS 1 (and standard IFRS), the classification or presentation of any items of income or expense as "Extraordinary Items" is **strictly prohibited** anywhere on the face of the financial statements or in the notes. All peripheral, unusual, or non-recurring items (such as casualty losses, flood damage, or gains/losses on disposal of plant assets) must be reported within profit or loss before tax (typically as Other Income/Expenses or as separate line items if material).
+
+#### 2.4 Earnings Per Share (EPS) Presentation Rules
+Basic Earnings Per Share (EPS) must be presented on the face of the Statement of Profit or Loss for entities whose shares are publicly traded.
+
+> [!formula] Formula & Derivation: Earnings Per Share (EPS)
+> $$ \text{Basic EPS} = \frac{\text{Profit or Loss (Net Income)} - \text{Preference Share Dividends}}{\text{Weighted-Average Number of Ordinary Shares Outstanding}} $$
+
+* **Preference Dividends Allocation**: Cumulative preference dividends (declared or undeclared) or non-cumulative preference dividends declared during the period are deducted from Profit or Loss.
+* **Disaggregated EPS**: If an entity presents a discontinued operation, it must present basic and diluted EPS for both continuing operations and discontinued operations either on the face of the statement or in the notes.
 
 ---
-#### 6. Single-Step Income Statement
-The **Single-Step Income Statement** groups all revenues and gains together into one category and all expenses and losses into another, deriving net income through a single subtraction:
+### 3. Statement of Comprehensive Income (IAS 1)
+#### 3.1 Presentation Options: One-Statement vs. Two-Statement Approach
+IAS 1 allows entities two presentation options for comprehensive income:
+1. **One-Statement Approach (Statement of Comprehensive Income)**: A single, continuous statement presenting both the components of Profit or Loss and the components of Other Comprehensive Income (OCI), arriving at Total Comprehensive Income at the bottom.
+2. **Two-Statement Approach**:
+   * *Statement 1*: A separate Statement of Profit or Loss displaying operational revenues, expenses, and ending at Profit or Loss (Net Income).
+   * *Statement 2*: A Statement of Comprehensive Income beginning with Profit or Loss from Statement 1, followed immediately by items of Other Comprehensive Income to derive Total Comprehensive Income.
+#### 3.2 The Comprehensive Income Equation
+Total Comprehensive Income encompasses all non-owner changes in equity during a period.
 
-> [!quote] Formula & Derivation
->
-> $$ \text{Net Income} = \text{Total Revenues and Gains} - \text{Total Expenses and Losses} $$
+> [!formula] Formula & Derivation: Comprehensive Income
+> $$ \text{Total Comprehensive Income} = \text{Profit or Loss (Net Income)} + \text{Other Comprehensive Income (OCI)} $$
 
-* **Theoretical Rationale**: A company does not realize any net profit until total revenues exceed total expenses. It avoids implying priority or preference of one type of revenue or expense over another.
-* **Regulatory Requirement**: While GAAP permits both formats, the **SEC requires public companies** to present financial results in a multiple-step format to distinguish operating performance from non-operating activities.
+#### 3.3 Components of Other Comprehensive Income (OCI)
+Other Comprehensive Income comprises items of income and expense (including reclassification adjustments) that are not recognized in Profit or Loss as required or permitted by specific IFRSs:
+1. **Revaluation Surplus (IAS 16 / IAS 38)**: Increases arising on the revaluation of Property, Plant, and Equipment (PP&E) or Intangible Assets under the revaluation model.
+2. **Unrealized Gains/Losses on FVOCI Investments (IFRS 9)**: Fair value gains or losses on Fair Value through Other Comprehensive Income (FVOCI) financial assets (both debt instruments and non-trading equity investments).
+3. **Actuarial Gains/Losses on Defined Benefit Plans (IAS 19)**: Remeasurements of defined benefit pension plans arising from actuarial adjustments and adjustments to plan asset returns.
+4. **Foreign Currency Translation Gains/Losses (IAS 21)**: Gains and losses arising from translating the financial statements of a foreign operation into the entity's presentation currency.
+#### 3.4 Accumulated Other Comprehensive Income (AOCI) in Equity
+While OCI represents the periodic flow of unrealized items during a fiscal year, the cumulative balance of these items over time is held in a permanent equity reserve on the Statement of Financial Position titled **Accumulated Other Comprehensive Income (AOCI)**.
+
+> [!formula] Formula & Derivation
+> $$ \text{Ending AOCI} = \text{Beginning AOCI} \pm \text{Current Period OCI} $$
 
 ---
-#### 7. Basic Earnings Per Share (EPS)
-EPS represents the dollar amount of net income earned per share of outstanding common stock. It is presented on the face of the income statement.
+### 4. Accounting Changes, Error Corrections, and Discontinued Operations (IAS 8 & IFRS 5)
+#### 4.1 Discontinued Operations (IFRS 5)
+**Definition and Classification**
+Under **IFRS 5: Non-current Assets Held for Sale and Discontinued Operations**, a discontinued operation is a component of an entity that either has been disposed of or is classified as held for sale, and:
+* Represents a separate major line of business or geographical area of operations;
+* Is part of a single coordinated plan to dispose of a separate major line of business or geographical area of operations; or
+* Is a subsidiary acquired exclusively with a view to resale.
 
-> [!quote] Formula & Derivation
->
-> $$ \text{Basic EPS} = \frac{\text{Net Income} - \text{Preferred Dividends}}{\text{Weighted-Average Number of Common Shares Outstanding}} $$
-> $$ WA_s = \sum \left( \text{Shares Outstanding during Period} \times \frac{\text{Months Outstanding}}{12} \right) $$
+A component comprises operations and cash flows that can be clearly distinguished, operationally and for financial reporting purposes, from the rest of the entity.
 
-* **Preferred Dividends Deduction**: Subtract cumulative preferred dividends (declared or undeclared) or noncumulative preferred dividends declared during the period.
-* *Stock Splits & Stock Dividends*: Restate share counts retrospectively for all periods presented prior to the split/dividend.
-
----
-### Section 3.2: Special Income Items & Comprehensive Income
-
----
-#### 1. Discontinued Operations
-> [!info] Key Definition
->
-> A **Discontinued Operation** represents a major strategic shift that has (or will have) a major effect on an entity's operations and financial results.
-
-##### Criteria for Classification
-1. **Component Elimination**: The company eliminates (or plans to dispose of) a component of a business—comprising operations and cash flows that can be clearly distinguished operationally and for financial reporting.
-2. **Strategic Shift**: The elimination represents a strategic shift such as disposal of a major line of business, a major geographical area, or a major equity method investment.
-##### Income Statement Presentation
-Discontinued operations are presented separately **net of tax**, placed immediately below *Income from Continuing Operations*:
+**Presentation on the Statement of Profit or Loss**
+Discontinued operations are presented as a single amount on the face of the Statement of Profit or Loss, net of tax, directly below Income from Continuing Operations:
 
 $$ \begin{array}{l}
-\text{Income from Continuing Operations (After Tax)} \\
+\text{Profit / Loss from Continuing Operations (After Tax)} \\
 \pm \text{Discontinued Operations:} \\
 \quad \text{Income (Loss) from Operations of Discontinued Component (Net of Tax)} \\
 \quad \pm \text{Gain (Loss) on Disposal of Discontinued Component (Net of Tax)} \\
 \hline
-= \text{Net Income}
+= \textbf{Profit or Loss (Net Income)}
 \end{array} $$
 
----
-#### 2. Intraperiod Tax Allocation
-**Intraperiod Tax Allocation** is the process of allocating total income tax expense for a fiscal period across specific financial statement components to prevent distortion.
-##### Components Requiring Individual Tax Allocation
-1. Income from Continuing Operations
-2. Discontinued Operations
-3. Other Comprehensive Income (OCI)
-4. Prior Period Adjustments (Retained Earnings)
+**Intraperiod Tax Allocation Formula**
+To avoid distorting continuing operations, total income tax expense must be allocated across financial statement components:
 
-> [!quote] Formula & Derivation: Tax Effect Allocation
->
-> $$ \text{Tax Effect of Item} = \text{Pretax Amount of Item} \times \text{Marginal Tax Rate } (t) $$
-> * If an item is a **Gain**: $\text{After-Tax Gain} = \text{Pre-Tax Gain} \times (1 - t)$
-> * If an item is a **Loss**: $\text{Tax Reduction} = \text{Pre-Tax Loss} \times t \implies \text{After-Tax Loss} = \text{Pre-Tax Loss} \times (1 - t)$
+> [!formula] Formula & Derivation: Intraperiod Tax Allocation
+> $$ \text{Tax Effect of Item} = \text{Pre-Tax Amount} \times \text{Marginal Tax Rate } (t) $$
+> $$ \text{After-Tax Gain} = \text{Pre-Tax Gain} \times (1 - t) $$
+> $$ \text{After-Tax Loss} = \text{Pre-Tax Loss} \times (1 - t) \quad [\text{Tax Benefit } = \text{Pre-Tax Loss} \times t] $$
 
----
-#### 3. Comprehensive Income
-> [!info] Key Definition
->
-> **Comprehensive Income** includes all changes in equity (net assets) during a period except those resulting from investments by owners and distributions to owners.
+#### 4.2 Changes in Accounting Policy & Error Corrections (IAS 8) - Retrospective Treatment
+Under **IAS 8: Accounting Policies, Changes in Accounting Estimates and Errors**:
 
-> [!quote] Formula & Derivation
->
-> $$ \text{Comprehensive Income} = \text{Net Income} + \text{Other Comprehensive Income (OCI)} $$
+**1. Changes in Accounting Policy**
+* **Definition**: A change from one accepted IFRS accounting principle to another (e.g., changing inventory costing method from Weighted Average to FIFO).
+* **Accounting Treatment**: Applied **retrospectively**.
+* **Mechanics**:
+  1. Adjust the opening balance of Retained Earnings for the earliest prior period presented.
+  2. Restate prior period comparative figures for all comparative periods presented as if the new policy had always been applied.
 
-##### Other Comprehensive Income (OCI) Items
-Gains and losses that bypass the traditional Income Statement to avoid net income volatility:
-1. Unrealized holding gains/losses on Available-for-Sale (AFS) debt securities.
-2. Translation gains/losses on foreign currency financial statements.
-3. Unrealized gains/losses on effective cash flow hedges.
-4. Postretirement/pension plan actuarial gains/losses and prior service costs.
-##### Presentation Formats
-1. **One-Statement Approach (Statement of Comprehensive Income)**: Net income is reported as a subtotal, followed immediately by OCI items to arrive at Comprehensive Income.
-2. **Two-Statement Approach**:
-   * *Statement 1*: Traditional Income Statement ending at Net Income.
-   * *Statement 2*: Comprehensive Income Statement beginning with Net Income, adding/subtracting OCI items to yield Comprehensive Income.
-
----
-### Section 3.3: Stockholders' Equity Statements & Retained Earnings
-
----
-#### 1. Retained Earnings Statement
-**Retained Earnings** represents the cumulative earned capital of the enterprise that has been retained in the business rather than distributed as dividends.
-##### Standard Reconciliation Formula
-$$ \begin{array}{l}
-\text{Beginning Retained Earnings (as previously reported)} \\
-\pm \text{Prior Period Adjustments (Correction of Errors, net of tax)} \\
-\pm \text{Cumulative Effect of Changes in Accounting Principle (net of tax)} \\
-\hline
-= \text{Beginning Retained Earnings (as adjusted)} \\
-+ \text{Net Income} \quad (\text{or } - \text{Net Loss}) \\
-- \text{Cash Dividends Declared} \\
-- \text{Stock Dividends Declared} \\
-\hline
-= \text{Ending Retained Earnings}
-\end{array} $$
-* **Appropriated Retained Earnings**: Management or contractual covenants (e.g., bond indentures) may segregate a portion of retained earnings into *Appropriated Retained Earnings* (restricted) versus *Unappropriated Retained Earnings* (free for dividends). Total Retained Earnings equals the sum of both.
-
----
-#### 2. Statement of Stockholders' Equity
-The **Statement of Stockholders' Equity** (or *Statement of Changes in Equity*) is a required matrix-form financial statement that reconciles the beginning and ending balances of every equity account.
-##### Accumulated Other Comprehensive Income (AOCI)
-AOCI is a permanent balance sheet equity account that accumulates periodic OCI amounts over time.
-> [!quote] Formula & Derivation
->
-> $$ \text{Ending AOCI} = \text{Beginning AOCI} \pm \text{Current Period OCI} $$
-
----
-### Section 4.1: Balance Sheet (Statement of Financial Position) Overview
-> [!info] Key Definition
->
-> The **Balance Sheet** (Statement of Financial Position) reports the assets, liabilities, and stockholders' equity of an enterprise at a specific point in time.
-
-> [!quote] Formula & Derivation
->
-> $$ \text{Assets} = \text{Liabilities} + \text{Stockholders' Equity} $$
-
----
-#### 1. Usefulness & Financial Ratios
-The balance sheet provides a basis for computing rates of return and assessing capital structure.
-* **Liquidity**: The amount of time expected to elapse until an asset is converted into cash or a liability is paid.
-* **Solvency**: The ability of a company to pay its debts as they mature. Higher debt-to-assets ratios signal lower solvency.
-* **Financial Flexibility**: The ability of an enterprise to take effective actions to alter the amounts and timing of cash flows so it can respond to unexpected needs and opportunities.
-#### 2. Limitations of the Balance Sheet
-* **Historical Cost Bias**: Most assets and liabilities are reported at historical acquisition cost rather than current fair value.
-* **Use of Judgments and Estimates**: Estimates are required for collectibility of receivables, inventory net realizable value, useful lives, and warranty liabilities.
-* **Omission of Soft Assets**: Hard assets (inventory, PP&E) are recorded, but soft assets (intellectual capital, employee expertise, brand value) are omitted.
-
----
-#### 3. Classification Standards on the Balance Sheet
+**2. Prior Period Error Corrections**
+* **Definition**: Errors resulting from mathematical mistakes, mistakes in applying accounting policies, or oversight/misinterpretation of facts in prior periods.
+* **Accounting Treatment**: Corrected **retrospectively** as a Prior Period Adjustment.
+* **Mechanics**: Adjust opening Retained Earnings and restate comparative financial statements for prior periods.
+#### 4.3 Changes in Accounting Estimates (IAS 8) - Prospective Treatment
+* **Definition**: Revisions to operational benchmarks based on new information or development (e.g., adjustments to bad debt rates, changes in asset useful lives or residual values, revisions to warranty provisions).
+* **Accounting Treatment**: Applied **prospectively**.
+* **Mechanics**:
+  * Recognized in the period of change (and future periods if affected).
+  * No restatement of prior periods and no adjustment to opening Retained Earnings.
 
 ```mermaid
-mindmap
-  root((Balance Sheet Elements))
-    Assets
-      Current Assets
-      Long-Term Investments
-      Property, Plant, and Equipment
-      Intangible Assets
-      Other Assets
-    Liabilities
-      Current Liabilities
-      Long-Term Debt
-    Stockholders' Equity
-      Capital Stock
-      Additional Paid-In Capital
-      Retained Earnings
-      AOCI
-      Treasury Stock
+flowchart TD
+    A[Accounting Event] --> B{Category?}
+    B -->|Policy Change or Prior Error| C[Retrospective Treatment]
+    B -->|Estimate Change| D[Prospective Treatment]
+    B -->|Component Disposal| E[IFRS 5 Discontinued Operations]
+    
+    C --> C1[Adjust Beginning Retained Earnings\nRestate Prior Comparative Figures]
+    D --> D1[Incorporate in Current and Future Periods\nNo Prior Period Restatement]
+    E --> E1[Present Net of Tax Below Continuing Operations]
 ```
 
-##### A. Current Assets
-**Current Assets** are cash and other assets expected to be converted to cash, sold, or consumed within **one year or the operating cycle, whichever is longer**.
-* **Operating Cycle**: The average time required to acquire materials, produce inventory, sell goods, and collect cash from receivables.
+---
+### 5. Statement of Financial Position (IAS 1)
+#### 5.1 Current vs. Non-Current Classification Criteria
+IAS 1 requires entities to present current and non-current assets, and current and non-current liabilities, as separate classifications on the face of the Statement of Financial Position.
+* **Operating Cycle**: The time elapsed between the acquisition of materials/services and the final cash realization from sales. If the normal operating cycle is not clearly identifiable, its duration is assumed to be 12 months.
+* **Current Classification Rule**: An asset or liability is classified as current if it is expected to be realized, sold, consumed, or settled within 12 months after the reporting period or within the entity's normal operating cycle. Otherwise, it is classified as non-current.
+#### 5.2 Asset Classifications
+**1. Non-Current Assets**
+Long-term operational assets and investments held for capital growth or strategic control:
+* **Property, Plant, and Equipment (PP&E) (IAS 16)**: Tangible assets used in central operations (Land, Buildings, Plant, Machinery). Valued at Historical Cost or Revalued Amount less Cumulative Depreciation.
+* **Investment Property (IAS 40)**: Land or buildings held to earn rentals, for capital appreciation, or both.
+* **Intangibles (IAS 38)**: Identifiable non-monetary assets without physical substance (Patents, Trademarks, Copyrights, Software).
+* **Long-Term Investments**: Financial assets held for long-term strategic purposes (e.g., debt and equity securities, sinking funds).
 
-| Current Asset Item | Basis of Valuation | Definition / Details |
-| :--- | :--- | :--- |
-| **Cash & Cash Equivalents** | Fair Value | Cash, demand deposits, and short-term liquid investments maturing within $\le 3$ months. |
-| **Short-Term Investments** | Fair Value / Amortized Cost | Debt and equity securities classified as Trading, Available-for-Sale (AFS), or Held-to-Maturity. |
-| **Receivables** | Net Realizable Value | Trade Accounts and Notes Receivable less Allowance for Doubtful Accounts. |
-| **Inventories** | LCNRV / LCM | Merchandise, Raw Materials, Work in Process, and Finished Goods valued at lower-of-cost-or-net-realizable-value or lower-of-cost-or-market. |
-| **Prepaid Expenses** | Historical Cost | Unexpired costs (prepaid rent, prepaid insurance) paid in advance. |
+**2. Current Assets**
+Assets expected to be converted into cash, sold, or consumed within one year or the operating cycle:
+* **Inventories (IAS 2)**: Assets held for sale in the ordinary course of business, in process of production, or materials/supplies to be consumed (valued at Lower of Cost and Net Realizable Value).
+* **Trade and Other Receivables**: Open account balances owed by customers less Allowance for Doubtful Accounts.
+* **Cash and Cash Equivalents**: Currency on hand, demand deposits, and highly liquid short-term investments with maturities of 3 months or less.
+#### 5.3 Equity Section Structure
+The equity section reflects the residual interest in the assets of the entity after deducting all liabilities:
+$$ \text{Total Equity} = \text{Share Capital} + \text{Share Premium} + \text{Retained Earnings} + \text{Accumulated OCI} + \text{Non-Controlling Interest} $$
+1. **Share Capital—Ordinary**: Par or stated value of issued ordinary shares.
+2. **Share Capital—Preference**: Par or stated value of preference shares (provided they do not possess mandatorily redeemable debt characteristics under IAS 32/IFRS 9).
+3. **Share Premium**: Capital contributed by owners in excess of par or stated value.
+4. **Retained Earnings**: Cumulative net profits retained in the enterprise (unappropriated and appropriated).
+5. **Accumulated Other Comprehensive Income (AOCI)**: Cumulative unrealized OCI reserves.
+6. **Non-Controlling Interest (NCI)**: Equity in a subsidiary not attributable, directly or indirectly, to the parent company.
+#### 5.4 Liability Classifications
+**1. Non-Current Liabilities**
+Obligations not expected to be liquidated within 12 months or the operating cycle:
+* **Bonds Payable / Long-Term Debt**: Formal contractual debt issues reported at amortised cost.
+* **Lease Liabilities (IFRS 16)**: Long-term present value of obligation under lease contracts.
 
-##### B. Noncurrent Assets
-* **Long-Term Investments**: Assets held for long-term capital appreciation, securities held to control other entities, land held for speculation, or sinking funds.
-* **Property, Plant, and Equipment (PP&E)**: Tangible, long-lived assets used in central ongoing operations (Land, Buildings, Machinery, Equipment). Reported at historical cost less Accumulated Depreciation.
-* **Right-of-Use (ROU) Assets**: Assets recognized under operating and finance lease contracts.
-* **Intangible Assets**: Long-lived assets lacking physical substance (Patents, Copyrights, Trademarks, Franchises, Goodwill). Amortized over limited useful lives; indefinite-life intangibles and goodwill are tested for impairment.
-* **Other Assets**: Restricted cash, deferred tax assets, long-term prepaid expenses, or non-operating equipment.
-##### C. Liabilities
-* **Current Liabilities**: Obligations expected to be liquidated through the use of current assets or the creation of other current liabilities within one year or the operating cycle, whichever is longer.
-  * *Includes*: Accounts Payable, Short-Term Notes Payable, Current Maturities of Long-Term Debt, Accrued Salaries/Interest, Unearned Revenues, Income Taxes Payable.
-* **Long-Term Liabilities**: Obligations not expected to be liquidated within the current operating cycle.
-  * *Includes*: Bonds Payable, Long-Term Notes Payable, Lease Liabilities, Deferred Tax Liabilities, Pension/Postretirement Obligations.
-##### D. Stockholders' Equity
-1. **Capital Stock**: Preferred Stock and Common Stock recorded at par or stated value.
-2. **Additional Paid-In Capital (APIC)**: Excess consideration received over par/stated value.
-3. **Retained Earnings**: Accumulated net income less dividends declared (Unappropriated and Appropriated).
-4. **Accumulated Other Comprehensive Income (AOCI)**: Cumulative unrealized gains/losses from OCI.
-5. **Treasury Stock**: Cost of company's own shares reacquired (subtracted from total equity).
+**2. Current Liabilities**
+Obligations expected to be settled within 12 months or the operating cycle:
+* **Trade and Other Payables**: Short-term open account obligations to suppliers.
+* **Current Maturities of Long-Term Debt**: Portion of long-term debt maturing within the next 12 months (unless refinanced on or before the balance sheet date).
+* **Provisions (IAS 37)**: Liabilities of uncertain timing or amount. A provision is recognized when:
+  1. An entity has a present obligation (legal or constructive) as a result of a past event;
+  2. It is probable (>50% likelihood) that an outflow of resources will be required; and
+  3. A reliable estimate can be made.
 
 ---
-### Step-by-Step Comprehensive Numerical Walkthroughs
+### 6. Statement of Changes in Equity (IAS 1)
+#### 6.1 Purpose and Format
+The Statement of Changes in Equity reconciles the opening and closing balances of each equity component during the period. IAS 1 mandates that all owner changes (e.g., share issuances, dividends) and non-owner changes (Profit or Loss, OCI) be clearly segregated.
+#### 6.2 Detailed Reconciliation Columnar Matrix
+$$ \begin{array}{lrrrrrrr}
+\hline
+\textbf{(in £ / \$ thousands)} & \textbf{Pref. Share Cap.} & \textbf{Ord. Share Cap.} & \textbf{Share Premium} & \textbf{Retained Earnings} & \textbf{AOCI} & \textbf{Treasury Shares} & \textbf{Total Equity} \\
+\hline
+\textbf{Balance at Beginning of Year} & \text{XXX} & \text{XXX} & \text{XXX} & \text{XXX} & \text{XXX} & (\text{XXX}) & \textbf{\text{XXX}} \\
+\text{Changes in Accounting Policy (IAS 8)} & - & - & - & \text{XXX} / (\text{XXX}) & - & - & \text{XXX} / (\text{XXX}) \\
+\text{Prior Period Error Restatement} & - & - & - & \text{XXX} / (\text{XXX}) & - & - & \text{XXX} / (\text{XXX}) \\
+\hline
+\textbf{Restated Beginning Balance} & \text{XXX} & \text{XXX} & \text{XXX} & \text{XXX} & \text{XXX} & (\text{XXX}) & \textbf{\text{XXX}} \\
+\text{Profit or Loss for the Year} & - & - & - & \text{XXX} & - & - & \text{XXX} \\
+\text{Other Comprehensive Income} & - & - & - & - & \text{XXX} / (\text{XXX}) & - & \text{XXX} / (\text{XXX}) \\
+\hline
+\textbf{Total Comprehensive Income} & - & - & - & \textbf{\text{XXX}} & \textbf{\text{XXX}} / \mathbf{(\text{XXX})} & - & \textbf{\text{XXX}} \\
+\text{Issue of Share Capital} & \text{XXX} & \text{XXX} & \text{XXX} & - & - & - & \text{XXX} \\
+\text{Dividends Declared and Paid} & - & - & - & (\text{XXX}) & - & - & (\text{XXX}) \\
+\text{Purchase of Treasury Shares} & - & - & - & - & - & (\text{XXX}) & (\text{XXX}) \\
+\hline
+\textbf{Balance at End of Year} & \mathbf{\text{XXX}} & \mathbf{\text{XXX}} & \mathbf{\text{XXX}} & \mathbf{\text{XXX}} & \mathbf{\text{XXX}} & \mathbf{(\text{XXX})} & \mathbf{\text{XXX}} \\
+\hline \hline
+\end{array} $$
 
 ---
+### 7. Statement of Cash Flows Overview (IAS 7)
+#### 7.1 Activity Classifications
+The Statement of Cash Flows (governed by IAS 7) categorizes cash receipts and cash payments into three functional activities:
+1. **Operating Activities**: Primary revenue-producing activities of the entity.
+   * *Inflows*: Collections from sales of goods/services, cash receipts from interest/dividends.
+   * *Outflows*: Payments to suppliers, employees, interest paid, and income taxes paid.
+2. **Investing Activities**: Acquisition and disposal of long-term assets and other investments.
+   * *Inflows*: Sale proceeds from PP&E, intangibles, and debt/equity securities of other entities.
+   * *Outflows*: Capital expenditures for PP&E, intangible asset purchases, loans extended.
+3. **Financing Activities**: Transactions that alter the equity capital and borrowing structure.
+   * *Inflows*: Proceeds from issuing share capital, debentures, notes, bonds, and bank loans.
+   * *Outflows*: Cash dividend payments, repurchases of share capital (treasury shares), and principal debt repayments.
+#### 7.2 Operating Cash Flow Reconciliation Formats
+> [!formula] Formula & Derivation: Indirect Method Formula
+> Reconciles Profit or Loss (Net Income) to Net Cash Flow from Operating Activities:
+> $$ \begin{aligned}
+> \text{Net Operating Cash Flow} &= \text{Profit or Loss (Net Income)} \\
+> &\quad + \text{Non-Cash Expenses (Depreciation, Amortisation, Impairments)} \\
+> &\quad - \text{Non-Cash Gains} + \text{Non-Cash Losses} \\
+> &\quad - \Delta\text{Operating Current Assets (Increases)} \\
+> &\quad + \Delta\text{Operating Current Assets (Decreases)} \\
+> &\quad + \Delta\text{Operating Current Liabilities (Increases)} \\
+> &\quad - \Delta\text{Operating Current Liabilities (Decreases)}
+> \end{aligned} $$
 
-> [!example] Problem 1: Income Statement, Comprehensive Income, and EPS Synthesis
->
-> **Scenario**: Apex Corporate Solutions Inc. reports the following pre-tax trial balance amounts for the fiscal year ended December 31, 2025:
-> * Gross Sales Revenue: $\$5,200,000$
-> * Sales Discounts: $\$60,000$
-> * Sales Returns and Allowances: $\$140,000$
-> * Cost of Goods Sold: $\$2,800,000$
-> * Selling Expenses: $\$420,000$
-> * General and Administrative Expenses: $\$380,000$
-> * Dividend Revenue: $\$25,000$
-> * Gain on Sale of Plant Assets: $\$45,000$
-> * Interest Expense: $\$90,000$
-> * Loss from Casualty (Flood): $\$100,000$
-> * Pre-tax Loss from Operations of Discontinued Logistics Division: $\$200,000$
-> * Pre-tax Gain on Disposal of Discontinued Logistics Division: $\$80,000$
-> * Unrealized Holding Gain on Available-for-Sale Debt Securities (Pre-tax): $\$60,000$
-> **Additional Data**:
-> * Effective Income Tax Rate: $25\%$ across all items.
-> * Preferred Stock Dividends Declared and Paid: $\$30,000$.
-> * Common Shares Outstanding: $200,000$ shares outstanding throughout 2025.
-> ---
-> ##### Step-by-Step Solution & Calculations
-> **Step 1: Compute Net Sales & Operating Income**
-> $$ \text{Net Sales} = \$5,200,000 - \$60,000 - \$140,000 = \$5,000,000 $$
-> $$ \text{Gross Profit} = \$5,000,000 - \$2,800,000 = \$2,200,000 $$
-> $$ \text{Total Operating Expenses} = \$420,000 + \$380,000 = \$800,000 $$
-> $$ \text{Income from Operations} = \$2,200,000 - \$800,000 = \$1,400,000 $$
-> **Step 2: Compute Other Revenues/Gains and Expenses/Losses**
-> $$ \text{Other Revenues and Gains} = \$25,000 + \$45,000 = \$70,000 $$
-> $$ \text{Other Expenses and Losses} = \$90,000 + \$100,000 = \$190,000 $$
-> $$ \text{Income from Continuing Operations Before Tax} = \$1,400,000 + \$70,000 - \$190,000 = \$1,280,000 $$
-> $$ \text{Income Tax Expense on Continuing Operations } (25\%) = \$1,280,000 \times 0.25 = \$320,000 $$
-> $$ \text{Income from Continuing Operations (After Tax)} = \$1,280,000 - \$320,000 = \$960,000 $$
-> **Step 3: Compute Intraperiod Tax Allocation for Discontinued Operations**
-> * *Operating Loss of Discontinued Division*:
->   $$ \text{Pre-tax Loss} = -\$200,000 \implies \text{Tax Benefit } (25\%) = \$50,000 \implies \text{After-Tax Loss} = -\$150,000 $$
-> * *Gain on Disposal of Discontinued Division*:
->   $$ \text{Pre-tax Gain} = \$80,000 \implies \text{Tax Expense } (25\%) = \$20,000 \implies \text{After-Tax Gain} = \$60,000 $$
-> * *Net Discontinued Operations Loss*:
->   $$ \text{Net After-Tax Discontinued Operations Effect} = -\$150,000 + \$60,000 = -\$90,000 $$
-> $$ \text{Net Income} = \$960,000 - \$90,000 = \$870,000 $$
-> **Step 4: Compute Basic Earnings Per Share (EPS)**
-> $$ \text{Shares Outstanding} = 200,000 $$
-> $$ \text{EPS for Continuing Operations} = \frac{\$960,000 - \$30,000}{200,000} = \frac{\$930,000}{200,000} = \$4.65 \text{ per share} $$
-> $$ \text{EPS for Discontinued Operations} = \frac{-\$90,000}{200,000} = -\$0.45 \text{ per share} $$
-> $$ \text{Net Basic EPS} = \$4.65 - \$0.45 = \$4.20 \text{ per share} $$
+> [!formula] Formula & Derivation: Direct Method Conversion Formulas
+> Converts each accrual revenue and expense line to direct cash flows:
+> $$ \text{Cash Receipts from Customers} = \text{Net Sales Revenue} - \Delta\text{Trade Receivables} + \Delta\text{Unearned Revenue} $$
+> $$ \text{Purchases} = \text{Cost of Sales} + \Delta\text{Inventory} $$
+> $$ \text{Cash Paid to Suppliers} = \text{Purchases} - \Delta\text{Trade Payables} $$
+> $$ \text{Cash Operating Expenses} = \text{Operating Expenses (excl. Depr/Amort)} + \Delta\text{Prepaids} - \Delta\text{Accrued Liabilities} $$
+
+---
+### 8. Statutory Reporting Framework in Bangladesh
+#### 8.1 Companies Act, 1994 (Schedule XI) - 'Order of Permanence'
+In Bangladesh, corporate reporting is legally governed by **Section 185 and Schedule XI of the Companies Act, 1994**. Schedule XI dictates statutory layout rules for balance sheets and profit and loss accounts.
+
+> [!warning] Exam Pitfall / Exception
+> **The Order of Permanence Requirement:** Unlike US GAAP (which uses the Order of Liquidity, placing current liquid items first), Schedule XI, Part I of the Companies Act 1994 mandates the **Order of Permanence** for Bangladeshi statutory balance sheets:
+> * **Capital & Liabilities Section:** Permanent Share Capital is presented first, followed by Reserves and Surplus, Secured Loans, Unsecured Loans, and lastly Current Liabilities & Provisions.
+> * **Property & Assets Section:** Non-Current Fixed Assets (PP&E) are presented first, followed by Investments, Current Assets/Loans & Advances, and Miscellaneous Expenditure last.
+
+**Statutory Balance Sheet Format (Schedule XI, Part I)**
+$$ \begin{array}{lrr}
+\hline
+\multicolumn{3}{c}{\textbf{[Company Name, Limited]}} \\
+\multicolumn{3}{c}{\textbf{Statutory Balance Sheet as at [Date] (Schedule XI)}} \\
+\hline
+\textbf{Capital and Liabilities} & & \textbf{Amount (BDT)} \\
+\hline
+\textbf{1. Share Capital:} & & \\
+\quad \text{Authorized Capital} & & \text{XXX} \\
+\cline{3-3}
+\quad \text{Issued, Subscribed, and Paid-up Capital} & & \text{XXX} \\
+\textbf{2. Reserves and Surplus (General Reserve, Share Premium, P\&L Surplus)} & & \text{XXX} \\
+\textbf{3. Secured Loans (Debentures, Bank Loans against hypothecation)} & & \text{XXX} \\
+\textbf{4. Unsecured Loans (Short-term borrowings, deposits)} & & \text{XXX} \\
+\textbf{5. Current Liabilities and Provisions (Acceptances, Trade Creditors, Tax Provision)} & & \text{XXX} \\
+\hline
+\textbf{Total Capital and Liabilities} & & \mathbf{\text{XXXXX}} \\
+\hline \hline
+& & \\
+\textbf{Property and Assets} & & \textbf{Amount (BDT)} \\
+\hline
+\textbf{1. Fixed Assets (PP\&E): Land, Buildings, Plant, Machinery (Cost less Depr.)} & & \text{XXX} \\
+\textbf{2. Investments (Government Securities, Subsidiary Shares/Bonds)} & & \text{XXX} \\
+\textbf{3. Current Assets, Loans, and Advances:} & & \\
+\quad \text{A. Current Assets (Inventories, Sundry Debtors, Cash \& Bank Balances)} & \text{XXX} & \\
+\quad \text{B. Loans and Advances (Employee Advances, Prepayments)} & \text{XXX} & \text{XXX} \\
+\textbf{4. Miscellaneous Expenditure (Preliminary Expenses unwritten off)} & & \text{XXX} \\
+\hline
+\textbf{Total Property and Assets} & & \mathbf{\text{XXXXX}} \\
+\hline \hline
+\end{array} $$
+#### 8.2 Schedule XI, Part II: Statutory Profit & Loss Disclosures
+Part II of Schedule XI requires specific statutory disclosures on the face of the Profit & Loss Account or in notes:
+1. **Turnover & Sales**: Total gross sales, disaggregated by major product categories.
+2. **Raw Material Consumption**: Cost of raw materials consumed, disclosing quantities and major imported vs. indigenous categories.
+3. **Managerial Remuneration**: Specific disclosure of all remuneration, commissions, bonuses, and perquisites paid to managing directors and corporate executives.
+4. **Auditor's Remuneration**: Detailed breakdown of fees paid to statutory auditors (for audit, taxation, advisory services, and out-of-pocket reimbursements).
+5. **Industrial Capacity & Production**: Licensed capacity, installed capacity, and actual operational production realized during the year.
+#### 8.3 Securities and Exchange Rules, 1987 (Rule 12(2)) Requirements
+For entities listed on the Dhaka Stock Exchange (DSE) or Chittagong Stock Exchange (CSE), the **Bangladesh Securities and Exchange Commission (BSEC)** under Rule 12(2) mandates:
+* **Mandatory Reporting Package**: Audited Balance Sheet, Profit and Loss Account, Statement of Cash Flows (per IAS 7), Statement of Changes in Equity, and Notes.
+* **Timeline**: Submission within **120 days (4 months)** from the end of the fiscal year.
+* **Governance**: Corporate Governance Compliance Certificate issued by a practicing Chartered Accountant (CA) or Cost & Management Accountant (CMA).
+#### 8.4 Comparative Matrix: US GAAP vs. IFRS vs. Bangladesh Companies Act 1994
+
+| Reporting Dimension | US GAAP (FASB ASC) | IFRS (IAS 1 / IAS 7) | Bangladesh Companies Act 1994 |
+| :--- | :--- | :--- | :--- |
+| **Balance Sheet Order** | **Order of Liquidity** (Current Assets first) | Flexible (typically **Reverse Liquidity** / Non-Current first) | **Order of Permanence** strictly mandated (Capital & PP&E first) |
+| **Statement of Cash Flows** | Mandatory (ASC 230) | Mandatory (IAS 7) | Required by BSEC Rule 12(2) for public firms; optional for private firms |
+| **Format Flexibility** | Multi-step format standard | Flexible principles-based formats | **Prescribed Statutory Layout** under Schedule XI (Part I & Part II) |
+| **Interest & Dividend Cash Flows** | Operating (Interest Paid/Rec, Div Rec); Financing (Div Paid) | Operating, Investing, or Financing options allowed | Follows IAS 7 / BFRS requirements under BSEC Rules |
+| **Discontinued Operations** | Net of tax below Continuing Operations | Net of tax below Continuing Operations (IFRS 5) | Presented net of tax in accordance with IFRS 5 / BFRS 5 |
+
+---
+### 9. Comprehensive Worked Example
+> [!example] Comprehensive Worked Example: Apex Synthetics International Ltd.
+> **Scenario Fact Pattern:**
+> Apex Synthetics International Ltd. reports the following pre-tax trial balance amounts for the fiscal year ended 31 December 2025:
+> * Gross Revenue from Sales: £6,000,000
+> * Sales Discounts & Allowances: £200,000
+> * Cost of Sales: £3,200,000
+> * Selling & Distribution Costs: £500,000
+> * Administrative Expenses: £400,000
+> * Dividend Income: £30,000
+> * Gain on Disposal of Plant Assets: £50,000
+> * Financing Costs (Interest Expense): £100,000
+> * Pre-Tax Loss from Discontinued Operations (Logistics Division): £160,000
+> * Pre-Tax Unrealised Gain on FVOCI Debt Securities: £80,000
+> **Additional Data:**
+> 1. Effective Income Tax Rate: 25% across all items.
+> 2. Share Capital—Preference Dividends Declared and Paid: £40,000.
+> 3. Ordinary Share Capital: 200,000 ordinary shares outstanding throughout 2025.
+> **Step-by-Step Derivation & Calculations**
+> **Step 1: Compute Net Revenue & Operating Profit**
+> $$ \text{Net Revenue} = £6,000,000 - £200,000 = £5,800,000 $$
+> $$ \text{Gross Profit} = £5,800,000 - £3,200,000 = £2,600,000 $$
+> $$ \text{Total Operating Expenses} = £500,000 + £400,000 = £900,000 $$
+> $$ \text{Operating Profit} = £2,600,000 - £900,000 = £1,700,000 $$
+> **Step 2: Compute Profit Before Tax & Tax Expense on Continuing Operations**
+> $$ \text{Other Income / Gains} = £30,000 (\text{Dividends}) + £50,000 (\text{Gain}) = £80,000 $$
+> $$ \text{Profit Before Tax} = £1,700,000 + £80,000 - £100,000 (\text{Financing Costs}) = £1,680,000 $$
+> $$ \text{Income Tax Expense } (25\%) = £1,680,000 \times 0.25 = £420,000 $$
+> $$ \text{Profit from Continuing Operations} = £1,680,000 - £420,000 = £1,260,000 $$
+> **Step 3: Intraperiod Tax Allocation for Discontinued Operations**
+> $$ \text{Pre-Tax Loss} = -£160,000 $$
+> $$ \text{Tax Benefit } (25\%) = £160,000 \times 0.25 = £40,000 $$
+> $$ \text{After-Tax Discontinued Operations Loss} = -£160,000 + £40,000 = -£120,000 $$
+> $$ \textbf{Profit or Loss (Net Income)} = £1,260,000 - £120,000 = \mathbf{£1,140,000} $$
+> **Step 4: Basic Earnings Per Share (EPS)**
+> $$ \text{Basic EPS (Continuing Operations)} = \frac{£1,260,000 - £40,000 (\text{Preference Dividends})}{200,000 \text{ shares}} = \frac{£1,220,000}{200,000} = \mathbf{£6.10 \text{ per share}} $$
+> $$ \text{Basic EPS (Discontinued Operations)} = \frac{-£120,000}{200,000 \text{ shares}} = \mathbf{-£0.60 \text{ per share}} $$
+> $$ \text{Total Basic EPS} = £6.10 - £0.60 = \mathbf{£5.50 \text{ per share}} $$
 > **Step 5: Compute Other Comprehensive Income & Total Comprehensive Income**
-> $$ \text{Pre-tax Unrealized Gain on AFS Securities} = \$60,000 $$
-> $$ \text{Tax Expense on OCI } (25\%) = \$60,000 \times 0.25 = \$15,000 $$
-> $$ \text{Net OCI} = \$60,000 - \$15,000 = \$45,000 $$
-> $$ \text{Total Comprehensive Income} = \text{Net Income } (\$870,000) + \text{OCI } (\$45,000) = \$915,000 $$
+> $$ \text{Pre-Tax OCI (Unrealised Gain on FVOCI Securities)} = £80,000 $$
+> $$ \text{Tax Expense on OCI } (25\%) = £80,000 \times 0.25 = £20,000 $$
+> $$ \text{Net OCI} = £80,000 - £20,000 = £60,000 $$
+> $$ \textbf{Total Comprehensive Income} = £1,140,000 + £60,000 = \mathbf{£1,200,000} $$
 > ---
-> ##### Apex Corporate Solutions Inc. — Multiple-Step Income Statement
-> **For the Year Ended December 31, 2025**
+> **Statements of Performance & Comprehensive Income**
 > $$ \begin{array}{lrr}
-> \textbf{Sales Revenue:} & & \\
-> \quad \text{Gross Sales Revenue} & \$5,200,000 & \\
-> \quad \text{Less: Sales Discounts} & (60,000) & \\
-> \quad \text{Less: Sales Returns and Allowances} & (140,000) & \\
 > \hline
-> \textbf{Net Sales Revenue} & & \$5,000,000 \\
-> \text{Cost of Goods Sold} & & (2,800,000) \\
+> \multicolumn{3}{c}{\textbf{Apex Synthetics International Ltd. — Statement of Profit or Loss}} \\
+> \multicolumn{3}{c}{\textbf{For the Year Ended 31 December 2025}} \\
 > \hline
-> \textbf{Gross Profit} & & \$2,200,000 \\
-> \textbf{Operating Expenses:} & & \\
-> \quad \text{Selling Expenses} & \$420,000 & \\
-> \quad \text{General and Administrative Expenses} & 380,000 & (800,000) \\
+> \text{Revenue} & & £6,000,000 \\
+> \text{Less: Sales Discounts \& Allowances} & & (200,000) \\
 > \hline
-> \textbf{Income from Operations} & & \$1,400,000 \\
-> \textbf{Other Revenues and Gains:} & & \\
-> \quad \text{Dividend Revenue} & \$25,000 & \\
-> \quad \text{Gain on Sale of Plant Assets} & 45,000 & 70,000 \\
-> \textbf{Other Expenses and Losses:} & & \\
-> \quad \text{Interest Expense} & (90,000) & \\
-> \quad \text{Loss from Casualty (Flood)} & (100,000) & (190,000) \\
+> \textbf{Net Revenue} & & £5,800,000 \\
+> \text{Cost of Sales} & & (3,200,000) \\
 > \hline
-> \textbf{Income Before Income Tax} & & \$1,280,000 \\
-> \text{Income Tax Expense (25\%)} & & (320,000) \\
+> \textbf{Gross Profit} & & £2,600,000 \\
+> \text{Other Income (Dividend Income \& Asset Disposal Gain)} & & 80,000 \\
+> \text{Selling \& Distribution Costs} & & (500,000) \\
+> \text{Administrative Expenses} & & (400,000) \\
+> \text{Financing Costs} & & (100,000) \\
 > \hline
-> \textbf{Income from Continuing Operations} & & \$960,000 \\
+> \textbf{Profit Before Tax} & & £1,680,000 \\
+> \text{Income Tax Expense (25\%)} & & (420,000) \\
+> \hline
+> \textbf{Profit from Continuing Operations} & & \mathbf{£1,260,000} \\
 > \textbf{Discontinued Operations:} & & \\
-> \quad \text{Loss from Operations of Discontinued Division (net of \$50,000 tax benefit)} & \$(150,000) & \\
-> \quad \text{Gain on Disposal of Discontinued Division (net of \$20,000 tax expense)} & 60,000 & (90,000) \\
+> \quad \text{Loss from Operations of Discontinued Division (net of £40,000 tax benefit)} & & (120,000) \\
 > \hline
-> \textbf{Net Income} & & \mathbf{\$870,000} \\
+> \textbf{Profit or Loss (Net Income)} & & \mathbf{£1,140,000} \\
 > \hline \hline
-> \textbf{Per Share Data (200,000 shares):} & & \\
-> \quad \text{Income from Continuing Operations} & & \$4.65 \\
-> \quad \text{Discontinued Operations} & & (0.45) \\
+> \textbf{Earnings Per Share (200,000 Ordinary Shares):} & & \\
+> \quad \text{Basic EPS from Continuing Operations} & & £6.10 \\
+> \quad \text{Basic EPS from Discontinued Operations} & & (0.60) \\
 > \hline
-> \quad \textbf{Net Basic Earnings Per Share} & & \mathbf{\$4.20} \\
+> \quad \textbf{Total Basic Earnings Per Share} & & \mathbf{£5.50} \\
 > \hline \hline
 > \end{array} $$
-> ---
-> ##### Apex Corporate Solutions Inc. — Statement of Comprehensive Income (Two-Statement Approach)
-> **For the Year Ended December 31, 2025**
 > $$ \begin{array}{lr}
-> \textbf{Net Income} & \$870,000 \\
+> \hline
+> \multicolumn{2}{c}{\textbf{Apex Synthetics International Ltd. — Statement of Comprehensive Income}} \\
+> \multicolumn{2}{c}{\textbf{For the Year Ended 31 December 2025}} \\
+> \hline
+> \textbf{Profit or Loss (Net Income)} & \mathbf{£1,140,000} \\
 > \textbf{Other Comprehensive Income (OCI):} & \\
-> \quad \text{Unrealized Holding Gain on Available-for-Sale Debt Securities (net of \$15,000 tax)} & 45,000 \\
+> \quad \text{Items that may be reclassified subsequently to profit or loss:} & \\
+> \quad \quad \text{Unrealised Gain on FVOCI Debt Securities (net of £20,000 tax)} & 60,000 \\
 > \hline
-> \textbf{Total Comprehensive Income} & \mathbf{\$915,000} \\
+> \textbf{Total Comprehensive Income for the Year} & \mathbf{£1,200,000} \\
 > \hline \hline
 > \end{array} $$
-
----
-
-> [!example] Problem 2: Statement of Stockholders' Equity Walkthrough
->
-> **Scenario**: Vanguard Technologies Corp. presents the following opening balances at January 1, 2025:
-> * Preferred Stock ($8\%$, $\$100$ par): $\$200,000$ ($2,000$ shares)
-> * Common Stock ($\$5$ par): $\$500,000$ ($100,000$ shares)
-> * Additional Paid-in Capital — Common Stock: $\$1,200,000$
-> * Retained Earnings: $\$650,000$
-> * Accumulated Other Comprehensive Income (AOCI): $\$80,000$ (credit)
-> * Treasury Stock (Common): $\$0$
-> **Transactions during 2025**:
-> 1. Issued $20,000$ additional shares of common stock for $\$18$ per share.
-> 2. Earned Net Income of $\$450,000$.
-> 3. Recorded Other Comprehensive Loss of $\$25,000$ (net of tax) from foreign currency translation.
-> 4. Declared and paid Preferred Dividends of $\$16,000$ ($8\% \times \$200,000$).
-> 5. Declared and paid Common Cash Dividends of $\$0.50$ per share on all outstanding shares.
-> 6. Purchased $5,000$ shares of Common Treasury Stock at $\$15$ per share.
-> ---
-> ##### Step-by-Step Solution & Matrix Assembly
-> 7. **Issuance of Common Stock**:
->    * $\text{Shares Issued} = 20,000 \implies \Delta \text{Common Stock} = 20,000 \times \$5 = \$100,000$
->    * $\text{Proceeds} = 20,000 \times \$18 = \$360,000 \implies \Delta \text{APIC-Common} = \$360,000 - \$100,000 = \$260,000$
->    * Total Common Shares Outstanding for Dividends $= 100,000 + 20,000 = 120,000$ shares.
-> 8. **Common Dividends Declared**:
->    * $\text{Common Dividend} = 120,000 \text{ shares} \times \$0.50 = \$60,000$
->    * Total Retained Earnings Deductions $= \text{Preferred } (\$16,000) + \text{Common } (\$60,000) = \$76,000$.
-> 9. **Treasury Stock Purchase**:
->    * $\text{Cost} = 5,000 \text{ shares} \times \$15 = \$75,000 \implies$ Subtracted from Equity.
-> ##### Vanguard Technologies Corp. — Statement of Stockholders' Equity
-> **For the Year Ended December 31, 2025**
-> $$ \begin{array}{lrrrrrrr}
-> \hline
-> \textbf{Item} & \textbf{Pref. Stock} & \textbf{Com. Stock} & \textbf{APIC-Com.} & \textbf{Ret. Earn.} & \textbf{AOCI} & \textbf{Treas. Stock} & \textbf{Total Equity} \\
-> \hline
-> \text{Bal. 1/1/25} & \$200,000 & \$500,000 & \$1,200,000 & \$650,000 & \$80,000 & \$0 & \$2,630,000 \\
-> \text{Issue Stock} & - & 100,000 & 260,000 & - & - & - & 360,000 \\
-> \text{Net Income} & - & - & - & 450,000 & - & - & 450,000 \\
-> \text{OCI (Loss)} & - & - & - & - & (25,000) & - & (25,000) \\
-> \text{Pref. Div.} & - & - & - & (16,000) & - & - & (16,000) \\
-> \text{Com. Div.} & - & - & - & (60,000) & - & - & (60,000) \\
-> \text{Pur. Treas.} & - & - & - & - & - & (75,000) & (75,000) \\
-> \hline
-> \mathbf{Bal. 12/31/25} & \mathbf{\$200,000} & \mathbf{\$600,000} & \mathbf{\$1,460,000} & \mathbf{\$964,000} & \mathbf{\$55,000} & \mathbf{\$(75,000)} & \mathbf{\$3,204,000} \\
-> \hline \hline
-> \end{array} $$
-
----
-
-> [!example] Problem 3: Classified Balance Sheet Preparation (Report Form)
->
-> **Scenario**: Meridian Logistics Corp. reports the following accounts as of December 31, 2025:
-> * Cash & Cash Equivalents: $\$140,000$
-> * Available-for-Sale Debt Investments (Short-term, Fair Value): $\$90,000$
-> * Accounts Receivable: $\$320,000$
-> * Allowance for Doubtful Accounts: $\$20,000$
-> * Notes Receivable (Due in 6 months): $\$50,000$
-> * Merchandise Inventory (at LCNRV): $\$480,000$
-> * Prepaid Insurance (for 8 months): $\$18,000$
-> * Land Held for Future Plant Site: $\$250,000$
-> * Land (used in operations): $\$400,000$
-> * Buildings: $\$1,800,000$
-> * Accumulated Depreciation — Buildings: $\$450,000$
-> * Equipment: $\$850,000$
-> * Accumulated Depreciation — Equipment: $\$250,000$
-> * Patents (Net of amortization): $\$110,000$
-> * Goodwill: $\$180,000$
-> * Accounts Payable: $\$210,000$
-> * Notes Payable (Due in 3 months): $\$70,000$
-> * Current Portion of Long-Term Debt: $\$40,000$
-> * Accrued Salaries and Wages: $\$30,000$
-> * Unearned Service Revenue: $\$25,000$
-> * Bonds Payable ($8\%$, due 2035): $\$1,000,000$
-> * Discount on Bonds Payable: $\$40,000$
-> * Deferred Tax Liability (Long-term): $\$60,000$
-> * Preferred Stock ($7\%$, $\$100$ par, $3,000$ shares outstanding): $\$300,000$
-> * Common Stock ($\$1$ par, $500,000$ shares outstanding): $\$500,000$
-> * Additional Paid-In Capital — Common Stock: $\$850,000$
-> * Retained Earnings: $\$723,000$
-> * Accumulated Other Comprehensive Income (Credit): $\$35,000$
-> * Treasury Stock (Common, at cost, $2,000$ shares): $\$30,000$
-> ---
-> ##### Meridian Logistics Corp. — Classified Balance Sheet (Report Form)
-> **As of December 31, 2025**
-> $$ \begin{array}{lrr}
-> \textbf{ASSETS} & & \\
-> \textbf{Current Assets:} & & \\
-> \quad \text{Cash and Cash Equivalents} & \$140,000 & \\
-> \quad \text{Short-Term Investments (Available-for-Sale, at Fair Value)} & 90,000 & \\
-> \quad \text{Accounts Receivable} & \$320,000 & \\
-> \quad \text{Less: Allowance for Doubtful Accounts} & (20,000) & 300,000 \\
-> \quad \text{Notes Receivable (Short-Term)} & & 50,000 \\
-> \quad \text{Merchandise Inventory (at LCNRV)} & & 480,000 \\
-> \quad \text{Prepaid Insurance} & & 18,000 \\
-> \hline
-> \quad \textbf{Total Current Assets} & & \mathbf{\$1,078,000} \\
-> \textbf{Long-Term Investments:} & & \\
-> \quad \text{Land Held for Future Plant Site} & & 250,000 \\
-> \textbf{Property, Plant, and Equipment:} & & \\
-> \quad \text{Land} & \$400,000 & \\
-> \quad \text{Buildings} & \$1,800,000 & \\
-> \quad \text{Less: Accumulated Depreciation — Buildings} & (450,000) & 1,350,000 \\
-> \quad \text{Equipment} & \$850,000 & \\
-> \quad \text{Less: Accumulated Depreciation — Equipment} & (250,000) & 600,000 \\
-> \hline
-> \quad \textbf{Total Property, Plant, and Equipment} & & \mathbf{\$2,350,000} \\
-> \textbf{Intangible Assets:} & & \\
-> \quad \text{Patents (net of amortization)} & \$110,000 & \\
-> \quad \text{Goodwill} & 180,000 & 290,000 \\
-> \hline
-> \textbf{TOTAL ASSETS} & & \mathbf{\$3,968,000} \\
-> \hline \hline
-> & & \\
-> \textbf{LIABILITIES AND STOCKHOLDERS' EQUITY} & & \\
-> \textbf{Current Liabilities:} & & \\
-> \quad \text{Accounts Payable} & \$210,000 & \\
-> \quad \text{Notes Payable (Short-Term)} & 70,000 & \\
-> \quad \text{Current Portion of Long-Term Debt} & 40,000 & \\
-> \quad \text{Accrued Salaries and Wages} & 30,000 & \\
-> \quad \text{Unearned Service Revenue} & 25,000 & \\
-> \hline
-> \quad \textbf{Total Current Liabilities} & & \mathbf{\$375,000} \\
-> \textbf{Long-Term Liabilities:} & & \\
-> \quad \text{Bonds Payable (8\%, due 2035)} & \$1,000,000 & \\
-> \quad \text{Less: Discount on Bonds Payable} & (40,000) & \$960,000 \\
-> \quad \text{Deferred Tax Liability (Long-Term)} & & 60,000 \\
-> \hline
-> \quad \textbf{Total Long-Term Liabilities} & & \mathbf{\$1,020,000} \\
-> \hline
-> \textbf{Total Liabilities} & & \mathbf{\$1,395,000} \\
-> & & \\
-> \textbf{Stockholders' Equity:} & & \\
-> \quad \text{Preferred Stock (7\%, \$100 par, 3,000 shares issued/outstanding)} & \$300,000 & \\
-> \quad \text{Common Stock (\$1 par, 500,000 shares issued)} & 500,000 & \\
-> \quad \text{Additional Paid-in Capital — Common Stock} & 850,000 & \\
-> \quad \text{Retained Earnings} & 723,000 & \\
-> \quad \text{Accumulated Other Comprehensive Income (AOCI)} & 35,000 & \\
-> \quad \text{Less: Treasury Stock (Common, 2,000 shares at cost)} & (30,000) & \\
-> \hline
-> \quad \textbf{Total Stockholders' Equity} & & \mathbf{\$2,573,000} \\
-> \hline
-> \textbf{TOTAL LIABILITIES AND STOCKHOLDERS' EQUITY} & & \mathbf{\$3,968,000} \\
-> \hline \hline
-> \end{array} $$
-> ---
-> ##### Key Financial Ratios & Working Capital Computation
-> * **Working Capital**:
->   $$ \text{Working Capital} = \text{Current Assets} - \text{Current Liabilities} = \$1,078,000 - \$375,000 = \$703,000 $$
-> * **Current Ratio**:
->   $$ \text{Current Ratio} = \frac{\text{Current Assets}}{\text{Current Liabilities}} = \frac{\$1,078,000}{\$375,000} = 2.87:1 $$

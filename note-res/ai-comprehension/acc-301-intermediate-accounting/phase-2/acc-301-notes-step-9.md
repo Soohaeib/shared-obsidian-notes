@@ -1,378 +1,194 @@
-# Temporary Marketable Investments
-
+# Financial Investments (IFRS 9, IAS 28, IFRS 13)
 > [!abstract] Curriculum & Syllabus Context
->
 > - **Course:** ACC 301 Intermediate Accounting
 > - **Phase:** Phase 2: Asset Valuation & Cost Allocation
-> - **Target Reading:** Weygandt, Kieso, and Warfield, *Intermediate Accounting*, 18th Edition — **Chapter 16: Investments** (including IFRS 9)
-> - **Syllabus Focus:** Trading debt securities, Available-for-Sale (AFS) debt securities, Held-to-Maturity (HTM) debt securities, marketable equity securities under ASC 321, fair value adjustments, reclassification adjustments upon sale, CECL credit loss impairments, fair value floor, fair value option (ASC 825), and IFRS 9 differences.
+> - **Target Reading:** Weygandt, Kieso, and Warfield, *Intermediate Accounting: IFRS Edition* (3rd Edition) — **Financial Investments**
+> - **Syllabus Focus:** Financial asset classification framework under IFRS 9 (Business Model & SPPI tests), accounting categories for debt investments (Amortised Cost, FVOCI with recycling, FVTPL), accounting for equity investments (FVTPL, FVOCI without recycling, Equity Method IAS 28, Consolidation IFRS 10), the Fair Value Option (FVO), the 3-stage Expected Credit Loss (ECL) impairment model, and rules for reclassification.
 
 ---
-
-### I. Conceptual Foundations & Classification of Temporary Marketable Investments
-#### 1. Nature of Financial Assets & Temporary Investments
-> [!info] Key Definition
->
-> A **financial asset** is any asset that represents a contractual right to receive cash or another financial instrument from another entity, or an equity instrument of another entity (FASB ASC Master Glossary). Unlike physical assets (e.g., PP&E or Inventory) which derive economic utility from physical use, financial assets derive their value from contractual monetary claims.
-> **Temporary (or Short-Term) Marketable Investments** are financial assets consisting of debt and equity securities that meet two criteria for Current Asset classification:
-> 1. **Readily Marketable (Liquidity Criterion):** Capable of being sold immediately in an active, liquid secondary market with publicly quoted prices.
-> 2. **Management Intent (Operating Cycle Criterion):** Management must intend to sell or convert the security into cash within one year or the normal operating cycle, whichever is longer, to satisfy current liquidity needs.
-
----
-#### 2. Classification Framework for Debt and Equity Securities
-Accounting for investments depends on whether the instrument is a **Debt Security** or an **Equity Security**, as well as the investor's business model, degree of influence, and intent.
-
-| Security Type | Management Intent / Ownership Level | Primary Accounting Classification | Valuation Basis | Treatment of Unrealized Holding Gains / Losses |
-| :--- | :--- | :--- | :--- | :--- |
-| **Debt Security** | Active, frequent buying and selling for short-term profit | **Trading Securities** (ASC 320) | Fair Value | Included in **Net Income** (Income Statement) |
-| **Debt Security** | Neither active trading nor held-to-maturity; available for liquidity | **Available-for-Sale (AFS) Debt Securities** (ASC 320) | Fair Value | Included in **Other Comprehensive Income (OCI)** $\rightarrow$ Accumulated OCI (Balance Sheet) |
-| **Debt Security** | Positive intent and ability to hold until legal maturity date | **Held-to-Maturity (HTM) Debt Securities** (ASC 320) | Amortized Cost | Not Recognized in Financial Statements (Disclosed in Notes) |
-| **Equity Security** | Holdings $< 20\%$ voting stock (Passive / No Significant Influence) | **Marketable Equity Securities** (ASC 321) | Fair Value | Included in **Net Income** (Income Statement) |
-| **Equity Security** | Holdings $20\% \text{ to } 50\%$ voting stock (Significant Influence) | **Equity Method Investments** (ASC 323) | Equity Basis (Cost $\pm$ Share of Investee Net Income/Loss $-$ Dividends) | Not Recognized (Carrying value adjusted for investee results) |
-| **Equity Security** | Holdings $> 50\%$ voting stock (Controlling Interest) | **Consolidated Financial Statements** (ASC 810) | Consolidation | Not Applicable (Elimination of intercompany accounts) |
-
----
-### II. Accounting for Temporary Debt Securities (ASC 320)
-Debt securities represent a creditor relationship with an entity (e.g., U.S. Treasury bills, commercial paper, municipal bonds, and corporate debentures). When acquired, all debt securities are initially recorded at **cost**, which equals the cash price paid plus broker commissions, taxes, and other acquisition fees.
-#### 1. Trading Debt Securities
-**Definition & Intent:** Debt securities acquired with the specific strategy of frequent buying and selling to generate short-term profits on price fluctuations. They are classified strictly as **Current Assets** on the Balance Sheet.
-
-> [!quote] Formula & Derivation: Trading Debt Securities
->
-> **Interest Revenue:**
-> $$ \text{Interest Revenue} = \text{Beginning Amortized Cost} \times \text{Effective Interest Rate} \times \frac{t}{12} $$
-> $$ \text{Cash Interest Received} = \text{Face Value} \times \text{Stated Coupon Rate} \times \frac{t}{12} $$
-> **Subsequent Measurement at Fair Value:**
-> $$ \text{Unrealized Gain / Loss} = \text{Total Portfolio Fair Value} - \text{Total Portfolio Amortized Cost} $$
-
-##### Journal Entries for Trading Securities:
-$$ \begin{array}{llrr}
-\textbf{Transaction} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-\hline
-\text{1. Initial Purchase} & \text{Debt Investments (Trading)} & \text{XXX} & \\
-& \quad \text{Cash} & & \text{XXX} \\
-\hline
-\text{2. Receipt of Interest} & \text{Cash (or Interest Receivable)} & \text{XXX} & \\
-& \text{Debt Investments (Discount Amortization)} & \text{XXX} & \\
-& \quad \text{Interest Revenue} & & \text{XXX} \\
-\hline
-\text{3. Year-End FV Adj} & \text{Fair Value Adjustment (Trading)} & \text{XXX} & \\
-\text{(Net Portfolio Gain)} & \quad \text{Unrealized Holding Gain or Loss—Income} & & \text{XXX} \\
-\hline
-\text{4. Year-End FV Adj} & \text{Unrealized Holding Gain or Loss—Income} & \text{XXX} & \\
-\text{(Net Portfolio Loss)} & \quad \text{Fair Value Adjustment (Trading)} & & \text{XXX} \\
-\end{array} $$
-
----
-#### 2. Available-for-Sale (AFS) Debt Securities
-**Definition & Intent:** Debt securities not classified as trading or held-to-maturity. They are held to provide liquidity, manage interest rate risk, or yield returns over a flexible holding period. If intended to be converted to cash within 12 months, they are reported under Current Assets.
-##### Valuation & Accounting Mechanics:
-* **Initial Acquisition & Amortization:** Recorded at cost. Premiums or discounts are amortized using the **Effective-Interest Method**.
-* **Balance Sheet Presentation:** Reported at **Fair Value** using a valuation allowance ($Fair\ Value\ Adjustment$).
-* **Unrealized Holding Gains and Losses:** Excluded from Net Income! Recognized in **Other Comprehensive Income (OCI)** and accumulate in Equity under **Accumulated Other Comprehensive Income (AOCI)**.
-##### Journal Entries for AFS Debt Securities:
-$$ \begin{array}{llrr}
-\textbf{Transaction} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-\hline
-\text{1. Year-End FV Adj} & \text{Fair Value Adjustment (AFS)} & \text{XXX} & \\
-\text{(Net Portfolio Gain)} & \quad \text{Unrealized Holding Gain or Loss—Equity (OCI)} & & \text{XXX} \\
-\hline
-\text{2. Year-End FV Adj} & \text{Unrealized Holding Gain or Loss—Equity (OCI)} & \text{XXX} & \\
-\text{(Net Portfolio Loss)} & \quad \text{Fair Value Adjustment (AFS)} & & \text{XXX} \\
-\end{array} $$
-
----
-#### 3. Sale and Disposition of AFS Debt Securities & Reclassification Adjustments
-When an AFS debt security is sold prior to maturity, a **Realized Gain or Loss** must be computed and reported in Net Income.
-
-> [!quote] Formula & Derivation: AFS Sale & Reclassification
->
-> $$ \text{Realized Gain or Loss on Sale} = \text{Net Sales Proceeds} - \text{Amortized Cost at Sale Date} $$
-> **The Reclassification Adjustment Problem:**
-> To eliminate double-counting when realized gains are moved from AOCI to Net Income, a reclassification adjustment is required:
-> $$ \text{OCI for Period} = \text{Unrealized Holding G/L Generated in Period} - \text{Reclassification Adjustment for Realized G/L} $$
-
-##### Complete Journal Entry Sequence for Sale of AFS Debt Security:
-$$ \begin{array}{llrr}
-\textbf{Transaction} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-\hline
-\text{1. Update Accruals} & \text{Cash (for accrued interest received)} & \text{XXX} & \\
-\text{to Sale Date} & \text{Debt Investments (AFS)} & \text{XXX} & \\
-& \quad \text{Interest Revenue} & & \text{XXX} \\
-\hline
-\text{2. Record Sale \&} & \text{Cash (Net Selling Price)} & \text{XXX} & \\
-\text{Recognize Gain/Loss} & \text{Loss on Sale of Investments (if Realized Loss)} & \text{XXX} & \\
-& \quad \text{Debt Investments (AFS) [Carrying Amortized Cost]} & & \text{XXX} \\
-& \quad \text{Gain on Sale of Investments (if Realized Gain)} & & \text{XXX} \\
-\end{array} $$
-
----
-### III. Accounting for Temporary Marketable Equity Securities (ASC 321)
-Under **FASB ASC 321** (effective post-2018), the historical distinction between Trading and Available-for-Sale equity securities was **eliminated** for investments with passive ownership ($<20\%$ voting power).
-#### 1. The Fair Value Method (Holdings $< 20\%$)
-All marketable equity securities with passive holdings ($<20\%$) must be measured at **Fair Value**, with all unrealized holding gains and losses recognized immediately in **Net Income**.
-
-> [!quote] Formula & Derivation: Equity Securities Sale
->
-> $$ \text{Realized Gain or Loss on Sale} = \text{Net Proceeds from Sale} - \text{Historical Cost} $$
-
-##### Journal Entries for Equity Securities:
-$$ \begin{array}{llrr}
-\textbf{Transaction} & \textbf{Account Titles} & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-\hline
-\text{1. Receipt of Dividend} & \text{Cash (or Dividend Receivable)} & \text{XXX} & \\
-& \quad \text{Dividend Revenue (Net Income)} & & \text{XXX} \\
-\hline
-\text{2. Sale of Equity} & \text{Cash} & \text{XXX} & \\
-\text{Securities} & \text{Loss on Sale of Equity Securities (if Loss)} & \text{XXX} & \\
-& \quad \text{Equity Investments (Historical Cost)} & & \text{XXX} \\
-& \quad \text{Gain on Sale of Equity Securities (if Gain)} & & \text{XXX} \\
-\end{array} $$
-#### 2. Practicability Exception for Nonmarketable Equity Securities
-For equity investments that do not have readily determinable fair values (e.g., shares in private start-ups), entities may elect a **practicability exception**:
-> [!quote] Formula & Derivation: Practicability Exception
->
-> $$ \text{Carrying Value} = \text{Historical Cost} - \text{Impairments} \pm \text{Observable Price Changes for Similar Instruments} $$
-
----
-### IV. Impairment of Marketable Securities & Credit Loss Models
-#### 1. Current Expected Credit Loss (CECL) Model for HTM Debt Securities
-For HTM debt investments, entities apply the **Current Expected Credit Loss (CECL)** model. Entities estimate lifetime expected credit losses based on historical experience, current economic conditions, and reasonable forecasts.
-
-$$ \begin{array}{llrr}
-\textbf{Account Titles} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-\hline
-\text{Bad Debt Expense (Credit Loss)} & & \text{XXX} & \\
-\quad \text{Allowance for Credit Losses (Contra-Asset)} & & & \text{XXX} \\
-\end{array} $$
-
----
-#### 2. Impairment Model for Available-for-Sale Debt Securities
-Unlike HTM securities, AFS debt securities may be sold for liquidity or held for collection. Thus, impairment for AFS debt securities separates **Credit Losses** from **Non-Credit Market Losses** (e.g., general interest rate increases).
-
-> [!quote] Formula & Derivation: Fair Value Floor
->
-> Credit losses recognized in Net Income are capped at the **Fair Value Floor**:
-> $$ \text{Fair Value Floor} = \text{Amortized Cost} - \text{Fair Value} $$
+### 1. Overview of Financial Assets Classification Framework (IFRS 9)
+Under **IFRS 9: Financial Instruments**, the classification and subsequent measurement of financial assets depend on a two-pronged test evaluated at initial recognition:
+1. **The Business Model Test**
+2. **The Contractual Cash Flow Characteristics Test (SPPI Test)**
 
 ```mermaid
 flowchart TD
-    Total["Total Decline in Value<br>(Amortized Cost - Fair Value)"]
-    Total --> ECL["Expected Credit Loss<br>(Subject to Fair Value Floor Cap)"]
-    Total --> NCL["Non-Credit Market Loss<br>(e.g., Interest Rate Shifts)"]
-    ECL --> NI["Recognized in NET INCOME<br>(via Allowance for Credit Losses)"]
-    NCL --> OCI["Recognized in OCI<br>(via Fair Value Adjustment)"]
+    A["Financial Asset Initial Recognition"] --> B{"Is it an Equity Investment?"}
+    B -- Yes --> C{"Held for Trading?"}
+    C -- Yes --> D["FVTPL (Default)"]
+    C -- No --> E{"Irrevocable FVOCI Election Made?"}
+    E -- Yes --> F["FVOCI without Recycling"]
+    E -- No --> D
+    
+    B -- No (Debt Instrument) --> G{"Passes SPPI Test?\n(Solely Payments of Principal & Interest)"}
+    G -- No --> D
+    G -- Yes --> H{"Business Model Objective?"}
+    H -- "Hold to Collect Cash Flows" --> I["Amortised Cost"]
+    H -- "Hold to Collect & Sell" --> J["FVOCI with Recycling"]
+    H -- "Trading / Other / FVO Elected" --> D
 ```
 
-##### Impairment Allocation Decision Tree:
-1. **If Fair Value $\ge$ Amortized Cost:** No impairment. Any unrealized gain is reported in OCI.
-2. **If Fair Value $<$ Amortized Cost (Decline Exists):**
-   * Calculate Expected Credit Loss ($\text{ECL}$).
-   * **If $\text{ECL} \ge (\text{Amortized Cost} - \text{Fair Value})$:**
-     * Credit Loss recognized in Net Income = $\text{Amortized Cost} - \text{Fair Value}$ (Full difference).
-     * OCI Loss = $\$0$.
-   * **If $\text{ECL} < (\text{Amortized Cost} - \text{Fair Value})$:**
-     * Credit Loss recognized in Net Income = $\text{ECL}$.
-     * Non-Credit Loss recognized in OCI = $(\text{Amortized Cost} - \text{Fair Value}) - \text{ECL}$.
+#### 1.1 The Business Model Test
+The business model test reflects how an entity manages its financial assets to generate cash flows. The assessment is made at a portfolio level based on observable business activities:
+* **Hold to Collect Contractual Cash Flows:** The objective is to hold the financial assets to maturity in order to collect contractual cash inflows over the life of the instrument.
+* **Hold to Collect Contractual Cash Flows and Sell:** The objective is achieved by both collecting contractual cash flows and selling financial assets (e.g., managing liquidity needs while earning yield).
+* **Other / Trading Models:** Portfolios managed with the primary objective of realizing short-term cash flow gains through active buying and selling.
+#### 1.2 The Contractual Cash Flow Characteristics Test (SPPI)
+The **Solely Payments of Principal and Interest (SPPI)** test evaluates whether the contractual cash flows of a debt instrument consist strictly of payments of principal and interest on specified dates:
+* **Principal:** The fair value of the financial asset at initial recognition.
+* **Interest:** Consideration for the time value of money, credit risk associated with the principal amount outstanding during a particular period of time, and basic lending risks/costs (e.g., liquidity risk and administrative fees).
+
+If a debt instrument contains contractual terms that introduce exposure to risks or volatility unrelated to a basic lending arrangement (e.g., indexation to equity market prices or commodity indices), it **fails** the SPPI test and must be classified at Fair Value Through Profit or Loss (FVTPL).
 
 ---
-### V. The Fair Value Option (ASC 825)
-> [!warning] Exam Pitfall / Exception
->
-> Entities have an **irrevocable option** to report specific financial assets (including AFS and HTM debt securities or equity method investments) at **Fair Value** on an instrument-by-instrument basis:
-> * **Timing:** Elected at initial acquisition or origination of the asset.
-> * **Accounting Treatment:** All subsequent changes in fair value are recognized immediately in **Net Income**, regardless of default classification.
-> * **Impact on AFS Debt Securities:** Bypasses OCI; all unrealized gains/losses go directly to Net Income.
+### 2. Debt Investments Accounting Categories (IFRS 9)
+Debt investments represent contractual rights to receive cash flows from issuers (such as government bonds, corporate debentures, and commercial paper).
+
+| Feature | Amortised Cost | FVOCI (with Recycling) | FVTPL |
+| :--- | :--- | :--- | :--- |
+| **Business Model Criteria** | Hold to collect contractual cash flows. | Hold to collect cash flows and sell. | Trading strategy or managed for short-term fair value gains. |
+| **SPPI Test Requirement** | Must Pass SPPI test. | Must Pass SPPI test. | Failed SPPI test or FVO elected. |
+| **Statement of Financial Position Valuation** | Amortised cost (net carrying amount less ECL allowance). | Fair value at the reporting date. | Fair value at the reporting date. |
+| **Profit or Loss Impact** | Effective-interest revenue, impairment losses/reversals, derecognition gains/losses. | Effective-interest revenue, impairment losses/reversals, derecognition gains/losses (including recycled OCI). | Interest revenue and unrealized/realized fair value gains and losses (Unrealized Holding Gain/Loss—Income). |
+| **OCI Impact** | None. | Fair value adjustments (Unrealized Holding Gain/Loss—OCI). | None. |
+| **Derecognition Recycling** | Not applicable. | Accumulated OCI gains/losses are **recycled** to Profit or Loss. | Not applicable. |
+
+#### 2.1 Amortised Cost
+* **Classification Criteria:** The debt asset is held within a business model whose objective is to *hold assets to collect contractual cash flows*, and its contractual terms pass the SPPI test.
+* **Accounting Treatment:**
+  * *Initial Measurement:* Recognized at fair value plus transaction costs directly attributable to the acquisition.
+  * *Subsequent Measurement:* Measured at amortised cost using the effective-interest rate method.
+  * *Statement of Financial Position:* Presented at its net carrying amount (gross carrying amount less allowance for expected credit losses).
+  * *Fair Value Recognition:* Fair value changes are not recognized on the Statement of Financial Position or in Profit or Loss, unless impaired.
+#### 2.2 Fair Value Through Other Comprehensive Income (FVOCI) with Recycling
+* **Classification Criteria:** The debt asset is held within a dual-objective business model (*holding to collect cash flows AND selling*), and its contractual cash flows pass the SPPI test.
+* **Accounting Treatment:**
+  * *Statement of Financial Position:* Measured and reported at fair value at each reporting date.
+  * *Profit or Loss:* Interest revenue is recognized using the effective-interest rate method, identical to the amortised cost treatment. Expected credit losses are recognized in Profit or Loss with a corresponding entry in OCI (rather than reducing the asset's carrying amount).
+  * *Other Comprehensive Income:* Unrealized fair value gains and losses are accumulated in equity under *Unrealized Holding Gain/Loss—OCI*.
+  * *Recycling Mechanism:* Upon derecognition or sale, the cumulative gain or loss previously recognized in OCI is **recycled (reclassified)** from equity to Profit or Loss as a reclassification adjustment.
+#### 2.3 Fair Value Through Profit or Loss (FVTPL)
+* **Classification Criteria:** Default category for debt instruments held for trading, debt assets managed under short-term profit-taking strategies, debt assets that fail the SPPI test, or debt assets designated under the Fair Value Option.
+* **Accounting Treatment:**
+  * *Initial Measurement:* Recognized at fair value; transaction costs are expensed immediately in Profit or Loss.
+  * *Subsequent Measurement:* Remeasured to fair value at each balance sheet date.
+  * *Profit or Loss Impact:* All fair value adjustments are recorded directly in Profit or Loss under *Unrealized Holding Gain/Loss—Income*. Interest revenue or investment returns are credited to Profit or Loss.
 
 ---
-### VI. Financial Statement Presentation & Disclosure
-#### 1. Balance Sheet
-* **Current Assets:** Trading Debt Securities, Marketable Equity Securities, and Current AFS Debt Securities.
-* **Valuation Accounts:** $Fair\ Value\ Adjustment$ displayed net against $Debt\ Investments$ or $Equity\ Investments$.
-* **Stockholders' Equity:** Accumulated Other Comprehensive Income (AOCI) line item reflecting cumulative net unrealized gains/losses on AFS debt securities.
-#### 2. Income Statement
-* Interest/Dividend Revenue.
-* Realized Gains and Losses on Sale.
-* Unrealized Holding Gains/Losses on Trading Debt and Marketable Equity Securities.
-* Credit Loss Impairments ($Bad\ Debt\ Expense$).
-#### 3. Fair Value Hierarchy Disclosures (ASC 820)
-Entities must categorize fair value measurements into a three-level inputs hierarchy in the note disclosures:
+### 3. Equity Investments Accounting Categories (IFRS 9 & IAS 28)
+Equity investments represent ownership shares in other entities (e.g., common or preferred shares) and do not contain contractual cash flow rights to principal or interest. Therefore, equity investments **automatically fail the SPPI test**.
 
 ```mermaid
 mindmap
-  root((Fair Value Hierarchy))
-    Level 1
-      Least Subjective
-      Unadjusted quoted prices
-      Active markets / Identical assets
-    Level 2
-      Moderately Subjective
-      Observable inputs
-      Similar assets / Yield curves
-    Level 3
-      Most Subjective
-      Unobservable inputs
-      DCF models / Entity assumptions
+  root((Equity Investments))
+    NonAssociate["Non-Associate Holdings (< 20% Voting Power)"]
+      FVTPL["FVTPL\n• Default treatment\n• Dividends to Profit or Loss\n• Fair value gains/losses to Profit or Loss"]
+      FVOCI["FVOCI without Recycling\n• Irrevocable election at initial recognition\n• Dividends to Profit or Loss\n• Fair value gains/losses to OCI\n• No recycling on sale (Transfer to Retained Earnings)"]
+    SignificantInfluence["Significant Influence (20% to 50% Voting Power)"]
+      EquityMethod["Equity Method (IAS 28)\n• Initial cost measurement\n• Add share of Associate Net Income\n• Subtract share of Dividends received\n• Amortise fair value excess"]
+    Control["Control (> 50% Voting Power)"]
+      Consolidation["Consolidated Financial Statements (IFRS 10)\n• Parent-subsidiary presentation"]
 ```
 
----
-### VII. International Financial Reporting Standards (IFRS 9) Differences
+#### 3.1 Fair Value Through Profit or Loss (FVTPL) - Default
+* **Applicability:** Default classification for non-associate equity holdings where the investor exercises no significant influence (typically $<20\%$ voting power).
+* **Accounting Treatment:**
+  * Measured at fair value on the Statement of Financial Position.
+  * Transaction costs are expensed as incurred in Profit or Loss.
+  * Dividend income is recognized in Profit or Loss when the entity's right to receive payment is established.
+  * Unrealized holding gains and losses arising from changes in fair value are recognized immediately in Profit or Loss.
+#### 3.2 Fair Value Through Other Comprehensive Income (FVOCI) without Recycling
+* **Applicability:** At initial recognition, an entity may make an irrevocable election (on an instrument-by-instrument basis) to present subsequent changes in fair value in OCI for equity holdings that are not held for trading.
+* **Accounting Treatment:**
+  * Measured at fair value on the Statement of Financial Position. Transaction costs are capitalized into the initial carrying amount.
+  * Dividend income is recognized in Profit or Loss (unless the dividend clearly represents a recovery of part of the cost of the investment).
+  * Fair value gains and losses are recognized in OCI and accumulated in Equity (*Unrealized Holding Gain/Loss—OCI*).
 
-| Feature / Standard | US GAAP (ASC 320 / 321) | IFRS (IFRS 9) |
-| :--- | :--- | :--- |
-| **Debt Classification** | Trading, Available-for-Sale (AFS), Held-to-Maturity (HTM) | **Amortized Cost** (Held for collection), **FVOCI** (Hold & Sell), or **FVTPL** (Trading) |
-| **Equity Securities Gains/Losses** | ALL fair value changes on equity securities MUST go to **Net Income** | Option at inception to designate non-trading equity securities to **FVOCI** |
-| **Recycling of Equity FVOCI Gains/Losses** | N/A (GAAP sends equity to Net Income) | **NO Recycling!** Cumulative OCI gains/losses transferred directly to Retained Earnings upon sale |
-| **Reversal of Impairments** | Reversal permitted for AFS debt securities; Prohibited for HTM | Reversals **PERMITTED** for debt securities at amortized cost / FVOCI if credit improves |
-| **LIFO & Revaluations** | LIFO allowed; Revaluations prohibited | LIFO prohibited; Revaluation model permitted for PP&E/Intangibles |
+> [!warning] Exam Pitfall / Exception
+> **Crucial IFRS Distinction — NO RECYCLING:**
+> Upon derecognition or sale of the FVOCI equity instrument, cumulative gains or losses accumulated in OCI are **NEVER recycled to Profit or Loss**. Instead, the accumulated balance in OCI is transferred directly within Equity to **Retained Earnings**.
 
----
-### VIII. Complete Numerical Walkthroughs with Solutions
-
----
-
-> [!example] Walkthrough 1: Temporary Debt Securities Portfolio (Trading vs. AFS)
->
-> On January 1, 2025, **Apex Capital Corp.** purchased two debt securities to manage short-term excess cash:
-> 1. **Bond Alpha (Trading):** Purchased $\$200,000$ face value, $6\%$ bonds for $\$192,278$ (to yield $8\%$). Interest is payable semiannually on June 30 and December 31.
-> 2. **Bond Beta (Available-for-Sale):** Purchased $\$300,000$ face value, $8\%$ bonds for $\$312,289$ (to yield $7\%$). Interest is payable semiannually on June 30 and December 31.
-> **Additional Events:**
-> * **December 31, 2025:** Fair values: Bond Alpha = $\$195,000$; Bond Beta = $\$308,000$.
-> * **July 1, 2026:** Apex sold Bond Beta for $\$307,000$ plus cash interest.
-> * **December 31, 2026:** Fair value of Bond Alpha = $\$193,500$.
-> ##### Step-by-Step Solution & Journal Entries:
-> **1. January 1, 2025 — Initial Purchases**
-> $$ \begin{array}{llrr}
-> \textbf{Account Titles} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-> \hline
-> \text{Debt Investments (Trading)} & & 192,278 & \\
-> \text{Debt Investments (AFS)} & & 312,289 & \\
-> \quad \text{Cash} & & & 504,567 \\
-> \end{array} $$
-> **2. June 30, 2025 — First Semiannual Interest Receipt & Amortization**
-> * **Bond Alpha (Trading):** Cash = $\$200,000 \times 3\% = \$6,000$; Interest Rev = $\$192,278 \times 4\% = \$7,691.12$; Amortization = $\$1,691.12$.
-> * **Bond Beta (AFS):** Cash = $\$300,000 \times 4\% = \$12,000$; Interest Rev = $\$312,289 \times 3.5\% = \$10,930.12$; Amortization = $\$1,069.88$.
-> $$ \begin{array}{llrr}
-> \text{Cash} & & 6,000.00 & \\
-> \text{Debt Investments (Trading)} & & 1,691.12 & \\
-> \quad \text{Interest Revenue} & & & 7,691.12 \\
-> \hline
-> \text{Cash} & & 12,000.00 & \\
-> \quad \text{Debt Investments (AFS)} & & & 1,069.88 \\
-> \quad \text{Interest Revenue} & & & 10,930.12 \\
-> \end{array} $$
-> **3. December 31, 2025 — Second Semiannual Interest Receipt & Amortization**
-> * **Bond Alpha (Trading):** Rev = $\$193,969.12 \times 4\% = \$7,758.76$; Amort = $\$1,758.76$. Ending Cost = $\$195,727.88$.
-> * **Bond Beta (AFS):** Rev = $\$311,219.12 \times 3.5\% = \$10,892.67$; Amort = $\$1,107.33$. Ending Cost = $\$310,111.79$.
-> $$ \begin{array}{llrr}
-> \text{Cash} & & 6,000.00 & \\
-> \text{Debt Investments (Trading)} & & 1,758.76 & \\
-> \quad \text{Interest Revenue} & & & 7,758.76 \\
-> \hline
-> \text{Cash} & & 12,000.00 & \\
-> \quad \text{Debt Investments (AFS)} & & & 1,107.33 \\
-> \quad \text{Interest Revenue} & & & 10,892.67 \\
-> \end{array} $$
-> **4. December 31, 2025 — Year-End Fair Value Adjustments**
-> * **Bond Alpha (Trading):** FV = $\$195,000.00$; Cost = $\$195,727.88$ $\implies$ Loss = $-\$727.88$.
-> * **Bond Beta (AFS):** FV = $\$308,000.00$; Cost = $\$310,111.79$ $\implies$ Loss = $-\$2,111.79$.
-> $$ \begin{array}{llrr}
-> \text{Unrealized Holding Gain or Loss—Income} & & 727.88 & \\
-> \quad \text{Fair Value Adjustment (Trading)} & & & 727.88 \\
-> \hline
-> \text{Unrealized Holding Gain or Loss—Equity (OCI)} & & 2,111.79 & \\
-> \quad \text{Fair Value Adjustment (AFS)} & & & 2,111.79 \\
-> \end{array} $$
-> **5. July 1, 2026 — Sale of Bond Beta (AFS)**
-> * Update Amortization (Jan 1 – Jun 30): Rev = $\$310,111.79 \times 3.5\% = \$10,853.91$; Amort = $\$1,146.09$. New Cost = $\$308,965.70$.
-> * Record Sale: Proceeds = $\$307,000.00$; Cost = $\$308,965.70$ $\implies$ Realized Loss = $\$1,965.70$.
-> $$ \begin{array}{llrr}
-> \text{Cash (Interest portion)} & & 12,000.00 & \\
-> \quad \text{Debt Investments (AFS)} & & & 1,146.09 \\
-> \quad \text{Interest Revenue} & & & 10,853.91 \\
-> \hline
-> \text{Cash (Net Selling Price)} & & 307,000.00 & \\
-> \text{Loss on Sale of Investments (Net Income)} & & 1,965.70 & \\
-> \quad \text{Debt Investments (AFS)} & & & 308,965.70 \\
-> \end{array} $$
-> **6. December 31, 2026 — Reclassification Adjustment for Bond Beta (AFS)**
-> * The AFS portfolio is now empty. The credit balance in the allowance account ($\$2,111.79$) must be reversed out of OCI to avoid double counting the loss now realized in Net Income.
-> $$ \begin{array}{llrr}
-> \text{Fair Value Adjustment (AFS)} & & 2,111.79 & \\
-> \quad \text{Unrealized Holding Gain or Loss—Equity (OCI)} & & & 2,111.79 \\
-> \end{array} $$
+#### 3.3 Equity Method (IAS 28 — Investments in Associates)
+* **Applicability:** Mandatory when an investor exercises significant influence over an investee (associate), generally presumed when holding $20\%$ to $50\%$ of the voting power.
+* **Accounting Mechanics:**
+  * *Initial Measurement:* Recorded initially at acquisition cost.
+  * *Share of Associate's Profit or Loss:* The investor increases the carrying amount of the investment and recognizes Investment Income in Profit or Loss for its proportionate share of the associate's Net Income.
+  * *Share of Dividends Received:* Dividends declared/paid by the associate reduce the carrying amount of the investment asset (treated as a return of investment cash flow).
+  * *Fair Value Excess Amortisation:* Any excess of initial investment cost over the underlying net asset fair value attributable to depreciable assets (e.g., plant, machinery) is amortised over the asset's remaining life, reducing both the carrying amount and Investment Income.
+  * *Impairment under IAS 28:* Evaluated for impairment whenever indicators exist; if the recoverable amount drops below the carrying amount, an impairment loss is charged directly to Profit or Loss.
+#### 3.4 Consolidated Financial Statements (IFRS 10)
+* **Applicability:** Mandatory when an investor obtains control over an investee (subsidiary), generally presumed when holding $>50\%$ of voting power.
+* **Accounting Treatment:** The parent presents consolidated financial statements, combining assets, liabilities, equity, revenues, and expenses of parent and subsidiary entities as a single economic unit.
 
 ---
+### 4. Fair Value Option (FVO) under IFRS 9
+The Fair Value Option (FVO) provides entities with an irrevocable choice to designate a financial asset (or debt instrument) at FVTPL upon initial recognition.
 
-> [!example] Walkthrough 2: Marketable Equity Securities (ASC 321 Fair Value Method)
->
-> On February 1, 2025, **Beacon Corp.** purchased shares in two publicly traded companies as temporary investments:
-> * **Company X:** $10,000$ shares at $\$15.00$ per share $+$ $\$1,500$ fee (Total Cost $= \$151,500$).
-> * **Company Y:** $5,000$ shares at $\$30.00$ per share $+$ $\$2,000$ fee (Total Cost $= \$152,000$).
-> **Additional Events:**
-> * **June 1, 2025:** Company X paid a cash dividend of $\$0.50$ per share.
-> * **December 31, 2025:** Fair values: Co. X $= \$18.00$; Co. Y $= \$25.00$.
-> * **April 15, 2026:** Sold all $10,000$ shares of Co. X at $\$21.00$ less $\$2,000$ fee.
-> * **December 31, 2026:** Fair value of Co. Y $= \$32.00$.
-> ##### Step-by-Step Journal Entries:
-> **1. February 1, 2025 — Initial Acquisition**
-> $$ \begin{array}{llrr}
-> \textbf{Account Titles} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-> \hline
-> \text{Equity Investments (Company X)} & & 151,500 & \\
-> \text{Equity Investments (Company Y)} & & 152,000 & \\
-> \quad \text{Cash} & & & 303,500 \\
-> \end{array} $$
-> **2. June 1, 2025 — Dividend Revenue**
-> $$ \begin{array}{llrr}
-> \text{Cash } (10,000 \times \$0.50) & & 5,000 & \\
-> \quad \text{Dividend Revenue (Income Statement)} & & & 5,000 \\
-> \end{array} $$
-> **3. December 31, 2025 — Fair Value Adjustment**
-> * Co. X FV = $\$180,000$; Cost = $\$151,500 \implies$ Gain = $+\$28,500$
-> * Co. Y FV = $\$125,000$; Cost = $\$152,000 \implies$ Loss = $-\$27,000$
-> * Net Unrealized Gain = $\$305,000 - \$303,500 = +\$1,500$
-> $$ \begin{array}{llrr}
-> \text{Fair Value Adjustment (Equity)} & & 1,500 & \\
-> \quad \text{Unrealized Holding Gain or Loss—Income} & & & 1,500 \\
-> \end{array} $$
-> **4. April 15, 2026 — Sale of Company X Stock**
-> * Net Proceeds = $(10,000 \times \$21.00) - \$2,000 = \$208,000$
-> * Realized Gain = $\$208,000 - \$151,500 (\text{Cost}) = +\$56,500$
-> $$ \begin{array}{llrr}
-> \text{Cash} & & 208,000 & \\
-> \quad \text{Equity Investments (Company X)} & & & 151,500 \\
-> \quad \text{Gain on Sale of Equity Investments (Net Income)} & & & 56,500 \\
-> \end{array} $$
-> **5. December 31, 2026 — Year-End Fair Value Adjustment**
-> * Remaining Portfolio (Company Y): Cost = $\$152,000$; FV = $\$160,000$.
-> * Target Allowance = $+\$8,000$ (Debit).
-> * Existing Allowance = $+\$1,500$ (Debit).
-> * Adjustment Required = $\$8,000 - \$1,500 = +\$6,500$ (Debit).
-> $$ \begin{array}{llrr}
-> \text{Fair Value Adjustment (Equity)} & & 6,500 & \\
-> \quad \text{Unrealized Holding Gain or Loss—Income} & & & 6,500 \\
-> \end{array} $$
+```mermaid
+flowchart LR
+    A["Financial Asset Recognized"] --> B{"Accounting Mismatch Exists?\n(e.g., Asset at FV vs. Related Debt at Amortised Cost)"}
+    B -- Yes --> C["Elect Fair Value Option (FVO)"]
+    C --> D["Designate irrevocably at FVTPL"]
+    D --> E["Eliminate or significantly reduce measurement inconsistency"]
+```
+
+* **Irrevocable Designation:** The election can only be made at initial recognition and cannot be changed subsequently.
+* **Core Purpose:** To eliminate or significantly reduce an **accounting mismatch** (measurement or recognition inconsistency) that would otherwise arise from measuring related assets or liabilities, or recognizing gains and losses on them, on different measurement bases.
+* **Fair Value Measurement Hierarchy (IFRS 13):**
+  * *Level 1:* Quoted prices in active markets for identical assets (least subjective).
+  * *Level 2:* Observable inputs other than Level 1 quotes (e.g., yield curves, observable prices for similar assets).
+  * *Level 3:* Unobservable inputs based on management assumptions and discounted cash flow models (most subjective).
 
 ---
+### 5. Impairment of Financial Assets (IFRS 9 Expected Credit Loss / ECL Model)
+IFRS 9 introduced a forward-looking **Expected Credit Loss (ECL)** model, replacing the historical incurred loss model under legacy standards.
+#### 5.1 Incurred Loss Model vs. Expected Credit Loss (ECL) Model
+* **Incurred Loss Model:** Delayed recognition of impairment losses until a specific credit event occurred (e.g., default or payment delinquency).
+* **Expected Credit Loss (ECL) Model:** Forward-looking framework requiring immediate recognition of expected credit losses at initial recognition and subsequent updates at each reporting date, incorporating historical data, current economic conditions, and reasonable forecasts.
+#### 5.2 The 3-Stage Expected Credit Loss (ECL) Model
 
-> [!example] Walkthrough 3: AFS Debt Security Impairment & Fair Value Floor
->
-> On January 1, 2024, **Vanguard Holdings** purchased a corporate bond classified as Available-for-Sale for $\$1,000,000$ at par. At December 31, 2025, due to credit deterioration and interest rate increases, the bond's fair value dropped to $\$820,000$. Vanguard calculated an **Expected Credit Loss (ECL)** of $\$120,000$. Vanguard does not intend to sell the bond, and it is not more likely than not that Vanguard will be required to sell before recovery.
-> **1. Calculate Fair Value Floor:**
-> $$ \text{Fair Value Floor} = \$1,000,000 - \$820,000 = \$180,000 $$
-> **2. Allocate Credit Loss vs. Non-Credit Loss:**
-> * Total Loss in Value $= \$180,000$
-> * Expected Credit Loss (ECL) $= \$120,000$
-> * Since $\text{ECL} < \text{Fair Value Floor}$:
->   * **Credit Loss (Net Income)** $= \$120,000$
->   * **Non-Credit Loss (OCI)** $= \$180,000 - \$120,000 = \$60,000$
-> **3. Journal Entry at December 31, 2025:**
-> $$ \begin{array}{llrr}
-> \textbf{Account Titles} & & \textbf{Debit (\$)} & \textbf{Credit (\$)} \\
-> \hline
-> \text{Bad Debt Expense (Credit Loss to Net Income)} & & 120,000 & \\
-> \text{Unrealized Holding Gain or Loss—Equity (OCI)} & & 60,000 & \\
-> \quad \text{Allowance for Credit Losses (Contra-Asset)} & & & 120,000 \\
-> \quad \text{Fair Value Adjustment (AFS)} & & & 60,000 \\
-> \end{array} $$
+```mermaid
+flowchart LR
+    Stage1["STAGE 1: Performing\n(Initial Recognition)\n• Low credit risk\n• 12-Month ECL in P&L\n• Interest: Gross Carrying Amount"] -->|Significant Increase in Credit Risk| Stage2["STAGE 2: Underperforming\n(Significant Credit Risk Increase)\n• High risk, no default\n• Lifetime ECL in P&L\n• Interest: Gross Carrying Amount"]
+    Stage2 -->|Credit Event / Default| Stage3["STAGE 3: Credit-Impaired\n(Objective Default Event)\n• Impaired / In default\n• Lifetime ECL in P&L\n• Interest: Net Carrying Amount"]
+```
+
+| ECL Framework Stage | Credit Quality Status | Impairment Loss Measurement | Interest Revenue Calculation Base |
+| :--- | :--- | :--- | :--- |
+| **Stage 1: Performing** | Credit risk has not increased significantly since initial recognition. | **12-Month Expected Credit Loss** (ECL resulting from default events possible within 12 months). | **Gross Carrying Amount** (Effective-Interest Rate $\times$ Gross Carrying Amount). |
+| **Stage 2: Underperforming** | Credit risk has increased significantly since initial recognition (SICR), but asset is not credit-impaired. | **Lifetime Expected Credit Loss** (ECL resulting from all possible default events over the asset's life). | **Gross Carrying Amount** (Effective-Interest Rate $\times$ Gross Carrying Amount). |
+| **Stage 3: Credit-Impaired** | Objective evidence of credit impairment/default exists (e.g., bankruptcy, restructuring). | **Lifetime Expected Credit Loss** (Discounted present value of expected cash shortfalls). | **Net Carrying Amount** (Effective-Interest Rate $\times$ [Gross Carrying Amount - Allowance]). |
+
+---
+### 6. Reclassifications of Financial Assets
+IFRS 9 establishes rigid boundaries regarding the reclassification of financial assets:
+#### 6.1 Debt Investments
+Reclassification of debt instruments is allowed **ONLY** when an entity changes its business model for managing financial assets.
+* **Operational Expectation:** Business model changes are rare, determined by senior management as a result of internal or external changes (e.g., acquisition or disposal of a business line).
+* **Application:** Reclassifications are applied prospectively from the reclassification date (the first day of the reporting period following the business model change). Previously recognized gains, losses, or interest are not restated.
+#### 6.2 Equity Investments
+> [!warning] Exam Pitfall / Exception
+> Reclassification is **STRICTLY PROHIBITED** for equity investments. The classification made at initial recognition—either FVTPL or the irrevocable election to present fair value changes in FVOCI without recycling—is permanent.
+
+---
+### 7. Master Comparison Table & IFRS Terminology Summary
+#### 7.1 Comprehensive Category Summary Table
+
+| Category | Applicable Standard | Criteria / Test | Measurement on Statement of Financial Position | Profit or Loss Impact | OCI Impact | OCI Recycling on Sale? | Reclassification Allowed? |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Debt: Amortised Cost** | IFRS 9 | Hold to Collect & Pass SPPI | Amortised cost less ECL allowance | Effective interest; ECL impairment; realized gains/losses | None | N/A | Yes (if Business Model changes) |
+| **Debt: FVOCI** | IFRS 9 | Hold to Collect & Sell & Pass SPPI | Fair Value | Effective interest; ECL impairment; realized gains/losses | Unrealized fair value gains/losses | **YES** (Recycled to P&L) | Yes (if Business Model changes) |
+| **Debt: FVTPL** | IFRS 9 | Trading / Failed SPPI / FVO | Fair Value | Interest income; unrealized and realized fair value gains/losses | None | N/A | Yes (if Business Model changes) |
+| **Equity: FVTPL** | IFRS 9 | Non-associate ($<20\%$) default | Fair Value | Dividend income; unrealized and realized fair value gains/losses | None | N/A | **NO** (Strictly Prohibited) |
+| **Equity: FVOCI** | IFRS 9 | Irrevocable non-trading election | Fair Value | Dividend income only | Unrealized fair value gains/losses | **NO** (Transfer to Retained Earnings) | **NO** (Strictly Prohibited) |
+| **Equity: Associate** | IAS 28 | Significant Influence ($20\% \text{--} 50\%$) | Carrying amount (Cost + Share of Income - Dividends - Amortisation) | Share of Associate Net Income; impairment losses | Share of Associate OCI | Subject to IAS 28 rules | N/A |
+| **Equity: Subsidiary** | IFRS 10 | Control ($>50\%$) | Consolidated line-by-line presentation | Full consolidation of revenue/expenses | Consolidated OCI | N/A | N/A |
+
+#### 7.2 Key Standard IFRS Terminology
+To maintain strict compliance with global accounting standards, the following standardized terminology must be applied:
+* **Statement of Financial Position** (rather than Balance Sheet)
+* **Profit or Loss** (rather than Income Statement or Net Income)
+* **Other Comprehensive Income (OCI)**
+* **Carrying Amount** (rather than Book Value)
+* **Effective-Interest Rate** (rather than Stated Rate)
+* **Amortised Cost** (rather than Depreciated Value)
