@@ -314,9 +314,9 @@ A reversing entry is an optional bookkeeping procedure executed on the first day
 #### 4.3 Appendix C: The 10-Column Accounting Worksheet Structure
 An informal working tool utilized by accountants to organize trial balance data, adjusting entries, and financial statement line items across five pairs of debit/credit columns:
 
-$$ \begin{array}{c}
-\text{10-COLUMN ACCOUNTING WORKSHEET LAYOUT} \\
-\hline
+$$
+\text{10-COLUMN ACCOUNTING WORKSHEET LAYOUT}
+\qquad
 \begin{array}{|c|c|c|c|c|c|c|c|c|c|}
 \hline
 \multicolumn{2}{|c|}{\textbf{Unadjusted Trial Bal.}} & \multicolumn{2}{c|}{\textbf{Adjustments}} & \multicolumn{2}{c|}{\textbf{Adjusted Trial Bal.}} & \multicolumn{2}{c|}{\textbf{Income Statement}} & \multicolumn{2}{c|}{\textbf{Financial Position}} \\
@@ -324,7 +324,7 @@ $$ \begin{array}{c}
 \text{Dr.} & \text{Cr.} & \text{Dr.} & \text{Cr.} & \text{Dr.} & \text{Cr.} & \text{Dr.} & \text{Cr.} & \text{Dr.} & \text{Cr.} \\
 \hline
 \end{array}
-\end{array} $$
+$$
 
 ---
 ### Section 5: Statutory Reporting & Legal Context: Bangladesh Companies Act 1994 (Schedule XI)

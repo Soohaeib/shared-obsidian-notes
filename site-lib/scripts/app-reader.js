@@ -803,11 +803,20 @@
 
       this.setupReadingTimeTracking(readingTime, words);
       this.initInteractiveWidgets();
+      this.typesetMathJax();
       this.buildTableOfContents();
       this.buildBacklinks(relPath);
       
       this.updateBreadcrumbs(this.formatFolderTitle(this.currentFolder), realFileName);
       if (this.sidebarGraph) this.sidebarGraph.updateFocus(relPath, this.graphMode);
+    }
+
+    typesetMathJax() {
+      const article = document.getElementById('note-article');
+      if (!article || !window.MathJax || typeof window.MathJax.typesetPromise !== 'function') return;
+      window.MathJax.typesetPromise([article]).catch((error) => {
+        console.warn('MathJax fallback rendering failed:', error);
+      });
     }
 
     healListBlockquotes(text) {

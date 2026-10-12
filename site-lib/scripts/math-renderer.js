@@ -92,6 +92,12 @@
 
       // Unescape HTML entities manually injected by some markdown platforms
       clean = clean.replace(/&#36;/g, '\\$');
+
+      // KaTeX does not implement these table commands. Preserve the source
+      // syntax while reducing it to the closest supported array equivalent.
+      clean = clean.replace(/\\renewcommand\{\\arraystretch\}/g, '\\newcommand{\\arraystretch}');
+      clean = this.replaceMulticolumnCommands(clean);
+      clean = clean.replace(/\\cline\{[^}]*\}/g, '\\hline ');
       
       // Auto-heal common Greek letter typos safely (User requested preservation)
       clean = clean.replace(/\\hat\{[ \t]*(?:eta|beta)\}/g, '\\hat{\\beta}');
@@ -101,12 +107,84 @@
       return clean;
     }
 
+    requiresMathJax(formula) {
+      return /\\(?:multicolumn|cline|begin\{(?:aligned|alignedat|gathered|gather|multline|split|cases)\}|renewcommand)/.test(formula);
+    }
+
+    prepareMathJaxFormula(formula) {
+      if (!formula) return '';
+      return formula
+        .trim()
+        .replace(/^[ \t]*>+[ \t]*/gm, '')
+        .replace(/&#36;/g, '\\$');
+    }
+
+    renderMathJaxPlaceholder(formula, displayMode, mathId) {
+      const source = this.prepareMathJaxFormula(formula);
+      const delimiter = displayMode ? ['\\[', '\\]'] : ['\\(', '\\)'];
+      const encoded = this.escapeHtml(`${delimiter[0]}${source}${delimiter[1]}`);
+      return `<${displayMode ? 'div' : 'span'} class="math math-${displayMode ? 'block' : 'inline'} math-mathjax" id="${mathId}" data-math-engine="mathjax">${encoded}</${displayMode ? 'div' : 'span'}>`;
+    }
+
+    replaceMulticolumnCommands(formula) {
+      const command = '\\multicolumn';
+      let output = '';
+      let cursor = 0;
+
+      while (cursor < formula.length) {
+        const start = formula.indexOf(command, cursor);
+        if (start === -1) {
+          output += formula.slice(cursor);
+          break;
+        }
+
+        output += formula.slice(cursor, start);
+        let position = start + command.length;
+        const argumentsFound = [];
+
+        try {
+          for (let index = 0; index < 3; index += 1) {
+            while (/\s/.test(formula[position] || '')) position += 1;
+            if (formula[position] !== '{') throw new Error('Malformed multicolumn command');
+
+            const argumentStart = position + 1;
+            let depth = 1;
+            position += 1;
+
+            while (position < formula.length && depth > 0) {
+              if (formula[position] === '\\') {
+                position += 2;
+                continue;
+              }
+              if (formula[position] === '{') depth += 1;
+              if (formula[position] === '}') depth -= 1;
+              position += 1;
+            }
+
+            if (depth !== 0) throw new Error('Unclosed multicolumn argument');
+            argumentsFound.push(formula.slice(argumentStart, position - 1));
+          }
+
+          output += argumentsFound[2];
+          cursor = position;
+        } catch {
+          output += command;
+          cursor = start + command.length;
+        }
+      }
+
+      return output;
+    }
+
     renderExpression(formula, displayMode = false) {
       if (!formula) return '';
       const clean = this.sanitizeFormula(formula);
       if (!clean) return '';
 
       const mathId = `math-${displayMode ? 'block' : 'inline'}-${this.mathTokenIdx}`;
+      if (this.requiresMathJax(formula) && window.MathJax) {
+        return this.renderMathJaxPlaceholder(formula, displayMode, mathId);
+      }
       let renderedKatex = '';
       let hasError = false;
 
@@ -125,6 +203,10 @@
         } else {
           // Fallback if KaTeX is missing
           renderedKatex = displayMode ? `$$${this.escapeHtml(clean)}$$` : `$${this.escapeHtml(clean)}$`;
+        }
+
+        if (this.requiresMathJax(formula) && !window.MathJax) {
+          return this.renderMathJaxPlaceholder(formula, displayMode, mathId);
         }
       } catch (err) {
         console.warn('KaTeX safe fallback triggered:', err);
@@ -263,7 +345,7 @@
       // Extract CommonMark compliant $ ... $ 
       // Rule: Opening $ not followed by space. Closing $ not preceded by space.
       // This intrinsically protects standard financing like "$100 and $200".
-      text = text.replace(/(?<!\\|\$)\$(?!\s)([^$\n]+?)(?<!\s)\$/g, (match, formula) => {
+      text = text.replace(/(?<!\\|\$)\$(?!\s)((?:\\.|[^$\\\n])+?)(?<!\s)\$/g, (match, formula) => {
         const token = `@@KATEX_INLINE_${this.mathTokenIdx++}@@`;
         this.currentInlinesMap.set(token, this.renderExpression(formula, false));
         return token;
