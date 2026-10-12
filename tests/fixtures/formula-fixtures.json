@@ -1,0 +1,146 @@
+{
+  "name": "Obsidian Hybrid Formula Test Fixtures",
+  "version": "1.0.0",
+  "fixtures": [
+    {
+      "id": "inline-basic",
+      "category": "inline math",
+      "markdown": "Let $E = mc^2$ be the rest energy and $\\alpha + \\beta = \\gamma$.",
+      "expectedEngine": "katex",
+      "description": "Standard inline math delimited by single dollar signs"
+    },
+    {
+      "id": "inline-paren-delimiters",
+      "category": "inline math",
+      "markdown": "The value \\(x = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\\) solves the quadratic equation.",
+      "expectedEngine": "katex",
+      "description": "Standard inline math delimited by \\( ... \\)"
+    },
+    {
+      "id": "display-basic",
+      "category": "display math",
+      "markdown": "$$\n\\int_{-\\infty}^{\\infty} e^{-x^2} \\, dx = \\sqrt{\\pi}\n$$",
+      "expectedEngine": "katex",
+      "description": "Standard display math delimited by $$ ... $$"
+    },
+    {
+      "id": "display-bracket-delimiters",
+      "category": "display math",
+      "markdown": "\\[\n\\sum_{n=1}^{\\infty} \\frac{1}{n^2} = \\frac{\\pi^2}{6}\n\\]",
+      "expectedEngine": "katex",
+      "description": "LaTeX bracket display math delimited by \\[ ... \\]"
+    },
+    {
+      "id": "escaped-currency-single",
+      "category": "escaped currency",
+      "markdown": "The price dropped from \\$150 to \\$99 during the flash sale.",
+      "expectedEngine": "none",
+      "description": "Escaped dollar signs for currency should not trigger math rendering"
+    },
+    {
+      "id": "currency-patterns-plain",
+      "category": "escaped currency",
+      "markdown": "Revenue grew from $50 million to $120 million, at $45/share with $1,250.50 in net dividend.",
+      "expectedEngine": "none",
+      "description": "Financial and currency numbers with dollar signs must remain readable plain text"
+    },
+    {
+      "id": "multicolumn-table",
+      "category": "\\multicolumn",
+      "markdown": "$$\n\\begin{array}{|c|c|c|}\n\\hline\n\\multicolumn{3}{|c|}{\\text{Summary of Experimental Results}} \\\\\n\\hline\nA & B & C \\\\\n1 & 2 & 3 \\\\\n\\hline\n\\end{array}\n$$",
+      "expectedEngine": "mathjax",
+      "description": "Advanced LaTeX array containing \\multicolumn command routed to MathJax"
+    },
+    {
+      "id": "cline-partial-rules",
+      "category": "\\cline",
+      "markdown": "$$\n\\begin{array}{rcc}\n& X & Y \\\\\n\\cline{2-3}\nRow 1 & 10 & 20 \\\\\nRow 2 & 30 & 40 \\\\\n\\end{array}\n$$",
+      "expectedEngine": "mathjax",
+      "description": "LaTeX array with partial horizontal rule \\cline routed to MathJax"
+    },
+    {
+      "id": "arraystretch-custom-spacing",
+      "category": "\\renewcommand{\\arraystretch}",
+      "markdown": "$$\n\\renewcommand{\\arraystretch}{1.5}\n\\begin{pmatrix}\n\\frac{1}{2} & \\frac{\\sqrt{3}}{2} \\\\\n-\\frac{\\sqrt{3}}{2} & \\frac{1}{2}\n\\end{pmatrix}\n$$",
+      "expectedEngine": "mathjax",
+      "description": "LaTeX matrix with arraystretch customization routed to MathJax"
+    },
+    {
+      "id": "aligned-environment",
+      "category": "aligned/cases/gathered/split",
+      "markdown": "$$\n\\begin{aligned}\n\\nabla \\cdot \\mathbf{E} &= \\frac{\\rho}{\\varepsilon_0} \\\\\n\\nabla \\cdot \\mathbf{B} &= 0 \\\\\n\\nabla \\times \\mathbf{E} &= -\\frac{\\partial \\mathbf{B}}{\\partial t} \\\\\n\\nabla \\times \\mathbf{B} &= \\mu_0 \\mathbf{J} + \\mu_0 \\varepsilon_0 \\frac{\\partial \\mathbf{E}}{\\partial t}\n\\end{aligned}\n$$",
+      "expectedEngine": "mathjax",
+      "description": "Multline aligned Maxwell equations routed to MathJax"
+    },
+    {
+      "id": "cases-environment",
+      "category": "aligned/cases/gathered/split",
+      "markdown": "$$\nf(x) = \\begin{cases}\nx^2 & \\text{if } x \\ge 0 \\\\\n0 & \\text{if } x < 0\n\\end{cases}\n$$",
+      "expectedEngine": "mathjax",
+      "description": "Piecewise function using cases environment routed to MathJax"
+    },
+    {
+      "id": "gathered-environment",
+      "category": "aligned/cases/gathered/split",
+      "markdown": "$$\n\\begin{gathered}\n2x + y = 10 \\\\\nx - y = 2\n\\end{gathered}\n$$",
+      "expectedEngine": "mathjax",
+      "description": "Grouped equations with gathered environment routed to MathJax"
+    },
+    {
+      "id": "split-environment",
+      "category": "aligned/cases/gathered/split",
+      "markdown": "$$\n\\begin{split}\n(a + b)^3 &= (a + b)(a^2 + 2ab + b^2) \\\\\n&= a^3 + 3a^2b + 3ab^2 + b^3\n\\end{split}\n$$",
+      "expectedEngine": "mathjax",
+      "description": "Long equation derivation using split environment routed to MathJax"
+    },
+    {
+      "id": "math-in-code-block",
+      "category": "math inside code blocks",
+      "markdown": "Here is Python code calculating risk:\n```python\n# Calculate portfolio variance\nvar_formula = \"$$ \\sigma^2 = w^T \\Sigma w $$\"\ndef calc_risk(w, cov):\n    return w.T @ cov @ w\n```\nAnd code continues.",
+      "expectedEngine": "none",
+      "description": "Formulas inside fenced code blocks must remain unparsed and strictly verbatim"
+    },
+    {
+      "id": "math-in-inline-code",
+      "category": "math inside code blocks",
+      "markdown": "Use the command `export MATH_VAL=\"$x + y = z$\"` in your shell script.",
+      "expectedEngine": "none",
+      "description": "Formulas inside inline backticks must remain unparsed code"
+    },
+    {
+      "id": "mermaid-with-math-characters",
+      "category": "Mermaid source isolation",
+      "markdown": "```mermaid\ngraph TD\n    A[Input Vector $X$] --> B{Calculate Cost $C$}\n    B -->|Cost <= $1000| C[Approve Transaction]\n    B -->|Cost > $1000| D[Manual Review]\n```",
+      "expectedEngine": "none",
+      "description": "Mermaid diagrams containing dollar signs must not be corrupted by math tokenizer"
+    },
+    {
+      "id": "math-in-callouts",
+      "category": "callouts",
+      "markdown": "> [!NOTE] Quantum Formula\n> Here is Schrödinger's equation inside a callout:\n> $$\n> i\\hbar \\frac{\\partial}{\\partial t} \\Psi(\\mathbf{r}, t) = \\hat{H} \\Psi(\\mathbf{r}, t)\n> $$\n> With probability density $\\rho = |\\Psi|^2$.",
+      "expectedEngine": "katex",
+      "description": "Formulas inside Obsidian callouts must render smoothly"
+    },
+    {
+      "id": "math-in-tables",
+      "category": "tables",
+      "markdown": "| Parameter | Formula | Description |\n| :--- | :--- | :--- |\n| Mean | $\\mu = \\frac{1}{N} \\sum x_i$ | Expected value |\n| Variance | $\\sigma^2 = \\frac{1}{N} \\sum (x_i - \\mu)^2$ | Dispersion |",
+      "expectedEngine": "katex",
+      "description": "Formulas inside Markdown table cells must render in place"
+    },
+    {
+      "id": "malformed-unbalanced-brace",
+      "category": "malformed formulas",
+      "markdown": "$$\n\\frac{a + b}{\n$$",
+      "expectedEngine": "fallback",
+      "description": "Syntactically invalid LaTeX must not crash the page and should render readable fallback"
+    },
+    {
+      "id": "malformed-unknown-command",
+      "category": "malformed formulas",
+      "markdown": "$$\n\\nonExistentWeirdCommandXYZ{123}{456}\n$$",
+      "expectedEngine": "fallback",
+      "description": "Unknown macro must route safely to MathJax or produce a readable fallback card"
+    }
+  ]
+}

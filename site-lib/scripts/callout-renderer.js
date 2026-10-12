@@ -63,6 +63,16 @@
       return text.replace(/^[ \t]*>\[!([a-zA-Z0-9_\-]+)\]([+\-])?\s*([^\n\r<]*)$/gm, '> [!$1]$2 $3');
     }
 
+    escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
     processCallouts(text, codeBlocksMap = new Map()) {
       if (!this.currentCalloutsMap) this.currentCalloutsMap = new Map();
       const lines = text.split('\n');
@@ -78,7 +88,10 @@
 
         if (window.ObsidianMathRenderer) {
           rawTitle = window.ObsidianMathRenderer.extractAndTokenize(rawTitle);
+          rawTitle = this.escapeHtml(rawTitle);
           rawTitle = window.ObsidianMathRenderer.restoreTokens(rawTitle);
+        } else {
+          rawTitle = this.escapeHtml(rawTitle);
         }
 
         const iconSvg = this.getCalloutIconSvg(type);
@@ -209,7 +222,10 @@
         
         if (window.ObsidianMathRenderer) {
           displayTitle = window.ObsidianMathRenderer.extractAndTokenize(displayTitle);
+          displayTitle = this.escapeHtml(displayTitle);
           displayTitle = window.ObsidianMathRenderer.restoreTokens(displayTitle);
+        } else {
+          displayTitle = this.escapeHtml(displayTitle);
         }
         const iconSvg = this.getCalloutIconSvg(type);
 

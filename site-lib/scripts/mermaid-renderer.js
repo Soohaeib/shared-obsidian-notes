@@ -76,11 +76,22 @@
         .replace(/&amp;/g, '&');
     }
 
+    sanitizeSvg(svgText) {
+      if (!svgText || typeof svgText !== 'string') return '';
+      // Strip <script> tags and any contents
+      let clean = svgText.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+      // Strip on* event handlers (e.g. onclick, onerror, onload, onmouseover)
+      clean = clean.replace(/\s+on[a-zA-Z]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+      // Neutralize javascript: protocol links
+      clean = clean.replace(/(?:href|xlink:href)\s*=\s*["']\s*javascript:[^"']*["']/gi, 'href="#"');
+      return clean;
+    }
+
     initializeMermaid(mermaid, isDark = true) {
       try {
         mermaid.initialize({
           startOnLoad: false,
-          securityLevel: 'loose',
+          securityLevel: 'antiscript',
           theme: isDark ? 'dark' : 'default',
           // Trust the user's YAML frontmatter for layout styles, provide safe defaults
           themeVariables: isDark ? {
@@ -243,7 +254,7 @@
           const { svg } = await mermaid.render(safeId, cleanCode);
           
           const viewportContainer = container.querySelector('.mermaid-viewport-container');
-          viewportContainer.innerHTML = svg;
+          viewportContainer.innerHTML = this.sanitizeSvg(svg);
           
           const svgEl = viewportContainer.querySelector('svg');
           if (svgEl) {
@@ -307,7 +318,7 @@
 
         try {
           const { svg } = await mermaid.render(safeId, cleanCode);
-          viewportContainer.innerHTML = svg;
+          viewportContainer.innerHTML = this.sanitizeSvg(svg);
 
           const svgEl = viewportContainer.querySelector('svg');
           if (svgEl) {

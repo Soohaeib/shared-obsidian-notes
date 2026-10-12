@@ -222,3 +222,97 @@ span.exam-mark-badge {
   color: #3b7021;
   border-color: rgba(76, 122, 48, 0.3);
 }
+
+/* ==========================================================================
+   MathJax Hybrid Renderer & Explicit Fallback State
+   ========================================================================== */
+.math-mathjax {
+  color: var(--text-normal, inherit);
+}
+
+.math-mathjax mjx-container {
+  outline: none !important;
+  color: var(--text-normal, inherit) !important;
+}
+
+.math-mathjax.math-block mjx-container[jax="CHTML"][display="true"] {
+  margin: 1em 0 !important;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.math-engine-fallback {
+  display: block;
+  margin: 1.2em 0;
+  border-radius: 8px;
+  background: var(--background-secondary, #242933);
+  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.08));
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.math-engine-fallback .math-fallback-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(208, 135, 112, 0.12);
+  border-bottom: 1px solid rgba(208, 135, 112, 0.25);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--orange, #d08770);
+  letter-spacing: 0.02em;
+}
+
+.math-engine-fallback .math-fallback-code {
+  margin: 0;
+  padding: 12px 16px;
+  background: transparent;
+  overflow-x: auto;
+  font-family: var(--font-monospace, 'JetBrains Mono', monospace);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--text-normal, #eceff4);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+span.math-engine-fallback {
+  display: inline-block;
+  margin: 0 2px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+span.math-engine-fallback code.math-inline-fallback {
+  padding: 2px 6px;
+  font-size: 0.85em;
+  background: var(--background-secondary, #2e3440);
+  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.1));
+  border-radius: 4px;
+  color: var(--frost1, #88c0d0);
+  font-family: var(--font-monospace, monospace);
+}
+
+.theme-light .math-engine-fallback {
+  background: #f8fafc;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.theme-light .math-engine-fallback .math-fallback-banner {
+  background: rgba(208, 135, 112, 0.15);
+  color: #bf616a;
+}
+
+.theme-light .math-engine-fallback .math-fallback-code {
+  color: #2e3440;
+}
+
+.theme-light span.math-engine-fallback code.math-inline-fallback {
+  background: #eceff4;
+  color: #4c566a;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+

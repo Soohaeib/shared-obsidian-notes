@@ -27,12 +27,25 @@
         inlineMath: [['\\(', '\\)']],
         displayMath: [['\\[', '\\]']],
         processEscapes: true,
-        packages: {'[+]': ['ams']}
+        packages: {'[+]': ['ams', 'newcommand', 'mathtools', 'configmacros']}
       },
-      options: {skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']}
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'annotation', 'annotation-xml'],
+        ignoreHtmlClass: 'tex2jax_ignore|katex|mermaid-diagram-card|mermaid|obsidian-media-embed|media-preview-overlay',
+        processHtmlClass: 'math-mathjax'
+      },
+      startup: {
+        pageReady: function() {
+          window.__MATHJAX_READY__ = true;
+          if (window.ObsidianMathRenderer && typeof window.ObsidianMathRenderer.onMathJaxLoaded === 'function') {
+            window.ObsidianMathRenderer.onMathJaxLoaded();
+          }
+          return MathJax.startup.defaultPageReady();
+        }
+      }
     };
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="mathjax-script" onerror="window.__MATHJAX_FAILED__ = true; if(window.ObsidianMathRenderer && typeof window.ObsidianMathRenderer.onMathJaxFailed === 'function') window.ObsidianMathRenderer.onMathJaxFailed('MathJax CDN unreachable');"></script>
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>

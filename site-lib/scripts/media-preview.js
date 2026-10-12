@@ -20,6 +20,14 @@
       this._initialized = false;
     }
 
+    sanitizeSvg(svgText) {
+      if (!svgText || typeof svgText !== 'string') return '';
+      let clean = svgText.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+      clean = clean.replace(/\s+on[a-zA-Z]+\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+      clean = clean.replace(/(?:href|xlink:href)\s*=\s*["']\s*javascript:[^"']*["']/gi, 'href="#"');
+      return clean;
+    }
+
     /**
      * Set up lightbox DOM structure and gesture listeners
      */
@@ -447,12 +455,13 @@
         }
 
         if (typeof svgMarkup === 'string' && svgMarkup.includes('<svg')) {
-          this.mediaPreviewObjectUrl = URL.createObjectURL(new Blob([svgMarkup], { type: 'image/svg+xml;charset=utf-8' }));
+          const cleanSvgMarkup = this.sanitizeSvg(svgMarkup);
+          this.mediaPreviewObjectUrl = URL.createObjectURL(new Blob([cleanSvgMarkup], { type: 'image/svg+xml;charset=utf-8' }));
           downloadUrl = this.mediaPreviewObjectUrl;
 
           const wrapper = document.createElement('div');
           wrapper.className = 'media-preview-svg';
-          wrapper.innerHTML = svgMarkup;
+          wrapper.innerHTML = cleanSvgMarkup;
 
           const innerSvg = wrapper.querySelector('svg');
           if (innerSvg) {

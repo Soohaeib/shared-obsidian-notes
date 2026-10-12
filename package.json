@@ -10,7 +10,8 @@
     "sync": "python3 sync_site.py --once && python3 generate_index.py",
     "watch": "python3 sync_site.py --watch",
     "build": "python3 sync_site.py --once && python3 generate_index.py",
-    "lint": "echo 'No lint errors'"
+    "lint": "echo 'No lint errors'",
+    "test": "node tests/run-formula-suite.js && node tests/smoke-entrypoints.js && node scripts/validate_vault_math.js"
   },
   "dependencies": {
     "express": "^4.21.2",

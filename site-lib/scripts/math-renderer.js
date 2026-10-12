@@ -2,10 +2,15 @@
  * ============================================================================
  * Obsidian Dedicated Math & LaTeX Engine (math-renderer.js)
  * ============================================================================
- * An authentic, native KaTeX rendering pipeline for Obsidian-like Markdown.
- * Correctly isolates code blocks, supports standard delimiters ($$, $, \[\], \(\)),
- * authentically parses nested environments, allows LaTeX comments (%), 
- * and preserves custom macros (\def, \newcommand) natively.
+ * Production-safe hybrid KaTeX & MathJax rendering pipeline for Obsidian Markdown.
+ * - KaTeX is the default high-performance browser renderer.
+ * - MathJax 3 with AMS is the source-preserving fallback for advanced constructs:
+ *   \multicolumn, \cline, \renewcommand, aligned, gathered, cases, split, multline, etc.
+ * - Preserves LaTeX source without destructive compatibility regex rewrites.
+ * - Strict isolation: MathJax is NEVER run over code blocks, inline code, Mermaid,
+ *   raw HTML, or already-rendered KaTeX output.
+ * - Explicit MathJax load-failure state with human-readable fallback cards.
+ * - Performance timing and error diagnostics without logging raw user formulas.
  */
 
 (function() {
@@ -19,7 +24,17 @@
       this.currentInlinesMap = new Map();
       this.currentCodeMap = new Map();
       
-      // Preserved user's custom macros for convenience, avoiding hacky syntax overrides.
+      this.mathJaxState = 'ready'; // 'ready' | 'loading' | 'failed'
+      this.mathJaxFailureReason = null;
+
+      this.metrics = {
+        katexCount: 0,
+        mathJaxCount: 0,
+        fallbackCount: 0,
+        lastRenderTimeMs: 0
+      };
+
+      // Native KaTeX macros for common statistical and mathematical notation
       this.katexMacros = {
         "\\var": "\\operatorname{var}",
         "\\cov": "\\operatorname{cov}",
@@ -63,11 +78,12 @@
     }
 
     reset() {
-      this.mathTokenIdx = 0;
-      this.codeTokenIdx = 0;
       this.currentBlocksMap.clear();
       this.currentInlinesMap.clear();
       this.currentCodeMap.clear();
+      this.metrics.katexCount = 0;
+      this.metrics.mathJaxCount = 0;
+      this.metrics.fallbackCount = 0;
     }
 
     escapeHtml(str) {
@@ -81,146 +97,172 @@
     }
 
     /**
-     * Prepares formula for KaTeX parsing without mutating structural LaTeX syntax.
+     * Source-preserving formula preparation:
+     * Cleans leading markdown blockquote markers (e.g. "> $$") and unescapes entities,
+     * without altering or mutating LaTeX commands.
      */
-    sanitizeFormula(formula) {
+    prepareFormulaSource(formula) {
       if (!formula) return '';
-      let clean = formula.trim();
-
-      // Clean leading blockquote markers if math is inside a markdown callout (e.g., "> $$")
+      let clean = String(formula).trim();
+      // Remove leading blockquote markers inside callouts or quotes
       clean = clean.replace(/^[ \t]*>+[ \t]*/gm, '');
-
-      // Unescape HTML entities manually injected by some markdown platforms
+      // Unescape HTML dollar entities
       clean = clean.replace(/&#36;/g, '\\$');
-
-      // KaTeX does not implement these table commands. Preserve the source
-      // syntax while reducing it to the closest supported array equivalent.
-      clean = clean.replace(/\\renewcommand\{\\arraystretch\}/g, '\\newcommand{\\arraystretch}');
-      clean = this.replaceMulticolumnCommands(clean);
-      clean = clean.replace(/\\cline\{[^}]*\}/g, '\\hline ');
-      
-      // Auto-heal common Greek letter typos safely (User requested preservation)
-      clean = clean.replace(/\\hat\{[ \t]*(?:eta|beta)\}/g, '\\hat{\\beta}');
-      clean = clean.replace(/\\hat\{[ \t]*(?:lpha|alpha)\}/g, '\\hat{\\alpha}');
-      clean = clean.replace(/\\hat\{[ \t]*(?:sigma)\}/g, '\\hat{\\sigma}');
-
-      return clean;
+      return clean.trim();
     }
 
+    /**
+     * Identifies formulas that contain constructs requiring MathJax 3 with AMS.
+     * MathJax natively renders these without syntax loss.
+     */
     requiresMathJax(formula) {
-      return /\\(?:multicolumn|cline|begin\{(?:aligned|alignedat|gathered|gather|multline|split|cases)\}|renewcommand)/.test(formula);
+      if (!formula) return false;
+      return /\\(?:multicolumn|cline|renewcommand|begin\{(?:aligned|alignedat|gathered|gather|multline|split|cases|matrix\*|pmatrix\*|bmatrix\*|vmatrix\*|Vmatrix\*|dcases|rcases|subarray|CD)\}|tag\b|label\b)/.test(formula);
     }
 
-    prepareMathJaxFormula(formula) {
-      if (!formula) return '';
-      return formula
-        .trim()
-        .replace(/^[ \t]*>+[ \t]*/gm, '')
-        .replace(/&#36;/g, '\\$');
+    /**
+     * Marks MathJax as failed (e.g., CDN blocked, network down, or script error).
+     * Triggers human-readable fallback across any pending MathJax placeholders.
+     */
+    onMathJaxFailed(reason = 'MathJax script unavailable') {
+      this.mathJaxState = 'failed';
+      this.mathJaxFailureReason = reason;
+      this.handleMathJaxFailure(document);
     }
 
+    onMathJaxLoaded() {
+      this.mathJaxState = 'ready';
+      this.mathJaxFailureReason = null;
+    }
+
+    /**
+     * Generates a readable fallback UI card or inline badge for formulas when MathJax fails.
+     */
+    createReadableFallbackHtml(source, displayMode = false, mathId = '') {
+      const cleanSource = this.escapeHtml(source);
+      if (displayMode) {
+        return `
+          <div class="math math-block math-mathjax math-engine-fallback" id="${mathId}" data-math-engine="mathjax" data-math-status="fallback">
+            <div class="math-fallback-banner">
+              <span class="math-fallback-icon" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+              </span>
+              <span class="math-fallback-label">LaTeX Formula (Fallback Mode)</span>
+            </div>
+            <pre class="math-fallback-code"><code>${cleanSource}</code></pre>
+          </div>
+        `.trim();
+      } else {
+        return `<span class="math math-inline math-mathjax math-engine-fallback" id="${mathId}" data-math-engine="mathjax" data-math-status="fallback" title="Math source: ${cleanSource}"><code class="math-inline-fallback">${cleanSource}</code></span>`;
+      }
+    }
+
+    /**
+     * Renders a placeholder for MathJax typesetting.
+     * If MathJax is confirmed failed, outputs the readable fallback immediately.
+     */
     renderMathJaxPlaceholder(formula, displayMode, mathId) {
-      const source = this.prepareMathJaxFormula(formula);
+      this.metrics.mathJaxCount++;
+      const source = this.prepareFormulaSource(formula);
+      
+      const isFailed = (this.mathJaxState === 'failed') || 
+                       (typeof window !== 'undefined' && window.__MATHJAX_FAILED__ === true);
+
+      if (isFailed) {
+        this.metrics.fallbackCount++;
+        return this.createReadableFallbackHtml(source, displayMode, mathId);
+      }
+
       const delimiter = displayMode ? ['\\[', '\\]'] : ['\\(', '\\)'];
       const encoded = this.escapeHtml(`${delimiter[0]}${source}${delimiter[1]}`);
-      return `<${displayMode ? 'div' : 'span'} class="math math-${displayMode ? 'block' : 'inline'} math-mathjax" id="${mathId}" data-math-engine="mathjax">${encoded}</${displayMode ? 'div' : 'span'}>`;
+      const tag = displayMode ? 'div' : 'span';
+
+      return `<${tag} class="math math-${displayMode ? 'block' : 'inline'} math-mathjax" id="${mathId}" data-math-engine="mathjax" data-math-raw="${this.escapeHtml(source)}" data-display-mode="${displayMode ? 'block' : 'inline'}">${encoded}</${tag}>`;
     }
 
-    replaceMulticolumnCommands(formula) {
-      const command = '\\multicolumn';
-      let output = '';
-      let cursor = 0;
-
-      while (cursor < formula.length) {
-        const start = formula.indexOf(command, cursor);
-        if (start === -1) {
-          output += formula.slice(cursor);
-          break;
-        }
-
-        output += formula.slice(cursor, start);
-        let position = start + command.length;
-        const argumentsFound = [];
-
-        try {
-          for (let index = 0; index < 3; index += 1) {
-            while (/\s/.test(formula[position] || '')) position += 1;
-            if (formula[position] !== '{') throw new Error('Malformed multicolumn command');
-
-            const argumentStart = position + 1;
-            let depth = 1;
-            position += 1;
-
-            while (position < formula.length && depth > 0) {
-              if (formula[position] === '\\') {
-                position += 2;
-                continue;
-              }
-              if (formula[position] === '{') depth += 1;
-              if (formula[position] === '}') depth -= 1;
-              position += 1;
-            }
-
-            if (depth !== 0) throw new Error('Unclosed multicolumn argument');
-            argumentsFound.push(formula.slice(argumentStart, position - 1));
-          }
-
-          output += argumentsFound[2];
-          cursor = position;
-        } catch {
-          output += command;
-          cursor = start + command.length;
-        }
-      }
-
-      return output;
-    }
-
+    /**
+     * Core hybrid expression renderer:
+     * 1. Routes advanced constructs (\multicolumn, \cline, \renewcommand, aligned, etc.) directly to MathJax.
+     * 2. Attempts KaTeX for standard formulas.
+     * 3. On any KaTeX parse error, falls back to MathJax preserving the complete original source.
+     */
     renderExpression(formula, displayMode = false) {
       if (!formula) return '';
-      const clean = this.sanitizeFormula(formula);
-      if (!clean) return '';
+      const source = this.prepareFormulaSource(formula);
+      if (!source) return '';
 
-      const mathId = `math-${displayMode ? 'block' : 'inline'}-${this.mathTokenIdx}`;
-      if (this.requiresMathJax(formula) && window.MathJax) {
-        return this.renderMathJaxPlaceholder(formula, displayMode, mathId);
+      const mathId = `math-${displayMode ? 'block' : 'inline'}-${++this.mathTokenIdx}`;
+
+      // 1. Direct routing to MathJax for advanced TeX constructs
+      if (this.requiresMathJax(source)) {
+        return this.renderMathJaxPlaceholder(source, displayMode, mathId);
       }
-      let renderedKatex = '';
-      let hasError = false;
 
-      try {
-        if (window.katex && typeof window.katex.renderToString === 'function') {
-          renderedKatex = window.katex.renderToString(clean, {
+      // 2. Default KaTeX renderer path
+      if (typeof window !== 'undefined' && window.katex && typeof window.katex.renderToString === 'function') {
+        try {
+          const renderedKatex = window.katex.renderToString(source, {
             displayMode: displayMode,
-            throwOnError: false,
+            throwOnError: true, // Throw so unsupported syntax falls back cleanly to MathJax!
             errorColor: '#d08770',
             output: 'htmlAndMathml',
-            trust: true, // Crucial for \newcommand, \def to work natively
+            trust: true,
             strict: false,
             maxExpand: 1000,
             macros: this.katexMacros
           });
-        } else {
-          // Fallback if KaTeX is missing
-          renderedKatex = displayMode ? `$$${this.escapeHtml(clean)}$$` : `$${this.escapeHtml(clean)}$`;
-        }
 
-        if (this.requiresMathJax(formula) && !window.MathJax) {
-          return this.renderMathJaxPlaceholder(formula, displayMode, mathId);
+          this.metrics.katexCount++;
+          const wrapper = displayMode ? 'div' : 'span';
+          return `<${wrapper} class="math math-${displayMode ? 'block' : 'inline'} math-katex" id="${mathId}">${renderedKatex}</${wrapper}>`;
+        } catch (katexErr) {
+          // 3. KaTeX could not render this formula -> Fallback to MathJax with preserved source!
+          return this.renderMathJaxPlaceholder(source, displayMode, mathId);
         }
-      } catch (err) {
-        console.warn('KaTeX safe fallback triggered:', err);
-        hasError = true;
-        renderedKatex = `<span class="math-fallback" title="KaTeX parse warning: ${this.escapeHtml(err.message || 'Syntax error')}">${this.escapeHtml(clean)}</span>`;
       }
 
-      const wrapper = displayMode ? 'div' : 'span';
-      return `<${wrapper} class="math math-${displayMode ? 'block' : 'inline'}${hasError ? ' math-has-error' : ''}" id="${mathId}">${renderedKatex}</${wrapper}>`;
+      // If KaTeX is not loaded in environment, route to MathJax
+      return this.renderMathJaxPlaceholder(source, displayMode, mathId);
+    }
+
+    /**
+     * Scans and updates any unrendered MathJax elements with readable fallbacks.
+     */
+    handleMathJaxFailure(root = document) {
+      const container = root.querySelector ? root : document;
+      if (!container || !container.querySelectorAll) return;
+
+      const unrendered = container.querySelectorAll('.math-mathjax:not([data-mathjax-rendered="true"])');
+      unrendered.forEach(el => {
+        const raw = el.getAttribute('data-math-raw') || el.textContent.replace(/^\\\[|\\\]$|^\\\(|\\\)$/g, '').trim();
+        const isDisplay = el.getAttribute('data-display-mode') === 'block' || el.tagName.toLowerCase() === 'div' || el.classList.contains('math-block');
+        const fallback = document.createElement(isDisplay ? 'div' : 'span');
+        fallback.className = `math math-${isDisplay ? 'block' : 'inline'} math-mathjax math-engine-fallback`;
+        fallback.setAttribute('data-math-engine', 'mathjax');
+        fallback.setAttribute('data-math-status', 'fallback');
+        
+        if (isDisplay) {
+          fallback.innerHTML = `
+            <div class="math-fallback-banner">
+              <span class="math-fallback-icon">📐</span>
+              <span class="math-fallback-label">LaTeX Formula (Offline Fallback)</span>
+            </div>
+            <pre class="math-fallback-code"><code>${this.escapeHtml(raw)}</code></pre>
+          `;
+        } else {
+          fallback.innerHTML = `<code class="math-inline-fallback">${this.escapeHtml(raw)}</code>`;
+          fallback.title = `LaTeX: ${raw}`;
+        }
+
+        el.replaceWith(fallback);
+      });
     }
 
     /**
      * Authentically extracts naked LaTeX environments while accounting for nesting.
-     * Prevents the "Greedy Regex" bug where nested \begin{array} breaks the parser.
      */
     extractNakedEnvironments(text) {
       let result = '';
@@ -255,14 +297,12 @@
           const nextBegin = text.indexOf(`\\begin{${envName}}`, searchPos);
           const nextEnd = text.indexOf(endTag, searchPos);
           
-          if (nextEnd === -1) break; // Unclosed syntax error
+          if (nextEnd === -1) break;
           
           if (nextBegin !== -1 && nextBegin < nextEnd) {
-            // Nested environment of the same type found
             depth++;
             searchPos = nextBegin + `\\begin{${envName}}`.length;
           } else {
-            // End tag found
             depth--;
             searchPos = nextEnd + endTag.length;
             if (depth === 0) {
@@ -274,12 +314,11 @@
         
         if (foundEnd) {
           const formula = text.slice(beginMatch, searchPos);
-          const token = `@@KATEX_BLOCK_${this.mathTokenIdx++}@@`;
+          const token = `@@KATEX_BLOCK_${++this.mathTokenIdx}@@`;
           this.currentBlocksMap.set(token, this.renderExpression(formula, true));
           result += `\n${token}\n`;
           i = searchPos;
         } else {
-          // If unclosed, leave as text to prevent infinite loops
           result += text.slice(i, envEnd + 1);
           i = envEnd + 1;
         }
@@ -287,80 +326,85 @@
       return result;
     }
 
+    /**
+     * Tokenizes Markdown text, shielding code blocks, inline code, and extracting formulas.
+     */
     extractAndTokenize(rawText) {
       if (!rawText) return rawText;
       let text = rawText;
 
-      this.reset();
+      const startTime = (typeof performance !== 'undefined' && performance.now) ? performance.now() : 0;
 
-      // ====================================================================
-      // 1. ISOLATE CODE BLOCKS 
-      // Protects backticks so equations inside code blocks are bypassed
-      // ====================================================================
+      // 1. ISOLATE CODE BLOCKS (Protects fenced and inline code from math parsing)
       text = text.replace(/(^|\n)([ \t]*)```([\s\S]+?)\n[ \t]*```/g, (match) => {
-        const token = `@@CODE_BLOCK_${this.codeTokenIdx++}@@`;
+        const token = `@@CODE_BLOCK_${++this.codeTokenIdx}@@`;
         this.currentCodeMap.set(token, match);
         return token;
       });
       text = text.replace(/`([^`\n]+)`/g, (match) => {
-        const token = `@@CODE_INLINE_${this.codeTokenIdx++}@@`;
+        const token = `@@CODE_INLINE_${++this.codeTokenIdx}@@`;
         this.currentCodeMap.set(token, match);
         return token;
       });
 
-      // ====================================================================
-      // 2. EXTRACT BLOCK MATH
-      // ====================================================================
-      
-      // Extract standard $$ ... $$
+      // 2. EXTRACT DISPLAY MATH ($$ ... $$)
       text = text.replace(/(^|\n)([ \t]*)(?<!\\)\$\$([\s\S]*?)(?<!\\)\$\$/g, (match, prefix, indent, formula) => {
         if (/^\s*$/.test(formula)) return match;
-        const token = `@@KATEX_BLOCK_${this.mathTokenIdx++}@@`;
+        const token = `@@KATEX_BLOCK_${++this.mathTokenIdx}@@`;
         this.currentBlocksMap.set(token, this.renderExpression(formula, true));
         return `${prefix}\n${indent}${token}\n\n`;
       });
 
-      // Extract standard LaTeX block \[ ... \]
+      // 3. EXTRACT LATEX DISPLAY BLOCKS (\[ ... \])
       text = text.replace(/(^|\n)([ \t]*)(?<!\\)\\\[([\s\S]*?)(?<!\\)\\\]/g, (match, prefix, indent, formula) => {
         if (/^\s*$/.test(formula)) return match;
-        const token = `@@KATEX_BLOCK_${this.mathTokenIdx++}@@`;
+        const token = `@@KATEX_BLOCK_${++this.mathTokenIdx}@@`;
         this.currentBlocksMap.set(token, this.renderExpression(formula, true));
         return `${prefix}\n${indent}${token}\n\n`;
       });
 
-      // Safely extract naked \begin{env} ... \end{env}
+      // 4. EXTRACT NAKED ENVIRONMENTS (\begin{...} ... \end{...})
       text = this.extractNakedEnvironments(text);
 
-      // ====================================================================
-      // 3. EXTRACT INLINE MATH
-      // ====================================================================
-      
-      // Extract standard LaTeX inline \( ... \)
+      // 5. EXTRACT LATEX INLINE (\( ... \))
       text = text.replace(/(?<!\\)\\\(([\s\S]+?)(?<!\\)\\\)/g, (match, formula) => {
-        const token = `@@KATEX_INLINE_${this.mathTokenIdx++}@@`;
+        const token = `@@KATEX_INLINE_${++this.mathTokenIdx}@@`;
         this.currentInlinesMap.set(token, this.renderExpression(formula, false));
         return token;
       });
 
-      // Extract CommonMark compliant $ ... $ 
-      // Rule: Opening $ not followed by space. Closing $ not preceded by space.
-      // This intrinsically protects standard financing like "$100 and $200".
+      // 6. EXTRACT COMMONMARK $ ... $ (Protects standard currency like $100 and $200)
       text = text.replace(/(?<!\\|\$)\$(?!\s)((?:\\.|[^$\\\n])+?)(?<!\s)\$/g, (match, formula) => {
-        const token = `@@KATEX_INLINE_${this.mathTokenIdx++}@@`;
+        const token = `@@KATEX_INLINE_${++this.mathTokenIdx}@@`;
         this.currentInlinesMap.set(token, this.renderExpression(formula, false));
         return token;
       });
+
+      // 7. RESTORE SHIELDED CODE BLOCKS & INLINE CODE
+      // Code was protected from math extraction, now restored so markdown parser renders authentic <pre><code>
+      if (this.currentCodeMap.size > 0) {
+        for (const [token, rawCode] of this.currentCodeMap.entries()) {
+          text = text.replaceAll(token, () => rawCode);
+        }
+        this.currentCodeMap.clear();
+      }
+
+      if (startTime > 0) {
+        this.metrics.lastRenderTimeMs = Math.round((performance.now() - startTime) * 10) / 10;
+      }
 
       return text;
     }
 
+    /**
+     * Restores rendered math and code tokens into the generated HTML.
+     */
     restoreTokens(html) {
       if (!html) return html;
       
       // 1. Restore Math Blocks
       if (this.currentBlocksMap.size > 0) {
         for (const [token, renderedMath] of this.currentBlocksMap.entries()) {
-          // Un-wrap <p> tags if the Markdown parser wrapped the standalone block
           const pRegex = new RegExp(`<p>\\s*${token}\\s*<\\/p>`, 'g');
           if (pRegex.test(html)) {
             html = html.replace(pRegex, () => renderedMath);
@@ -377,7 +421,7 @@
         }
       }
 
-      // 3. Restore Code Blocks last (Safe from math replacements!)
+      // 3. Restore Code Blocks last (Pristine code untouched by math parsing)
       if (this.currentCodeMap.size > 0) {
         for (const [token, rawCode] of this.currentCodeMap.entries()) {
           html = html.replaceAll(token, () => rawCode);
@@ -386,7 +430,21 @@
 
       return html;
     }
+
+    /**
+     * Provides diagnostic summary metrics without exposing raw user formulas.
+     */
+    getDiagnostics() {
+      return {
+        katexRendered: this.metrics.katexCount,
+        mathJaxQueued: this.metrics.mathJaxCount,
+        fallbacksActive: this.metrics.fallbackCount,
+        mathJaxStatus: this.mathJaxState,
+        renderTimeMs: this.metrics.lastRenderTimeMs
+      };
+    }
   }
 
-  window.ObsidianMathRenderer = new ObsidianMathRenderer();
+  const instance = new ObsidianMathRenderer();
+  window.ObsidianMathRenderer = instance;
 })();

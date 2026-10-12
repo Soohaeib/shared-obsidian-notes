@@ -48,6 +48,9 @@
       this.sidebarGraph = null;
       this.modalGraph = null;
 
+      // Pipeline & Render Cache
+      this.rendererVersion = '2026.10.12.hybrid-v1';
+
       this.init();
     }
 
@@ -115,6 +118,57 @@
       try {
         sessionStorage.setItem(`obsidian_cache_${path}`, content);
       } catch (e) {}
+    }
+
+    computeContentHash(str) {
+      if (!str) return 'empty';
+      let hash = 5381;
+      for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) + hash) + str.charCodeAt(i);
+        hash = hash & hash;
+      }
+      return `${str.length}_${Math.abs(hash).toString(36)}`;
+    }
+
+    getRenderCache(relPath, contentHash) {
+      if (!relPath || !contentHash) return null;
+      const isPreview = (typeof window !== 'undefined') && 
+        (window.location.search.includes('preview=true') || window.location.search.includes('no-cache'));
+      if (isPreview) return null;
+
+      try {
+        const raw = sessionStorage.getItem(`obsidian_render_cache_${relPath}`);
+        if (!raw) return null;
+        const entry = JSON.parse(raw);
+        if (entry && entry.version === this.rendererVersion && entry.hash === contentHash) {
+          return entry;
+        }
+      } catch (e) {}
+      return null;
+    }
+
+    setRenderCache(relPath, contentHash, data) {
+      if (!relPath || !contentHash || !data) return;
+      try {
+        const payload = {
+          version: this.rendererVersion,
+          hash: contentHash,
+          timestamp: Date.now(),
+          ...data
+        };
+        sessionStorage.setItem(`obsidian_render_cache_${relPath}`, JSON.stringify(payload));
+      } catch (e) {}
+    }
+
+    invalidateRenderCache(relPath) {
+      if (relPath) {
+        try { sessionStorage.removeItem(`obsidian_render_cache_${relPath}`); } catch (e) {}
+      } else {
+        try {
+          const keys = Object.keys(sessionStorage).filter(k => k.startsWith('obsidian_render_cache_'));
+          keys.forEach(k => sessionStorage.removeItem(k));
+        } catch (e) {}
+      }
     }
 
     prefetchNote(path) {
@@ -310,6 +364,7 @@
       }
 
       window.addEventListener('hashchange', () => this.handleRoute());
+      window.addEventListener('popstate', () => this.handleRoute());
     }
 
     applyPreferences() {
@@ -394,6 +449,8 @@
       if (window.ObsidianMermaidRenderer && typeof window.ObsidianMermaidRenderer.rethemeAll === 'function') {
         window.ObsidianMermaidRenderer.rethemeAll(document.getElementById('note-article') || document, this.themeMode === 'dark');
       }
+
+      this.typesetMathJax();
 
       const mobileBackdrop = document.getElementById('mobile-sidebar-backdrop');
       if (mobileBackdrop) {
@@ -757,27 +814,56 @@
 
       const frontmatterData = this.parseYamlFrontmatter(frontmatterStr);
       
+      const contentHash = this.computeContentHash(bodyMarkdown);
+      const cachedRender = this.getRenderCache(relPath, contentHash);
+
       let contentTitle = '';
-      const noteObj = this.allNotes.find(n => n.path === relPath);
-      if (noteObj) {
-        contentTitle = noteObj.title; 
-      } else if (window.ObsidianWikiLinks) {
-        contentTitle = window.ObsidianWikiLinks.resolveSmartLabel(relPath.split('/').pop().replace(/\.md$/i, ''), null, null, this.manifest, this.nameMap, this.vaultLookup);
+      let realFileName = '';
+      let propertiesBlockHtml = '';
+      let renderedHtml = '';
+      let words = 0;
+      let readingTime = 1;
+
+      if (cachedRender) {
+        contentTitle = cachedRender.contentTitle;
+        realFileName = cachedRender.realFileName;
+        propertiesBlockHtml = cachedRender.propertiesBlockHtml;
+        renderedHtml = cachedRender.renderedHtml;
+        words = cachedRender.words;
+        readingTime = cachedRender.readingTime;
       } else {
-        contentTitle = relPath.split('/').pop().replace(/\.md$/i, '').replace(/-/g, ' ');
+        const noteObj = this.allNotes.find(n => n.path === relPath);
+        if (noteObj) {
+          contentTitle = noteObj.title; 
+        } else if (window.ObsidianWikiLinks) {
+          contentTitle = window.ObsidianWikiLinks.resolveSmartLabel(relPath.split('/').pop().replace(/\.md$/i, ''), null, null, this.manifest, this.nameMap, this.vaultLookup);
+        } else {
+          contentTitle = relPath.split('/').pop().replace(/\.md$/i, '').replace(/-/g, ' ');
+        }
+        realFileName = noteObj ? noteObj.originalName : contentTitle;
+
+        propertiesBlockHtml = this.renderPropertiesBlock(frontmatterData);
+        words = bodyMarkdown.trim().split(/\s+/).length;
+        readingTime = Math.ceil(words / 200);
+
+        let processed = this.preprocessObsidianMarkdown(bodyMarkdown);
+        renderedHtml = marked.parse(processed);
+        renderedHtml = this.postprocessObsidianHtml(renderedHtml);
+
+        this.setRenderCache(relPath, contentHash, {
+          contentTitle,
+          realFileName,
+          propertiesBlockHtml,
+          renderedHtml,
+          words,
+          readingTime
+        });
       }
-
-      const propertiesBlockHtml = this.renderPropertiesBlock(frontmatterData);
-      const words = bodyMarkdown.trim().split(/\s+/).length;
-      const readingTime = Math.ceil(words / 200);
-
-      let processed = this.preprocessObsidianMarkdown(bodyMarkdown);
-      let renderedHtml = marked.parse(processed);
-      renderedHtml = this.postprocessObsidianHtml(renderedHtml);
 
       this.activeNoteTitle = contentTitle;
       this.activeNotePath = relPath;
       this.activeNoteRawMarkdown = rawMarkdown;
+      this.activeNoteOriginalName = realFileName;
 
       const rtVal = document.getElementById('reading-time-val');
       if (rtVal) rtVal.textContent = `${readingTime} min read`;
@@ -788,9 +874,6 @@
         floatingMeta.style.display = 'inline-flex';
         floatingMeta.classList.add('is-visible');
       }
-
-      const realFileName = noteObj ? noteObj.originalName : contentTitle;
-      this.activeNoteOriginalName = realFileName;
 
       container.innerHTML = `
         <article class="markdown-rendered" id="note-article">
@@ -813,9 +896,35 @@
 
     typesetMathJax() {
       const article = document.getElementById('note-article');
-      if (!article || !window.MathJax || typeof window.MathJax.typesetPromise !== 'function') return;
-      window.MathJax.typesetPromise([article]).catch((error) => {
-        console.warn('MathJax fallback rendering failed:', error);
+      if (!article) return;
+
+      // Strictly isolate: target ONLY unrendered MathJax elements
+      // Never touches code blocks, inline code, Mermaid diagrams, or already-rendered KaTeX
+      const mathElements = Array.from(article.querySelectorAll('.math-mathjax:not([data-mathjax-rendered="true"])'));
+      if (mathElements.length === 0) return;
+
+      // Explicit failure check
+      if (!window.MathJax || typeof window.MathJax.typesetPromise !== 'function' || window.__MATHJAX_FAILED__) {
+        if (window.ObsidianMathRenderer && typeof window.ObsidianMathRenderer.handleMathJaxFailure === 'function') {
+          window.ObsidianMathRenderer.handleMathJaxFailure(article, 'MathJax unavailable');
+        }
+        return;
+      }
+
+      const t0 = (typeof performance !== 'undefined' && performance.now) ? performance.now() : 0;
+      window.MathJax.typesetPromise(mathElements).then(() => {
+        mathElements.forEach(el => el.setAttribute('data-mathjax-rendered', 'true'));
+        if (t0 > 0) {
+          const elapsed = Math.round((performance.now() - t0) * 10) / 10;
+          // Performance diagnostics without exposing raw user content
+          console.debug(`[Math Engine] Typeset ${mathElements.length} MathJax formula(s) in ${elapsed}ms`);
+        }
+      }).catch((error) => {
+        // Safe diagnostics on error without leaking user content
+        console.warn(`[Math Engine] MathJax typeset encountered an issue on ${mathElements.length} formula(s):`, error?.message || 'Syntax error');
+        if (window.ObsidianMathRenderer && typeof window.ObsidianMathRenderer.handleMathJaxFailure === 'function') {
+          window.ObsidianMathRenderer.handleMathJaxFailure(article, error?.message || 'Typeset error');
+        }
       });
     }
 
@@ -1032,15 +1141,15 @@
         backlinksContainer.innerHTML = '<div class="backlinks-empty">No linked references to this note yet.</div>';
       } else {
         backlinksContainer.innerHTML = backlinks.map(b => `
-          <a href="#${encodeURIComponent(b.note.path)}" class="backlink-item" data-note-path="${b.note.path}">
+          <a href="#${encodeURIComponent(b.note.path)}" class="backlink-item" data-note-path="${this.escapeHtml(b.note.path)}">
             <div class="backlink-title">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
               </svg>
-              <span>${b.note.title}</span>
+              <span>${this.escapeHtml(b.note.title)}</span>
             </div>
-            <div class="backlink-snippet">${b.snippet}</div>
+            <div class="backlink-snippet">${this.escapeHtml(b.snippet)}</div>
           </a>
         `).join('');
 
@@ -1129,8 +1238,10 @@
 
         if (matches) {
           node.classList.remove('is-filtered-out');
-          const reg = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-          link.innerHTML = text.replace(reg, '<mark class="toc-match">$1</mark>');
+          const safeText = this.escapeHtml(text);
+          const safeQ = this.escapeHtml(q).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+          const reg = new RegExp(`(${safeQ})`, 'gi');
+          link.innerHTML = safeText.replace(reg, '<mark class="toc-match">$1</mark>');
           let parent = node.parentElement;
           while (parent && parent.id !== 'toc-container') {
             if (parent.classList.contains('toc-children')) {
@@ -1188,7 +1299,7 @@
         let html = '';
         nodes.forEach(node => {
           const hasChildren = node.children && node.children.length > 0;
-          html += `<div class="toc-node" data-heading-id="${node.id}">`;
+          html += `<div class="toc-node" data-heading-id="${this.escapeHtml(node.id)}">`;
           html += `<div class="toc-node-self">`;
           if (hasChildren) {
             html += `
@@ -1201,7 +1312,7 @@
           } else {
             html += `<span class="toc-twist-spacer"></span>`;
           }
-          html += `<a href="#${node.id}" data-heading-id="${node.id}" class="toc-link depth-${node.depth}" title="${node.text}">${node.text}</a>`;
+          html += `<a href="#${encodeURIComponent(node.id)}" data-heading-id="${this.escapeHtml(node.id)}" class="toc-link depth-${node.depth}" title="${this.escapeHtml(node.text)}">${this.escapeHtml(node.text)}</a>`;
           html += `</div>`;
           if (hasChildren) html += `<div class="toc-children">${renderTocNodes(node.children)}</div>`;
           html += `</div>`;
@@ -1854,10 +1965,12 @@
     }
 
     highlightSearchMatch(text, query) {
-      if (!query || !text) return text || '';
-      const cleanQ = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      if (!text) return '';
+      const safeText = this.escapeHtml(text);
+      if (!query) return safeText;
+      const cleanQ = this.escapeHtml(query).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const regex = new RegExp(`(${cleanQ})`, 'gi');
-      return text.replace(regex, '<span class="search-highlight">$1</span>');
+      return safeText.replace(regex, '<span class="search-highlight">$1</span>');
     }
 
     handleSearch(query) {
@@ -1894,21 +2007,29 @@
         const highlightedPath = this.highlightSearchMatch(breadcrumbs, q);
 
         let targetUrl = `#${item.slugPath.split('/').slice(1).join('/')}`;
-        let onClick = `window.location.hash='${targetUrl}'; window.ObsidianApp.closeSearchModal();`;
-        
-        if (item.planetSlug !== this.currentFolder) {
+        const isCross = (item.planetSlug !== this.currentFolder);
+        if (isCross) {
           targetUrl = `../${item.planetSlug}/${targetUrl}`;
-          onClick = `window.location.href='${targetUrl}'; window.ObsidianApp.closeSearchModal();`;
         }
 
         html += `
-          <div class="search-item" onclick="${onClick}">
+          <div class="search-item" data-target-url="${this.escapeHtml(targetUrl)}" data-cross-folder="${isCross ? 'true' : 'false'}">
             <span class="search-item-title">${highlightedTitle}</span>
             <div class="search-item-path" style="font-size:0.75rem; color:var(--text-muted);">${highlightedPath}</div>
           </div>
         `;
       });
       container.innerHTML = html;
+
+      container.querySelectorAll('.search-item').forEach(el => {
+        el.addEventListener('click', () => {
+          const url = el.dataset.targetUrl;
+          const isCross = el.dataset.crossFolder === 'true';
+          if (isCross) window.location.href = url;
+          else window.location.hash = url;
+          this.closeSearchModal();
+        });
+      });
     }
 
     showToast(message) {
