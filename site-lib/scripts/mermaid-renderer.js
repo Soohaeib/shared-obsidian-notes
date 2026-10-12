@@ -284,7 +284,56 @@
       }
     }
     
-    // (RethemeAll function would follow the exact same simplified await mermaid.render pattern)
+    async rethemeAll(rootElement = document, isDark = true) {
+      const cards = Array.from(rootElement.querySelectorAll('.mermaid-diagram-card'));
+      if (cards.length === 0) {
+        return this.renderAll(rootElement, isDark);
+      }
+
+      const mermaid = await this.ensureMermaid();
+      if (!mermaid) return;
+
+      this.initializeMermaid(mermaid, isDark);
+
+      for (let index = 0; index < cards.length; index++) {
+        const card = cards[index];
+        const rawCode = card.dataset.mermaidRaw;
+        if (!rawCode) continue;
+
+        const cleanCode = this.unescapeMarkdownEntities(rawCode);
+        const safeId = `mermaid_retheme_${Date.now()}_${index}_${++this._idCounter}`;
+        const viewportContainer = card.querySelector('.mermaid-viewport-container');
+        if (!viewportContainer) continue;
+
+        try {
+          const { svg } = await mermaid.render(safeId, cleanCode);
+          viewportContainer.innerHTML = svg;
+
+          const svgEl = viewportContainer.querySelector('svg');
+          if (svgEl) {
+            svgEl.style.display = 'block';
+            svgEl.style.margin = '0 auto';
+            svgEl.removeAttribute('height');
+
+            if (svgEl.viewBox && svgEl.viewBox.baseVal && svgEl.viewBox.baseVal.height > 0) {
+              const vb = svgEl.viewBox.baseVal;
+              svgEl.style.aspectRatio = `${vb.width} / ${vb.height}`;
+              if (vb.width < 650) {
+                svgEl.style.width = '100%';
+                svgEl.style.maxWidth = `${Math.round(vb.width * 1.05)}px`;
+              } else {
+                svgEl.style.width = '100%';
+              }
+              if (vb.width > 550) {
+                viewportContainer.style.minWidth = `${Math.min(vb.width, 680)}px`;
+              }
+            }
+          }
+        } catch (err) {
+          console.warn(`Mermaid retheme render failed for [${safeId}]:`, err);
+        }
+      }
+    }
   }
 
   window.ObsidianMermaidRenderer = new MermaidRenderer();

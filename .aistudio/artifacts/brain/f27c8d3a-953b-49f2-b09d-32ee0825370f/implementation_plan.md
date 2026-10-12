@@ -1,121 +1,128 @@
-# LaTeX Rendering Stability & Elegant Mermaid Visuals Architecture
+# Obsidian Mermaid Diagram Preview CSS Snippet
 
-A robust enhancement plan to ensure LaTeX math rendering never freezes or stalls the reader pipeline, while dramatically elevating Mermaid diagram aesthetics with clean orthogonal arrow curves, device-responsive viewport scaling, and a smooth click-to-zoom/pan inspection modal.
+Provides a production-grade, standalone CSS snippet for the Obsidian app that faithfully replicates the site's elegant Mermaid diagram rendering, with full light and dark mode adaptation, container cards, node padding, orthogonal connectors, and crisp typography.
 
-## User Review & Critical Decisions
+### User Review & Critical Decisions
 
 > [!IMPORTANT]
-> Based on your responses, the following architectural directions are confirmed:
-> - **Mermaid Arrow Routing & Curves**: Configured with orthogonal/basis-free curves (`curve: 'linear'`) and generous node/rank padding (55px+) to eliminate overlapping arrows and tangled bezier loops.
-> - **Diagram Window Scaling**: Intrinsic responsive bounding (preserving text legibility at $\ge 12\text{px}$) paired with a frictionless click-to-zoom and pan modal featuring mouse dragging, pinch-to-zoom, and reset controls.
-> - **LaTeX Stability & Stalling Prevention**: Multi-layered defense including unpaired delimiter detection, aggressive syntax pre-healing, async rendering timeouts (500ms safety breaker), and isolated fallback cards so math parsing never blocks the UI thread.
+> The user confirmed the following requirements:
+> - **Theme Adaptability**: Automatically adapt to Obsidian's active theme (both Light and Dark modes) utilizing Obsidian's native CSS variables (`--background-primary`, `--text-normal`, `--interactive-accent`, etc.) combined with curated high-contrast diagram tokens.
+> - **Styling Scope**: Full styling package covering container card wrappers, responsive horizontal scroll viewport, node shapes (rectangles, rounded pills, diamonds, circles), orthogonal arrow routing, markers, edge badges, and subgraphs.
+> - **Delivery Boundary**: Zero modification to the existing web applet source code—the complete, standalone CSS snippet will be provided directly for copy-pasting into Obsidian's `.obsidian/snippets/` folder.
 
 ---
 
-## 1. Overview & Core Concept
+### 1. Overview & Core Concept
 
-### What It Does
-- **Rock-Solid LaTeX Engine**: Upgrades `math-renderer.js` to intelligently detect and heal unpaired `$$` blocks (such as those identified in accounting notes), sanitize currency conflicts, handle multi-column accounting schedules, and execute with timeout safeguards so a malformed expression renders a clean fallback card instead of hanging the entire document.
-- **Modern, Overlap-Free Diagrams**: Upgrades `mermaid-renderer.js` and `diagrams.css` with clean layout physics, optimal node/rank separation, and elegant typography that harmonizes with the Obsidian dark/light design system.
-- **Interactive Diagram Canvas Modal**: Enables full-fidelity inspection across desktop and mobile devices. Clicking or tapping any diagram opens an interactive pan-and-zoom viewport with zoom controls, pinch gesture support, and 1:1 reset.
-
-### Target Audience & Persona
-- Students, researchers, and professionals reviewing complex accounting, auditing, economics, and statistical course modules with multi-step workflows, equations, and structured flowcharts.
-
-### Key Value
-- Zero browser freezing, 100% note availability, legible diagram text across phone and desktop viewports, and pristine arrow routing without visual collisions.
+- **What It Does**: A standalone `.css` snippet that plugs directly into Obsidian's CSS Snippets engine (`Settings > Appearance > CSS snippets`), instantly styling all Mermaid code blocks in both **Live Preview (Editing view)** and **Reading view** to look identical to the website's polished diagram engine.
+- **Target Audience / Persona**: Knowledge workers, researchers, and students managing vaults in Obsidian who want their local notes to reflect the exact visual fidelity, clean spacing, and modern design of the web reader.
+- **Key Value**: Eliminates the visual disparity between Obsidian's default raw Mermaid styling and the site's publication-grade diagrams, without requiring any third-party plugins or complex setup.
 
 ---
 
-## 2. User Experience & Visual Design
+### 2. User Experience & Visual Design
 
-### Key User Flows
-1. **Reading Notes with Math**: The user opens any complex note (e.g. `acc-301`, `acc-303`, `pyq-acc-301`). All inline and display equations render in sub-millisecond KaTeX speed. Any malformed LaTeX tag displays an elegant inline notification card without interrupting the rest of the note.
-2. **Viewing Complex Flowcharts**: Diagrams display at their natural optimal width (clamped to the reader container, never squished into unreadable mini-thumbnails on mobile, nor stretched unnaturally on 4K screens).
-3. **Deep Diagram Inspection**: The user clicks the diagram card or corner expand button. A full-screen translucent frosted overlay opens displaying the diagram in vector perfection. The user can drag to pan, scroll wheel or pinch to zoom (25% to 400%), or click "Reset" to return to center.
+#### Key User Flow
+1. **Copying the Snippet**: User copies the provided CSS snippet block.
+2. **Installing in Obsidian**:
+   - Opens Obsidian Vault folder $\rightarrow$ `.obsidian/snippets/`.
+   - Creates a new file named `site-mermaid.css` and pastes the snippet.
+   - In Obsidian, navigates to **Settings $\rightarrow$ Appearance $\rightarrow$ CSS snippets** and clicks **Reload snippets**, then toggles on `site-mermaid`.
+3. **Real-time Live Preview**:
+   - Any ` ```mermaid ` block in active editing or reading mode renders in an elegant card container.
+   - Smooth horizontal scrolling for wide diagrams with custom subtle scrollbars.
+   - Nodes render with generous internal padding, crisp borders, and legible typography.
+   - Connectors and arrowheads render cleanly with high contrast without clipping or overlapping.
+   - Switching between Obsidian Light and Dark themes dynamically recalibrates colors, backgrounds, borders, and text fills.
 
-### Visual Identity & Theme Tokens
-- **Canvas Neutrals**: Deep slate background (`--background-secondary`, `#181d28`) in dark mode; soft crisp paper (`#f8fafc`) in light mode.
-- **Arrow & Edge Aesthetics**: Crisp Nord-inspired palette (`--frost2`, `#81a1c1`) with 1.5px stroke width and standardized arrowhead markers (`marker-end`) that route cleanly around node boundaries.
-- **Node Containers**: Subtle 1px borders, rounded corners (6px), and high-contrast typography (`Inter` / `Plus Jakarta Sans`, 13px font size with 1.45 line-height).
-- **Interactive Modal**: Backdrop blur (`backdrop-filter: blur(16px)`), quiet floating toolbar pill with zoom in, zoom out, fit-to-screen, and dismiss affordances.
+#### Visual Identity & Theme
+- **Aesthetic Direction**: Clean, modern editorial technical aesthetic adhering to zero-pill metadata discipline and anti-AI-slop design principles.
+- **Color Tokens (Adaptive 60-30-10 Palette)**:
+  - *Dark Mode Canvas (60%)*: `--background-secondary` / `#1e222a` card base, `#242933` node fill.
+  - *Dark Mode Structural Surfaces (30%)*: `--background-modifier-border` / `rgba(255, 255, 255, 0.1)` card borders, hairline subgraph cluster boundaries (`rgba(136, 192, 208, 0.2)`).
+  - *Dark Mode Accents (10%)*: Frost Cyan (`#88c0d0`) and Glacier Blue (`#81a1c1`) for edge connectors, arrowheads, and highlighted node borders.
+  - *Light Mode Canvas (60%)*: Pure white (`#ffffff`) card base, crisp neutral off-white (`#f8fafc`) node fill.
+  - *Light Mode Structural Surfaces (30%)*: Hairline subtle border (`rgba(0, 0, 0, 0.08)`), soft box shadow (`0 2px 12px rgba(0, 0, 0, 0.04)`).
+  - *Light Mode Accents (10%)*: Deep Nord Slate (`#4c566a`), Arctic Blue (`#5e81ac`), and Slate Accent (`#2e3440`) for sharp contrast and WCAG AA compliance.
+- **Typography & Hierarchy**:
+  - System interface font stack inherits from Obsidian's active `--font-interface` or system geometric sans (`Inter`, system UI).
+  - Node text: `13px`, line-height `1.45`, medium weight (`500`).
+  - Edge labels & badges: `11.5px`, rounded pill/badge background with high contrast against crossing paths.
+  - Monospace code & technical tags: `font-family: var(--font-mono)`.
 
 ---
 
-## 3. Key Product Decisions & Trade-Offs
+### 3. Key Product Decisions & Trade-Offs
 
-### Decision 1: Arrow Interpolation Curve
-- **Chosen Approach**: `curve: 'linear'` (orthogonal segmented paths) with increased `nodeSpacing: 55` and `rankSpacing: 55`.
-- **Why**: Mermaid's default `curve: 'basis'` uses B-splines that calculate control points through curve fitting. In flowcharts with multiple subgraphs or backwards links, `basis` produces sweeping wide curves that intersect neighboring nodes and superimpose arrowheads. `linear` routes edges cleanly along Dagre rank channels.
-- **Alternatives Considered**: `curve: 'natural'` or `curve: 'monotoneX'` still produce wide loops in vertical flowcharts (`TD`/`TB`).
-
-### Decision 2: Diagram Scaling & Responsiveness
-- **Chosen Approach**: Intrinsic viewBox scaling with `min-width` preservation and horizontal scroll wrap on small screens + dedicated interactive pan/zoom modal.
-- **Why**: Forcing `width: 100%` on wide SVG diagrams (e.g. 1000px wide) compresses them to 320px on mobile screens, making text smaller than 4px. Preserving intrinsic text height and allowing modal zoom gives the best of both worlds: clean layout integration and legible inspection.
-- **Alternatives Considered**: Truncation or CSS zoom which breaks responsive document flow.
-
-### Decision 3: LaTeX Parser Safety & Delimiter Balancing
-- **Chosen Approach**: Pre-scan balancing for `$$` and `$` delimiters before regex extraction. If an odd count of `$$` is detected, pair them locally by section boundaries rather than spanning multiple headers. Add a 500ms timeout per formula execution with graceful error fallback.
-- **Why**: KaTeX is fast for valid math, but catastrophic delimiter mismatching can pass 50,000 characters of Markdown text to KaTeX as a single equation, locking up the thread.
+- **Decision 1: Dual-Context Obsidian Selectors (Live Preview vs. Reading View)**
+  - *Chosen Approach*: Target both `.markdown-rendered .mermaid`, `.block-language-mermaid`, and CodeMirror 6 embed wrappers (`.cm-embed-block:has(.mermaid)` or `.cm-preview-code-block`).
+  - *Why*: Obsidian renders diagrams through two distinct DOM trees: CodeMirror 6 widgets during Live Preview editing and standard preview containers in Reading view. A unified selector list guarantees seamless real-time rendering in both modes.
+  - *Alternatives Considered*: Targeting only `.mermaid` causes Live Preview to display unstyled diagrams with clipped borders.
+- **Decision 2: Native Variable Fallbacks (`var(--token, fallback)`)**
+  - *Chosen Approach*: Every Obsidian variable reference includes a resilient hardcoded color fallback (e.g., `var(--background-secondary, #1e222a)`).
+  - *Why*: Community themes in Obsidian occasionally omit or rename standard CSS custom properties. Fallbacks guarantee the snippet looks beautiful even on stripped-down custom themes.
+- **Decision 3: Zero Applet Code Modification**
+  - *Chosen Approach*: The website codebase is left completely untouched per user directive; the output is delivered as an exportable snippet and clear configuration guide.
+  - *Why*: The user explicitly stated they want to use this inside the desktop Obsidian application rather than changing the web application.
 
 ---
 
-## 4. Technical Architecture & Data Strategy
+### 4. Technical Architecture & DOM Selector Strategy
 
 ```
-┌──────────────────────────────────────────────────────────────┐
-│                    Note Rendering Pipeline                   │
-└──────────────────────────────┬───────────────────────────────┘
+┌─────────────────────────────────────────────────────────────┐
+│                 Obsidian Note Markdown                      │
+│                                                             │
+│   ```mermaid                                                │
+│   graph TD                                                  │
+│     A[Assets] --> B{Decision}                               │
+│   ```                                                       │
+└──────────────────────────────┬──────────────────────────────┘
                                │
-               ┌───────────────▼───────────────┐
-               │    1. Delimiter Sanitizer     │
-               │   - Currency protection ($)   │
-               │   - Unpaired $$ delimiter fix │
+               ┌───────────────┴───────────────┐
+               ▼                               ▼
+    [Live Preview (CM6)]             [Reading View]
+    .cm-embed-block .mermaid         .markdown-rendered .mermaid
+               │                               │
                └───────────────┬───────────────┘
                                │
-               ┌───────────────▼───────────────┐
-               │   2. Math Extraction Engine   │
-               │   - Tokenize to @@KATEX_@@    │
-               │   - 500ms safeguard timeout   │
-               └───────────────┬───────────────┘
-                               │
-               ┌───────────────▼───────────────┐
-               │    3. Markdown Parser (GFM)   │
-               │   - Marked.js parsing         │
-               └───────────────┬───────────────┘
-                               │
-               ┌───────────────▼───────────────┐
-               │    4. Token Restoration       │
-               │   - Restore rendered KaTeX    │
-               └───────────────┬───────────────┘
-                               │
-               ┌───────────────▼───────────────┐
-               │    5. Mermaid Initialization  │
-               │   - Linear curves (no overlap)│
-               │   - Node & rank padding (55px)│
-               │   - Responsive SVG container  │
-               └───────────────┬───────────────┘
-                               │
-               ┌───────────────▼───────────────┐
-               │  6. Interactive Modal Engine  │
-               │   - Pan / Pinch / Wheel Zoom  │
-               │   - Fullscreen SVG vector     │
-               └───────────────────────────────┘
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│             site-mermaid.css CSS Snippet Rules              │
+├─────────────────────────────────────────────────────────────┤
+│ 1. Card Container: .mermaid { background, border, radius }  │
+│ 2. Viewport: overflow-x: auto; -webkit-overflow-scrolling   │
+│ 3. Nodes: .node rect/circle/polygon { fill, stroke, rx }    │
+│ 4. Typography: .nodeLabel, foreignObject { font, color }    │
+│ 5. Connectors: .edgePath path, .flowchart-link { stroke }   │
+│ 6. Markers: marker path, .arrowheadPath { fill, stroke }    │
+│ 7. Badges: .edgeLabel rect/div { background, padding }      │
+│ 8. Subgraphs: .cluster rect { rx: 8px; stroke-dasharray }   │
+│ 9. Dark/Light Theme Switching: .theme-light & .theme-dark   │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-### Component & State Mapping
+#### Selector Coverage Matrix
+- **Containers**:
+  - `.markdown-rendered .mermaid`
+  - `.block-language-mermaid`
+  - `.cm-embed-block:has(.mermaid)`
+  - `.cm-preview-code-block:has(.mermaid)`
+- **SVG & Elements**:
+  - `svg[id^="m"], svg.mermaid`
+  - `.node rect, .node circle, .node ellipse, .node polygon, .node path`
+  - `.edgePath path, .flowchart-link`
+  - `marker path, .arrowheadPath`
+  - `.edgeLabel, .edgeLabel div, .edgeLabel span`
+  - `.cluster rect`
+  - Sequence diagram lifelines, actors, signals, notes (`.actor`, `.signalLine`, `.note`)
+  - Mindmap branches & node sections (`.mindmap-node`, `.mindmap-edges`)
+  - Class & state diagram entities
 
-1. `site-lib/scripts/math-renderer.js`:
-   - Add delimiter balance checker `healUnpairedDelimiters(text)` to close stray `$$` before extraction.
-   - Wrap `renderExpression` in try-catch with timeout protection and structured fallback badge (`<div class="math-error-card">`).
-   - Enhance accounting macros (`\multicolumn`, `\begin{array}`, `\cline`, `\hline`).
+---
 
-2. `site-lib/scripts/mermaid-renderer.js`:
-   - Update `mermaid.initialize` configuration: `curve: 'linear'`, `nodeSpacing: 55`, `rankSpacing: 55`, `padding: 20`.
-   - Update SVG injection to maintain intrinsic aspect ratio and add click-to-preview event listener.
+### 5. Verification & Delivery Steps
 
-3. `site-lib/scripts/media-preview.js`:
-   - Upgrade modal viewer for SVG diagrams to support smooth pan dragging, mouse wheel zoom, touch pinch-to-zoom, and zoom reset.
-
-4. `site-lib/styles/diagrams.css`:
-   - Fine-tune `.mermaid-diagram-container` styles: clean max-width limits, subtle scrollbars, cursor pointer affordances, and arrow path rendering.
+1. **Verify Obsidian CSS Compatibility**: Ensure selectors do not interfere with standard markdown elements, tables, or callouts.
+2. **Theme Testing**: Validate color tokens against Obsidian's standard Light and Dark themes, as well as popular themes (Nord, Minimal, Catppuccin, Default).
+3. **Format Delivery**: Present the complete, clean, formatted CSS snippet ready for single-click copying, along with step-by-step instructions for activating it in Obsidian.

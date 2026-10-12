@@ -391,7 +391,7 @@
       if (this.sidebarGraph) this.sidebarGraph.updateTheme(this.themeMode);
       if (this.modalGraph) this.modalGraph.updateTheme(this.themeMode);
 
-      if (window.ObsidianMermaidRenderer) {
+      if (window.ObsidianMermaidRenderer && typeof window.ObsidianMermaidRenderer.rethemeAll === 'function') {
         window.ObsidianMermaidRenderer.rethemeAll(document.getElementById('note-article') || document, this.themeMode === 'dark');
       }
 
@@ -972,7 +972,7 @@
         window.ObsidianCallouts.initInteractions(document.getElementById('note-article') || document);
       }
 
-      if (window.ObsidianMermaidRenderer) {
+      if (window.ObsidianMermaidRenderer && typeof window.ObsidianMermaidRenderer.renderAll === 'function') {
         window.ObsidianMermaidRenderer.renderAll(document.getElementById('note-article') || document, this.themeMode === 'dark');
       }
 
