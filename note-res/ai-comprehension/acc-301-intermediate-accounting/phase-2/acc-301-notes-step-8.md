@@ -212,7 +212,7 @@ The table below details the characteristics, amortisation rules, and capitalisat
 #### 5.2 Mathematical Calculation of Purchased Goodwill
 Under IFRS 3, purchased goodwill is measured at the acquisition date as the excess of the consideration transferred over the net fair value of the identifiable assets acquired and liabilities assumed:
 
-> [!formula] Formula & Derivation: Purchased Goodwill
+> [!quote] Formula & Derivation: Purchased Goodwill
 > $$ \text{Purchased Goodwill} = \text{Fair Value of Consideration Transferred} - \text{Net Identifiable Assets Acquired} $$
 > Where:
 > $$ \text{Net Identifiable Assets Acquired} = \text{Fair Value of Identifiable Assets Acquired} - \text{Fair Value of Liabilities Assumed} $$
@@ -243,7 +243,7 @@ Before recognising a gain on a bargain purchase, IFRS 3 requires the acquirer to
 #### 6.1 The Impairment Test Mechanics
 Under IAS 36 (Impairment of Assets), an asset or CGU is impaired when its Carrying Amount exceeds its Recoverable Amount.
 
-> [!formula] Formula & Derivation: Impairment Loss
+> [!quote] Formula & Derivation: Impairment Loss
 > $$ \text{Impairment Loss} = \text{Carrying Amount} - \text{Recoverable Amount} \quad (\text{if Carrying Amount} > \text{Recoverable Amount}) $$
 
 ```mermaid

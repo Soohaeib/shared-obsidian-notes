@@ -116,7 +116,7 @@ When inventory items are ordinarily interchangeable, IAS 2 paragraphs 19–27 al
 3. **Weighted-Average Cost Formula (IAS 2.25):**
    * Under a periodic inventory system, the weighted-average cost per unit is calculated at period-end across all units available for sale:
 
-> [!formula] Formula & Derivation: Weighted-Average Unit Cost
+> [!quote] Formula & Derivation: Weighted-Average Unit Cost
 > $$ \text{Weighted-Average Unit Cost} = \frac{\text{Cost of Goods Available for Sale}}{\text{Total Units Available for Sale}} $$
 
    * Under a perpetual inventory system, a **moving-average cost per unit** is recalculated upon each purchase transaction.
@@ -135,7 +135,7 @@ When inventory items are ordinarily interchangeable, IAS 2 paragraphs 19–27 al
 #### 3.1 Definition of Net Realisable Value (NRV)
 IAS 2 paragraph 9 dictates that inventories must be measured on the Statement of Financial Position at the lower of cost and Net Realisable Value (LCNRV).
 
-> [!formula] Formula & Derivation: Net Realisable Value (NRV)
+> [!quote] Formula & Derivation: Net Realisable Value (NRV)
 > **Net Realisable Value (NRV)** is defined in IAS 2 paragraph 6 as the estimated selling price in the ordinary course of business less the estimated costs of completion and the estimated costs necessary to make the sale.
 > $$ \text{Net Realisable Value (NRV)} = \text{Estimated Selling Price in Ordinary Course} - \text{Estimated Costs of Completion} - \text{Estimated Costs to Make the Sale} $$
 
@@ -206,7 +206,7 @@ $$ \begin{array}{llrr}
 #### 4.1 Gross Profit Method
 The Gross Profit Method estimates ending inventory and Cost of Goods Sold without a physical count. It is primarily used for interim financial reporting or estimating inventory losses resulting from catastrophic events (e.g., fire, flood).
 
-> [!formula] Formula & Derivation: Gross Profit & Markup Conversions
+> [!quote] Formula & Derivation: Gross Profit & Markup Conversions
 > Financial accounting examinations and technical practice frequently state profit margins either as a percentage of sales or as a markup on cost. The conversion formulas are:
 > $$ \text{Gross Profit \% on Sales} = \frac{\text{Markup \% on Cost}}{1 + \text{Markup \% on Cost}} $$
 > $$ \text{Markup \% on Cost} = \frac{\text{Gross Profit \% on Sales}}{1 - \text{Gross Profit \% on Sales}} $$
@@ -257,7 +257,7 @@ flowchart TD
     S4[Step 4: Calculate Estimated Ending Inventory at Cost\nEnding Retail * Cost-to-Retail Ratio]
 ```
 
-> [!formula] Formula & Derivation: Retail Inventory Method Ratios
+> [!quote] Formula & Derivation: Retail Inventory Method Ratios
 > * **Conventional Method (LCNRV Basis):** Includes Net Markups but excludes Net Markdowns from the denominator.
 >   $$ \text{Conventional Ratio} = \frac{\text{Goods Available at Cost}}{\text{Goods Available at Retail (excl. Markdowns)} + \text{Net Markups}} $$
 > * **Cost Retail Method:** Includes both Net Markups and Net Markdowns in the denominator.

@@ -30,7 +30,7 @@ To deliver maximum value to decision-makers, every accounting system—whether m
 #### 1.2 Double-Entry Accounting Rules & Expanded Accounting Equation
 Under the double-entry accounting system, every economic transaction exerts a dual effect on the accounting equation. Total debits recorded must identically equal total credits recorded for every transaction:
 
-> [!formula] Formula & Derivation
+> [!quote] Formula & Derivation
 > $$ \text{Total Debits} = \text{Total Credits} $$
 
 * **Terminology:**
@@ -40,7 +40,7 @@ Under the double-entry accounting system, every economic transaction exerts a du
 ##### Expanded Accounting Equation (IFRS Terminology Framework)
 Under IFRS 3rd Edition, equity accounts are explicitly divided into contributed capital components ($\text{Share Capital—Ordinary}$ and $\text{Share Premium—Ordinary}$) and earned capital ($\text{Retained Earnings}$):
 
-> [!formula] Formula & Derivation
+> [!quote] Formula & Derivation
 > $$ \text{Assets} = \text{Liabilities} + \text{Share Capital—Ordinary} + \text{Share Premium—Ordinary} + \text{Retained Earnings} + \text{Revenues} - \text{Expenses} - \text{Dividends} $$
 
 | Account Category | Classification | Normal Balance | Increase Direction | Decrease Direction |
@@ -188,7 +188,7 @@ Expenses paid in cash and recorded as assets before they are consumed or expired
 * **Adjustment Rule:** Debit an Expense account; Credit an Asset account.
 
 *Case A: Supplies Accounting*
-> [!formula] Formula & Derivation
+> [!quote] Formula & Derivation
 > $$ \text{Supplies Consumed (Expense)} = \text{Beginning Supplies Balance} + \text{Supplies Purchased} - \text{Physical Ending Inventory} $$
 
 $$ \begin{array}{llrr}
@@ -199,7 +199,7 @@ $$ \begin{array}{llrr}
 \end{array} $$
 
 *Case B: Prepaid Insurance*
-> [!formula] Formula & Derivation
+> [!quote] Formula & Derivation
 > $$ \text{Insurance Expense Per Period} = \frac{\text{Total Premium Paid}}{\text{Policy Term (Months)}} \times \text{Months Expired} $$
 
 $$ \begin{array}{llrr}
@@ -239,7 +239,7 @@ Expenses incurred but not yet paid in cash or recorded at period-end.
 * **Adjustment Rule:** Debit an Expense account; Credit a Liability account.
 
 *Case A: Accrued Interest Expense*
-> [!formula] Formula & Derivation
+> [!quote] Formula & Derivation
 > $$ \text{Accrued Interest} = \text{Principal (Face Value)} \times \text{Annual Interest Rate } (i) \times \text{Fraction of Year } \left(\frac{n}{12}\right) $$
 
 $$ \begin{array}{llrr}
@@ -261,7 +261,7 @@ $$ \begin{array}{llrr}
 #### 3.3 Depreciation Allocation & Allowance for Doubtful Accounts
 **1. Depreciation Allocation (IAS 16 Alignment)**
 Depreciation is a process of cost allocation, not asset valuation.
-> [!formula] Formula & Derivation
+> [!quote] Formula & Derivation
 > $$ \text{Annual Straight-Line Depreciation} = \frac{\text{Historical Cost} - \text{Residual Value}}{\text{Estimated Useful Life (Years)}} $$
 > $$ \text{Carrying Amount (Book Value)} = \text{Historical Cost} - \text{Accumulated Depreciation} $$
 
@@ -298,7 +298,7 @@ $$ \begin{array}{llrr}
 * **Strict Cash Basis:** Revenue is recognized strictly when cash receipts occur; expenses are recorded only when cash disbursements are executed. This approach violates IFRS because it fails to adhere to revenue recognition and matching principles.
 * **Accrual Basis (IFRS Mandatory Framework):** Transactions are recorded in the periods in which events occur, regardless of when cash flows materialize.
 
-> [!formula] Formula & Derivation: Cash-to-Accrual Conversion
+> [!quote] Formula & Derivation: Cash-to-Accrual Conversion
 > **1. Converting Cash Collections to Accrual Service Revenue:**
 > $$ \text{Service Revenue}_{\text{Accrual}} = \text{Cash Collected} - \text{A/R}_{\text{Beginning}} + \text{A/R}_{\text{Ending}} + \text{Unearned Revenue}_{\text{Beginning}} - \text{Unearned Revenue}_{\text{Ending}} $$
 > **2. Converting Cash Disbursements to Accrual Operating Expenses:**

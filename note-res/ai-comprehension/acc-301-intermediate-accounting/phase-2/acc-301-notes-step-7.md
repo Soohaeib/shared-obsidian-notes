@@ -21,7 +21,7 @@ Under IAS 16 (Property, Plant and Equipment), property, plant, and equipment (PP
 #### 1.2 Mandate for Component Depreciation
 IAS 16 mandates **component depreciation**. Each part of an item of PP&E with a cost that is significant in relation to the total cost of the item must be depreciated separately over its individual useful life.
 
-> [!formula] Formula & Derivation: Component Depreciation
+> [!quote] Formula & Derivation: Component Depreciation
 > $$ \text{Total Depreciation Expense} = \sum_{k=1}^{m} \left( \frac{\text{Cost}_k - \text{Residual Value}_k}{\text{Useful Life}_k} \right) $$
 
 * **Example:** An aircraft fuselage, jet engines, and cabin interior must be disaggregated into distinct asset components and depreciated over their respective useful lives rather than as a single composite asset.
@@ -48,7 +48,7 @@ PP&E is initially measured at its cost on the acquisition date. Cost comprises:
 #### 1.4 Decommissioning Obligations & Asset Retirement Obligations (IAS 37)
 When an entity incurs a legal or constructive obligation to dismantle an asset or restore a site at the end of its useful life, IAS 37 mandates that the present value of the expected future restoration costs be capitalised as part of the initial carrying amount of the PP&E, with a corresponding credit to a Provision for Decommissioning / Restoration.
 
-> [!formula] Formula & Derivation: Present Value of Decommissioning Obligation
+> [!quote] Formula & Derivation: Present Value of Decommissioning Obligation
 > $$ \text{PV of Provision} = \frac{\text{Expected Future Cash Outflow}_n}{(1 + r)^n} $$
 > where $r$ is the pre-tax discount rate reflecting current market assessments of the time value of money, and $n$ is the useful life of the asset in years.
 
@@ -84,7 +84,7 @@ Capitalisation must be suspended during extended periods in which active develop
 **Avoidable Interest Mechanics**
 The capitalisable borrowing costs are limited to the lower of Actual Borrowing Costs incurred during the period and Avoidable Borrowing Costs.
 
-> [!formula] Formula & Derivation: Avoidable Borrowing Costs
+> [!quote] Formula & Derivation: Avoidable Borrowing Costs
 > $$ \text{Weighted-Average Accumulated Expenditures (WAED)} = \sum \left( \text{Expenditure Amount} \times \frac{\text{Construction Months Outstanding}}{12} \right) $$
 > $$ \text{Avoidable Interest} = \left( \text{Specific Borrowing Amount} \times r_{\text{specific}} \right) + \left[ (\text{WAED} - \text{Specific Borrowing}) \times r_{\text{weighted average}} \right] $$
 > $$ \text{Capitalisable Borrowing Costs} = \min\left( \text{Actual Borrowing Costs}, \text{Avoidable Borrowing Costs} \right) $$
@@ -177,7 +177,7 @@ Under IAS 16, the residual value, useful life, and depreciation method of an ass
 > * Any change in useful life, residual value, or depreciation method is treated as a **Change in Accounting Estimate** under IAS 8.
 > * It is accounted for **prospectively** in current and future periods. Prior periods are never restated, and no cumulative adjustment is recorded in Profit or Loss.
 
-> [!formula] Formula & Derivation: Prospective Depreciation Adjustment
+> [!quote] Formula & Derivation: Prospective Depreciation Adjustment
 > $$ \text{New Annual Depreciation} = \frac{\text{Carrying Amount at Date of Change} - \text{Revised Residual Value}}{\text{Revised Remaining Useful Life (Years)}} $$
 
 > [!example] Numerical Problem: Change in Depreciation Estimate
@@ -213,7 +213,7 @@ flowchart TD
    * **Fair Value Less Costs to Sell:** The price that would be received to sell an asset in an orderly transaction between market participants, less direct disposal costs.
    * **Value-in-Use:** The present value of the estimated future cash flows expected to be derived from the asset's continuous use and ultimate disposal.
 
-> [!formula] Formula & Derivation: Recoverable Amount & Impairment Loss
+> [!quote] Formula & Derivation: Recoverable Amount & Impairment Loss
 > $$ \text{Recoverable Amount} = \max\left( \text{Fair Value Less Costs to Sell}, \text{Value-in-Use} \right) $$
 > $$ \text{Value-in-Use} = \sum_{t=1}^{N} \frac{\text{CF}_t}{(1 + r)^t} + \frac{\text{Terminal Value}_N}{(1 + r)^N} $$
 > $$ \text{Impairment Loss} = \text{Carrying Amount} - \text{Recoverable Amount} \quad (\text{if Carrying Amount} > \text{Recoverable Amount}) $$
@@ -226,7 +226,7 @@ flowchart TD
 **Reversal Cap Constraint under IAS 36**
 The increased carrying amount of an asset attributable to a reversal of an impairment loss **cannot exceed** the carrying amount that would have been determined (net of depreciation) had no impairment loss been recognised for the asset in prior years.
 
-> [!formula] Formula & Derivation: Maximum Permitted Reversal
+> [!quote] Formula & Derivation: Maximum Permitted Reversal
 > $$ \text{Reversal Ceiling} = \text{Historical Cost} - \text{Cumulative Depreciation that would have been recorded without impairment} $$
 > $$ \text{Permitted Reversal} = \min\left( \text{Recoverable Amount} - \text{Current Carrying Amount}, \text{Reversal Ceiling} - \text{Current Carrying Amount} \right) $$
 

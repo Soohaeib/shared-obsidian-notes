@@ -1,137 +1,115 @@
-To help you navigate your **ACC 301: Intermediate Accounting** course with maximum efficiency, I have designed a highly structured, sequential reading flow. An **interactive Mind Map** has been created in your **Studio panel**, visually charting this exact conceptual journey.
-
-This roadmap is built on a **pedagogical dependency philosophy**: it ensures you master foundational concepts (theory, cycle mechanics, and the mathematics of interest) _before_ you are introduced to the complex asset, liability, and equity structures that rely on them.
-
-For example, although **Syllabus Topic 1 (Receivables)** appears first in your syllabus, it requires discounting and evaluating interest-bearing and zero-interest-bearing notes. This cannot be understood without the time value of money. Therefore, **Chapter 5 (Time Value of Money)** has been positioned as a strict prerequisite before you open **Chapter 6 (Receivables)**. Similarly, a comprehensive study of financial statements (Syllabus Topic 8) is placed at the end as a synthesis capstone.
-
----
-### Step-by-Step Logical Reading Roadmap
-#### Phase 1: Conceptual & Procedural Foundations
-Before diving into specific accounting topics, you must master the reporting environment, the database structure of accounting, and basic financial statement layouts.
-- **Step 1: The Core Framework**
-    - **Textbook Reading:** **Chapter 1: The Environment and Conceptual Framework of Financial Reporting**
-    - **Syllabus Focus:** Foundations of accounting assumptions, qualitative characteristics (relevance, faithful representation), elements, and principles (historical cost, revenue/expense recognition).
-    - **Prerequisite for:** All subsequent chapters.
-- **Step 2: The Accounting Cycle Mechanics**
-    - **Textbook Reading:** **Chapter 2: The Accounting Information System**
-    - **Syllabus Focus:** Debits and credits, journalizing, ledger posting, trial balances, adjusting entries, and the closing process.
-    - **Prerequisite for:** Practical implementation of all ledger accounts.
-- **Step 3: Basic Financial Statement Structures**
-    - **Textbook Reading:** **Chapter 3: Sections 3.1 to 3.3** (Income Statement & Stockholders' Equity) & **Chapter 4: Section 4.1** (Balance Sheet Overview)
-    - **Syllabus Focus:** Prepares you for **Syllabus Topic 8** by introducing what a Statement of Comprehensive Income, Statement of Stockholders' Equity, and Statement of Financial Position look like before you begin auditing or adjusting their individual sub-accounts.
-- **Step 4: The Mathematics of Interest (Crucial Prerequisite)**
-    - **Textbook Reading:** **Chapter 5: Accounting and the Time Value of Money**
-    - **Syllabus Focus:** Compound interest, future/present value of single sums, and annuities (ordinary and annuity due).
-    - **Prerequisite for:** Strictly required to calculate notes receivable discounting (Syllabus Topic 1) and bond valuations (Syllabus Topic 6).
+# ACC 301 Intermediate Accounting: Logical Reading Roadmap & Curriculum Map
+**Course Code:** ACC 301
+**Course Title:** Intermediate Accounting
+**Primary Reference Standard:** International Financial Reporting Standards (IFRS) — *Weygandt, Kieso, Warfield, Intermediate Accounting (IFRS 3rd Edition)*
+**Local Statutory Benchmark:** The Companies Act, 1994 (Schedule XI) & Securities and Exchange Rules, 1987 (Rule 12(2)) — Bangladesh Securities and Exchange Commission (BSEC)
 
 ---
-#### Phase 2: Asset Valuation & Cost Allocation
-With your foundations and mathematical tools in place, you can logically transition into asset accounting, moving from highly liquid assets to tangible and intangible long-lived assets.
-- **Step 5: Receivables & Note Discounting**
-    - **Syllabus Topic:** **Topic 1: Accounting for Receivables**
-    - **Textbook Reading:** **Chapter 6: Cash and Receivables**
-    - **Direct Alignment:** Accounts and Notes Receivable, discounting interest/non-interest-bearing notes, direct write-off vs. allowance methods, and recovery of written-off receivables.
-- **Step 6: Inventory Costing & Estimation**
-    - **Syllabus Topic:** **Topic 2: Accounting for Inventories**
-    - **Textbook Reading:** **Chapter 7: Valuation of Inventories: A Cost-Basis Approach** & **Chapter 8: Inventories: Additional Valuation Issues**
-    - **Direct Alignment:** Perpetual/periodic systems, FIFO, LIFO, Average Cost, LIFO reserve/liquidation, inventory errors, LCNRV and LCM valuation, and estimation via the Gross Profit and Retail Inventory methods.
-    - **Standards Covered:** **IAS 2: Inventories** (integrated via IFRS Insights).
-- **Step 7: Tangible Long-Lived Assets (PP&E)**
-    - **Syllabus Topic:** **Topic 4: Accounting for Property, Plant and Equipment (Part 1)**
-    - **Textbook Reading:** **Chapter 9: Acquisition and Disposition of PPE** & **Chapter 10: Depreciation, Impairments, and Depletion**
-    - **Direct Alignment:** Determining cost of fixed assets, capitalization of interest, subsequent expenditures, disposal gains/losses, depreciation methods, impairments, and depletion of natural resources.
-    - **Standards Covered:** **IAS 16: Property, Plant and Equipment** (integrated via IFRS Insights).
-- **Step 8: Intangible Assets & Goodwill**
-    - **Syllabus Topic:** **Topic 4 (Part 2): Accounting for Intangible Assets**
-    - **Textbook Reading:** **Chapter 11: Intangible Assets**
-    - **Direct Alignment:** Characteristics of intangibles, valuation and amortization of patents, copyrights, franchises, and recording/impairment of goodwill.
-- **Step 9: Temporary Marketable Investments**
-    - **Syllabus Topic:** **Topic 3: Accounting for Temporary Investments**
-    - **Textbook Reading:** **Chapter 16: Investments** (specifically Trading and Available-for-Sale Debt & Equity securities)
-    - **Direct Alignment:** Nature of temporary investments, fair value adjustments, marketable equity/debt securities, disposition, and financial statement disclosures.
+
+## Curriculum Architecture & Pedagogical Philosophy
+
+This curriculum roadmap presents a sequential, 14-step learning flow designed for the **ACC 301 Intermediate Accounting** syllabus at the Department of Accounting, University of Chittagong. The framework is structured on a **pedagogical dependency philosophy**: foundational accounting theory, information system mechanics, and time-value-of-money mathematics are mastered prior to evaluating complex asset, liability, and equity instruments.
+
+All 14 steps are aligned with **IFRS 3rd Edition** textbook chapter mappings, International Accounting Standards (IAS/IFRS), and mandatory Bangladeshi corporate legal requirements.
 
 ---
-#### Phase 3: Liabilities & Owners' Equity
-This phase progresses from short-term operational obligations to long-term financing structures, concluding with the residual ownership interests of the company.
-- **Step 10: Current & Contingent Liabilities**
-    - **Syllabus Topic:** **Topic 5: Accounting for Current and Contingent Liabilities**
-    - **Textbook Reading:** **Chapter 12: Current Liabilities and Contingencies**
-    - **Direct Alignment:** Accounts and notes payable, payroll liabilities, unearned revenues, current maturities of long-term debt, and contingent liabilities.
-    - **Standards Covered:** **IAS 37: Provisions, Contingent Liabilities and Contingent Assets** (integrated via IFRS Insights).
-- **Step 11: Long-Term Liabilities (Debt Financing)**
-    - **Syllabus Topic:** **Topic 6: Accounting for Long term Liabilities**
-    - **Textbook Reading:** **Chapter 13: Long-Term Liabilities**
-    - **Direct Alignment:** Bond issuance, trading, premium/discount amortization (effective-interest method), bond retirements, long-term notes payable, and balance sheet reporting.
-- **Step 12: Owners' Equity & Dividends**
-    - **Syllabus Topic:** **Topic 7: Owners' Equity**
-    - **Textbook Reading:** **Chapter 14: Stockholders' Equity**
-    - **Direct Alignment:** Nature and classifications of capital stock, common/preferred stock issuance, treasury stock transactions, cash and property dividends, stock dividends, stock splits, and presentation of equity on the balance sheet.
+
+## Step-by-Step Curriculum Roadmap
+
+### Phase 1: Conceptual & Procedural Foundations
+
+#### Step 1: The Core Framework
+* **Textbook Alignment:** *Intermediate Accounting (IFRS 3e)* — **Chapter 1: Financial Reporting and Accounting Standards** & **Chapter 2: Conceptual Framework for Financial Reporting**
+* **Core Topics:** Standard-setting governance (IASB, IFRS Foundation, IFRS IC, IOSCO), IFRS hierarchy, Objective of General-Purpose Financial Reporting, IASB Conceptual Framework (Qualitative Characteristics: Relevance, Faithful Representation, Prudence, Substance Over Form; 5 Elements: Assets, Liabilities, Equity, Income, Expenses), Assumptions & Principles (Going Concern, Accrual Basis, Historical Cost vs. Fair Value / Revaluation Model, Full Disclosure), Cost Constraint.
+* **Statutory Alignment:** Companies Act 1994 (Schedule XI) & BSEC Rule 12(2) regulatory overview.
+
+#### Step 2: The Accounting Information System
+* **Textbook Alignment:** *Intermediate Accounting (IFRS 3e)* — **Chapter 3: The Accounting Information System**
+* **Core Topics:** Double-entry accounting cycle, debits and credits, transaction analysis, general journalizing, general ledger posting, unadjusted trial balance, adjusting entries (deferrals and accruals), adjusted trial balance, financial statement preparation, closing entries, post-closing trial balance, cash-to-accrual conversion formulas, reversing entries, 10-column worksheet.
+* **IFRS Terminology Focus:** Share Capital—Ordinary, Share Premium—Ordinary, Statement of Financial Position, Statement of Profit or Loss.
+
+#### Step 3: Basic Financial Statement Structures
+* **Textbook Alignment:** *Intermediate Accounting (IFRS 3e)* — **Chapter 4: Income Statement and Related Information** & **Chapter 5: Statement of Financial Position and Statement of Cash Flows**
+* **Core Topics:** IAS 1 Statement of Profit or Loss (multi-step format, expense classification by Function vs. Nature, prohibition of extraordinary items), Statement of Comprehensive Income (Other Comprehensive Income / OCI components), IAS 8 Accounting Changes & Errors, IFRS 5 Discontinued Operations, Statement of Changes in Equity, classified Statement of Financial Position (Current vs. Non-Current).
+* **Statutory Alignment:** Schedule XI Part I Balance Sheet (*Order of Permanence*).
+
+#### Step 4: Mathematics of Interest & Time Value of Money
+* **Textbook Alignment:** *Intermediate Accounting (IFRS 3e)* — **Chapter 6: Accounting and the Time Value of Money**
+* **Core Topics:** Simple vs. compound interest, compounding frequency adjustments, Present Value (PV) and Future Value (FV) of single sums, Ordinary Annuities vs. Annuities Due, conversion formulas, Deferred Annuities, long-term bond valuation mechanics, IFRS 13 Level 3 expected cash flow discounting techniques, Excel function syntax (`PV`, `FV`, `PMT`, `RATE`, `NPER`).
+* **Prerequisite Role:** Mandatory mathematical foundation for notes receivable discounting (Step 5) and bond/debt valuation (Step 11).
 
 ---
-#### Phase 4: Financial Statement Synthesis & Global Standards
-The final step integrates all individual accounts into complete corporate reporting packages, satisfying the ultimate reporting objectives of the course.
-- **Step 13: Financial Statement Presentation & Cash Flows**
-    - **Syllabus Topic:** **Topic 8: Preparation of Financial Statements for Companies**
-    - **Textbook Reading:** **Chapter 22: Statement of Cash Flows** & **Chapter 23: Full Disclosure in Financial Reporting**
-    - **Direct Alignment:** Preparation and classification of the cash flow statement using the direct and indirect methods, full disclosure notes, segment reporting, and interim statements.
-    - **Standards Covered:** **IAS 1: Presentation of Financial Statements** and **IAS 7: Cash Flow Statement**.
+
+### Phase 2: Asset Valuation & Cost Allocation
+
+#### Step 5: Cash and Receivables
+* **Textbook Alignment:** *Intermediate Accounting (IFRS 3e)* — **Chapter 7: Cash and Receivables**
+* **Core Topics:** IAS 1 / IAS 7 cash & cash equivalents, restricted cash, bank overdrafts, two-column bank reconciliations, trade receivables recognition (IFRS 15 transaction price, gross vs. net discount methods), IFRS 9 Expected Credit Loss (ECL) 3-stage impairment model, Allowance for Doubtful Accounts aging matrix, notes receivable valuation (effective-interest method, zero-interest notes discounting), derecognition and factoring of receivables (with vs. without recourse), bank note discounting formulas.
+
+#### Step 6: Inventories: Valuation & Cost Basis
+* **Textbook Alignment:** *Intermediate Accounting (IFRS 3e)* — **Chapter 8: Valuation of Inventories: A Cost-Basis Approach** & **Chapter 9: Inventories: Additional Valuation Issues**
+* **Core Topics:** IAS 2 Inventories, inventory classifications (Merchandise, Raw Materials, WIP, Finished Goods), perpetual vs. periodic inventory systems, goods in transit (FOB shipping point vs. destination), consignment, product vs. period costs, cost flow assumptions (Specific Identification, FIFO, Weighted-Average; **strict prohibition of LIFO under IAS 2**), Lower of Cost and Net Realizable Value (LCNRV) valuation, inventory write-down reversals under IAS 2, inventory estimation methods (Gross Profit Method & Retail Inventory Method).
+
+#### Step 7: Property, Plant, and Equipment (PP&E)
+* **Textbook Alignment:** *Intermediate Accounting (IFRS 3e)* — **Chapter 10: Acquisition and Disposition of Property, Plant, and Equipment** & **Chapter 11: Depreciation, Impairments, and Depletion**
+* **Core Topics:** IAS 16 PP&E recognition and initial cost measurement, mandatory component depreciation, IAS 23 borrowing costs capitalization (qualifying assets, avoidable interest), Cost Model vs. **Revaluation Model** (accounting for Revaluation Surplus in OCI vs. losses in Profit or Loss), non-monetary asset exchanges, subsequent expenditures (capitalization vs. repairs), depreciation methods (straight-line, diminishing-balance, units-of-production), IAS 36 single-step Recoverable Amount impairment test (higher of Fair Value Less Costs to Sell and Value-in-Use) and **mandatory reversal of impairment losses**, IFRS 5 assets held for sale.
+
+#### Step 8: Intangible Assets & Goodwill
+* **Textbook Alignment:** *Intermediate Accounting (IFRS 3e)* — **Chapter 12: Intangible Assets**
+* **Core Topics:** IAS 38 Intangible Assets definition and characteristics, **Research Phase (expense immediately in Profit or Loss) vs. Development Phase (capitalize once 6 criteria / PIRATE are met)**, limited-life intangibles amortization vs. indefinite-life intangibles annual impairment testing, patents, copyrights, trademarks, franchises, software, IFRS 3 Business Combinations goodwill calculation, bargain purchases, IAS 36 Goodwill CGU impairment testing (prohibition of goodwill impairment reversals).
+
+#### Step 9: Financial Investments
+* **Textbook Alignment:** *Intermediate Accounting (IFRS 3e)* — **Chapter 17: Investments**
+* **Core Topics:** IFRS 9 financial assets classification framework (Business Model Test & SPPI Test), Debt Investments categories: Amortized Cost, Fair Value Through Other Comprehensive Income (FVOCI) with recycling, Fair Value Through Profit or Loss (FVTPL), Equity Investments categories: FVTPL (default) vs. irrevocable FVOCI **without recycling** (OCI transferred directly to Retained Earnings upon sale), IAS 28 Equity Method for associates (20%–50% voting power), IFRS 10 consolidated financial statements (>50%), IFRS 9 3-stage Expected Credit Loss (ECL) impairment model for debt securities.
 
 ---
-### Gap Detection & Bridging Solutions
-Upon a rigorous mapping of the **ACC 301 Syllabus** against the **Kieso, Weygandt, and Warfield textbook**, I have detected **two major uncovered gaps**. Because this textbook is globally focused (US GAAP/IFRS), it does not cover the specific national laws of Bangladesh mandated by your university's syllabus:
-1. **Syllabus Gap 1: Schedule XI of the Companies Act, 1994 (Bangladesh)**
-    - _What is missing:_ The textbook teaches statement structures under US GAAP and IAS 1, but does not cover the legal presentation formats and disclosure requirements of **Schedule XI Parts I, II, and III of the Companies Act, 1994**.
-    - _How to bridge it:_ Conduct an independent web search to find corporate templates from the Registrar of Joint Stock Companies and Firms (RJSC) in Bangladesh.
-    - _Suggested Search Queries:_
-        - `"Companies Act 1994 Bangladesh Schedule XI financial statement format pdf"`
-        - `"Bangladesh Companies Act 1994 Statement of Financial Position Schedule XI"`
-2. **Syllabus Gap 2: Securities and Exchange Rules, 1987 (Rule 12(2) & Schedules)**
-    - _What is missing:_ The textbook's discussion of corporate governance and reporting does not contain the statutory requirements of **Rule 12(2) and Parts I, II, III, and IV of the Securities and Exchange Rules, 1987** of Bangladesh.
-    - _How to bridge it:_ Look up the official manuals published by the Bangladesh Securities and Exchange Commission (BSEC).
-    - _Suggested Search Queries:_
-        - `"Securities and Exchange Rules 1987 Bangladesh Rule 12(2) pdf"`
-        - `"BSEC corporate governance report requirements Bangladesh"`
+
+### Phase 3: Liabilities & Owners' Equity
+
+#### Step 10: Current Liabilities, Provisions, and Contingencies
+* **Textbook Alignment:** *Intermediate Accounting (IFRS 3e)* — **Chapter 13: Current Liabilities, Provisions, and Contingencies**
+* **Core Topics:** IAS 1 current liabilities criteria, trade payables, short-term notes payable, short-term debt expected to be refinanced (strict IAS 1 reporting date execution rule), IAS 19 employee benefits (compensated absences, profit-sharing/bonuses), IAS 37 Provisions (3 recognition criteria: present obligation, **probable outflow >50%**, reliable estimate), constructive obligations, best estimate measurement & PV discounting, onerous contracts, restructuring provisions, warranties (assurance-type provision vs. service-type performance obligation), contingent liabilities (note disclosure only) and contingent assets matrix.
+
+#### Step 11: Non-Current Liabilities
+* **Textbook Alignment:** *Intermediate Accounting (IFRS 3e)* — **Chapter 14: Non-Current Liabilities**
+* **Core Topics:** Bonds payable and long-term notes payable valuation (PV of principal + PV of annuity coupons), effective-interest method of discount/premium amortization under IFRS 9, **direct net carrying amount presentation on Statement of Financial Position** (no separate discount/premium accounts), IAS 32 compound financial instruments (mandatory bifurcation of convertible bonds into debt liability and share premium—conversion equity using with-and-without method), book value conversion, derecognition/early extinguishment gain or loss, IFRIC 19 debt-for-equity swaps, IFRS 9 Fair Value Option (FVO) with credit risk separation in OCI.
+
+#### Step 12: Equity and Share Capital
+* **Textbook Alignment:** *Intermediate Accounting (IFRS 3e)* — **Chapter 15: Equity**
+* **Core Topics:** Components of Equity (Share Capital—Ordinary, Share Capital—Preference, Share Premium, Retained Earnings, AOCI, Non-Controlling Interest), share issuance for cash/non-cash consideration, lump-sum allocations, share issuance costs deducted from Share Premium, IAS 32 treasury shares cost method (reissuance above/below cost, retirement; no P&L gain/loss recognition), preference shares features and **IAS 32 financial liability classification for mandatorily redeemable preference shares**, cash/property/share dividends, share splits, IAS 1 Statement of Changes in Equity, equity ratios (ROE, dividend payout, book value per share).
 
 ---
-### Mind Map Outline Structure
-For a quick hierarchical view (matching the generated interactive Mind Map), here is the course structure:
 
-```
-# ACC 301 Intermediate Accounting Logical Path
-## Foundations of Accounting Theory & Procedures
-### 1. Conceptual Framework
-#### Chapter 1 (FASB Framework, Qualitative Characteristics, Assumptions/Principles)
-### 2. Information Systems
-#### Chapter 2 (Accounting Cycle, Debits/Credits, Adjusting & Closing Entries)
-### 3. Basic Financial Layouts
-#### Chapter 3.1-3.3 (Income Statement) & Chapter 4.1 (Balance Sheet Overview)
-### 4. Mathematical Tools
-#### Chapter 5 (Time Value of Money, Single Sums, Annuities) Prerequisite for Notes/Bonds
-## Asset Valuation & Cost Allocation
-### 5. Receivables (Syllabus Topic 1)
-#### Chapter 6 (Accounts Receivable, Valuation, Note Discounting)
-### 6. Inventories (Syllabus Topic 2)
-#### Chapters 7 & 8 (Cost flow, LCNRV, LCM, Gross Profit & Retail Methods, IAS 2)
-### 7. Property, Plant & Equipment (Syllabus Topic 4 - Part 1)
-#### Chapters 9 & 10 (Acquisition, Interest Capitalization, Depreciation, Depletion, IAS 16)
-### 8. Intangible Assets (Syllabus Topic 4 - Part 2)
-#### Chapter 11 (Amortization, Patents, Copyrights, Goodwill recording/impairments)
-### 9. Temporary Investments (Syllabus Topic 3)
-#### Chapter 16 (Debt/Equity Marketable Securities, Fair Value Adjustments)
-## Liabilities & Owners' Equity
-### 10. Current & Contingent Liabilities (Syllabus Topic 5)
-#### Chapter 12 (Payables, Payroll, Unearned Revenue, Contingencies, IAS 37)
-### 11. Long-Term Liabilities (Syllabus Topic 6)
-#### Chapter 13 (Bonds Payable, Discount/Premium Amortization, Notes Payable)
-### 12. Owners' Equity (Syllabus Topic 7)
-#### Chapter 14 (Corporate Capital, Common/Preferred Stock, Treasury Stock, Dividends)
-## Statement Synthesis & Global Standards
-### 13. Financial Statements & Disclosures (Syllabus Topic 8)
-#### Chapters 22 & 23 (Cash Flow Statement, IAS 1, IAS 7, Disclosures, Segment/Interim)
-## Uncovered National Gaps
-### 14. Bangladesh Corporate Law (Syllabus Topic 8 Gaps)
-#### Companies Act 1994 (Schedule XI Parts I, II, III Financial Statement Formats)
-#### Securities & Exchange Rules 1987 (Rule 12(2) & Parts I, II, III, IV Governance Report)
-```
+### Phase 4: Financial Statement Synthesis & Global / Local Standards
 
-**What would you like to explore next?** We can dive into **Chapter 5** to master the present value calculations needed for receivables and bonds, or I can help you draft a study guide focusing on the **valuation and amortization of Intangibles (IAS 38 vs. US GAAP)**.
+#### Step 13: Statement of Cash Flows
+* **Textbook Alignment:** *Intermediate Accounting (IFRS 3e)* — **Chapter 23: Statement of Cash Flows**
+* **Core Topics:** IAS 7 Statement of Cash Flows, cash & cash equivalents definition (original maturity <= 3 months), Operating, Investing, and Financing activities, **IAS 7 activity classification flexibilities** (Interest Paid: Operating/Financing; Interest Received: Operating/Investing; Dividends Received: Operating/Investing; Dividends Paid: Operating/Financing; Bank Overdrafts as cash equivalents), Operating Activities Indirect Method reconciliation mechanics (non-cash adjustments, working capital changes) and Direct Method, non-cash investing/financing disclosures, Free Cash Flow formula.
+
+#### Step 14: Bangladesh Corporate Law & Financial Disclosures
+* **Statutory Framework:** *The Companies Act, 1994 (Schedule XI)* & *Securities and Exchange Rules, 1987 (Rule 12(2))* — Bangladesh Securities and Exchange Commission (BSEC)
+* **Core Topics:** Schedule XI Part I Balance Sheet statutory layout (**Order of Permanence**: Share Capital and Non-Current Liabilities first, PP&E down to Current Assets), Schedule XI Part II Profit & Loss Account mandatory disclosures (gross turnover by product, disaggregated raw material consumption, imported vs. indigenous materials, managerial remuneration, itemized auditor fee sub-categories, licensed/installed/actual plant capacity, foreign exchange inflows/outflows), Schedule XI Part III holding/subsidiary rules, BSEC Rule 12(2) 120-day annual audited statement filing deadline, 45-day half-yearly / 30-day quarterly interim report timelines, mandatory CA/CMA Corporate Governance Compliance Certification.
+
+---
+
+## Mind Map Text Tree Hierarchy
+
+*ACC 301 Intermediate Accounting Curriculum Roadmap*
+├── Phase 1: Conceptual & Procedural Foundations
+│   ├── [[ACC 301 Notes Step 1 | Step 1: Core Framework (IFRS 3e Ch 1 & 2 / Conceptual Framework)]]
+│   ├── [[ACC 301 Notes Step 2 | Step 2: Accounting Information System (IFRS 3e Ch 3 / Cycle & Mechanics)]]
+│   ├── [[ACC 301 Notes Step 3 | Step 3: Financial Statement Formats (IFRS 3e Ch 4 & 5 / IAS 1 & IAS 8)]]
+│   └── [[ACC 301 Notes Step 4 | Step 4: Time Value of Money (IFRS 3e Ch 6 / PV, FV, Annuities)]]
+├── Phase 2: Asset Valuation & Cost Allocation
+│   ├── [[ACC 301 Notes Step 5 | Step 5: Cash & Receivables (IFRS 3e Ch 7 / IFRS 9 ECL & Discounting)]]
+│   ├── [[ACC 301 Notes Step 6 | Step 6: Inventories (IFRS 3e Ch 8 & 9 / IAS 2, LCNRV, No LIFO)]]
+│   ├── [[ACC 301 Notes Step 7 | Step 7: Property, Plant & Equipment (IFRS 3e Ch 10 & 11 / IAS 16, IAS 23, IAS 36)]]
+│   ├── [[ACC 301 Notes Step 8 | Step 8: Intangibles & Goodwill (IFRS 3e Ch 12 / IAS 38 R&D, IFRS 3, IAS 36)]]
+│   └── [[ACC 301 Notes Step 9 | Step 9: Financial Investments (IFRS 3e Ch 17 / IFRS 9 Debt/Equity, IAS 28)]]
+├── Phase 3: Liabilities & Owners' Equity
+│   ├── [[ACC 301 Notes Step 10 | Step 10: Current Liabilities & Provisions (IFRS 3e Ch 13 / IAS 37 & IAS 19)]]
+│   ├── [[ACC 301 Notes Step 11 | Step 11: Non-Current Liabilities (IFRS 3e Ch 14 / Bonds, IAS 32 Bifurcation)]]
+│   └── [[ACC 301 Notes Step 12 | Step 12: Equity & Share Capital (IFRS 3e Ch 15 / Share Premium, Treasury, IAS 1)]]
+└── Phase 4: Financial Statement Synthesis & Global / Local Standards
+    ├── [[ACC 301 Notes Step 13 | Step 13: Statement of Cash Flows (IFRS 3e Ch 23 / IAS 7 Direct/Indirect)]]
+    └── [[ACC 301 Notes Step 14 | Step 14: Bangladesh Corporate Law (Companies Act 1994 Schedule XI & BSEC Rule 12(2))]]

@@ -19,7 +19,7 @@ A liability possesses three core characteristics:
 **Valuation Principles**
 Conceptually, all liabilities should be recorded at the present value of the future cash outflows required to settle the obligation:
 
-> [!formula] Formula & Derivation: Present Value of a Liability
+> [!quote] Formula & Derivation: Present Value of a Liability
 > $$ \text{Present Value } (PV) = \frac{CF_n}{(1 + i)^n} $$
 
 In practice, short-term liabilities are recorded and presented on the Statement of Financial Position at their **full face value (maturity value)**. The difference between the present value and the nominal settlement value for short-term obligations maturing within one year is quantitatively immaterial, and applying discounting would violate the cost constraint without offering decision-useful information.
@@ -37,7 +37,7 @@ The operating cycle is the average elapsed time between the acquisition of mater
 #### 1.3 Major Types of Current Liabilities
 
 ```mermaid
-flowchart TD
+flowchart LR
     CL[Current Liabilities under IAS 1]
     CL --> TP[Trade Payables / Accounts Payable]
     CL --> NP[Short-Term Notes Payable]
@@ -209,7 +209,7 @@ Compensated absences are employee benefits involving paid leave for vacation, si
 #### 2.3 Profit-Sharing and Bonus Plans
 Bonus arrangements represent supplementary employee compensation tied to operational performance metrics or net earnings. Under IAS 19, profit-sharing and bonus obligations are recognized as accrued current liabilities when the entity has a present legal or constructive obligation based on past events and a reliable estimate can be derived.
 
-> [!formula] Formula & Derivation: Algebraic Calculations for Bonus Formulas
+> [!quote] Formula & Derivation: Algebraic Calculations for Bonus Formulas
 > Let $B = \text{Bonus Amount}$, $T = \text{Tax Rate}$, $I = \text{Net Income before bonus and tax}$.
 > **Case 1: Bonus Based on Income Before Tax and Before Bonus**
 > $$ B = b \times I $$
@@ -260,7 +260,7 @@ flowchart TD
 | **Restructuring Provisions** | Recognized once formal plan exists and valid expectation is raised. | Accrued only when liability is incurred (ASC 420 criteria). |
 
 #### 3.4 Measurement Principles for Provisions
-> [!formula] Formula & Derivation: Measurement Principles
+> [!quote] Formula & Derivation: Measurement Principles
 > **1. Best Estimate Framework:** The amount recognized must be the best estimate of the expenditure required to settle the present obligation.
 > **2. Expected Value Method (Large Population of Items):**
 > $$ \text{Expected Value} = \sum (\text{Outcome Amount}_i \times \text{Probability}_i) $$

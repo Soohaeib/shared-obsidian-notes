@@ -137,7 +137,7 @@ flowchart LR
 #### 2.3 Allowance for Doubtful Accounts Mechanics
 Trade receivables are valued on the Statement of Financial Position at Net Realisable Value (gross receivables less allowance for doubtful accounts).
 
-> [!formula] Formula & Derivation: Net Realisable Value & ECL Adjustments
+> [!quote] Formula & Derivation: Net Realisable Value & ECL Adjustments
 > $$ \text{Net Realisable Value} = \text{Gross Trade Receivables} - \text{Allowance for Doubtful Accounts} $$
 > Under the aging matrix (Percentage-of-Receivables) approach:
 > $$ \text{Required Adjustment Amount} = \text{Target Allowance Balance} - \text{Existing Credit Balance (or } + \text{Debit Balance)} $$
@@ -198,7 +198,7 @@ A note receivable is a formal written promissory note conferring a legal obligat
 #### 3.3 Zero-Interest-Bearing & Low-Interest Notes Mechanics
 Zero-interest-bearing notes do not specify a periodic cash interest coupon. Instead, the total implicit interest is embedded within the maturity face value. The note's present value equals the cash exchanged or fair value of goods/services provided.
 
-> [!formula] Formula & Derivation: Zero-Interest Notes & Effective-Interest
+> [!quote] Formula & Derivation: Zero-Interest Notes & Effective-Interest
 > **Present Value Calculation:**
 > $$ PV = FV \times \left(\frac{1}{(1 + i)^n}\right) $$
 > *(Where $PV$ = Initial Carrying Amount, $FV$ = Maturity Amount, $i$ = Market Rate, $n$ = Total Periods)*
@@ -260,7 +260,7 @@ flowchart TD
 #### 4.2 Bank Discounting of Notes Receivable
 Bank discounting occurs when a payee transfers a customer note receivable to a bank prior to maturity to receive immediate cash financing.
 
-> [!formula] Formula & Derivation: Bank Discounting Calculations
+> [!quote] Formula & Derivation: Bank Discounting Calculations
 > **Step 1: Maturity Value (MV)**
 > $$ \text{Total Interest} = \text{Principal} \times r_{\text{stated}} \times \left(\frac{\text{Full Term (Months)}}{12}\right) $$
 > $$ MV = \text{Principal (Face Value)} + \text{Total Interest to Maturity} $$

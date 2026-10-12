@@ -18,7 +18,7 @@ Financial transactions involving time value calculations are defined and mathema
 
 Mathematically, these four core variables are related through the fundamental compounding equation:
 
-> [!formula] Formula & Derivation: Compounding & Discounting
+> [!quote] Formula & Derivation: Compounding & Discounting
 > **Future Value (Compounding):**
 > $$ FV = PV \times (1 + i)^n $$
 > **Present Value (Discounting):**
@@ -35,7 +35,7 @@ Mathematically, these four core variables are related through the fundamental co
 #### 1.2 Components of Interest Rates & Risk Framework
 In economic theory and financial reporting, the nominal interest rate charged or earned on any financial instrument comprises three distinct economic components:
 
-> [!formula] Formula & Derivation: Interest Rate Composition
+> [!quote] Formula & Derivation: Interest Rate Composition
 > $$ \text{Nominal Interest Rate} = \text{Pure Rate of Interest} + \text{Expected Inflation Rate} + \text{Credit Risk Premium} $$
 
 1. **Pure Rate of Interest ($2\%\text{--}4\%$ per annum):** The real, risk-free cost of borrowing funds in the absence of inflation and default risk. It represents the baseline compensation demanded by lenders for postponing current consumption.
@@ -100,7 +100,7 @@ Present value varies inversely with both the discount rate ($i$) and the duratio
 #### 2.3 Solving for Unknown Variables ($i$ and $n$)
 When $PV$ and $FV$ are known, financial analysts must solve algebraically for either the implicit interest rate ($i$) or the time period ($n$).
 
-> [!formula] Formula & Derivation: Solving for Unknowns
+> [!quote] Formula & Derivation: Solving for Unknowns
 > **1. Solving for the Periodic Interest Rate ($i$)**
 > Starting from $FV = PV(1 + i)^n$:
 > $$ \frac{FV}{PV} = (1 + i)^n $$
@@ -162,7 +162,7 @@ flowchart LR
 #### 3.2 Conversion Mechanics and Mathematical Derivations
 Because each rent in an Annuity Due occurs one period earlier than in an Ordinary Annuity, every cash flow in an Annuity Due earns **one additional period of interest**.
 
-> [!formula] Formula & Derivation: Annuity Due Conversion
+> [!quote] Formula & Derivation: Annuity Due Conversion
 > **Mathematical Proof:**
 > Let the Future Value of an Ordinary Annuity ($FV\text{-}OA$) of rent $R$ for $n$ periods at rate $i$ be:
 > $$ FV\text{-}OA = R \sum_{k=0}^{n-1} (1 + i)^k = R \left[ \frac{(1 + i)^n - 1}{i} \right] $$
@@ -236,7 +236,7 @@ Because each rent in an Annuity Due occurs one period earlier than in an Ordinar
 #### 4.1 Deferred Annuities
 A deferred annuity is an annuity structure in which the periodic cash flows ($R$) begin only after a specified number of deferred periods ($y$). The actual cash receipt or payment stream runs for $n$ total annuity periods, but the first rent is delayed until period $y + 1$.
 
-> [!formula] Formula & Derivation: PV of Deferred Ordinary Annuity ($PV\text{-}DA$)
+> [!quote] Formula & Derivation: PV of Deferred Ordinary Annuity ($PV\text{-}DA$)
 > **Method 1: Two-Step Discounting**
 > 1. Calculate the present value of the $n$-period ordinary annuity at the start of the annuity stream (which corresponds to time period $y$):
 >    $$ PV_y = R \times PVF\text{-}OA_{n, i} $$
@@ -261,7 +261,7 @@ A deferred annuity is an annuity structure in which the periodic cash flows ($R$
 #### 4.2 Valuation of Long-Term Bonds Payable
 The initial price or valuation of a fixed-rate corporate bond equals the sum of two distinct present value components, both discounted at the prevailing market yield ($i_{\text{market}}$) on the date of issuance:
 
-> [!formula] Formula & Derivation: Bond Valuation
+> [!quote] Formula & Derivation: Bond Valuation
 > $$ \text{Bond Price} = PV \text{ of Principal (Single Sum)} + PV \text{ of Coupon Payments (Ordinary Annuity)} $$
 > $$ \text{Bond Price} = \left[ FV \times (1 + i)^{-n} \right] + \left[ INT \times \frac{1 - (1 + i)^{-n}}{i} \right] $$
 > where:

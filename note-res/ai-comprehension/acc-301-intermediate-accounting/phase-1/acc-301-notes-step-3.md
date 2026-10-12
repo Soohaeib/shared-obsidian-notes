@@ -106,7 +106,7 @@ $$ \begin{array}{lrr}
 #### 2.4 Earnings Per Share (EPS) Presentation Rules
 Basic Earnings Per Share (EPS) must be presented on the face of the Statement of Profit or Loss for entities whose shares are publicly traded.
 
-> [!formula] Formula & Derivation: Earnings Per Share (EPS)
+> [!quote] Formula & Derivation: Earnings Per Share (EPS)
 > $$ \text{Basic EPS} = \frac{\text{Profit or Loss (Net Income)} - \text{Preference Share Dividends}}{\text{Weighted-Average Number of Ordinary Shares Outstanding}} $$
 
 * **Preference Dividends Allocation**: Cumulative preference dividends (declared or undeclared) or non-cumulative preference dividends declared during the period are deducted from Profit or Loss.
@@ -123,7 +123,7 @@ IAS 1 allows entities two presentation options for comprehensive income:
 #### 3.2 The Comprehensive Income Equation
 Total Comprehensive Income encompasses all non-owner changes in equity during a period.
 
-> [!formula] Formula & Derivation: Comprehensive Income
+> [!quote] Formula & Derivation: Comprehensive Income
 > $$ \text{Total Comprehensive Income} = \text{Profit or Loss (Net Income)} + \text{Other Comprehensive Income (OCI)} $$
 
 #### 3.3 Components of Other Comprehensive Income (OCI)
@@ -135,7 +135,7 @@ Other Comprehensive Income comprises items of income and expense (including recl
 #### 3.4 Accumulated Other Comprehensive Income (AOCI) in Equity
 While OCI represents the periodic flow of unrealized items during a fiscal year, the cumulative balance of these items over time is held in a permanent equity reserve on the Statement of Financial Position titled **Accumulated Other Comprehensive Income (AOCI)**.
 
-> [!formula] Formula & Derivation
+> [!quote] Formula & Derivation
 > $$ \text{Ending AOCI} = \text{Beginning AOCI} \pm \text{Current Period OCI} $$
 
 ---
@@ -164,7 +164,7 @@ $$ \begin{array}{l}
 **Intraperiod Tax Allocation Formula**
 To avoid distorting continuing operations, total income tax expense must be allocated across financial statement components:
 
-> [!formula] Formula & Derivation: Intraperiod Tax Allocation
+> [!quote] Formula & Derivation: Intraperiod Tax Allocation
 > $$ \text{Tax Effect of Item} = \text{Pre-Tax Amount} \times \text{Marginal Tax Rate } (t) $$
 > $$ \text{After-Tax Gain} = \text{Pre-Tax Gain} \times (1 - t) $$
 > $$ \text{After-Tax Loss} = \text{Pre-Tax Loss} \times (1 - t) \quad [\text{Tax Benefit } = \text{Pre-Tax Loss} \times t] $$
@@ -285,7 +285,7 @@ The Statement of Cash Flows (governed by IAS 7) categorizes cash receipts and ca
    * *Inflows*: Proceeds from issuing share capital, debentures, notes, bonds, and bank loans.
    * *Outflows*: Cash dividend payments, repurchases of share capital (treasury shares), and principal debt repayments.
 #### 7.2 Operating Cash Flow Reconciliation Formats
-> [!formula] Formula & Derivation: Indirect Method Formula
+> [!quote] Formula & Derivation: Indirect Method Formula
 > Reconciles Profit or Loss (Net Income) to Net Cash Flow from Operating Activities:
 > $$ \begin{aligned}
 > \text{Net Operating Cash Flow} &= \text{Profit or Loss (Net Income)} \\
@@ -297,7 +297,7 @@ The Statement of Cash Flows (governed by IAS 7) categorizes cash receipts and ca
 > &\quad - \Delta\text{Operating Current Liabilities (Decreases)}
 > \end{aligned} $$
 
-> [!formula] Formula & Derivation: Direct Method Conversion Formulas
+> [!quote] Formula & Derivation: Direct Method Conversion Formulas
 > Converts each accrual revenue and expense line to direct cash flows:
 > $$ \text{Cash Receipts from Customers} = \text{Net Sales Revenue} - \Delta\text{Trade Receivables} + \Delta\text{Unearned Revenue} $$
 > $$ \text{Purchases} = \text{Cost of Sales} + \Delta\text{Inventory} $$

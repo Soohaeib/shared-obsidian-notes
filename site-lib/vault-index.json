@@ -243,7 +243,7 @@
     "5th-semester/others/semester-syllabus-mapping.md",
     "5th-semester/others/syllabus-5th-semester.md",
     "5th-semester/overview-of-5th-semester.md",
-    "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting.md",
+    "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-guide.md",
     "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-1.md",
     "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-2.md",
     "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-3.md",
@@ -898,36 +898,36 @@
       "originalName": "ACC 302 Notes Phase 5",
       "isHome": false
     },
-    "Accounting Terminology in US GAAP vs. IFRS vs. Bangladesh Statutory Reporting": {
-      "path": "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting.md",
+    "Accounting Terminology Guide": {
+      "path": "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-guide.md",
       "folder": "ai-comprehension",
-      "relInFolder": "acc-301-intermediate-accounting/accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting.md",
-      "title": "Accounting Terminology in US GAAP vs. IFRS vs. Bangladesh Statutory Reporting",
-      "originalName": "Accounting Terminology in US GAAP vs. IFRS vs. Bangladesh Statutory Reporting",
+      "relInFolder": "acc-301-intermediate-accounting/accounting-terminology-guide.md",
+      "title": "Accounting Terminology Guide",
+      "originalName": "Accounting Terminology Guide",
       "isHome": false
     },
-    "accounting terminology in us gaap vs. ifrs vs. bangladesh statutory reporting": {
-      "path": "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting.md",
+    "accounting terminology guide": {
+      "path": "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-guide.md",
       "folder": "ai-comprehension",
-      "relInFolder": "acc-301-intermediate-accounting/accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting.md",
-      "title": "Accounting Terminology in US GAAP vs. IFRS vs. Bangladesh Statutory Reporting",
-      "originalName": "Accounting Terminology in US GAAP vs. IFRS vs. Bangladesh Statutory Reporting",
+      "relInFolder": "acc-301-intermediate-accounting/accounting-terminology-guide.md",
+      "title": "Accounting Terminology Guide",
+      "originalName": "Accounting Terminology Guide",
       "isHome": false
     },
-    "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting.md": {
-      "path": "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting.md",
+    "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-guide.md": {
+      "path": "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-guide.md",
       "folder": "ai-comprehension",
-      "relInFolder": "acc-301-intermediate-accounting/accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting.md",
-      "title": "Accounting Terminology in US GAAP vs. IFRS vs. Bangladesh Statutory Reporting",
-      "originalName": "Accounting Terminology in US GAAP vs. IFRS vs. Bangladesh Statutory Reporting",
+      "relInFolder": "acc-301-intermediate-accounting/accounting-terminology-guide.md",
+      "title": "Accounting Terminology Guide",
+      "originalName": "Accounting Terminology Guide",
       "isHome": false
     },
-    "accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting": {
-      "path": "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting.md",
+    "accounting-terminology-guide": {
+      "path": "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-guide.md",
       "folder": "ai-comprehension",
-      "relInFolder": "acc-301-intermediate-accounting/accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting.md",
-      "title": "Accounting Terminology in US GAAP vs. IFRS vs. Bangladesh Statutory Reporting",
-      "originalName": "Accounting Terminology in US GAAP vs. IFRS vs. Bangladesh Statutory Reporting",
+      "relInFolder": "acc-301-intermediate-accounting/accounting-terminology-guide.md",
+      "title": "Accounting Terminology Guide",
+      "originalName": "Accounting Terminology Guide",
       "isHome": false
     },
     "ACC 301 Notes Step 5": {
@@ -10897,7 +10897,8 @@
     "expansion-of-class-notes": "Expansion of class notes",
     "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-in-us-gaap-vs-ifrs-vs-bangladesh-statutory-reporting.md": "Accounting Terminology in US GAAP vs. IFRS vs. Bangladesh Statutory Reporting",
     "materiality-analyses": "Materiality analyses",
-    "materiality-analyses/acc-302-analysis.md": "ACC 302 Analysis"
+    "materiality-analyses/acc-302-analysis.md": "ACC 302 Analysis",
+    "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-guide.md": "Accounting Terminology Guide"
   },
   "lockedSections": {}
 }

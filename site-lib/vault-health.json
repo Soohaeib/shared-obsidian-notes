@@ -1,9 +1,9 @@
 {
   "summary": {
-    "totalFiles": 299,
+    "totalFiles": 300,
     "cleanFiles": 285,
-    "filesWithWarnings": 14,
-    "totalIssues": 678,
+    "filesWithWarnings": 15,
+    "totalIssues": 679,
     "autoFixedIssues": 0,
     "healthScore": 95
   },
@@ -6786,6 +6786,16 @@
       "message": "Normalized media path 'BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg' for the published reader.",
       "snippet": "![[BBA Study/AI Comprehension/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg]]",
       "suggestion": "Use '![[ai-comprehension/acc-302-financial-management/assets/acc302-economic-order-quantity-curves.svg]]'.",
+      "autoFixed": false
+    },
+    {
+      "file": "note-res/ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-2.md",
+      "line": 204,
+      "category": "Callout",
+      "severity": "warning",
+      "message": "Callout missing standard spacing after '>' or '[!type]'.",
+      "snippet": "> [!quote]  General Formula $\\sigma$ Known",
+      "suggestion": "Change to: '> [!quote] General Formula $\\sigma$ Known'",
       "autoFixed": false
     }
   ]
