@@ -93,17 +93,106 @@
           startOnLoad: false,
           securityLevel: 'antiscript',
           theme: isDark ? 'dark' : 'default',
-          // Trust the user's YAML frontmatter for layout styles, provide safe defaults
           themeVariables: isDark ? {
-            primaryColor: '#2e3440',
-            primaryTextColor: '#eceff4',
+            darkMode: true,
+            background: '#161922',
+            mainBkg: '#242933',
+            primaryColor: '#242933',
+            primaryTextColor: '#f8fafc',
+            primaryBorderColor: '#81a1c1',
+            secondaryColor: '#2e3440',
+            secondaryTextColor: '#eceff4',
+            secondaryBorderColor: '#88c0d0',
+            tertiaryColor: '#1e222a',
+            tertiaryTextColor: '#d8dee9',
+            tertiaryBorderColor: '#4c566a',
             lineColor: '#81a1c1',
-            mainBkg: '#2e3440'
+            textColor: '#f8fafc',
+            border1: '#81a1c1',
+            border2: '#88c0d0',
+            arrowheadColor: '#88c0d0',
+            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            fontSize: '13px',
+            // Flowchart specific
+            nodeBorder: '#81a1c1',
+            clusterBkg: 'rgba(136, 192, 208, 0.04)',
+            clusterBorder: 'rgba(136, 192, 208, 0.3)',
+            defaultLinkColor: '#81a1c1',
+            titleColor: '#88c0d0',
+            edgeLabelBackground: '#1e222a',
+            nodeTextColor: '#f8fafc',
+            // Sequence
+            actorBkg: '#242933',
+            actorBorder: '#88c0d0',
+            actorTextColor: '#f8fafc',
+            actorLineColor: '#81a1c1',
+            signalColor: '#81a1c1',
+            signalTextColor: '#f8fafc',
+            labelBoxBkgColor: '#242933',
+            labelBoxBorderColor: '#88c0d0',
+            labelTextColor: '#f8fafc',
+            loopTextColor: '#88c0d0',
+            noteBkgColor: '#2e3440',
+            noteBorderColor: '#ebcb8b',
+            noteTextColor: '#f8fafc',
+            activationBkgColor: 'rgba(136, 192, 208, 0.15)',
+            activationBorderColor: '#88c0d0',
+            // Class & State
+            classText: '#f8fafc',
+            stateBkg: '#242933',
+            stateBorder: '#81a1c1',
+            stateLabelColor: '#f8fafc',
+            altBackground: '#1e222a'
           } : {
-            primaryColor: '#e5e9f0',
-            primaryTextColor: '#2e3440',
-            lineColor: '#4c566a',
-            mainBkg: '#f8fafc'
+            darkMode: false,
+            background: '#ffffff',
+            mainBkg: '#f8fafc',
+            primaryColor: '#f8fafc',
+            primaryTextColor: '#0f172a',
+            primaryBorderColor: '#94a3b8',
+            secondaryColor: '#f1f5f9',
+            secondaryTextColor: '#1e293b',
+            secondaryBorderColor: '#5e81ac',
+            tertiaryColor: '#e2e8f0',
+            tertiaryTextColor: '#334155',
+            tertiaryBorderColor: '#cbd5e1',
+            lineColor: '#475569',
+            textColor: '#0f172a',
+            border1: '#94a3b8',
+            border2: '#5e81ac',
+            arrowheadColor: '#334155',
+            fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+            fontSize: '13px',
+            // Flowchart specific
+            nodeBorder: '#94a3b8',
+            clusterBkg: 'rgba(94, 129, 172, 0.04)',
+            clusterBorder: 'rgba(94, 129, 172, 0.3)',
+            defaultLinkColor: '#475569',
+            titleColor: '#2563eb',
+            edgeLabelBackground: '#f1f5f9',
+            nodeTextColor: '#0f172a',
+            // Sequence
+            actorBkg: '#ffffff',
+            actorBorder: '#5e81ac',
+            actorTextColor: '#0f172a',
+            actorLineColor: '#64748b',
+            signalColor: '#475569',
+            signalTextColor: '#0f172a',
+            labelBoxBkgColor: '#ffffff',
+            labelBoxBorderColor: '#5e81ac',
+            labelTextColor: '#0f172a',
+            loopTextColor: '#2563eb',
+            noteBkgColor: '#fef3c7',
+            noteBorderColor: '#f59e0b',
+            noteTextColor: '#92400e',
+            activationBkgColor: 'rgba(94, 129, 172, 0.12)',
+            activationBorderColor: '#5e81ac',
+            // Class & State
+            classText: '#0f172a',
+            stateBkg: '#ffffff',
+            stateBorder: '#94a3b8',
+            stateLabelColor: '#0f172a',
+            altBackground: '#f8fafc'
           },
           fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif"
         });
@@ -120,6 +209,23 @@
       return false;
     }
 
+    getDiagramIconSvg(typeName) {
+      switch (typeName) {
+        case 'MINDMAP':
+          return `<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 9V4M12 15v5M9 12H4M15 12h5"></path></svg>`;
+        case 'SEQUENCE':
+          return `<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16M20 4v16M4 8h16M20 14H4"></path></svg>`;
+        case 'CLASS':
+        case 'STATE':
+        case 'ENTITY-RELATION':
+          return `<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line></svg>`;
+        case 'GIT GRAPH':
+          return `<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 9v12M18 9a9 9 0 0 1-9 9"></path></svg>`;
+        default:
+          return `<svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect><path d="M10 6.5h4a2 2 0 0 1 2 2v5.5"></path></svg>`;
+      }
+    }
+
     buildCardContainer(diagramId, rawCode, typeName) {
       const card = document.createElement('div');
       card.className = 'mermaid-diagram-container mermaid-diagram-card';
@@ -127,27 +233,22 @@
       card.dataset.mermaidRaw = rawCode;
       card.dataset.diagramType = typeName;
 
+      const iconSvg = this.getDiagramIconSvg(typeName);
+
       card.innerHTML = `
         <div class="mermaid-card-header">
           <div class="mermaid-card-meta">
-            <span class="mermaid-type-badge">${this.escapeHtml(typeName)}</span>
+            <span class="mermaid-status-dot" aria-hidden="true"></span>
+            <span class="mermaid-type-badge">${iconSvg}<span>${this.escapeHtml(typeName)}</span></span>
           </div>
           <div class="mermaid-card-actions">
-            <button type="button" class="mermaid-action-btn mermaid-btn-zoom-out" title="Zoom out (-)" aria-label="Zoom out">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+            <button type="button" class="mermaid-action-btn mermaid-btn-download" title="Export as SVG" aria-label="Download SVG image">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             </button>
-            <span class="mermaid-zoom-indicator">100%</span>
-            <button type="button" class="mermaid-action-btn mermaid-btn-zoom-in" title="Zoom in (+)" aria-label="Zoom in">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
-            </button>
-            <button type="button" class="mermaid-action-btn mermaid-btn-reset" title="Reset zoom (100%)" aria-label="Reset zoom">
-              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M3 21v-5h5"></path></svg>
-            </button>
-            <div class="mermaid-action-divider"></div>
-            <button type="button" class="mermaid-action-btn mermaid-btn-copy" title="Copy Mermaid code" aria-label="Copy Mermaid code">
+            <button type="button" class="mermaid-action-btn mermaid-btn-copy" title="Copy Mermaid syntax" aria-label="Copy Mermaid code">
               <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
             </button>
-            <button type="button" class="mermaid-action-btn mermaid-btn-expand" title="Open interactive zoom & pan modal" aria-label="Open interactive zoom & pan modal">
+            <button type="button" class="mermaid-action-btn mermaid-btn-expand" title="Open full interactive lightbox" aria-label="Open interactive zoom & pan modal">
               <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
             </button>
           </div>
@@ -162,7 +263,7 @@
         <div class="mermaid-card-footer">
           <span class="mermaid-hint">
             <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            Click diagram or expand button for interactive pan & zoom modal
+            Click diagram or expand button to open interactive lightbox
           </span>
         </div>
       `;
@@ -171,39 +272,60 @@
     }
 
     attachCardInteractions(card, rawCode) {
-      // (Your interactions remain exactly the same as they were mathematically correct for the UI)
-      const zoomIndicator = card.querySelector('.mermaid-zoom-indicator');
-      const btnZoomIn = card.querySelector('.mermaid-btn-zoom-in');
-      const btnZoomOut = card.querySelector('.mermaid-btn-zoom-out');
-      const btnReset = card.querySelector('.mermaid-btn-reset');
       const btnCopy = card.querySelector('.mermaid-btn-copy');
+      const btnDownload = card.querySelector('.mermaid-btn-download');
       const btnExpand = card.querySelector('.mermaid-btn-expand');
       const cardBody = card.querySelector('.mermaid-card-body');
       const viewport = card.querySelector('.mermaid-viewport-container');
 
-      let currentZoom = 1.0;
-
-      const updateZoom = (newZoom) => {
-        currentZoom = Math.max(0.5, Math.min(3.0, newZoom));
-        if (zoomIndicator) zoomIndicator.textContent = `${Math.round(currentZoom * 100)}%`;
-        if (viewport) {
-          viewport.style.transform = `scale(${currentZoom})`;
-          viewport.style.transformOrigin = 'center top';
+      const updateScrollIndicators = () => {
+        if (!cardBody) return;
+        const maxScroll = cardBody.scrollWidth - cardBody.clientWidth;
+        if (maxScroll > 6) {
+          cardBody.classList.toggle('has-scroll-left', cardBody.scrollLeft > 6);
+          cardBody.classList.toggle('has-scroll-right', cardBody.scrollLeft < maxScroll - 6);
+        } else {
+          cardBody.classList.remove('has-scroll-left', 'has-scroll-right');
         }
       };
 
-      btnZoomIn?.addEventListener('click', (e) => { e.stopPropagation(); updateZoom(currentZoom * 1.25); });
-      btnZoomOut?.addEventListener('click', (e) => { e.stopPropagation(); updateZoom(currentZoom / 1.25); });
-      btnReset?.addEventListener('click', (e) => { e.stopPropagation(); updateZoom(1.0); });
+      cardBody?.addEventListener('scroll', updateScrollIndicators, { passive: true });
+      window.addEventListener('resize', updateScrollIndicators, { passive: true });
+      setTimeout(updateScrollIndicators, 150);
 
       btnCopy?.addEventListener('click', async (e) => {
         e.stopPropagation();
         try {
           await navigator.clipboard.writeText(rawCode);
-          const origSvg = btnCopy.innerHTML;
-          btnCopy.innerHTML = `<span style="font-size: 10px; font-weight: bold; color: var(--green, #a3be8c);">✓</span>`;
-          setTimeout(() => { btnCopy.innerHTML = origSvg; }, 2000);
+          const origContent = btnCopy.innerHTML;
+          btnCopy.innerHTML = `<span style="font-size: 11px; font-weight: 700; color: var(--green, #a3be8c);">✓</span>`;
+          btnCopy.classList.add('copied');
+          setTimeout(() => {
+            btnCopy.innerHTML = origContent;
+            btnCopy.classList.remove('copied');
+          }, 2000);
         } catch (err) {}
+      });
+
+      btnDownload?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const svgEl = viewport?.querySelector('svg');
+        if (!svgEl) return;
+        try {
+          const svgData = new XMLSerializer().serializeToString(svgEl);
+          const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          const typeName = (card.dataset.diagramType || 'diagram').toLowerCase().replace(/\s+/g, '-');
+          a.href = url;
+          a.download = `${typeName}-${Date.now()}.svg`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        } catch (err) {
+          console.warn('Failed to download SVG:', err);
+        }
       });
 
       const openModal = (e) => {
@@ -212,7 +334,6 @@
         if (!svgEl) return;
         const typeName = card.dataset.diagramType || 'Diagram';
         if (window.ObsidianMediaPreview && typeof window.ObsidianMediaPreview.open === 'function') {
-          // Open authentic SVG in the Lightbox!
           window.ObsidianMediaPreview.open(svgEl.outerHTML, 'svg', typeName);
         }
       };
@@ -260,20 +381,16 @@
           if (svgEl) {
             svgEl.style.display = 'block';
             svgEl.style.margin = '0 auto';
+            svgEl.style.maxWidth = '100%';
+            svgEl.style.maxHeight = '55vh';
+            svgEl.style.width = '100%';
+            svgEl.style.height = 'auto';
+            svgEl.style.objectFit = 'contain';
             svgEl.removeAttribute('height');
 
             if (svgEl.viewBox && svgEl.viewBox.baseVal && svgEl.viewBox.baseVal.height > 0) {
               const vb = svgEl.viewBox.baseVal;
               svgEl.style.aspectRatio = `${vb.width} / ${vb.height}`;
-              if (vb.width < 650) {
-                svgEl.style.width = '100%';
-                svgEl.style.maxWidth = `${Math.round(vb.width * 1.05)}px`;
-              } else {
-                svgEl.style.width = '100%';
-              }
-              if (vb.width > 550) {
-                viewportContainer.style.minWidth = `${Math.min(vb.width, 680)}px`;
-              }
             }
           }
           this.attachCardInteractions(container, rawCode);
@@ -324,20 +441,16 @@
           if (svgEl) {
             svgEl.style.display = 'block';
             svgEl.style.margin = '0 auto';
+            svgEl.style.maxWidth = '100%';
+            svgEl.style.maxHeight = '55vh';
+            svgEl.style.width = '100%';
+            svgEl.style.height = 'auto';
+            svgEl.style.objectFit = 'contain';
             svgEl.removeAttribute('height');
 
             if (svgEl.viewBox && svgEl.viewBox.baseVal && svgEl.viewBox.baseVal.height > 0) {
               const vb = svgEl.viewBox.baseVal;
               svgEl.style.aspectRatio = `${vb.width} / ${vb.height}`;
-              if (vb.width < 650) {
-                svgEl.style.width = '100%';
-                svgEl.style.maxWidth = `${Math.round(vb.width * 1.05)}px`;
-              } else {
-                svgEl.style.width = '100%';
-              }
-              if (vb.width > 550) {
-                viewportContainer.style.minWidth = `${Math.min(vb.width, 680)}px`;
-              }
             }
           }
         } catch (err) {

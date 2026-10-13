@@ -12,13 +12,17 @@
 div[id^="dmermaid-diag"] {
   position: relative;
   width: 100%;
-  margin: 1.75em 0;
-  background: var(--background-secondary, #1e222a);
-  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.1));
-  border-radius: 10px;
+  max-width: 100%;
+  max-height: 70vh;
+  margin: 2rem 0;
+  background-color: var(--background-secondary, #181b23);
+  background-image: radial-gradient(circle, rgba(136, 192, 208, 0.08) 1.2px, transparent 1.2px);
+  background-size: 20px 20px;
+  border: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.09));
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.35), 0 2px 8px -1px rgba(0, 0, 0, 0.2);
+  transition: border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
 }
@@ -26,55 +30,101 @@ div[id^="dmermaid-diag"] {
 .theme-light .mermaid-diagram-container,
 .theme-light .mermaid-diagram-card,
 .theme-light div[id^="dmermaid-diag"] {
-  background: #ffffff;
-  border-color: rgba(0, 0, 0, 0.1);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  background-color: var(--background-primary, #ffffff);
+  background-image: radial-gradient(circle, rgba(71, 85, 105, 0.07) 1.2px, transparent 1.2px);
+  background-size: 20px 20px;
+  border-color: rgba(0, 0, 0, 0.09);
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.06), 0 2px 8px -1px rgba(0, 0, 0, 0.03);
 }
 
 .mermaid-diagram-container:hover,
 .mermaid-diagram-card:hover {
-  border-color: var(--frost2, #88c0d0);
+  border-color: rgba(136, 192, 208, 0.45);
+  box-shadow: 0 14px 40px -4px rgba(0, 0, 0, 0.45), 0 0 24px -2px rgba(136, 192, 208, 0.12);
 }
 
-/* Card Header & Controls Toolbar */
+.theme-light .mermaid-diagram-container:hover,
+.theme-light .mermaid-diagram-card:hover {
+  border-color: rgba(94, 129, 172, 0.4);
+  box-shadow: 0 12px 36px -4px rgba(0, 0, 0, 0.09), 0 0 20px -2px rgba(94, 129, 172, 0.08);
+}
+
+/* Card Header & Controls Toolbar (Glassmorphic Top Bar) */
 .mermaid-card-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 14px;
-  background: rgba(0, 0, 0, 0.2);
+  padding: 8px 16px;
+  background: rgba(22, 25, 34, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.08));
   user-select: none;
+  z-index: 6;
 }
 
 .theme-light .mermaid-card-header {
-  background: #f8fafc;
+  background: rgba(248, 250, 252, 0.88);
   border-bottom-color: rgba(0, 0, 0, 0.06);
 }
 
 .mermaid-card-meta {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
+}
+
+/* Pulsing Status Dot */
+.mermaid-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--frost1, #88c0d0);
+  box-shadow: 0 0 8px var(--frost1, #88c0d0);
+  display: inline-block;
+  opacity: 0.85;
+}
+
+.theme-light .mermaid-status-dot {
+  background-color: #0284c7;
+  box-shadow: 0 0 8px rgba(2, 132, 199, 0.6);
+}
+
+@keyframes mermaidPulse {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
 }
 
 .mermaid-type-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-mono, monospace);
-  font-size: 10px;
+  font-size: 10.5px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 2px 7px;
-  border-radius: 4px;
-  background: rgba(136, 192, 208, 0.15);
+  padding: 2.5px 8px;
+  border-radius: 5px;
+  background: rgba(136, 192, 208, 0.12);
   color: var(--frost1, #88c0d0);
-  border: 1px solid rgba(136, 192, 208, 0.3);
+  border: 1px solid rgba(136, 192, 208, 0.28);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.mermaid-type-badge svg {
+  color: var(--frost1, #88c0d0);
+  display: block;
 }
 
 .theme-light .mermaid-type-badge {
   background: rgba(94, 129, 172, 0.1);
-  color: #5e81ac;
+  color: #3b82f6;
   border-color: rgba(94, 129, 172, 0.25);
+}
+
+.theme-light .mermaid-type-badge svg {
+  color: #2563eb;
 }
 
 .mermaid-card-actions {
@@ -87,27 +137,43 @@ div[id^="dmermaid-diag"] {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   padding: 0;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid transparent;
-  border-radius: 5px;
+  border-radius: 6px;
   color: var(--text-muted, #d8dee9);
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .mermaid-action-btn:hover {
-  background: var(--background-modifier-hover, rgba(255, 255, 255, 0.1));
+  background: var(--background-modifier-hover, rgba(255, 255, 255, 0.12));
   color: var(--text-normal, #eceff4);
-  border-color: var(--background-modifier-border, rgba(255, 255, 255, 0.1));
+  border-color: var(--background-modifier-border, rgba(255, 255, 255, 0.15));
+  transform: translateY(-1px);
+}
+
+.mermaid-action-btn:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.theme-light .mermaid-action-btn {
+  background: rgba(0, 0, 0, 0.03);
+  color: #475569;
 }
 
 .theme-light .mermaid-action-btn:hover {
-  background: rgba(0, 0, 0, 0.06);
+  background: rgba(0, 0, 0, 0.07);
   color: #0f172a;
-  border-color: rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.mermaid-action-btn.copied {
+  background: rgba(163, 190, 140, 0.18) !important;
+  border-color: rgba(163, 190, 140, 0.4) !important;
 }
 
 .mermaid-zoom-indicator {
@@ -115,29 +181,52 @@ div[id^="dmermaid-diag"] {
   font-size: 11px;
   font-weight: 600;
   color: var(--text-muted, #d8dee9);
-  padding: 0 4px;
-  min-width: 38px;
+  padding: 2px 7px;
+  min-width: 42px;
   text-align: center;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.mermaid-zoom-indicator:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--frost1, #88c0d0);
+  border-color: rgba(136, 192, 208, 0.3);
+}
+
+.theme-light .mermaid-zoom-indicator {
+  background: rgba(0, 0, 0, 0.04);
+  color: #475569;
+}
+
+.theme-light .mermaid-zoom-indicator:hover {
+  background: rgba(0, 0, 0, 0.08);
+  color: #2563eb;
+  border-color: rgba(37, 99, 235, 0.3);
 }
 
 .mermaid-action-divider {
   width: 1px;
-  height: 14px;
+  height: 15px;
   background: var(--background-modifier-border, rgba(255, 255, 255, 0.12));
-  margin: 0 3px;
+  margin: 0 4px;
 }
 
 .theme-light .mermaid-action-divider {
   background: rgba(0, 0, 0, 0.1);
 }
 
-/* Card Body & Responsive Scrollable Viewport */
+/* Card Body & Responsive Scrollable Viewport with Percentage Height Limit */
 .mermaid-card-body {
   position: relative;
   width: 100%;
-  padding: 24px 16px;
+  max-height: calc(70vh - 68px);
+  padding: 24px;
   overflow-x: auto;
-  overflow-y: hidden;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   display: flex;
   justify-content: center;
@@ -145,36 +234,102 @@ div[id^="dmermaid-diag"] {
   min-height: 120px;
 }
 
+/* Dynamic Left/Right Scroll Overflow Shadows */
+.mermaid-card-body.has-scroll-left::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 32px;
+  background: linear-gradient(to right, rgba(24, 27, 35, 0.95), transparent);
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity 0.2s ease;
+}
+
+.mermaid-card-body.has-scroll-right::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 32px;
+  background: linear-gradient(to left, rgba(24, 27, 35, 0.95), transparent);
+  pointer-events: none;
+  z-index: 5;
+  transition: opacity 0.2s ease;
+}
+
+.theme-light .mermaid-card-body.has-scroll-left::before {
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.95), transparent);
+}
+
+.theme-light .mermaid-card-body.has-scroll-right::after {
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.95), transparent);
+}
+
+/* Sleek Viewport Scrollbar */
+.mermaid-card-body::-webkit-scrollbar {
+  height: 6px;
+}
+
+.mermaid-card-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.mermaid-card-body::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+.mermaid-card-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.theme-light .mermaid-card-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.theme-light .mermaid-card-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.28);
+}
+
 .mermaid-viewport-container {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Card Footer / Tip */
 .mermaid-card-footer {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  padding: 5px 14px;
-  background: rgba(0, 0, 0, 0.12);
-  border-top: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.05));
+  justify-content: space-between;
+  padding: 6px 16px;
+  background: rgba(0, 0, 0, 0.16);
+  border-top: 1px solid var(--background-modifier-border, rgba(255, 255, 255, 0.06));
+  z-index: 6;
 }
 
 .theme-light .mermaid-card-footer {
   background: #f8fafc;
-  border-top-color: rgba(0, 0, 0, 0.04);
+  border-top-color: rgba(0, 0, 0, 0.05);
 }
 
 .mermaid-hint {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 6px;
   font-size: 11px;
   color: var(--text-faint, #6c7a96);
   user-select: none;
+}
+
+.theme-light .mermaid-hint {
+  color: #64748b;
 }
 
 /* Base SVG sizing & crisp vector rendering */
@@ -204,13 +359,15 @@ svg[id^="mermaid-diag"] foreignObject {
 /* Flowchart Typography - Dark Mode */
 .mermaid-diagram-container:not(:has(.mindmap-node)) .nodeLabel,
 .mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject div,
-.mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject span {
+.mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject span,
+.mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject p {
   font-family: var(--font-interface, 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif) !important;
   font-size: 13px !important;
   line-height: 1.45 !important;
   font-weight: 500 !important;
   color: #f8fafc !important;
   overflow: visible !important;
+  letter-spacing: 0.01em;
 }
 
 .mermaid-diagram-container:not(:has(.mindmap-node)) .node foreignObject div,
@@ -230,18 +387,73 @@ svg[id^="mermaid-diag"] text {
 /* Flowchart Typography - Light Mode */
 .theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .nodeLabel,
 .theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject div,
-.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject span {
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject span,
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) foreignObject p {
   color: #0f172a !important;
 }
 
-/* Flowchart Edge Connectors & Paths */
+/* Flowchart Node Rectangles, Circles, Polygons & Paths (with Physical Depth) */
+.mermaid-diagram-container:not(:has(.mindmap-node)) .node rect,
+.mermaid-diagram-container:not(:has(.mindmap-node)) .node circle,
+.mermaid-diagram-container:not(:has(.mindmap-node)) .node polygon,
+.mermaid-diagram-container:not(:has(.mindmap-node)) .node path:not(.edgePath path):not(.flowchart-link) {
+  fill: #242933 !important;
+  stroke: var(--frost2, #81a1c1) !important;
+  stroke-width: 1.75px !important;
+  rx: 9px !important;
+  ry: 9px !important;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.22)) !important;
+  transition: filter 0.2s cubic-bezier(0.16, 1, 0.3, 1), stroke 0.2s ease, stroke-width 0.2s ease !important;
+}
+
+/* Decision Diamonds (Warm Amber Accent) */
+.mermaid-diagram-container:not(:has(.mindmap-node)) .node polygon {
+  rx: 0 !important;
+  ry: 0 !important;
+  stroke: #ebcb8b !important;
+}
+
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .node polygon {
+  stroke: #d97706 !important;
+}
+
+/* Interactive Node Hover Lift & Glow */
+.mermaid-diagram-container:not(:has(.mindmap-node)) .node:hover rect,
+.mermaid-diagram-container:not(:has(.mindmap-node)) .node:hover circle,
+.mermaid-diagram-container:not(:has(.mindmap-node)) .node:hover polygon,
+.mermaid-diagram-container:not(:has(.mindmap-node)) .node:hover path:not(.edgePath path) {
+  filter: drop-shadow(0 6px 16px rgba(136, 192, 208, 0.35)) brightness(1.1) !important;
+  stroke: var(--frost1, #88c0d0) !important;
+  stroke-width: 2px !important;
+  cursor: pointer !important;
+}
+
+/* Light Mode Node Geometry */
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .node rect,
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .node circle,
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .node polygon,
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .node path:not(.edgePath path):not(.flowchart-link) {
+  fill: #ffffff !important;
+  stroke: #94a3b8 !important;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.06)) !important;
+}
+
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .node:hover rect,
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .node:hover circle,
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .node:hover polygon,
+.theme-light .mermaid-diagram-container:not(:has(.mindmap-node)) .node:hover path:not(.edgePath path) {
+  filter: drop-shadow(0 6px 16px rgba(94, 129, 172, 0.22)) contrast(1.05) !important;
+  stroke: #2563eb !important;
+}
+
+/* Flowchart Edge Connectors & Paths (Luminous Definition) */
 .mermaid-diagram-container .edgePath path,
 .mermaid-diagram-card .edgePath path,
 svg[id^="mermaid-diag"] .edgePath path,
 .mermaid-diagram-container .flowchart-link,
 .mermaid-diagram-card .flowchart-link {
   stroke: var(--frost2, #81a1c1) !important;
-  stroke-width: 1.75px !important;
+  stroke-width: 2px !important;
   stroke-linecap: round !important;
   stroke-linejoin: round !important;
   fill: none !important;
@@ -250,9 +462,21 @@ svg[id^="mermaid-diag"] .edgePath path,
 .theme-light .mermaid-diagram-container .edgePath path,
 .theme-light .mermaid-diagram-card .edgePath path,
 .theme-light svg[id^="mermaid-diag"] .edgePath path {
-  stroke: #4c566a !important;
+  stroke: #475569 !important;
 }
 
+/* Animated Flowing Dashes for Dotted/Dashed Connectors */
+.mermaid-diagram-container .edgePath path[style*="stroke-dasharray"],
+.mermaid-diagram-container .edgePath path.dashed,
+.mermaid-diagram-container .edgePath path.dotted,
+.mermaid-diagram-container path.flowchart-link[style*="stroke-dasharray"] {
+  stroke-dasharray: 6, 4 !important;
+  stroke-dasharray: 6, 4;
+}
+
+
+
+/* Markers & Arrowheads */
 .mermaid-diagram-container marker path,
 .mermaid-diagram-card marker path,
 .mermaid-diagram-container .arrowheadPath,
@@ -260,29 +484,36 @@ svg[id^="mermaid-diag"] .edgePath path,
   fill: var(--frost1, #88c0d0) !important;
   stroke: var(--frost1, #88c0d0) !important;
   stroke-width: 1px !important;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 }
 
 .theme-light .mermaid-diagram-container marker path,
 .theme-light .mermaid-diagram-card marker path,
 .theme-light .mermaid-diagram-container .arrowheadPath,
 .theme-light .mermaid-diagram-card .arrowheadPath {
-  fill: #5e81ac !important;
-  stroke: #5e81ac !important;
+  fill: #334155 !important;
+  stroke: #334155 !important;
+  filter: none;
 }
 
-/* Flowchart Edge Labels / Badges */
+/* Flowchart Edge Labels / Badges (Capsule Pill Style with Blur) */
 .mermaid-diagram-container .edgeLabel,
 .mermaid-diagram-card .edgeLabel,
 .mermaid-diagram-container .edgeLabel div,
 .mermaid-diagram-card .edgeLabel div,
 .mermaid-diagram-container .edgeLabel span,
 .mermaid-diagram-card .edgeLabel span {
-  background-color: #1e222a !important;
+  background-color: rgba(30, 34, 42, 0.95) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
   color: #eceff4 !important;
   font-size: 11.5px !important;
-  font-weight: 500;
-  border-radius: 4px;
-  padding: 1px 4px;
+  font-weight: 600 !important;
+  border-radius: 6px !important;
+  padding: 2px 7px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25) !important;
+  white-space: nowrap !important;
 }
 
 .theme-light .mermaid-diagram-container .edgeLabel,
@@ -291,8 +522,42 @@ svg[id^="mermaid-diag"] .edgePath path,
 .theme-light .mermaid-diagram-card .edgeLabel div,
 .theme-light .mermaid-diagram-container .edgeLabel span,
 .theme-light .mermaid-diagram-card .edgeLabel span {
-  background-color: #f1f5f9 !important;
+  background-color: rgba(241, 245, 249, 0.95) !important;
   color: #0f172a !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Subgraphs / Clusters */
+.mermaid-diagram-container .cluster rect,
+.mermaid-diagram-card .cluster rect {
+  fill: rgba(136, 192, 208, 0.035) !important;
+  stroke: rgba(136, 192, 208, 0.3) !important;
+  stroke-width: 1.5px !important;
+  stroke-dasharray: 6, 4 !important;
+  rx: 12px !important;
+  ry: 12px !important;
+}
+
+.theme-light .mermaid-diagram-container .cluster rect,
+.theme-light .mermaid-diagram-card .cluster rect {
+  fill: rgba(94, 129, 172, 0.035) !important;
+  stroke: rgba(94, 129, 172, 0.3) !important;
+}
+
+.mermaid-diagram-container .cluster text,
+.mermaid-diagram-container .cluster .nodeLabel {
+  font-family: var(--font-interface, 'Inter', sans-serif) !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  fill: var(--frost1, #88c0d0) !important;
+}
+
+.theme-light .mermaid-diagram-container .cluster text,
+.theme-light .mermaid-diagram-card .cluster .nodeLabel {
+  fill: #2563eb !important;
 }
 
 /* --------------------------------------------------------------------------

@@ -1,0 +1,528 @@
+/* ==========================================================================
+   OBSIDIAN MERMAID DIAGRAM ENHANCER (site-mermaid.css)
+   ==========================================================================
+   A publication-grade CSS snippet for Obsidian that transforms default Mermaid
+   diagrams into elegant, high-contrast, interactive-ready cards.
+
+   Features:
+   • Full dual-mode theming (Automatic Light & Dark adaptation)
+   • Responsive card viewport with sleek custom scrollbars & zero clipping
+   • High-contrast node geometry, typography, and edge badges
+   • Distinct subgraphs, sequence lifelines, class structures, & mindmaps
+   • Works seamlessly in both Live Preview (Editing) and Reading view
+
+   INSTALLATION:
+   1. In Obsidian, go to: Settings -> Appearance -> CSS snippets
+   2. Click the folder icon ("Open snippets folder")
+   3. Save this file as: site-mermaid.css in that folder
+   4. Back in Obsidian, click "Reload snippets" and toggle ON "site-mermaid"
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Theme Tokens & Color Calibration (Dark / Light Variables)
+   -------------------------------------------------------------------------- */
+
+:root {
+  /* Default / Dark Theme Palette (Nord & Technical Modern) */
+  --mermaid-card-bg: var(--background-secondary, #1a1e26);
+  --mermaid-card-border: var(--background-modifier-border, rgba(255, 255, 255, 0.09));
+  --mermaid-card-hover-border: var(--interactive-accent, #88c0d0);
+  --mermaid-card-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.35), 0 2px 6px -1px rgba(0, 0, 0, 0.2);
+  --mermaid-card-radius: 12px;
+  --mermaid-card-header-bg: rgba(0, 0, 0, 0.22);
+  --mermaid-card-header-border: rgba(255, 255, 255, 0.07);
+
+  /* Node Surfaces */
+  --mermaid-node-bg: #242933;
+  --mermaid-node-border: #81a1c1;
+  --mermaid-node-text: #f8fafc;
+  --mermaid-node-hover-filter: brightness(1.12);
+  --mermaid-node-radius: 8px;
+
+  /* Connectors & Arrows */
+  --mermaid-edge-color: #81a1c1;
+  --mermaid-arrow-color: #88c0d0;
+  --mermaid-edge-width: 1.75px;
+
+  /* Edge Badges & Labels */
+  --mermaid-badge-bg: #1e222a;
+  --mermaid-badge-border: rgba(255, 255, 255, 0.12);
+  --mermaid-badge-text: #eceff4;
+
+  /* Subgraphs / Clusters */
+  --mermaid-cluster-bg: rgba(136, 192, 208, 0.04);
+  --mermaid-cluster-border: rgba(136, 192, 208, 0.25);
+  --mermaid-cluster-title: #88c0d0;
+
+  /* Mindmap Section Spectrum (Dark) */
+  --mm-root-bg: #2e3440;
+  --mm-root-border: var(--interactive-accent, #b48ead);
+  --mm-root-text: #ffffff;
+  --mm-sec-0: #88c0d0; /* Frost Cyan */
+  --mm-sec-1: #b48ead; /* Aurora Purple */
+  --mm-sec-2: #ebcb8b; /* Aurora Amber */
+  --mm-sec-3: #a3be8c; /* Aurora Green */
+  --mm-sec-4: #81a1c1; /* Frost Blue */
+  --mm-sec-5: #d08770; /* Aurora Orange */
+  --mm-sec-6: #bf616a; /* Aurora Coral */
+  --mm-sec-7: #8fbcbb; /* Polar Teal */
+
+  /* Scrollbar */
+  --mermaid-scrollbar-thumb: rgba(255, 255, 255, 0.16);
+  --mermaid-scrollbar-hover: rgba(255, 255, 255, 0.28);
+}
+
+.theme-light {
+  /* Light Theme Palette (Snow Storm & Crisp Technical Slate) */
+  --mermaid-card-bg: var(--background-primary, #ffffff);
+  --mermaid-card-border: var(--background-modifier-border, rgba(0, 0, 0, 0.09));
+  --mermaid-card-hover-border: var(--interactive-accent, #5e81ac);
+  --mermaid-card-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.06), 0 1px 4px -1px rgba(0, 0, 0, 0.04);
+  --mermaid-card-header-bg: #f8fafc;
+  --mermaid-card-header-border: rgba(0, 0, 0, 0.06);
+
+  /* Node Surfaces */
+  --mermaid-node-bg: #f8fafc;
+  --mermaid-node-border: #cbd5e1;
+  --mermaid-node-text: #0f172a;
+  --mermaid-node-hover-filter: contrast(1.05) brightness(0.97);
+
+  /* Connectors & Arrows */
+  --mermaid-edge-color: #475569;
+  --mermaid-arrow-color: #334155;
+
+  /* Edge Badges & Labels */
+  --mermaid-badge-bg: #f1f5f9;
+  --mermaid-badge-border: rgba(0, 0, 0, 0.08);
+  --mermaid-badge-text: #0f172a;
+
+  /* Subgraphs / Clusters */
+  --mermaid-cluster-bg: rgba(94, 129, 172, 0.04);
+  --mermaid-cluster-border: rgba(94, 129, 172, 0.28);
+  --mermaid-cluster-title: #4338ca;
+
+  /* Mindmap Section Spectrum (Light) */
+  --mm-root-bg: #ffffff;
+  --mm-root-border: var(--interactive-accent, #7c3aed);
+  --mm-root-text: #1e1b4b;
+  --mm-sec-0: #0284c7;
+  --mm-sec-1: #9333ea;
+  --mm-sec-2: #d97706;
+  --mm-sec-3: #16a34a;
+  --mm-sec-4: #2563eb;
+  --mm-sec-5: #ea580c;
+  --mm-sec-6: #dc2626;
+  --mm-sec-7: #0d9488;
+
+  /* Scrollbar */
+  --mermaid-scrollbar-thumb: rgba(0, 0, 0, 0.16);
+  --mermaid-scrollbar-hover: rgba(0, 0, 0, 0.28);
+}
+
+/* --------------------------------------------------------------------------
+   2. Card Container Wrapper & Responsive Viewport
+   -------------------------------------------------------------------------- */
+
+/* Target Reading View and Live Preview (CM6) */
+.markdown-rendered .mermaid,
+.markdown-rendered .block-language-mermaid,
+.markdown-preview-view .mermaid,
+.cm-embed-block:has(.mermaid),
+.cm-embed-block:has(.block-language-mermaid),
+.cm-preview-code-block:has(.mermaid) {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 1.75rem 0 !important;
+  padding: 34px 22px 22px 22px !important;
+  background-color: var(--mermaid-card-bg) !important;
+  border: 1px solid var(--mermaid-card-border) !important;
+  border-radius: var(--mermaid-card-radius) !important;
+  box-shadow: var(--mermaid-card-shadow) !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  box-sizing: border-box !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+/* Hover elevation */
+.markdown-rendered .mermaid:hover,
+.markdown-rendered .block-language-mermaid:hover,
+.cm-embed-block:has(.mermaid):hover {
+  border-color: var(--mermaid-card-hover-border) !important;
+}
+
+/* Subtle editorial meta badge in top-left */
+.markdown-rendered .mermaid::before,
+.markdown-rendered .block-language-mermaid::before,
+.cm-embed-block:has(.mermaid)::before {
+  content: "DIAGRAM" !important;
+  position: absolute !important;
+  top: 10px !important;
+  left: 14px !important;
+  font-family: var(--font-mono, monospace) !important;
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--text-faint, #64748b) !important;
+  padding: 1px 6px !important;
+  border-radius: 4px !important;
+  background: var(--mermaid-card-header-bg) !important;
+  border: 1px solid var(--mermaid-card-header-border) !important;
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
+/* Custom sleek horizontal scrollbar */
+.markdown-rendered .mermaid::-webkit-scrollbar,
+.markdown-rendered .block-language-mermaid::-webkit-scrollbar,
+.cm-embed-block:has(.mermaid)::-webkit-scrollbar {
+  height: 6px !important;
+}
+
+.markdown-rendered .mermaid::-webkit-scrollbar-track,
+.markdown-rendered .block-language-mermaid::-webkit-scrollbar-track,
+.cm-embed-block:has(.mermaid)::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+.markdown-rendered .mermaid::-webkit-scrollbar-thumb,
+.markdown-rendered .block-language-mermaid::-webkit-scrollbar-thumb,
+.cm-embed-block:has(.mermaid)::-webkit-scrollbar-thumb {
+  background: var(--mermaid-scrollbar-thumb) !important;
+  border-radius: 3px !important;
+}
+
+.markdown-rendered .mermaid::-webkit-scrollbar-thumb:hover,
+.markdown-rendered .block-language-mermaid::-webkit-scrollbar-thumb:hover,
+.cm-embed-block:has(.mermaid)::-webkit-scrollbar-thumb:hover {
+  background: var(--mermaid-scrollbar-hover) !important;
+}
+
+/* Firefox scrollbar */
+.markdown-rendered .mermaid,
+.markdown-rendered .block-language-mermaid,
+.cm-embed-block:has(.mermaid) {
+  scrollbar-width: thin !important;
+  scrollbar-color: var(--mermaid-scrollbar-thumb) transparent !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. SVG Geometry, Sizing & Alignment
+   -------------------------------------------------------------------------- */
+
+.mermaid svg,
+.markdown-rendered .mermaid svg,
+.cm-embed-block .mermaid svg {
+  display: block !important;
+  margin: 0 auto !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-width: fit-content !important;
+  overflow: visible !important;
+  shape-rendering: geometricPrecision !important;
+  text-rendering: geometricPrecision !important;
+  box-sizing: border-box !important;
+}
+
+/* Allow text inside foreignObject to overflow cleanly without harsh clipping */
+.mermaid foreignObject,
+.markdown-rendered .mermaid foreignObject {
+  overflow: visible !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. Node Shapes, Borders & Hierarchy
+   -------------------------------------------------------------------------- */
+
+/* Rectangles, rounded nodes, cylinders, and basic node shapes */
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon,
+.mermaid .node path:not(.edgePath path):not(.flowchart-link) {
+  fill: var(--mermaid-node-bg) !important;
+  stroke: var(--mermaid-node-border) !important;
+  stroke-width: 1.5px !important;
+  rx: var(--mermaid-node-radius) !important;
+  ry: var(--mermaid-node-radius) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Interactive hover enhancement on individual diagram nodes */
+.mermaid .node:hover rect,
+.mermaid .node:hover circle,
+.mermaid .node:hover ellipse,
+.mermaid .node:hover polygon,
+.mermaid .node:hover path:not(.edgePath path) {
+  filter: var(--mermaid-node-hover-filter) !important;
+  stroke: var(--mermaid-card-hover-border) !important;
+  stroke-width: 1.75px !important;
+}
+
+/* Decision diamonds */
+.mermaid .node polygon {
+  rx: 0 !important;
+  ry: 0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. Node Typography & Legibility
+   -------------------------------------------------------------------------- */
+
+.mermaid .nodeLabel,
+.mermaid .node foreignObject div,
+.mermaid .node foreignObject span,
+.mermaid .node foreignObject p,
+.mermaid .label text,
+.mermaid text.nodeLabel {
+  font-family: var(--font-interface, var(--font-text, -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif)) !important;
+  font-size: 13px !important;
+  line-height: 1.45 !important;
+  font-weight: 500 !important;
+  color: var(--mermaid-node-text) !important;
+  fill: var(--mermaid-node-text) !important;
+  text-align: center !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+}
+
+/* SVG native text fallback */
+.mermaid text {
+  font-family: var(--font-interface, var(--font-text, -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Roboto, sans-serif)) !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. Connectors, Flowchart Links & Arrowheads
+   -------------------------------------------------------------------------- */
+
+/* Edge lines */
+.mermaid .edgePath path,
+.mermaid .flowchart-link,
+.mermaid path.link {
+  stroke: var(--mermaid-edge-color) !important;
+  stroke-width: var(--mermaid-edge-width) !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+  fill: none !important;
+}
+
+/* Dashed & dotted lines */
+.mermaid .edgePath path[style*="stroke-dasharray"],
+.mermaid .edgePath path.dashed,
+.mermaid .edgePath path.dotted,
+.mermaid path.flowchart-link[style*="stroke-dasharray"] {
+  stroke-dasharray: 5, 4 !important;
+}
+
+/* Arrowheads & markers */
+.mermaid marker path,
+.mermaid .arrowheadPath,
+.mermaid marker polygon {
+  fill: var(--mermaid-arrow-color) !important;
+  stroke: var(--mermaid-arrow-color) !important;
+  stroke-width: 1px !important;
+}
+
+/* Cross / Circle marker ends */
+.mermaid marker circle {
+  fill: var(--mermaid-card-bg) !important;
+  stroke: var(--mermaid-arrow-color) !important;
+  stroke-width: 1.5px !important;
+}
+
+/* --------------------------------------------------------------------------
+   7. Edge Labels & Text Badges (Capsule Pill Style)
+   -------------------------------------------------------------------------- */
+
+.mermaid .edgeLabel,
+.mermaid .edgeLabel div,
+.mermaid .edgeLabel span,
+.mermaid .edgeLabel p {
+  background-color: var(--mermaid-badge-bg) !important;
+  color: var(--mermaid-badge-text) !important;
+  fill: var(--mermaid-badge-text) !important;
+  font-family: var(--font-interface, var(--font-text, sans-serif)) !important;
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  border: 1px solid var(--mermaid-badge-border) !important;
+  border-radius: 5px !important;
+  padding: 2px 7px !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* --------------------------------------------------------------------------
+   8. Subgraphs & Clusters
+   -------------------------------------------------------------------------- */
+
+.mermaid .cluster rect {
+  fill: var(--mermaid-cluster-bg) !important;
+  stroke: var(--mermaid-cluster-border) !important;
+  stroke-width: 1.25px !important;
+  stroke-dasharray: 6, 4 !important;
+  rx: 10px !important;
+  ry: 10px !important;
+}
+
+.mermaid .cluster text,
+.mermaid .cluster .nodeLabel {
+  font-family: var(--font-interface, var(--font-text, sans-serif)) !important;
+  font-size: 11.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  fill: var(--mermaid-cluster-title) !important;
+  color: var(--mermaid-cluster-title) !important;
+}
+
+/* --------------------------------------------------------------------------
+   9. Mindmaps (8-Branch Curated Spectrum)
+   -------------------------------------------------------------------------- */
+
+/* Mindmap Root Node */
+.mermaid .mindmap-node.section-root rect,
+.mermaid .mindmap-node.section-root circle,
+.mermaid .mindmap-node.section-root path,
+.mermaid .section-root rect,
+.mermaid .section-root circle,
+.mermaid .section-root path {
+  fill: var(--mm-root-bg) !important;
+  stroke: var(--mm-root-border) !important;
+  stroke-width: 2.5px !important;
+  rx: 12px !important;
+  ry: 12px !important;
+}
+
+.mermaid .mindmap-node.section-root text,
+.mermaid .section-root text {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  fill: var(--mm-root-text) !important;
+}
+
+/* Mindmap Branches 0 to 7 */
+.mermaid .section-0 rect, .mermaid .section-0 circle { stroke: var(--mm-sec-0) !important; }
+.mermaid .section-edge-0, .mermaid path.section-0 { stroke: var(--mm-sec-0) !important; stroke-width: 2px !important; }
+
+.mermaid .section-1 rect, .mermaid .section-1 circle { stroke: var(--mm-sec-1) !important; }
+.mermaid .section-edge-1, .mermaid path.section-1 { stroke: var(--mm-sec-1) !important; stroke-width: 2px !important; }
+
+.mermaid .section-2 rect, .mermaid .section-2 circle { stroke: var(--mm-sec-2) !important; }
+.mermaid .section-edge-2, .mermaid path.section-2 { stroke: var(--mm-sec-2) !important; stroke-width: 2px !important; }
+
+.mermaid .section-3 rect, .mermaid .section-3 circle { stroke: var(--mm-sec-3) !important; }
+.mermaid .section-edge-3, .mermaid path.section-3 { stroke: var(--mm-sec-3) !important; stroke-width: 2px !important; }
+
+.mermaid .section-4 rect, .mermaid .section-4 circle { stroke: var(--mm-sec-4) !important; }
+.mermaid .section-edge-4, .mermaid path.section-4 { stroke: var(--mm-sec-4) !important; stroke-width: 2px !important; }
+
+.mermaid .section-5 rect, .mermaid .section-5 circle { stroke: var(--mm-sec-5) !important; }
+.mermaid .section-edge-5, .mermaid path.section-5 { stroke: var(--mm-sec-5) !important; stroke-width: 2px !important; }
+
+.mermaid .section-6 rect, .mermaid .section-6 circle { stroke: var(--mm-sec-6) !important; }
+.mermaid .section-edge-6, .mermaid path.section-6 { stroke: var(--mm-sec-6) !important; stroke-width: 2px !important; }
+
+.mermaid .section-7 rect, .mermaid .section-7 circle { stroke: var(--mm-sec-7) !important; }
+.mermaid .section-edge-7, .mermaid path.section-7 { stroke: var(--mm-sec-7) !important; stroke-width: 2px !important; }
+
+/* --------------------------------------------------------------------------
+   10. Sequence Diagrams, Class, State & Git Graphs
+   -------------------------------------------------------------------------- */
+
+/* Sequence Diagram Actors & Lifelines */
+.mermaid .actor {
+  fill: var(--mermaid-node-bg) !important;
+  stroke: var(--mermaid-node-border) !important;
+  stroke-width: 1.5px !important;
+}
+
+.mermaid text.actor {
+  fill: var(--mermaid-node-text) !important;
+  font-weight: 600 !important;
+}
+
+.mermaid .line {
+  stroke: var(--mermaid-edge-color) !important;
+  stroke-width: 1.25px !important;
+  stroke-dasharray: 4, 3 !important;
+}
+
+.mermaid .messageLine0,
+.mermaid .messageLine1 {
+  stroke: var(--mermaid-edge-color) !important;
+  stroke-width: 1.75px !important;
+}
+
+.mermaid .messageText {
+  fill: var(--mermaid-node-text) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+}
+
+.mermaid .note {
+  fill: var(--mermaid-badge-bg) !important;
+  stroke: var(--mermaid-badge-border) !important;
+}
+
+.mermaid .noteText {
+  fill: var(--mermaid-badge-text) !important;
+  font-size: 11.5px !important;
+}
+
+/* Class Diagrams */
+.mermaid .classGroup rect {
+  fill: var(--mermaid-node-bg) !important;
+  stroke: var(--mermaid-node-border) !important;
+}
+
+.mermaid .classGroup text {
+  fill: var(--mermaid-node-text) !important;
+}
+
+/* State Diagrams */
+.mermaid .stateGroup rect {
+  fill: var(--mermaid-node-bg) !important;
+  stroke: var(--mermaid-node-border) !important;
+  rx: 8px !important;
+}
+
+.mermaid .state-start,
+.mermaid .state-end {
+  fill: var(--mermaid-arrow-color) !important;
+  stroke: var(--mermaid-card-bg) !important;
+  stroke-width: 2px !important;
+}
+
+/* Git Graph Commit Dots */
+.mermaid .commit-dot {
+  stroke-width: 2px !important;
+  stroke: var(--mermaid-card-bg) !important;
+}
+
+/* --------------------------------------------------------------------------
+   11. Print Stylesheet Compatibility
+   -------------------------------------------------------------------------- */
+
+@media print {
+  .markdown-rendered .mermaid,
+  .markdown-rendered .block-language-mermaid,
+  .cm-embed-block:has(.mermaid) {
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+    padding: 16px !important;
+    margin: 1rem 0 !important;
+    page-break-inside: avoid !important;
+  }
+
+  .markdown-rendered .mermaid::before,
+  .cm-embed-block:has(.mermaid)::before {
+    display: none !important;
+  }
+}
