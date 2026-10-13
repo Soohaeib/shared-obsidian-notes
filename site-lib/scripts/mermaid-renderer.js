@@ -227,6 +227,9 @@
     }
 
     buildCardContainer(diagramId, rawCode, typeName) {
+      const shell = document.createElement('div');
+      shell.className = 'mermaid-diagram-shell';
+
       const card = document.createElement('div');
       card.className = 'mermaid-diagram-container mermaid-diagram-card';
       card.id = `card_${diagramId}`;
@@ -235,12 +238,19 @@
 
       const iconSvg = this.getDiagramIconSvg(typeName);
 
-      card.innerHTML = `
-        <div class="mermaid-card-header">
+      const toolbar = document.createElement('div');
+      toolbar.className = 'mermaid-card-toolbar';
+      toolbar.setAttribute('role', 'toolbar');
+      toolbar.setAttribute('aria-label', 'Diagram actions');
+      toolbar.innerHTML = `
           <div class="mermaid-card-meta">
             <span class="mermaid-status-dot" aria-hidden="true"></span>
             <span class="mermaid-type-badge">${iconSvg}<span>${this.escapeHtml(typeName)}</span></span>
           </div>
+          <span class="mermaid-hint">
+            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            Click diagram or expand button to open interactive lightbox
+          </span>
           <div class="mermaid-card-actions">
             <button type="button" class="mermaid-action-btn mermaid-btn-download" title="Export as SVG" aria-label="Download SVG image">
               <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
@@ -252,7 +262,9 @@
               <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
             </button>
           </div>
-        </div>
+      `;
+
+      card.innerHTML = `
         <div class="mermaid-card-body" role="region" aria-label="Diagram canvas">
           <div class="mermaid-viewport-container">
             <div class="mermaid-loading-skeleton">
@@ -260,21 +272,17 @@
             </div>
           </div>
         </div>
-        <div class="mermaid-card-footer">
-          <span class="mermaid-hint">
-            <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            Click diagram or expand button to open interactive lightbox
-          </span>
-        </div>
       `;
 
-      return card;
+      shell.append(toolbar, card);
+      return shell;
     }
 
     attachCardInteractions(card, rawCode) {
-      const btnCopy = card.querySelector('.mermaid-btn-copy');
-      const btnDownload = card.querySelector('.mermaid-btn-download');
-      const btnExpand = card.querySelector('.mermaid-btn-expand');
+      const shell = card.closest('.mermaid-diagram-shell') || card;
+      const btnCopy = shell.querySelector('.mermaid-btn-copy');
+      const btnDownload = shell.querySelector('.mermaid-btn-download');
+      const btnExpand = shell.querySelector('.mermaid-btn-expand');
       const cardBody = card.querySelector('.mermaid-card-body');
       const viewport = card.querySelector('.mermaid-viewport-container');
 

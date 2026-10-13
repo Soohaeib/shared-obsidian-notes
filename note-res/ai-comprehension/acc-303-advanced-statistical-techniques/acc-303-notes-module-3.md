@@ -307,12 +307,13 @@ Because $\chi^2_{\text{calc}}$ grows proportionally with sample size $N$, it mea
 > [!example] Numerical Problem 1: Type II Error ($\beta$) and Power ($1 - \beta$) Calculation
 >
 > **Scenario**: A manufacturing plant monitors steel rod tensile strength. $H_0: \mu \le 100 \text{ ksi}$ vs. $H_1: \mu > 100 \text{ ksi}$. Population standard deviation is $\sigma = 15 \text{ ksi}$. A sample of $n = 25$ rods is tested at significance level $\alpha = 0.05$.
+> 
+> **Solution**:
 > Suppose the true population mean shifts to $\mu_1 = 108 \text{ ksi}$.
 > 1. Determine the critical sample mean $\bar{x}_c$ for the decision rule.
 > 2. Calculate the probability of a Type II error ($\beta$).
 > 3. Calculate the statistical power ($1 - \beta$) of the test.
 > 
-> **Solution**:
 > 4. **Standard Error**:
 > $$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{n}} = \frac{15}{\sqrt{25}} = \frac{15}{5} = 3.0 \text{ ksi}$$
 > 

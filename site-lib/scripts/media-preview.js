@@ -460,7 +460,7 @@
           downloadUrl = this.mediaPreviewObjectUrl;
 
           const wrapper = document.createElement('div');
-          wrapper.className = 'media-preview-svg';
+          wrapper.className = 'media-preview-svg mermaid-diagram-container';
           wrapper.innerHTML = cleanSvgMarkup;
 
           const innerSvg = wrapper.querySelector('svg');
@@ -548,7 +548,7 @@
       // 2. Process Mermaid Diagrams
       const diagrams = article.querySelectorAll('.mermaid-diagram-container');
       diagrams.forEach((container, idx) => {
-        if (container.querySelector('.media-corner-action-btn') || container.querySelector('.mermaid-card-header') || container.querySelector('.mermaid-btn-expand')) return;
+        if (container.querySelector('.media-corner-action-btn') || container.querySelector('.mermaid-card-toolbar') || container.querySelector('.mermaid-btn-expand')) return;
         const svg = container.querySelector('svg');
         if (!svg) return;
 
