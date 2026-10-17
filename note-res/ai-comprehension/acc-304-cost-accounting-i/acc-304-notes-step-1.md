@@ -93,7 +93,12 @@ graph TD
 > * **Omission of Non-Financial Metrics:** It ignores operational, physical, and qualitative drivers (such as setup times, labor efficiency, machine hours, defect rates, and customer lead times).
 > * **Rigidity of GAAP/IFRS:** Strict compliance rules prevent management from using alternative cost concepts (e.g., opportunity costs, replacement costs, or variable costing) for internal evaluation.
 > * **Lack of Cost Behavior Insights:** Financial accounting fails to classify costs by behavior (fixed vs. variable), impeding Cost-Volume-Profit $CVP$ analysis and flexible budgeting.
-
+#### 3.4 Importance of Cost Accounting by Stakeholder Group
+While cost accounting primarily serves internal decision-makers, its insights create value across all primary business stakeholder groups:
+* **To Management:** Enables cost control via variance isolation, supports strategic pricing and bid tendering, and identifies operational bottlenecks.
+* **To Workers and Employees:** Provides accurate output data to implement objective, equitable Incentive Wage Plans (e.g., Taylor, Halsey, Rowan).
+* **To Creditors and Investors:** Offers disaggregated visibility into inventory valuation and operating cash flows, ensuring solvency analysis.
+* **To Consumers and Society:** Promotes optimal resource utilization, reducing national economic waste and enabling fair market pricing.
 ---
 ### 4. Organizational Structure and Ethics of the Management Accountant
 #### 4.1 Line vs. Staff Relationships
@@ -121,6 +126,50 @@ When facing ethical issues, management accountants must follow established organ
 * Discuss the issue with an immediate supervisor.
 * Clarify concepts with an IMA Ethics Counselor or legal advisor.
 * If all internal recourse is exhausted, consider disassociating from the organization.
+#### 4.5 Cost Center Architecture: Producing vs. Support Departments
+In a manufacturing plant, cost centers are established to collect and control costs. To ensure accurate product costing, an organization's departments are divided into two distinct structural types:
+
+**1. Producing Department (Operating Department)**
+* **Definition:** Departments directly engaged in the physical, chemical, or mechanical conversion of raw materials into finished products.
+* **Direct Value Addition:** Products physically move through and are transformed by these departments.
+* **Examples:** Machining, Assembly, Stamping, Cutting, Painting, Packaging.
+* **Overhead Absorption:** Overhead collected here is absorbed directly into product costs using departmental rates (e.g., per Machine Hour or per Direct Labor Hour).
+
+**2. Service Department (Support Department)**
+* **Definition:** Departments that do not directly transform products but provide essential technical, administrative, or logistical services to producing departments and other support departments.
+* **Indirect Support:** Products *do not* physically pass through support departments.
+* **Examples:** Plant Administration, Materials Management, Engineering & Production Control, Factory Maintenance, Power House, HR.
+* **Cost Treatment:** Support costs cannot be directly charged to product units; they must first be allocated to producing departments via Overhead Allocation.
+#### Primary vs. Secondary Overhead Distribution
+To calculate the true cost of manufacturing, overhead distribution follows a two-tier process to ensure all indirect costs eventually reach the final Cost Object.
+
+```mermaid
+flowchart TD
+    A[Total Factory Overhead] -->|Primary Allocation| B[Producing Departments]
+    A -->|Primary Allocation| C[Service Departments]
+    C -->|Secondary Allocation| B
+    B -->|Absorption| D[Final Product Cost]
+    
+    style A fill:#2B2D42,color:#fff
+    style B fill:#457B9D,color:#fff
+    style C fill:#E63946,color:#fff
+    style D fill:#2A9D8F,color:#fff
+```
+
+* **Tier 1: Primary Distribution (Apportionment)**
+  Overhead expenses incurred for the entire factory (like factory rent or plant manager salaries) are distributed across *all* departments (both producing and service) using logical allocation bases (e.g., floor space for rent, headcount for cafeteria costs).
+* **Tier 2: Secondary Distribution (Re-apportionment)**
+  Because service departments do not produce saleable goods, their accumulated costs from the primary distribution must be emptied out and re-allocated exclusively to the Producing Departments. Common mathematical methods for this (covered deeply in [[ACC 304 Notes Step 6 | Step 6 - Overhead Allocation]]) include the Direct Method, Step-Down Method, and Reciprocal Method.
+#### Common Bases for Primary Distribution
+When apportioning joint factory overheads across all departments (Tier 1), management accountants use the following equitable bases:
+
+| Overhead Expense                 | Logical Allocation Base                               |
+| :------------------------------- | :---------------------------------------------------- |
+| **Rent & Building Insurance**    | Floor Area (Square Feet)                              |
+| **Lighting & Heating**           | Number of Light Points or Floor Area                  |
+| **Plant Depreciation & Repairs** | Capital Value of Machinery/Plant                      |
+| **Power Consumption**            | Machine Horsepower ($HP \times \text{Running Hours}$) |
+| **Supervision / HR / Cafeteria** | Number of Employees or Direct Labor Hours             |
 
 ---
 ### 5. Cost Accounting Standards & Commonwealth Accounting Systems
@@ -128,15 +177,18 @@ When facing ethical issues, management accountants must follow established organ
 Cost Accounting Standards are codified rules designed to achieve global or national uniformity, consistency, and equity in cost measurement, cost assignment, and cost allocation.
 
 > [!info] Key Definition
->
-> * **Cost Accounting Standards Board $CASB$:** In the United States, the CASB issues standards to ensure uniform cost accounting practices for contractors bidding on government contracts.
-> * **Bangladesh Cost Accounting Standards $BCAS$:** Issued by the **ICMAB**, these standards regulate cost determination across sectors in Bangladesh:
->   * **BCAS 1:** Cost Concepts and Classifications.
->   * **BCAS 4:** Indirect Costs.
->   * **BCAS 5:** Indirect Cost Rate.
->   * **BCAS 6:** Support Department Cost.
->   * **BCAS 7:** Job Order Costing.
+> * **Cost Accounting Standards Board (CASB):** In the United States, the CASB issues standards to ensure uniform cost accounting practices for contractors bidding on government contracts.
+> * **Bangladesh Cost Accounting Standards (BCAS):** Issued by the **ICMAB**, these codified standards enforce uniformity across industries in Bangladesh:
 
+| Standard   | Title                                 | Key Framework & Application Rules                                                                                                 |
+| :--------- | :------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------- |
+| **BCAS 1** | **Cost Concepts and Classifications** | Establishes uniform principles for classifying costs by nature, behavior, function, and decision relevance.                       |
+| **BCAS 2** | **Capacity Determination**            | Establishes guidelines for measuring installed, practical, normal, and idle capacity to prevent misallocation of fixed overheads. |
+| **BCAS 3** | **Material Cost**                     | Governs determination of direct/indirect material cost, freight, discounts, and accounting for scrap/spoilage.                    |
+| **BCAS 4** | **Indirect Costs (Overhead)**         | Regulates the collection, identification, and primary distribution of indirect manufacturing, admin, and selling costs.           |
+| **BCAS 5** | **Indirect Cost Rate**                | Governs the determination of predetermined overhead absorption rates and treatment of under/over-applied overhead.                |
+| **BCAS 6** | **Support Department Cost**           | Defines standards for accumulating service department expenses and re-allocating them to producing departments.                   |
+| **BCAS 7** | **Job Order Costing**                 | Codifies procedures for job cost tracking, job cost sheet maintenance, and inventory pricing for customized manufacturing.        |
 #### 5.2 Integral vs. Non-Integral Accounting Systems
 In international and Commonwealth cost accounting terminology, accounting ledgers are maintained under one of two general double-entry structures:
 1. **Non-Integral (Non-Integrated) Accounting System:**
@@ -178,9 +230,11 @@ flowchart LR
 * **Techniques of Costing (Determined by Managerial Analytical Approach):**
   1. *Historical Costing:* Charging actual costs incurred after production occurs.
   2. *Standard Costing:* Comparing actual costs against predetermined standard costs to isolate price and efficiency variances.
-  3. *Marginal / Variable Costing:* Separating costs into fixed and variable components; charging only variable manufacturing costs to inventory.
+  3. *Marginal (Variable) Costing:* Assigns only variable manufacturing costs to inventory, treating fixed MOH as a period expense. Used strictly for internal **Cost-Volume-Profit Analysis**.
   4. *Absorption Costing:* Full cost technique mandating that both variable and fixed manufacturing overhead be absorbed into product inventory values (required by GAAP/IFRS).
   5. *Uniform Costing:* Standardized application across multiple enterprises within an industry.
+  6. *Target Costing:* Applied during the R&D/design phase. **Target Cost = Target Selling Price - Target Profit Margin**. Relies heavily on Value Engineering.
+  7. *Life-Cycle Costing:* Tracks costs across a product's entire life cycle (R&D to disposal) to prevent short-termism in decision making.
 #### 6.3 Interdisciplinary Relationships
 Cost accounting synthesizes concepts from multiple quantitative and theoretical disciplines:
 * **Economics:** Marginal revenue/marginal cost ($MR = MC$), opportunity costs, relevant range.
@@ -200,6 +254,26 @@ Cost accounting synthesizes concepts from multiple quantitative and theoretical 
 5. **Establishing Standard Documentation:** Introducing Requisitions, Time Sheets, and Job Cost Sheets.
 6. **Integration & Software Deployment:** Deploying ERP modules.
 7. **Staff Training & System Audit:** Training personnel and conducting periodic audits.
+#### 6.6 Chart of Accounts & Cost Codification
+A **Chart of Accounts** is a systematically structured, numerical or alphanumeric coding list of all general ledger and cost accounts utilized by an organization to classify, collect, and summarize financial data.
+
+**Strategic Purposes:**
+1. **Systematic Cost Accumulation:** Establishes unique cost codes for every Cost Center, cost element, and Cost Object.
+2. **Data Processing:** Facilitates automated data entry and modern ERP deployment.
+3. **Clerical Efficiency:** Replaces lengthy account titles with compact numeric symbols, reducing clerical errors.
+4. **Confidentiality:** Maintains secrecy regarding proprietary cost components across departmental staff.
+
+**Standard Coding Structures:**
+* **Block Coding System:** Ranges of numbers are assigned to specific account categories.
+  * `100 – 199`: Asset Accounts (e.g., Direct Materials, Work-in-Process, Finished Goods)
+  * `200 – 399`: Liability, Equity, and Revenue Accounts
+  * `400 – 499`: Direct Production Costs (e.g., DM Used, DL Wages)
+  * `500 – 599`: Manufacturing Overhead (MOH) Control Accounts
+  * `600 – 699`: Period Costs (Marketing, Distribution, Administration)
+* **Mnemonic Coding:** Uses a combination of letters and digits representing the Cost Center + Cost Element (e.g., `DEPT-MACH-401` = Machining Department Direct Materials).
+
+**System Linkage:**
+In an **Integral System**, the chart of accounts unifies financial and cost ledgers into one seamless list. In a **Non-Integral System**, the chart maintains separate cost codes linked to financial ledgers via a self-balancing *Cost Ledger Control Account*.
 
 ---
 ### 7. Comprehensive Master Example & Mathematical Derivations

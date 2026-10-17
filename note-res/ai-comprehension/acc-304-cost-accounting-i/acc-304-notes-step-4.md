@@ -8,7 +8,6 @@
 > - **Syllabus Focus:** Quantity vs. financial materials control; purchasing procedures and 3-way matching; bin cards vs. stores ledger cards; mathematical derivation of EOQ and sensitivity analysis; stock levels (ROL, minimum, maximum, danger, average); ABC inventory analysis; accounting for waste, scrap, spoilage, and defectives; JIT pull systems; simplified backflush costing variants; and IAS 2 valuation rules.
 
 ---
-
 ### Section 1: Foundational Framework of Materials Control & Purchasing Procedures
 #### 1. Definition and Scope of Materials Control
 In manufacturing enterprises, **materials** refer to raw materials, sub-assemblies, fabricated components, and factory supplies that are converted into finished output. Because material costs constitute the largest single component of total manufacturing cost (often 50% to 70% of total prime cost), maintaining systematic accounting and rigorous physical control over materials is essential for operational efficiency and profitability.
@@ -119,65 +118,59 @@ xychart-beta
 >
 > ##### Mathematical Derivation of the Classic EOQ Formula
 > Let:
-> - $D$ = Total annual demand for materials (in physical units).
+> - $A$ = Total annual usage/demand for materials (in physical units).
 > - $O$ (or $P$) = Fixed cost of placing and processing a single purchase order.
-> - $C$ or $S$ or $I \times P$ = Annual holding/carrying cost per unit of inventory per year.
+> - $CC$ or $S$ or $C$ or $(I \times P)$ = Annual holding/carrying cost per unit of inventory per year.
 > - $Q$ = Order quantity per order (the decision variable).
 > - $P_{unit}$ = Unit acquisition price of material.
 > 
 > **Step 1: Formulate the Component Cost Functions**
 > 1. **Annual Purchase Cost ($PC$):**
->    $$ PC = D \times P_{unit} $$
+>    $$ PC = A \times P_{unit} $$
 >    *(Note: Under constant unit purchase price, $PC$ is a sunk/irrelevant baseline cost with respect to $Q$).*
 > 2. **Annual Ordering Cost $TC_o$:**
->    $$ \text{Number of Orders per Year} = \frac{D}{Q} $$
->    $$ TC_o(Q) = \left( \frac{D}{Q} \right) \times O $$
+>    $$ \text{Number of Orders per Year} = \frac{A}{Q} $$
+>    $$ TC_o(Q) = \left( \frac{A}{Q} \right) \times O $$
 > 3. **Annual Carrying/Holding Cost $TC_h$:**
 >    $$ \text{Average Inventory Level} = \frac{Q}{2} \quad \text{(assuming constant consumption and zero safety stock)} $$
->    $$ TC_h(Q) = \left( \frac{Q}{2} \right) \times C $$
+>    $$ TC_h(Q) = \left( \frac{Q}{2} \right) \times CC $$
 > 
 > **Step 2: Formulate Total Relevant Cost ($TRC$) Equation**
-> $$ TRC(Q) = TC_o(Q) + TC_h(Q) = \frac{D \cdot O}{Q} + \frac{Q \cdot C}{2} $$
+> $$ TRC(Q) = TC_o(Q) + TC_h(Q) = \frac{A \cdot O}{Q} + \frac{Q \cdot CC}{2} $$
 > 
 > **Step 3: Differentiate $TRC(Q)$ with Respect to $Q$ and Set to Zero**
 > To find the global minimum, compute the first derivative of $TRC(Q)$ with respect to $Q$:
-> $$ \frac{d(TRC)}{dQ} = \frac{d}{dQ} \left( D \cdot O \cdot Q^{-1} + \frac{C}{2} \cdot Q \right) $$
-> $$ \frac{d(TRC)}{dQ} = -1 \cdot D \cdot O \cdot Q^{-2} + \frac{C}{2} = -\frac{D \cdot O}{Q^2} + \frac{C}{2} $$
+> $$ \frac{d(TRC)}{dQ} = \frac{d}{dQ} \left( A \cdot O \cdot Q^{-1} + \frac{CC}{2} \cdot Q \right) $$
+> $$ \frac{d(TRC)}{dQ} = -1 \cdot A \cdot O \cdot Q^{-2} + \frac{CC}{2} = -\frac{A \cdot O}{Q^2} + \frac{CC}{2} $$
 > Set the first derivative equal to zero:
-> $$ -\frac{D \cdot O}{Q^2} + \frac{C}{2} = 0 $$
-> $$ \frac{C}{2} = \frac{D \cdot O}{Q^2} $$
+> $$ -\frac{A \cdot O}{Q^2} + \frac{CC}{2} = 0 $$
+> $$ \frac{CC}{2} = \frac{A \cdot O}{Q^2} $$
 > 
 > **Step 4: Solve for $Q$**
-> $$ Q^2 \cdot C = 2 \cdot D \cdot O $$
-> $$ Q^2 = \frac{2 \cdot D \cdot O}{C} $$
-> $$ Q^* = \text{EOQ} = \sqrt{\frac{2 \cdot D \cdot O}{C}} $$
+> $$ Q^2 \cdot CC = 2 \cdot A \cdot O $$
+> $$ Q^2 = \frac{2 \cdot A \cdot O}{CC} $$
+> $$ Q^* = \text{EOQ} = \sqrt{\frac{2 \cdot A \cdot O}{CC}} $$
 
-Key Equilibrium Principle at $EOQ$
--
+##### Key Equilibrium Principle at $EOQ$
 At $Q = \text{EOQ}$, **Annual Ordering Costs strictly equal Annual Carrying Costs**:
 
-$$ \text{Ordering Cost at EOQ} = \frac{D}{Q^*} \times O = \frac{D}{\sqrt{\frac{2DO}{C}}} \times O = \sqrt{\frac{D \cdot O \cdot C}{2}} $$
-
-$$ \text{Carrying Cost at EOQ} = \frac{Q^*}{2} \times C = \frac{\sqrt{\frac{2DO}{C}}}{2} \times C = \sqrt{\frac{D \cdot O \cdot C}{2}} $$
-
-$$ \text{Total Relevant Annual Inventory Cost (TRC)} = \sqrt{2 \cdot D \cdot O \cdot C} $$
-
--
+$$ \text{Ordering Cost at EOQ} = \frac{A}{Q^*} \times O = \frac{A}{\sqrt{\frac{2AO}{CC}}} \times O = \sqrt{\frac{A \cdot O \cdot CC}{2}} $$
+$$ \text{Carrying Cost at EOQ} = \frac{Q^*}{2} \times CC = \frac{\sqrt{\frac{2AO}{CC}}}{2} \times CC = \sqrt{\frac{A \cdot O \cdot CC}{2}} $$
+$$ \text{Total Relevant Annual Inventory Cost (TRC)} = \sqrt{2 \cdot A \cdot O \cdot CC} $$
 
 > [!warning] Exam Pitfall / Exception
 >
 > ##### Assumptions of the Classic EOQ Model
-> 1. Annual demand ($D$) is known with certainty, constant, and uniformly distributed over time.
+> 1. Annual demand ($A$) is known with certainty, constant, and uniformly distributed over time.
 > 2. Purchase order lead time ($L$) is fixed and known with certainty.
 > 3. Unit acquisition cost ($P_{unit}$) is constant across all order sizes (no quantity discounts).
-> 4. Carrying cost per unit ($C$) and ordering cost per order ($O$) are constant and linear.
+> 4. Carrying cost per unit ($CC$) and ordering cost per order ($O$) are constant and linear.
 > 5. Stockouts are strictly prohibited, and receipt of orders is instantaneous upon reaching zero working stock.
 
-Sensitivity Analysis & Cost of Prediction Errors in EOQ
--
-Due to the square-root function in the EOQ mathematical structure, the total cost curve is relatively flat around $Q^*$. As a result, moderate estimation errors in $O$ or $C$ produce smaller percentage errors in total inventory costs.
+##### Sensitivity Analysis & Cost of Prediction Errors in EOQ
+Due to the square-root function in the EOQ mathematical structure, the total cost curve is relatively flat around $Q^*$. As a result, moderate estimation errors in $O$ or $CC$ produce smaller percentage errors in total inventory costs.
 
-If a predicted ordering cost $O_{pred}$ is used instead of actual $O_{actual}$, the resulting order size $Q_{pred} = \sqrt{\frac{2D O_{pred}}{C}}$ causes a prediction error cost calculated as:
+If a predicted ordering cost $O_{pred}$ is used instead of actual $O_{actual}$, the resulting order size $Q_{pred} = \sqrt{\frac{2A O_{pred}}{CC}}$ causes a prediction error cost calculated as:
 
 $$ \text{Cost of Prediction Error} = TRC(Q_{pred} \mid O_{actual}) - TRC(Q^* \mid O_{actual}) $$
 
@@ -222,6 +215,8 @@ graph TD
 >    The expected operational inventory on hand over time.
 >    $$ \text{Average Stock Level} = \text{Minimum Stock Level} + \frac{EOQ}{2} $$
 >    $$ \text{Or: } \text{Average Stock Level} = \frac{\text{Minimum Stock Level} + \text{Maximum Stock Level}}{2} $$
+>    $$ \text{Or: } \text{Average Stock Level} = {\text{Average Consumption} \times \text{Emergency Lead Time}}
+>  $$
 
 ---
 ### Section 3: Material Control Techniques & Inventory Valuation
@@ -291,7 +286,7 @@ graph TD
 >    - *Material Scrap Common to All Jobs:* Credited to Manufacturing Overhead Control (reducing the predetermined overhead rate).
 > 3. **Spoilage:**
 >    Units damaged or defective that do not meet quality specifications and cannot be economically repaired; sold as "seconds" or discarded.
->    - *Normal Spoilage (Job-Specific):* Net cost $$\text{Original Cost} - \text{Disposal Value}$$ charged directly to the specific job.
+>    - *Normal Spoilage (Job-Specific):* Net cost ($\text{Original Cost} - \text{Disposal Value}$) charged directly to the specific job.
 >    - *Normal Spoilage (Common to All Jobs):* Net cost charged to Manufacturing Overhead Control.
 >    - *Abnormal Spoilage:* Net loss credited out of WIP and debited to **Loss from Abnormal Spoilage** (expensed in period).
 > 4. **Defectives / Rework:**
@@ -344,7 +339,7 @@ A **Trigger Point** is a stage in the purchase-to-sales cycle at which journal e
 ##### Comparison of Backflush Costing Variants
 
 ```mermaid
-flowchart LR
+flowchart TD
     subgraph Traditional Sequential Tracking
     A1[Stage A: Purchase DM] --> B1[Stage B: Incur WIP] --> C1[Stage C: Complete FG] --> D1[Stage D: Sell COGS]
     end
@@ -393,9 +388,9 @@ The primary objective of **IAS 2** is to prescribe the accounting treatment for 
 ---
 #### 2. Definition of Inventories
 Under IAS 2 (Paragraph 6), **inventories** are defined as assets:
-a) Held for sale in the ordinary course of business (Finished Goods / Merchandise).
-b) In the process of production for such sale (Work-in-Progress).
-c) In the form of materials or supplies to be consumed in the production process or rendering of services (Raw Materials and Stores).
+- a) Held for sale in the ordinary course of business (Finished Goods / Merchandise).
+- b) In the process of production for such sale (Work-in-Progress).
+- c) In the form of materials or supplies to be consumed in the production process or rendering of services (Raw Materials and Stores).
 
 ---
 #### 3. Core Measurement Rule: Lower of Cost and Net Realizable Value $NRV$
@@ -446,7 +441,7 @@ The following costs must be **expensed in the period incurred** and never capita
 > **CRITICAL IFRS MANDATE:** **LIFO (Last-In, First-Out) is strictly PROHIBITED under IAS 2** due to its distortion of balance sheet values and lack of economic representation of physical flow.
 
 ---
-### Section 6: Complete Numerical Walkthroughs & Solutions
+### Section 6: Numerical Walkthroughs & Solutions
 > [!example] Numerical Problem
 >
 > #### Detailed Walkthrough 1: Keep-Kool Company (EOQ Calculation)
@@ -456,37 +451,34 @@ The following costs must be **expensed in the period incurred** and never capita
 > 1. Calculate the Economic Order Quantity $EOQ$ for CU29.
 > 2. Calculate total annual ordering and carrying costs for CU29.
 > 3. Calculate the reorder point for CU29.
-
-##### Step-by-Step Solution
-**Step 1: Identify Given Parameters**
-- Annual Demand ($D$) = $12,000$ units.
-- Order Processing Cost ($O$) = $TK\ 120$ per order.
-- Unit Purchase Price ($P_{unit}$) = $TK\ 50$ per unit.
-- Lead Time ($L$) = $0.5$ months.
-
-**Step 2: Calculate Unit Carrying Cost ($C$)**
-Carrying cost per unit per year consists of:
-- Opportunity cost of investment = $12\% \times TK\ 50 = TK\ 6.00$.
-- Direct storage, rent, insurance, tax = $TK\ 2.00$.
-$$ C = 2.00 + (50 \times 12\%) = 2.00 + 6.00 = TK\ 8.00 \text{ per unit/year} $$
-
-**Step 3: Calculate EOQ (Requirement i)**
-
-$$ EOQ = \sqrt{\frac{2 \cdot D \cdot O}{C}} = \sqrt{\frac{2 \times 12,000 \times 120}{8}} = \sqrt{\frac{2,880,000}{8}} = \sqrt{360,000} = 600 \text{ units} $$
-
-**Step 4: Calculate Total Ordering and Carrying Costs (Requirement ii)**
-- Number of orders per year = $\frac{D}{EOQ} = \frac{12,000}{600} = 20 \text{ orders}$.
-- Annual Ordering Cost = $20 \times 120 = TK\ 2,400$.
-- Annual Carrying Cost = $\frac{EOQ}{2} \times C = \frac{600}{2} \times 8 = 300 \times 8 = TK\ 2,400$.
-$$ \text{Total Annual Relevant Cost} = TK\ 2,400 + TK\ 2,400 = TK\ 4,800 $$
-
-**Step 5: Calculate Reorder Point (Requirement iii)**
-- Average Monthly Usage = $\frac{12,000 \text{ units}}{12 \text{ months}} = 1,000 \text{ units/month}$.
-- Safety Stock = $0$ (since lead time and demand are known with certainty).
-$$ \text{Reorder Point} = \text{Safety Stock} + (\text{Average Monthly Usage} \times \text{Lead Time}) $$
-$$ \text{Reorder Point} = 0 + (1,000 \times 0.5) = 500 \text{ units} $$
-
----
+> ##### Step-by-Step Solution
+> **Step 1: Identify Given Parameters**
+> - Annual Demand ($A$) = $12,000$ units.
+> - Order Processing Cost ($O$) = $TK\ 120$ per order.
+> - Unit Purchase Price ($P_{unit}$) = $TK\ 50$ per unit.
+> - Lead Time ($L$) = $0.5$ months.
+> 
+> **Step 2: Calculate Unit Carrying Cost ($CC$)**
+> Carrying cost per unit per year consists of:
+> - Opportunity cost of investment = $12\% \times TK\ 50 = TK\ 6.00$.
+> - Direct storage, rent, insurance, tax = $TK\ 2.00$.
+> $$ CC = 2.00 + (50 \times 12\%) = 2.00 + 6.00 = TK\ 8.00 \text{ per unit/year} $$
+> 
+> **Step 3: Calculate EOQ (Requirement i)**
+> 
+> $$ EOQ = \sqrt{\frac{2 \cdot A \cdot O}{CC}} = \sqrt{\frac{2 \times 12,000 \times 120}{8}} = \sqrt{\frac{2,880,000}{8}} = \sqrt{360,000} = 600 \text{ units} $$
+> 
+> **Step 4: Calculate Total Ordering and Carrying Costs (Requirement ii)**
+> - Number of orders per year = $\frac{A}{EOQ} = \frac{12,000}{600} = 20 \text{ orders}$.
+> - Annual Ordering Cost = $20 \times 120 = TK\ 2,400$.
+> - Annual Carrying Cost = $\frac{EOQ}{2} \times CC = \frac{600}{2} \times 8 = 300 \times 8 = TK\ 2,400$.
+> $$ \text{Total Annual Relevant Cost} = TK\ 2,400 + TK\ 2,400 = TK\ 4,800 $$
+> 
+> **Step 5: Calculate Reorder Point (Requirement iii)**
+> - Average Monthly Usage = $\frac{12,000 \text{ units}}{12 \text{ months}} = 1,000 \text{ units/month}$.
+> - Safety Stock = $0$ (since lead time and demand are known with certainty).
+> $$ \text{Reorder Point} = \text{Safety Stock} + (\text{Average Monthly Usage} \times \text{Lead Time}) $$
+> $$ \text{Reorder Point} = 0 + (1,000 \times 0.5) = 500 \text{ units} $$
 
 > [!example] Numerical Problem
 >
@@ -498,84 +490,76 @@ $$ \text{Reorder Point} = 0 + (1,000 \times 0.5) = 500 \text{ units} $$
 > - Minimum daily usage = $70$ units.
 > - Reorder period (lead time) = $5$ days.
 > - Order processing cost ($O$) = $TK\ 180$ per order.
-> - Carrying cost ($C$) = $TK\ 4.50$ per unit/year.
-> - Working days per year = $45$ days so Annual Demand $D = 100 \text{ units/day} \times 45 \text{ days} = 4,500 \text{ units}$.
-> ##### Required
-> Calculate: 
-> - **a** EOQ,
-> - **b** Safety Stock,
-> - **c** Reorder Level,
-> - **d** Normal Maximum Inventory,
-> - **e** Absolute Maximum Inventory, and
-> - **f** Average Inventory.
-
-Step-by-Step Solution
--
-**a) Economic Order Quantity $EOQ$:**
-
-$$ EOQ = \sqrt{\frac{2 \times D \times O}{C}} = \sqrt{\frac{2 \times 4,500 \times 180}{4.5}} = \sqrt{\frac{1,620,000}{4.5}} = \sqrt{360,000} = 600 \text{ units} $$
-
-**b) Safety Stock:**
-
-$$ \text{Safety Stock} = \text{Maximum Usage} - \text{Average Usage} \times \text{Lead Time} $$
-$$ \text{Safety Stock} = 140 - 100 \times 5 = 40 \times 5 = 200 \text{ units} $$
-
-**c) Reorder Level $ROL$:**
-
-$$ ROL = \text{Maximum Usage} \times \text{Maximum Lead Time} $$
-$$ ROL = 140 \times 5 = 700 \text{ units} $$
-*(Alternative check: $\text{Safety Stock} + \text{Average Usage} \times \text{Lead Time} = 200 + 100 \times 5 = 700 \text{ units}$).*
-
-**d) Normal Maximum Inventory:**
-
-$$ \text{Normal Maximum} = ROL + EOQ - \text{Minimum Usage} \times \text{Lead Time} $$
-$$ \text{Normal Maximum} = 700 + 600 - 70 \times 5 = 1,300 - 350 = 950 \text{ units} $$
-
-**e) Absolute Maximum Inventory:**
-
-$$ \text{Absolute Maximum} = \text{Safety Stock} + EOQ = 200 + 600 = 800 \text{ units} $$
-
-**f) Average Inventory:**
-
-$$ \text{Average Inventory} = \text{Safety Stock} + \frac{EOQ}{2} = 200 + \frac{600}{2} = 200 + 300 = 500 \text{ units} $$
-
--
+> - Carrying cost ($CC$) = $TK\ 4.50$ per unit/year.
+> - Working days per year = $45$ days so Annual Demand $A = 100 \text{ units/day} \times 45 \text{ days} = 4,500 \text{ units}$.
+> ##### Calculate: 
+> - **a)** EOQ,
+> - **b)** Safety Stock,
+> - **c)** Reorder Level,
+> - **d)** Normal Maximum Inventory,
+> - **e)** Absolute Maximum Inventory, and
+> - **f)** Average Inventory.
+> ##### Step-by-Step Solution
+> **a) Economic Order Quantity $EOQ$:**
+> 
+> $$ EOQ = \sqrt{\frac{2 \times A \times O}{CC}} = \sqrt{\frac{2 \times 4,500 \times 180}{4.5}} = \sqrt{\frac{1,620,000}{4.5}} = \sqrt{360,000} = 600 \text{ units} $$
+> 
+> **b) Safety Stock:**
+> 
+> $$ \text{Safety Stock} = \text{Maximum Usage} - \text{Average Usage} \times \text{Lead Time} $$
+> $$ \text{Safety Stock} = 140 - 100 \times 5 = 40 \times 5 = 200 \text{ units} $$
+> 
+> **c) Reorder Level $ROL$:**
+> 
+> $$ ROL = \text{Maximum Usage} \times \text{Maximum Lead Time} $$
+> $$ ROL = 140 \times 5 = 700 \text{ units} $$
+> *(Alternative check: $\text{Safety Stock} + \text{Average Usage} \times \text{Lead Time} = 200 + 100 \times 5 = 700 \text{ units}$).*
+> 
+> **d) Normal Maximum Inventory:**
+> 
+> $$ \text{Normal Maximum} = ROL + EOQ - \text{Minimum Usage} \times \text{Lead Time} $$
+> $$ \text{Normal Maximum} = 700 + 600 - 70 \times 5 = 1,300 - 350 = 950 \text{ units} $$
+> 
+> **e) Absolute Maximum Inventory:**
+> 
+> $$ \text{Absolute Maximum} = \text{Safety Stock} + EOQ = 200 + 600 = 800 \text{ units} $$
+> 
+> **f) Average Inventory:**
+> 
+> $$ \text{Average Inventory} = \text{Safety Stock} + \frac{EOQ}{2} = 200 + \frac{600}{2} = 200 + 300 = 500 \text{ units} $$
+> 
 
 > [!example] Numerical Problem
 >
 > #### Detailed Walkthrough 3: Quantity Discount Decision Analysis
 > ##### Problem Statement
-> Annual requirement ($D$) = $10,000$ units. Inventory carrying cost per unit per year = $20\%$ of price. Order processing cost ($O$) = $Rs.\ 40$ per order. Base price quoted = $Rs.\ 4$ per unit.
+> Annual requirement ($A$) = $10,000$ units. Inventory carrying cost per unit per year = $20\%$ of price. Order processing cost ($O$) = $Rs.\ 40$ per order. Base price quoted = $Rs.\ 4$ per unit.
 > The supplier offers a **5% quantity discount** if order size is **1,500 units or more**. Evaluate whether to accept the discount offer.
-
-Step-by-Step Solution
--
-**Step 1: Calculate Standard EOQ without Discount**
-- $C = 20\% \times Rs.\ 4.00 = Rs.\ 0.80$ per unit/year.
-$$ EOQ = \sqrt{\frac{2 \times 10,000 \times 40}{0.80}} = \sqrt{1,000,000} = 1,000 \text{ units} $$
-
-Total annual relevant cost at $Q = 1,000$ units:
-- Purchase Cost = $10,000 \times Rs.\ 4.00 = Rs.\ 40,000$
-- Ordering Cost = $\left(\frac{10,000}{1,000}\right) \times Rs.\ 40 = 10 \times 40 = Rs.\ 400$
-- Carrying Cost = $\left(\frac{1,000}{2}\right) \times Rs.\ 0.80 = 500 \times 0.80 = Rs.\ 400$
-$$ \text{Total Cost at EOQ} = 40,000 + 400 + 400 = Rs.\ 40,800 $$
-
-**Step 2: Calculate Total Cost at Discount Lot Size ($Q = 1,500$ units)**
-- Discounted Purchase Price = $Rs.\ 4.00 \times $1 - 0.05$ = Rs.\ 3.80$ per unit.
-- Total Purchase Cost = $10,000 \times Rs.\ 3.80 = Rs.\ 38,000$.
-- Discounted Carrying Cost per unit $C_{disc} = 20\% \times Rs.\ 3.80 = Rs.\ 0.76$ per unit/year.
-- Number of Orders = $\frac{10,000}{1,500} = 6.67$ orders per year.
-- Annual Ordering Cost = $6.67 \times Rs.\ 40 = Rs.\ 266.67$ (or $Rs.\ 240$ for 6 full orders).
-- Annual Carrying Cost = $\left(\frac{1,500}{2}\right) \times Rs.\ 0.76 = 750 \times 0.76 = Rs.\ 570$.
-$$ \text{Total Cost at Discount} = 38,000 + 240 + 570 = Rs.\ 38,810 $$
-
-**Step 3: Comparative Decision Analysis**
-$$ \text{Net Financial Benefit of Discount} = \text{Total Cost at EOQ} - \text{Total Cost at Discount} $$
-$$ \text{Net Benefit} = Rs.\ 40,800 - Rs.\ 38,810 = Rs.\ 1,990 \quad \text{or } Rs.\ 1,190 \text{ incremental savings on inventory costs} $$
-
-**Decision:** **Accept the quantity discount offer** and order in lot sizes of 1,500 units, as it yields an annual net cost reduction of $Rs.\ 1,990$.
-
--
+> ##### Step-by-Step Solution
+> **Step 1: Calculate Standard EOQ without Discount**
+> - $CC = 20\% \times Rs.\ 4.00 = Rs.\ 0.80$ per unit/year.
+> $$ EOQ = \sqrt{\frac{2 \times 10,000 \times 40}{0.80}} = \sqrt{1,000,000} = 1,000 \text{ units} $$
+> 
+> Total annual relevant cost at $Q = 1,000$ units:
+> - Purchase Cost = $10,000 \times Rs.\ 4.00 = Rs.\ 40,000$
+> - Ordering Cost = $\left(\frac{10,000}{1,000}\right) \times Rs.\ 40 = 10 \times 40 = Rs.\ 400$
+> - Carrying Cost = $\left(\frac{1,000}{2}\right) \times Rs.\ 0.80 = 500 \times 0.80 = Rs.\ 400$
+> $$ \text{Total Cost at EOQ} = 40,000 + 400 + 400 = Rs.\ 40,800 $$
+> 
+> **Step 2: Calculate Total Cost at Discount Lot Size ($Q = 1,500$ units)**
+> - Discounted Purchase Price = $Rs.\ 4.00 \times 1 - 0.05 = Rs.\ 3.80$ per unit.
+> - Total Purchase Cost = $10,000 \times Rs.\ 3.80 = Rs.\ 38,000$.
+> - Discounted Carrying Cost per unit $C_{disc} = 20\% \times Rs.\ 3.80 = Rs.\ 0.76$ per unit/year.
+> - Number of Orders = $\frac{10,000}{1,500} = 6.67$ orders per year.
+> - Annual Ordering Cost = $6.67 \times Rs.\ 40 = Rs.\ 266.67$ (or $Rs.\ 240$ for 6 full orders).
+> - Annual Carrying Cost = $\left(\frac{1,500}{2}\right) \times Rs.\ 0.76 = 750 \times 0.76 = Rs.\ 570$.
+> $$ \text{Total Cost at Discount} = 38,000 + 240 + 570 = Rs.\ 38,810 $$
+> 
+> **Step 3: Comparative Decision Analysis**
+> $$ \text{Net Financial Benefit of Discount} = \text{Total Cost at EOQ} - \text{Total Cost at Discount} $$
+> $$ \text{Net Benefit} = Rs.\ 40,800 - Rs.\ 38,810 = Rs.\ 1,990 \quad \text{or } Rs.\ 1,190 \text{ incremental savings on inventory costs} $$
+> 
+> **Decision:** **Accept the quantity discount offer** and order in lot sizes of 1,500 units, as it yields an annual net cost reduction of $Rs.\ 1,990$.
 
 > [!example] Numerical Problem
 >
@@ -587,39 +571,37 @@ $$ \text{Net Benefit} = Rs.\ 40,800 - Rs.\ 38,810 = Rs.\ 1,990 \quad \text{or } 
 > 2. Actual conversion costs incurred: $\$1,260,000$.
 > 3. Good finished units completed: $100,000$ units.
 > 4. Finished units sold: $99,000$ units at $\$50$ selling price.
-
-General Ledger Journal Entries (Backflush Variant 1 - 3 Trigger Points)
--
-1. **Record Direct Materials Purchased (Stage A):**
-   $$ \text{Dr. Materials and In-Process Inventory Control} \quad \$1,950,000 $$
-   $$ \text{Cr. Accounts Payable Control} \quad \$1,950,000 $$
-2. **Record Conversion Costs Incurred (Stage A):**
-   $$ \text{Dr. Conversion Costs Control} \quad \$1,260,000 $$
-   $$ \text{Cr. Wages Payable / Various Accounts} \quad \$1,260,000 $$
-3. **Record Cost of Good Finished Units Completed (Stage C):**
-   $$ \text{Units Completed} = 100,000 \text{ units} $$
-   $$ \text{Standard Direct Materials} = 100,000 \times \$19.00 = \$1,900,000 $$
-   $$ \text{Standard Allocated Conversion} = 100,000 \times \$12.00 = \$1,200,000 $$
-   $$ \text{Dr. Finished Goods Control} \quad \$3,100,000 $$
-   $$ \text{Cr. Materials and In-Process Inventory Control} \quad \$1,900,000 $$
-   $$ \text{Cr. Conversion Costs Allocated} \quad \$1,200,000 $$
-4. **Record Cost of Goods Sold (Stage D):**
-   $$ \text{Units Sold} = 99,000 \text{ units} $$
-   $$ \text{Standard Cost of Goods Sold} = 99,000 \times \$31.00 = \$3,069,000 $$
-   $$ \text{Dr. Cost of Goods Sold} \quad \$3,069,000 $$
-   $$ \text{Cr. Finished Goods Control} \quad \$3,069,000 $$
-5. **Close Conversion Cost Variances to Cost of Goods Sold at Month-End:**
-   $$ \text{Actual Conversion Incurred} = \$1,260,000 $$
-   $$ \text{Standard Conversion Allocated} = \$1,200,000 $$
-   $$ \text{Underallocated Conversion Cost} = \$1,260,000 - \$1,200,000 = \$60,000 \text{ (Unfavorable)} $$
-   $$ \text{Dr. Conversion Costs Allocated} \quad \$1,200,000 $$
-   $$ \text{Dr. Cost of Goods Sold} \quad \$60,000 $$
-   $$ \text{Cr. Conversion Costs Control} \quad \$1,260,000 $$
-Ending Inventory Balances on April 30
--
-- **Materials and In-Process Inventory Control Balance:**
-  $$ \$1,950,000 - \$1,900,000 = \$50,000 \quad \text{(Direct materials on hand)} $$
-- **Finished Goods Control Balance:**
-  $$ \$3,100,000 - \$3,069,000 = \$31,000 \quad \text{(1,000 completed units at } \$31.00\text{/unit)} $$
-- **Adjusted Cost of Goods Sold:**
-  $$ \$3,069,000 + \$60,000 = \$3,129,000 $$
+> ##### Solution
+> ###### General Ledger Journal Entries (Backflush Variant 1 - 3 Trigger Points)
+> 5. **Record Direct Materials Purchased (Stage A):**
+>    $$ \text{Dr. Materials and In-Process Inventory Control} \quad \$1,950,000 $$
+>    $$ \text{Cr. Accounts Payable Control} \quad \$1,950,000 $$
+> 6. **Record Conversion Costs Incurred (Stage A):**
+>    $$ \text{Dr. Conversion Costs Control} \quad \$1,260,000 $$
+>    $$ \text{Cr. Wages Payable / Various Accounts} \quad \$1,260,000 $$
+> 7. **Record Cost of Good Finished Units Completed (Stage C):**
+>    $$ \text{Units Completed} = 100,000 \text{ units} $$
+>    $$ \text{Standard Direct Materials} = 100,000 \times \$19.00 = \$1,900,000 $$
+>    $$ \text{Standard Allocated Conversion} = 100,000 \times \$12.00 = \$1,200,000 $$
+>    $$ \text{Dr. Finished Goods Control} \quad \$3,100,000 $$
+>    $$ \text{Cr. Materials and In-Process Inventory Control} \quad \$1,900,000 $$
+>    $$ \text{Cr. Conversion Costs Allocated} \quad \$1,200,000 $$
+> 8. **Record Cost of Goods Sold (Stage D):**
+>    $$ \text{Units Sold} = 99,000 \text{ units} $$
+>    $$ \text{Standard Cost of Goods Sold} = 99,000 \times \$31.00 = \$3,069,000 $$
+>    $$ \text{Dr. Cost of Goods Sold} \quad \$3,069,000 $$
+>    $$ \text{Cr. Finished Goods Control} \quad \$3,069,000 $$
+> 9. **Close Conversion Cost Variances to Cost of Goods Sold at Month-End:**
+>    $$ \text{Actual Conversion Incurred} = \$1,260,000 $$
+>    $$ \text{Standard Conversion Allocated} = \$1,200,000 $$
+>    $$ \text{Underallocated Conversion Cost} = \$1,260,000 - \$1,200,000 = \$60,000 \text{ (Unfavorable)} $$
+>    $$ \text{Dr. Conversion Costs Allocated} \quad \$1,200,000 $$
+>    $$ \text{Dr. Cost of Goods Sold} \quad \$60,000 $$
+>    $$ \text{Cr. Conversion Costs Control} \quad \$1,260,000 $$
+> ###### Ending Inventory Balances on April 30
+> - **Materials and In-Process Inventory Control Balance:**
+>   $$ \$1,950,000 - \$1,900,000 = \$50,000 \quad \text{(Direct materials on hand)} $$
+> - **Finished Goods Control Balance:**
+>   $$ \$3,100,000 - \$3,069,000 = \$31,000 \quad \text{(1,000 completed units at } \$31.00\text{/unit)} $$
+> - **Adjusted Cost of Goods Sold:**
+>   $$ \$3,069,000 + \$60,000 = \$3,129,000 $$
