@@ -1,15 +1,14 @@
 # Material Planning, Control, and Inventory Management
 
 > [!abstract] Curriculum & Syllabus Context
->
 > - **Course:** ACC 304 Cost Accounting I
-> - **Step:** Step 4: Material Control and Modern Inventory Management
-> - **Target Reading:** Datar & Rajan, *Horngren's Cost Accounting*, 17th/18th Edition — **Chapter 21: Inventory Management, JIT, and Simplified Costing Methods** (with Chapter 4)
-> - **Syllabus Focus:** Quantity vs. financial materials control; purchasing procedures and 3-way matching; bin cards vs. stores ledger cards; mathematical derivation of EOQ and sensitivity analysis; stock levels (ROL, minimum, maximum, danger, average); ABC inventory analysis; accounting for waste, scrap, spoilage, and defectives; JIT pull systems; simplified backflush costing variants; and IAS 2 valuation rules.
+> - **Syllabus Topic:** 4. Costing and Control of Materials
+> - **Target Reading:** Datar & Rajan, *Horngren's Cost Accounting* (Chapter 11 & 21)
+> - **Syllabus Focus:** Quantity vs. financial materials control; purchasing procedures and 3-way matching; bin cards vs. stores ledger cards; mathematical derivation of EOQ and quantity discounts; stock levels (ROL, minimum, maximum, danger, average); probabilistic safety stock; ABC inventory analysis; accounting for waste, scrap, spoilage, and defectives; JIT and MRP systems; and IAS 2 valuation rules including Stores Ledger preparation (FIFO & Weighted Average).
 
 ---
-### Section 1: Foundational Framework of Materials Control & Purchasing Procedures
-#### 1. Definition and Scope of Materials Control
+## Section 1: Foundational Framework of Materials Control & Purchasing Procedures
+### 1. Definition and Scope of Materials Control
 In manufacturing enterprises, **materials** refer to raw materials, sub-assemblies, fabricated components, and factory supplies that are converted into finished output. Because material costs constitute the largest single component of total manufacturing cost (often 50% to 70% of total prime cost), maintaining systematic accounting and rigorous physical control over materials is essential for operational efficiency and profitability.
 
 > [!info] Key Definition
@@ -22,23 +21,23 @@ In manufacturing enterprises, **materials** refer to raw materials, sub-assembli
 graph RL
     A[MATERIALS CONTROL SYSTEM] --> B[QUANTITY CONTROL]
     A --> C[FINANCIAL CONTROL]
-    
+
     B --> B1(Uninterrupted Supply)
     B --> B2(Physical Safeguarding)
     B --> B3(Waste & Loss Reduction)
     B --> B4(Storekeeping Efficiency)
-    
+
     C --> C1(Minimized Capital Lock)
     C --> C2(Optimized Total Cost)
     C --> C3(Proper General Ledger Postings)
-    
+
     style A fill:#1D3557,color:#fff
     style B fill:#457B9D,color:#fff
     style C fill:#E63946,color:#fff
 ```
 
 ---
-#### 2. Objectives of Materials Control
+### 2. Objectives of Materials Control
 A robust system of materials control achieves nine primary objectives:
 1. **Availability:** Ensuring materials of specified quality are continuously available to prevent production delays or machine downtime.
 2. **Economic Purchasing:** Ordering materials only when genuine demand exists, in economic quantities $EOQ$, and at optimal market terms.
@@ -51,7 +50,7 @@ A robust system of materials control achieves nine primary objectives:
 9. **Custodial Accountability:** Maintaining continuous individual accountability for all inventory items across all storage and production centers.
 
 ---
-#### 3. Organizational Purchasing and Receiving Flow
+### 3. Organizational Purchasing and Receiving Flow
 The procurement and receiving cycle follows a five-step control flow:
 
 ```mermaid
@@ -60,7 +59,7 @@ flowchart LR
     B --> C[3. Receiving<br>& Inspection]
     C --> D[4. Invoice<br>Approval]
     D --> E[5. Payment<br>Disbursement]
-    
+
     style A fill:#F4A261,color:#000
     style B fill:#E76F51,color:#fff
     style C fill:#2A9D8F,color:#fff
@@ -75,9 +74,9 @@ flowchart LR
 5. **Payment Disbursement:** Once approved, a payment voucher and remittance advice are generated to disburse funds to the supplier within agreed credit terms, taking advantage of applicable cash discounts.
 
 ---
-#### 4. Storekeeping and Document Control
+### 4. Storekeeping and Document Control
 Efficient storekeeping maintains the physical link between bulk procurement and controlled consumption.
-##### Bin Cards vs. Stores Ledger Cards
+#### Bin Cards vs. Stores Ledger Cards
 A crucial operational and internal check distinction exists between a **Bin Card** and a **Stores Ledger Card**:
 
 | Feature | Bin Card | Stores Ledger Card |
@@ -89,7 +88,7 @@ A crucial operational and internal check distinction exists between a **Bin Card
 | **Control Purpose** | Physical stock tracking, perpetual count verification, and reorder alerts. | Financial accounting, inventory valuation, and cost of goods sold determination. |
 
 ---
-##### Key Source Documents in Material Costing
+#### Key Source Documents in Material Costing
 > [!info] Key Definition
 >
 > - **Materials Requisition Note:** A formal written order issued by an authorized departmental head/foreman instructing the storekeeper to issue specified materials for a specific job or cost center. Serves as the source document for debiting Work-in-Process (or Overhead Control) and crediting Materials Control.
@@ -99,9 +98,9 @@ A crucial operational and internal check distinction exists between a **Bin Card
 > - **Reject / Dispatch Note:** Issued when rejected, damaged, or out-of-specification materials are returned to the external supplier. Supports debit notes crediting Accounts Payable and reducing Materials Control.
 
 ---
-### Section 2: Mathematical Derivations & Inventory Control Models
-#### 1. Economic Order Quantity $EOQ$ Model
-##### Conceptual Foundation
+## Section 2: Mathematical Derivations & Inventory Control Models
+### 1. Economic Order Quantity $EOQ$ Model
+#### Conceptual Foundation
 The **Economic Order Quantity $EOQ$** determines the optimal order size $Q^*$ that minimizes the total annual relevant inventory costs—specifically, the sum of **Annual Ordering Costs** and **Annual Holding (Carrying) Costs**.
 
 ```mermaid
@@ -123,40 +122,40 @@ xychart-beta
 > - $CC$ or $S$ or $C$ or $(I \times P)$ = Annual holding/carrying cost per unit of inventory per year.
 > - $Q$ = Order quantity per order (the decision variable).
 > - $P_{unit}$ = Unit acquisition price of material.
-> 
+>
 > **Step 1: Formulate the Component Cost Functions**
 > 1. **Annual Purchase Cost ($PC$):**
->    $$ PC = A \times P_{unit} $$
+>$$PC = A \times P_{unit}$$
 >    *(Note: Under constant unit purchase price, $PC$ is a sunk/irrelevant baseline cost with respect to $Q$).*
 > 2. **Annual Ordering Cost $TC_o$:**
->    $$ \text{Number of Orders per Year} = \frac{A}{Q} $$
->    $$ TC_o(Q) = \left( \frac{A}{Q} \right) \times O $$
+>$$\text{Number of Orders per Year} = \frac{A}{Q}$$
+>$$TC_o(Q) = \left( \frac{A}{Q} \right) \times O$$
 > 3. **Annual Carrying/Holding Cost $TC_h$:**
->    $$ \text{Average Inventory Level} = \frac{Q}{2} \quad \text{(assuming constant consumption and zero safety stock)} $$
->    $$ TC_h(Q) = \left( \frac{Q}{2} \right) \times CC $$
-> 
+>$$\text{Average Inventory Level} = \frac{Q}{2} \quad \text{(assuming constant consumption and zero safety stock)}$$
+>$$TC_h(Q) = \left( \frac{Q}{2} \right) \times CC$$
+>
 > **Step 2: Formulate Total Relevant Cost ($TRC$) Equation**
-> $$ TRC(Q) = TC_o(Q) + TC_h(Q) = \frac{A \cdot O}{Q} + \frac{Q \cdot CC}{2} $$
-> 
+>$$TRC(Q) = TC_o(Q) + TC_h(Q) = \frac{A \cdot O}{Q} + \frac{Q \cdot CC}{2}$$
+>
 > **Step 3: Differentiate $TRC(Q)$ with Respect to $Q$ and Set to Zero**
 > To find the global minimum, compute the first derivative of $TRC(Q)$ with respect to $Q$:
-> $$ \frac{d(TRC)}{dQ} = \frac{d}{dQ} \left( A \cdot O \cdot Q^{-1} + \frac{CC}{2} \cdot Q \right) $$
-> $$ \frac{d(TRC)}{dQ} = -1 \cdot A \cdot O \cdot Q^{-2} + \frac{CC}{2} = -\frac{A \cdot O}{Q^2} + \frac{CC}{2} $$
+>$$\frac{d(TRC)}{dQ} = \frac{d}{dQ} \left( A \cdot O \cdot Q^{-1} + \frac{CC}{2} \cdot Q \right)$$
+>$$\frac{d(TRC)}{dQ} = -1 \cdot A \cdot O \cdot Q^{-2} + \frac{CC}{2} = -\frac{A \cdot O}{Q^2} + \frac{CC}{2}$$
 > Set the first derivative equal to zero:
-> $$ -\frac{A \cdot O}{Q^2} + \frac{CC}{2} = 0 $$
-> $$ \frac{CC}{2} = \frac{A \cdot O}{Q^2} $$
-> 
+>$$-\frac{A \cdot O}{Q^2} + \frac{CC}{2} = 0$$
+>$$\frac{CC}{2} = \frac{A \cdot O}{Q^2}$$
+>
 > **Step 4: Solve for $Q$**
-> $$ Q^2 \cdot CC = 2 \cdot A \cdot O $$
-> $$ Q^2 = \frac{2 \cdot A \cdot O}{CC} $$
-> $$ Q^* = \text{EOQ} = \sqrt{\frac{2 \cdot A \cdot O}{CC}} $$
+>$$Q^2 \cdot CC = 2 \cdot A \cdot O$$
+>$$Q^2 = \frac{2 \cdot A \cdot O}{CC}$$
+>$$Q^* = \text{EOQ} = \sqrt{\frac{2 \cdot A \cdot O}{CC}}$$
 
-##### Key Equilibrium Principle at $EOQ$
+#### Key Equilibrium Principle at $EOQ$
 At $Q = \text{EOQ}$, **Annual Ordering Costs strictly equal Annual Carrying Costs**:
 
-$$ \text{Ordering Cost at EOQ} = \frac{A}{Q^*} \times O = \frac{A}{\sqrt{\frac{2AO}{CC}}} \times O = \sqrt{\frac{A \cdot O \cdot CC}{2}} $$
-$$ \text{Carrying Cost at EOQ} = \frac{Q^*}{2} \times CC = \frac{\sqrt{\frac{2AO}{CC}}}{2} \times CC = \sqrt{\frac{A \cdot O \cdot CC}{2}} $$
-$$ \text{Total Relevant Annual Inventory Cost (TRC)} = \sqrt{2 \cdot A \cdot O \cdot CC} $$
+$$\text{Ordering Cost at EOQ} = \frac{A}{Q^*} \times O = \frac{A}{\sqrt{\frac{2AO}{CC}}} \times O = \sqrt{\frac{A \cdot O \cdot CC}{2}}$$
+$$\text{Carrying Cost at EOQ} = \frac{Q^*}{2} \times CC = \frac{\sqrt{\frac{2AO}{CC}}}{2} \times CC = \sqrt{\frac{A \cdot O \cdot CC}{2}}$$
+$$\text{Total Relevant Annual Inventory Cost (TRC)} = \sqrt{2 \cdot A \cdot O \cdot CC}$$
 
 > [!warning] Exam Pitfall / Exception
 >
@@ -167,15 +166,15 @@ $$ \text{Total Relevant Annual Inventory Cost (TRC)} = \sqrt{2 \cdot A \cdot O \
 > 4. Carrying cost per unit ($CC$) and ordering cost per order ($O$) are constant and linear.
 > 5. Stockouts are strictly prohibited, and receipt of orders is instantaneous upon reaching zero working stock.
 
-##### Sensitivity Analysis & Cost of Prediction Errors in EOQ
+#### Sensitivity Analysis & Cost of Prediction Errors in EOQ
 Due to the square-root function in the EOQ mathematical structure, the total cost curve is relatively flat around $Q^*$. As a result, moderate estimation errors in $O$ or $CC$ produce smaller percentage errors in total inventory costs.
 
 If a predicted ordering cost $O_{pred}$ is used instead of actual $O_{actual}$, the resulting order size $Q_{pred} = \sqrt{\frac{2A O_{pred}}{CC}}$ causes a prediction error cost calculated as:
 
-$$ \text{Cost of Prediction Error} = TRC(Q_{pred} \mid O_{actual}) - TRC(Q^* \mid O_{actual}) $$
+$$\text{Cost of Prediction Error} = TRC(Q_{pred} \mid O_{actual}) - TRC(Q^* \mid O_{actual})$$
 
 ---
-#### 2. Stock Level Control Formulas
+### 2. Stock Level Control Formulas
 To prevent both out-of-stock conditions (disrupting production) and over-stocking (locking up excess capital), cost systems establish specific quantitative inventory thresholds.
 
 ```mermaid
@@ -183,7 +182,7 @@ graph TD
     A[Maximum Stock Level] --- B[Reorder Level ROL]
     B --- C[Minimum Level / Safety Stock]
     C --- D[Danger Level]
-    
+
     style A fill:#457B9D,color:#fff
     style B fill:#2A9D8F,color:#fff
     style C fill:#F4A261,color:#000
@@ -195,40 +194,40 @@ graph TD
 > 1. **Reorder Level $ROL$ / Reorder Point $ROP$:**
 >    The physical inventory level that automatically triggers the issuance of a new purchase order.
 >    - *Primary Formula (based on Maximum Consumption & Lead Time):*
->      $$ ROL = \text{Maximum Daily/Weekly Usage} \times \text{Maximum Lead Time (Reorder Period)} $$
+>$$ROL = \text{Maximum Daily/Weekly Usage} \times \text{Maximum Lead Time (Reorder Period)}$$
 >    - *Alternative Formula (based on Safety Stock & Average Lead Time):*
->      $$ ROL = \text{Safety Stock} + (\text{Average Daily/Weekly Usage} \times \text{Average Lead Time}) $$
+>$$ROL = \text{Safety Stock} + (\text{Average Daily/Weekly Usage} \times \text{Average Lead Time})$$
 > 2. **Minimum Stock Level (Safety Stock):**
 >    The minimum buffer inventory maintained at all times as an emergency reserve against supply delays or demand surges.
->    $$ \text{Minimum Stock Level} = ROL - (\text{Average Usage Rate} \times \text{Average Reorder Period}) $$
+>$$\text{Minimum Stock Level} = ROL - (\text{Average Usage Rate} \times \text{Average Reorder Period})$$
 > 3. **Maximum Stock Level:**
 >    The upper boundary above which physical stock should not be permitted to rise, preventing over-capitalization and excessive storage costs.
->    $$ \text{Maximum Stock Level} = ROL + EOQ - (\text{Minimum Usage Rate} \times \text{Minimum Reorder Period}) $$
+>$$\text{Maximum Stock Level} = ROL + EOQ - (\text{Minimum Usage Rate} \times \text{Minimum Reorder Period})$$
 > 4. **Absolute Maximum Inventory:**
->    $$ \text{Absolute Maximum Inventory} = \text{Safety Stock} + EOQ $$
+>$$\text{Absolute Maximum Inventory} = \text{Safety Stock} + EOQ$$
 > 5. **Normal Maximum Inventory:**
->    $$ \text{Normal Maximum Inventory} = ROL + EOQ - (\text{Minimum Usage Rate} \times \text{Average Lead Time}) $$
+>$$\text{Normal Maximum Inventory} = ROL + EOQ - (\text{Minimum Usage Rate} \times \text{Average Lead Time})$$
 > 6. **Danger Level:**
 >    A critical emergency threshold below the safety stock level where normal production issues are restricted, and urgent expediting steps are taken.
->    $$ \text{Danger Level} = \text{Average Usage Rate} \times \text{Lead Time for Emergency Purchases} $$
+>$$\text{Danger Level} = \text{Average Usage Rate} \times \text{Lead Time for Emergency Purchases}$$
 > 7. **Average Stock Level:**
 >    The expected operational inventory on hand over time.
->    $$ \text{Average Stock Level} = \text{Minimum Stock Level} + \frac{EOQ}{2} $$
->    $$ \text{Or: } \text{Average Stock Level} = \frac{\text{Minimum Stock Level} + \text{Maximum Stock Level}}{2} $$
->    $$ \text{Or: } \text{Average Stock Level} = {\text{Average Consumption} \times \text{Emergency Lead Time}}
->  $$
-#### 3. Probabilistic Safety Stock Optimization
+>$$\text{Average Stock Level} = \text{Minimum Stock Level} + \frac{EOQ}{2}$$
+>$$\text{Or: } \text{Average Stock Level} = \frac{\text{Minimum Stock Level} + \text{Maximum Stock Level}}{2}$$
+>$$\text{Or: } \text{Average Stock Level} = {\text{Average Consumption} \times \text{Emergency Lead Time}}
+>$$
+### 3. Probabilistic Safety Stock Optimization
 When demand during lead time is uncertain, companies must balance the **Cost of Carrying Safety Stock** against the **Cost of a Stockout**.
 
-> [!quote] Optimization Logic
+> [!quote] Formula & Derivation — Optimization Logic
 > 1. **Carrying Cost** = $\text{Units of Safety Stock} \times \text{Carrying Cost per Unit}$
 > 2. **Stockout Cost** = $\text{Units Short} \times \text{Probability of Shortage} \times \text{Stockout Cost per unit} \times \text{Number of Orders per Year}$
 > 3. **Total Cost** = $\text{Carrying Cost} + \text{Expected Stockout Cost}$
 > *The optimal safety stock level is the quantity that minimizes this Total Cost.*
 
 ---
-### Section 3: Material Control Techniques & Inventory Valuation
-#### 1. Selective Inventory Control: ABC Analysis (Pareto Analysis)
+## Section 3: Material Control Techniques & Inventory Valuation
+### 1. Selective Inventory Control: ABC Analysis (Pareto Analysis)
 **ABC Analysis** applies Pareto’s 80/20 Law to inventory management, categorizing inventory items based on their annual monetary usage value $D \times P_{unit}$ rather than physical quantities.
 
 ```mermaid
@@ -245,30 +244,30 @@ pie title "ABC Inventory Value Distribution"
 | **Class C** | **50%** | **5% – 10%** | **Simple Control:** Visual/Two-Bin checks, large order batches, high safety stock buffers to eliminate stockouts, and minimal clerical tracking. |
 
 ---
-#### 2. Inventory Tracking Systems: Perpetual vs. Periodic
+### 2. Inventory Tracking Systems: Perpetual vs. Periodic
 Manufacturing enterprises employ one of two primary inventory accounting regimes:
 1. **Perpetual Inventory System:**
    Continuous, real-time recording of every material receipt, issue, and balance on hand in stores ledgers and bin cards. Accompanied by a program of **continuous stocktaking** (cycle counting) throughout the year.
    - *Advantages:* Instant inventory balance visibility, facilitates interim financial statements without factory shutdown, detects shrinkage/theft immediately.
 2. **Periodic Inventory System:**
    Physical inventory is counted and valued at specific period-end dates (e.g., year-end). Purchases are debited to a Purchases account, and Cost of Goods Sold is derived as a residual:
-   $$ \text{Cost of Goods Sold} = \text{Beginning Inventory} + \text{Purchases} - \text{Ending Inventory (Physical Count)} $$
+$$\text{Cost of Goods Sold} = \text{Beginning Inventory} + \text{Purchases} - \text{Ending Inventory (Physical Count)}$$
    - *Disadvantage:* Assumes all uncounted inventory was used in production, masking unrecorded losses, shrinkage, spoilage, and theft.
 
 ---
-#### 3. Inventory Turnover Ratios
+### 3. Inventory Turnover Ratios
 Inventory turnover measures the speed and efficiency with which inventory is consumed and replenished:
 
-$$ \text{Inventory Turnover Ratio} = \frac{\text{Cost of Materials Consumed During Period}}{\text{Cost of Average Stock Held During Period}} $$
+$$\text{Inventory Turnover Ratio} = \frac{\text{Cost of Materials Consumed During Period}}{\text{Cost of Average Stock Held During Period}}$$
 
-$$ \text{Average Stock Held} = \frac{\text{Opening Stock} + \text{Closing Stock}}{2} $$
+$$\text{Average Stock Held} = \frac{\text{Opening Stock} + \text{Closing Stock}}{2}$$
 
-$$ \text{Inventory Turnover in Days} = \frac{365 \text{ Days}}{\text{Inventory Turnover Ratio}} $$
+$$\text{Inventory Turnover in Days} = \frac{365 \text{ Days}}{\text{Inventory Turnover Ratio}}$$
 - **High Turnover Ratio:** Indicates fast-moving material, efficient utilization, and low capital tie-up.
 - **Low Turnover Ratio:** Signals slow-moving or obsolete stock, over-capitalization, and risk of material deterioration.
 
 ---
-#### 4. Accounting for Material Losses and Waste
+### 4. Accounting for Material Losses and Waste
 In processing raw materials, various physical losses occur, requiring distinct cost accounting treatments:
 
 ```mermaid
@@ -277,7 +276,7 @@ graph TD
     A --> C[SCRAP<br>Residual material with low recovery value]
     A --> D[SPOILAGE<br>Damaged/defective units sold as 'seconds']
     A --> E[DEFECTIVES / REWORK<br>Economically repairable units]
-    
+
     style A fill:#E63946,color:#fff
 ```
 
@@ -304,8 +303,8 @@ graph TD
 >    - *Abnormal Rework:* Debited to **Loss from Abnormal Rework** account.
 
 ---
-### Section 4: Modern Inventory Systems: JIT, MRP Costing
-#### 1. Materials Requirements Planning $MRP$ Systems
+## Section 4: Modern Inventory Systems: JIT, MRP Costing
+### 1. Materials Requirements Planning $MRP$ Systems
 An **MRP system** is a computer-based **"push-through"** inventory control system. It calculates production schedules and material requisitions based on:
 1. **Demand forecasts** for finished goods.
 2. A detailed **Bill of Materials $BOM$**.
@@ -314,7 +313,7 @@ An **MRP system** is a computer-based **"push-through"** inventory control syste
 Output is "pushed" through successive workstations according to a master production schedule, maintaining WIP buffers at each stage.
 
 ---
-#### 2. Just-In-Time $JIT$ Purchasing and Production
+### 2. Just-In-Time $JIT$ Purchasing and Production
 **JIT** is a **"demand-pull"** philosophy where materials are purchased and units are produced only as needed to satisfy customer orders.
 
 ```mermaid
@@ -323,7 +322,7 @@ flowchart LR
     B -->|Pulls Parts| C[Sub-Assembly]
     C -->|Pulls Materials| D[Component Cell]
     D -->|Just-in-Time| E[Supplier Delivery]
-    
+
     style A fill:#457B9D,color:#fff
     style E fill:#E76F51,color:#fff
 ```
@@ -336,48 +335,48 @@ flowchart LR
   4. **High-Quality Vendor Partnerships:** Single-sourcing with pre-inspected, frequent JIT deliveries.
 
 ---
-### Section 5: International Accounting Standard 2 (IAS 2: Inventories)
-#### 1. Objective and Scope
+## Section 5: International Accounting Standard 2 (IAS 2: Inventories)
+### 1. Objective and Scope
 The primary objective of **IAS 2** is to prescribe the accounting treatment for inventories under IFRS, focusing on the determination of inventory cost and its subsequent recognition as an asset and expense.
 
 ---
-#### 2. Definition of Inventories
+### 2. Definition of Inventories
 Under IAS 2 (Paragraph 6), **inventories** are defined as assets:
 - a) Held for sale in the ordinary course of business (Finished Goods / Merchandise).
 - b) In the process of production for such sale (Work-in-Progress).
 - c) In the form of materials or supplies to be consumed in the production process or rendering of services (Raw Materials and Stores).
 
 ---
-#### 3. Core Measurement Rule: Lower of Cost and Net Realizable Value $NRV$
+### 3. Core Measurement Rule: Lower of Cost and Net Realizable Value $NRV$
 Inventories **shall be measured at the lower of cost and net realizable value**.
-##### Net Realizable Value $NRV$ Equation
+#### Net Realizable Value $NRV$ Equation
 **Net Realizable Value** is the estimated selling price in the ordinary course of business, less the estimated costs of completion and the estimated costs necessary to make the sale:
 
-$$ \text{NRV} = \text{Estimated Selling Price} - \text{Estimated Costs of Completion} - \text{Estimated Selling Costs} $$
+$$\text{NRV} = \text{Estimated Selling Price} - \text{Estimated Costs of Completion} - \text{Estimated Selling Costs}$$
 - Inventories are written down to NRV on an **item-by-item basis** (or by groups of similar items).
 - If raw materials decline in price, but the finished product in which they are incorporated is expected to be sold at or above cost, the raw materials are **not written down**.
 
 ---
-#### 4. Components of Inventory Cost
+### 4. Components of Inventory Cost
 Under IAS 2 (Paragraph 10), the cost of inventory comprises:
 
-$$ \text{Cost of Inventory} = \text{Costs of Purchase} + \text{Costs of Conversion} + \text{Other Costs} $$
+$$\text{Cost of Inventory} = \text{Costs of Purchase} + \text{Costs of Conversion} + \text{Other Costs}$$
 
 ```mermaid
 graph TD
     A[IAS 2 INVENTORY COSTING] --> B[COSTS OF PURCHASE<br>Price, Duties, Transport, Less Discounts]
     A --> C[COSTS OF CONVERSION<br>Direct Labor, Variable & Fixed MOH]
     A --> D[OTHER COSTS<br>To bring inventory to present location/condition]
-    
+
     style A fill:#264653,color:#fff
 ```
 
-##### Allocation of Fixed Production Overheads
+#### Allocation of Fixed Production Overheads
 Fixed production overheads must be allocated to inventory based on the **normal capacity** of the production facilities.
 - **Unallocated overheads** (arising from abnormally low production or idle plant) are recognized as an **expense** in the period incurred.
 
 ---
-#### 5. Explicitly Excluded Costs
+### 5. Explicitly Excluded Costs
 The following costs must be **expensed in the period incurred** and never capitalized into inventory:
 1. Abnormal amounts of wasted materials, labor, or other production costs.
 2. Storage costs, unless necessary in the production process before a further production stage.
@@ -396,12 +395,12 @@ The following costs must be **expensed in the period incurred** and never capita
 > **CRITICAL IFRS MANDATE:** **LIFO (Last-In, First-Out) is strictly PROHIBITED under IAS 2** due to its distortion of balance sheet values and lack of economic representation of physical flow.
 
 ---
-### Section 6: Numerical Walkthroughs & Solutions
-> [!example] Numerical Problem
+## Section 6: Numerical Walkthroughs & Solutions
+> [!example] Numerical Problem & Solution
 >
 > #### Detailed Walkthrough 1: Keep-Kool Company (EOQ Calculation)
 > ##### Problem Statement
-> Keep-Kool Company has an annual demand of 12,000 units of product CU29 at TK 50 per unit. The firm expects a 12% ROI on its average inventory investment. In addition, rent, insurance, and property tax per unit is TK 2. The relevant cost involved in handling each purchase order is TK 120. General delivery time (lead time) is half of a month (0.5 months).
+> Keep-Kool Company has an annual demand of 12,000 units of product CU29 at Tk 50 per unit. The firm expects a 12% ROI on its average inventory investment. In addition, rent, insurance, and property tax per unit is Tk 2. The relevant cost involved in handling each purchase order is Tk 120. General delivery time (lead time) is half of a month (0.5 months).
 > ##### Required
 > 1. Calculate the Economic Order Quantity $EOQ$ for CU29.
 > 2. Calculate total annual ordering and carrying costs for CU29.
@@ -409,33 +408,33 @@ The following costs must be **expensed in the period incurred** and never capita
 > ##### Step-by-Step Solution
 > **Step 1: Identify Given Parameters**
 > - Annual Demand ($A$) = $12,000$ units.
-> - Order Processing Cost ($O$) = $TK\ 120$ per order.
-> - Unit Purchase Price ($P_{unit}$) = $TK\ 50$ per unit.
+> - Order Processing Cost ($O$) = $Tk\ 120$ per order.
+> - Unit Purchase Price ($P_{unit}$) = $Tk\ 50$ per unit.
 > - Lead Time ($L$) = $0.5$ months.
-> 
+>
 > **Step 2: Calculate Unit Carrying Cost ($CC$)**
 > Carrying cost per unit per year consists of:
-> - Opportunity cost of investment = $12\% \times TK\ 50 = TK\ 6.00$.
-> - Direct storage, rent, insurance, tax = $TK\ 2.00$.
-> $$ CC = 2.00 + (50 \times 12\%) = 2.00 + 6.00 = TK\ 8.00 \text{ per unit/year} $$
-> 
+> - Opportunity cost of investment = $12\% \times Tk\ 50 = Tk\ 6.00$.
+> - Direct storage, rent, insurance, tax = $Tk\ 2.00$.
+>$$CC = 2.00 + (50 \times 12\%) = 2.00 + 6.00 = Tk\ 8.00 \text{ per unit/year}$$
+>
 > **Step 3: Calculate EOQ (Requirement i)**
-> 
-> $$ EOQ = \sqrt{\frac{2 \cdot A \cdot O}{CC}} = \sqrt{\frac{2 \times 12,000 \times 120}{8}} = \sqrt{\frac{2,880,000}{8}} = \sqrt{360,000} = 600 \text{ units} $$
-> 
+>
+>$$EOQ = \sqrt{\frac{2 \cdot A \cdot O}{CC}} = \sqrt{\frac{2 \times 12,000 \times 120}{8}} = \sqrt{\frac{2,880,000}{8}} = \sqrt{360,000} = 600 \text{ units}$$
+>
 > **Step 4: Calculate Total Ordering and Carrying Costs (Requirement ii)**
 > - Number of orders per year = $\frac{A}{EOQ} = \frac{12,000}{600} = 20 \text{ orders}$.
-> - Annual Ordering Cost = $20 \times 120 = TK\ 2,400$.
-> - Annual Carrying Cost = $\frac{EOQ}{2} \times CC = \frac{600}{2} \times 8 = 300 \times 8 = TK\ 2,400$.
-> $$ \text{Total Annual Relevant Cost} = TK\ 2,400 + TK\ 2,400 = TK\ 4,800 $$
-> 
+> - Annual Ordering Cost = $20 \times 120 = Tk\ 2,400$.
+> - Annual Carrying Cost = $\frac{EOQ}{2} \times CC = \frac{600}{2} \times 8 = 300 \times 8 = Tk\ 2,400$.
+>$$\text{Total Annual Relevant Cost} = Tk\ 2,400 + Tk\ 2,400 = Tk\ 4,800$$
+>
 > **Step 5: Calculate Reorder Point (Requirement iii)**
 > - Average Monthly Usage = $\frac{12,000 \text{ units}}{12 \text{ months}} = 1,000 \text{ units/month}$.
 > - Safety Stock = $0$ (since lead time and demand are known with certainty).
-> $$ \text{Reorder Point} = \text{Safety Stock} + (\text{Average Monthly Usage} \times \text{Lead Time}) $$
-> $$ \text{Reorder Point} = 0 + (1,000 \times 0.5) = 500 \text{ units} $$
-
-> [!example] Numerical Problem
+>$$\text{Reorder Point} = \text{Safety Stock} + (\text{Average Monthly Usage} \times \text{Lead Time})$$
+>$$\text{Reorder Point} = 0 + (1,000 \times 0.5) = 500 \text{ units}$$
+>
+> [!example] Numerical Problem & Solution
 >
 > #### Detailed Walkthrough 2: Comprehensive Multi-Level Inventory Control Problem
 > ##### Problem Statement
@@ -444,10 +443,10 @@ The following costs must be **expensed in the period incurred** and never capita
 > - Maximum daily usage = $140$ units.
 > - Minimum daily usage = $70$ units.
 > - Reorder period (lead time) = $5$ days.
-> - Order processing cost ($O$) = $TK\ 180$ per order.
-> - Carrying cost ($CC$) = $TK\ 4.50$ per unit/year.
+> - Order processing cost ($O$) = $Tk\ 180$ per order.
+> - Carrying cost ($CC$) = $Tk\ 4.50$ per unit/year.
 > - Working days per year = $45$ days so Annual Demand $A = 100 \text{ units/day} \times 45 \text{ days} = 4,500 \text{ units}$.
-> ##### Calculate: 
+> ##### Calculate:
 > - **a)** EOQ,
 > - **b)** Safety Stock,
 > - **c)** Reorder Level,
@@ -456,35 +455,35 @@ The following costs must be **expensed in the period incurred** and never capita
 > - **f)** Average Inventory.
 > ##### Step-by-Step Solution
 > **a) Economic Order Quantity $EOQ$:**
-> 
-> $$ EOQ = \sqrt{\frac{2 \times A \times O}{CC}} = \sqrt{\frac{2 \times 4,500 \times 180}{4.5}} = \sqrt{\frac{1,620,000}{4.5}} = \sqrt{360,000} = 600 \text{ units} $$
-> 
+>
+>$$EOQ = \sqrt{\frac{2 \times A \times O}{CC}} = \sqrt{\frac{2 \times 4,500 \times 180}{4.5}} = \sqrt{\frac{1,620,000}{4.5}} = \sqrt{360,000} = 600 \text{ units}$$
+>
 > **b) Safety Stock:**
-> 
-> $$ \text{Safety Stock} = \text{Maximum Usage} - \text{Average Usage} \times \text{Lead Time} $$
-> $$ \text{Safety Stock} = 140 - 100 \times 5 = 40 \times 5 = 200 \text{ units} $$
-> 
+>
+>$$\text{Safety Stock} = \text{Maximum Usage} - \text{Average Usage} \times \text{Lead Time}$$
+>$$\text{Safety Stock} = 140 - 100 \times 5 = 40 \times 5 = 200 \text{ units}$$
+>
 > **c) Reorder Level $ROL$:**
-> 
-> $$ ROL = \text{Maximum Usage} \times \text{Maximum Lead Time} $$
-> $$ ROL = 140 \times 5 = 700 \text{ units} $$
+>
+>$$ROL = \text{Maximum Usage} \times \text{Maximum Lead Time}$$
+>$$ROL = 140 \times 5 = 700 \text{ units}$$
 > *(Alternative check: $\text{Safety Stock} + \text{Average Usage} \times \text{Lead Time} = 200 + 100 \times 5 = 700 \text{ units}$).*
-> 
+>
 > **d) Normal Maximum Inventory:**
-> 
-> $$ \text{Normal Maximum} = ROL + EOQ - \text{Minimum Usage} \times \text{Lead Time} $$
-> $$ \text{Normal Maximum} = 700 + 600 - 70 \times 5 = 1,300 - 350 = 950 \text{ units} $$
-> 
+>
+>$$\text{Normal Maximum} = ROL + EOQ - \text{Minimum Usage} \times \text{Lead Time}$$
+>$$\text{Normal Maximum} = 700 + 600 - 70 \times 5 = 1,300 - 350 = 950 \text{ units}$$
+>
 > **e) Absolute Maximum Inventory:**
-> 
-> $$ \text{Absolute Maximum} = \text{Safety Stock} + EOQ = 200 + 600 = 800 \text{ units} $$
-> 
+>
+>$$\text{Absolute Maximum} = \text{Safety Stock} + EOQ = 200 + 600 = 800 \text{ units}$$
+>
 > **f) Average Inventory:**
-> 
-> $$ \text{Average Inventory} = \text{Safety Stock} + \frac{EOQ}{2} = 200 + \frac{600}{2} = 200 + 300 = 500 \text{ units} $$
-> 
-
-> [!example] Numerical Problem
+>
+>$$\text{Average Inventory} = \text{Safety Stock} + \frac{EOQ}{2} = 200 + \frac{600}{2} = 200 + 300 = 500 \text{ units}$$
+>
+>
+> [!example] Numerical Problem & Solution
 >
 > #### Detailed Walkthrough 3: Quantity Discount Decision Analysis
 > ##### Problem Statement
@@ -493,14 +492,14 @@ The following costs must be **expensed in the period incurred** and never capita
 > ##### Step-by-Step Solution
 > **Step 1: Calculate Standard EOQ without Discount**
 > - $CC = 20\% \times Rs.\ 4.00 = Rs.\ 0.80$ per unit/year.
-> $$ EOQ = \sqrt{\frac{2 \times 10,000 \times 40}{0.80}} = \sqrt{1,000,000} = 1,000 \text{ units} $$
-> 
+>$$EOQ = \sqrt{\frac{2 \times 10,000 \times 40}{0.80}} = \sqrt{1,000,000} = 1,000 \text{ units}$$
+>
 > Total annual relevant cost at $Q = 1,000$ units:
 > - Purchase Cost = $10,000 \times Rs.\ 4.00 = Rs.\ 40,000$
 > - Ordering Cost = $\left(\frac{10,000}{1,000}\right) \times Rs.\ 40 = 10 \times 40 = Rs.\ 400$
 > - Carrying Cost = $\left(\frac{1,000}{2}\right) \times Rs.\ 0.80 = 500 \times 0.80 = Rs.\ 400$
-> $$ \text{Total Cost at EOQ} = 40,000 + 400 + 400 = Rs.\ 40,800 $$
-> 
+>$$\text{Total Cost at EOQ} = 40,000 + 400 + 400 = Rs.\ 40,800$$
+>
 > **Step 2: Calculate Total Cost at Discount Lot Size ($Q = 1,500$ units)**
 > - Discounted Purchase Price = $Rs.\ 4.00 \times 1 - 0.05 = Rs.\ 3.80$ per unit.
 > - Total Purchase Cost = $10,000 \times Rs.\ 3.80 = Rs.\ 38,000$.
@@ -508,15 +507,15 @@ The following costs must be **expensed in the period incurred** and never capita
 > - Number of Orders = $\frac{10,000}{1,500} = 6.67$ orders per year.
 > - Annual Ordering Cost = $6.67 \times Rs.\ 40 = Rs.\ 266.67$ (or $Rs.\ 240$ for 6 full orders).
 > - Annual Carrying Cost = $\left(\frac{1,500}{2}\right) \times Rs.\ 0.76 = 750 \times 0.76 = Rs.\ 570$.
-> $$ \text{Total Cost at Discount} = 38,000 + 240 + 570 = Rs.\ 38,810 $$
-> 
+>$$\text{Total Cost at Discount} = 38,000 + 240 + 570 = Rs.\ 38,810$$
+>
 > **Step 3: Comparative Decision Analysis**
-> $$ \text{Net Financial Benefit of Discount} = \text{Total Cost at EOQ} - \text{Total Cost at Discount} $$
-> $$ \text{Net Benefit} = Rs.\ 40,800 - Rs.\ 38,810 = Rs.\ 1,990 \quad \text{or } Rs.\ 1,190 \text{ incremental savings on inventory costs} $$
-> 
+>$$\text{Net Financial Benefit of Discount} = \text{Total Cost at EOQ} - \text{Total Cost at Discount}$$
+>$$\text{Net Benefit} = Rs.\ 40,800 - Rs.\ 38,810 = Rs.\ 1,990 \quad \text{or } Rs.\ 1,190 \text{ incremental savings on inventory costs}$$
+>
 > **Decision:** **Accept the quantity discount offer** and order in lot sizes of 1,500 units, as it yields an annual net cost reduction of $Rs.\ 1,990$.
-
-> [!example] Numerical Problem
+>
+> [!example] Numerical Problem & Solution
 > #### Detailed Walkthrough 4: Stores Ledger Preparation (FIFO & Weighted Average)
 > **Problem Statement (Based on CU PYQs):**
 > Prepare a Stores Ledger using **FIFO** and **Weighted Average** methods for May:
@@ -527,7 +526,7 @@ The following costs must be **expensed in the period incurred** and never capita
 > * May 27: Issued 500 units
 > ##### Solution 1: FIFO (First-In, First-Out) Method
 > *Rule: Issues are priced using the oldest available unit costs in stock.*
-> $$
+>$$
 > \begin{array}{l | rrr | rrr | rrr}
 > \hline
 > \textbf{Date} & \multicolumn{3}{c|}{\textbf{Receipts}} & \multicolumn{3}{c|}{\textbf{Issues}} & \multicolumn{3}{c}{\textbf{Balance}} \\
@@ -546,12 +545,12 @@ The following costs must be **expensed in the period incurred** and never capita
 > & & & & & & & 300 & \$9 & \$2,700 \\
 > \hline
 > \end{array}
-> $$
+>$$
 > - **Ending Inventory (May 31):** $400$ units valued at $(100 \times \$7) + (300 \times \$9) = \mathbf{\$3,400}$.
 > - **Cost of Materials Issued:** $\$2,400 + \$2,400 + \$700 = \mathbf{\$5,500}$.
 > ##### Solution 2: Weighted Average Method
 > *Rule: A new average rate is calculated after every receipt: $\frac{\text{Total Value}}{\text{Total Qty}}$*
-> $$
+>$$
 > \begin{array}{l | rrr | rrr | rrr}
 > \hline
 > \textbf{Date} & \multicolumn{3}{c|}{\textbf{Receipts}} & \multicolumn{3}{c|}{\textbf{Issues}} & \multicolumn{3}{c}{\textbf{Balance}} \\
@@ -564,6 +563,6 @@ The following costs must be **expensed in the period incurred** and never capita
 > \text{May 27}& & & & 500 & \$7.13 & \$3,565 & 400 & \$7.13 & \$2,855 \\
 > \hline
 > \end{array}
-> $$
+>$$
 > - **Ending Inventory (May 31):** $400$ units valued at $\mathbf{\$2,855}$.
 > - **Cost of Materials Issued:** $\$2,480 + \$3,565 = \mathbf{\$6,045}$.

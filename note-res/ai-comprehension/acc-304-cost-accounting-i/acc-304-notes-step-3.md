@@ -1,22 +1,21 @@
 # Product Costing Systems: Job Order Costing
 
 > [!abstract] Curriculum & Syllabus Context
->
 > - **Course:** ACC 304 Cost Accounting I
-> - **Step:** Step 3: Product Costing Systems (Job Costing)
-> - **Target Reading:** Datar & Rajan, *Horngren's Cost Accounting*, 17th/18th Edition — **Chapter 4: Job Costing**
-> - **Syllabus Focus:** Job costing vs. process costing vs. operation costing; five building blocks of costing; actual costing vs. normal costing; predetermined overhead rates $POHR$; seven-step approach to normal costing; general ledger journal entries and T-account cost flows; and year-end disposal of under/overallocated overhead (proration, write-off, adjusted allocation rate).
+> - **Syllabus Topic:** 9. Job Order and Batch Costing
+> - **Target Reading:** Datar & Rajan, *Horngren's Cost Accounting* (Chapter 4)
+> - **Syllabus Focus:** Job costing vs. process and operation costing; actual costing vs. normal costing; the seven-step approach to normal job costing; BCAS 7 procedures and document flows (materials requisitions, job-cost records); general ledger journal entries and T-account cost flows; Batch Costing and Economic Batch Quantity (EBQ); and year-end disposal of under/overallocated overhead (proration vs. write-off methods).
 
 ---
 
-### Section 1: Foundations of Product Costing & Costing System Typologies
+## Section 1: Foundations of Product Costing & Costing System Typologies
 Product costing is the systematic process of accumulating, classifying, and assigning direct and indirect manufacturing costs to specific cost objects—most commonly products, services, or customized batches. Management accountants utilize two primary polar costing systems to determine product costs, positioned at opposite ends of a production continuum.
 
 ```mermaid
 flowchart LR
     A([JOB ORDER COSTING<br>Distinct, Customized Units<br>e.g., Custom Machinery, Construction]) <--> B([HYBRID SYSTEMS<br>e.g., Operation Costing, Batch-Customized])
     B <--> C([PROCESS COSTING<br>Masses of Identical Units<br>e.g., Crude Oil, Beverages, Cement])
-    
+
     style A fill:#457B9D,color:#fff
     style B fill:#2A9D8F,color:#fff
     style C fill:#E76F51,color:#fff
@@ -39,14 +38,14 @@ flowchart LR
 
 > [!quote] Formula & Derivation
 >
-> $$ \text{Unit Cost under Process Costing} = \frac{\text{Total Manufacturing Costs Incurred in Period}}{\text{Total Physical (or Equivalent) Units Produced in Period}} $$
+>$$\text{Unit Cost under Process Costing} = \frac{\text{Total Manufacturing Costs Incurred in Period}}{\text{Total Physical (or Equivalent) Units Produced in Period}}$$
 
 > [!info] Key Definition
 >
 > #### 3. Hybrid and Operation-Costing Systems
 > In modern industrial practice, many production environments fall between these two extremes. A **hybrid-costing system** blends characteristics of both job costing and process costing. A prominent example is **operation costing**, used when batches of standardized goods pass through a common sequence of operations, but individual batches utilize unique or customized direct materials (e.g., clothing apparel, footwear, semiconductor assembly). In operation costing, direct materials are charged to specific jobs using job-costing principles, while conversion costs (direct labor and overhead) are averaged across units passing through each operation using process-costing principles.
 
-#### Sectoral Examples Matrix
+### Sectoral Examples Matrix
 
 | Sector | Job Order Costing Examples | Process Costing Examples |
 | :--- | :--- | :--- |
@@ -55,7 +54,7 @@ flowchart LR
 | **Manufacturing Sector** | Commercial aircraft assembly (Boeing), Naval shipbuilding (Litton Industries), Custom paper-making machinery (Robinson Co.), Specialized cabinetry. | Petroleum refining (Shell Oil), Beverage bottling (PepsiCo), Cereal production (Kellogg’s), Chemical manufacturing. |
 
 ---
-### Section 2: Building-Block Concepts of Costing Systems
+## Section 2: Building-Block Concepts of Costing Systems
 To design, evaluate, or execute any product costing system, five fundamental building blocks must be established:
 
 ```mermaid
@@ -63,7 +62,7 @@ graph TD
     A[DIRECT COSTS<br>Materials, DL Wages] -->|Cost Tracing| B[COST OBJECT<br>Job / Unit]
     C[INDIRECT COSTS<br>Factory Rent, Util.] -->|Cost Allocation| D[COST POOL]
     D -->|Cost-Allocation Base| B
-    
+
     style A fill:#2A9D8F,color:#fff
     style C fill:#E76F51,color:#fff
     style B fill:#1D3557,color:#fff
@@ -89,7 +88,7 @@ graph TD
 > * Direct materials cost $\$$
 
 ---
-### Section 3: Costing Systems Frameworks — Actual Costing, Normal Costing, and Variations
+## Section 3: Costing Systems Frameworks — Actual Costing, Normal Costing, and Variations
 Costing systems differ fundamentally based on whether **actual rates** or **predetermined/budgeted rates** are used to assign direct and indirect costs to jobs.
 
 | Cost Category | Actual Costing System | Normal Costing System |
@@ -101,7 +100,7 @@ Costing systems differ fundamentally based on whether **actual rates** or **pred
 >
 > #### 1. Actual Costing Systems
 > An **actual costing system** traces direct costs to a cost object by using the actual direct-cost rates multiplied by the actual quantities of direct-cost inputs used, and allocates indirect costs based on the **actual annual indirect-cost rate** multiplied by the actual quantities of the cost-allocation base used.
-> $$ \text{Actual Indirect-Cost Rate} = \frac{\text{Actual Annual Indirect Costs}}{\text{Actual Annual Quantity of Cost-Allocation Base}} $$
+>$$\text{Actual Indirect-Cost Rate} = \frac{\text{Actual Annual Indirect Costs}}{\text{Actual Annual Quantity of Cost-Allocation Base}}$$
 > *The Timeliness Challenge of Actual Costing:*
 > Actual costing systems are rarely used in corporate practice because actual annual indirect costs and actual annual allocation base quantities cannot be known until the fiscal year ends. Managers cannot wait until year-end to determine job costs; they require immediate, ongoing cost data during the year to establish competitive prices, monitor performance, and prepare interim financial statements. Calculating actual indirect-cost rates on a short-term basis (e.g., weekly or monthly) creates erratic cost fluctuations due to numerator variations (seasonal spending) and denominator variations (fluctuating volume).
 
@@ -109,8 +108,8 @@ Costing systems differ fundamentally based on whether **actual rates** or **pred
 >
 > #### 2. Normal Costing Systems
 > A **normal costing system** traces direct costs to a cost object using actual direct-cost rates multiplied by actual direct-input quantities, but allocates indirect costs using a **predetermined or budgeted indirect-cost rate** multiplied by the actual quantities of the cost-allocation base used.
-> $$ \text{Budgeted Indirect-Cost Rate } (PDR) = \frac{\text{Budgeted Annual Indirect Costs}}{\text{Budgeted Annual Quantity of Cost-Allocation Base}} $$
-> $$ \text{Allocated Manufacturing Overhead} = \text{Budgeted Indirect-Cost Rate} \times \text{Actual Quantity of Allocation Base Used} $$
+>$$\text{Budgeted Indirect-Cost Rate } (PDR) = \frac{\text{Budgeted Annual Indirect Costs}}{\text{Budgeted Annual Quantity of Cost-Allocation Base}}$$
+>$$\text{Allocated Manufacturing Overhead} = \text{Budgeted Indirect-Cost Rate} \times \text{Actual Quantity of Allocation Base Used}$$
 > *Key Operational Advantages of Normal Costing:*
 > * **Timeliness**: Job costs can be calculated immediately upon job completion.
 > * **Smoothing**: Spreads annual overhead fluctuations evenly over all jobs produced during the year, neutralizing short-term volume and spending anomalies.
@@ -119,12 +118,12 @@ Costing systems differ fundamentally based on whether **actual rates** or **pred
 >
 > #### 3. Variations from Normal Costing (Extended Normal Costing)
 > In professional service firms (e.g., legal practices, accounting firms, engineering consultancies), direct labor represents the largest cost component. However, actual direct labor rates per hour often cannot be determined during the year due to year-end bonuses, incentive commissions, or varying billable hours over fixed salaried contracts. In these settings, firms utilize an **extended normal costing variation** where **budgeted rates** are applied to *both* direct costs and indirect costs:
-> $$ \text{Budgeted Direct-Labor Rate} = \frac{\text{Budgeted Total Direct Professional Labor Costs}}{\text{Budgeted Total Direct Professional Labor-Hours}} $$
-> $$ \text{Budgeted Indirect-Cost Rate} = \frac{\text{Budgeted Total Indirect Support Costs}}{\text{Budgeted Total Cost-Allocation Base}} $$
+>$$\text{Budgeted Direct-Labor Rate} = \frac{\text{Budgeted Total Direct Professional Labor Costs}}{\text{Budgeted Total Direct Professional Labor-Hours}}$$
+>$$\text{Budgeted Indirect-Cost Rate} = \frac{\text{Budgeted Total Indirect Support Costs}}{\text{Budgeted Total Cost-Allocation Base}}$$
 
 ---
-### Section 4: BCAS 7 — Job Costing Steps & Flow of Documents
-#### Primary Source Documents in Job Costing
+## Section 4: BCAS 7 — Job Costing Steps & Flow of Documents
+### Primary Source Documents in Job Costing
 Job-costing systems depend on a rigorous network of source documents to capture, verify, and authorize cost flows:
 
 ```mermaid
@@ -132,14 +131,14 @@ graph TD
     A[Materials-Requisition Record<br>Specifies Job #, Parts, Cost] -->|Direct Materials| B[JOB-COST RECORD<br>SUBSIDIARY JOB SHEET]
     C[Labor-Time Sheet / Ticket<br>Specifies Employee #, Job #, Hours] -->|Direct Labor| B
     D[Overhead Allocation Schedule<br>Predetermined Rate x Actual Base] -->|Allocated Overhead| B
-    
+
     style B fill:#1D3557,color:#fff
 ```
 
 1. **Job-Cost Record (Job-Cost Sheet)**: The central subsidiary ledger document that records and accumulates all direct materials, direct manufacturing labor, and allocated manufacturing overhead assigned to a specific job from start to completion.
 2. **Materials-Requisition Record**: A formal authorization document issued by manufacturing engineers or foremen to release direct materials from the storeroom to a specific job number, recording part description, quantity, unit cost, and total cost. (Indirect materials requisitions are charged to Manufacturing Overhead Control).
 3. **Labor-Time Sheet / Labor-Time Ticket**: An original record tracking employee work hours spent on specific jobs versus non-job tasks (e.g., machine maintenance, idle time, plant cleaning). Direct labor hours are debited to individual job sheets; indirect labor hours are debited to Manufacturing Overhead Control.
-#### The Seven-Step Approach to Normal Costing (Horngren Framework)
+### The Seven-Step Approach to Normal Costing (Horngren Framework)
 To assign direct and indirect costs to an individual job under normal costing, accountants follow a standardized seven-step sequence:
 1. **Step 1: Identify the Job That Is the Chosen Cost Object.**
    * *Example:* Job WPP 298 (manufacture of a specialized paper-making machine).
@@ -151,109 +150,109 @@ To assign direct and indirect costs to an individual job under normal costing, a
 4. **Step 4: Identify the Indirect Costs Associated with Each Cost-Allocation Base.**
    * Group budgeted manufacturing overhead costs into one or more cost pools.
 5. **Step 5: Compute the Rate per Unit of Each Cost-Allocation Base.**
-   $$ \text{Budgeted Overhead Rate} = \frac{\text{Budgeted Total Overhead Costs in Pool}}{\text{Budgeted Total Quantity of Allocation Base}} $$
+$$\text{Budgeted Overhead Rate} = \frac{\text{Budgeted Total Overhead Costs in Pool}}{\text{Budgeted Total Quantity of Allocation Base}}$$
 6. **Step 6: Compute the Indirect Costs Allocated to the Job.**
-   $$ \text{Allocated Overhead} = \text{Budgeted Overhead Rate} \times \text{Actual Quantity of Allocation Base Used by the Job} $$
+$$\text{Allocated Overhead} = \text{Budgeted Overhead Rate} \times \text{Actual Quantity of Allocation Base Used by the Job}$$
 7. **Step 7: Compute Total Job Cost.**
-   $$ \text{Total Manufacturing Cost of Job} = \text{Direct Materials} + \text{Direct Labor} + \text{Allocated Overhead} $$
-#### Job Profitability Metrics
+$$\text{Total Manufacturing Cost of Job} = \text{Direct Materials} + \text{Direct Labor} + \text{Allocated Overhead}$$
+### Job Profitability Metrics
 Once total job manufacturing cost is established, financial profitability is evaluated:
 
-$$ \text{Gross Margin of Job} = \text{Job Revenue (Billed Price)} - \text{Total Manufacturing Cost of Job} $$
+$$\text{Gross Margin of Job} = \text{Job Revenue (Billed Price)} - \text{Total Manufacturing Cost of Job}$$
 
-$$ \text{Gross Margin Percentage} = \frac{\text{Gross Margin of Job}}{\text{Job Revenue}} \times 100\% $$
+$$\text{Gross Margin Percentage} = \frac{\text{Gross Margin of Job}}{\text{Job Revenue}} \times 100\%$$
 
 ---
-### Section 5A: Accounting Cost Flows, General Ledger, and Subsidiary Ledgers
+## Section 5A: Accounting Cost Flows, General Ledger, and Subsidiary Ledgers
 A normal manufacturing job-costing system integrates general ledger control accounts with underlying subsidiary ledgers to track inventoriable costs through production stages.
 
 ```mermaid
 flowchart LR
     A[(Materials Control)] -->|Direct Materials| B[(Work-in-Process Control)]
     A -->|Indirect Materials| C[MOH Control]
-    
+
     D[Wages Payable] -->|Direct Labor| B
     D -->|Indirect Labor| C
-    
+
     C -.->|MOH Allocated| B
-    
+
     B -->|Completed Jobs| E[(Finished Goods Control)]
-    
+
     E -->|Cost of Goods Sold| F[COGS Expense]
 ```
 
-#### Summary of Standard General Ledger Journal Entries
+### Summary of Standard General Ledger Journal Entries
 > [!quote] Formula & Derivation
 >
 > **1. Purchase of Direct and Indirect Materials on Credit:**
-> $$ \begin{array}{llrr}
+>$$\begin{array}{llrr}
 > \text{Materials Control} & \text{XX} & \\
 > \quad \text{Accounts Payable Control} & & \text{XX} \\
-> \end{array} $$
+> \end{array}$$
 > **2. Issuance of Direct and Indirect Materials to Production:**
-> $$ \begin{array}{llrr}
+>$$\begin{array}{llrr}
 > \text{Work-in-Process Control (Direct)} & \text{XX} & \\
 > \text{Manufacturing Overhead Control (Indirect)} & \text{XX} & \\
 > \quad \text{Materials Control} & & \text{XX} \\
-> \end{array} $$
+> \end{array}$$
 > **3. Incurrence of Manufacturing Payroll:**
-> $$ \begin{array}{llrr}
+>$$\begin{array}{llrr}
 > \text{Work-in-Process Control (Direct labor)} & \text{XX} & \\
 > \text{Manufacturing Overhead Control (Indirect labor)} & \text{XX} & \\
 > \quad \text{Wages Payable / Cash Control} & & \text{XX} \\
-> \end{array} $$
+> \end{array}$$
 > **4. Incurrence of Other Factory Manufacturing Overhead Costs:**
-> $$ \begin{array}{llrr}
+>$$\begin{array}{llrr}
 > \text{Manufacturing Overhead Control} & \text{XX} & \\
 > \quad \text{Cash Control / Accumulated Depr. / Prepaid Insurance} & & \text{XX} \\
-> \end{array} $$
+> \end{array}$$
 > **5. Allocation of Manufacturing Overhead to Work-in-Process:**
-> $$ \begin{array}{llrr}
+>$$\begin{array}{llrr}
 > \text{Work-in-Process Control} & \text{XX} & \\
 > \quad \text{Manufacturing Overhead Allocated} & & \text{XX} \\
-> \end{array} $$
+> \end{array}$$
 > **6. Completion of Jobs and Transfer to Finished Goods:**
-> $$ \begin{array}{llrr}
+>$$\begin{array}{llrr}
 > \text{Finished Goods Control} & \text{XX} & \\
 > \quad \text{Work-in-Process Control} & & \text{XX} \\
-> \end{array} $$
+> \end{array}$$
 > **7. Sale of Completed Jobs on Credit:**
-> $$ \begin{array}{llrr}
+>$$\begin{array}{llrr}
 > \text{Accounts Receivable Control} & \text{XX} & \\
 > \quad \text{Revenues} & & \text{XX} \\
 > \text{Cost of Goods Sold} & \text{XX} & \\
 > \quad \text{Finished Goods Control} & & \text{XX} \\
-> \end{array} $$
+> \end{array}$$
 
-#### Control Accounts vs. Subsidiary Ledgers
+### Control Accounts vs. Subsidiary Ledgers
 * **Work-in-Process Control**: General ledger control account. Its ending balance equals the sum of all unfinished Job-Cost Sheets in the WIP subsidiary ledger.
 * **Finished Goods Control**: General ledger control account. Its ending balance equals the sum of all completed but unsold Job-Cost Sheets in the Finished Goods subsidiary ledger.
 * **Materials Control**: General ledger control account. Its ending balance equals the sum of all individual item quantities and costs in the Materials Subsidiary Ledger.
 * **Manufacturing Overhead Control vs. Allocated**: Actual overhead costs incurred are debited to *Manufacturing Overhead Control*. Overhead allocated to jobs is credited to *Manufacturing Overhead Allocated*.
-### Section 5B: Batch Costing and Economic Batch Quantity (EBQ)
+## Section 5B: Batch Costing and Economic Batch Quantity (EBQ)
 While Job Costing tracks costs for a single customized unit, **Batch Costing** is a variation used when a group of identical items are produced simultaneously as a single "batch" or "lot" (e.g., pharmaceuticals, shoes, electronic components).
 * **Accounting Treatment:** The entire batch is treated as a single job. The total cost of the batch is accumulated on a Batch Cost Sheet.
 * **Unit Cost:** $\text{Cost per unit} = \frac{\text{Total Batch Cost}}{\text{Number of units in the batch}}$
-#### Economic Batch Quantity (EBQ)
+### Economic Batch Quantity (EBQ)
 Similar to EOQ in materials, **EBQ** determines the optimal batch size to manufacture on the production floor to minimize the combined costs of **Machine Setup** and **Inventory Carrying Costs**.
 * *Setup Costs:* Fixed costs incurred every time a machine is calibrated for a new batch (behaves like ordering cost).
 * *Carrying Costs:* Cost of holding the manufactured batch in the warehouse.
 
-> [!quote] EBQ Formula
-> $$ EBQ = \sqrt{\frac{2 \times A \times S}{CC}} $$
+> [!quote] Formula & Derivation — EBQ Formula
+>$$EBQ = \sqrt{\frac{2 \times A \times S}{CC}}$$
 > Where:
 > * $A$ = Annual demand/production requirement (in units)
 > * $S$ = Setup cost per batch
 > * $CC$ = Carrying cost per unit per year
 
 ---
-### Section 6: End-of-Accounting-Year Overhead Variance & Disposal Methods
+## Section 6: End-of-Accounting-Year Overhead Variance & Disposal Methods
 Under normal costing, the total manufacturing overhead allocated across all jobs during a period almost never equals the actual manufacturing overhead costs incurred.
 
-$$ \text{Net Overhead Variance} = \text{Actual Overhead Incurred} - \text{Manufacturing Overhead Allocated} $$
+$$\text{Net Overhead Variance} = \text{Actual Overhead Incurred} - \text{Manufacturing Overhead Allocated}$$
 * **Underallocated (Underapplied / Underabsorbed) Overhead**: Arises when Actual Overhead Incurred > Overhead Allocated (Net Debit Balance in MOH accounts).
 * **Overallocated (Overapplied / Overabsorbed) Overhead**: Arises when Actual Overhead Incurred < Overhead Allocated (Net Credit Balance in MOH accounts).
-#### Root Causes of Overhead Variances
+### Root Causes of Overhead Variances
 1. **Numerator Reason (Cost Pool Variance)**: Actual overhead spending (prices and quantities of indirect inputs like plant power or supervision) differed from the annual budgeted overhead costs.
 2. **Denominator Reason (Volume Variance)**: Actual quantity of the cost-allocation base utilized during the year differed from the budgeted annual quantity of the allocation base.
 
@@ -262,47 +261,47 @@ graph TD
     A[NET OVERHEAD VARIANCE] --> B[ADJUSTED RATE APPROACH<br>Restates G/L & Subsidiary Sheets to Actual Rates]
     A --> C[PRORATION APPROACH<br>Allocates over WIP, FG, COGS]
     A --> D[WRITE-OFF TO COGS APPROACH<br>Charges entire variance to Cost of Goods Sold]
-    
+
     style B fill:#457B9D,color:#fff
     style C fill:#2A9D8F,color:#fff
     style D fill:#E76F51,color:#fff
 ```
 
-#### Three Year-End Disposal Methods
-##### 1. Adjusted Allocation-Rate Approach
+### Three Year-End Disposal Methods
+#### 1. Adjusted Allocation-Rate Approach
 This method restates all overhead entries in both the **general ledger** and **subsidiary ledgers** using actual overhead rates calculated at fiscal year-end.
 * *Mechanics*:
-  $$ \text{Actual Overhead Rate} = \frac{\text{Total Actual Annual MOH}}{\text{Total Actual Annual Base Quantity}} $$
-  $$ \text{Adjustment Factor} = \frac{\text{Actual Overhead Rate} - \text{Budgeted Overhead Rate}}{\text{Budgeted Overhead Rate}} $$
+$$\text{Actual Overhead Rate} = \frac{\text{Total Actual Annual MOH}}{\text{Total Actual Annual Base Quantity}}$$
+$$\text{Adjustment Factor} = \frac{\text{Actual Overhead Rate} - \text{Budgeted Overhead Rate}}{\text{Budgeted Overhead Rate}}$$
 * Every job-cost sheet in the subsidiary ledger and the ending balances of WIP, Finished Goods, and COGS in the general ledger are adjusted up or down by the adjustment factor.
 * *Advantage*: Yields exact actual costing for financial reporting while preserving interim decision timeliness.
-##### 2. Proration Approach
+#### 2. Proration Approach
 Proration spreads the underallocated or overallocated overhead among ending Work-in-Process Control, Finished Goods Control, and Cost of Goods Sold accounts. (Direct Raw Materials inventory is excluded because no overhead was ever allocated to unissued raw materials).
 * **Method A: Proration Based on Overhead Allocated in Ending Balances (Conceptually Preferred)**
   Prorates the net variance in exact proportion to the amount of current-year allocated manufacturing overhead contained in the pre-proration ending balance of each account.
 
-$$ \text{Proration Share for Account } i = \left( \frac{\text{MOH Allocated in Account } i\text{'s Ending Balance}}{\text{Total MOH Allocated across WIP, FG, and COGS}} \right) \times \text{Net Overhead Variance} $$
+$$\text{Proration Share for Account } i = \left( \frac{\text{MOH Allocated in Account } i\text{'s Ending Balance}}{\text{Total MOH Allocated across WIP, FG, and COGS}} \right) \times \text{Net Overhead Variance}$$
 * **Method B: Proration Based on Ending Account Balances (Expedient Approximation)**
   Prorates the net variance in proportion to the total unadjusted ending balances of WIP, FG, and COGS.
 
-$$ \text{Proration Share for Account } i = \left( \frac{\text{Ending Balance of Account } i}{\text{Total Ending Balances of WIP, FG, and COGS}} \right) \times \text{Net Overhead Variance} $$
+$$\text{Proration Share for Account } i = \left( \frac{\text{Ending Balance of Account } i}{\text{Total Ending Balances of WIP, FG, and COGS}} \right) \times \text{Net Overhead Variance}$$
 * *General Ledger Closing Journal Entry for Proration (Underallocated Example):*
-  $$ \begin{array}{llrr}
+$$\begin{array}{llrr}
   \text{Work-in-Process Control} & \text{XX} & \\
   \text{Finished Goods Control} & \text{XX} & \\
   \text{Cost of Goods Sold} & \text{XX} & \\
   \text{Manufacturing Overhead Allocated} & \text{Allocated Amt} & \\
   \quad \text{Manufacturing Overhead Control} & & \text{Actual Amt} \\
-  \end{array} $$
-##### 3. Write-Off to Cost of Goods Sold Approach
+  \end{array}$$
+#### 3. Write-Off to Cost of Goods Sold Approach
 The entire underallocated or overallocated manufacturing overhead balance is closed directly to Cost of Goods Sold.
 * *General Ledger Journal Entry (Underallocated Overhead Example):*
-  $$ \begin{array}{llrr}
+$$\begin{array}{llrr}
   \text{Cost of Goods Sold} & \text{Variance Amt} & \\
   \text{Manufacturing Overhead Allocated} & \text{Allocated Amt} & \\
   \quad \text{Manufacturing Overhead Control} & & \text{Actual Amt} \\
-  \end{array} $$
-#### Strategic Decision Matrix for Overhead Variance Disposal
+  \end{array}$$
+### Strategic Decision Matrix for Overhead Variance Disposal
 
 | Criterion / Scenario                               | Preferred Disposal Method | Rationale                                                                                                     |
 | :------------------------------------------------- | :------------------------ | :------------------------------------------------------------------------------------------------------------ |
@@ -312,8 +311,8 @@ The entire underallocated or overallocated manufacturing overhead balance is clo
 | **Operational Inefficiency / Idle Capacity**       | Write-Off to COGS         | Inefficiencies should be expensed immediately as period losses rather than capitalized into inventory assets. |
 
 ---
-### Section 7: Comprehensive Mathematical & Accounting Numerical Walkthroughs
-> [!example] Numerical Problem
+## Section 7: Comprehensive Mathematical & Accounting Numerical Walkthroughs
+> [!example] Numerical Problem & Solution
 >
 > #### Comprehensive Walkthrough 1: Reconstructing T-Accounts & Overhead Variance Disposal
 > ##### Problem Statement:
@@ -344,79 +343,78 @@ The entire underallocated or overallocated manufacturing overhead balance is clo
 > 5. Calculate Cost of Goods Sold before variance adjustment.
 > 6. Calculate Ending Work-in-Process Inventory on January 31.
 > 7. Compute Net Overhead Variance and demonstrate all three disposal methods.
-> 
+>
 > ##### Step-by-Step Solution:
 > ###### Step 1: Predetermined Manufacturing Overhead Rate
-> $$ \text{Budgeted MOH Rate} = \frac{\text{Budgeted MOH Costs}}{\text{Budgeted Direct Labor Costs}} = \frac{\$1,200,000}{\$800,000} = 1.50 \text{ or } 150\% \text{ of Direct Labor Cost} $$
+>$$\text{Budgeted MOH Rate} = \frac{\text{Budgeted MOH Costs}}{\text{Budgeted Direct Labor Costs}} = \frac{\$1,200,000}{\$800,000} = 1.50 \text{ or } 150\% \text{ of Direct Labor Cost}$$
 > ###### Step 2: Direct Manufacturing Labor Wage Rate and January Direct Labor Cost
 > From Job No. 419:
-> 
-> $$ \text{Direct Labor Hourly Wage Rate} = \frac{\$4,000 \text{ DL Cost}}{250 \text{ DLH}} = \$16.00 \text{ per DLH} $$
-> 
-> $$ \text{Total Direct Labor Cost for January} = 5,000 \text{ total DLH} \times \$16.00/\text{DLH} = \$80,000 $$
+>
+>$$\text{Direct Labor Hourly Wage Rate} = \frac{\$4,000 \text{ DL Cost}}{250 \text{ DLH}} = \$16.00 \text{ per DLH}$$
+>
+>$$\text{Total Direct Labor Cost for January} = 5,000 \text{ total DLH} \times \$16.00/\text{DLH} = \$80,000$$
 > ###### Step 3: Manufacturing Overhead Allocated in January
-> $$ \text{Allocated MOH} = 150\% \times \text{Actual Direct Labor Cost} = 1.50 \times \$80,000 = \$120,000 $$
+>$$\text{Allocated MOH} = 150\% \times \text{Actual Direct Labor Cost} = 1.50 \times \$80,000 = \$120,000$$
 > ###### Step 4: Purchases of Direct Materials in January
 > Using the Materials Control T-account equation:
-> 
-> $$ \text{Beginning Materials} + \text{Purchases} - \text{Direct Materials Issued} = \text{Ending Materials} $$
-> 
-> $$ \$30,000 + \text{Purchases} - \$180,000 = \$40,000 $$
-> 
-> $$ \text{Purchases} = \$40,000 + \$180,000 - \$30,000 = \$190,000 $$
+>
+>$$\text{Beginning Materials} + \text{Purchases} - \text{Direct Materials Issued} = \text{Ending Materials}$$
+>
+>$$\$30,000 + \text{Purchases} - \$180,000 = \$40,000$$
+>
+>$$\text{Purchases} = \$40,000 + \$180,000 - \$30,000 = \$190,000$$
 > ###### Step 5: Ending Work-in-Process Inventory (Jan 31)
 > Job No. 419 is the sole unfinished job in WIP on Jan 31. Its total cost comprises:
 > * Direct Materials = $\$16,000$
 > * Direct Labor = $\$4,000$
-> * Allocated Overhead $$150\% \times \$4,000 = \$6,000$$
-> $$ \text{Ending WIP Inventory (Jan 31)} = \$16,000 + \$4,000 + \$6,000 = \$26,000 $$
+> * Allocated Overhead$$150\% \times \$4,000 = \$6,000$$
+>$$\text{Ending WIP Inventory (Jan 31)} = \$16,000 + \$4,000 + \$6,000 = \$26,000$$
 > ###### Step 6: Cost of Goods Sold (Unadjusted)
 > Using the Finished Goods Control T-account equation:
-> 
-> $$ \text{Beginning FG} + \text{Cost of Goods Manufactured} - \text{Cost of Goods Sold} = \text{Ending FG} $$
-> 
-> $$ \$40,000 + \$360,000 - \text{COGS} = \$30,000 $$
-> 
-> $$ \text{COGS (Unadjusted)} = \$400,000 - \$30,000 = \$370,000 $$
+>
+>$$\text{Beginning FG} + \text{Cost of Goods Manufactured} - \text{Cost of Goods Sold} = \text{Ending FG}$$
+>
+>$$\$40,000 + \$360,000 - \text{COGS} = \$30,000$$
+>
+>$$\text{COGS (Unadjusted)} = \$400,000 - \$30,000 = \$370,000$$
 > ###### Step 7: Net Overhead Variance and Disposal Analysis
-> $$ \text{Net Overhead Variance} = \text{Actual MOH} - \text{Allocated MOH} = \$114,000 - \$120,000 = -\$6,000 \quad (\mathbf{\$6,000 \text{ Overallocated}}) $$
+>$$\text{Net Overhead Variance} = \text{Actual MOH} - \text{Allocated MOH} = \$114,000 - \$120,000 = -\$6,000 \quad (\mathbf{\$6,000 \text{ Overallocated}})$$
 > * **Disposal Option A: Write-Off to Cost of Goods Sold**
 >   Since overhead is overallocated by $\$6,000$, actual costs were lower than allocated. Writing off to COGS reduces COGS expense.
-> 
->   $$ \text{Adjusted COGS} = \$370,000 - \$6,000 = \$364,000 $$
-> 
->   $$ \begin{array}{llrr}
+>
+>$$\text{Adjusted COGS} = \$370,000 - \$6,000 = \$364,000$$
+>
+>$$\begin{array}{llrr}
 >   \text{Manufacturing Overhead Allocated} & 120,000 & \\
 >   \quad \text{Manufacturing Overhead Control} & & 114,000 \\
 >   \quad \text{Cost of Goods Sold} & & 6,000 \\
->   \end{array} $$
+>   \end{array}$$
 > * **Disposal Option B: Proration Based on Overhead Allocated in Ending Balances**
 >   Assume the $\$120,000$ allocated overhead is present in ending balances as follows:
->   * WIP Control Allocated MOH = $\$6,000$ $$5\%$$
->   * FG Control Allocated MOH = $\$12,000$ $$10\%$$
->   * COGS Allocated MOH = $\$102,000$ $$85\%$$
-> 
+>   * WIP Control Allocated MOH = $\$6,000$$$5\%$$
+>   * FG Control Allocated MOH = $\$12,000$$$10\%$$
+>   * COGS Allocated MOH = $\$102,000$$$85\%$$
+>
 >   *Proration Calculations:*
->   $$ \text{WIP Reduction} = 5\% \times \$6,000 = \$300 \implies \text{Adjusted WIP} = \$26,000 - \$300 = \$25,700 $$
->   $$ \text{FG Reduction} = 10\% \times \$6,000 = \$600 \implies \text{Adjusted FG} = \$30,000 - \$600 = \$29,400 $$
->   $$ \text{COGS Reduction} = 85\% \times \$6,000 = \$5,100 \implies \text{Adjusted COGS} = \$370,000 - \$5,100 = \$364,900 $$
-> 
->   $$ \begin{array}{llrr}
+>$$\text{WIP Reduction} = 5\% \times \$6,000 = \$300 \implies \text{Adjusted WIP} = \$26,000 - \$300 = \$25,700$$
+>$$\text{FG Reduction} = 10\% \times \$6,000 = \$600 \implies \text{Adjusted FG} = \$30,000 - \$600 = \$29,400$$
+>$$\text{COGS Reduction} = 85\% \times \$6,000 = \$5,100 \implies \text{Adjusted COGS} = \$370,000 - \$5,100 = \$364,900$$
+>
+>$$\begin{array}{llrr}
 >   \text{Manufacturing Overhead Allocated} & 120,000 & \\
 >   \quad \text{Manufacturing Overhead Control} & & 114,000 \\
 >   \quad \text{Work-in-Process Control} & & 300 \\
 >   \quad \text{Finished Goods Control} & & 600 \\
 >   \quad \text{Cost of Goods Sold} & & 5,100 \\
->   \end{array} $$
-
-
-> [!example] Numerical Problem
+>   \end{array}$$
+>
+> [!example] Numerical Problem & Solution
 >
 > #### Comprehensive Walkthrough 2: Multi-Departmental Job Costing
 > ##### Problem Statement:
 > Lynn Company operates two manufacturing departments—Machining (capital-intensive) and Assembly (labor-intensive)—at its Minneapolis plant.
 > The annual budget for 2020 specifies:
-> 
+>
 > | Budget Item | Machining Department | Assembly Department | Total Plant |
 > | :--- | :--- | :--- | :--- |
 > | **Manufacturing Overhead Costs** | $\$1,800,000$ | $\$3,600,000$ | $\$5,400,000$ |
@@ -427,7 +425,7 @@ The entire underallocated or overallocated manufacturing overhead balance is clo
 > * **Machining**: Allocated based on actual **Machine-Hours $MH$**.
 > * **Assembly**: Allocated based on actual **Direct Manufacturing Labor Costs $\$$**.
 > During February, Job 494 incurred the following:
-> 
+>
 > | Direct Cost / Activity | Machining Department | Assembly Department |
 > | :--- | :--- | :--- |
 > | **Direct Materials Used** | $\$45,000$ | $\$70,000$ |
@@ -438,56 +436,56 @@ The entire underallocated or overallocated manufacturing overhead balance is clo
 > 1. Compute the predetermined overhead rate for each department.
 > 2. Calculate total manufacturing overhead allocated to Job 494.
 > 3. Compute the total manufacturing cost of Job 494.
-> 
+>
 > ##### Step-by-Step Solution:
 > ###### Step 1: Predetermined Departmental Overhead Rates
-> $$ \text{Machining Department Budgeted MOH Rate} = \frac{\$1,800,000 \text{ Budgeted MOH}}{50,000 \text{ Budgeted MH}} = \$36.00 \text{ per Machine-Hour} $$
-> 
-> $$ \text{Assembly Department Budgeted MOH Rate} = \frac{\$3,600,000 \text{ Budgeted MOH}}{\$2,000,000 \text{ Budgeted DL Cost}} = 1.80 \text{ or } 180\% \text{ of Direct Labor Cost} $$
+>$$\text{Machining Department Budgeted MOH Rate} = \frac{\$1,800,000 \text{ Budgeted MOH}}{50,000 \text{ Budgeted MH}} = \$36.00 \text{ per Machine-Hour}$$
+>
+>$$\text{Assembly Department Budgeted MOH Rate} = \frac{\$3,600,000 \text{ Budgeted MOH}}{\$2,000,000 \text{ Budgeted DL Cost}} = 1.80 \text{ or } 180\% \text{ of Direct Labor Cost}$$
 > ###### Step 2: Manufacturing Overhead Allocated to Job 494
 > * **Machining Overhead Allocated**:
->   $$ \text{Allocated MOH}_{\text{Machining}} = \$36.00/\text{MH} \times 2,000 \text{ Actual MH} = \$72,000 $$
+>$$\text{Allocated MOH}_{\text{Machining}} = \$36.00/\text{MH} \times 2,000 \text{ Actual MH} = \$72,000$$
 > * **Assembly Overhead Allocated**:
->   $$ \text{Allocated MOH}_{\text{Assembly}} = 180\% \times \$15,000 \text{ Actual Assembly DL Cost} = \$27,000 $$
-> 
-> $$ \text{Total Overhead Allocated to Job 494} = \$72,000 + \$27,000 = \$99,000 $$
+>$$\text{Allocated MOH}_{\text{Assembly}} = 180\% \times \$15,000 \text{ Actual Assembly DL Cost} = \$27,000$$
+>
+>$$\text{Total Overhead Allocated to Job 494} = \$72,000 + \$27,000 = \$99,000$$
 > ###### Step 3: Total Manufacturing Cost of Job 494
-> 
-> $$ \begin{array}{lrr}
+>
+>$$\begin{array}{lrr}
 > \text{Direct Materials (\$45,000 + \$70,000)} & \$115,000 \\
 > \text{Direct Manufacturing Labor (\$14,000 + \$15,000)} & 29,000 \\
 > \text{Allocated Manufacturing Overhead (Machining + Assembly)} & 99,000 \\
 > \hline
 > \mathbf{\text{Total Manufacturing Cost of Job 494}} & \mathbf{\$243,000}
-> \end{array} $$
-
-> [!example] Numerical Problem
+> \end{array}$$
+>
+> [!example] Numerical Problem & Solution
 > #### Walkthrough 3: Batch Costing & Setup Costs (Based on 2021 PYQ Q6b)
 > ##### Problem Statement:
-> Component 89-X is made in cost center 75. 
+> Component 89-X is made in cost center 75.
 > * Material cost: $\$0.06$ per component.
 > * Machining time: $10\text{ minutes}$ per component.
 > * Machine operator wage: $\$0.72$ per hour.
 > * Machine hour overhead rate: $\$1.50$ per hour.
 > * Machine Setup Time: $2\text{ hours } 20\text{ minutes}$ (applies once per batch).
-> 
-> ##### Required: 
+>
+> ##### Required:
 > Prepare a cost sheet showing total and per-unit cost for a batch of 100 components.
-> 
+>
 > ##### Step-by-Step Solution:
 > **1. Calculate Setup Cost (Fixed for the whole batch):**
 > * Setup time = $2\text{ hrs } 20\text{ mins} = 2.333\text{ hours}$.
 > * Operator cost for setup = $2.333\text{ hrs} \times \$0.72 = \$1.68$
 > * Overhead cost for setup = $2.333\text{ hrs} \times \$1.50 = \$3.50$
 > * **Total Setup Cost** = $\$1.68 + \$3.50 = \mathbf{\$5.18}$
-> 
+>
 > **2. Calculate Variable Production Cost for 100 Units:**
 > * Materials = $100 \times \$0.06 = \$6.00$
 > * Operating Time = $100 \text{ units} \times 10 \text{ mins} = 1,000 \text{ mins} = 16.667 \text{ hours}$.
 > * Operator Wages = $16.667 \text{ hrs} \times \$0.72 = \$12.00$
 > * Overhead Allocated = $16.667 \text{ hrs} \times \$1.50 = \$25.00$
 > * **Total Production Cost** = $\$6.00 + \$12.00 + \$25.00 = \mathbf{\$43.00}$
-> 
+>
 > **3. Total Batch Cost & Unit Cost:**
 > - **Total Batch Cost** = Setup Cost ($\$5.18$) + Production Cost ($\$43.00$) = $\mathbf{\$48.18}$
 > - **Cost Per Unit** = $\frac{\$48.18}{100 \text{ units}} = \mathbf{\$0.4818 \text{ per component}}$

@@ -1,11 +1,10 @@
 # Labor Costing, Incentive Systems, and Control
 
 > [!abstract] Curriculum & Syllabus Context
->
 > - **Course:** ACC 304 Cost Accounting I
-> - **Step:** Step 8: Costing and Control of Labor (Curriculum Gap Bridging)
-> - **Target Reading:** Datar & Rajan, *Horngren's Cost Accounting*, 17th/18th Edition — **Chapter 4 & Labor Control Literature**
-> - **Syllabus Focus:** Direct vs. indirect labor; organizational structure of labor control; time-keeping vs. time-booking systems; payroll accounting and general ledger cost flows; straight time and piece-rate systems; incentive wage plans (Taylor, Merrick, Gantt, Emerson, Bedaux, Halsey 50%, Rowan); overtime and overtime premium accounting; normal vs. abnormal idle time; labor turnover measurement and profit foregone; work study (method study & work measurement); and learning curve theory (cumulative average-time model).
+> - **Syllabus Topic:** 5. Costing and Control of Labor
+> - **Target Reading:** Datar & Rajan, *Horngren's Cost Accounting* (Chapter 4) & CU Handouts
+> - **Syllabus Focus:** Direct vs. indirect labor; organizational structure of labor control; time-keeping vs. time-booking systems; payroll accounting; straight time and piece-rate systems; incentive wage plans (Taylor, Merrick, Gantt, Emerson, Bedaux, 100% Bonus, Halsey 50%, Rowan); overtime and the "most beneficial" rule; normal vs. abnormal idle time; labor turnover measurement (Separation, Replacement, Flux) and profit foregone; work study; and learning curve theory.
 
 ---
 
@@ -46,12 +45,12 @@ graph TD
     A --> C(Engineering Dept<br>Work Study & Standards)
     A --> D(Time-Keeping Dept<br>Gate & Job Tracking)
     A --> E(Payroll Dept<br>Gross/Net Pay Calculation)
-    
+
     B --> F{Cost Accounting Dept<br>- Direct Labor to WIP<br>- Indirect Labor to MOH<br>- Variance & Cost Sheets}
     C --> F
     D --> F
     E --> F
-    
+
     style A fill:#1D3557,color:#fff
     style F fill:#457B9D,color:#fff
 ```
@@ -70,13 +69,13 @@ Accurate labor costing depends on two distinct systems: recording the worker's p
 graph TD
     A[TOTAL PLANT TIME<br>Recorded via Clock] --> B[TIME-BOOKING<br>Productive Hours]
     A --> C[IDLE TIME<br>Unproductive Time]
-    
+
     B --> D[Direct Labor<br>Traced to WIP]
     B --> E[Indirect Labor<br>Allocated via MOH]
-    
+
     C --> F[Normal Idle Time<br>Absorbed in MOH]
     C --> G[Abnormal Idle Time<br>Charged to P&L]
-    
+
     style A fill:#2A9D8F,color:#fff
     style B fill:#457B9D,color:#fff
     style C fill:#E76F51,color:#fff
@@ -114,8 +113,8 @@ Payroll accounting bridges time-keeping (gross compensation) and cost accounting
 >
 > #### Step 1: Accumulation of Gross Payroll Liability
 > When total earnings (basic pay, dearness allowance, overtime, incentives) are calculated for the pay period, gross payroll is recognized alongside statutory and voluntary deductions:
-> $$ \text{Gross Payroll} = \text{Basic Wages} + \text{Dearness Allowance (DA)} + \text{Overtime Pay} + \text{Incentives/Bonuses} $$
-> $$ \text{Net Pay Payable} = \text{Gross Payroll} - \left( \text{Employees' Provident Fund} + \text{Income Tax/PAYE Withholding} + \text{Employee Insurance/ESI} \right) $$
+>$$\text{Gross Payroll} = \text{Basic Wages} + \text{Dearness Allowance (DA)} + \text{Overtime Pay} + \text{Incentives/Bonuses}$$
+>$$\text{Net Pay Payable} = \text{Gross Payroll} - \left( \text{Employees' Provident Fund} + \text{Income Tax/PAYE Withholding} + \text{Employee Insurance/ESI} \right)$$
 > *   **Journal Entry 1 (Recording Payroll Liability):**
 >     *   **Debit:** `Payroll Control Account` (or `Factory Payroll`) $\quad \text{--- [Gross Amount]}$
 >     *   **Credit:** `Provident Fund Payable` $\quad \text{--- [Employee Share]}$
@@ -147,7 +146,7 @@ A wage system establishes the structural rule for compensating labor. An effecti
 >
 > #### 1. Straight Time-Rate System
 > Under the **straight time-rate system**, workers are compensated on the basis of time spent at the facility (per hour, day, week, or month), regardless of the volume of output produced.
-> $$ \text{Total Earnings } (E) = T \times R $$
+>$$\text{Total Earnings } (E) = T \times R$$
 > Where:
 > *   $T =$ Actual time worked (hours)
 > *   $R =$ Hourly wage rate
@@ -160,7 +159,7 @@ A wage system establishes the structural rule for compensating labor. An effecti
 >
 > #### 2. Straight Piece-Rate System
 > Under the **straight piece-rate system**, a worker is paid a fixed rate for each unit produced or operation completed, irrespective of the time spent.
-> $$ \text{Total Earnings } (E) = N \times R_p $$
+>$$\text{Total Earnings } (E) = N \times R_p$$
 > Where:
 > *   $N =$ Number of acceptable units produced
 > *   $R_p =$ Piece rate per unit $= \text{Standard Time per Unit } (S_u) \times \text{Hourly Rate } (R)$
@@ -207,15 +206,13 @@ Merrick modified Taylor's system to reduce its harshness toward beginners and le
 
 ---
 #### 2. Task, Efficiency, and Point Bonus Systems
-##### A. Gantt Task and Bonus Plan
-Combines a guaranteed time rate with a differential piece-rate bonus, ensuring security for lower-skilled workers while heavily rewarding high output.
-*   **Structure:**
-    *   Output **Below Standard** ($< 100\%$ efficiency): Guaranteed hourly time wages ($T \times R$).
-    *   Output **At Standard** ($= 100\%$ efficiency): Time wages plus a **$20\%$ bonus** on the time rate ($1.20 \times T \times R$).
-    *   Output **Above Standard** ($> 100\%$ efficiency): A high piece rate calculated on the worker's *total output* (usually $120\%$ of standard piece rate earnings).
-
 > [!quote] Formula & Derivation
->
+> ##### A. Gantt Task and Bonus Plan
+> Combines a guaranteed time rate with a differential piece-rate bonus, ensuring security for lower-skilled workers while heavily rewarding high output.
+> *   **Structure:**
+>     *   Output **Below Standard** ($< 100\%$ efficiency): Guaranteed hourly time wages ($T \times R$).
+>     *   Output **At Standard** ($= 100\%$ efficiency): Time wages plus a **$20\%$ bonus** on the time rate ($1.20 \times T \times R$).
+>     *   Output **Above Standard** ($> 100\%$ efficiency): A high piece rate calculated on the worker's *total output* (usually $120\%$ of standard piece rate earnings).
 > ##### B. Emerson's Efficiency System
 > Guarantees a minimum daily wage and pays a sliding-scale bonus starting at an efficiency threshold of $66 \frac{2}{3}\%$.
 > *   **Structure:**
@@ -223,7 +220,7 @@ Combines a guaranteed time rate with a differential piece-rate bonus, ensuring s
 >     *   Efficiency **$66 \frac{2}{3}\%$ to $100\%$**: Guaranteed time wages plus a small bonus on a sliding scale (rising from $0.01\%$ up to $20\%$ at $100\%$ efficiency).
 >     *   Efficiency **$> 100\%$**: Guaranteed time wages + $20\%$ bonus + an additional $1\%$ bonus for every $1\%$ increase in efficiency above $100\%$.
 >     *   *Total Earnings Formula at $E\% > 100\%$:*
->         $$ E = T \times R \times \left[ 1.00 + 0.20 + (E\% - 1.00) \right] = T \times R \times \left( 0.20 + E\% \right) $$
+> $$E = T \times R \times \left[ 1.00 + 0.20 + (E\% - 1.00) \right] = T \times R \times \left( 0.20 + E\% \right)$$
 > ##### C. Bedaux Point Plan
 > Measures work in terms of **Bedaux Points** or **Bs**. A "B" represents the amount of work that a normal worker can complete in one minute, including necessary rest allowances for fatigue.
 > *   **Standard Hour:** $1 \text{ Hour} = 60 \text{ Bs}$.
@@ -231,14 +228,18 @@ Combines a guaranteed time rate with a differential piece-rate bonus, ensuring s
 >     *   A worker is guaranteed a basic time rate for actual hours worked.
 >     *   If total Bs earned exceed standard Bs for the time taken (i.e., $B_{\text{earned}} > 60 \times T$), a bonus is paid on the saved points ($B_{\text{saved}} = B_{\text{earned}} - 60 \times T$).
 >     *   *Classic Bedaux Sharing:* Worker receives **$75\%$** of the saved point value; remaining **$25\%$** is distributed to foremen, supervisors, and indirect workers. Modern applications often pay $100\%$ to the worker.
-> $$ \text{Bonus} = \frac{B_{\text{saved}}}{60} \times R \times 0.75 $$
-> $$ \text{Total Earnings } (E) = (T \times R) + \left( \frac{B_{\text{earned}} - 60T}{60} \times R \times 0.75 \right) $$
-
+> $$\text{Bonus} = \frac{B_{\text{saved}}}{60} \times R \times 0.75$$
+> $$\text{Total Earnings } (E) = (T \times R) + \left( \frac{B_{\text{earned}} - 60T}{60} \times R \times 0.75 \right)$$
+> ##### D. 100% Bonus Plan (Standard Hour Plan)
+> Under this plan, the worker is paid for the *standard time allowed* for the output produced, rather than the actual time taken (provided they meet or exceed standard efficiency). It is essentially a piece-rate system expressed in terms of time.
+> * **If Actual Time ($T$) $\ge$ Standard Time ($S$):** Paid guaranteed time wages ($T \times R$).
+> * **If Actual Time ($T$) $<$ Standard Time ($S$):** Paid for the standard hours allowed ($S \times R$).
+> * *Bonus Equivalent:* The worker receives **$100\%$** of the value of the time saved $(S - T) \times R$.
 ---
 #### 3. Premium Bonus Plans (Time-Saved Sharing)
 When standard time ($S$) is set for a job and a worker completes it in actual time ($T < S$), the time saved is:
 
-$$ \text{Time Saved } (TS) = S - T $$
+$$\text{Time Saved } (TS) = S - T$$
 
 Premium bonus plans share the monetary value of this saved time between the employee and the employer.
 
@@ -246,10 +247,10 @@ Premium bonus plans share the monetary value of this saved time between the empl
 graph TD
     A[COMPARISON OF PREMIUM BONUS PLANS] --> B[HALSEY PLAN 50%]
     A --> C[ROWAN PLAN]
-    
+
     B --> B1[Bonus = 50% × S-T × R<br>Constant bonus rate<br>Unbounded upside<br>Simple to calculate]
     C --> C1[Bonus = S-T/S × T × R<br>Diminishing returns<br>Maximum bonus = 100% TR<br>Protects vs loose standards]
-    
+
     style A fill:#457B9D,color:#fff
     style B fill:#2A9D8F,color:#fff
     style C fill:#F4A261,color:#000
@@ -260,21 +261,21 @@ graph TD
 > ##### A. Halsey Premium Plan
 > Originated by F.A. Halsey. The worker receives guaranteed hourly time wages for actual time worked plus a fixed percentage (traditionally **$50\%$**) of the time saved.
 > *   **Bonus Formula:**
->     $$ \text{Bonus} = 50\% \times (S - T) \times R = 0.50 \times (S - T) \times R $$
+>$$\text{Bonus} = 50\% \times (S - T) \times R = 0.50 \times (S - T) \times R$$
 > *   **Total Earnings ($E$):**
->     $$ E = (T \times R) + 0.50 \times (S - T) \times R $$
+>$$E = (T \times R) + 0.50 \times (S - T) \times R$$
 > *   **Effective Hourly Wage Rate ($R_{\text{eff}}$):**
->     $$ R_{\text{eff}} = \frac{E}{T} = R \left[ 1 + 0.50 \left( \frac{S - T}{T} \right) \right] $$
+>$$R_{\text{eff}} = \frac{E}{T} = R \left[ 1 + 0.50 \left( \frac{S - T}{T} \right) \right]$$
 > ##### B. Halsey-Weir Premium Plan
 > Identical to the Halsey Plan, except that the worker's share of time saved is **$33 \frac{1}{3}\%$** ($\frac{1}{3}$), while the employer retains **$66 \frac{2}{3}\%$** ($\frac{2}{3}$).
 > *   **Total Earnings ($E$):**
->     $$ E = (T \times R) + \frac{1}{3} (S - T) \times R $$
+>$$E = (T \times R) + \frac{1}{3} (S - T) \times R$$
 > ##### C. Rowan Premium Plan
 > Introduced by James Rowan. The bonus is calculated as a proportion of the time taken, determined by the ratio of time saved to standard time allowed.
 > *   **Bonus Formula:**
->     $$ \text{Bonus} = \left( \frac{\text{Time Saved}}{\text{Standard Time}} \right) \times \text{Time Taken} \times \text{Rate} = \left( \frac{S - T}{S} \right) \times T \times R $$
+>$$\text{Bonus} = \left( \frac{\text{Time Saved}}{\text{Standard Time}} \right) \times \text{Time Taken} \times \text{Rate} = \left( \frac{S - T}{S} \right) \times T \times R$$
 > *   **Total Earnings ($E$):**
->     $$ E = (T \times R) + \left[ \left( \frac{S - T}{S} \right) \times T \times R \right] = T \times R \times \left( 1 + \frac{S - T}{S} \right) = T \times R \times \left( 2 - \frac{T}{S} \right) $$
+>$$E = (T \times R) + \left[ \left( \frac{S - T}{S} \right) \times T \times R \right] = T \times R \times \left( 1 + \frac{S - T}{S} \right) = T \times R \times \left( 2 - \frac{T}{S} \right)$$
 
 > [!warning] Exam Pitfall / Exception
 >
@@ -315,7 +316,12 @@ Overtime is work performed beyond normal shift hours (e.g., beyond 8 hours a day
 1.  **Regular Wage Component:** Paid at the standard hourly wage rate for total hours worked.
 2.  **Overtime Premium:** The additional payment made above the regular rate (e.g., $50\%$, $100\%$, or double rate).
 
-$$ \text{Total Overtime Pay} = (\text{OT Hours} \times \text{Regular Rate}) + (\text{OT Hours} \times \text{Overtime Premium Rate}) $$
+$$\text{Total Overtime Pay} = (\text{OT Hours} \times \text{Regular Rate}) + (\text{OT Hours} \times \text{Overtime Premium Rate})$$
+> [!warning] Exam Pitfall / Exception — Overtime "Beneficial" Calculation
+> CU Exams frequently test the **"Whichever is more beneficial to the worker"** overtime rule. To solve these problems, you must calculate overtime hours in TWO ways and pay the worker based on the method that yields the highest pay:
+> 1. **Daily Basis Method:** Evaluate each day individually. Count any hours worked over the daily limit (e.g., $> 8$ hours/day) and sum up the overtime hours for the week.
+> 2. **Weekly Basis Method:** Ignore daily fluctuations. Sum all hours worked in the entire week and subtract the weekly limit (e.g., $48$ hours).
+> *Rule:* Compare the total OT hours from Method 1 and Method 2. The worker is legally entitled to the calculation that results in the **higher** number of overtime hours.
 #### Treatment of Overtime Premium in Cost Accounts
 The accounting treatment of the overtime premium depends strictly on the underlying **cause** of the overtime:
 
@@ -324,11 +330,11 @@ graph TD
     A[OVERTIME PREMIUM CAUSES] --> B[CUSTOMER SPECIFIC<br>RUSH ORDER]
     A --> C[GENERAL FACTORY<br>CAPACITY SHORTAGE]
     A --> D[ABNORMAL / FAULT<br>MANAGEMENT DELAY]
-    
+
     B --> B1[Direct Charge to<br>Specific Job WIP]
     C --> C1[Indirect Charge to<br>MOH Control]
     D --> D1[Charge to<br>Costing P&L]
-    
+
     style A fill:#E63946,color:#fff
 ```
 
@@ -346,7 +352,7 @@ Idle time is the difference between the hours for which an employee is paid (clo
 > Normal idle time is unavoidable, inherent in operational setup, and structurally expected during a shift.
 > *   **Examples:** Time taken to walk from the factory gate to the workstation, operational tool setup time, essential rest pauses, tea breaks, and personal time allowances.
 > *   **Accounting Treatment:** Treated as part of manufacturing overhead cost and debited to `Manufacturing Overhead Control`. Alternatively, it is accounted for by calculating an **inflated hourly labor rate**:
-> $$ \text{Inflated Hourly Rate} = \frac{\text{Total Gross Time Wages Paid}}{\text{Total Productive Hours Expected } (\text{Gross Hours} - \text{Normal Idle Hours})} $$
+>$$\text{Inflated Hourly Rate} = \frac{\text{Total Gross Time Wages Paid}}{\text{Total Productive Hours Expected } (\text{Gross Hours} - \text{Normal Idle Hours})}$$
 > #### 2. Abnormal Idle Time
 > Abnormal idle time is unproductive time caused by controllable operational failures, management lapses, or external disruptions.
 > *   **Examples:** Machine breakdowns due to poor maintenance, power outages, delays in receiving raw material requisitions from stores, strike disruptions, or lack of work orders.
@@ -375,17 +381,17 @@ Idle time is the difference between the hours for which an employee is paid (clo
 graph TD
     A[CAUSES OF LABOR TURNOVER] --> B[AVOIDABLE CAUSES<br>Management Action Can Remedy]
     A --> C[UNAVOIDABLE CAUSES<br>Outside Management Control]
-    
+
     B --> B1[Low Wages relative to Market]
     B --> B2[Poor/Unsafe Working Conditions]
     B --> B3[Supervisor Friction / Grievances]
     B --> B4[Lack of Promotion / Incentives]
-    
+
     C --> C1[Retirement & Old Age]
     C --> C2[Personal Illness & Death]
     C --> C3[Domestic / Family Relocation]
     C --> C4[Pregnancy / Marriage Exit]
-    
+
     style A fill:#264653,color:#fff
 ```
 
@@ -397,21 +403,21 @@ Labor turnover is measured using three alternative formulas for a given period:
 >
 > #### 1. Separation Method
 > Focuses strictly on employees who leave the enterprise (whether voluntarily, via dismissal, or retirement).
-> $$ \text{Labor Turnover Rate (Separation)} = \frac{S}{A} \times 100 $$
+>$$\text{Labor Turnover Rate (Separation)} = \frac{S}{A} \times 100$$
 > Where:
 > *   $S =$ Total number of separations / leavers during the period
 > *   $A =$ Average number of workers on payroll during the period $= \frac{\text{Beginning Workers} + \text{Ending Workers}}{2}$
 > #### 2. Replacement Method
 > Focuses solely on the number of new workers recruited to **replace** leavers. It excludes new workers hired specifically for expansion plans (accessions).
-> $$ \text{Labor Turnover Rate (Replacement)} = \frac{R_{\text{repl}}}{A} \times 100 $$
+>$$\text{Labor Turnover Rate (Replacement)} = \frac{R_{\text{repl}}}{A} \times 100$$
 > Where $R_{\text{repl}} =$ Number of replacement workers hired during the period.
 > #### 3. Flux Method
 > Measures overall workforce movement by combining separations and recruitment activity.
-> $$ \text{Labor Turnover Rate (Flux)} = \frac{S + M}{A} \times 100 \quad \text{or} \quad \frac{S + R_{\text{repl}}}{A} \times 100 $$
+>$$\text{Labor Turnover Rate (Flux)} = \frac{S + M}{A} \times 100 \quad \text{or} \quad \frac{S + R_{\text{repl}}}{A} \times 100$$
 > Where:
 > *   $M =$ Total accessions / additions (Replacements + Expansion New Hires).
 > *   *Equivalent Annual Turnover Rate:*
->     $$ \text{Equivalent Annual Rate} = \frac{\text{Turnover Rate for Period}}{\text{Number of Days in Period}} \times 365 $$
+>$$\text{Equivalent Annual Rate} = \frac{\text{Turnover Rate for Period}}{\text{Number of Days in Period}} \times 365$$
 
 ---
 ### Costs of Labor Turnover
@@ -421,7 +427,7 @@ The monetary impact of labor turnover comprises two cost categories:
 2.  **Replacement Costs:** Expenditures and lost profits incurred when leavers are replaced.
     *   *Components:* Advertising for job vacancies, interviewing, administrative costs of HR, training costs for new recruits, tool breakage/machine damage caused by inexperienced recruits, high initial scrap/spoilage, and **profit foregone** on lost sales volume due to production delays.
 
-$$ \text{Total Profit Foregone} = \left( \text{Potentially Productive Hours Lost} \times \text{Contribution Margin per Hour} \right) + \text{Replacement Costs} $$
+$$\text{Total Profit Foregone} = \left( \text{Potentially Productive Hours Lost} \times \text{Contribution Margin per Hour} \right) + \text{Replacement Costs}$$
 
 ---
 ## 6. Work Study, Job Evaluation, & Merit Rating
@@ -435,10 +441,10 @@ Work study is the systematic analysis of work methods to ensure the most effecti
 graph TD
     A[WORK STUDY] --> B[METHOD STUDY<br>Motion Study & Efficiency]
     A --> C[WORK MEASUREMENT<br>Time Study & Standards]
-    
+
     B --> B1[Analyzes motions & layouts<br>Eliminates unnecessary moves<br>Establishes One Best Way]
     C --> C1[Measures actual operational time<br>Applies rating factors & rest allowances<br>Calculates STANDARD TIME S]
-    
+
     style A fill:#457B9D,color:#fff
 ```
 
@@ -472,7 +478,7 @@ In labor-intensive assembly operations, complex manufacturing environments, or n
 > [!quote] Formula & Derivation
 >
 > The classic model (Wright's Model) states that every time the cumulative production quantity of a product **doubles**, the cumulative average time required per unit declines by a constant percentage (the **learning curve rate**, $L$).
-> $$ \bar{Y}_X = a \cdot X^b $$
+>$$\bar{Y}_X = a \cdot X^b$$
 > Where:
 > *   $\bar{Y}_X =$ Cumulative average time (or cumulative average labor cost) per unit for $X$ units
 > *   $a =$ Labor hours required to produce the **first** unit ($X = 1$)
@@ -481,18 +487,18 @@ In labor-intensive assembly operations, complex manufacturing environments, or n
 > *   $L =$ Learning curve rate in decimal form (e.g., $80\% = 0.80$, $85\% = 0.85$)
 > #### Calculation of Learning Exponent ($b$):
 > *   For an **$80\%$ Learning Curve**:
->     $$ b = \frac{\ln(0.80)}{\ln(2)} = \frac{-0.2231435}{0.693147} \approx -0.321928 $$
+>$$b = \frac{\ln(0.80)}{\ln(2)} = \frac{-0.2231435}{0.693147} \approx -0.321928$$
 > *   For an **$85\%$ Learning Curve**:
->     $$ b = \frac{\ln(0.85)}{\ln(2)} = \frac{-0.162519}{0.693147} \approx -0.234465 $$
+>$$b = \frac{\ln(0.85)}{\ln(2)} = \frac{-0.162519}{0.693147} \approx -0.234465$$
 > *   For a **$90\%$ Learning Curve**:
->     $$ b = \frac{\ln(0.90)}{\ln(2)} = \frac{-0.105361}{0.693147} \approx -0.152004 $$
+>$$b = \frac{\ln(0.90)}{\ln(2)} = \frac{-0.105361}{0.693147} \approx -0.152004$$
 > #### Total Hours and Marginal Hours Calculations:
 > *   **Total Cumulative Labor Hours ($Y_{\text{total}}$) for $X$ units:**
->     $$ Y_{\text{total}}(X) = X \cdot \bar{Y}_X = a \cdot X^{1+b} $$
+>$$Y_{\text{total}}(X) = X \cdot \bar{Y}_X = a \cdot X^{1+b}$$
 > *   **Marginal Labor Hours for the $N$-th Unit specifically:**
->     $$ \text{Hours for Unit } N = Y_{\text{total}}(N) - Y_{\text{total}}(N - 1) $$
+>$$\text{Hours for Unit } N = Y_{\text{total}}(N) - Y_{\text{total}}(N - 1)$$
 > *   **Labor Hours for an Additional Batch (from unit $X_1 + 1$ to $X_2$):**
->     $$ \Delta \text{Hours} = Y_{\text{total}}(X_2) - Y_{\text{total}}(X_1) $$
+>$$\Delta \text{Hours} = Y_{\text{total}}(X_2) - Y_{\text{total}}(X_1)$$
 
 ---
 ### Doubling Table Mechanics (Illustration)
@@ -517,7 +523,7 @@ If the first unit ($X = 1$) takes $a = 100$ labor hours under an $80\%$ learning
 
 ---
 
-> [!example] Numerical Problem
+> [!example] Numerical Problem & Solution
 >
 > ### Comprehensive Problem 1: Multi-Plan Incentive Wage Scheme Comparison
 > #### Problem Statement:
@@ -534,102 +540,102 @@ If the first unit ($X = 1$) takes $a = 100$ labor hours under an $80\%$ learning
 > 3.  Halsey Premium Plan ($50\%$ sharing).
 > 4.  Rowan Premium Plan.
 > 5.  Emerson Efficiency System.
-
-#### Step-by-Step Solution:
-##### Preliminary Calculations:
-1.  **Standard Piece Rate ($R_p$):**
-    $$ R_p = S \times R = 40\text{ hours} \times \text{Tk } 50/\text{hour} = \text{Tk } 2,000 \text{ per job} $$
-2.  **Efficiency Rates ($\text{Efficiency } \% = \frac{S}{T} \times 100$):**
-    *   **Worker A:** $\frac{40}{48} \times 100 = 83.33\%$
-    *   **Worker B:** $\frac{40}{40} \times 100 = 100.00\%$
-    *   **Worker C:** $\frac{40}{32} \times 100 = 125.00\%$
-    *   **Worker D:** $\frac{40}{24} \times 100 = 166.67\%$
-
+>
+> ### Step-by-Step Solution:
+> #### Preliminary Calculations:
+> 1.  **Standard Piece Rate ($R_p$):**
+> $$R_p = S \times R = 40\text{ hours} \times \text{Tk } 50/\text{hour} = \text{Tk } 2,000 \text{ per job}$$
+> 2.  **Efficiency Rates ($\text{Efficiency } \% = \frac{S}{T} \times 100$):**
+>     *   **Worker A:** $\frac{40}{48} \times 100 = 83.33\%$
+>     *   **Worker B:** $\frac{40}{40} \times 100 = 100.00\%$
+>     *   **Worker C:** $\frac{40}{32} \times 100 = 125.00\%$
+>     *   **Worker D:** $\frac{40}{24} \times 100 = 166.67\%$
+>
+> ---
+> ##### 1. Straight Time Rate System ($E = T \times R$)
+> *   **Worker A:** $48 \times 50 = \mathbf{\text{Tk } 2,400}$ $\quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr})$
+> *   **Worker B:** $40 \times 50 = \mathbf{\text{Tk } 2,000}$ $\quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr})$
+> *   **Worker C:** $32 \times 50 = \mathbf{\text{Tk } 1,600}$ $\quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr})$
+> *   **Worker D:** $24 \times 50 = \mathbf{\text{Tk } 1,200}$ $\quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr})$
+>
+> ---
+> ##### 2. Straight Piece Rate System ($E = R_p = \text{Tk } 2,000$)
+> *   **Worker A:** Earnings $= \mathbf{\text{Tk } 2,000}$ $\quad \left( R_{\text{eff}} = \frac{2000}{48} = \text{Tk } 41.67/\text{hr} \right)$
+> *   **Worker B:** Earnings $= \mathbf{\text{Tk } 2,000}$ $\quad \left( R_{\text{eff}} = \frac{2000}{40} = \text{Tk } 50.00/\text{hr} \right)$
+> *   **Worker C:** Earnings $= \mathbf{\text{Tk } 2,000}$ $\quad \left( R_{\text{eff}} = \frac{2000}{32} = \text{Tk } 62.50/\text{hr} \right)$
+> *   **Worker D:** Earnings $= \mathbf{\text{Tk } 2,000}$ $\quad \left( R_{\text{eff}} = \frac{2000}{24} = \text{Tk } 83.33/\text{hr} \right)$
+>
+> ---
+> ##### 3. Halsey Premium Plan ($50\%$ Sharing)
+> $$\text{Bonus} = 0.50 \times (S - T) \times R \quad (\text{if } S > T)$$
+> *   **Worker A ($T = 48 > S = 40$):** Time Saved $= 0$. Bonus $= 0$.
+> $$\text{Earnings} = 48 \times 50 = \mathbf{\text{Tk } 2,400} \quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr})$$
+> *   **Worker B ($T = 40 = S = 40$):** Time Saved $= 0$. Bonus $= 0$.
+> $$\text{Earnings} = 40 \times 50 = \mathbf{\text{Tk } 2,000} \quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr})$$
+> *   **Worker C ($T = 32, S = 40$):** Time Saved $= 8\text{ hrs}$.
+> $$\text{Bonus} = 0.50 \times (40 - 32) \times 50 = 0.50 \times 8 \times 50 = \text{Tk } 200$$
+> $$\text{Earnings} = (32 \times 50) + 200 = \mathbf{\text{Tk } 1,800} \quad \left( R_{\text{eff}} = \frac{1800}{32} = \text{Tk } 56.25/\text{hr} \right)$$
+> *   **Worker D ($T = 24, S = 40$):** Time Saved $= 16\text{ hrs}$.
+> $$\text{Bonus} = 0.50 \times (40 - 24) \times 50 = 0.50 \times 16 \times 50 = \text{Tk } 400$$
+> $$\text{Earnings} = (24 \times 50) + 400 = \mathbf{\text{Tk } 1,600} \quad \left( R_{\text{eff}} = \frac{1600}{24} = \text{Tk } 66.67/\text{hr} \right)$$
+>
+> ---
+> ##### 4. Rowan Premium Plan
+> $$\text{Bonus} = \left( \frac{S - T}{S} \right) \times T \times R \quad (\text{if } S > T)$$
+> *   **Worker A ($T = 48 > S$):** Bonus $= 0$.
+> $$\text{Earnings} = 48 \times 50 = \mathbf{\text{Tk } 2,400} \quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr})$$
+> *   **Worker B ($T = 40 = S$):** Bonus $= 0$.
+> $$\text{Earnings} = 40 \times 50 = \mathbf{\text{Tk } 2,000} \quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr})$$
+> *   **Worker C ($T = 32, S = 40$):** Time Saved $= 8\text{ hrs}$.
+> $$\text{Bonus} = \left( \frac{40 - 32}{40} \right) \times 32 \times 50 = 0.20 \times 1,600 = \text{Tk } 320$$
+> $$\text{Earnings} = (32 \times 50) + 320 = \mathbf{\text{Tk } 1,920} \quad \left( R_{\text{eff}} = \frac{1920}{32} = \text{Tk } 60.00/\text{hr} \right)$$
+> *   **Worker D ($T = 24, S = 40$):** Time Saved $= 16\text{ hrs}$.
+> $$\text{Bonus} = \left( \frac{40 - 24}{40} \right) \times 24 \times 50 = 0.40 \times 1,200 = \text{Tk } 480$$
+> $$\text{Earnings} = (24 \times 50) + 480 = \mathbf{\text{Tk } 1,680} \quad \left( R_{\text{eff}} = \frac{1680}{24} = \text{Tk } 70.00/\text{hr} \right)$$
+>
+> ---
+> ##### 5. Emerson Efficiency System
+> *   **Worker A ($\text{Efficiency} = 83.33\%$):**
+>     *   Falls between $66 \frac{2}{3}\%$ and $100\%$. Bonus at $83.33\%$ efficiency is approximately $5\%$ of time wages.
+>     *   $\text{Base Wage} = 48 \times 50 = \text{Tk } 2,400$.
+>     *   $\text{Bonus} \approx 5\% \times 2,400 = \text{Tk } 120$.
+>     *$$\text{Total Earnings} = \mathbf{\text{Tk } 2,520} \quad \left( R_{\text{eff}} = \text{Tk } 52.50/\text{hr} \right)$$
+> *   **Worker B ($\text{Efficiency} = 100.00\%$):**
+>     *   At $100\%$ efficiency, bonus is $20\%$ of time wages.
+>     *   $\text{Base Wage} = 40 \times 50 = \text{Tk } 2,000$.
+>     *   $\text{Bonus} = 20\% \times 2,000 = \text{Tk } 400$.
+>     *$$\text{Total Earnings} = \mathbf{\text{Tk } 2,400} \quad \left( R_{\text{eff}} = \text{Tk } 60.00/\text{hr} \right)$$
+> *   **Worker C ($\text{Efficiency} = 125.00\%$):**
+>     *   Efficiency is $25\%$ above $100\%$. Bonus percentage $= 20\% + 25\% = 45\%$.
+>     *   $\text{Base Wage} = 32 \times 50 = \text{Tk } 1,600$.
+>     *   $\text{Bonus} = 45\% \times 1,600 = \text{Tk } 720$.
+>     *$$\text{Total Earnings} = \mathbf{\text{Tk } 2,320} \quad \left( R_{\text{eff}} = \text{Tk } 72.50/\text{hr} \right)$$
+> *   **Worker D ($\text{Efficiency} = 166.67\%$):**
+>     *   Efficiency is $66.67\%$ above $100\%$. Bonus percentage $= 20\% + 66.67\% = 86.67\%$.
+>     *   $\text{Base Wage} = 24 \times 50 = \text{Tk } 1,200$.
+>     *   $\text{Bonus} = 86.67\% \times 1,200 = \text{Tk } 1,040$.
+>     *$$\text{Total Earnings} = \mathbf{\text{Tk } 2,240} \quad \left( R_{\text{eff}} = \text{Tk } 93.33/\text{hr} \right)$$
+>
+> ---
+> ##### Summary Comparison Matrix for Problem 1:
+>
+> | Metric / Scheme | Worker A ($48\text{ hrs}$) | Worker B ($40\text{ hrs}$) | Worker C ($32\text{ hrs}$) | Worker D ($24\text{ hrs}$) |
+> | :--- | :---: | :---: | :---: | :---: |
+> | **Efficiency %** | **$83.33\%$** | **$100.00\%$** | **$125.00\%$** | **$166.67\%$** |
+> | **Straight Time ($E$)** | Tk 2,400 | Tk 2,000 | Tk 1,600 | Tk 1,200 |
+> | *Effective Rate ($R_{\text{eff}}$)* | *Tk 50.00* | *Tk 50.00* | *Tk 50.00* | *Tk 50.00* |
+> | **Straight Piece Rate ($E$)** | Tk 2,000 | Tk 2,000 | Tk 2,000 | Tk 2,000 |
+> | *Effective Rate ($R_{\text{eff}}$)* | *Tk 41.67* | *Tk 50.00* | *Tk 62.50* | *Tk 83.33* |
+> | **Halsey 50% ($E$)** | Tk 2,400 | Tk 2,000 | Tk 1,800 | Tk 1,600 |
+> | *Effective Rate ($R_{\text{eff}}$)* | *Tk 50.00* | *Tk 50.00* | *Tk 56.25* | *Tk 66.67* |
+> | **Rowan Plan ($E$)** | Tk 2,400 | Tk 2,000 | Tk 1,920 | Tk 1,680 |
+> | *Effective Rate ($R_{\text{eff}}$)* | *Tk 50.00* | *Tk 50.00* | *Tk 60.00* | *Tk 70.00* |
+> | **Emerson System ($E$)** | Tk 2,520 | Tk 2,400 | Tk 2,320 | Tk 2,240 |
+> | *Effective Rate ($R_{\text{eff}}$)* | *Tk 52.50* | *Tk 60.00* | *Tk 72.50* | *Tk 93.33* |
+>
 ---
-##### 1. Straight Time Rate System ($E = T \times R$)
-*   **Worker A:** $48 \times 50 = \mathbf{\text{Tk } 2,400}$ $\quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr})$
-*   **Worker B:** $40 \times 50 = \mathbf{\text{Tk } 2,000}$ $\quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr})$
-*   **Worker C:** $32 \times 50 = \mathbf{\text{Tk } 1,600}$ $\quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr})$
-*   **Worker D:** $24 \times 50 = \mathbf{\text{Tk } 1,200}$ $\quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr})$
 
----
-##### 2. Straight Piece Rate System ($E = R_p = \text{Tk } 2,000$)
-*   **Worker A:** Earnings $= \mathbf{\text{Tk } 2,000}$ $\quad \left( R_{\text{eff}} = \frac{2000}{48} = \text{Tk } 41.67/\text{hr} \right)$
-*   **Worker B:** Earnings $= \mathbf{\text{Tk } 2,000}$ $\quad \left( R_{\text{eff}} = \frac{2000}{40} = \text{Tk } 50.00/\text{hr} \right)$
-*   **Worker C:** Earnings $= \mathbf{\text{Tk } 2,000}$ $\quad \left( R_{\text{eff}} = \frac{2000}{32} = \text{Tk } 62.50/\text{hr} \right)$
-*   **Worker D:** Earnings $= \mathbf{\text{Tk } 2,000}$ $\quad \left( R_{\text{eff}} = \frac{2000}{24} = \text{Tk } 83.33/\text{hr} \right)$
-
----
-##### 3. Halsey Premium Plan ($50\%$ Sharing)
-$$ \text{Bonus} = 0.50 \times (S - T) \times R \quad (\text{if } S > T) $$
-*   **Worker A ($T = 48 > S = 40$):** Time Saved $= 0$. Bonus $= 0$.
-    $$ \text{Earnings} = 48 \times 50 = \mathbf{\text{Tk } 2,400} \quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr}) $$
-*   **Worker B ($T = 40 = S = 40$):** Time Saved $= 0$. Bonus $= 0$.
-    $$ \text{Earnings} = 40 \times 50 = \mathbf{\text{Tk } 2,000} \quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr}) $$
-*   **Worker C ($T = 32, S = 40$):** Time Saved $= 8\text{ hrs}$.
-    $$ \text{Bonus} = 0.50 \times (40 - 32) \times 50 = 0.50 \times 8 \times 50 = \text{Tk } 200 $$
-    $$ \text{Earnings} = (32 \times 50) + 200 = \mathbf{\text{Tk } 1,800} \quad \left( R_{\text{eff}} = \frac{1800}{32} = \text{Tk } 56.25/\text{hr} \right) $$
-*   **Worker D ($T = 24, S = 40$):** Time Saved $= 16\text{ hrs}$.
-    $$ \text{Bonus} = 0.50 \times (40 - 24) \times 50 = 0.50 \times 16 \times 50 = \text{Tk } 400 $$
-    $$ \text{Earnings} = (24 \times 50) + 400 = \mathbf{\text{Tk } 1,600} \quad \left( R_{\text{eff}} = \frac{1600}{24} = \text{Tk } 66.67/\text{hr} \right) $$
-
----
-##### 4. Rowan Premium Plan
-$$ \text{Bonus} = \left( \frac{S - T}{S} \right) \times T \times R \quad (\text{if } S > T) $$
-*   **Worker A ($T = 48 > S$):** Bonus $= 0$.
-    $$ \text{Earnings} = 48 \times 50 = \mathbf{\text{Tk } 2,400} \quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr}) $$
-*   **Worker B ($T = 40 = S$):** Bonus $= 0$.
-    $$ \text{Earnings} = 40 \times 50 = \mathbf{\text{Tk } 2,000} \quad (R_{\text{eff}} = \text{Tk } 50.00/\text{hr}) $$
-*   **Worker C ($T = 32, S = 40$):** Time Saved $= 8\text{ hrs}$.
-    $$ \text{Bonus} = \left( \frac{40 - 32}{40} \right) \times 32 \times 50 = 0.20 \times 1,600 = \text{Tk } 320 $$
-    $$ \text{Earnings} = (32 \times 50) + 320 = \mathbf{\text{Tk } 1,920} \quad \left( R_{\text{eff}} = \frac{1920}{32} = \text{Tk } 60.00/\text{hr} \right) $$
-*   **Worker D ($T = 24, S = 40$):** Time Saved $= 16\text{ hrs}$.
-    $$ \text{Bonus} = \left( \frac{40 - 24}{40} \right) \times 24 \times 50 = 0.40 \times 1,200 = \text{Tk } 480 $$
-    $$ \text{Earnings} = (24 \times 50) + 480 = \mathbf{\text{Tk } 1,680} \quad \left( R_{\text{eff}} = \frac{1680}{24} = \text{Tk } 70.00/\text{hr} \right) $$
-
----
-##### 5. Emerson Efficiency System
-*   **Worker A ($\text{Efficiency} = 83.33\%$):**
-    *   Falls between $66 \frac{2}{3}\%$ and $100\%$. Bonus at $83.33\%$ efficiency is approximately $5\%$ of time wages.
-    *   $\text{Base Wage} = 48 \times 50 = \text{Tk } 2,400$.
-    *   $\text{Bonus} \approx 5\% \times 2,400 = \text{Tk } 120$.
-    *   $$ \text{Total Earnings} = \mathbf{\text{Tk } 2,520} \quad \left( R_{\text{eff}} = \text{Tk } 52.50/\text{hr} \right) $$
-*   **Worker B ($\text{Efficiency} = 100.00\%$):**
-    *   At $100\%$ efficiency, bonus is $20\%$ of time wages.
-    *   $\text{Base Wage} = 40 \times 50 = \text{Tk } 2,000$.
-    *   $\text{Bonus} = 20\% \times 2,000 = \text{Tk } 400$.
-    *   $$ \text{Total Earnings} = \mathbf{\text{Tk } 2,400} \quad \left( R_{\text{eff}} = \text{Tk } 60.00/\text{hr} \right) $$
-*   **Worker C ($\text{Efficiency} = 125.00\%$):**
-    *   Efficiency is $25\%$ above $100\%$. Bonus percentage $= 20\% + 25\% = 45\%$.
-    *   $\text{Base Wage} = 32 \times 50 = \text{Tk } 1,600$.
-    *   $\text{Bonus} = 45\% \times 1,600 = \text{Tk } 720$.
-    *   $$ \text{Total Earnings} = \mathbf{\text{Tk } 2,320} \quad \left( R_{\text{eff}} = \text{Tk } 72.50/\text{hr} \right) $$
-*   **Worker D ($\text{Efficiency} = 166.67\%$):**
-    *   Efficiency is $66.67\%$ above $100\%$. Bonus percentage $= 20\% + 66.67\% = 86.67\%$.
-    *   $\text{Base Wage} = 24 \times 50 = \text{Tk } 1,200$.
-    *   $\text{Bonus} = 86.67\% \times 1,200 = \text{Tk } 1,040$.
-    *   $$ \text{Total Earnings} = \mathbf{\text{Tk } 2,240} \quad \left( R_{\text{eff}} = \text{Tk } 93.33/\text{hr} \right) $$
-
----
-##### Summary Comparison Matrix for Problem 1:
-
-| Metric / Scheme | Worker A ($48\text{ hrs}$) | Worker B ($40\text{ hrs}$) | Worker C ($32\text{ hrs}$) | Worker D ($24\text{ hrs}$) |
-| :--- | :---: | :---: | :---: | :---: |
-| **Efficiency %** | **$83.33\%$** | **$100.00\%$** | **$125.00\%$** | **$166.67\%$** |
-| **Straight Time ($E$)** | Tk 2,400 | Tk 2,000 | Tk 1,600 | Tk 1,200 |
-| *Effective Rate ($R_{\text{eff}}$)* | *Tk 50.00* | *Tk 50.00* | *Tk 50.00* | *Tk 50.00* |
-| **Straight Piece Rate ($E$)** | Tk 2,000 | Tk 2,000 | Tk 2,000 | Tk 2,000 |
-| *Effective Rate ($R_{\text{eff}}$)* | *Tk 41.67* | *Tk 50.00* | *Tk 62.50* | *Tk 83.33* |
-| **Halsey 50% ($E$)** | Tk 2,400 | Tk 2,000 | Tk 1,800 | Tk 1,600 |
-| *Effective Rate ($R_{\text{eff}}$)* | *Tk 50.00* | *Tk 50.00* | *Tk 56.25* | *Tk 66.67* |
-| **Rowan Plan ($E$)** | Tk 2,400 | Tk 2,000 | Tk 1,920 | Tk 1,680 |
-| *Effective Rate ($R_{\text{eff}}$)* | *Tk 50.00* | *Tk 50.00* | *Tk 60.00* | *Tk 70.00* |
-| **Emerson System ($E$)** | Tk 2,520 | Tk 2,400 | Tk 2,320 | Tk 2,240 |
-| *Effective Rate ($R_{\text{eff}}$)* | *Tk 52.50* | *Tk 60.00* | *Tk 72.50* | *Tk 93.33* |
-
----
-
-> [!example] Numerical Problem
+> [!example] Numerical Problem & Solution
 >
 > ### Comprehensive Problem 2: Labor Turnover and Profit Foregone Analysis
 > #### Problem Statement:
@@ -654,57 +660,57 @@ $$ \text{Bonus} = \left( \frac{S - T}{S} \right) \times T \times R \quad (\text{
 > 1.  Calculate the Labor Turnover Rate under the **Separation Method**, **Replacement Method**, and **Flux Method**.
 > 2.  Calculate the **Actual Productive Labor Hours** and **Sales Value per Productive Hour**.
 > 3.  Calculate the total **Profit Foregone** by Apex Manufacturing Ltd. as a result of labor turnover.
-
-#### Step-by-Step Solution:
-##### Part 1: Labor Turnover Rates
-*   **Average Workforce ($A$):**
-    $$ A = \frac{1,900 + 2,100}{2} = 2,000 \text{ workers} $$
-*   **Total Separations ($S$):**
-    $$ S = \text{Voluntary Left} + \text{Discharged} = 120 + 40 = 160 \text{ leavers} $$
-*   **Replacements ($R_{\text{repl}}$):** $140\text{ workers}$
-*   **Total Accessions ($M$):** $360\text{ workers}$
-1.  **Separation Method:**
-    $$ \text{LT}_{\text{Sep}} = \frac{S}{A} \times 100 = \frac{160}{2,000} \times 100 = \mathbf{8.00\%} $$
-2.  **Replacement Method:**
-    $$ \text{LT}_{\text{Repl}} = \frac{R_{\text{repl}}}{A} \times 100 = \frac{140}{2,000} \times 100 = \mathbf{7.00\%} $$
-3.  **Flux Method (Separations + Accessions):**
-    $$ \text{LT}_{\text{Flux}} = \frac{S + M}{A} \times 100 = \frac{160 + 360}{2,000} \times 100 = \frac{520}{2,000} \times 100 = \mathbf{26.00\%} $$
-
+>
+> #### Step-by-Step Solution:
+> ##### Part 1: Labor Turnover Rates
+> *   **Average Workforce ($A$):**
+> $$A = \frac{1,900 + 2,100}{2} = 2,000 \text{ workers}$$
+> *   **Total Separations ($S$):**
+> $$S = \text{Voluntary Left} + \text{Discharged} = 120 + 40 = 160 \text{ leavers}$$
+> *   **Replacements ($R_{\text{repl}}$):** $140\text{ workers}$
+> *   **Total Accessions ($M$):** $360\text{ workers}$
+> 1.  **Separation Method:**
+> $$\text{LT}_{\text{Sep}} = \frac{S}{A} \times 100 = \frac{160}{2,000} \times 100 = \mathbf{8.00\%}$$
+> 2.  **Replacement Method:**
+> $$\text{LT}_{\text{Repl}} = \frac{R_{\text{repl}}}{A} \times 100 = \frac{140}{2,000} \times 100 = \mathbf{7.00\%}$$
+> 3.  **Flux Method (Separations + Accessions):**
+> $$\text{LT}_{\text{Flux}} = \frac{S + M}{A} \times 100 = \frac{160 + 360}{2,000} \times 100 = \frac{520}{2,000} \times 100 = \mathbf{26.00\%}$$
+>
+> ---
+> ##### Part 2: Productive Hours & Sales Rate
+> 1.  **Actual Productive Labor Hours:**
+> $$\text{Actual Hours Worked} = 400,000 \text{ hrs}$$
+> $$\text{Less: Unproductive Training Hours} = 20,000 \text{ hrs}$$
+> $$\text{Actual Productive Hours} = 400,000 - 20,000 = \mathbf{380,000 \text{ hours}}$$
+> 2.  **Sales Revenue Generated per Productive Hour:**
+> $$\text{Sales per Productive Hour} = \frac{\text{Total Actual Sales}}{\text{Actual Productive Hours}} = \frac{\text{Tk } 12,000,000}{380,000 \text{ hrs}} = \mathbf{\text{Tk } 31.57895 \text{ per hour}}$$
+> 3.  **Total Productive Labor Hours Lost Due to Turnover:**
+> $$\text{Hours Lost in HR Hiring Delays} = 80,000 \text{ hrs}$$
+> $$\text{Unproductive Training Hours Lost} = 20,000 \text{ hrs}$$
+> $$\text{Total Hours Lost} = 80,000 + 20,000 = \mathbf{100,000 \text{ hours}}$$
+>
+> ---
+> ##### Part 3: Statement of Profit Foregone
+> 1.  **Sales Revenue Foregone:**
+> $$\text{Sales Foregone} = 100,000 \text{ hours lost} \times \text{Tk } 31.57895/\text{hour} = \text{Tk } 3,157,895$$
+> 2.  **Contribution Margin Foregone ($\text{P/V Ratio} = 25\%$):**
+> $$\text{Contribution Foregone} = \text{Tk } 3,157,895 \times 0.25 = \mathbf{\text{Tk } 789,474}$$
+> 3.  **Statement of Total Profit Foregone:**
+>
+> | Particulars | Computation | Amount (Tk) |
+> | :--- | :--- | :---: |
+> | **Contribution Margin Foregone on Lost Production** | $100,000\text{ hrs} \times \text{Tk } 31.57895 \times 25\%$ | $789,474$ |
+> | **Direct Turnover Replacement Costs:** | | |
+> | Settlement Costs for Leavers | Actual Direct Incurrence | $45,000$ |
+> | Recruitment Expenses | Actual Direct Incurrence | $30,000$ |
+> | Selection & Vetting Costs | Actual Direct Incurrence | $20,000$ |
+> | Training & Orientation Expenses | Actual Direct Incurrence | $35,000$ |
+> | **Total Direct Turnover Costs** | | **$130,000$** |
+> | **TOTAL PROFIT FOREGONE / FINANCIAL LOSS** | **Contribution Foregone + Direct Turnover Costs** | **$\mathbf{919,474}$** |
+>
 ---
-##### Part 2: Productive Hours & Sales Rate
-1.  **Actual Productive Labor Hours:**
-    $$ \text{Actual Hours Worked} = 400,000 \text{ hrs} $$
-    $$ \text{Less: Unproductive Training Hours} = 20,000 \text{ hrs} $$
-    $$ \text{Actual Productive Hours} = 400,000 - 20,000 = \mathbf{380,000 \text{ hours}} $$
-2.  **Sales Revenue Generated per Productive Hour:**
-    $$ \text{Sales per Productive Hour} = \frac{\text{Total Actual Sales}}{\text{Actual Productive Hours}} = \frac{\text{Tk } 12,000,000}{380,000 \text{ hrs}} = \mathbf{\text{Tk } 31.57895 \text{ per hour}} $$
-3.  **Total Productive Labor Hours Lost Due to Turnover:**
-    $$ \text{Hours Lost in HR Hiring Delays} = 80,000 \text{ hrs} $$
-    $$ \text{Unproductive Training Hours Lost} = 20,000 \text{ hrs} $$
-    $$ \text{Total Hours Lost} = 80,000 + 20,000 = \mathbf{100,000 \text{ hours}} $$
 
----
-##### Part 3: Statement of Profit Foregone
-1.  **Sales Revenue Foregone:**
-    $$ \text{Sales Foregone} = 100,000 \text{ hours lost} \times \text{Tk } 31.57895/\text{hour} = \text{Tk } 3,157,895 $$
-2.  **Contribution Margin Foregone ($\text{P/V Ratio} = 25\%$):**
-    $$ \text{Contribution Foregone} = \text{Tk } 3,157,895 \times 0.25 = \mathbf{\text{Tk } 789,474} $$
-3.  **Statement of Total Profit Foregone:**
-
-| Particulars | Computation | Amount (Tk) |
-| :--- | :--- | :---: |
-| **Contribution Margin Foregone on Lost Production** | $100,000\text{ hrs} \times \text{Tk } 31.57895 \times 25\%$ | $789,474$ |
-| **Direct Turnover Replacement Costs:** | | |
-| Settlement Costs for Leavers | Actual Direct Incurrence | $45,000$ |
-| Recruitment Expenses | Actual Direct Incurrence | $30,000$ |
-| Selection & Vetting Costs | Actual Direct Incurrence | $20,000$ |
-| Training & Orientation Expenses | Actual Direct Incurrence | $35,000$ |
-| **Total Direct Turnover Costs** | | **$130,000$** |
-| **TOTAL PROFIT FOREGONE / FINANCIAL LOSS** | **Contribution Foregone + Direct Turnover Costs** | **$\mathbf{919,474}$** |
-
----
-
-> [!example] Numerical Problem
+> [!example] Numerical Problem & Solution
 >
 > ### Comprehensive Problem 3: Learning Curve Model & Cost Estimation
 > #### Problem Statement:
@@ -719,51 +725,51 @@ $$ \text{Bonus} = \left( \frac{S - T}{S} \right) \times T \times R \quad (\text{
 > 1.  Calculate the cumulative average labor hours per unit and total labor hours required for $1, 2, 4, \text{ and } 8\text{ units}$ using doubling mechanics.
 > 2.  Calculate the total assembly cost for the entire **$8\text{-unit order}$**.
 > 3.  Calculate the estimated cost for producing an **additional follow-up order of $8\text{ units}$** (units 9 through 16).
-
-#### Step-by-Step Solution:
-##### Part 1: Learning Curve Doubling Calculations ($L = 85\%$)
-*   $a = 1,000\text{ hours}$
-
-| Cumulative Units ($X$) | Cumulative Average Hours per Unit ($\bar{Y}_X$) | Total Cumulative Labor Hours ($Y_{\text{total}} = X \cdot \bar{Y}_X$) |
-| :---: | :---: | :---: |
-| **$1$** | $1,000.00$ | $1,000.00$ |
-| **$2$** | $1,000 \times 0.85 = \mathbf{850.00}$ | $2 \times 850.00 = \mathbf{1,700.00}$ |
-| **$4$** | $850 \times 0.85 = \mathbf{722.50}$ | $4 \times 722.50 = \mathbf{2,890.00}$ |
-| **$8$** | $722.50 \times 0.85 = \mathbf{614.125}$ | $8 \times 614.125 = \mathbf{4,913.00}$ |
-
----
-##### Part 2: Total Cost for the First 8 Units Order
-Total Direct Labor Hours for 8 Units $= \mathbf{4,913.00\text{ hours}}$.
-1.  **Direct Materials Cost:**
-    $$ \text{DM Cost} = 8 \text{ units} \times \text{Tk } 150,000 = \text{Tk } 1,200,000 $$
-2.  **Direct Labor Cost:**
-    $$ \text{DL Cost} = 4,913 \text{ hours} \times \text{Tk } 200/\text{hour} = \text{Tk } 982,600 $$
-3.  **Variable Manufacturing Overhead:**
-    $$ \text{VOH} = 4,913 \text{ hours} \times \text{Tk } 100/\text{hour} = \text{Tk } 491,300 $$
-4.  **Fixed Manufacturing Overhead Allocated:**
-    $$ \text{FOH} = 4,913 \text{ hours} \times \text{Tk } 50/\text{hour} = \text{Tk } 245,650 $$
-
-$$ \mathbf{\text{Total Cost of 8-Unit Order}} = 1,200,000 + 982,600 + 491,300 + 245,650 = \mathbf{\text{Tk } 2,919,550} $$
-
-$$ \text{Average Manufacturing Cost per Unit (First 8 Units)} = \frac{2,919,550}{8} = \mathbf{\text{Tk } 364,943.75} $$
-
----
-##### Part 3: Cost for Additional Follow-Up Order of 8 Units (Units 9 to 16)
-1.  **Calculate Total Labor Hours for Cumulative 16 Units:**
-    *   $X = 16$ (4th doubling step):
-        $$ \bar{Y}_{16} = 614.125 \times 0.85 = \mathbf{522.00625 \text{ hours/unit}} $$
-        $$ Y_{\text{total}}(16) = 16 \times 522.00625 = \mathbf{8,352.10 \text{ total hours}} $$
-2.  **Calculate Incremental Direct Labor Hours for Units 9 to 16:**
-    $$ \Delta \text{Hours (Units 9--16)} = Y_{\text{total}}(16) - Y_{\text{total}}(8) = 8,352.10 - 4,913.00 = \mathbf{3,439.10 \text{ hours}} $$
-3.  **Cost Schedule for Second 8-Unit Order (Units 9 to 16):**
-
-| Cost Element | Computation | Total Cost (Tk) |
-| :--- | :--- | :---: |
-| **Direct Materials** | $8 \text{ units} \times \text{Tk } 150,000$ | $1,200,000.00$ |
-| **Direct Labor** | $3,439.10 \text{ hours} \times \text{Tk } 200/\text{hr}$ | $687,820.00$ |
-| **Variable Manufacturing Overhead** | $3,439.10 \text{ hours} \times \text{Tk } 100/\text{hr}$ | $343,910.00$ |
-| **Fixed Manufacturing Overhead** | $3,439.10 \text{ hours} \times \text{Tk } 50/\text{hr}$ | $171,955.00$ |
-| **TOTAL COST OF 2ND ORDER (UNITS 9--16)** | | **$\mathbf{2,403,685.00}$** |
-
-$$ \text{Average Manufacturing Cost per Unit (Units 9--16)} = \frac{2,403,685}{8} = \mathbf{\text{Tk } 300,460.63} $$
-*   **Key Insight:** Due to learning curve effects, the average cost per unit dropped from **$\text{Tk } 364,943.75$** on the first batch to **$\text{Tk } 300,460.63$** on the second batch—a cost reduction of **$17.67\%$** per unit.
+>
+> #### Step-by-Step Solution:
+> ##### Part 1: Learning Curve Doubling Calculations ($L = 85\%$)
+> *   $a = 1,000\text{ hours}$
+>
+> | Cumulative Units ($X$) | Cumulative Average Hours per Unit ($\bar{Y}_X$) | Total Cumulative Labor Hours ($Y_{\text{total}} = X \cdot \bar{Y}_X$) |
+> | :---: | :---: | :---: |
+> | **$1$** | $1,000.00$ | $1,000.00$ |
+> | **$2$** | $1,000 \times 0.85 = \mathbf{850.00}$ | $2 \times 850.00 = \mathbf{1,700.00}$ |
+> | **$4$** | $850 \times 0.85 = \mathbf{722.50}$ | $4 \times 722.50 = \mathbf{2,890.00}$ |
+> | **$8$** | $722.50 \times 0.85 = \mathbf{614.125}$ | $8 \times 614.125 = \mathbf{4,913.00}$ |
+>
+> ---
+> ##### Part 2: Total Cost for the First 8 Units Order
+> Total Direct Labor Hours for 8 Units $= \mathbf{4,913.00\text{ hours}}$.
+> 1.  **Direct Materials Cost:**
+> $$\text{DM Cost} = 8 \text{ units} \times \text{Tk } 150,000 = \text{Tk } 1,200,000$$
+> 2.  **Direct Labor Cost:**
+> $$\text{DL Cost} = 4,913 \text{ hours} \times \text{Tk } 200/\text{hour} = \text{Tk } 982,600$$
+> 3.  **Variable Manufacturing Overhead:**
+> $$\text{VOH} = 4,913 \text{ hours} \times \text{Tk } 100/\text{hour} = \text{Tk } 491,300$$
+> 4.  **Fixed Manufacturing Overhead Allocated:**
+> $$\text{FOH} = 4,913 \text{ hours} \times \text{Tk } 50/\text{hour} = \text{Tk } 245,650$$
+>
+> $$\mathbf{\text{Total Cost of 8-Unit Order}} = 1,200,000 + 982,600 + 491,300 + 245,650 = \mathbf{\text{Tk } 2,919,550}$$
+>
+> $$\text{Average Manufacturing Cost per Unit (First 8 Units)} = \frac{2,919,550}{8} = \mathbf{\text{Tk } 364,943.75}$$
+>
+> ---
+> ##### Part 3: Cost for Additional Follow-Up Order of 8 Units (Units 9 to 16)
+> 1.  **Calculate Total Labor Hours for Cumulative 16 Units:**
+>     *   $X = 16$ (4th doubling step):
+> $$\bar{Y}_{16} = 614.125 \times 0.85 = \mathbf{522.00625 \text{ hours/unit}}$$
+> $$Y_{\text{total}}(16) = 16 \times 522.00625 = \mathbf{8,352.10 \text{ total hours}}$$
+> 2.  **Calculate Incremental Direct Labor Hours for Units 9 to 16:**
+> $$\Delta \text{Hours (Units 9--16)} = Y_{\text{total}}(16) - Y_{\text{total}}(8) = 8,352.10 - 4,913.00 = \mathbf{3,439.10 \text{ hours}}$$
+> 3.  **Cost Schedule for Second 8-Unit Order (Units 9 to 16):**
+>
+> | Cost Element | Computation | Total Cost (Tk) |
+> | :--- | :--- | :---: |
+> | **Direct Materials** | $8 \text{ units} \times \text{Tk } 150,000$ | $1,200,000.00$ |
+> | **Direct Labor** | $3,439.10 \text{ hours} \times \text{Tk } 200/\text{hr}$ | $687,820.00$ |
+> | **Variable Manufacturing Overhead** | $3,439.10 \text{ hours} \times \text{Tk } 100/\text{hr}$ | $343,910.00$ |
+> | **Fixed Manufacturing Overhead** | $3,439.10 \text{ hours} \times \text{Tk } 50/\text{hr}$ | $171,955.00$ |
+> | **TOTAL COST OF 2ND ORDER (UNITS 9--16)** | | **$\mathbf{2,403,685.00}$** |
+>
+> $$\text{Average Manufacturing Cost per Unit (Units 9--16)} = \frac{2,403,685}{8} = \mathbf{\text{Tk } 300,460.63}$$
+> *   **Key Insight:** Due to learning curve effects, the average cost per unit dropped from **$\text{Tk } 364,943.75$** on the first batch to **$\text{Tk } 300,460.63$** on the second batch—a cost reduction of **$17.67\%$** per unit.
