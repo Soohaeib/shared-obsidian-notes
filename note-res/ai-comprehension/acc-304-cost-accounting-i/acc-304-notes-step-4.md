@@ -336,25 +336,24 @@ A **Trigger Point** is a stage in the purchase-to-sales cycle at which journal e
 - **Stage B:** Production resulting in Work-in-Process.
 - **Stage C:** Completion of good finished units.
 - **Stage D:** Sale of finished goods.
-##### Comparison of Backflush Costing Variants
+##### Comparison of Backflush (BF) Costing Variants
 
 ```mermaid
 flowchart TD
     subgraph Traditional Sequential Tracking
     A1[Stage A: Purchase DM] --> B1[Stage B: Incur WIP] --> C1[Stage C: Complete FG] --> D1[Stage D: Sell COGS]
     end
-    
-    subgraph Backflush Variant 1: 3 Trigger Points
-    A2[Stage A: Purchase DM] -.-> C2[Stage C: Complete FG] --> D2[Stage D: Sell COGS]
-    end
-    
-    subgraph Backflush Variant 2: 2 Trigger Points
-    A3[Stage A: Purchase DM] -.-> D3[Stage D: Sell COGS]
-    end
-    
-    subgraph Backflush Variant 3: 2 Trigger Points
-    C4[Stage C: Complete FG] --> D4[Stage D: Sell COGS]
-    end
+	subgraph BF Variant A: 3 Trigger Points
+	A2[Stage A: Purchase DM] -.-> C2[Stage C: Complete FG] --> D2[Stage D: Sell COGS]
+	end
+	
+	subgraph BF Variant B: 2 Trigger Points
+	A3[Stage A: Purchase DM] -.-> D3[Stage D: Sell COGS]
+	end
+	
+	subgraph BF Variant C: 2 Trigger Points
+	C4[Stage C: Complete FG] --> D4[Stage D: Sell COGS]
+	end
 ```
 
 ---
