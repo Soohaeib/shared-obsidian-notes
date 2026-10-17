@@ -276,6 +276,11 @@ graph TD
 >$$\text{Bonus} = \left( \frac{\text{Time Saved}}{\text{Standard Time}} \right) \times \text{Time Taken} \times \text{Rate} = \left( \frac{S - T}{S} \right) \times T \times R$$
 > *   **Total Earnings ($E$):**
 >$$E = (T \times R) + \left[ \left( \frac{S - T}{S} \right) \times T \times R \right] = T \times R \times \left( 1 + \frac{S - T}{S} \right) = T \times R \times \left( 2 - \frac{T}{S} \right)$$
+> ##### D. Barth Premium Scheme
+> A variation of the Halsey/Rowan plans designed for trainees and beginners. It does not guarantee a time wage, but pays a bonus based on the geometric mean of standard and actual time.
+> * **Total Earnings ($E$):** $E = R \times \sqrt{S \times T}$
+> ##### E. Accelerating Premium Bonus Plans
+> Incentive schemes designed to provide an increasingly higher percentage of bonus as efficiency rises. The premium curve steepens at higher output levels, aggressively rewarding exceptional productivity (often used for highly specialized machine operators where maximizing capital output is critical).
 
 > [!warning] Exam Pitfall / Exception
 >

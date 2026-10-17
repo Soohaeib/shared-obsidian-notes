@@ -71,7 +71,7 @@ graph TD
 ---
 ## 2. Comprehensive Cost Classifications & Structural Behavior
 Costs are categorized along multiple dimensions depending on the management decision context.
-### 2.1 Direct vs. Indirect Costs
+### 2.1a Direct vs. Indirect Costs
 * **Direct Costs**: Costs related to a particular cost object that can easily, unambiguously, and cost-effectively be traced to it.
   * *Examples*: Direct materials (steel, tires for a car), direct manufacturing labor (wages of assembly line workers).
 * **Indirect Costs**: Costs related to a particular cost object that cannot easily and cost-effectively be traced to it. They must be allocated.
@@ -81,6 +81,10 @@ Costs are categorized along multiple dimensions depending on the management deci
 2. **Available Information-Gathering Technology**: Improvements such as bar-coding and RFID tags enable economically feasible direct tracing of small items previously classified as indirect.
 3. **Design of Operations**: If a facility or machine is dedicated exclusively to producing one single product, almost all costs of that facility become direct costs of that product.
 4. **Scope of the Cost Object**: A cost can be direct for one cost object but indirect for another. For example, the assembly department supervisor's salary is a **direct cost** of the Assembly Department, but an **indirect cost** of a specific product unit assembled in that department.
+### 2.1b Decision-Making Cost Classifications
+When managers make choices between alternative courses of action, they must classify costs based on relevance:
+* **Opportunity Cost:** The potential benefit, contribution, or revenue that is given up (forgone) when the choice of one action precludes the selection of the next best alternative. *It is not recorded in financial accounting ledgers but is crucial for decision-making.*
+* **Sunk Cost:** A historical cost that has already been incurred and cannot be changed, recovered, or altered by any present or future decision. *Sunk costs are always irrelevant to future decision-making.* (Example: The original purchase price of a heavily depreciated factory machine).
 
 ---
 ### 2.2 Cost-Behavior Patterns: Variable, Fixed, and Mixed Costs
