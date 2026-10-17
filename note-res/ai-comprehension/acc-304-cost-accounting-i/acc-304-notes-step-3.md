@@ -123,7 +123,7 @@ Costing systems differ fundamentally based on whether **actual rates** or **pred
 > $$ \text{Budgeted Indirect-Cost Rate} = \frac{\text{Budgeted Total Indirect Support Costs}}{\text{Budgeted Total Cost-Allocation Base}} $$
 
 ---
-### Section 4: The Seven-Step Approach to Normal Costing & Source Documents
+### Section 4: BCAS 7 — Job Costing Steps & Flow of Documents
 #### Primary Source Documents in Job Costing
 Job-costing systems depend on a rigorous network of source documents to capture, verify, and authorize cost flows:
 
@@ -164,7 +164,7 @@ $$ \text{Gross Margin of Job} = \text{Job Revenue (Billed Price)} - \text{Total 
 $$ \text{Gross Margin Percentage} = \frac{\text{Gross Margin of Job}}{\text{Job Revenue}} \times 100\% $$
 
 ---
-### Section 5: Accounting Cost Flows, General Ledger, and Subsidiary Ledgers
+### Section 5A: Accounting Cost Flows, General Ledger, and Subsidiary Ledgers
 A normal manufacturing job-costing system integrates general ledger control accounts with underlying subsidiary ledgers to track inventoriable costs through production stages.
 
 ```mermaid
@@ -230,6 +230,21 @@ flowchart LR
 * **Finished Goods Control**: General ledger control account. Its ending balance equals the sum of all completed but unsold Job-Cost Sheets in the Finished Goods subsidiary ledger.
 * **Materials Control**: General ledger control account. Its ending balance equals the sum of all individual item quantities and costs in the Materials Subsidiary Ledger.
 * **Manufacturing Overhead Control vs. Allocated**: Actual overhead costs incurred are debited to *Manufacturing Overhead Control*. Overhead allocated to jobs is credited to *Manufacturing Overhead Allocated*.
+### Section 5B: Batch Costing and Economic Batch Quantity (EBQ)
+While Job Costing tracks costs for a single customized unit, **Batch Costing** is a variation used when a group of identical items are produced simultaneously as a single "batch" or "lot" (e.g., pharmaceuticals, shoes, electronic components).
+* **Accounting Treatment:** The entire batch is treated as a single job. The total cost of the batch is accumulated on a Batch Cost Sheet.
+* **Unit Cost:** $\text{Cost per unit} = \frac{\text{Total Batch Cost}}{\text{Number of units in the batch}}$
+#### Economic Batch Quantity (EBQ)
+Similar to EOQ in materials, **EBQ** determines the optimal batch size to manufacture on the production floor to minimize the combined costs of **Machine Setup** and **Inventory Carrying Costs**.
+* *Setup Costs:* Fixed costs incurred every time a machine is calibrated for a new batch (behaves like ordering cost).
+* *Carrying Costs:* Cost of holding the manufactured batch in the warehouse.
+
+> [!quote] EBQ Formula
+> $$ EBQ = \sqrt{\frac{2 \times A \times S}{CC}} $$
+> Where:
+> * $A$ = Annual demand/production requirement (in units)
+> * $S$ = Setup cost per batch
+> * $CC$ = Carrying cost per unit per year
 
 ---
 ### Section 6: End-of-Accounting-Year Overhead Variance & Disposal Methods
@@ -289,19 +304,19 @@ The entire underallocated or overallocated manufacturing overhead balance is clo
   \end{array} $$
 #### Strategic Decision Matrix for Overhead Variance Disposal
 
-| Criterion / Scenario | Preferred Disposal Method | Rationale |
-| :--- | :--- | :--- |
-| **Immaterial Variance Amount** | Write-Off to COGS | Lowest administrative cost; negligible distortion of financial statements. |
-| **Material Variance + High Inventories** | Proration (Method A) | Ensures balance sheet assets (WIP/FG) and income statement expenses $COGS$ conform to GAAP actual cost rules. |
-| **Need for Accurate Individual Job Profitability** | Adjusted Allocation-Rate | Only method that adjusts individual job-cost sheets in subsidiary ledgers for future bidding analytics. |
-| **Operational Inefficiency / Idle Capacity** | Write-Off to COGS | Inefficiencies should be expensed immediately as period losses rather than capitalized into inventory assets. |
+| Criterion / Scenario                               | Preferred Disposal Method | Rationale                                                                                                     |
+| :------------------------------------------------- | :------------------------ | :------------------------------------------------------------------------------------------------------------ |
+| **Immaterial Variance Amount**                     | Write-Off to COGS         | Lowest administrative cost; negligible distortion of financial statements.                                    |
+| **Material Variance + High Inventories**           | Proration (Method A)      | Ensures balance sheet assets (WIP/FG) and income statement expenses $COGS$ conform to GAAP actual cost rules. |
+| **Need for Accurate Individual Job Profitability** | Adjusted Allocation-Rate  | Only method that adjusts individual job-cost sheets in subsidiary ledgers for future bidding analytics.       |
+| **Operational Inefficiency / Idle Capacity**       | Write-Off to COGS         | Inefficiencies should be expensed immediately as period losses rather than capitalized into inventory assets. |
 
 ---
 ### Section 7: Comprehensive Mathematical & Accounting Numerical Walkthroughs
 > [!example] Numerical Problem
 >
 > #### Comprehensive Walkthrough 1: Reconstructing T-Accounts & Overhead Variance Disposal
-> **Problem Statement:**
+> ##### Problem Statement:
 > Endeavor Printing, Inc. uses a normal job-costing system with two direct cost categories (Direct Materials, Direct Manufacturing Labor) and one indirect cost pool (Manufacturing Overhead, allocated based on Direct Manufacturing Labor Costs).
 > The following T-account balances and operating data pertain to January 2020:
 > * **Initial T-Account Balances $Jan 1, 2020$:**
@@ -321,7 +336,7 @@ The entire underallocated or overallocated manufacturing overhead balance is clo
 > 	  - f. All workers earn a uniform hourly wage. Total direct labor-hours in January = $5,000$ hours. Other indirect labor = $\$20,000$.
 > 	  - g. Gross plant payroll paid in cash in January = $\$104,000$.
 > 	  - h. Actual Manufacturing Overhead incurred and posted in January = $\$114,000$.
-> **Required:**
+> ##### Required:
 > 1. Compute the Predetermined Overhead Rate for 2020.
 > 2. Compute Total Direct Manufacturing Labor Costs incurred in January.
 > 3. Compute Manufacturing Overhead Allocated in January.
@@ -329,78 +344,76 @@ The entire underallocated or overallocated manufacturing overhead balance is clo
 > 5. Calculate Cost of Goods Sold before variance adjustment.
 > 6. Calculate Ending Work-in-Process Inventory on January 31.
 > 7. Compute Net Overhead Variance and demonstrate all three disposal methods.
+> 
+> ##### Step-by-Step Solution:
+> ###### Step 1: Predetermined Manufacturing Overhead Rate
+> $$ \text{Budgeted MOH Rate} = \frac{\text{Budgeted MOH Costs}}{\text{Budgeted Direct Labor Costs}} = \frac{\$1,200,000}{\$800,000} = 1.50 \text{ or } 150\% \text{ of Direct Labor Cost} $$
+> ###### Step 2: Direct Manufacturing Labor Wage Rate and January Direct Labor Cost
+> From Job No. 419:
+> 
+> $$ \text{Direct Labor Hourly Wage Rate} = \frac{\$4,000 \text{ DL Cost}}{250 \text{ DLH}} = \$16.00 \text{ per DLH} $$
+> 
+> $$ \text{Total Direct Labor Cost for January} = 5,000 \text{ total DLH} \times \$16.00/\text{DLH} = \$80,000 $$
+> ###### Step 3: Manufacturing Overhead Allocated in January
+> $$ \text{Allocated MOH} = 150\% \times \text{Actual Direct Labor Cost} = 1.50 \times \$80,000 = \$120,000 $$
+> ###### Step 4: Purchases of Direct Materials in January
+> Using the Materials Control T-account equation:
+> 
+> $$ \text{Beginning Materials} + \text{Purchases} - \text{Direct Materials Issued} = \text{Ending Materials} $$
+> 
+> $$ \$30,000 + \text{Purchases} - \$180,000 = \$40,000 $$
+> 
+> $$ \text{Purchases} = \$40,000 + \$180,000 - \$30,000 = \$190,000 $$
+> ###### Step 5: Ending Work-in-Process Inventory (Jan 31)
+> Job No. 419 is the sole unfinished job in WIP on Jan 31. Its total cost comprises:
+> * Direct Materials = $\$16,000$
+> * Direct Labor = $\$4,000$
+> * Allocated Overhead $$150\% \times \$4,000 = \$6,000$$
+> $$ \text{Ending WIP Inventory (Jan 31)} = \$16,000 + \$4,000 + \$6,000 = \$26,000 $$
+> ###### Step 6: Cost of Goods Sold (Unadjusted)
+> Using the Finished Goods Control T-account equation:
+> 
+> $$ \text{Beginning FG} + \text{Cost of Goods Manufactured} - \text{Cost of Goods Sold} = \text{Ending FG} $$
+> 
+> $$ \$40,000 + \$360,000 - \text{COGS} = \$30,000 $$
+> 
+> $$ \text{COGS (Unadjusted)} = \$400,000 - \$30,000 = \$370,000 $$
+> ###### Step 7: Net Overhead Variance and Disposal Analysis
+> $$ \text{Net Overhead Variance} = \text{Actual MOH} - \text{Allocated MOH} = \$114,000 - \$120,000 = -\$6,000 \quad (\mathbf{\$6,000 \text{ Overallocated}}) $$
+> * **Disposal Option A: Write-Off to Cost of Goods Sold**
+>   Since overhead is overallocated by $\$6,000$, actual costs were lower than allocated. Writing off to COGS reduces COGS expense.
+> 
+>   $$ \text{Adjusted COGS} = \$370,000 - \$6,000 = \$364,000 $$
+> 
+>   $$ \begin{array}{llrr}
+>   \text{Manufacturing Overhead Allocated} & 120,000 & \\
+>   \quad \text{Manufacturing Overhead Control} & & 114,000 \\
+>   \quad \text{Cost of Goods Sold} & & 6,000 \\
+>   \end{array} $$
+> * **Disposal Option B: Proration Based on Overhead Allocated in Ending Balances**
+>   Assume the $\$120,000$ allocated overhead is present in ending balances as follows:
+>   * WIP Control Allocated MOH = $\$6,000$ $$5\%$$
+>   * FG Control Allocated MOH = $\$12,000$ $$10\%$$
+>   * COGS Allocated MOH = $\$102,000$ $$85\%$$
+> 
+>   *Proration Calculations:*
+>   $$ \text{WIP Reduction} = 5\% \times \$6,000 = \$300 \implies \text{Adjusted WIP} = \$26,000 - \$300 = \$25,700 $$
+>   $$ \text{FG Reduction} = 10\% \times \$6,000 = \$600 \implies \text{Adjusted FG} = \$30,000 - \$600 = \$29,400 $$
+>   $$ \text{COGS Reduction} = 85\% \times \$6,000 = \$5,100 \implies \text{Adjusted COGS} = \$370,000 - \$5,100 = \$364,900 $$
+> 
+>   $$ \begin{array}{llrr}
+>   \text{Manufacturing Overhead Allocated} & 120,000 & \\
+>   \quad \text{Manufacturing Overhead Control} & & 114,000 \\
+>   \quad \text{Work-in-Process Control} & & 300 \\
+>   \quad \text{Finished Goods Control} & & 600 \\
+>   \quad \text{Cost of Goods Sold} & & 5,100 \\
+>   \end{array} $$
 
-**Step-by-Step Solution:**
-##### Step 1: Predetermined Manufacturing Overhead Rate
-$$ \text{Budgeted MOH Rate} = \frac{\text{Budgeted MOH Costs}}{\text{Budgeted Direct Labor Costs}} = \frac{\$1,200,000}{\$800,000} = 1.50 \text{ or } 150\% \text{ of Direct Labor Cost} $$
-##### Step 2: Direct Manufacturing Labor Wage Rate and January Direct Labor Cost
-From Job No. 419:
-
-$$ \text{Direct Labor Hourly Wage Rate} = \frac{\$4,000 \text{ DL Cost}}{250 \text{ DLH}} = \$16.00 \text{ per DLH} $$
-
-$$ \text{Total Direct Labor Cost for January} = 5,000 \text{ total DLH} \times \$16.00/\text{DLH} = \$80,000 $$
-##### Step 3: Manufacturing Overhead Allocated in January
-$$ \text{Allocated MOH} = 150\% \times \text{Actual Direct Labor Cost} = 1.50 \times \$80,000 = \$120,000 $$
-##### Step 4: Purchases of Direct Materials in January
-Using the Materials Control T-account equation:
-
-$$ \text{Beginning Materials} + \text{Purchases} - \text{Direct Materials Issued} = \text{Ending Materials} $$
-
-$$ \$30,000 + \text{Purchases} - \$180,000 = \$40,000 $$
-
-$$ \text{Purchases} = \$40,000 + \$180,000 - \$30,000 = \$190,000 $$
-##### Step 5: Ending Work-in-Process Inventory (Jan 31)
-Job No. 419 is the sole unfinished job in WIP on Jan 31. Its total cost comprises:
-* Direct Materials = $\$16,000$
-* Direct Labor = $\$4,000$
-* Allocated Overhead $$150\% \times \$4,000$$ = $\$6,000$
-
-$$ \text{Ending WIP Inventory (Jan 31)} = \$16,000 + \$4,000 + \$6,000 = \$26,000 $$
-##### Step 6: Cost of Goods Sold (Unadjusted)
-Using the Finished Goods Control T-account equation:
-
-$$ \text{Beginning FG} + \text{Cost of Goods Manufactured} - \text{Cost of Goods Sold} = \text{Ending FG} $$
-
-$$ \$40,000 + \$360,000 - \text{COGS} = \$30,000 $$
-
-$$ \text{COGS (Unadjusted)} = \$400,000 - \$30,000 = \$370,000 $$
-##### Step 7: Net Overhead Variance and Disposal Analysis
-$$ \text{Net Overhead Variance} = \text{Actual MOH} - \text{Allocated MOH} = \$114,000 - \$120,000 = -\$6,000 \quad (\mathbf{\$6,000 \text{ Overallocated}}) $$
-* **Disposal Option A: Write-Off to Cost of Goods Sold**
-  Since overhead is overallocated by $\$6,000$, actual costs were lower than allocated. Writing off to COGS reduces COGS expense.
-
-  $$ \text{Adjusted COGS} = \$370,000 - \$6,000 = \$364,000 $$
-
-  $$ \begin{array}{llrr}
-  \text{Manufacturing Overhead Allocated} & 120,000 & \\
-  \quad \text{Manufacturing Overhead Control} & & 114,000 \\
-  \quad \text{Cost of Goods Sold} & & 6,000 \\
-  \end{array} $$
-* **Disposal Option B: Proration Based on Overhead Allocated in Ending Balances**
-  Assume the $\$120,000$ allocated overhead is present in ending balances as follows:
-  * WIP Control Allocated MOH = $\$6,000$ $$5\%$$
-  * FG Control Allocated MOH = $\$12,000$ $$10\%$$
-  * COGS Allocated MOH = $\$102,000$ $$85\%$$
-
-  *Proration Calculations:*
-  $$ \text{WIP Reduction} = 5\% \times \$6,000 = \$300 \implies \text{Adjusted WIP} = \$26,000 - \$300 = \$25,700 $$
-  $$ \text{FG Reduction} = 10\% \times \$6,000 = \$600 \implies \text{Adjusted FG} = \$30,000 - \$600 = \$29,400 $$
-  $$ \text{COGS Reduction} = 85\% \times \$6,000 = \$5,100 \implies \text{Adjusted COGS} = \$370,000 - \$5,100 = \$364,900 $$
-
-  $$ \begin{array}{llrr}
-  \text{Manufacturing Overhead Allocated} & 120,000 & \\
-  \quad \text{Manufacturing Overhead Control} & & 114,000 \\
-  \quad \text{Work-in-Process Control} & & 300 \\
-  \quad \text{Finished Goods Control} & & 600 \\
-  \quad \text{Cost of Goods Sold} & & 5,100 \\
-  \end{array} $$
-
----
 
 > [!example] Numerical Problem
 >
 > #### Comprehensive Walkthrough 2: Multi-Departmental Job Costing
-> **Problem Statement:**
+> ##### Problem Statement:
 > Lynn Company operates two manufacturing departments—Machining (capital-intensive) and Assembly (labor-intensive)—at its Minneapolis plant.
 > The annual budget for 2020 specifies:
 > 
@@ -421,37 +434,60 @@ $$ \text{Net Overhead Variance} = \text{Actual MOH} - \text{Allocated MOH} = \$1
 > | **Direct Manufacturing Labor Costs** | $\$14,000$ | $\$15,000$ |
 > | **Direct Manufacturing Labor-Hours** | $1,000$ DLH | $1,500$ DLH |
 > | **Machine-Hours Used** | $2,000$ MH | $1,000$ MH |
-> **Required:**
+> ##### Required:
 > 1. Compute the predetermined overhead rate for each department.
 > 2. Calculate total manufacturing overhead allocated to Job 494.
 > 3. Compute the total manufacturing cost of Job 494.
+> 
+> ##### Step-by-Step Solution:
+> ###### Step 1: Predetermined Departmental Overhead Rates
+> $$ \text{Machining Department Budgeted MOH Rate} = \frac{\$1,800,000 \text{ Budgeted MOH}}{50,000 \text{ Budgeted MH}} = \$36.00 \text{ per Machine-Hour} $$
+> 
+> $$ \text{Assembly Department Budgeted MOH Rate} = \frac{\$3,600,000 \text{ Budgeted MOH}}{\$2,000,000 \text{ Budgeted DL Cost}} = 1.80 \text{ or } 180\% \text{ of Direct Labor Cost} $$
+> ###### Step 2: Manufacturing Overhead Allocated to Job 494
+> * **Machining Overhead Allocated**:
+>   $$ \text{Allocated MOH}_{\text{Machining}} = \$36.00/\text{MH} \times 2,000 \text{ Actual MH} = \$72,000 $$
+> * **Assembly Overhead Allocated**:
+>   $$ \text{Allocated MOH}_{\text{Assembly}} = 180\% \times \$15,000 \text{ Actual Assembly DL Cost} = \$27,000 $$
+> 
+> $$ \text{Total Overhead Allocated to Job 494} = \$72,000 + \$27,000 = \$99,000 $$
+> ###### Step 3: Total Manufacturing Cost of Job 494
+> 
+> $$ \begin{array}{lrr}
+> \text{Direct Materials (\$45,000 + \$70,000)} & \$115,000 \\
+> \text{Direct Manufacturing Labor (\$14,000 + \$15,000)} & 29,000 \\
+> \text{Allocated Manufacturing Overhead (Machining + Assembly)} & 99,000 \\
+> \hline
+> \mathbf{\text{Total Manufacturing Cost of Job 494}} & \mathbf{\$243,000}
+> \end{array} $$
 
-**Step-by-Step Solution:**
-Step 1: Predetermined Departmental Overhead Rates
--
-$$ \text{Machining Department Budgeted MOH Rate} = \frac{\$1,800,000 \text{ Budgeted MOH}}{50,000 \text{ Budgeted MH}} = \$36.00 \text{ per Machine-Hour} $$
-
-$$ \text{Assembly Department Budgeted MOH Rate} = \frac{\$3,600,000 \text{ Budgeted MOH}}{\$2,000,000 \text{ Budgeted DL Cost}} = 1.80 \text{ or } 180\% \text{ of Direct Labor Cost} $$
-Step 2: Manufacturing Overhead Allocated to Job 494
--
-* **Machining Overhead Allocated**:
-  $$ \text{Allocated MOH}_{\text{Machining}} = \$36.00/\text{MH} \times 2,000 \text{ Actual MH} = \$72,000 $$
-* **Assembly Overhead Allocated**:
-  $$ \text{Allocated MOH}_{\text{Assembly}} = 180\% \times \$15,000 \text{ Actual Assembly DL Cost} = \$27,000 $$
-
-$$ \text{Total Overhead Allocated to Job 494} = \$72,000 + \$27,000 = \$99,000 $$
-Step 3: Total Manufacturing Cost of Job 494
--
-$$ \begin{array}{lrr}
-\text{Direct Materials (\$45,000 + \$70,000)} & \$115,000 \\
-\text{Direct Manufacturing Labor (\$14,000 + \$15,000)} & 29,000 \\
-\text{Allocated Manufacturing Overhead (Machining + Assembly)} & 99,000 \\
-\hline
-\mathbf{\text{Total Manufacturing Cost of Job 494}} & \mathbf{\$243,000}
-\end{array} $$
-
-
-
-
-
-
+> [!example] Numerical Problem
+> #### Walkthrough 3: Batch Costing & Setup Costs (Based on 2021 PYQ Q6b)
+> ##### Problem Statement:
+> Component 89-X is made in cost center 75. 
+> * Material cost: $\$0.06$ per component.
+> * Machining time: $10\text{ minutes}$ per component.
+> * Machine operator wage: $\$0.72$ per hour.
+> * Machine hour overhead rate: $\$1.50$ per hour.
+> * Machine Setup Time: $2\text{ hours } 20\text{ minutes}$ (applies once per batch).
+> 
+> ##### Required: 
+> Prepare a cost sheet showing total and per-unit cost for a batch of 100 components.
+> 
+> ##### Step-by-Step Solution:
+> **1. Calculate Setup Cost (Fixed for the whole batch):**
+> * Setup time = $2\text{ hrs } 20\text{ mins} = 2.333\text{ hours}$.
+> * Operator cost for setup = $2.333\text{ hrs} \times \$0.72 = \$1.68$
+> * Overhead cost for setup = $2.333\text{ hrs} \times \$1.50 = \$3.50$
+> * **Total Setup Cost** = $\$1.68 + \$3.50 = \mathbf{\$5.18}$
+> 
+> **2. Calculate Variable Production Cost for 100 Units:**
+> * Materials = $100 \times \$0.06 = \$6.00$
+> * Operating Time = $100 \text{ units} \times 10 \text{ mins} = 1,000 \text{ mins} = 16.667 \text{ hours}$.
+> * Operator Wages = $16.667 \text{ hrs} \times \$0.72 = \$12.00$
+> * Overhead Allocated = $16.667 \text{ hrs} \times \$1.50 = \$25.00$
+> * **Total Production Cost** = $\$6.00 + \$12.00 + \$25.00 = \mathbf{\$43.00}$
+> 
+> **3. Total Batch Cost & Unit Cost:**
+> - **Total Batch Cost** = Setup Cost ($\$5.18$) + Production Cost ($\$43.00$) = $\mathbf{\$48.18}$
+> - **Cost Per Unit** = $\frac{\$48.18}{100 \text{ units}} = \mathbf{\$0.4818 \text{ per component}}$

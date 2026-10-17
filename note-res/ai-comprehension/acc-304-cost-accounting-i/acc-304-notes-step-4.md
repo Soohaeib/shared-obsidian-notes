@@ -217,6 +217,14 @@ graph TD
 >    $$ \text{Or: } \text{Average Stock Level} = \frac{\text{Minimum Stock Level} + \text{Maximum Stock Level}}{2} $$
 >    $$ \text{Or: } \text{Average Stock Level} = {\text{Average Consumption} \times \text{Emergency Lead Time}}
 >  $$
+#### 3. Probabilistic Safety Stock Optimization
+When demand during lead time is uncertain, companies must balance the **Cost of Carrying Safety Stock** against the **Cost of a Stockout**.
+
+> [!quote] Optimization Logic
+> 1. **Carrying Cost** = $\text{Units of Safety Stock} \times \text{Carrying Cost per Unit}$
+> 2. **Stockout Cost** = $\text{Units Short} \times \text{Probability of Shortage} \times \text{Stockout Cost per unit} \times \text{Number of Orders per Year}$
+> 3. **Total Cost** = $\text{Carrying Cost} + \text{Expected Stockout Cost}$
+> *The optimal safety stock level is the quantity that minimizes this Total Cost.*
 
 ---
 ### Section 3: Material Control Techniques & Inventory Valuation
@@ -296,7 +304,7 @@ graph TD
 >    - *Abnormal Rework:* Debited to **Loss from Abnormal Rework** account.
 
 ---
-### Section 4: Modern Inventory Systems: JIT, MRP, & Backflush Costing
+### Section 4: Modern Inventory Systems: JIT, MRP Costing
 #### 1. Materials Requirements Planning $MRP$ Systems
 An **MRP system** is a computer-based **"push-through"** inventory control system. It calculates production schedules and material requisitions based on:
 1. **Demand forecasts** for finished goods.
@@ -326,58 +334,6 @@ flowchart LR
   2. **Kanban Systems:** Physical cards or signals authorizing production and material movement between cells.
   3. **Drastic Setup Time Reduction:** Enables micro-batch sizes and low EOQs.
   4. **High-Quality Vendor Partnerships:** Single-sourcing with pre-inspected, frequent JIT deliveries.
-
----
-#### 3. Simplified Backflush Costing Systems
-**Backflush Costing** is a streamlined inventory costing system used in JIT environments. It eliminates detailed, sequential tracking of Work-in-Process inventory through journal entries. Instead, costs are "flushed" backward through the accounting system upon reaching predetermined **Trigger Points**.
-##### Trigger Points
-A **Trigger Point** is a stage in the purchase-to-sales cycle at which journal entries are formally posted in the general ledger:
-- **Stage A:** Purchase of Direct Materials.
-- **Stage B:** Production resulting in Work-in-Process.
-- **Stage C:** Completion of good finished units.
-- **Stage D:** Sale of finished goods.
-##### Comparison of Backflush (BF) Costing Variants
-
-```mermaid
-flowchart TD
-    subgraph Traditional Sequential Tracking
-    A1[Stage A: Purchase DM] --> B1[Stage B: Incur WIP] --> C1[Stage C: Complete FG] --> D1[Stage D: Sell COGS]
-    end
-	subgraph BF Variant A: 3 Trigger Points
-	A2[Stage A: Purchase DM] -.-> C2[Stage C: Complete FG] --> D2[Stage D: Sell COGS]
-	end
-	
-	subgraph BF Variant B: 2 Trigger Points
-	A3[Stage A: Purchase DM] -.-> D3[Stage D: Sell COGS]
-	end
-	
-	subgraph BF Variant C: 2 Trigger Points
-	C4[Stage C: Complete FG] --> D4[Stage D: Sell COGS]
-	end
-```
-
----
-##### Detailed General Ledger Accounting Entries for Backflush Costing (Variant 1: 3 Trigger Points - Stages A, C, D)
-1. **Purchase Direct Materials (Trigger Point 1 - Stage A):**
-   $$ \text{Dr. Materials and In-Process Inventory Control} \quad \text{\$XX} $$
-   $$ \text{Cr. Accounts Payable Control} \quad \text{\$XX} $$
-   *(Combines raw materials and WIP into a single inventory account).*
-2. **Incur Actual Conversion Costs (Stage A):**
-   $$ \text{Dr. Conversion Costs Control} \quad \text{\$XX} $$
-   $$ \text{Cr. Wages Payable / Accumulated Depreciation / Various} \quad \text{\$XX} $$
-3. **Complete Good Finished Units (Trigger Point 2 - Stage C):**
-   $$ \text{Dr. Finished Goods Control} \quad \text{\$XX \quad (Standard DM + Standard Allocated Conversion)} $$
-   $$ \text{Cr. Materials and In-Process Inventory Control} \quad \text{\$XX \quad (Standard DM Cost)} $$
-   $$ \text{Cr. Conversion Costs Allocated} \quad \text{\$XX \quad (Standard Conversion Cost)} $$
-   *(Flushes standard costs out of Materials/In-Process Inventory into Finished Goods).*
-4. **Sell Finished Goods (Trigger Point 3 - Stage D):**
-   $$ \text{Dr. Cost of Goods Sold} \quad \text{\$XX} $$
-   $$ \text{Cr. Finished Goods Control} \quad \text{\$XX} $$
-5. **Dispose of Under/Overallocated Conversion Costs at Month-End:**
-   $$ \text{Dr. Conversion Costs Allocated} \quad \text{\$XX \quad (Standard Allocated)} $$
-   $$ \text{Dr./Cr. Cost of Goods Sold} \quad \text{\$Variance \quad (Under/Overallocation)} $$
-   $$ \text{Cr. Conversion Costs Control} \quad \text{\$XX \quad (Actual Incurred)} $$
-   *(Under JIT, immaterial variances are closed directly to COGS).*
 
 ---
 ### Section 5: International Accounting Standard 2 (IAS 2: Inventories)
@@ -561,46 +517,53 @@ The following costs must be **expensed in the period incurred** and never capita
 > **Decision:** **Accept the quantity discount offer** and order in lot sizes of 1,500 units, as it yields an annual net cost reduction of $Rs.\ 1,990$.
 
 > [!example] Numerical Problem
->
-> #### Detailed Walkthrough 4: Backflush Costing Accounting Entries
-> ##### Problem Statement
-> Silicon Valley Computer $SVC$ operates a JIT cell for manufacturing PC keyboards. Standard costs per unit: Direct Materials = $\$19.00$, Conversion Costs = $\$12.00$ (Total Standard Cost = $\$31.00$ per unit).
-> Transactions for April:
-> 1. Direct materials purchased on credit: $\$1,950,000$.
-> 2. Actual conversion costs incurred: $\$1,260,000$.
-> 3. Good finished units completed: $100,000$ units.
-> 4. Finished units sold: $99,000$ units at $\$50$ selling price.
-> ##### Solution
-> ###### General Ledger Journal Entries (Backflush Variant 1 - 3 Trigger Points)
-> 5. **Record Direct Materials Purchased (Stage A):**
->    $$ \text{Dr. Materials and In-Process Inventory Control} \quad \$1,950,000 $$
->    $$ \text{Cr. Accounts Payable Control} \quad \$1,950,000 $$
-> 6. **Record Conversion Costs Incurred (Stage A):**
->    $$ \text{Dr. Conversion Costs Control} \quad \$1,260,000 $$
->    $$ \text{Cr. Wages Payable / Various Accounts} \quad \$1,260,000 $$
-> 7. **Record Cost of Good Finished Units Completed (Stage C):**
->    $$ \text{Units Completed} = 100,000 \text{ units} $$
->    $$ \text{Standard Direct Materials} = 100,000 \times \$19.00 = \$1,900,000 $$
->    $$ \text{Standard Allocated Conversion} = 100,000 \times \$12.00 = \$1,200,000 $$
->    $$ \text{Dr. Finished Goods Control} \quad \$3,100,000 $$
->    $$ \text{Cr. Materials and In-Process Inventory Control} \quad \$1,900,000 $$
->    $$ \text{Cr. Conversion Costs Allocated} \quad \$1,200,000 $$
-> 8. **Record Cost of Goods Sold (Stage D):**
->    $$ \text{Units Sold} = 99,000 \text{ units} $$
->    $$ \text{Standard Cost of Goods Sold} = 99,000 \times \$31.00 = \$3,069,000 $$
->    $$ \text{Dr. Cost of Goods Sold} \quad \$3,069,000 $$
->    $$ \text{Cr. Finished Goods Control} \quad \$3,069,000 $$
-> 9. **Close Conversion Cost Variances to Cost of Goods Sold at Month-End:**
->    $$ \text{Actual Conversion Incurred} = \$1,260,000 $$
->    $$ \text{Standard Conversion Allocated} = \$1,200,000 $$
->    $$ \text{Underallocated Conversion Cost} = \$1,260,000 - \$1,200,000 = \$60,000 \text{ (Unfavorable)} $$
->    $$ \text{Dr. Conversion Costs Allocated} \quad \$1,200,000 $$
->    $$ \text{Dr. Cost of Goods Sold} \quad \$60,000 $$
->    $$ \text{Cr. Conversion Costs Control} \quad \$1,260,000 $$
-> ###### Ending Inventory Balances on April 30
-> - **Materials and In-Process Inventory Control Balance:**
->   $$ \$1,950,000 - \$1,900,000 = \$50,000 \quad \text{(Direct materials on hand)} $$
-> - **Finished Goods Control Balance:**
->   $$ \$3,100,000 - \$3,069,000 = \$31,000 \quad \text{(1,000 completed units at } \$31.00\text{/unit)} $$
-> - **Adjusted Cost of Goods Sold:**
->   $$ \$3,069,000 + \$60,000 = \$3,129,000 $$
+> #### Detailed Walkthrough 4: Stores Ledger Preparation (FIFO & Weighted Average)
+> **Problem Statement (Based on CU PYQs):**
+> Prepare a Stores Ledger using **FIFO** and **Weighted Average** methods for May:
+> * May 1: Beginning balance 800 units @ $6
+> * May 5: Purchased 200 units @ $7
+> * May 16: Issued 400 units
+> * May 24: Purchased 300 units @ $9
+> * May 27: Issued 500 units
+> ##### Solution 1: FIFO (First-In, First-Out) Method
+> *Rule: Issues are priced using the oldest available unit costs in stock.*
+> $$
+> \begin{array}{l | rrr | rrr | rrr}
+> \hline
+> \textbf{Date} & \multicolumn{3}{c|}{\textbf{Receipts}} & \multicolumn{3}{c|}{\textbf{Issues}} & \multicolumn{3}{c}{\textbf{Balance}} \\
+> & \text{Qty} & \text{Rate} & \text{Amt} & \text{Qty} & \text{Rate} & \text{Amt} & \text{Qty} & \text{Rate} & \text{Amt} \\
+> \hline
+> \text{May 1} & & & & & & & 800 & \$6 & \$4,800 \\
+> \text{May 5} & 200 & \$7 & \$1,400 & & & & 800 & \$6 & \$4,800 \\
+> & & & & & & & 200 & \$7 & \$1,400 \\
+> \text{May 16}& & & & 400 & \$6 & \$2,400 & 400 & \$6 & \$2,400 \\
+> & & & & & & & 200 & \$7 & \$1,400 \\
+> \text{May 24}& 300 & \$9 & \$2,700 & & & & 400 & \$6 & \$2,400 \\
+> & & & & & & & 200 & \$7 & \$1,400 \\
+> & & & & & & & 300 & \$9 & \$2,700 \\
+> \text{May 27}& & & & 400 & \$6 & \$2,400 & & & \\
+> & & & & 100 & \$7 & \$700 & 100 & \$7 & \$700 \\
+> & & & & & & & 300 & \$9 & \$2,700 \\
+> \hline
+> \end{array}
+> $$
+> - **Ending Inventory (May 31):** $400$ units valued at $(100 \times \$7) + (300 \times \$9) = \mathbf{\$3,400}$.
+> - **Cost of Materials Issued:** $\$2,400 + \$2,400 + \$700 = \mathbf{\$5,500}$.
+> ##### Solution 2: Weighted Average Method
+> *Rule: A new average rate is calculated after every receipt: $\frac{\text{Total Value}}{\text{Total Qty}}$*
+> $$
+> \begin{array}{l | rrr | rrr | rrr}
+> \hline
+> \textbf{Date} & \multicolumn{3}{c|}{\textbf{Receipts}} & \multicolumn{3}{c|}{\textbf{Issues}} & \multicolumn{3}{c}{\textbf{Balance}} \\
+> & \text{Qty} & \text{Rate} & \text{Amt} & \text{Qty} & \text{Rate} & \text{Amt} & \text{Qty} & \text{Rate} & \text{Amt} \\
+> \hline
+> \text{May 1} & & & & & & & 800 & \$6.00 & \$4,800 \\
+> \text{May 5} & 200 & \$7.00 & \$1,400 & & & & 1,000 & \mathbf{\$6.20} & \$6,200 \\
+> \text{May 16}& & & & 400 & \$6.20 & \$2,480 & 600 & \$6.20 & \$3,720 \\
+> \text{May 24}& 300 & \$9.00 & \$2,700 & & & & 900 & \mathbf{\$7.13} & \$6,420 \\
+> \text{May 27}& & & & 500 & \$7.13 & \$3,565 & 400 & \$7.13 & \$2,855 \\
+> \hline
+> \end{array}
+> $$
+> - **Ending Inventory (May 31):** $400$ units valued at $\mathbf{\$2,855}$.
+> - **Cost of Materials Issued:** $\$2,480 + \$3,565 = \mathbf{\$6,045}$.

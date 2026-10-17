@@ -315,14 +315,17 @@
     A supplier has offered a 2% discount on the purchase price if the company accepts a lot size of 2,500 units per order. Evaluate whether the company should accept this discount offer by preparing a comparative cost statement. (04)
     Calculate the Re-order Level for this material. (02) **[10]**
 ### 2025 Examination - Question 6
-- **[[ACC 304 2025 Exam Q6#a| 6. (a) ]]** Pran Company made the following materials purchases and issues during January.
 
-    Inventory: January 1. 500 units @ Tk.12.00
-    Receipts: January 6. 200 units @ Tk.12.50
-    10. 400 units @ 13.00
-    11. 500 units @ 14.00
-    Issues: January 15. - 560 units
-    12. - 400 units.
+- **[[ACC 304 2025 Exam Q6#a| 6. (a) ]]** Pran Company made the following materials purchases and issues during January.
+    **Inventory**: 
+    January 1: 500 units @ Tk.12.00
+    **Receipts**: 
+    January 6: 200 units @ Tk.12.50
+    January 10: 400 units @ Tk.13.00
+    January 25: 500 units @ Tk.14.00
+    **Issues**: 
+    January 15: 560 units
+    January 27: 400 units
 
     **Required:** Compute the cost of materials consumed and the cost assigned to the inventory at the end of the month, using the perpetual inventory system and
     i) Average costing.
@@ -514,20 +517,20 @@
 
     The annual requirements for the materials are 10,000 tons. The ordering cost per order is $2,000 and stock holding cost estimated at 25 per cent of material cost per annum. You are required to compute the most economical purchase level. **[06]**
 ### 2023 Examination - Question 6
-- **[[ACC 304 2023 Exam Q6| 6. ]]** The following is the summary of the receipts and issues of material in a factory during December 2007.
-    1. Opening balance 500 units @ Rs.25 per unit
-    2. Issue 70 units
-    3. Issue 100 units
-    4. Issue 80 units
-    5. Received from supplier 200 units @ Rs.24.50 per unit
-    6. Returned to store 15 units @ Rs.24 per unit
-    7. Issue 180 units.
-    8. Received from supplier 240 units @ Rs.24.75 per unit
-    9. Issue 304 units.
-    10. Received from supplier 320 units @ Rs.24.50 per unit
-    11. Issue 112 units
-    12. Returned to store 12 units @ Rs.24.50 per unit
-    13. Received from supplier 100 units @ Rs.25 per unit
+- **[[ACC 304 2023 Exam Q6| 6. ]]** The following is the summary of the receipts and issues of material in a factory during December 2007:
+    Dec 1: Opening balance 500 units @ Rs.25 per unit
+    Dec 3: Issue 70 units
+    Dec 4: Issue 100 units
+    Dec 8: Issue 80 units
+    Dec 13: Received from supplier 200 units @ Rs.24.50 per unit
+    Dec 14: Returned to store 15 units @ Rs.24 per unit
+    Dec 16: Issue 180 units.
+    Dec 20: Received from supplier 240 units @ Rs.24.75 per unit
+    Dec 24: Issue 304 units.
+    Dec 25: Received from supplier 320 units @ Rs.24.50 per unit
+    Dec 26: Issue 112 units
+    Dec 27: Returned to store 12 units @ Rs.24.50 per unit
+    Dec 28: Received from supplier 100 units @ Rs.25 per unit
 
     It was revealed that on December 15th there was a shortage of 5 units and another shortage was on December 27th of 8 units.
     Prepare Store Ledger according to First in First Out Method (FIFO) for December 2007. **[15]**

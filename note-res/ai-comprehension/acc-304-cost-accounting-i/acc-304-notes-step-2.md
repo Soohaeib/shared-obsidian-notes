@@ -253,6 +253,13 @@ flowchart LR
 > #### 4. Unadjusted Cost of Goods Sold $COGS$
 > $$ \text{Beginning Finished Goods Inventory} + \text{Cost of Goods Manufactured (COGM)} = \text{Cost of Goods Available for Sale} $$
 > $$ \text{Cost of Goods Available for Sale} - \text{Ending Finished Goods Inventory} = \text{Cost of Goods Sold (Unadjusted)} $$
+> #### 5. Works Cost (Factory Cost)
+> Often requested in Commonwealth/BCAS exams, this is the subtotal of Prime Costs plus Factory Overhead, *adjusted for Work-in-Process*.
+> $$ \text{Gross Works Cost} = \text{Prime Costs} + \text{Manufacturing Overhead Incurred} $$
+> $$ \text{Net Works Cost (or Cost of Goods Manufactured)} = \text{Gross Works Cost} + \text{Beg. WIP} - \text{End. WIP} $$
+> #### 6. Cost of Sales
+> Do not confuse this with Cost of Goods Sold (COGS). Cost of Sales includes COGS *plus* all operating period expenses (Selling & Admin).
+> $$ \text{Cost of Sales} = \text{Cost of Goods Sold} + \text{Selling, Distribution \& Administrative Expenses} $$
 
 ---
 ## 5. Comprehensive Numerical Problem Walkthroughs
@@ -280,156 +287,148 @@ flowchart LR
 > * Marketing & Advertising Costs: $\text{TK } 60,000$
 > * Customer Service Costs: $\text{TK } 25,000$
 > * General Administrative Expenses: $\text{TK } 50,000$
-> **Required**:
+> #### **Required**:
 > 1. Prepare a detailed Schedule of Cost of Goods Manufactured for March 2021.
 > 2. Prepare a detailed Schedule of Cost of Goods Sold for March 2021.
 > 3. Prepare the Income Statement for March 2021.
 > 4. Calculate Prime Costs and Conversion Costs.
-
-#### Solution:
-##### Step 1: Computation of Direct Materials Used
-$$
-\begin{aligned}
-\text{Beginning Direct Materials Inventory (3/1/2021)} &= \text{TK } 12,500 \\
-\text{Add: Direct Materials Purchases} &= \text{TK } 120,000 \\
-\text{Add: Freight-In} &= \text{TK } 5,000 \\
-\text{Less: Purchase Returns and Allowances} &= (\text{TK } 3,000) \\
-\hline
-\text{Net Direct Materials Purchased} &= \text{TK } 122,000 \\
-\text{Direct Materials Available for Use} &= \text{TK } 134,500 \\
-\text{Less: Ending Direct Materials Inventory (3/31/2021)} &= (\text{TK } 42,500) \\
-\hline
-\mathbf{\text{Direct Materials Used}} &= \mathbf{\text{TK } 92,000}
-\end{aligned}
-$$
-
----
-##### Step 2: Schedule of Cost of Goods Manufactured $COGM$
-
-$$ \begin{array}{lrr}
-\hline
-\textbf{JOHNSON-HOWARD MANUFACTURING} & & \\
-\textbf{Schedule of Cost of Goods Manufactured} & & \\
-\textbf{For the Month Ended March 31, 2021} & & \textbf{Amount (TK)} \\
-\hline
-\textbf{Direct Costs:} & & \\
-\quad \text{Direct Materials Used} & \text{TK } 92,000 & \\
-\quad \text{Direct Manufacturing Labor} & 85,000 & \\
-\hline
-\quad \text{Total Direct Costs} & & \text{TK } 177,000 \\
-\textbf{Indirect Manufacturing Overhead Costs:} & & \\
-\quad \text{Indirect Manufacturing Labor} & \text{TK } 40,000 & \\
-\quad \text{Factory Plant Utilities \& Power} & 25,000 & \\
-\quad \text{Factory Depreciation (Equipment \& Building)} & 35,000 & \\
-\quad \text{Plant Repairs \& Maintenance} & 15,000 & \\
-\quad \text{Indirect Materials \& Lubricants} & 10,000 & \\
-\hline
-\quad \text{Total Manufacturing Overhead Costs} & & 125,000 \\
-\hline
-\textbf{Total Manufacturing Costs Incurred in Period} & & \text{TK } 302,000 \\
-\text{Add: Beginning Work-in-Process Inventory (3/1/2021)} & & 35,000 \\
-\hline
-\textbf{Total Manufacturing Costs to Account For} & & \text{TK } 337,000 \\
-\text{Less: Ending Work-in-Process Inventory (3/31/2021)} & & (95,000) \\
-\hline \hline
-\textbf{COST OF GOODS MANUFACTURED (COGM)} & & \mathbf{\text{TK } 242,000} \\
-\hline
-\end{array} $$
-
----
-##### Step 3: Schedule of Cost of Goods Sold $COGS$
-
-$$ \begin{array}{lr}
-\hline
-\textbf{JOHNSON-HOWARD MANUFACTURING} & \\
-\textbf{Schedule of Cost of Goods Sold} & \\
-\textbf{For the Month Ended March 31, 2021} & \textbf{Amount (TK)} \\
-\hline
-\text{Beginning Finished Goods Inventory (3/1/2021)} & \text{TK } 160,000 \\
-\text{Add: Cost of Goods Manufactured (COGM)} & 242,000 \\
-\hline
-\text{Cost of Goods Available for Sale} & \text{TK } 402,000 \\
-\text{Less: Ending Finished Goods Inventory (3/31/2021)} & (105,000) \\
-\hline \hline
-\textbf{COST OF GOODS SOLD (COGS)} & \mathbf{\text{TK } 297,000} \\
-\hline
-\end{array} $$
-
----
-##### Step 4: Income Statement
-
-$$ \begin{array}{lrr}
-\hline
-\textbf{JOHNSON-HOWARD MANUFACTURING} & & \\
-\textbf{Income Statement} & & \\
-\textbf{For the Month Ended March 31, 2021} & & \textbf{Amount (TK)} \\
-\hline
-\text{Sales Revenue} & & \text{TK } 750,000 \\
-\text{Less: Cost of Goods Sold (COGS)} & & (297,000) \\
-\hline
-\textbf{GROSS MARGIN (Gross Profit)} & & \text{TK } 453,000 \\
-\textbf{Operating Expenses (Period Costs):} & & \\
-\quad \text{Marketing \& Advertising Costs} & \text{TK } 60,000 & \\
-\quad \text{Customer Service Costs} & 25,000 & \\
-\quad \text{General Administrative Expenses} & 50,000 & \\
-\hline
-\quad \text{Total Operating Expenses} & & (135,000) \\
-\hline \hline
-\textbf{OPERATING INCOME} & & \mathbf{\text{TK } 318,000} \\
-\hline
-\end{array} $$
-
----
-##### Step 5: Calculation of Prime Costs and Conversion Costs
-$$
-\begin{aligned}
-\text{Prime Costs} &= \text{Direct Materials Used} + \text{Direct Manufacturing Labor} \\
-&= \text{TK } 92,000 + \text{TK } 85,000 = \mathbf{\text{TK } 177,000}
-\end{aligned}
-$$
-
-$$
-\begin{aligned}
-\text{Conversion Costs} &= \text{Direct Manufacturing Labor} + \text{Manufacturing Overhead Costs} \\
-&= \text{TK } 85,000 + \text{TK } 125,000 = \mathbf{\text{TK } 210,000}
-\end{aligned}
-$$
-
----
-
+> 
+> #### Solution:
+> ##### Step 1: Computation of Direct Materials Used
+> $$
+> \begin{aligned}
+> \text{Beginning Direct Materials Inventory (3/1/2021)} &= \text{TK } 12,500 \\
+> \text{Add: Direct Materials Purchases} &= \text{TK } 120,000 \\
+> \text{Add: Freight-In} &= \text{TK } 5,000 \\
+> \text{Less: Purchase Returns and Allowances} &= (\text{TK } 3,000) \\
+> \hline
+> \text{Net Direct Materials Purchased} &= \text{TK } 122,000 \\
+> \text{Direct Materials Available for Use} &= \text{TK } 134,500 \\
+> \text{Less: Ending Direct Materials Inventory (3/31/2021)} &= (\text{TK } 42,500) \\
+> \hline
+> \mathbf{\text{Direct Materials Used}} &= \mathbf{\text{TK } 92,000}
+> \end{aligned}
+> $$
+> 
+> ##### Step 2: Schedule of Cost of Goods Manufactured $COGM$
+> 
+> $$ \begin{array}{lrr}
+> \hline
+> \textbf{JOHNSON-HOWARD MANUFACTURING} & & \\
+> \textbf{Schedule of Cost of Goods Manufactured} & & \\
+> \textbf{For the Month Ended March 31, 2021} & & \textbf{Amount (TK)} \\
+> \hline
+> \textbf{Direct Costs:} & & \\
+> \quad \text{Direct Materials Used} & \text{TK } 92,000 & \\
+> \quad \text{Direct Manufacturing Labor} & 85,000 & \\
+> \hline
+> \quad \text{Total Direct Costs} & & \text{TK } 177,000 \\
+> \textbf{Indirect Manufacturing Overhead Costs:} & & \\
+> \quad \text{Indirect Manufacturing Labor} & \text{TK } 40,000 & \\
+> \quad \text{Factory Plant Utilities \& Power} & 25,000 & \\
+> \quad \text{Factory Depreciation (Equipment \& Building)} & 35,000 & \\
+> \quad \text{Plant Repairs \& Maintenance} & 15,000 & \\
+> \quad \text{Indirect Materials \& Lubricants} & 10,000 & \\
+> \hline
+> \quad \text{Total Manufacturing Overhead Costs} & & 125,000 \\
+> \hline
+> \textbf{Total Manufacturing Costs Incurred in Period} & & \text{TK } 302,000 \\
+> \text{Add: Beginning Work-in-Process Inventory (3/1/2021)} & & 35,000 \\
+> \hline
+> \textbf{Total Manufacturing Costs to Account For} & & \text{TK } 337,000 \\
+> \text{Less: Ending Work-in-Process Inventory (3/31/2021)} & & (95,000) \\
+> \hline \hline
+> \textbf{COST OF GOODS MANUFACTURED (COGM)} & & \mathbf{\text{TK } 242,000} \\
+> \hline
+> \end{array} $$
+> 
+> ##### Step 3: Schedule of Cost of Goods Sold $COGS$
+> 
+> $$ \begin{array}{lr}
+> \hline
+> \textbf{JOHNSON-HOWARD MANUFACTURING} & \\
+> \textbf{Schedule of Cost of Goods Sold} & \\
+> \textbf{For the Month Ended March 31, 2021} & \textbf{Amount (TK)} \\
+> \hline
+> \text{Beginning Finished Goods Inventory (3/1/2021)} & \text{TK } 160,000 \\
+> \text{Add: Cost of Goods Manufactured (COGM)} & 242,000 \\
+> \hline
+> \text{Cost of Goods Available for Sale} & \text{TK } 402,000 \\
+> \text{Less: Ending Finished Goods Inventory (3/31/2021)} & (105,000) \\
+> \hline \hline
+> \textbf{COST OF GOODS SOLD (COGS)} & \mathbf{\text{TK } 297,000} \\
+> \hline
+> \end{array} $$
+> 
+> ##### Step 4: Income Statement
+> 
+> $$ \begin{array}{lrr}
+> \hline
+> \textbf{JOHNSON-HOWARD MANUFACTURING} & & \\
+> \textbf{Income Statement} & & \\
+> \textbf{For the Month Ended March 31, 2021} & & \textbf{Amount (TK)} \\
+> \hline
+> \text{Sales Revenue} & & \text{TK } 750,000 \\
+> \text{Less: Cost of Goods Sold (COGS)} & & (297,000) \\
+> \hline
+> \textbf{GROSS MARGIN (Gross Profit)} & & \text{TK } 453,000 \\
+> \textbf{Operating Expenses (Period Costs):} & & \\
+> \quad \text{Marketing \& Advertising Costs} & \text{TK } 60,000 & \\
+> \quad \text{Customer Service Costs} & 25,000 & \\
+> \quad \text{General Administrative Expenses} & 50,000 & \\
+> \hline
+> \quad \text{Total Operating Expenses} & & (135,000) \\
+> \hline \hline
+> \textbf{OPERATING INCOME} & & \mathbf{\text{TK } 318,000} \\
+> \hline
+> \end{array} $$
+> 
+> ##### Step 5: Calculation of Prime Costs and Conversion Costs
+> $$
+> \begin{aligned}
+> \text{Prime Costs} &= \text{Direct Materials Used} + \text{Direct Manufacturing Labor} \\
+> &= \text{TK } 92,000 + \text{TK } 85,000 = \mathbf{\text{TK } 177,000}
+> \end{aligned}
+> $$
+> 
+> $$
+> \begin{aligned}
+> \text{Conversion Costs} &= \text{Direct Manufacturing Labor} + \text{Manufacturing Overhead Costs} \\
+> &= \text{TK } 85,000 + \text{TK } 125,000 = \mathbf{\text{TK } 210,000}
+> \end{aligned}
+> $$
+ 
 > [!example] Numerical Problem
 >
 > ### Problem 2: Unit Cost Behavior & Relevant Range Trap
 > *(Based on Tennessee Products Class Example)*
 > **Context**: Tennessee Products manufactures speaker systems. In Year 1, total manufacturing costs were $\$40,000,000$ to produce $500,000$ units. The total cost consists of $\$10,000,000$ in fixed costs and $\$30,000,000$ in variable costs.
-> **Required**:
+> ### **Required**:
 > 1. Calculate unit variable cost, unit fixed cost, and total unit cost at $500,000$ units.
 > 2. Predict total manufacturing cost and total unit cost if production in Year 2 drops to $200,000$ units (assuming activity remains within the relevant range).
 > 3. Demonstrate the error if the plant manager mistakenly uses the Year 1 total unit cost to forecast Year 2 total costs at $200,000$ units.
-
-#### Solution:
-##### Requirement 1: Unit Costs at 500,000 Units
-$$ \text{Variable Cost per Unit} = \frac{\$30,000,000}{500,000 \text{ units}} = \mathbf{\$60.00 \text{ per unit}} $$
-
-$$ \text{Fixed Cost per Unit} = \frac{\$10,000,000}{500,000 \text{ units}} = \mathbf{\$20.00 \text{ per unit}} $$
-
-$$ \text{Total Unit Cost at 500,000 units} = \$60.00 + \$20.00 = \mathbf{\$80.00 \text{ per unit}} $$
-
----
-##### Requirement 2: Correct Cost Prediction at 200,000 Units
-* Total Variable Costs = $200,000 \text{ units} \times \$60.00 = \$12,000,000$
-* Total Fixed Costs = $\$10,000,000$ (remains constant in total within relevant range)
-* **Correct Total Manufacturing Cost** = $\$12,000,000 + \$10,000,000 = \mathbf{\$22,000,000}$
-
-$$ \text{Correct Total Unit Cost at 200,000 units} = \frac{\$22,000,000}{200,000 \text{ units}} = \mathbf{\$110.00 \text{ per unit}} $$
-
----
-##### Requirement 3: Managerial Error Analysis
-If the manager mistakenly unitizes fixed costs and uses the historical $\$80.00$ unit cost:
-
-$$ \text{Erroneous Total Cost Prediction} = 200,000 \text{ units} \times \$80.00 = \mathbf{\$16,000,000} $$
-
-$$ \text{Underestimation Error} = \$22,000,000 - \$16,000,000 = \mathbf{\$6,000,000 \text{ underestimation}} $$
+> 
+> #### Solution:
+> ##### Requirement 1: Unit Costs at 500,000 Units
+> $$ \text{Variable Cost per Unit} = \frac{\$30,000,000}{500,000 \text{ units}} = \mathbf{\$60.00 \text{ per unit}} $$
+> 
+> $$ \text{Fixed Cost per Unit} = \frac{\$10,000,000}{500,000 \text{ units}} = \mathbf{\$20.00 \text{ per unit}} $$
+> 
+> $$ \text{Total Unit Cost at 500,000 units} = \$60.00 + \$20.00 = \mathbf{\$80.00 \text{ per unit}} $$
+> 
+> ##### Requirement 2: Correct Cost Prediction at 200,000 Units
+> * Total Variable Costs = $200,000 \text{ units} \times \$60.00 = \$12,000,000$
+> * Total Fixed Costs = $\$10,000,000$ (remains constant in total within relevant range)
+> * **Correct Total Manufacturing Cost** = $\$12,000,000 + \$10,000,000 = \mathbf{\$22,000,000}$
+> 
+> $$ \text{Correct Total Unit Cost at 200,000 units} = \frac{\$22,000,000}{200,000 \text{ units}} = \mathbf{\$110.00 \text{ per unit}} $$
+> 
+> ##### Requirement 3: Managerial Error Analysis
+> If the manager mistakenly unitizes fixed costs and uses the historical $\$80.00$ unit cost:
+> 
+> $$ \text{Erroneous Total Cost Prediction} = 200,000 \text{ units} \times \$80.00 = \mathbf{\$16,000,000} $$
+> 
+> $$ \text{Underestimation Error} = \$22,000,000 - \$16,000,000 = \mathbf{\$6,000,000 \text{ underestimation}} $$
 
 > [!warning] Exam Pitfall / Exception
 >
