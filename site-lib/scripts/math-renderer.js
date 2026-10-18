@@ -117,7 +117,235 @@
      */
     requiresMathJax(formula) {
       if (!formula) return false;
-      return /\\(?:multicolumn|cline|renewcommand|begin\{(?:aligned|alignedat|gathered|gather|multline|split|cases|matrix\*|pmatrix\*|bmatrix\*|vmatrix\*|Vmatrix\*|dcases|rcases|subarray|CD)\}|tag\b|label\b)/.test(formula);
+      return /\\(?:renewcommand|begin\{(?:aligned|alignedat|gathered|gather|multline|split|cases|matrix\*|pmatrix\*|bmatrix\*|vmatrix\*|Vmatrix\*|dcases|rcases|subarray|CD)\}|tag\b|label\b)/.test(formula);
+    }
+
+    /**
+     * Distinguishes LaTeX tabular schedules (stores ledgers, financial statements,
+     * reconciliation tables with multicolumn, cline, hline) from standard mathematical formulas.
+     */
+    isLatexTable(formula) {
+      if (!formula) return false;
+      const clean = formula.trim();
+      return /\\begin\{(?:array|tabular)\}/.test(clean) && 
+             (/\\multicolumn|\\cline/.test(clean) || (/\\hline/.test(clean) && /&/.test(clean)));
+    }
+
+    /**
+     * Renders LaTeX array tables with multicolumn, cline, and hline into
+     * accessible, high-contrast, responsive HTML tables styled with accounting schedule specs.
+     */
+    renderLatexTable(formula, mathId = '') {
+      if (!formula) return '';
+      const clean = formula.trim();
+
+      const matchPreamble = clean.match(/\\begin\{(?:array|tabular)\}(?:\[[a-z]\])?\{([^}]+)\}/);
+      if (!matchPreamble) return this.renderMathJaxPlaceholder(formula, true, mathId);
+
+      const colSpecRaw = matchPreamble[1];
+      const colAlignments = [];
+      const colBorders = [];
+      
+      const colChars = colSpecRaw.replace(/\s+/g, '');
+      let colIndex = 0;
+      for (let i = 0; i < colChars.length; i++) {
+        const ch = colChars[i];
+        if (ch === 'l') { colAlignments.push('left'); colIndex++; }
+        else if (ch === 'r') { colAlignments.push('right'); colIndex++; }
+        else if (ch === 'c') { colAlignments.push('center'); colIndex++; }
+        else if (ch === '|') {
+          if (colIndex > 0) colBorders[colIndex - 1] = true;
+        }
+      }
+
+      const bodyStart = clean.indexOf(matchPreamble[0]) + matchPreamble[0].length;
+      const bodyEnd = clean.lastIndexOf('\\end{');
+      if (bodyEnd === -1) return this.renderMathJaxPlaceholder(formula, true, mathId);
+      const body = clean.substring(bodyStart, bodyEnd).trim();
+
+      // Split rows by \\ outside of nested braces
+      const rawRows = [];
+      let depth = 0;
+      let lastPos = 0;
+      for (let i = 0; i < body.length; i++) {
+        if (body[i] === '{') depth++;
+        else if (body[i] === '}') depth = Math.max(0, depth - 1);
+        else if (depth === 0 && body[i] === '\\' && body[i + 1] === '\\') {
+          rawRows.push(body.substring(lastPos, i).trim());
+          lastPos = i + 2;
+          i++;
+        }
+      }
+      if (lastPos < body.length) {
+        const last = body.substring(lastPos).trim();
+        if (last) rawRows.push(last);
+      }
+
+      const rows = [];
+      for (let rIdx = 0; rIdx < rawRows.length; rIdx++) {
+        let rowStr = rawRows[rIdx].trim();
+        if (!rowStr) continue;
+
+        let hasDoubleHlineBottom = false;
+        let hasSingleHlineTop = false;
+        let hasSingleHlineBottom = false;
+
+        while (rowStr.startsWith('\\hline')) {
+          if (rowStr.startsWith('\\hline\\hline') || rowStr.startsWith('\\hline \\hline')) {
+            hasSingleHlineTop = true;
+            rowStr = rowStr.replace(/^\\hline\s*\\hline\s*/, '').trim();
+          } else {
+            hasSingleHlineTop = true;
+            rowStr = rowStr.replace(/^\\hline\s*/, '').trim();
+          }
+        }
+
+        while (rowStr.endsWith('\\hline')) {
+          if (rowStr.endsWith('\\hline\\hline') || rowStr.endsWith('\\hline \\hline')) {
+            hasDoubleHlineBottom = true;
+            rowStr = rowStr.replace(/\\hline\s*\\hline\s*$/, '').trim();
+          } else {
+            hasSingleHlineBottom = true;
+            rowStr = rowStr.replace(/\\hline\s*$/, '').trim();
+          }
+        }
+
+        if (!rowStr) {
+          if (rows.length > 0) {
+            if (hasDoubleHlineBottom) rows[rows.length - 1].hasDoubleHlineBottom = true;
+            else if (hasSingleHlineBottom || hasSingleHlineTop) rows[rows.length - 1].hasSingleHlineBottom = true;
+          }
+          continue;
+        }
+
+        let clineRanges = [];
+        rowStr = rowStr.replace(/\\cline\{(\d+)\s*-\s*(\d+)\}/g, (m, start, end) => {
+          clineRanges.push([parseInt(start, 10), parseInt(end, 10)]);
+          return '';
+        }).trim();
+
+        const rawCells = [];
+        let cellDepth = 0;
+        let cellLastPos = 0;
+        for (let c = 0; c < rowStr.length; c++) {
+          if (rowStr[c] === '{') cellDepth++;
+          else if (rowStr[c] === '}') cellDepth = Math.max(0, cellDepth - 1);
+          else if (cellDepth === 0 && rowStr[c] === '&') {
+            rawCells.push(rowStr.substring(cellLastPos, c).trim());
+            cellLastPos = c + 1;
+          }
+        }
+        if (cellLastPos <= rowStr.length) {
+          rawCells.push(rowStr.substring(cellLastPos).trim());
+        }
+
+        const cells = [];
+        let currentCellCol = 0;
+
+        for (let cIdx = 0; cIdx < rawCells.length; cIdx++) {
+          let cellStr = rawCells[cIdx].trim();
+          let colspan = 1;
+          let align = colAlignments[currentCellCol] || 'left';
+          let isMulticolumn = false;
+          let hasRightBorder = colBorders[currentCellCol] || false;
+
+          const mcMatch = cellStr.match(/^\\multicolumn\{(\d+)\}\{([^}]+)\}\{([\s\S]*)\}$/);
+          if (mcMatch) {
+            colspan = parseInt(mcMatch[1], 10);
+            const mcAlignSpec = mcMatch[2];
+            if (mcAlignSpec.includes('r')) align = 'right';
+            else if (mcAlignSpec.includes('c')) align = 'center';
+            else if (mcAlignSpec.includes('l')) align = 'left';
+            if (mcAlignSpec.includes('|')) hasRightBorder = true;
+            cellStr = mcMatch[3].trim();
+            isMulticolumn = true;
+          }
+
+          let hasClineTop = false;
+          for (const [s, e] of clineRanges) {
+            const colNum = currentCellCol + 1;
+            if (colNum >= s && colNum <= e) hasClineTop = true;
+          }
+
+          cells.push({
+            content: cellStr,
+            colspan,
+            align,
+            isMulticolumn,
+            hasRightBorder,
+            hasClineTop
+          });
+
+          currentCellCol += colspan;
+        }
+
+        rows.push({
+          cells,
+          hasSingleHlineTop,
+          hasSingleHlineBottom,
+          hasDoubleHlineBottom
+        });
+      }
+
+      let html = `<div class="math math-block math-mathjax accounting-table-wrapper" id="${mathId}" data-math-engine="mathjax" data-latex-table="true" data-math-raw="${this.escapeHtml(formula)}">`;
+      html += '<table class="accounting-schedule-table"><tbody>';
+
+      for (let rIdx = 0; rIdx < rows.length; rIdx++) {
+        const row = rows[rIdx];
+        let rowClasses = [];
+        if (row.hasSingleHlineTop) rowClasses.push('border-single-top');
+        if (row.hasDoubleHlineBottom) rowClasses.push('border-double-bottom');
+        else if (row.hasSingleHlineBottom) rowClasses.push('border-single-bottom');
+
+        const isHeaderRow = row.cells.some(c => c.isMulticolumn || c.content.includes('\\textbf{'));
+        if (isHeaderRow) rowClasses.push('table-header-row');
+
+        const classAttr = rowClasses.length ? ` class="${rowClasses.join(' ')}"` : '';
+        html += `<tr${classAttr}>`;
+
+        for (const cell of row.cells) {
+          let cellClasses = [];
+          if (cell.isMulticolumn) cellClasses.push('multicolumn-cell');
+          if (cell.hasClineTop) cellClasses.push('border-cline-top');
+
+          let formatted = cell.content;
+          formatted = formatted.replace(/\\textbf\{([^{}]+)\}/g, '<strong>$1</strong>');
+          formatted = formatted.replace(/\\textbf\{([^{}]+)\}/g, '<strong>$1</strong>');
+          formatted = formatted.replace(/\\mathbf\{([^{}]+)\}/g, '<strong>$1</strong>');
+          formatted = formatted.replace(/\\text\{([^{}]+)\}/g, '$1');
+          formatted = formatted.replace(/\\text\{([^{}]+)\}/g, '$1');
+          formatted = formatted.replace(/\\qquad/g, '&emsp;&emsp;');
+          formatted = formatted.replace(/\\quad/g, '&emsp;');
+          formatted = formatted.replace(/\\&/g, '&amp;');
+          formatted = formatted.replace(/\\\$/g, '$');
+          formatted = formatted.replace(/\\%/g, '%');
+          if (formatted === '—' || formatted === '--') formatted = '—';
+
+          // Render any embedded math constructs using KaTeX if available
+          if (/\\frac|\\sqrt|\\sum|\\prod|_|\^/.test(formatted) && typeof window !== 'undefined' && window.katex && typeof window.katex.renderToString === 'function') {
+            try {
+              formatted = window.katex.renderToString(formatted, { throwOnError: false, displayMode: false, macros: this.katexMacros });
+            } catch (e) {}
+          }
+
+          const isNumeric = /^[\$£€\(\)\d\.,\s\-\+—]+$/.test(formatted.trim()) && /\d/.test(formatted);
+          if (isNumeric) cellClasses.push('cell-numeric');
+          else cellClasses.push('cell-text');
+
+          let style = `text-align: ${cell.align};`;
+          if (cell.hasRightBorder) style += ' border-right: 1px solid var(--background-modifier-border, rgba(255,255,255,0.18));';
+
+          const colspanAttr = cell.colspan > 1 ? ` colspan="${cell.colspan}"` : '';
+          const cellClassAttr = cellClasses.length ? ` class="${cellClasses.join(' ')}"` : '';
+
+          html += `<td${colspanAttr}${cellClassAttr} style="${style}">${formatted}</td>`;
+        }
+
+        html += '</tr>';
+      }
+
+      html += '</tbody></table></div>';
+      return html;
     }
 
     /**
@@ -185,9 +413,10 @@
 
     /**
      * Core hybrid expression renderer:
-     * 1. Routes advanced constructs (\multicolumn, \cline, \renewcommand, aligned, etc.) directly to MathJax.
-     * 2. Attempts KaTeX for standard formulas.
-     * 3. On any KaTeX parse error, falls back to MathJax preserving the complete original source.
+     * 1. Routes advanced tabular schedules with \multicolumn and \cline to renderLatexTable.
+     * 2. Routes AMS constructs (\renewcommand, aligned, gathered, etc.) to MathJax.
+     * 3. Attempts KaTeX for standard formulas.
+     * 4. On any KaTeX parse error, falls back to MathJax preserving the complete original source.
      */
     renderExpression(formula, displayMode = false) {
       if (!formula) return '';
@@ -196,7 +425,13 @@
 
       const mathId = `math-${displayMode ? 'block' : 'inline'}-${++this.mathTokenIdx}`;
 
-      // 1. Direct routing to MathJax for advanced TeX constructs
+      // 0. Dedicated LaTeX Table & Tabular Schedule Engine
+      if (this.isLatexTable(source)) {
+        this.metrics.mathJaxCount++;
+        return this.renderLatexTable(source, mathId);
+      }
+
+      // 1. Direct routing to MathJax for advanced AMS constructs
       if (this.requiresMathJax(source)) {
         return this.renderMathJaxPlaceholder(source, displayMode, mathId);
       }

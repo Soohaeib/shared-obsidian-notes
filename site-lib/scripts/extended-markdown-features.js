@@ -33,10 +33,6 @@
     preprocess(text) {
       if (!text || typeof text !== 'string') return text;
 
-      // 0. Protect currency symbols ($10, $50,000, \$10) before markdown/math parsers
-      text = text.replace(/\\(\$)/g, '&#36;');
-      text = text.replace(/(?<![\$\w\\])\$(?=\s*\d)(?:\s*)(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|thousand|USD|EUR|GBP|k|m|b))?(?:\/(?:share|unit|hour|day|month|year|item|kg|lb))?)(?!\$|[a-zA-Z0-9_\^])/gi, '&#36;$1');
-
       // 1. Separate directives (**Required:**, **Instructions:**, **Data:**, etc.) from preceding lines
       text = text.replace(/([^\n\r])\r?\n([ \t]*\*\*(?:Required|Instructions|Requirements|Data|Scenario|Note|Additional Information|Given|Case):\*\*)/gi, '$1\n\n  $2');
 

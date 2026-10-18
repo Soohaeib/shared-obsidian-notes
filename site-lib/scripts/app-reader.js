@@ -49,7 +49,7 @@
       this.modalGraph = null;
 
       // Pipeline & Render Cache
-      this.rendererVersion = '2026.10.12.hybrid-v1';
+      this.rendererVersion = '2026.10.17.latex-table-v2';
 
       this.init();
     }
@@ -899,8 +899,8 @@
       if (!article) return;
 
       // Strictly isolate: target ONLY unrendered MathJax elements
-      // Never touches code blocks, inline code, Mermaid diagrams, or already-rendered KaTeX
-      const mathElements = Array.from(article.querySelectorAll('.math-mathjax:not([data-mathjax-rendered="true"])'));
+      // Never touches code blocks, inline code, Mermaid diagrams, already-rendered KaTeX, or native LaTeX tables
+      const mathElements = Array.from(article.querySelectorAll('.math-mathjax:not([data-mathjax-rendered="true"]):not([data-latex-table="true"])'));
       if (mathElements.length === 0) return;
 
       // Explicit failure check
@@ -993,8 +993,9 @@
       // Ensure blockquotes and callouts following paragraphs start on their own block
       text = text.replace(/([^\n\r])\r?\n(>[ \t]*[^\n\r]+)/g, '$1\n\n$2');
 
-      // Ensure markdown tables have a preceding newline if attached to paragraphs
-      text = text.replace(/([^\n\r])\r?\n(\|[^\n\r]+\|\r?\n\|[\s\-:|]+\|)/g, '$1\n\n$2');
+      // Ensure markdown tables have a preceding newline if attached to paragraphs (both regular and callout lines)
+      text = text.replace(/([^\n\r])\r?\n([ \t]*\|[^\n\r]+\|\r?\n[ \t]*\|[\s\-:|]+\|)/g, '$1\n\n$2');
+      text = text.replace(/([^\n\r])\r?\n(>[ \t]*\|[^\n\r]+\|\r?\n>[ \t]*\|[\s\-:|]+\|)/g, '$1\n\n$2');
 
       if (window.ObsidianMathRenderer) window.ObsidianMathRenderer.reset();
       if (window.ObsidianCallouts) window.ObsidianCallouts.reset();
@@ -1019,10 +1020,6 @@
       if (window.ObsidianCallouts) {
         text = window.ObsidianCallouts.processCallouts(text, codeBlocksMap);
       }
-
-      // Protect currency values before math tokenization
-      text = text.replace(/\\(\$)/g, '&#36;');
-      text = text.replace(/(?<![\$\w\\])\$(?=\s*\d)(?:\s*)(\d[\d,]*(?:\.\d+)?(?:\s*(?:million|billion|trillion|thousand|USD|EUR|GBP|k|m|b))?(?:\/(?:share|unit|hour|day|month|year|item|kg|lb))?)(?!\$|[a-zA-Z0-9_\^])/gi, '&#36;$1');
 
       if (window.ObsidianMathRenderer) {
         text = window.ObsidianMathRenderer.extractAndTokenize(text);

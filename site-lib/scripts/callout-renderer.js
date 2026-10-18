@@ -123,6 +123,10 @@
           innerMarkdown = window.ObsidianWikiLinks.processMarkdownFeatures(innerMarkdown);
         }
 
+        // Ensure markdown tables have proper blank lines before and after so marked parses them into <table>
+        innerMarkdown = innerMarkdown.replace(/([^\n\r])\r?\n([ \t]*\|[^\n\r]+\|\r?\n[ \t]*\|[\s\-:|]+\|)/g, '$1\n\n$2');
+        innerMarkdown = innerMarkdown.replace(/(\|[^\n\r]+\|)\r?\n([^\s|#\-*+\d>][^\n\r]*)/g, '$1\n\n$2');
+
         let innerHtml = '';
         try {
           if (typeof marked !== 'undefined' && marked.parse) {
