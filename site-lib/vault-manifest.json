@@ -1,710 +1,6 @@
 [
   {
     "type": "folder",
-    "originalName": "AI Comprehension",
-    "originalPath": "AI Comprehension",
-    "slugPath": "ai-comprehension",
-    "planetSlug": "ai-comprehension"
-  },
-  {
-    "type": "file",
-    "originalName": "Overview of AI Comprehension",
-    "originalPath": "AI Comprehension/Overview of AI Comprehension.md",
-    "slugPath": "ai-comprehension/overview-of-ai-comprehension.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": true,
-    "title": "AI Comprehension",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "ACC 304 Cost Accounting I",
-    "originalPath": "AI Comprehension/ACC 304 Cost Accounting I",
-    "slugPath": "ai-comprehension/acc-304-cost-accounting-i",
-    "planetSlug": "ai-comprehension"
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 Notes Step 6",
-    "originalPath": "AI Comprehension/ACC 304 Cost Accounting I/ACC 304 Notes Step 6.md",
-    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-6.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 Notes Step 1",
-    "originalPath": "AI Comprehension/ACC 304 Cost Accounting I/ACC 304 Notes Step 1.md",
-    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-1.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 Notes Step 3",
-    "originalPath": "AI Comprehension/ACC 304 Cost Accounting I/ACC 304 Notes Step 3.md",
-    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-3.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 Notes Step 8",
-    "originalPath": "AI Comprehension/ACC 304 Cost Accounting I/ACC 304 Notes Step 8.md",
-    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-8.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 Notes Step 2",
-    "originalPath": "AI Comprehension/ACC 304 Cost Accounting I/ACC 304 Notes Step 2.md",
-    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-2.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 Notes Step 7",
-    "originalPath": "AI Comprehension/ACC 304 Cost Accounting I/ACC 304 Notes Step 7.md",
-    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-7.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 Notes Step 5",
-    "originalPath": "AI Comprehension/ACC 304 Cost Accounting I/ACC 304 Notes Step 5.md",
-    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-5.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 Notes Step 4",
-    "originalPath": "AI Comprehension/ACC 304 Cost Accounting I/ACC 304 Notes Step 4.md",
-    "slugPath": "ai-comprehension/acc-304-cost-accounting-i/acc-304-notes-step-4.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "ACC 302 Financial Management",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management",
-    "slugPath": "ai-comprehension/acc-302-financial-management",
-    "planetSlug": "ai-comprehension"
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 302 Notes Phase 6",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/ACC 302 Notes Phase 6.md",
-    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-6.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 302 Notes Phase 2",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/ACC 302 Notes Phase 2.md",
-    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-2.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 302 Notes Phase 7",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/ACC 302 Notes Phase 7.md",
-    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-7.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 302 Notes Phase 8",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/ACC 302 Notes Phase 8.md",
-    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-8.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 302 Notes Phase 1",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/ACC 302 Notes Phase 1.md",
-    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-1.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 302 Notes Phase 4",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/ACC 302 Notes Phase 4.md",
-    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-4.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 302 Notes Phase 3",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/ACC 302 Notes Phase 3.md",
-    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-3.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 302 Notes Phase 9",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/ACC 302 Notes Phase 9.md",
-    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-9.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 302 Notes Phase 5",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/ACC 302 Notes Phase 5.md",
-    "slugPath": "ai-comprehension/acc-302-financial-management/acc-302-notes-phase-5.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "assets",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/assets",
-    "slugPath": "ai-comprehension/acc-302-financial-management/assets",
-    "planetSlug": "ai-comprehension"
-  },
-  {
-    "type": "file",
-    "originalName": "acc302_current_asset_financing_curves.svg",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg",
-    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302-current-asset-financing-curves.svg",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": false
-  },
-  {
-    "type": "file",
-    "originalName": "acc302_bond_price_time_path.svg",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg",
-    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302-bond-price-time-path.svg",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": false
-  },
-  {
-    "type": "file",
-    "originalName": "acc302_mcc_ios_schedule.svg",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg",
-    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302-mcc-ios-schedule.svg",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": false
-  },
-  {
-    "type": "file",
-    "originalName": "acc302_security_market_line.svg",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/assets/acc302_security_market_line.svg",
-    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302-security-market-line.svg",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": false
-  },
-  {
-    "type": "file",
-    "originalName": "acc302_npv_profiles_crossover.svg",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg",
-    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302-npv-profiles-crossover.svg",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": false
-  },
-  {
-    "type": "file",
-    "originalName": "acc302_economic_order_quantity_curves.svg",
-    "originalPath": "AI Comprehension/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg",
-    "slugPath": "ai-comprehension/acc-302-financial-management/assets/acc302-economic-order-quantity-curves.svg",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": false
-  },
-  {
-    "type": "folder",
-    "originalName": "ACC 301 Intermediate Accounting",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting",
-    "planetSlug": "ai-comprehension"
-  },
-  {
-    "type": "file",
-    "originalName": "Accounting Terminology Guide",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Accounting Terminology Guide.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/accounting-terminology-guide.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "Phase 2",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 2",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2",
-    "planetSlug": "ai-comprehension"
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 5",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 5.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-5.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 8",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 8.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-8.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 7",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 7.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-7.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 9",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 9.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-9.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 6",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 6.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-6.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "Phase 1",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 1",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1",
-    "planetSlug": "ai-comprehension"
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 2",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 2.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-2.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 3",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 3.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-3.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 1",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 1.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-1.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 4",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 4.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-4.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "Phase 3",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 3",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-3",
-    "planetSlug": "ai-comprehension"
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 11",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 3/ACC 301 Notes Step 11.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-11.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 10",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 3/ACC 301 Notes Step 10.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-10.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 12",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 3/ACC 301 Notes Step 12.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-12.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "Phase 4",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 4",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-4",
-    "planetSlug": "ai-comprehension"
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 14",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 4/ACC 301 Notes Step 14.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-4/acc-301-notes-step-14.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Notes Step 13",
-    "originalPath": "AI Comprehension/ACC 301 Intermediate Accounting/Phase 4/ACC 301 Notes Step 13.md",
-    "slugPath": "ai-comprehension/acc-301-intermediate-accounting/phase-4/acc-301-notes-step-13.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "Logical Learning Guides",
-    "originalPath": "AI Comprehension/Logical Learning Guides",
-    "slugPath": "ai-comprehension/logical-learning-guides",
-    "planetSlug": "ai-comprehension"
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 301 Intermediate Accounting",
-    "originalPath": "AI Comprehension/Logical Learning Guides/ACC 301 Intermediate Accounting.md",
-    "slugPath": "ai-comprehension/logical-learning-guides/acc-301-intermediate-accounting.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 302 Financial Management",
-    "originalPath": "AI Comprehension/Logical Learning Guides/ACC 302 Financial Management.md",
-    "slugPath": "ai-comprehension/logical-learning-guides/acc-302-financial-management.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 Cost Accounting I",
-    "originalPath": "AI Comprehension/Logical Learning Guides/ACC 304 Cost Accounting I.md",
-    "slugPath": "ai-comprehension/logical-learning-guides/acc-304-cost-accounting-i.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 305 Auditing & Assurance",
-    "originalPath": "AI Comprehension/Logical Learning Guides/ACC 305 Auditing & Assurance.md",
-    "slugPath": "ai-comprehension/logical-learning-guides/acc-305-auditing-and-assurance.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 303 Advanced Statistical Techniques",
-    "originalPath": "AI Comprehension/Logical Learning Guides/ACC 303 Advanced Statistical Techniques.md",
-    "slugPath": "ai-comprehension/logical-learning-guides/acc-303-advanced-statistical-techniques.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "ACC 305 Auditing & Assurance",
-    "originalPath": "AI Comprehension/ACC 305 Auditing & Assurance",
-    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance",
-    "planetSlug": "ai-comprehension"
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 305 Notes Module 5",
-    "originalPath": "AI Comprehension/ACC 305 Auditing & Assurance/ACC 305 Notes Module 5.md",
-    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-5.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 305 Notes Module 7",
-    "originalPath": "AI Comprehension/ACC 305 Auditing & Assurance/ACC 305 Notes Module 7.md",
-    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-7.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 305 Notes Module 1",
-    "originalPath": "AI Comprehension/ACC 305 Auditing & Assurance/ACC 305 Notes Module 1.md",
-    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-1.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 305 Notes Module 11",
-    "originalPath": "AI Comprehension/ACC 305 Auditing & Assurance/ACC 305 Notes Module 11.md",
-    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-11.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 305 Notes Module 10",
-    "originalPath": "AI Comprehension/ACC 305 Auditing & Assurance/ACC 305 Notes Module 10.md",
-    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-10.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 305 Notes Module 3",
-    "originalPath": "AI Comprehension/ACC 305 Auditing & Assurance/ACC 305 Notes Module 3.md",
-    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-3.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 305 Notes Module 2",
-    "originalPath": "AI Comprehension/ACC 305 Auditing & Assurance/ACC 305 Notes Module 2.md",
-    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-2.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 305 Notes Module 8",
-    "originalPath": "AI Comprehension/ACC 305 Auditing & Assurance/ACC 305 Notes Module 8.md",
-    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-8.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 305 Notes Module 4",
-    "originalPath": "AI Comprehension/ACC 305 Auditing & Assurance/ACC 305 Notes Module 4.md",
-    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-4.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 305 Notes Module 12",
-    "originalPath": "AI Comprehension/ACC 305 Auditing & Assurance/ACC 305 Notes Module 12.md",
-    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-12.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 305 Notes Module 9",
-    "originalPath": "AI Comprehension/ACC 305 Auditing & Assurance/ACC 305 Notes Module 9.md",
-    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-9.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 305 Notes Module 6",
-    "originalPath": "AI Comprehension/ACC 305 Auditing & Assurance/ACC 305 Notes Module 6.md",
-    "slugPath": "ai-comprehension/acc-305-auditing-and-assurance/acc-305-notes-module-6.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "ACC 303 Advanced Statistical Techniques",
-    "originalPath": "AI Comprehension/ACC 303 Advanced Statistical Techniques",
-    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques",
-    "planetSlug": "ai-comprehension"
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 303 Notes Module 2",
-    "originalPath": "AI Comprehension/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 2.md",
-    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-2.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 303 Notes Module 5",
-    "originalPath": "AI Comprehension/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 5.md",
-    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-5.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 303 Notes Module 4",
-    "originalPath": "AI Comprehension/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 4.md",
-    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-4.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 303 Notes Module 1",
-    "originalPath": "AI Comprehension/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 1.md",
-    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-1.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 303 Notes Module 3",
-    "originalPath": "AI Comprehension/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 3.md",
-    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-3.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 303 Notes Module 6",
-    "originalPath": "AI Comprehension/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 6.md",
-    "slugPath": "ai-comprehension/acc-303-advanced-statistical-techniques/acc-303-notes-module-6.md",
-    "planetSlug": "ai-comprehension",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
     "originalName": "5th Semester",
     "originalPath": "5th Semester",
     "slugPath": "5th-semester",
@@ -885,6 +181,703 @@
     "originalPath": "5th Semester/Others/Raw PYQs/Raw ACC 303.md",
     "slugPath": "5th-semester/others/raw-pyqs/raw-acc-303.md",
     "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "Reference Guides",
+    "originalPath": "Reference Guides",
+    "slugPath": "reference-guides",
+    "planetSlug": "reference-guides"
+  },
+  {
+    "type": "file",
+    "originalName": "Overview of References",
+    "originalPath": "Reference Guides/Overview of References.md",
+    "slugPath": "reference-guides/overview-of-references.md",
+    "planetSlug": "reference-guides",
+    "isHome": true,
+    "title": "Comprehensive Reference Materials",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "ACC 304 Cost Accounting I",
+    "originalPath": "Reference Guides/ACC 304 Cost Accounting I",
+    "slugPath": "reference-guides/acc-304-cost-accounting-i",
+    "planetSlug": "reference-guides"
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 Notes Step 6",
+    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 6.md",
+    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-6.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 Notes Step 1",
+    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 1.md",
+    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-1.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 Notes Step 3",
+    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 3.md",
+    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-3.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 Notes Step 8",
+    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 8.md",
+    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-8.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 Notes Step 2",
+    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 2.md",
+    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-2.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 Cost Accounting I",
+    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Cost Accounting I.md",
+    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-cost-accounting-i.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 Notes Step 7",
+    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 7.md",
+    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-7.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 Notes Step 5",
+    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 5.md",
+    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-5.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 Notes Step 4",
+    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 4.md",
+    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-4.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "ACC 302 Financial Management",
+    "originalPath": "Reference Guides/ACC 302 Financial Management",
+    "slugPath": "reference-guides/acc-302-financial-management",
+    "planetSlug": "reference-guides"
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 302 Notes Phase 6",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 6.md",
+    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-6.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 302 Notes Phase 2",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 2.md",
+    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-2.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 302 Notes Phase 7",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 7.md",
+    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-7.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 302 Notes Phase 8",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 8.md",
+    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-8.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 302 Financial Management",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Financial Management.md",
+    "slugPath": "reference-guides/acc-302-financial-management/acc-302-financial-management.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 302 Notes Phase 1",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 1.md",
+    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-1.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 302 Notes Phase 4",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 4.md",
+    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-4.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 302 Notes Phase 3",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 3.md",
+    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-3.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 302 Notes Phase 9",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 9.md",
+    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-9.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 302 Notes Phase 5",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 5.md",
+    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-5.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "assets",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/assets",
+    "slugPath": "reference-guides/acc-302-financial-management/assets",
+    "planetSlug": "reference-guides"
+  },
+  {
+    "type": "file",
+    "originalName": "acc302_current_asset_financing_curves.svg",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg",
+    "slugPath": "reference-guides/acc-302-financial-management/assets/acc302-current-asset-financing-curves.svg",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302_bond_price_time_path.svg",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg",
+    "slugPath": "reference-guides/acc-302-financial-management/assets/acc302-bond-price-time-path.svg",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302_mcc_ios_schedule.svg",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg",
+    "slugPath": "reference-guides/acc-302-financial-management/assets/acc302-mcc-ios-schedule.svg",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302_security_market_line.svg",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/assets/acc302_security_market_line.svg",
+    "slugPath": "reference-guides/acc-302-financial-management/assets/acc302-security-market-line.svg",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302_npv_profiles_crossover.svg",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg",
+    "slugPath": "reference-guides/acc-302-financial-management/assets/acc302-npv-profiles-crossover.svg",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "file",
+    "originalName": "acc302_economic_order_quantity_curves.svg",
+    "originalPath": "Reference Guides/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg",
+    "slugPath": "reference-guides/acc-302-financial-management/assets/acc302-economic-order-quantity-curves.svg",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": false
+  },
+  {
+    "type": "folder",
+    "originalName": "ACC 301 Intermediate Accounting",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting",
+    "planetSlug": "reference-guides"
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Intermediate Accounting",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/ACC 301 Intermediate Accounting.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/acc-301-intermediate-accounting.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "Accounting Terminology Guide",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Accounting Terminology Guide.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/accounting-terminology-guide.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "Phase 2",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 2",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-2",
+    "planetSlug": "reference-guides"
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 5",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 5.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-5.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 8",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 8.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-8.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 7",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 7.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-7.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 9",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 9.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-9.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 6",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 6.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-6.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "Phase 1",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 1",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-1",
+    "planetSlug": "reference-guides"
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 2",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 2.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-2.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 3",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 3.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-3.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 1",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 1.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-1.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 4",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 4.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-4.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "Phase 3",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 3",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-3",
+    "planetSlug": "reference-guides"
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 11",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 3/ACC 301 Notes Step 11.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-11.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 10",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 3/ACC 301 Notes Step 10.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-10.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 12",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 3/ACC 301 Notes Step 12.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-12.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "Phase 4",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 4",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-4",
+    "planetSlug": "reference-guides"
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 14",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 4/ACC 301 Notes Step 14.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-4/acc-301-notes-step-14.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 301 Notes Step 13",
+    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 4/ACC 301 Notes Step 13.md",
+    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-4/acc-301-notes-step-13.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "ACC 305 Auditing & Assurance",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance",
+    "planetSlug": "reference-guides"
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 305 Notes Module 5",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 5.md",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-5.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 305 Notes Module 7",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 7.md",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-7.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 305 Notes Module 1",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 1.md",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-1.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 305 Notes Module 11",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 11.md",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-11.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 305 Notes Module 10",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 10.md",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-10.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 305 Notes Module 3",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 3.md",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-3.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 305 Notes Module 2",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 2.md",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-2.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 305 Notes Module 8",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 8.md",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-8.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 305 Notes Module 4",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 4.md",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-4.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 305 Auditing & Assurance",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Auditing & Assurance.md",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-auditing-and-assurance.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 305 Notes Module 12",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 12.md",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-12.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 305 Notes Module 9",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 9.md",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-9.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 305 Notes Module 6",
+    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 6.md",
+    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-6.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
+    "originalName": "ACC 303 Advanced Statistical Techniques",
+    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques",
+    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques",
+    "planetSlug": "reference-guides"
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 303 Notes Module 2",
+    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 2.md",
+    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-2.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 303 Notes Module 5",
+    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 5.md",
+    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-5.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 303 Notes Module 4",
+    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 4.md",
+    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-4.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 303 Notes Module 1",
+    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 1.md",
+    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-1.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 303 Advanced Statistical Techniques",
+    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Advanced Statistical Techniques.md",
+    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-advanced-statistical-techniques.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 303 Notes Module 3",
+    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 3.md",
+    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-3.md",
+    "planetSlug": "reference-guides",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 303 Notes Module 6",
+    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 6.md",
+    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-6.md",
+    "planetSlug": "reference-guides",
     "isHome": false,
     "title": "",
     "isMarkdown": true
