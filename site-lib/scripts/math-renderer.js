@@ -117,7 +117,9 @@
      */
     requiresMathJax(formula) {
       if (!formula) return false;
-      return /\\(?:renewcommand|begin\{(?:aligned|alignedat|gathered|gather|multline|split|cases|matrix\*|pmatrix\*|bmatrix\*|vmatrix\*|Vmatrix\*|dcases|rcases|subarray|CD)\}|tag\b|label\b)/.test(formula);
+      // Obsidian delegates TeX environments to MathJax. Keep that native
+      // behavior instead of relying on KaTeX's partial environment support.
+      return /\\(?:renewcommand|begin\{[a-zA-Z*]+\}|tag\b|label\b)/.test(formula);
     }
 
     /**
@@ -127,7 +129,10 @@
     isLatexTable(formula) {
       if (!formula) return false;
       const clean = formula.trim();
-      return /\\begin\{(?:array|tabular)\}/.test(clean) && 
+      // Native Obsidian/MathJax rendering remains authoritative for `array`.
+      // The HTML schedule renderer is an opt-in extension for `tabular`, which
+      // is not part of Obsidian's documented math syntax.
+      return /\\begin\{tabular\}/.test(clean) &&
              (/\\multicolumn|\\cline/.test(clean) || (/\\hline/.test(clean) && /&/.test(clean)));
     }
 
@@ -425,7 +430,8 @@
 
       const mathId = `math-${displayMode ? 'block' : 'inline'}-${++this.mathTokenIdx}`;
 
-      // 0. Dedicated LaTeX Table & Tabular Schedule Engine
+      // 0. Optional extended HTML schedule engine for non-Obsidian `tabular`.
+      // `array` deliberately continues through MathJax for native fidelity.
       if (this.isLatexTable(source)) {
         this.metrics.mathJaxCount++;
         return this.renderLatexTable(source, mathId);

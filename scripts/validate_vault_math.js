@@ -60,7 +60,7 @@ const katexMacros = {
 
 function requiresMathJax(formula) {
   if (!formula) return false;
-  return /\\(?:multicolumn|cline|renewcommand|begin\{(?:aligned|alignedat|gathered|gather|multline|split|cases|matrix\*|pmatrix\*|bmatrix\*|vmatrix\*|Vmatrix\*|dcases|rcases|subarray|CD)\}|tag\b|label\b)/.test(formula);
+  return /\\(?:multicolumn|cline|renewcommand|begin\{[a-zA-Z*]+\}|tag\b|label\b)/.test(formula);
 }
 
 function cleanFormula(formula) {

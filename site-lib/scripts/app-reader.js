@@ -49,7 +49,7 @@
       this.modalGraph = null;
 
       // Pipeline & Render Cache
-      this.rendererVersion = '2026.10.17.latex-table-v2';
+      this.rendererVersion = '2026.11.06.native-mathjax-v3';
 
       this.init();
     }

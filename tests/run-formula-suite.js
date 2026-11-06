@@ -87,6 +87,18 @@ fixturesData.fixtures.forEach((fix) => {
   }
 });
 
+{
+  mathRenderer.reset();
+  const nativeArray = '$$\\begin{array}{lr} A & B \\\\ 1 & 2 \\end{array}$$';
+  const finalHtml = mathRenderer.restoreTokens(marked.parse(mathRenderer.extractAndTokenize(nativeArray)));
+  const container = document.createElement('div');
+  container.innerHTML = finalHtml;
+  assert(
+    container.querySelector('.math-mathjax:not([data-latex-table="true"])') !== null,
+    'Native array environments remain on the MathJax path'
+  );
+}
+
 // ============================================================================
 // TEST 2: ISOLATION INTEGRITY (Code blocks, inline code, Mermaid, HTML)
 // ============================================================================

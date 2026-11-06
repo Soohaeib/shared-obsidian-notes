@@ -30,7 +30,7 @@
         }
 
         const script = document.createElement('script');
-        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js';
+        script.src = 'https://cdn.jsdelivr.net/npm/mermaid@12.1.0/dist/mermaid.min.js';
         script.onload = () => resolve(window.mermaid || null);
         script.onerror = () => resolve(null);
         document.head.appendChild(script);
