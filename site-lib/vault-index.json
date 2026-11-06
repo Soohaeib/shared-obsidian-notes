@@ -234,6 +234,41 @@
     "5th-semester/acc-302/pyq-acc-302.md",
     "5th-semester/acc-303/pyq-acc-303.md",
     "5th-semester/acc-304/pyq-acc-304.md",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q1.md",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q2.md",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q3.md",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q4.md",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q5.md",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q6.md",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q7.md",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q1.md",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q2.md",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q3.md",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q4.md",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q5.md",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q6.md",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q7.md",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q1.md",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q2.md",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q3.md",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q4.md",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q5.md",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q6.md",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q7.md",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q1.md",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q2.md",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q3.md",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q4.md",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q5.md",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q6.md",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q7.md",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q1.md",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q2.md",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q3.md",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q4.md",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q5.md",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q6.md",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q7.md",
     "5th-semester/acc-305/pyq-acc-305.md",
     "5th-semester/others/raw-pyqs/raw-acc-301.md",
     "5th-semester/others/raw-pyqs/raw-acc-302.md",
@@ -384,6 +419,1126 @@
       "relInFolder": "acc-304/pyq-acc-304.md",
       "title": "PYQ ACC 304",
       "originalName": "PYQ ACC 304",
+      "isHome": false
+    },
+    "ACC 304 2023 Exam Q5": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q5.md",
+      "title": "ACC 304 2023 Exam Q5",
+      "originalName": "ACC 304 2023 Exam Q5",
+      "isHome": false
+    },
+    "acc 304 2023 exam q5": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q5.md",
+      "title": "ACC 304 2023 Exam Q5",
+      "originalName": "ACC 304 2023 Exam Q5",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q5.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q5.md",
+      "title": "ACC 304 2023 Exam Q5",
+      "originalName": "ACC 304 2023 Exam Q5",
+      "isHome": false
+    },
+    "acc-304-2023-exam-q5": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q5.md",
+      "title": "ACC 304 2023 Exam Q5",
+      "originalName": "ACC 304 2023 Exam Q5",
+      "isHome": false
+    },
+    "ACC 304 2024 Exam Q6": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q6.md",
+      "title": "ACC 304 2024 Exam Q6",
+      "originalName": "ACC 304 2024 Exam Q6",
+      "isHome": false
+    },
+    "acc 304 2024 exam q6": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q6.md",
+      "title": "ACC 304 2024 Exam Q6",
+      "originalName": "ACC 304 2024 Exam Q6",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q6.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q6.md",
+      "title": "ACC 304 2024 Exam Q6",
+      "originalName": "ACC 304 2024 Exam Q6",
+      "isHome": false
+    },
+    "acc-304-2024-exam-q6": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q6.md",
+      "title": "ACC 304 2024 Exam Q6",
+      "originalName": "ACC 304 2024 Exam Q6",
+      "isHome": false
+    },
+    "ACC 310 2021 Exam Q2": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q2.md",
+      "title": "ACC 310 2021 Exam Q2",
+      "originalName": "ACC 310 2021 Exam Q2",
+      "isHome": false
+    },
+    "acc 310 2021 exam q2": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q2.md",
+      "title": "ACC 310 2021 Exam Q2",
+      "originalName": "ACC 310 2021 Exam Q2",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q2.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q2.md",
+      "title": "ACC 310 2021 Exam Q2",
+      "originalName": "ACC 310 2021 Exam Q2",
+      "isHome": false
+    },
+    "acc-310-2021-exam-q2": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q2.md",
+      "title": "ACC 310 2021 Exam Q2",
+      "originalName": "ACC 310 2021 Exam Q2",
+      "isHome": false
+    },
+    "ACC 304 2023 Exam Q3": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q3.md",
+      "title": "ACC 304 2023 Exam Q3",
+      "originalName": "ACC 304 2023 Exam Q3",
+      "isHome": false
+    },
+    "acc 304 2023 exam q3": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q3.md",
+      "title": "ACC 304 2023 Exam Q3",
+      "originalName": "ACC 304 2023 Exam Q3",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q3.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q3.md",
+      "title": "ACC 304 2023 Exam Q3",
+      "originalName": "ACC 304 2023 Exam Q3",
+      "isHome": false
+    },
+    "acc-304-2023-exam-q3": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q3.md",
+      "title": "ACC 304 2023 Exam Q3",
+      "originalName": "ACC 304 2023 Exam Q3",
+      "isHome": false
+    },
+    "ACC 310 2021 Exam Q4": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q4.md",
+      "title": "ACC 310 2021 Exam Q4",
+      "originalName": "ACC 310 2021 Exam Q4",
+      "isHome": false
+    },
+    "acc 310 2021 exam q4": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q4.md",
+      "title": "ACC 310 2021 Exam Q4",
+      "originalName": "ACC 310 2021 Exam Q4",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q4.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q4.md",
+      "title": "ACC 310 2021 Exam Q4",
+      "originalName": "ACC 310 2021 Exam Q4",
+      "isHome": false
+    },
+    "acc-310-2021-exam-q4": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q4.md",
+      "title": "ACC 310 2021 Exam Q4",
+      "originalName": "ACC 310 2021 Exam Q4",
+      "isHome": false
+    },
+    "ACC 310 2022 Exam Q4": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q4.md",
+      "title": "ACC 310 2022 Exam Q4",
+      "originalName": "ACC 310 2022 Exam Q4",
+      "isHome": false
+    },
+    "acc 310 2022 exam q4": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q4.md",
+      "title": "ACC 310 2022 Exam Q4",
+      "originalName": "ACC 310 2022 Exam Q4",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q4.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q4.md",
+      "title": "ACC 310 2022 Exam Q4",
+      "originalName": "ACC 310 2022 Exam Q4",
+      "isHome": false
+    },
+    "acc-310-2022-exam-q4": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q4.md",
+      "title": "ACC 310 2022 Exam Q4",
+      "originalName": "ACC 310 2022 Exam Q4",
+      "isHome": false
+    },
+    "ACC 310 2022 Exam Q7": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q7.md",
+      "title": "ACC 310 2022 Exam Q7",
+      "originalName": "ACC 310 2022 Exam Q7",
+      "isHome": false
+    },
+    "acc 310 2022 exam q7": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q7.md",
+      "title": "ACC 310 2022 Exam Q7",
+      "originalName": "ACC 310 2022 Exam Q7",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q7.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q7.md",
+      "title": "ACC 310 2022 Exam Q7",
+      "originalName": "ACC 310 2022 Exam Q7",
+      "isHome": false
+    },
+    "acc-310-2022-exam-q7": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q7.md",
+      "title": "ACC 310 2022 Exam Q7",
+      "originalName": "ACC 310 2022 Exam Q7",
+      "isHome": false
+    },
+    "ACC 304 2023 Exam Q4": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q4.md",
+      "title": "ACC 304 2023 Exam Q4",
+      "originalName": "ACC 304 2023 Exam Q4",
+      "isHome": false
+    },
+    "acc 304 2023 exam q4": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q4.md",
+      "title": "ACC 304 2023 Exam Q4",
+      "originalName": "ACC 304 2023 Exam Q4",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q4.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q4.md",
+      "title": "ACC 304 2023 Exam Q4",
+      "originalName": "ACC 304 2023 Exam Q4",
+      "isHome": false
+    },
+    "acc-304-2023-exam-q4": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q4.md",
+      "title": "ACC 304 2023 Exam Q4",
+      "originalName": "ACC 304 2023 Exam Q4",
+      "isHome": false
+    },
+    "ACC 310 2021 Exam Q7": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q7.md",
+      "title": "ACC 310 2021 Exam Q7",
+      "originalName": "ACC 310 2021 Exam Q7",
+      "isHome": false
+    },
+    "acc 310 2021 exam q7": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q7.md",
+      "title": "ACC 310 2021 Exam Q7",
+      "originalName": "ACC 310 2021 Exam Q7",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q7.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q7.md",
+      "title": "ACC 310 2021 Exam Q7",
+      "originalName": "ACC 310 2021 Exam Q7",
+      "isHome": false
+    },
+    "acc-310-2021-exam-q7": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q7.md",
+      "title": "ACC 310 2021 Exam Q7",
+      "originalName": "ACC 310 2021 Exam Q7",
+      "isHome": false
+    },
+    "ACC 310 2022 Exam Q5": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q5.md",
+      "title": "ACC 310 2022 Exam Q5",
+      "originalName": "ACC 310 2022 Exam Q5",
+      "isHome": false
+    },
+    "acc 310 2022 exam q5": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q5.md",
+      "title": "ACC 310 2022 Exam Q5",
+      "originalName": "ACC 310 2022 Exam Q5",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q5.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q5.md",
+      "title": "ACC 310 2022 Exam Q5",
+      "originalName": "ACC 310 2022 Exam Q5",
+      "isHome": false
+    },
+    "acc-310-2022-exam-q5": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q5.md",
+      "title": "ACC 310 2022 Exam Q5",
+      "originalName": "ACC 310 2022 Exam Q5",
+      "isHome": false
+    },
+    "ACC 310 2021 Exam Q6": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q6.md",
+      "title": "ACC 310 2021 Exam Q6",
+      "originalName": "ACC 310 2021 Exam Q6",
+      "isHome": false
+    },
+    "acc 310 2021 exam q6": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q6.md",
+      "title": "ACC 310 2021 Exam Q6",
+      "originalName": "ACC 310 2021 Exam Q6",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q6.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q6.md",
+      "title": "ACC 310 2021 Exam Q6",
+      "originalName": "ACC 310 2021 Exam Q6",
+      "isHome": false
+    },
+    "acc-310-2021-exam-q6": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q6.md",
+      "title": "ACC 310 2021 Exam Q6",
+      "originalName": "ACC 310 2021 Exam Q6",
+      "isHome": false
+    },
+    "ACC 304 2024 Exam Q5": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q5.md",
+      "title": "ACC 304 2024 Exam Q5",
+      "originalName": "ACC 304 2024 Exam Q5",
+      "isHome": false
+    },
+    "acc 304 2024 exam q5": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q5.md",
+      "title": "ACC 304 2024 Exam Q5",
+      "originalName": "ACC 304 2024 Exam Q5",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q5.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q5.md",
+      "title": "ACC 304 2024 Exam Q5",
+      "originalName": "ACC 304 2024 Exam Q5",
+      "isHome": false
+    },
+    "acc-304-2024-exam-q5": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q5.md",
+      "title": "ACC 304 2024 Exam Q5",
+      "originalName": "ACC 304 2024 Exam Q5",
+      "isHome": false
+    },
+    "ACC 310 2022 Exam Q6": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q6.md",
+      "title": "ACC 310 2022 Exam Q6",
+      "originalName": "ACC 310 2022 Exam Q6",
+      "isHome": false
+    },
+    "acc 310 2022 exam q6": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q6.md",
+      "title": "ACC 310 2022 Exam Q6",
+      "originalName": "ACC 310 2022 Exam Q6",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q6.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q6.md",
+      "title": "ACC 310 2022 Exam Q6",
+      "originalName": "ACC 310 2022 Exam Q6",
+      "isHome": false
+    },
+    "acc-310-2022-exam-q6": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q6.md",
+      "title": "ACC 310 2022 Exam Q6",
+      "originalName": "ACC 310 2022 Exam Q6",
+      "isHome": false
+    },
+    "ACC 304 2023 Exam Q6": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q6.md",
+      "title": "ACC 304 2023 Exam Q6",
+      "originalName": "ACC 304 2023 Exam Q6",
+      "isHome": false
+    },
+    "acc 304 2023 exam q6": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q6.md",
+      "title": "ACC 304 2023 Exam Q6",
+      "originalName": "ACC 304 2023 Exam Q6",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q6.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q6.md",
+      "title": "ACC 304 2023 Exam Q6",
+      "originalName": "ACC 304 2023 Exam Q6",
+      "isHome": false
+    },
+    "acc-304-2023-exam-q6": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q6.md",
+      "title": "ACC 304 2023 Exam Q6",
+      "originalName": "ACC 304 2023 Exam Q6",
+      "isHome": false
+    },
+    "ACC 304 2025 Exam Q7": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q7.md",
+      "title": "ACC 304 2025 Exam Q7",
+      "originalName": "ACC 304 2025 Exam Q7",
+      "isHome": false
+    },
+    "acc 304 2025 exam q7": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q7.md",
+      "title": "ACC 304 2025 Exam Q7",
+      "originalName": "ACC 304 2025 Exam Q7",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q7.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q7.md",
+      "title": "ACC 304 2025 Exam Q7",
+      "originalName": "ACC 304 2025 Exam Q7",
+      "isHome": false
+    },
+    "acc-304-2025-exam-q7": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q7.md",
+      "title": "ACC 304 2025 Exam Q7",
+      "originalName": "ACC 304 2025 Exam Q7",
+      "isHome": false
+    },
+    "ACC 304 2025 Exam Q6": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q6.md",
+      "title": "ACC 304 2025 Exam Q6",
+      "originalName": "ACC 304 2025 Exam Q6",
+      "isHome": false
+    },
+    "acc 304 2025 exam q6": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q6.md",
+      "title": "ACC 304 2025 Exam Q6",
+      "originalName": "ACC 304 2025 Exam Q6",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q6.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q6.md",
+      "title": "ACC 304 2025 Exam Q6",
+      "originalName": "ACC 304 2025 Exam Q6",
+      "isHome": false
+    },
+    "acc-304-2025-exam-q6": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q6.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q6.md",
+      "title": "ACC 304 2025 Exam Q6",
+      "originalName": "ACC 304 2025 Exam Q6",
+      "isHome": false
+    },
+    "ACC 310 2022 Exam Q3": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q3.md",
+      "title": "ACC 310 2022 Exam Q3",
+      "originalName": "ACC 310 2022 Exam Q3",
+      "isHome": false
+    },
+    "acc 310 2022 exam q3": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q3.md",
+      "title": "ACC 310 2022 Exam Q3",
+      "originalName": "ACC 310 2022 Exam Q3",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q3.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q3.md",
+      "title": "ACC 310 2022 Exam Q3",
+      "originalName": "ACC 310 2022 Exam Q3",
+      "isHome": false
+    },
+    "acc-310-2022-exam-q3": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q3.md",
+      "title": "ACC 310 2022 Exam Q3",
+      "originalName": "ACC 310 2022 Exam Q3",
+      "isHome": false
+    },
+    "ACC 304 2023 Exam Q7": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q7.md",
+      "title": "ACC 304 2023 Exam Q7",
+      "originalName": "ACC 304 2023 Exam Q7",
+      "isHome": false
+    },
+    "acc 304 2023 exam q7": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q7.md",
+      "title": "ACC 304 2023 Exam Q7",
+      "originalName": "ACC 304 2023 Exam Q7",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q7.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q7.md",
+      "title": "ACC 304 2023 Exam Q7",
+      "originalName": "ACC 304 2023 Exam Q7",
+      "isHome": false
+    },
+    "acc-304-2023-exam-q7": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q7.md",
+      "title": "ACC 304 2023 Exam Q7",
+      "originalName": "ACC 304 2023 Exam Q7",
+      "isHome": false
+    },
+    "ACC 304 2025 Exam Q1": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q1.md",
+      "title": "ACC 304 2025 Exam Q1",
+      "originalName": "ACC 304 2025 Exam Q1",
+      "isHome": false
+    },
+    "acc 304 2025 exam q1": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q1.md",
+      "title": "ACC 304 2025 Exam Q1",
+      "originalName": "ACC 304 2025 Exam Q1",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q1.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q1.md",
+      "title": "ACC 304 2025 Exam Q1",
+      "originalName": "ACC 304 2025 Exam Q1",
+      "isHome": false
+    },
+    "acc-304-2025-exam-q1": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q1.md",
+      "title": "ACC 304 2025 Exam Q1",
+      "originalName": "ACC 304 2025 Exam Q1",
+      "isHome": false
+    },
+    "ACC 304 2025 Exam Q3": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q3.md",
+      "title": "ACC 304 2025 Exam Q3",
+      "originalName": "ACC 304 2025 Exam Q3",
+      "isHome": false
+    },
+    "acc 304 2025 exam q3": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q3.md",
+      "title": "ACC 304 2025 Exam Q3",
+      "originalName": "ACC 304 2025 Exam Q3",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q3.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q3.md",
+      "title": "ACC 304 2025 Exam Q3",
+      "originalName": "ACC 304 2025 Exam Q3",
+      "isHome": false
+    },
+    "acc-304-2025-exam-q3": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q3.md",
+      "title": "ACC 304 2025 Exam Q3",
+      "originalName": "ACC 304 2025 Exam Q3",
+      "isHome": false
+    },
+    "ACC 304 2023 Exam Q2": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q2.md",
+      "title": "ACC 304 2023 Exam Q2",
+      "originalName": "ACC 304 2023 Exam Q2",
+      "isHome": false
+    },
+    "acc 304 2023 exam q2": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q2.md",
+      "title": "ACC 304 2023 Exam Q2",
+      "originalName": "ACC 304 2023 Exam Q2",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q2.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q2.md",
+      "title": "ACC 304 2023 Exam Q2",
+      "originalName": "ACC 304 2023 Exam Q2",
+      "isHome": false
+    },
+    "acc-304-2023-exam-q2": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q2.md",
+      "title": "ACC 304 2023 Exam Q2",
+      "originalName": "ACC 304 2023 Exam Q2",
+      "isHome": false
+    },
+    "ACC 310 2021 Exam Q5": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q5.md",
+      "title": "ACC 310 2021 Exam Q5",
+      "originalName": "ACC 310 2021 Exam Q5",
+      "isHome": false
+    },
+    "acc 310 2021 exam q5": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q5.md",
+      "title": "ACC 310 2021 Exam Q5",
+      "originalName": "ACC 310 2021 Exam Q5",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q5.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q5.md",
+      "title": "ACC 310 2021 Exam Q5",
+      "originalName": "ACC 310 2021 Exam Q5",
+      "isHome": false
+    },
+    "acc-310-2021-exam-q5": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q5.md",
+      "title": "ACC 310 2021 Exam Q5",
+      "originalName": "ACC 310 2021 Exam Q5",
+      "isHome": false
+    },
+    "ACC 304 2024 Exam Q3": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q3.md",
+      "title": "ACC 304 2024 Exam Q3",
+      "originalName": "ACC 304 2024 Exam Q3",
+      "isHome": false
+    },
+    "acc 304 2024 exam q3": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q3.md",
+      "title": "ACC 304 2024 Exam Q3",
+      "originalName": "ACC 304 2024 Exam Q3",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q3.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q3.md",
+      "title": "ACC 304 2024 Exam Q3",
+      "originalName": "ACC 304 2024 Exam Q3",
+      "isHome": false
+    },
+    "acc-304-2024-exam-q3": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q3.md",
+      "title": "ACC 304 2024 Exam Q3",
+      "originalName": "ACC 304 2024 Exam Q3",
+      "isHome": false
+    },
+    "ACC 304 2025 Exam Q2": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q2.md",
+      "title": "ACC 304 2025 Exam Q2",
+      "originalName": "ACC 304 2025 Exam Q2",
+      "isHome": false
+    },
+    "acc 304 2025 exam q2": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q2.md",
+      "title": "ACC 304 2025 Exam Q2",
+      "originalName": "ACC 304 2025 Exam Q2",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q2.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q2.md",
+      "title": "ACC 304 2025 Exam Q2",
+      "originalName": "ACC 304 2025 Exam Q2",
+      "isHome": false
+    },
+    "acc-304-2025-exam-q2": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q2.md",
+      "title": "ACC 304 2025 Exam Q2",
+      "originalName": "ACC 304 2025 Exam Q2",
+      "isHome": false
+    },
+    "ACC 304 2024 Exam Q2": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q2.md",
+      "title": "ACC 304 2024 Exam Q2",
+      "originalName": "ACC 304 2024 Exam Q2",
+      "isHome": false
+    },
+    "acc 304 2024 exam q2": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q2.md",
+      "title": "ACC 304 2024 Exam Q2",
+      "originalName": "ACC 304 2024 Exam Q2",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q2.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q2.md",
+      "title": "ACC 304 2024 Exam Q2",
+      "originalName": "ACC 304 2024 Exam Q2",
+      "isHome": false
+    },
+    "acc-304-2024-exam-q2": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q2.md",
+      "title": "ACC 304 2024 Exam Q2",
+      "originalName": "ACC 304 2024 Exam Q2",
+      "isHome": false
+    },
+    "ACC 304 2025 Exam Q4": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q4.md",
+      "title": "ACC 304 2025 Exam Q4",
+      "originalName": "ACC 304 2025 Exam Q4",
+      "isHome": false
+    },
+    "acc 304 2025 exam q4": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q4.md",
+      "title": "ACC 304 2025 Exam Q4",
+      "originalName": "ACC 304 2025 Exam Q4",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q4.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q4.md",
+      "title": "ACC 304 2025 Exam Q4",
+      "originalName": "ACC 304 2025 Exam Q4",
+      "isHome": false
+    },
+    "acc-304-2025-exam-q4": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q4.md",
+      "title": "ACC 304 2025 Exam Q4",
+      "originalName": "ACC 304 2025 Exam Q4",
+      "isHome": false
+    },
+    "ACC 304 2023 Exam Q1": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q1.md",
+      "title": "ACC 304 2023 Exam Q1",
+      "originalName": "ACC 304 2023 Exam Q1",
+      "isHome": false
+    },
+    "acc 304 2023 exam q1": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q1.md",
+      "title": "ACC 304 2023 Exam Q1",
+      "originalName": "ACC 304 2023 Exam Q1",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q1.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q1.md",
+      "title": "ACC 304 2023 Exam Q1",
+      "originalName": "ACC 304 2023 Exam Q1",
+      "isHome": false
+    },
+    "acc-304-2023-exam-q1": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2023-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2023-exam-q1.md",
+      "title": "ACC 304 2023 Exam Q1",
+      "originalName": "ACC 304 2023 Exam Q1",
+      "isHome": false
+    },
+    "ACC 310 2022 Exam Q1": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q1.md",
+      "title": "ACC 310 2022 Exam Q1",
+      "originalName": "ACC 310 2022 Exam Q1",
+      "isHome": false
+    },
+    "acc 310 2022 exam q1": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q1.md",
+      "title": "ACC 310 2022 Exam Q1",
+      "originalName": "ACC 310 2022 Exam Q1",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q1.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q1.md",
+      "title": "ACC 310 2022 Exam Q1",
+      "originalName": "ACC 310 2022 Exam Q1",
+      "isHome": false
+    },
+    "acc-310-2022-exam-q1": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q1.md",
+      "title": "ACC 310 2022 Exam Q1",
+      "originalName": "ACC 310 2022 Exam Q1",
+      "isHome": false
+    },
+    "ACC 310 2022 Exam Q2": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q2.md",
+      "title": "ACC 310 2022 Exam Q2",
+      "originalName": "ACC 310 2022 Exam Q2",
+      "isHome": false
+    },
+    "acc 310 2022 exam q2": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q2.md",
+      "title": "ACC 310 2022 Exam Q2",
+      "originalName": "ACC 310 2022 Exam Q2",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q2.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q2.md",
+      "title": "ACC 310 2022 Exam Q2",
+      "originalName": "ACC 310 2022 Exam Q2",
+      "isHome": false
+    },
+    "acc-310-2022-exam-q2": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2022-exam-q2.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2022-exam-q2.md",
+      "title": "ACC 310 2022 Exam Q2",
+      "originalName": "ACC 310 2022 Exam Q2",
+      "isHome": false
+    },
+    "ACC 310 2021 Exam Q1": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q1.md",
+      "title": "ACC 310 2021 Exam Q1",
+      "originalName": "ACC 310 2021 Exam Q1",
+      "isHome": false
+    },
+    "acc 310 2021 exam q1": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q1.md",
+      "title": "ACC 310 2021 Exam Q1",
+      "originalName": "ACC 310 2021 Exam Q1",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q1.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q1.md",
+      "title": "ACC 310 2021 Exam Q1",
+      "originalName": "ACC 310 2021 Exam Q1",
+      "isHome": false
+    },
+    "acc-310-2021-exam-q1": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q1.md",
+      "title": "ACC 310 2021 Exam Q1",
+      "originalName": "ACC 310 2021 Exam Q1",
+      "isHome": false
+    },
+    "ACC 304 2024 Exam Q7": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q7.md",
+      "title": "ACC 304 2024 Exam Q7",
+      "originalName": "ACC 304 2024 Exam Q7",
+      "isHome": false
+    },
+    "acc 304 2024 exam q7": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q7.md",
+      "title": "ACC 304 2024 Exam Q7",
+      "originalName": "ACC 304 2024 Exam Q7",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q7.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q7.md",
+      "title": "ACC 304 2024 Exam Q7",
+      "originalName": "ACC 304 2024 Exam Q7",
+      "isHome": false
+    },
+    "acc-304-2024-exam-q7": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q7.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q7.md",
+      "title": "ACC 304 2024 Exam Q7",
+      "originalName": "ACC 304 2024 Exam Q7",
+      "isHome": false
+    },
+    "ACC 304 2025 Exam Q5": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q5.md",
+      "title": "ACC 304 2025 Exam Q5",
+      "originalName": "ACC 304 2025 Exam Q5",
+      "isHome": false
+    },
+    "acc 304 2025 exam q5": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q5.md",
+      "title": "ACC 304 2025 Exam Q5",
+      "originalName": "ACC 304 2025 Exam Q5",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q5.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q5.md",
+      "title": "ACC 304 2025 Exam Q5",
+      "originalName": "ACC 304 2025 Exam Q5",
+      "isHome": false
+    },
+    "acc-304-2025-exam-q5": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2025-exam-q5.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2025-exam-q5.md",
+      "title": "ACC 304 2025 Exam Q5",
+      "originalName": "ACC 304 2025 Exam Q5",
+      "isHome": false
+    },
+    "ACC 304 2024 Exam Q4": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q4.md",
+      "title": "ACC 304 2024 Exam Q4",
+      "originalName": "ACC 304 2024 Exam Q4",
+      "isHome": false
+    },
+    "acc 304 2024 exam q4": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q4.md",
+      "title": "ACC 304 2024 Exam Q4",
+      "originalName": "ACC 304 2024 Exam Q4",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q4.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q4.md",
+      "title": "ACC 304 2024 Exam Q4",
+      "originalName": "ACC 304 2024 Exam Q4",
+      "isHome": false
+    },
+    "acc-304-2024-exam-q4": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q4.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q4.md",
+      "title": "ACC 304 2024 Exam Q4",
+      "originalName": "ACC 304 2024 Exam Q4",
+      "isHome": false
+    },
+    "ACC 304 2024 Exam Q1": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q1.md",
+      "title": "ACC 304 2024 Exam Q1",
+      "originalName": "ACC 304 2024 Exam Q1",
+      "isHome": false
+    },
+    "acc 304 2024 exam q1": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q1.md",
+      "title": "ACC 304 2024 Exam Q1",
+      "originalName": "ACC 304 2024 Exam Q1",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q1.md": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q1.md",
+      "title": "ACC 304 2024 Exam Q1",
+      "originalName": "ACC 304 2024 Exam Q1",
+      "isHome": false
+    },
+    "acc-304-2024-exam-q1": {
+      "path": "5th-semester/acc-304/solutions/acc-304-2024-exam-q1.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-304-2024-exam-q1.md",
+      "title": "ACC 304 2024 Exam Q1",
+      "originalName": "ACC 304 2024 Exam Q1",
+      "isHome": false
+    },
+    "ACC 310 2021 Exam Q3": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q3.md",
+      "title": "ACC 310 2021 Exam Q3",
+      "originalName": "ACC 310 2021 Exam Q3",
+      "isHome": false
+    },
+    "acc 310 2021 exam q3": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q3.md",
+      "title": "ACC 310 2021 Exam Q3",
+      "originalName": "ACC 310 2021 Exam Q3",
+      "isHome": false
+    },
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q3.md": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q3.md",
+      "title": "ACC 310 2021 Exam Q3",
+      "originalName": "ACC 310 2021 Exam Q3",
+      "isHome": false
+    },
+    "acc-310-2021-exam-q3": {
+      "path": "5th-semester/acc-304/solutions/acc-310-2021-exam-q3.md",
+      "folder": "5th-semester",
+      "relInFolder": "acc-304/solutions/acc-310-2021-exam-q3.md",
+      "title": "ACC 310 2021 Exam Q3",
+      "originalName": "ACC 310 2021 Exam Q3",
       "isHome": false
     },
     "PYQ ACC 305": {
@@ -10965,7 +12120,43 @@
     "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-1.md": "ACC 303 Notes Module 1",
     "reference-guides/acc-303-advanced-statistical-techniques/acc-303-advanced-statistical-techniques.md": "ACC 303 Advanced Statistical Techniques",
     "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-3.md": "ACC 303 Notes Module 3",
-    "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-6.md": "ACC 303 Notes Module 6"
+    "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-6.md": "ACC 303 Notes Module 6",
+    "5th-semester/acc-304/solutions": "Solutions",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q5.md": "ACC 304 2023 Exam Q5",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q6.md": "ACC 304 2024 Exam Q6",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q2.md": "ACC 310 2021 Exam Q2",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q3.md": "ACC 304 2023 Exam Q3",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q4.md": "ACC 310 2021 Exam Q4",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q4.md": "ACC 310 2022 Exam Q4",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q7.md": "ACC 310 2022 Exam Q7",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q4.md": "ACC 304 2023 Exam Q4",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q7.md": "ACC 310 2021 Exam Q7",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q5.md": "ACC 310 2022 Exam Q5",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q6.md": "ACC 310 2021 Exam Q6",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q5.md": "ACC 304 2024 Exam Q5",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q6.md": "ACC 310 2022 Exam Q6",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q6.md": "ACC 304 2023 Exam Q6",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q7.md": "ACC 304 2025 Exam Q7",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q6.md": "ACC 304 2025 Exam Q6",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q3.md": "ACC 310 2022 Exam Q3",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q7.md": "ACC 304 2023 Exam Q7",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q1.md": "ACC 304 2025 Exam Q1",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q3.md": "ACC 304 2025 Exam Q3",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q2.md": "ACC 304 2023 Exam Q2",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q5.md": "ACC 310 2021 Exam Q5",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q3.md": "ACC 304 2024 Exam Q3",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q2.md": "ACC 304 2025 Exam Q2",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q2.md": "ACC 304 2024 Exam Q2",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q4.md": "ACC 304 2025 Exam Q4",
+    "5th-semester/acc-304/solutions/acc-304-2023-exam-q1.md": "ACC 304 2023 Exam Q1",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q1.md": "ACC 310 2022 Exam Q1",
+    "5th-semester/acc-304/solutions/acc-310-2022-exam-q2.md": "ACC 310 2022 Exam Q2",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q1.md": "ACC 310 2021 Exam Q1",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q7.md": "ACC 304 2024 Exam Q7",
+    "5th-semester/acc-304/solutions/acc-304-2025-exam-q5.md": "ACC 304 2025 Exam Q5",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q4.md": "ACC 304 2024 Exam Q4",
+    "5th-semester/acc-304/solutions/acc-304-2024-exam-q1.md": "ACC 304 2024 Exam Q1",
+    "5th-semester/acc-304/solutions/acc-310-2021-exam-q3.md": "ACC 310 2021 Exam Q3"
   },
   "lockedSections": {}
 }

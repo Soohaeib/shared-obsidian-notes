@@ -913,11 +913,11 @@
     Presume the labor hours worked for the job were 1650 hours and hours of machine operated for the job were 1200 hours. **[15]**
 
 ---
-### 2022 Examination - Question 5
+### 2022 Examination - Question 6
 **Tracking Ref:** Course Code ACC 310 | BBA 6th Semester 2022
-- **[[ACC 310 2022 Exam Q5#a| 5. a) ]]** What is overhead? How do you classify overhead function wise? Cite example. **[4]**
-- **[[ACC 310 2022 Exam Q5#b| b) ]]** Distinguish between cost allocation and cost apportionment. **[2]**
-- **[[ACC 310 2022 Exam Q5#c| c) ]]** A manufacturing company has two production departments and three service departments. Overheads allocated for a period to these departments are as follows:
+- **[[ACC 310 2022 Exam Q6| 6. a) ]]** What is overhead? How do you classify overhead function wise? Cite example. **[4]**
+- **[[ACC 310 2022 Exam Q6| b) ]]** Distinguish between cost allocation and cost apportionment. **[2]**
+- **[[ACC 310 2022 Exam Q6| c) ]]** A manufacturing company has two production departments and three service departments. Overheads allocated for a period to these departments are as follows:
 
     $$
     \renewcommand{\arraystretch}{1.2}
@@ -954,8 +954,8 @@
     $$
 
     You are required to show the total overheads chargeable to the two production departments by using:
-    - **[[ACC 310 2022 Exam Q5#c_i| i. ]]** Repeated distribution method, and
-    - **[[ACC 310 2022 Exam Q5#c_ii| ii. ]]** Simultaneous equation method. **[9]**
+    - **[[ACC 310 2022 Exam Q6| i. ]]** Repeated distribution method, and
+    - **[[ACC 310 2022 Exam Q6| ii. ]]** Simultaneous equation method. **[9]**
 
 ---
 ### 2021 Examination - Question 5
@@ -1353,9 +1353,9 @@
 
 --------------------------------------------------------------------------------
 ## Chapter 7: Additional Topics / Short Notes
-### 2022 Examination - Question 6
+### 2022 Examination - Question 7
 **Tracking Ref:** Course Code ACC 310 | BBA 6th Semester 2022
-- **[[ACC 310 2022 Exam Q6| 6. ]]** Write short notes on the following:
+- **[[ACC 310 2022 Exam Q7| 7. ]]** Write short notes on the following:
     - (a) Bin card and Stores Ledger.
     - (b) Cost centre and cost unit.
     - (c) Sunk cost and opportunity cost.

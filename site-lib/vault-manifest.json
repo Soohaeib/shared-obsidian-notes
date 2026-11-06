@@ -35,6 +35,363 @@
   },
   {
     "type": "folder",
+    "originalName": "Solutions",
+    "originalPath": "5th Semester/ACC 304/Solutions",
+    "slugPath": "5th-semester/acc-304/solutions",
+    "planetSlug": "5th-semester"
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2023 Exam Q5",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q5.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q5.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2024 Exam Q6",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q6.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q6.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2021 Exam Q2",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q2.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q2.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2023 Exam Q3",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q3.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q3.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2021 Exam Q4",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q4.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q4.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2022 Exam Q4",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q4.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q4.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2022 Exam Q7",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q7.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q7.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2023 Exam Q4",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q4.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q4.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2021 Exam Q7",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q7.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q7.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2022 Exam Q5",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q5.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q5.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2021 Exam Q6",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q6.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q6.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2024 Exam Q5",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q5.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q5.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2022 Exam Q6",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q6.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q6.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2023 Exam Q6",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q6.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q6.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2025 Exam Q7",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q7.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q7.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2025 Exam Q6",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q6.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q6.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2022 Exam Q3",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q3.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q3.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2023 Exam Q7",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q7.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q7.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2025 Exam Q1",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q1.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q1.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2025 Exam Q3",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q3.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q3.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2023 Exam Q2",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q2.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q2.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2021 Exam Q5",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q5.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q5.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2024 Exam Q3",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q3.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q3.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2025 Exam Q2",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q2.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q2.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2024 Exam Q2",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q2.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q2.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2025 Exam Q4",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q4.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q4.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2023 Exam Q1",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q1.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q1.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2022 Exam Q1",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q1.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q1.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2022 Exam Q2",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q2.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q2.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2021 Exam Q1",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q1.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q1.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2024 Exam Q7",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q7.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q7.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2025 Exam Q5",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q5.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q5.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2024 Exam Q4",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q4.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q4.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 304 2024 Exam Q1",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q1.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q1.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ACC 310 2021 Exam Q3",
+    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q3.md",
+    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q3.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "folder",
     "originalName": "ACC 305",
     "originalPath": "5th Semester/ACC 305",
     "slugPath": "5th-semester/acc-305",
