@@ -8,6 +8,36 @@
   },
   {
     "type": "file",
+    "originalName": "PYQ ACC 305",
+    "originalPath": "5th Semester/PYQ ACC 305.md",
+    "slugPath": "5th-semester/pyq-acc-305.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "PYQ ACC 303",
+    "originalPath": "5th Semester/PYQ ACC 303.md",
+    "slugPath": "5th-semester/pyq-acc-303.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "PYQ ACC 301",
+    "originalPath": "5th Semester/PYQ ACC 301.md",
+    "slugPath": "5th-semester/pyq-acc-301.md",
+    "planetSlug": "5th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
     "originalName": "Overview of 5th Semester",
     "originalPath": "5th Semester/Overview of 5th Semester.md",
     "slugPath": "5th-semester/overview-of-5th-semester.md",
@@ -17,442 +47,20 @@
     "isMarkdown": true
   },
   {
-    "type": "folder",
-    "originalName": "ACC 304",
-    "originalPath": "5th Semester/ACC 304",
-    "slugPath": "5th-semester/acc-304",
-    "planetSlug": "5th-semester"
-  },
-  {
     "type": "file",
     "originalName": "PYQ ACC 304",
-    "originalPath": "5th Semester/ACC 304/PYQ ACC 304.md",
-    "slugPath": "5th-semester/acc-304/pyq-acc-304.md",
+    "originalPath": "5th Semester/PYQ ACC 304.md",
+    "slugPath": "5th-semester/pyq-acc-304.md",
     "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "Solutions",
-    "originalPath": "5th Semester/ACC 304/Solutions",
-    "slugPath": "5th-semester/acc-304/solutions",
-    "planetSlug": "5th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2023 Exam Q5",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q5.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q5.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2024 Exam Q6",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q6.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q6.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2021 Exam Q2",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q2.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q2.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2023 Exam Q3",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q3.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q3.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2021 Exam Q4",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q4.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q4.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2022 Exam Q4",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q4.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q4.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2022 Exam Q7",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q7.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q7.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2023 Exam Q4",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q4.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q4.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2021 Exam Q7",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q7.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q7.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2022 Exam Q5",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q5.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q5.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2021 Exam Q6",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q6.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q6.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2024 Exam Q5",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q5.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q5.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2022 Exam Q6",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q6.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q6.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2023 Exam Q6",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q6.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q6.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2025 Exam Q7",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q7.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q7.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2025 Exam Q6",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q6.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q6.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2022 Exam Q3",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q3.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q3.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2023 Exam Q7",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q7.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q7.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2025 Exam Q1",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q1.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q1.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2025 Exam Q3",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q3.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q3.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2023 Exam Q2",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q2.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q2.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2021 Exam Q5",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q5.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q5.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2024 Exam Q3",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q3.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q3.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2025 Exam Q2",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q2.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q2.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2024 Exam Q2",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q2.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q2.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2025 Exam Q4",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q4.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q4.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2023 Exam Q1",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2023 Exam Q1.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2023-exam-q1.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2022 Exam Q1",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q1.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q1.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2022 Exam Q2",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2022 Exam Q2.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2022-exam-q2.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2021 Exam Q1",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q1.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q1.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2024 Exam Q7",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q7.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q7.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2025 Exam Q5",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2025 Exam Q5.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2025-exam-q5.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2024 Exam Q4",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q4.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q4.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 304 2024 Exam Q1",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 304 2024 Exam Q1.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-304-2024-exam-q1.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ACC 310 2021 Exam Q3",
-    "originalPath": "5th Semester/ACC 304/Solutions/ACC 310 2021 Exam Q3.md",
-    "slugPath": "5th-semester/acc-304/solutions/acc-310-2021-exam-q3.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "ACC 305",
-    "originalPath": "5th Semester/ACC 305",
-    "slugPath": "5th-semester/acc-305",
-    "planetSlug": "5th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "PYQ ACC 305",
-    "originalPath": "5th Semester/ACC 305/PYQ ACC 305.md",
-    "slugPath": "5th-semester/acc-305/pyq-acc-305.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "ACC 301",
-    "originalPath": "5th Semester/ACC 301",
-    "slugPath": "5th-semester/acc-301",
-    "planetSlug": "5th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "PYQ ACC 301",
-    "originalPath": "5th Semester/ACC 301/PYQ ACC 301.md",
-    "slugPath": "5th-semester/acc-301/pyq-acc-301.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "ACC 303",
-    "originalPath": "5th Semester/ACC 303",
-    "slugPath": "5th-semester/acc-303",
-    "planetSlug": "5th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "PYQ ACC 303",
-    "originalPath": "5th Semester/ACC 303/PYQ ACC 303.md",
-    "slugPath": "5th-semester/acc-303/pyq-acc-303.md",
-    "planetSlug": "5th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "ACC 302",
-    "originalPath": "5th Semester/ACC 302",
-    "slugPath": "5th-semester/acc-302",
-    "planetSlug": "5th-semester"
   },
   {
     "type": "file",
     "originalName": "PYQ ACC 302",
-    "originalPath": "5th Semester/ACC 302/PYQ ACC 302.md",
-    "slugPath": "5th-semester/acc-302/pyq-acc-302.md",
+    "originalPath": "5th Semester/PYQ ACC 302.md",
+    "slugPath": "5th-semester/pyq-acc-302.md",
     "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
@@ -545,16 +153,16 @@
   {
     "type": "folder",
     "originalName": "Reference Guides",
-    "originalPath": "Reference Guides",
-    "slugPath": "reference-guides",
-    "planetSlug": "reference-guides"
+    "originalPath": "5th Semester/Reference Guides",
+    "slugPath": "5th-semester/reference-guides",
+    "planetSlug": "5th-semester"
   },
   {
     "type": "file",
     "originalName": "Overview of References",
-    "originalPath": "Reference Guides/Overview of References.md",
-    "slugPath": "reference-guides/overview-of-references.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/Overview of References.md",
+    "slugPath": "5th-semester/reference-guides/overview-of-references.md",
+    "planetSlug": "5th-semester",
     "isHome": true,
     "title": "Comprehensive Reference Materials",
     "isMarkdown": true
@@ -562,16 +170,16 @@
   {
     "type": "folder",
     "originalName": "ACC 304 Cost Accounting I",
-    "originalPath": "Reference Guides/ACC 304 Cost Accounting I",
-    "slugPath": "reference-guides/acc-304-cost-accounting-i",
-    "planetSlug": "reference-guides"
+    "originalPath": "5th Semester/Reference Guides/ACC 304 Cost Accounting I",
+    "slugPath": "5th-semester/reference-guides/acc-304-cost-accounting-i",
+    "planetSlug": "5th-semester"
   },
   {
     "type": "file",
     "originalName": "ACC 304 Notes Step 6",
-    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 6.md",
-    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-6.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 6.md",
+    "slugPath": "5th-semester/reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-6.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -579,9 +187,9 @@
   {
     "type": "file",
     "originalName": "ACC 304 Notes Step 1",
-    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 1.md",
-    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-1.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 1.md",
+    "slugPath": "5th-semester/reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-1.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -589,9 +197,9 @@
   {
     "type": "file",
     "originalName": "ACC 304 Notes Step 3",
-    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 3.md",
-    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-3.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 3.md",
+    "slugPath": "5th-semester/reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-3.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -599,9 +207,9 @@
   {
     "type": "file",
     "originalName": "ACC 304 Notes Step 8",
-    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 8.md",
-    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-8.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 8.md",
+    "slugPath": "5th-semester/reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-8.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -609,9 +217,9 @@
   {
     "type": "file",
     "originalName": "ACC 304 Notes Step 2",
-    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 2.md",
-    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-2.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 2.md",
+    "slugPath": "5th-semester/reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-2.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -619,9 +227,9 @@
   {
     "type": "file",
     "originalName": "ACC 304 Cost Accounting I",
-    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Cost Accounting I.md",
-    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-cost-accounting-i.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 304 Cost Accounting I/ACC 304 Cost Accounting I.md",
+    "slugPath": "5th-semester/reference-guides/acc-304-cost-accounting-i/acc-304-cost-accounting-i.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -629,9 +237,9 @@
   {
     "type": "file",
     "originalName": "ACC 304 Notes Step 7",
-    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 7.md",
-    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-7.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 7.md",
+    "slugPath": "5th-semester/reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-7.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -639,9 +247,9 @@
   {
     "type": "file",
     "originalName": "ACC 304 Notes Step 5",
-    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 5.md",
-    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-5.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 5.md",
+    "slugPath": "5th-semester/reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-5.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -649,9 +257,9 @@
   {
     "type": "file",
     "originalName": "ACC 304 Notes Step 4",
-    "originalPath": "Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 4.md",
-    "slugPath": "reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-4.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 304 Cost Accounting I/ACC 304 Notes Step 4.md",
+    "slugPath": "5th-semester/reference-guides/acc-304-cost-accounting-i/acc-304-notes-step-4.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -659,16 +267,16 @@
   {
     "type": "folder",
     "originalName": "ACC 302 Financial Management",
-    "originalPath": "Reference Guides/ACC 302 Financial Management",
-    "slugPath": "reference-guides/acc-302-financial-management",
-    "planetSlug": "reference-guides"
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management",
+    "planetSlug": "5th-semester"
   },
   {
     "type": "file",
     "originalName": "ACC 302 Notes Phase 6",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 6.md",
-    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-6.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 6.md",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/acc-302-notes-phase-6.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -676,9 +284,9 @@
   {
     "type": "file",
     "originalName": "ACC 302 Notes Phase 2",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 2.md",
-    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-2.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 2.md",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/acc-302-notes-phase-2.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -686,9 +294,9 @@
   {
     "type": "file",
     "originalName": "ACC 302 Notes Phase 7",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 7.md",
-    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-7.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 7.md",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/acc-302-notes-phase-7.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -696,9 +304,9 @@
   {
     "type": "file",
     "originalName": "ACC 302 Notes Phase 8",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 8.md",
-    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-8.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 8.md",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/acc-302-notes-phase-8.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -706,9 +314,9 @@
   {
     "type": "file",
     "originalName": "ACC 302 Financial Management",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Financial Management.md",
-    "slugPath": "reference-guides/acc-302-financial-management/acc-302-financial-management.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/ACC 302 Financial Management.md",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/acc-302-financial-management.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -716,9 +324,9 @@
   {
     "type": "file",
     "originalName": "ACC 302 Notes Phase 1",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 1.md",
-    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-1.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 1.md",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/acc-302-notes-phase-1.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -726,9 +334,9 @@
   {
     "type": "file",
     "originalName": "ACC 302 Notes Phase 4",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 4.md",
-    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-4.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 4.md",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/acc-302-notes-phase-4.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -736,9 +344,9 @@
   {
     "type": "file",
     "originalName": "ACC 302 Notes Phase 3",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 3.md",
-    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-3.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 3.md",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/acc-302-notes-phase-3.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -746,9 +354,9 @@
   {
     "type": "file",
     "originalName": "ACC 302 Notes Phase 9",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 9.md",
-    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-9.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 9.md",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/acc-302-notes-phase-9.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -756,9 +364,9 @@
   {
     "type": "file",
     "originalName": "ACC 302 Notes Phase 5",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 5.md",
-    "slugPath": "reference-guides/acc-302-financial-management/acc-302-notes-phase-5.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/ACC 302 Notes Phase 5.md",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/acc-302-notes-phase-5.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -766,16 +374,16 @@
   {
     "type": "folder",
     "originalName": "assets",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/assets",
-    "slugPath": "reference-guides/acc-302-financial-management/assets",
-    "planetSlug": "reference-guides"
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/assets",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/assets",
+    "planetSlug": "5th-semester"
   },
   {
     "type": "file",
     "originalName": "acc302_current_asset_financing_curves.svg",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg",
-    "slugPath": "reference-guides/acc-302-financial-management/assets/acc302-current-asset-financing-curves.svg",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/assets/acc302_current_asset_financing_curves.svg",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/assets/acc302-current-asset-financing-curves.svg",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": false
@@ -783,9 +391,9 @@
   {
     "type": "file",
     "originalName": "acc302_bond_price_time_path.svg",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg",
-    "slugPath": "reference-guides/acc-302-financial-management/assets/acc302-bond-price-time-path.svg",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/assets/acc302_bond_price_time_path.svg",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/assets/acc302-bond-price-time-path.svg",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": false
@@ -793,9 +401,9 @@
   {
     "type": "file",
     "originalName": "acc302_mcc_ios_schedule.svg",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg",
-    "slugPath": "reference-guides/acc-302-financial-management/assets/acc302-mcc-ios-schedule.svg",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/assets/acc302_mcc_ios_schedule.svg",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/assets/acc302-mcc-ios-schedule.svg",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": false
@@ -803,9 +411,9 @@
   {
     "type": "file",
     "originalName": "acc302_security_market_line.svg",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/assets/acc302_security_market_line.svg",
-    "slugPath": "reference-guides/acc-302-financial-management/assets/acc302-security-market-line.svg",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/assets/acc302_security_market_line.svg",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/assets/acc302-security-market-line.svg",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": false
@@ -813,9 +421,9 @@
   {
     "type": "file",
     "originalName": "acc302_npv_profiles_crossover.svg",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg",
-    "slugPath": "reference-guides/acc-302-financial-management/assets/acc302-npv-profiles-crossover.svg",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/assets/acc302_npv_profiles_crossover.svg",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/assets/acc302-npv-profiles-crossover.svg",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": false
@@ -823,9 +431,9 @@
   {
     "type": "file",
     "originalName": "acc302_economic_order_quantity_curves.svg",
-    "originalPath": "Reference Guides/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg",
-    "slugPath": "reference-guides/acc-302-financial-management/assets/acc302-economic-order-quantity-curves.svg",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 302 Financial Management/assets/acc302_economic_order_quantity_curves.svg",
+    "slugPath": "5th-semester/reference-guides/acc-302-financial-management/assets/acc302-economic-order-quantity-curves.svg",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": false
@@ -833,16 +441,16 @@
   {
     "type": "folder",
     "originalName": "ACC 301 Intermediate Accounting",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting",
-    "planetSlug": "reference-guides"
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting",
+    "planetSlug": "5th-semester"
   },
   {
     "type": "file",
     "originalName": "ACC 301 Intermediate Accounting",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/ACC 301 Intermediate Accounting.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/acc-301-intermediate-accounting.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/ACC 301 Intermediate Accounting.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/acc-301-intermediate-accounting.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -850,9 +458,9 @@
   {
     "type": "file",
     "originalName": "Accounting Terminology Guide",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Accounting Terminology Guide.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/accounting-terminology-guide.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Accounting Terminology Guide.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/accounting-terminology-guide.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -860,16 +468,16 @@
   {
     "type": "folder",
     "originalName": "Phase 2",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 2",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-2",
-    "planetSlug": "reference-guides"
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 2",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-2",
+    "planetSlug": "5th-semester"
   },
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 5",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 5.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-5.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 5.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-5.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -877,9 +485,9 @@
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 8",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 8.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-8.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 8.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-8.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -887,9 +495,9 @@
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 7",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 7.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-7.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 7.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-7.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -897,9 +505,9 @@
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 9",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 9.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-9.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 9.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-9.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -907,9 +515,9 @@
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 6",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 6.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-6.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 2/ACC 301 Notes Step 6.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-2/acc-301-notes-step-6.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -917,16 +525,16 @@
   {
     "type": "folder",
     "originalName": "Phase 1",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 1",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-1",
-    "planetSlug": "reference-guides"
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 1",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-1",
+    "planetSlug": "5th-semester"
   },
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 2",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 2.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-2.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 2.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-2.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -934,9 +542,9 @@
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 3",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 3.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-3.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 3.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-3.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -944,9 +552,9 @@
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 1",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 1.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-1.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 1.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-1.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -954,9 +562,9 @@
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 4",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 4.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-4.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 1/ACC 301 Notes Step 4.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-1/acc-301-notes-step-4.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -964,16 +572,16 @@
   {
     "type": "folder",
     "originalName": "Phase 3",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 3",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-3",
-    "planetSlug": "reference-guides"
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 3",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-3",
+    "planetSlug": "5th-semester"
   },
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 11",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 3/ACC 301 Notes Step 11.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-11.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 3/ACC 301 Notes Step 11.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-11.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -981,9 +589,9 @@
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 10",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 3/ACC 301 Notes Step 10.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-10.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 3/ACC 301 Notes Step 10.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-10.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -991,9 +599,9 @@
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 12",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 3/ACC 301 Notes Step 12.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-12.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 3/ACC 301 Notes Step 12.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-3/acc-301-notes-step-12.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1001,16 +609,16 @@
   {
     "type": "folder",
     "originalName": "Phase 4",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 4",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-4",
-    "planetSlug": "reference-guides"
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 4",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-4",
+    "planetSlug": "5th-semester"
   },
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 14",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 4/ACC 301 Notes Step 14.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-4/acc-301-notes-step-14.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 4/ACC 301 Notes Step 14.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-4/acc-301-notes-step-14.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1018,9 +626,9 @@
   {
     "type": "file",
     "originalName": "ACC 301 Notes Step 13",
-    "originalPath": "Reference Guides/ACC 301 Intermediate Accounting/Phase 4/ACC 301 Notes Step 13.md",
-    "slugPath": "reference-guides/acc-301-intermediate-accounting/phase-4/acc-301-notes-step-13.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 301 Intermediate Accounting/Phase 4/ACC 301 Notes Step 13.md",
+    "slugPath": "5th-semester/reference-guides/acc-301-intermediate-accounting/phase-4/acc-301-notes-step-13.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1028,16 +636,16 @@
   {
     "type": "folder",
     "originalName": "ACC 305 Auditing & Assurance",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance",
-    "planetSlug": "reference-guides"
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance",
+    "planetSlug": "5th-semester"
   },
   {
     "type": "file",
     "originalName": "ACC 305 Notes Module 5",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 5.md",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-5.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 5.md",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-5.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1045,9 +653,9 @@
   {
     "type": "file",
     "originalName": "ACC 305 Notes Module 7",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 7.md",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-7.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 7.md",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-7.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1055,9 +663,9 @@
   {
     "type": "file",
     "originalName": "ACC 305 Notes Module 1",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 1.md",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-1.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 1.md",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-1.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1065,9 +673,9 @@
   {
     "type": "file",
     "originalName": "ACC 305 Notes Module 11",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 11.md",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-11.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 11.md",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-11.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1075,9 +683,9 @@
   {
     "type": "file",
     "originalName": "ACC 305 Notes Module 10",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 10.md",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-10.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 10.md",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-10.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1085,9 +693,9 @@
   {
     "type": "file",
     "originalName": "ACC 305 Notes Module 3",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 3.md",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-3.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 3.md",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-3.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1095,9 +703,9 @@
   {
     "type": "file",
     "originalName": "ACC 305 Notes Module 2",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 2.md",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-2.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 2.md",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-2.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1105,9 +713,9 @@
   {
     "type": "file",
     "originalName": "ACC 305 Notes Module 8",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 8.md",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-8.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 8.md",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-8.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1115,9 +723,9 @@
   {
     "type": "file",
     "originalName": "ACC 305 Notes Module 4",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 4.md",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-4.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 4.md",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-4.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1125,9 +733,9 @@
   {
     "type": "file",
     "originalName": "ACC 305 Auditing & Assurance",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Auditing & Assurance.md",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-auditing-and-assurance.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Auditing & Assurance.md",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance/acc-305-auditing-and-assurance.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1135,9 +743,9 @@
   {
     "type": "file",
     "originalName": "ACC 305 Notes Module 12",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 12.md",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-12.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 12.md",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-12.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1145,9 +753,9 @@
   {
     "type": "file",
     "originalName": "ACC 305 Notes Module 9",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 9.md",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-9.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 9.md",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-9.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1155,9 +763,9 @@
   {
     "type": "file",
     "originalName": "ACC 305 Notes Module 6",
-    "originalPath": "Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 6.md",
-    "slugPath": "reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-6.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 305 Auditing & Assurance/ACC 305 Notes Module 6.md",
+    "slugPath": "5th-semester/reference-guides/acc-305-auditing-and-assurance/acc-305-notes-module-6.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1165,16 +773,16 @@
   {
     "type": "folder",
     "originalName": "ACC 303 Advanced Statistical Techniques",
-    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques",
-    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques",
-    "planetSlug": "reference-guides"
+    "originalPath": "5th Semester/Reference Guides/ACC 303 Advanced Statistical Techniques",
+    "slugPath": "5th-semester/reference-guides/acc-303-advanced-statistical-techniques",
+    "planetSlug": "5th-semester"
   },
   {
     "type": "file",
     "originalName": "ACC 303 Notes Module 2",
-    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 2.md",
-    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-2.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 2.md",
+    "slugPath": "5th-semester/reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-2.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1182,9 +790,9 @@
   {
     "type": "file",
     "originalName": "ACC 303 Notes Module 5",
-    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 5.md",
-    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-5.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 5.md",
+    "slugPath": "5th-semester/reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-5.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1192,9 +800,9 @@
   {
     "type": "file",
     "originalName": "ACC 303 Notes Module 4",
-    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 4.md",
-    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-4.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 4.md",
+    "slugPath": "5th-semester/reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-4.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1202,9 +810,9 @@
   {
     "type": "file",
     "originalName": "ACC 303 Notes Module 1",
-    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 1.md",
-    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-1.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 1.md",
+    "slugPath": "5th-semester/reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-1.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1212,9 +820,9 @@
   {
     "type": "file",
     "originalName": "ACC 303 Advanced Statistical Techniques",
-    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Advanced Statistical Techniques.md",
-    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-advanced-statistical-techniques.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Advanced Statistical Techniques.md",
+    "slugPath": "5th-semester/reference-guides/acc-303-advanced-statistical-techniques/acc-303-advanced-statistical-techniques.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1222,9 +830,9 @@
   {
     "type": "file",
     "originalName": "ACC 303 Notes Module 3",
-    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 3.md",
-    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-3.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 3.md",
+    "slugPath": "5th-semester/reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-3.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1232,9 +840,9 @@
   {
     "type": "file",
     "originalName": "ACC 303 Notes Module 6",
-    "originalPath": "Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 6.md",
-    "slugPath": "reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-6.md",
-    "planetSlug": "reference-guides",
+    "originalPath": "5th Semester/Reference Guides/ACC 303 Advanced Statistical Techniques/ACC 303 Notes Module 6.md",
+    "slugPath": "5th-semester/reference-guides/acc-303-advanced-statistical-techniques/acc-303-notes-module-6.md",
+    "planetSlug": "5th-semester",
     "isHome": false,
     "title": "",
     "isMarkdown": true
@@ -1248,12 +856,52 @@
   },
   {
     "type": "file",
+    "originalName": "PYQ BCC 207",
+    "originalPath": "4th Semester/PYQ BCC 207.md",
+    "slugPath": "4th-semester/pyq-bcc-207.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
     "originalName": "Overview of 4th Semester",
     "originalPath": "4th Semester/Overview of 4th Semester.md",
     "slugPath": "4th-semester/overview-of-4th-semester.md",
     "planetSlug": "4th-semester",
     "isHome": true,
     "title": "BBA 4th Semester 2025",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "PYQ BCC 206",
+    "originalPath": "4th Semester/PYQ BCC 206.md",
+    "slugPath": "4th-semester/pyq-bcc-206.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "PYQ BCC 208",
+    "originalPath": "4th Semester/PYQ BCC 208.md",
+    "slugPath": "4th-semester/pyq-bcc-208.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "PYQ BCC 209",
+    "originalPath": "4th Semester/PYQ BCC 209.md",
+    "slugPath": "4th-semester/pyq-bcc-209.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
     "isMarkdown": true
   },
   {
@@ -1267,2367 +915,10 @@
     "isMarkdown": true
   },
   {
-    "type": "folder",
-    "originalName": "BCC 206",
-    "originalPath": "4th Semester/BCC 206",
-    "slugPath": "4th-semester/bcc-206",
-    "planetSlug": "4th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "PYQ BCC 206",
-    "originalPath": "4th Semester/BCC 206/PYQ BCC 206.md",
-    "slugPath": "4th-semester/bcc-206/pyq-bcc-206.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "Realisations About Risk vs Loss",
-    "originalPath": "4th Semester/BCC 206/Realisations About Risk vs Loss.md",
-    "slugPath": "4th-semester/bcc-206/realisations-about-risk-vs-loss.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "Solutions",
-    "originalPath": "4th Semester/BCC 206/Solutions",
-    "slugPath": "4th-semester/bcc-206/solutions",
-    "planetSlug": "4th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_4th Exam Q2",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_4th Exam Q2.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_5th Exam Q5",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_5th Exam Q5.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2019 Exam Q1",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2019 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_4th Exam Q3",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_4th Exam Q3.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2023 Exam Q7",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2023 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2019 Exam Q7",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2019 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2020 Exam Q1",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2020 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_4th Exam Q4",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_4th Exam Q4.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_5th Exam Q7",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_5th Exam Q7.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2020 Exam Q7",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2020 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_4th Exam Q7",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_4th Exam Q7.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2019 Exam Q5",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2019 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2023 Exam Q4",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2023 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_5th Exam Q6",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_5th Exam Q6.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_4th Exam Q1",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_4th Exam Q1.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2019 Exam Q2",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2019 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2019 Exam Q4",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2019 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2021 Exam Q1",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2021 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_5th Exam Q1",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_5th Exam Q1.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2024 Exam Q3",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2024 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2020 Exam Q3",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2020 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_5th Exam Q2",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_5th Exam Q2.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2020 Exam Q6",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2020 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2021 Exam Q5",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2021 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2021 Exam Q2",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2021 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_5th Exam Q4",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_5th Exam Q4.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2021 Exam Q6",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2021 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2024 Exam Q4",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2024 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2020 Exam Q4",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2020 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2020 Exam Q2",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2020 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2019 Exam Q6",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2019 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2020 Exam Q5",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2020 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2020-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_5th Exam Q3",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_5th Exam Q3.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-5th-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2021 Exam Q4",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2021 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2024 Exam Q6",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2024 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2024 Exam Q5",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2024 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2023 Exam Q5",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2023 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2021 Exam Q3",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2021 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2019 Exam Q3",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2019 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2019-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2024 Exam Q1",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2024 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2023 Exam Q1",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2023 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2023 Exam Q2",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2023 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_4th Exam Q5",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_4th Exam Q5.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2023 Exam Q6",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2023 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2022_4th Exam Q6",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2022_4th Exam Q6.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2022-4th-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2023 Exam Q3",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2023 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2023-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2024 Exam Q7",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2024 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2021 Exam Q7",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2021 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2021-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "IRM 2024 Exam Q2",
-    "originalPath": "4th Semester/BCC 206/Solutions/IRM 2024 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-206/solutions/irm-2024-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "BCC 210",
-    "originalPath": "4th Semester/BCC 210",
-    "slugPath": "4th-semester/bcc-210",
-    "planetSlug": "4th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "BSED Notes",
-    "originalPath": "4th Semester/BCC 210/BSED Notes.md",
-    "slugPath": "4th-semester/bcc-210/bsed-notes.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
     "type": "file",
     "originalName": "PYQ BCC 210",
-    "originalPath": "4th Semester/BCC 210/PYQ BCC 210.md",
-    "slugPath": "4th-semester/bcc-210/pyq-bcc-210.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "Solutions",
-    "originalPath": "4th Semester/BCC 210/Solutions",
-    "slugPath": "4th-semester/bcc-210/solutions",
-    "planetSlug": "4th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2022 Exam Q3",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2022 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2021 Exam Q1",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2021 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2022 Exam Q1",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2022 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2022 Exam Q4",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2022 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2022 FCC 304 Exam Q4",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2022 FCC 304 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2020 Exam Q5",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2020 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2024 Exam Q1",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2024 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2021 Exam Q6",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2021 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2022 FCC 304 Exam Q7",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2022 FCC 304 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2022 FCC 304 Exam Q5",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2022 FCC 304 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2022 FCC 304 Exam Q2",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2022 FCC 304 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2022 FCC 304 Exam Q6",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2022 FCC 304 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2020 Exam Q4",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2020 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2020 Exam Q6",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2020 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2022 Exam Q6",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2022 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2021 Exam Q3",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2021 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2020 Exam Q2",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2020 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2021 Exam Q5",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2021 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2024 Exam Q7",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2024 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2023 Exam Q2",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2023 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2023 Exam Q5",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2023 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2020 Exam Q7",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2020 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2024 Exam Q5",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2024 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2024 Exam Q6",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2024 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2021 Exam Q4",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2021 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2022 Exam Q2",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2022 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2022 Exam Q5",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2022 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2024 Exam Q4",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2024 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2021 Exam Q7",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2021 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2022 FCC 304 Exam Q3",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2022 FCC 304 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2024 Exam Q3",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2024 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2024 Exam Q2",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2024 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2024-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2023 Exam Q6",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2023 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2023 Exam Q3",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2023 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2020 Exam Q1",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2020 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2023 Exam Q4",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2023 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2023 Exam Q1",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2023 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2022 FCC 304 Exam Q1",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2022 FCC 304 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2022-fcc-304-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2023 Exam Q7",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2023 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2023-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2021 Exam Q2",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2021 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2021-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BSED 2020 Exam Q3",
-    "originalPath": "4th Semester/BCC 210/Solutions/BSED 2020 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-210/solutions/bsed-2020-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "Graphs",
-    "originalPath": "4th Semester/BCC 210/Solutions/Graphs",
-    "slugPath": "4th-semester/bcc-210/solutions/graphs",
-    "planetSlug": "4th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "rate-of-profit.svg",
-    "originalPath": "4th Semester/BCC 210/Solutions/Graphs/rate-of-profit.svg",
-    "slugPath": "4th-semester/bcc-210/solutions/graphs/rate-of-profit.svg",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": false
-  },
-  {
-    "type": "file",
-    "originalName": "kuznets-curve.svg",
-    "originalPath": "4th Semester/BCC 210/Solutions/Graphs/kuznets-curve.svg",
-    "slugPath": "4th-semester/bcc-210/solutions/graphs/kuznets-curve.svg",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": false
-  },
-  {
-    "type": "file",
-    "originalName": "solow-model.svg",
-    "originalPath": "4th Semester/BCC 210/Solutions/Graphs/solow-model.svg",
-    "slugPath": "4th-semester/bcc-210/solutions/graphs/solow-model.svg",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": false
-  },
-  {
-    "type": "folder",
-    "originalName": "BCC 208",
-    "originalPath": "4th Semester/BCC 208",
-    "slugPath": "4th-semester/bcc-208",
-    "planetSlug": "4th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "PYQ BCC 208",
-    "originalPath": "4th Semester/BCC 208/PYQ BCC 208.md",
-    "slugPath": "4th-semester/bcc-208/pyq-bcc-208.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED LO Notes",
-    "originalPath": "4th Semester/BCC 208/ED LO Notes.md",
-    "slugPath": "4th-semester/bcc-208/ed-lo-notes.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "Solutions",
-    "originalPath": "4th Semester/BCC 208/Solutions",
-    "slugPath": "4th-semester/bcc-208/solutions",
-    "planetSlug": "4th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2020 Exam Q4",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2020 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2019 Exam Q3",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2019 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2022 Exam Q6",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2022 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2019 Exam Q1",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2019 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2021 Exam Q2",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2021 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2019 Exam Q7",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2019 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2023 Exam Q6",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2023 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2019 Exam Q5",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2019 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2024 Exam Q5",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2024 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2023 Exam Q2",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2023 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2021 Exam Q7",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2021 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2023 Exam Q7",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2023 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2021 Exam Q4",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2021 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2023 Exam Q3",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2023 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2024 Exam Q1",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2024 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2022 Exam Q5",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2022 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2021 Exam Q5",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2021 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2024 Exam Q4",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2024 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2022 Exam Q7",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2022 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2019 Exam Q6",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2019 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2022 Exam Q1",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2022 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2022 Exam Q2",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2022 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2023 Exam Q5",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2023 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2020 Exam Q1",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2020 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2023 Exam Q4",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2023 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2022 Exam Q4",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2022 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2024 Exam Q7",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2024 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2020 Exam Q5",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2020 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2023 Exam Q1",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2023 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2023-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2021 Exam Q1",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2021 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2019 Exam Q4",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2019 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2021 Exam Q6",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2021 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2019 Exam Q2",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2019 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2019-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2022 Exam Q3",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2022 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2022-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2020 Exam Q3",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2020 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2021 Exam Q3",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2021 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2021-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2020 Exam Q2",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2020 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2024 Exam Q6",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2024 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2024 Exam Q3",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2024 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2020 Exam Q6",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2020 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2020 Exam Q7",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2020 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2020-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "ED 2024 Exam Q2",
-    "originalPath": "4th Semester/BCC 208/Solutions/ED 2024 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-208/solutions/ed-2024-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "BCC 207",
-    "originalPath": "4th Semester/BCC 207",
-    "slugPath": "4th-semester/bcc-207",
-    "planetSlug": "4th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "PYQ BCC 207",
-    "originalPath": "4th Semester/BCC 207/PYQ BCC 207.md",
-    "slugPath": "4th-semester/bcc-207/pyq-bcc-207.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE Cases",
-    "originalPath": "4th Semester/BCC 207/BE Cases.md",
-    "slugPath": "4th-semester/bcc-207/be-cases.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE LO Notes",
-    "originalPath": "4th Semester/BCC 207/BE LO Notes.md",
-    "slugPath": "4th-semester/bcc-207/be-lo-notes.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE Case Solutions",
-    "originalPath": "4th Semester/BCC 207/BE Case Solutions.md",
-    "slugPath": "4th-semester/bcc-207/be-case-solutions.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "Solutions",
-    "originalPath": "4th Semester/BCC 207/Solutions",
-    "slugPath": "4th-semester/bcc-207/solutions",
-    "planetSlug": "4th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2022 Exam Q3",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2022 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2024 Exam Q2",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2024 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2018 Exam Q1",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2018 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2018-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2019 Exam Q1",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2019 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2018 Exam Q2",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2018 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2018-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2022 Exam Q7",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2022 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2018 Exam Q4",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2018 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2018-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2019 Exam Q2",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2019 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2023 Exam Q2",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2023 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2020 Exam Q6",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2020 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2018 Exam Q5",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2018 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2018-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2024 Exam Q7",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2024 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2019 Exam Q7",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2019 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2019 Exam Q4",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2019 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2023 Exam Q3",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2023 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2024 Exam Q5",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2024 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2019 Exam Q6",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2019 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2019 Exam Q3",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2019 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2022 Exam Q4",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2022 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2023 Exam Q5",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2023 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2022 Exam Q6",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2022 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2024 Exam Q3",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2024 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2023 Exam Q4",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2023 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2022 Exam Q5",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2022 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2018 Exam Q3",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2018 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2018-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2022 Exam Q1",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2022 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2024 Exam Q4",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2024 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2019 Exam Q5",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2019 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2019-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2023 Exam Q7",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2023 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2020 Exam Q2",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2020 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2022 Exam Q2",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2022 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2022-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2020 Exam Q4",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2020 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2020 Exam Q3",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2020 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2023 Exam Q1",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2023 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2020 Exam Q5",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2020 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2024 Exam Q6",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2024 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2023 Exam Q6",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2023 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2023-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2024 Exam Q1",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2024 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2024-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2020 Exam Q7",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2020 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "BE 2020 Exam Q1",
-    "originalPath": "4th Semester/BCC 207/Solutions/BE 2020 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-207/solutions/be-2020-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "BCC 209",
-    "originalPath": "4th Semester/BCC 209",
-    "slugPath": "4th-semester/bcc-209",
-    "planetSlug": "4th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "PYQ BCC 209",
-    "originalPath": "4th Semester/BCC 209/PYQ BCC 209.md",
-    "slugPath": "4th-semester/bcc-209/pyq-bcc-209.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB LO Notes",
-    "originalPath": "4th Semester/BCC 209/OB LO Notes.md",
-    "slugPath": "4th-semester/bcc-209/ob-lo-notes.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "folder",
-    "originalName": "Solutions",
-    "originalPath": "4th Semester/BCC 209/Solutions",
-    "slugPath": "4th-semester/bcc-209/solutions",
-    "planetSlug": "4th-semester"
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2023 Exam Q2",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2023 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2020 Exam Q4",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2020 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2021 Exam Q6",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2021 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 4th Sem Exam Q6",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 4th Sem Exam Q6.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2023 Exam Q1",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2023 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 4th Sem Exam Q7",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 4th Sem Exam Q7.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2024 Exam Q3",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2024 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 4th Sem Exam Q5",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 4th Sem Exam Q5.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2021 Exam Q2",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2021 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 5th Sem Exam Q5",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 5th Sem Exam Q5.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2023 Exam Q5",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2023 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 4th Sem Exam Q1",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 4th Sem Exam Q1.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2023 Exam Q3",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2023 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2024 Exam Q5",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2024 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 5th Sem Exam Q7",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 5th Sem Exam Q7.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2024 Exam Q6",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2024 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2023 Exam Q7",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2023 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2024 Exam Q1",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2024 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2024 Exam Q2",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2024 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2020 Exam Q5",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2020 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2021 Exam Q7",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2021 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 5th Sem Exam Q4",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 5th Sem Exam Q4.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 5th Sem Exam Q2",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 5th Sem Exam Q2.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 4th Sem Exam Q2",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 4th Sem Exam Q2.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2020 Exam Q1",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2020 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2020 Exam Q6",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2020 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 5th Sem Exam Q3",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 5th Sem Exam Q3.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2021 Exam Q3",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2021 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 5th Sem Exam Q6",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 5th Sem Exam Q6.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2023 Exam Q4",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2023 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2020 Exam Q3",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2020 Exam Q3.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2020 Exam Q7",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2020 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q7.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2021 Exam Q4",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2021 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 4th Sem Exam Q3",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 4th Sem Exam Q3.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q3.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2023 Exam Q6",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2023 Exam Q6.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2023-exam-q6.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 4th Sem Exam Q4",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 4th Sem Exam Q4.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-4th-sem-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2020 Exam Q2",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2020 Exam Q2.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2020-exam-q2.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2024 Exam Q4",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2024 Exam Q4.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q4.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2021 Exam Q1",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2021 Exam Q1.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2022 5th Sem Exam Q1",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2022 5th Sem Exam Q1.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2022-5th-sem-exam-q1.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2021 Exam Q5",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2021 Exam Q5.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2021-exam-q5.md",
-    "planetSlug": "4th-semester",
-    "isHome": false,
-    "title": "",
-    "isMarkdown": true
-  },
-  {
-    "type": "file",
-    "originalName": "OB 2024 Exam Q7",
-    "originalPath": "4th Semester/BCC 209/Solutions/OB 2024 Exam Q7.md",
-    "slugPath": "4th-semester/bcc-209/solutions/ob-2024-exam-q7.md",
+    "originalPath": "4th Semester/PYQ BCC 210.md",
+    "slugPath": "4th-semester/pyq-bcc-210.md",
     "planetSlug": "4th-semester",
     "isHome": false,
     "title": "",
@@ -3652,9 +943,79 @@
   },
   {
     "type": "file",
+    "originalName": "BE Cases",
+    "originalPath": "4th Semester/Others/BE Cases.md",
+    "slugPath": "4th-semester/others/be-cases.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "Realisations About Risk vs Loss",
+    "originalPath": "4th Semester/Others/Realisations About Risk vs Loss.md",
+    "slugPath": "4th-semester/others/realisations-about-risk-vs-loss.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "BE LO Notes",
+    "originalPath": "4th Semester/Others/BE LO Notes.md",
+    "slugPath": "4th-semester/others/be-lo-notes.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "BSED Notes",
+    "originalPath": "4th Semester/Others/BSED Notes.md",
+    "slugPath": "4th-semester/others/bsed-notes.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "ED LO Notes",
+    "originalPath": "4th Semester/Others/ED LO Notes.md",
+    "slugPath": "4th-semester/others/ed-lo-notes.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
     "originalName": "Final 2025 Hints",
     "originalPath": "4th Semester/Others/Final 2025 Hints.md",
     "slugPath": "4th-semester/others/final-2025-hints.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "BE Case Solutions",
+    "originalPath": "4th Semester/Others/BE Case Solutions.md",
+    "slugPath": "4th-semester/others/be-case-solutions.md",
+    "planetSlug": "4th-semester",
+    "isHome": false,
+    "title": "",
+    "isMarkdown": true
+  },
+  {
+    "type": "file",
+    "originalName": "OB LO Notes",
+    "originalPath": "4th Semester/Others/OB LO Notes.md",
+    "slugPath": "4th-semester/others/ob-lo-notes.md",
     "planetSlug": "4th-semester",
     "isHome": false,
     "title": "",
