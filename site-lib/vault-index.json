@@ -1,6 +1,5 @@
 {
   "files": [
-    "4th-semester/others/be-case-solutions.md",
     "4th-semester/others/be-cases.md",
     "4th-semester/others/be-lo-notes.md",
     "4th-semester/others/bsed-notes.md",
@@ -2793,38 +2792,6 @@
       "relInFolder": "others/final-2025-hints.md",
       "title": "Final 2025 Hints",
       "originalName": "Final 2025 Hints",
-      "isHome": false
-    },
-    "BE Case Solutions": {
-      "path": "4th-semester/others/be-case-solutions.md",
-      "folder": "4th-semester",
-      "relInFolder": "others/be-case-solutions.md",
-      "title": "BE Case Solutions",
-      "originalName": "BE Case Solutions",
-      "isHome": false
-    },
-    "be case solutions": {
-      "path": "4th-semester/others/be-case-solutions.md",
-      "folder": "4th-semester",
-      "relInFolder": "others/be-case-solutions.md",
-      "title": "BE Case Solutions",
-      "originalName": "BE Case Solutions",
-      "isHome": false
-    },
-    "4th-semester/others/be-case-solutions.md": {
-      "path": "4th-semester/others/be-case-solutions.md",
-      "folder": "4th-semester",
-      "relInFolder": "others/be-case-solutions.md",
-      "title": "BE Case Solutions",
-      "originalName": "BE Case Solutions",
-      "isHome": false
-    },
-    "be-case-solutions": {
-      "path": "4th-semester/others/be-case-solutions.md",
-      "folder": "4th-semester",
-      "relInFolder": "others/be-case-solutions.md",
-      "title": "BE Case Solutions",
-      "originalName": "BE Case Solutions",
       "isHome": false
     },
     "OB LO Notes": {
